@@ -13,7 +13,7 @@ Batch 1 of 5 (papers 01 to 05) complete, revision 2. Counts: A 2, B 0, C 3, D 0,
 - `PROTOCOL.md`: pre-registered method
 - `SELECTION.md`: how papers were drawn (frame, seed, screening counts, pre-registration timestamp, hashes)
 - `CHANGELOG_METHOD.md`: every method change, dated, with reasons
-- `repro-audit-2026_batch1_rev2.zip`: the full working tree (scripts, per-paper logs, outputs, agent runs). Paths cited in the reports, such as `papers/05_FNTC1J/A/outputs/sdo_check.json`, are inside it.
+- Full working tree (scripts, per-paper logs, outputs, agent runs): [repro-audit-2026_batch1_rev2.zip](https://drive.google.com/file/d/1YfcCTcFROMIt7Px6nHnYE3Jw-ch0S5TE/view?usp=drivesdk), 12,752,552 bytes, SHA-256 `db79388c09ca379242a7bb6b08ab5834b9524b4bfd28cb9ac627f9734b696c2d`. Paths cited in the reports, such as `papers/05_FNTC1J/A/outputs/sdo_check.json`, are inside it.
 
 ## Scope
 No authors were contacted. Classes describe whether the materials reproduce the paper's numbers; they are not judgements of the research. "Code observations" are listed as verified or unverified; only verified ones appear in reports.
