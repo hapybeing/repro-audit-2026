@@ -1,0 +1,168 @@
+Date (IST): Fri Oct  9 22:20:29 IST 2026
+
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+R_LIBS_USER=/workspace/audit_runs/05_FNTC1J/B/rlib (fresh, created for this run)
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+Seeds: authors set.seed(2000) (line 18; RNG default Mersenne-Twister/Inversion/Rejection); authors set.seed(12345) at lines 3423, 3671; R_a set.seed(20261009)
+
+      package  version                                    lib
+       pacman    0.5.1 /workspace/audit_runs/05_FNTC1J/B/rlib
+    tidyverse    2.0.0                /usr/lib/R/site-library
+        dplyr    1.1.4                /usr/lib/R/site-library
+     magrittr    2.0.3                /usr/lib/R/site-library
+        haven    2.5.4                /usr/lib/R/site-library
+        descr    1.1.9 /workspace/audit_runs/05_FNTC1J/B/rlib
+     tidycomm    0.4.2 /workspace/audit_runs/05_FNTC1J/B/rlib
+    htmlTable    2.4.3                /usr/lib/R/site-library
+       sjmisc   2.8.11 /workspace/audit_runs/05_FNTC1J/B/rlib
+   sjlabelled    1.2.0                /usr/lib/R/site-library
+        psych   2.4.12                /usr/lib/R/site-library
+        stats    4.5.0                     /usr/lib/R/library
+       report    0.6.4 /workspace/audit_runs/05_FNTC1J/B/rlib
+       naniar    1.1.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+  correlation    0.8.8 /workspace/audit_runs/05_FNTC1J/B/rlib
+       xtable    1.8.4                /usr/lib/R/site-library
+        Hmisc    5.2.3                /usr/lib/R/site-library
+          MVN      6.3 /workspace/audit_runs/05_FNTC1J/B/rlib
+       lavaan    0.7.3 /workspace/audit_runs/05_FNTC1J/B/rlib
+      writexl    1.5.4                /usr/lib/R/site-library
+  GPArotation 2024.3.1                /usr/lib/R/site-library
+    stargazer    5.2.3 /workspace/audit_runs/05_FNTC1J/B/rlib
+     MissMech    1.0.4 /workspace/audit_runs/05_FNTC1J/B/rlib
+     finalfit    1.1.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+     careless    1.2.2 /workspace/audit_runs/05_FNTC1J/B/rlib
+     labelled   2.14.0                /usr/lib/R/site-library
+        skimr    2.2.2 /workspace/audit_runs/05_FNTC1J/B/rlib
+        broom    1.0.7                /usr/lib/R/site-library
+        blorr    0.3.1 /workspace/audit_runs/05_FNTC1J/B/rlib
+      splines    4.5.0                     /usr/lib/R/library
+          arm   1.14.4                /usr/lib/R/site-library
+       sjPlot    2.9.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+      ggplot2    3.5.1                /usr/lib/R/site-library
+     ggridges    0.5.6                /usr/lib/R/site-library
+ RColorBrewer    1.1.3                /usr/lib/R/site-library
+    DescTools  0.99.60 /workspace/audit_runs/05_FNTC1J/B/rlib
+      viridis    0.6.5                /usr/lib/R/site-library
+    patchwork    1.3.0                /usr/lib/R/site-library
+     multcomp   1.4.28                /usr/lib/R/site-library
+          car    3.1.3                /usr/lib/R/site-library
+    gridExtra      2.3                /usr/lib/R/site-library
+       lmtest   0.9.40                /usr/lib/R/site-library
+        olsrr    0.7.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+     sandwich    3.1.1                /usr/lib/R/site-library
+         MASS   7.3.65                     /usr/lib/R/library
+         boot   1.3.31                     /usr/lib/R/library
+   kableExtra    1.4.0                /usr/lib/R/site-library
+      cowplot    1.1.3                /usr/lib/R/site-library
+         mice   3.17.0                /usr/lib/R/site-library
+           DT     0.33                /usr/lib/R/site-library
+    htmltools  0.5.8.1                /usr/lib/R/site-library
+      officer    0.6.7                /usr/lib/R/site-library
+    flextable    0.9.7                /usr/lib/R/site-library
+   parameters   0.29.3 /workspace/audit_runs/05_FNTC1J/B/rlib
+       tibble    3.2.1                /usr/lib/R/site-library
+        tidyr    1.3.1                /usr/lib/R/site-library
+    tinytable   0.19.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+      insight    1.5.4 /workspace/audit_runs/05_FNTC1J/B/rlib
+   datawizard    1.4.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+   bayestestR   0.19.0 /workspace/audit_runs/05_FNTC1J/B/rlib
+   effectsize    1.0.3 /workspace/audit_runs/05_FNTC1J/B/rlib
+  performance   0.18.2 /workspace/audit_runs/05_FNTC1J/B/rlib
+
+RNGkind: Mersenne-Twister Inversion Rejection 
+
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] splines   stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] performance_0.18.2   effectsize_1.0.3     bayestestR_0.19.0   
+ [4] datawizard_1.4.0     insight_1.5.4        tinytable_0.19.0    
+ [7] parameters_0.29.3    flextable_0.9.7      officer_0.6.7       
+[10] htmltools_0.5.8.1    DT_0.33              mice_3.17.0         
+[13] cowplot_1.1.3        kableExtra_1.4.0     boot_1.3-31         
+[16] sandwich_3.1-1       olsrr_0.7.0          lmtest_0.9-40       
+[19] zoo_1.8-14           gridExtra_2.3        car_3.1-3           
+[22] carData_3.0-5        multcomp_1.4-28      TH.data_1.1-3       
+[25] survival_3.8-3       mvtnorm_1.3-3        patchwork_1.3.0     
+[28] viridis_0.6.5        viridisLite_0.4.2    DescTools_0.99.60   
+[31] RColorBrewer_1.1-3   ggridges_0.5.6       sjPlot_2.9.0        
+[34] arm_1.14-4           lme4_1.1-37          Matrix_1.7-3        
+[37] MASS_7.3-65          blorr_0.3.1          broom_1.0.7         
+[40] skimr_2.2.2          labelled_2.14.0      careless_1.2.2      
+[43] finalfit_1.1.0       MissMech_1.0.4       stargazer_5.2.3     
+[46] GPArotation_2024.3-1 writexl_1.5.4        lavaan_0.7-3        
+[49] MVN_6.3              Hmisc_5.2-3          xtable_1.8-4        
+[52] correlation_0.8.8    naniar_1.1.0         report_0.6.4        
+[55] psych_2.4.12         sjlabelled_1.2.0     sjmisc_2.8.11       
+[58] htmlTable_2.4.3      tidycomm_0.4.2       descr_1.1.9         
+[61] haven_2.5.4          magrittr_2.0.3       lubridate_1.9.4     
+[64] forcats_1.0.0        stringr_1.5.1        dplyr_1.1.4         
+[67] purrr_1.0.4          readr_2.1.5          tidyr_1.3.1         
+[70] tibble_3.2.1         ggplot2_3.5.1        tidyverse_2.0.0     
+[73] pacman_0.5.1        
+
+loaded via a namespace (and not attached):
+  [1] cellranger_1.1.0        rpart_4.1.24            lifecycle_1.0.4        
+  [4] Rdpack_2.6.3            lm.beta_1.7-3           lattice_0.22-7         
+  [7] backports_1.5.0         plotly_4.12.1           rmarkdown_2.29         
+ [10] zip_2.3.2               askpass_1.2.1           gld_2.6.8              
+ [13] minqa_1.2.8             abind_1.4-8             expm_1.0-0             
+ [16] quadprog_1.5-8          nnet_7.3-20             gdtools_0.4.1          
+ [19] moments_0.14.1          nortest_1.0-4           goftest_1.2-3          
+ [22] svglite_2.1.3           codetools_0.2-20        xml2_1.3.8             
+ [25] energy_1.7-12           tidyselect_1.2.1        shape_1.4.6.1          
+ [28] farver_2.1.2            stats4_4.5.0            base64enc_0.1-3        
+ [31] jsonlite_1.9.1          e1071_1.7-16            mitml_0.4-5            
+ [34] Formula_1.2-5           emmeans_1.10.7          iterators_1.0.14       
+ [37] systemfonts_1.2.1       foreach_1.5.2           tools_4.5.0            
+ [40] ragg_1.3.3              Rcpp_1.0.14             glue_1.8.0             
+ [43] mnormt_2.1.1            pan_1.9                 xfun_0.51              
+ [46] withr_3.0.2             fastmap_1.2.0           openssl_2.3.2          
+ [49] digest_0.6.37           estimability_1.5.1      timechange_0.3.0       
+ [52] R6_2.6.1                textshaping_0.3.7       visdat_0.6.1           
+ [55] colorspace_2.1-1        generics_0.1.3          fontLiberation_0.1.0   
+ [58] data.table_1.17.0       class_7.3-23            httr_1.4.7             
+ [61] htmlwidgets_1.6.4       pkgconfig_2.0.3         gtable_0.3.6           
+ [64] Exact_3.3               fontBitstreamVera_0.1.1 scales_1.3.0           
+ [67] lmom_3.3                reformulas_0.4.1        knitr_1.50             
+ [70] rstudioapi_0.17.1       uuid_1.2-1              tzdb_0.5.0             
+ [73] coda_0.19-4.1           checkmate_2.3.2         nlme_3.1-168           
+ [76] nloptr_2.2.1            repr_1.1.7              proxy_0.4-27           
+ [79] rootSolve_1.8.2.4       parallel_4.5.0          foreign_0.8-90         
+ [82] pillar_1.10.1           grid_4.5.0              vctrs_0.6.5            
+ [85] jomo_2.7-6              cluster_2.1.8.1         evaluate_1.0.3         
+ [88] pbivnorm_0.6.0          cli_3.6.4               compiler_4.5.0         
+ [91] rlang_1.1.5             fs_1.6.5                stringi_1.8.4          
+ [94] munsell_0.5.1           gsl_2.1-8               fontquiver_0.2.1       
+ [97] glmnet_4.1-8            hms_1.1.3               rbibutils_2.3          
+[100] readxl_1.4.5           

@@ -1,0 +1,4 @@
+"expr_index","first_line","last_line","message"
+792,3142,3148,"object 'count_both_ones' not found"
+793,3149,3149,"error in evaluating the argument 'x' in selecting a method for function 'print': object 'count_both_ones' not found"
+796,3153,3153,"'x' must be numeric"

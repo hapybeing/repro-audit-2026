@@ -1,0 +1,7 @@
+Source: https://misinforeview.hks.harvard.edu/wp-content/uploads/2025/10/wintterlin_not-so-different-after-all_20251030.pdf
+Downloaded 2026-10-10, HTTP 200, 1,026,430 bytes, sha256 fcc1b66cbc5f89d86cc588c56618eef1561cb212bf40866d888b04620f477357 (identical to the PDF hash recorded in PREREG.md). Text extracted with pdftotext -layout (hks_pdf_pdftotext.txt, lines 667-669).
+Verbatim:
+"Data availability
+All materials needed to replicate this study are available via the Harvard Dataverse:
+https://doi.org/10.7910/DVN/FNTC1J."
+Other repository mentions (OSF, GitHub, "request"): none found by grep.

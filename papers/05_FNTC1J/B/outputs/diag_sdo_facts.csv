@@ -1,0 +1,2 @@
+"n_rows","n_complete_sdo","sdo1_plus_sdo1r_all_equal_12","sdo3_plus_sdo3r_all_equal_12","max_abs_diff_orig_vs_4_plus_SDO2_SDO4_over_6_complete","cor_orig_vs_4item_complete","cor_orig_vs_SDO2plusSDO4_complete","mean_orig","sd_orig","mean_4item","sd_4item","alpha_4item_as_line982"
+2963,2506,TRUE,TRUE,8.88178419700125e-16,0.823490332987897,1,5.53392857142857,0.857157273714896,4.3871359223301,1.98965281815229,0.582381800238319

@@ -1,0 +1,15 @@
+--- (none: authors run the script interactively in RStudio)
++++ scripts/run_authors.R
+@@ -0,0 +1,12 @@
++# Agent B driver: runs the authors' unmodified MisinfoCT_HSK.r top to bottom in ONE R session.
++# Environment fix only: a no-op View() stub (utils::View fails in a non-interactive session).
++# Usage: cd RUNDIR && Rscript run_authors.R <script> <session_out.RData>
++args <- commandArgs(trailingOnly = TRUE)
++script <- if (length(args) >= 1) args[1] else "MisinfoCT_HSK.r"
++out    <- if (length(args) >= 2) args[2] else "session_main.RData"
++View <- function(...) invisible(NULL)   # ENV FIX (see diffs/01_view_stub.diff)
++t0 <- Sys.time()
++source(script, echo = TRUE, max.deparse.length = Inf, spaced = FALSE)
++cat("\n### SCRIPT FINISHED; elapsed:", format(Sys.time() - t0), "\n")
++cat("### RNGkind:", RNGkind(), "\n")
++save.image(out)

@@ -1,0 +1,11 @@
+# 05_FNTC1J
+- Paper: Not so different after all? Antecedents of believing in misinformation and conspiracy theories on COVID-19
+- Journal: Harvard Kennedy School Misinformation Review (2025)
+- Paper DOI: https://doi.org/10.37016/mr-2020-188
+- Dataset DOI: https://doi.org/10.7910/DVN/FNTC1J
+- Dataset title: Replication Data for: Not so different after all? Antecedents of believing in misinformation and conspiracy theories on COVID-19
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 551200
+- Audit position 5, batch 1

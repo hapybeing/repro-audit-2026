@@ -1,0 +1,58 @@
+=== /workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/05_FNTC1J/B/outputs/authors_tables/2_glm_CTBs_final.docx
+Table A1. Binary logistic regression predicting belief in conspiracy theories
+Predictor | Log-Odds | Std. Error | Y-Std Coef | Odds Ratios | 95% CI
+(Intercept) | -3.10 *** | 0.55 | NA | 0.05 *** | 0.02 – 0.13
+Conspiracy Mentality | 0.26 *** | 0.03 | 0.12 | 1.30 *** | 1.23 – 1.38
+Truth is Political | 0.29 *** | 0.05 | 0.13 | 1.33 *** | 1.21 – 1.47
+Intuitive Thinking | 0.03  | 0.06 | 0.01 | 1.03  | 0.92 – 1.15
+Actively Open-Minded Thinking | 0.10  | 0.05 | 0.05 | 1.10  | 1.00 – 1.22
+Social Dominance Orientation | 0.15  | 0.06 | 0.07 | 1.16  | 1.03 – 1.32
+Political Orientation | 0.20 ** | 0.05 | 0.09 | 1.22 ** | 1.10 – 1.35
+Religiosity | 0.08  | 0.03 | 0.04 | 1.08  | 1.02 – 1.14
+Traditional Media Use | -0.06  | 0.05 | -0.03 | 0.94  | 0.86 – 1.03
+Online Media Use | 0.01  | 0.05 | 0.00 | 1.01  | 0.91 – 1.12
+Social Media Use | 0.11  | 0.07 | 0.05 | 1.11  | 0.98 – 1.27
+Alternative Media Use | 0.19 ** | 0.05 | 0.09 | 1.21 ** | 1.10 – 1.32
+Trust in Media | -0.30 *** | 0.05 | -0.14 | 0.74 *** | 0.67 – 0.82
+Trust in Alternative Media | 0.24 *** | 0.05 | 0.11 | 1.27 *** | 1.15 – 1.41
+Trust in Science | -0.17 *** | 0.04 | -0.08 | 0.85 *** | 0.79 – 0.91
+Trust in Politics | -0.22 ** | 0.06 | -0.10 | 0.80 ** | 0.72 – 0.89
+Gender Male | 0.09  | 0.11 | 0.04 | 1.10  | 0.88 – 1.36
+Age | -0.02 *** | 0.00 | -0.01 | 0.98 *** | 0.97 – 0.99
+Education High | -0.37 * | 0.12 | -0.17 | 0.69 * | 0.55 – 0.87
+Observations | 2962 |  |  |  | 
+AIC | 2475.02 |  |  |  | 
+log-Likelihood | -1218.51 |  |  |  | 
+χ²(df) | 1573.84 (18) |  |  |  | 
+p (Model) | &lt; .001 |  |  |  | 
+R² (Nagelkerke) | 0.56 |  |  |  | 
+Note: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001 (Bonferroni-adjusted to account for multiple comparisons). Heteroscedasticity-consistent standard errors using the sandwich-package in R (Zeileis et al., 2020).
+=== /workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/05_FNTC1J/B/outputs/authors_tables/2_glm_misinfo_final.docx
+Table A2. Binary logistic regression predicting belief in misinformation
+Predictor | Log-Odds | Std. Error | Y-Std Coef | Odds Ratios | 95% CI
+(Intercept) | -1.17  | 0.50 | NA | 0.31  | 0.12 – 0.82
+Conspiracy Mentality | 0.18 *** | 0.03 | 0.09 | 1.20 *** | 1.14 – 1.26
+Truth is Political | 0.18 *** | 0.04 | 0.09 | 1.20 *** | 1.10 – 1.30
+Intuitive Thinking | 0.13  | 0.05 | 0.06 | 1.14  | 1.04 – 1.26
+Actively Open-Minded Thinking | 0.05  | 0.04 | 0.03 | 1.06  | 0.97 – 1.15
+Social Dominance Orientation | 0.07  | 0.06 | 0.03 | 1.07  | 0.95 – 1.20
+Political Orientation | 0.11  | 0.04 | 0.05 | 1.11  | 1.02 – 1.21
+Religiosity | 0.06  | 0.03 | 0.03 | 1.06  | 1.01 – 1.11
+Traditional Media Use | -0.03  | 0.04 | -0.01 | 0.97  | 0.89 – 1.06
+Online Media Use | -0.08  | 0.05 | -0.04 | 0.92  | 0.84 – 1.01
+Social Media Use | 0.08  | 0.06 | 0.04 | 1.08  | 0.96 – 1.22
+Alternative Media Use | 0.21 ** | 0.05 | 0.10 | 1.23 ** | 1.11 – 1.37
+Trust in Media | -0.11  | 0.05 | -0.05 | 0.90  | 0.82 – 0.98
+Trust in Alternative Media | 0.21 *** | 0.05 | 0.10 | 1.23 *** | 1.13 – 1.35
+Trust in Science | -0.15 *** | 0.03 | -0.07 | 0.86 *** | 0.81 – 0.93
+Trust in Politics | -0.23 *** | 0.05 | -0.11 | 0.80 *** | 0.72 – 0.88
+Gender Male | -0.13  | 0.10 | -0.06 | 0.88  | 0.72 – 1.07
+Age | -0.03 *** | 0.00 | -0.01 | 0.97 *** | 0.97 – 0.98
+Education High | -0.51 *** | 0.11 | -0.24 | 0.60 *** | 0.49 – 0.74
+Observations | 2962 |  |  |  | 
+AIC | 2915.952 |  |  |  | 
+log-Likelihood | -1438.976 |  |  |  | 
+χ²(df) | 1226.09 (18) |  |  |  | 
+p (Model) | &lt; .001 |  |  |  | 
+R² (Nagelkerke) | 0.45 |  |  |  | 
+Note: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001 (Bonferroni-adjusted). Robust SEs via sandwich (Zeileis et al., 2020).

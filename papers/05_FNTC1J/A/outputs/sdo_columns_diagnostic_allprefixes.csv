@@ -1,0 +1,8 @@
+"prefix","columns"
+"ConspMentality","ConspMentality_1;ConspMentality_2;ConspMentality_3;ConspMentality_4;ConspMentality_5"
+"EpistBel_Truth","EpistBel_Truth_1;EpistBel_Truth_2;EpistBel_Truth_3;EpistBel_Truth_4"
+"EpistBel_IT","EpistBel_IT_1;EpistBel_IT_2;EpistBel_IT_3;EpistBel_IT_4;EpistBel_IT_5;EpistBel_IT_6"
+"EpistBel_AOT","EpistBel_AOT_1;EpistBel_AOT_2;EpistBel_AOT_3;EpistBel_AOT_4;EpistBel_AOT_5;EpistBel_AOT_6"
+"SDO","SDO1;SDO2;SDO3;SDO4;SDO1_r;SDO3_r"
+"TrustPolitical","TrustPolitical_1;TrustPolitical_2;TrustPolitical_3;TrustPolitical_4;TrustPolitical_5"
+"r_AltMed","r_AltMed_RT;r_AltMed_ET;r_AltMed_PI;r_AltMed_Sput;r_AltMed_Comp;r_AltMed_JF;r_AltMed_DWN;r_AltMed_Tichy;r_AltMed_JourW;r_AltMed_Achgut;r_AltMed_Ken;r_AltMed_Rubi;r_AltMed_JW;r_AltMed_Nachdenk;r_AltMed_Indymed;r_AltMed_Kontrast;r_AltMed_Messaging;r_AltMed_Other"

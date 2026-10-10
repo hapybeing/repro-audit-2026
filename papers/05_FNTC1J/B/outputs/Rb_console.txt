@@ -1,0 +1,20 @@
+                              model                 term N_original n_dropped
+ConspMent_index           model_CTB      ConspMent_index       2962       213
+EpistBel_Truth_index      model_CTB EpistBel_Truth_index       2962       213
+ConspMent_index1      model_misinfo      ConspMent_index       2962       175
+EpistBel_Truth_index1 model_misinfo EpistBel_Truth_index       2962       175
+                      N_refit converged  log_odds       OR     se_hc3 ci_low_OR
+ConspMent_index          2749      TRUE 0.4951487 1.640742 0.03954166  1.518387
+EpistBel_Truth_index     2749      TRUE 0.5519978 1.736719 0.06269490  1.535902
+ConspMent_index1         2787      TRUE 0.2989481 1.348440 0.03117665  1.268510
+EpistBel_Truth_index1    2787      TRUE 0.2926536 1.339979 0.05044117  1.213842
+                      ci_high_OR        p_raw       p_bonf
+ConspMent_index         1.772957 5.644657e-36 1.072485e-34
+EpistBel_Truth_index    1.963792 1.314273e-18 2.497118e-17
+ConspMent_index1        1.433406 8.907568e-22 1.692438e-20
+EpistBel_Truth_index1   1.479222 6.557560e-09 1.245936e-07
+                      same_direction_and_significance
+ConspMent_index                                  TRUE
+EpistBel_Truth_index                             TRUE
+ConspMent_index1                                 TRUE
+EpistBel_Truth_index1                            TRUE

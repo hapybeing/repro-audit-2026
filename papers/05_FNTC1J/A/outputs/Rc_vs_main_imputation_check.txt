@@ -1,0 +1,5 @@
+SDO sd Rc: 1.971409  main: 0.8481821 
+ConspMent_index identical imputed values: FALSE max abs diff 2.16 
+EpistBel_Truth_index identical imputed values: FALSE max abs diff 2.9 
+TrustScience identical imputed values: FALSE max abs diff 2.6 
+polorientation identical imputed values: FALSE max abs diff 3 

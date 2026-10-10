@@ -1,0 +1,15 @@
+                                  quantity estimate_OR boot_n n_not_converged
+ConspMent_index           T1_ConspMent_CTB    1.300423   1000               0
+EpistBel_Truth_index          T3_Truth_CTB    1.332505   1000               0
+ConspMent_index1      T2_ConspMent_misinfo    1.196953   1000               0
+EpistBel_Truth_index1     T4_Truth_misinfo    1.197516   1000               0
+                      ci_low_OR ci_high_OR boot_se_logodds p_boot
+ConspMent_index        1.228744   1.379345      0.02960413      0
+EpistBel_Truth_index   1.216904   1.465374      0.04772412      0
+ConspMent_index1       1.141362   1.265944      0.02633541      0
+EpistBel_Truth_index1  1.097105   1.307611      0.04469310      0
+                      same_direction_and_significance
+ConspMent_index                                  TRUE
+EpistBel_Truth_index                             TRUE
+ConspMent_index1                                 TRUE
+EpistBel_Truth_index1                            TRUE

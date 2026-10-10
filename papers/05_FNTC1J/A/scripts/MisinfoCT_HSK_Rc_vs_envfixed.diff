@@ -1,0 +1,11 @@
+--- MisinfoCT_HSK.r_envfixed
++++ scripts/MisinfoCT_HSK_Rc.r
+@@ -1033,7 +1033,7 @@
+     EpistBel_Truth_index = rowMeans(dplyr::select(., starts_with("EpistBel_Truth")), na.rm = TRUE),
+     EpistBel_IT_index = rowMeans(dplyr::select(., starts_with("EpistBel_IT")), na.rm = TRUE),
+     EpistBel_AOT_index = rowMeans(dplyr::select(., starts_with("EpistBel_AOT")), na.rm = TRUE),
+-    SDO_index = rowMeans(dplyr::select(., starts_with("SDO")), na.rm = TRUE),
++    SDO_index = rowMeans(dplyr::select(., c("SDO1_r", "SDO2", "SDO3_r", "SDO4")), na.rm = TRUE),
+     TrustMedia_index = rowMeans(dplyr::select(., c("TrustMedia_1", "TrustMedia_2", "TrustMedia_3", "TrustMedia_4")), na.rm = TRUE),
+     TrustAltMed_index = rowMeans(dplyr::select(., c("TrustMedia_6", "TrustMedia_7", "TrustMedia_8", "TrustMedia_9", "TrustMedia_10")), na.rm = TRUE),
+     TrustPolitical_index = rowMeans(dplyr::select(., starts_with("TrustPolitical")), na.rm = TRUE),

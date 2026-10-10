@@ -1,0 +1,24 @@
+{
+ "env_fixes": [
+  "diffs/03_continue_on_error_driver.diff: final driver; no-op View() stub (View at lines 1159, 1225 fails non-interactively); runs the UNMODIFIED script expression by expression in one session, logging errors and continuing (as an interactive console would) instead of source() aborting; checkpoints for sandbox recycling; saves the session",
+  "diffs/01_view_stub_driver.diff: first driver (source(echo=TRUE) + View stub), used in attempts 1-2 only",
+  "diffs/SUPERSEDED_02_line3142_stray_dash_separator.diff: commented out the bare '-----' line 3142 in attempt 2 only; superseded, not used in the final run",
+  "Folders published/, _tables/, _figures/, _data/ created in the run folder; rds placed in published/ (no path in the script changed)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All five targets reproduced to the paper's rounding (ORs 1.30, 1.20, 1.33, 1.20; N 2962) from the deposited script and data with environment fixes only; chi2 and Nagelkerke R2 of both models also match the table notes.",
+ "confidence": "high",
+ "confidence_reason": "Exact numeric match to all printed decimals incl. secondary fit statistics; R 4.5.0 aarch64 vs authors' R 4.4.2 macOS made no visible difference; A/B agreement is for compare_ab.py to establish.",
+ "time_minutes": null,
+ "uncertainties": [
+  "Run environment differs from the authors' (R 4.5.0, Debian aarch64, mice 3.17.0, psych 2.4.12 vs R 4.4.2 macOS x86_64, package versions unknown). Despite RNG-dependent multiple imputation, every target and the chi2/R2 values match to all printed decimals, so no RNG or version difference is visible at the reported precision; I cannot say whether the imputed values are bit-identical to the authors'.",
+  "The authors' script does not run top to bottom with source(): it errors at lines 3142-3149 and 3153 (after all targets). The final run used a continue-on-error driver on the unmodified file; how the authors executed it (likely interactively in RStudio) is not documented.",
+  "The sandbox was recycled during the run; the final part of the main run (from script line 3678, the authors' linear-model bootstrap) was resumed from a saved checkpoint of the same session that includes .Random.seed. All targets were computed before that point in the uninterrupted part.",
+  "R_a and R_b were run on a checkpoint of the main session saved after line 3430 (model objects are final from line 1957 and never refit later); R_c's copy was run from the top through line 3430 and then stopped for memory reasons, before the authors' linear-model bootstraps, which cannot affect model_CTB.",
+  "R_a bootstrap p-value is 0 for all four quantities: no resample gave log-odds <= 0, so p < 1/1000 at this resolution.",
+  "R_b dropped 213 (CT model) and 175 (misinfo model) cases with Cook's D > 4/N; the conspiracy-mentality OR rises from 1.30 to about 1.64. Direction and significance hold; the size changes a lot, which is typical of influence-based trimming in logistic models with good separation.",
+  "Paper Table A2 prints ** for Truth is Political (T4); the script's own export in this run prints *** (Bonferroni p 6.7e-4). Several other stars and two CIs in the paper's tables differ from the script export (see LOG.md); none touches a target value.",
+  "Row '1400' removal (line 1770): in this run the removed case is not flagged by the script's own criteria. I could not determine what case the author intended; effect on T1-T4 is below rounding, and it is the reason N = 2962 (T5).",
+  "The raw rds carries no value labels, so the meaning of response code 1 (agreement) for the CT and misinformation items, and the treatment of -1 as non-belief, could not be checked against the questionnaire."
+ ]
+}

@@ -1,0 +1,2 @@
+"n_rows","selected_columns","n_selected","all_SDO1_plus_SDO1r_eq_12","all_SDO3_plus_SDO3r_eq_12","n_complete_4items","cor_6col_vs_4item","sd_6col","sd_4item","min_6col","max_6col","min_4item","max_4item","max_abs_diff_6col_vs_4_plus_SDO2_SDO4_over_6_complete","cor_6col_vs_mean_SDO2_SDO4"
+2963,"SDO1;SDO2;SDO3;SDO4;SDO1_r;SDO3_r",6,TRUE,TRUE,2506,0.785465716101948,0.857157273714896,1.98965281815229,1,9,1,11,8.88178419700125e-16,0.94055962607378

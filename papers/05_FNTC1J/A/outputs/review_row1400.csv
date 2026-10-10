@@ -1,0 +1,2 @@
+"n_model","row1400_in_model","row1400_cooks","row1400_cooks_rank","row1400_std_resid","row1400_position_in_data","name_of_row_at_position_1400","cooks_at_position_1400","rank_of_position_1400","top3_cooks_rownames","top3_cooks","n_abs_std_resid_gt3","threshold_4_over_n","n_cooks_gt_4_over_n","row1400_outcome","model_CTB_has_row1400"
+2963,TRUE,6.28442306386797e-08,2928,-0.0893530955190804,815,"2285",9.11563194577812e-05,1439,"3102;782;759","0.01877;0.0105;0.00796",0,0.00134998312521093,213,"0",FALSE

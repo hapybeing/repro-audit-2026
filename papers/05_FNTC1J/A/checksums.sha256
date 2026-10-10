@@ -1,0 +1,5 @@
+# sha256 of downloaded files (Dataverse doi:10.7910/DVN/FNTC1J v1.0, downloaded 2026-10-09 via api/access/datafile with curl -L -A repro-audit-2026)
+fd86537ea9b98b2e69e06c0e353264bf3fbc1ad19c4d737e7afaddfa77dcf157  MisinfoCT_HSK.r
+c78b5ca25759263deececc8b563122894a183396364de732eb46dd235495687f  raw_data_CTvsMisinfo.rds
+# open PDF of the article (secondary table comparison only)
+fcc1b66cbc5f89d86cc588c56618eef1561cb212bf40866d888b04620f477357  paper.pdf

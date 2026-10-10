@@ -1,0 +1,28 @@
+--- orig/MisinfoCT_HSK.r
++++ MisinfoCT_HSK.r
+@@ -16,6 +16,7 @@
+ # Load libraries ----
+ pacman::p_unload(pacman::p_loaded(), character.only = TRUE)
+ set.seed(2000)
++View <- function(...) invisible(NULL) # AUDIT ENV FIX: utils::View() fails in non-interactive Rscript; no-op stub, no RNG use
+ 
+ library(tidyverse) 
+ library(dplyr) 
+@@ -3139,7 +3140,7 @@
+   misinfo_edu$perc_high_edu[misinfo_edu$misinfo_covid_beliefs_dummy == "1"]
+ )
+ 
+---------------------------------------------------
++# -------------------------------------------------- # AUDIT FIX: stray uncommented separator; under source() it parses as unary minus on the next assignment and stops the script
+ # --------------------------------------------------------------------------------
+ ## Contextualization of results ----
+ ### Because distributions are very similar: check overlap between CT and Misinfo-Believers ----
+@@ -3150,7 +3151,7 @@
+ 
+ freq(ds_analysis_paper2_CTBs_Ant$COVID_CTB_dummy)
+ freq(ds_analysis_paper2_CTBs_Ant$misinfo_covid_beliefs_dummy)
+-cor(ds_analysis_paper2_CTBs_Ant$COVID_CTB, ds_analysis_paper2_CTBs_Ant$misinfo_covid_beliefs)
++# cor(ds_analysis_paper2_CTBs_Ant$COVID_CTB, ds_analysis_paper2_CTBs_Ant$misinfo_covid_beliefs) # AUDIT FIX: print-only line; these columns do not exist in this object until it is rebuilt at original line 3207, so a top-to-bottom run stops here
+ ## Result: 1162 out of 1553 (CT) respectively 1433 (Misinfo) also believe in the other kind of distorted information
+ ### Check Interactions ----
+ ds_analysis_paper2_CTBs_Ant <- ds_analysis_paper2_CTBs_Ant %>%

@@ -1,0 +1,161 @@
+{
+ "paper_id": "05_FNTC1J",
+ "agent": "A",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Odds ratio for Conspiracy Mentality (ConspMent_index) in the binary logistic regression predicting COVID-19 conspiracy theory belief (model_CTB)",
+   "paper_value": 1.3,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.30042252881477,
+   "source_file": "outputs/targets_coefs.csv",
+   "abs_diff": 0.0004225288147698958,
+   "rel_diff": 0.00032502216520761214,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "log-odds 0.2627, HC3 SE 0.0294, raw p 3.81e-19, Bonferroni p (19 terms) 7.25e-18; criterion OR > 1 and adj p < 0.001"
+  },
+  {
+   "id": "T2",
+   "description": "Odds ratio for Conspiracy Mentality (ConspMent_index) in the binary logistic regression predicting COVID-19 misinformation belief (model_misinfo)",
+   "paper_value": 1.2,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.19695274850594,
+   "source_file": "outputs/targets_coefs.csv",
+   "abs_diff": 0.0030472514940600437,
+   "rel_diff": -0.0025393762450500366,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "log-odds 0.1798, HC3 SE 0.0263, raw p 8.07e-12, Bonferroni p (19 terms) 1.53e-10; criterion OR > 1 and adj p < 0.01"
+  },
+  {
+   "id": "T3",
+   "description": "Odds ratio for Truth is Political (EpistBel_Truth_index) in the binary logistic regression predicting COVID-19 conspiracy theory belief (model_CTB)",
+   "paper_value": 1.33,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.33250465289526,
+   "source_file": "outputs/targets_coefs.csv",
+   "abs_diff": 0.002504652895259918,
+   "rel_diff": 0.0018831976656089606,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "log-odds 0.2871, HC3 SE 0.0484, raw p 3.12e-09, Bonferroni p (19 terms) 5.94e-08; criterion OR > 1 and adj p < 0.001"
+  },
+  {
+   "id": "T4",
+   "description": "Odds ratio for Truth is Political (EpistBel_Truth_index) in the binary logistic regression predicting COVID-19 misinformation belief (model_misinfo)",
+   "paper_value": 1.2,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.19751603470852,
+   "source_file": "outputs/targets_coefs.csv",
+   "abs_diff": 0.0024839652914798727,
+   "rel_diff": -0.0020699710762332275,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "log-odds 0.1802, HC3 SE 0.0436, raw p 3.51e-05, Bonferroni p (19 terms) 0.000667; criterion OR > 1 and adj p < 0.01; the paper's Table A2 marks this row ** (adjusted p between .001 and .01); in this run the Bonferroni-adjusted HC3 p is 0.00067, so the authors' own table code prints ***. Log-odds, SE, OR and CI match the paper at 2 decimals; y-standardized coefficient 0.0853 here vs 0.08 in the paper. See outputs/compare_tables_A1_A2.csv"
+  },
+  {
+   "id": "T5",
+   "description": "Number of observations in the conspiracy theory belief logistic regression (nobs(model_CTB))",
+   "paper_value": 2962,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 2962.0,
+   "source_file": "outputs/targets_fit.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(model_CTB); misinfo model nobs = 2962; criterion within 5 of 2962; N = 2962 depends on the hard-coded removal of row name \"1400\" at original line 1770 (see bugs); without that removal N = 2963 and the ORs change only in the 5th decimal (outputs/review_row1400_impact.csv)"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, 1000 resamples, set.seed(20261009), percentile 95% CI of OR for ConspMent_index in model_CTB",
+   "ran": true,
+   "estimate": 1.30042252881477,
+   "se_or_ci": "percentile 95% CI 1.2287 to 1.3793; bootstrap SE of log-odds 0.0296; non-converged resamples 0 of 1000",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Ra_bootstrap_summary.csv",
+   "note": "Same 1000 resample indices also used to refit model_misinfo (secondary, same file): misinfo ConspMent OR CI 1.141 to 1.266, Truth is Political CI in CT model 1.217 to 1.465 and in misinfo model 1.097 to 1.308; all exclude 1. All 2000 refits converged. p_value is the pre-registered two-sided bootstrap proportion min(2 * share of log-odds <= 0, 1) = 0 (no resample at or below 0)."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop cases with Cook's distance > 4/N from model_CTB, refit, HC3 SE, Bonferroni over 19 terms",
+   "ran": true,
+   "estimate": 1.64074227066165,
+   "se_or_ci": "HC3 SE of log-odds 0.0395; Wald 95% CI of OR 1.5184 to 1.7730; dropped 213 of 2962 (threshold 0.001350); Bonferroni p 1.07e-34",
+   "p_value": 5.64465654932164e-36,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rb_cooks.csv",
+   "note": "Cook's distance > 4/2962 drops 213 cases from the CT model (103 of them believers); refit N = 2749. OR rises to 1.641 (Truth is Political 1.737). Misinfo model with its own Cook's distances drops 175 cases: ConspMent OR 1.348, Truth 1.340; all Bonferroni p < 1e-6. Same direction, still significant."
+  },
+  {
+   "id": "R_c",
+   "description": "SDO_index rebuilt from SDO1_r, SDO2, SDO3_r, SDO4 (line 1035), whole script rerun with set.seed(2000); OR for ConspMent_index in model_CTB",
+   "ran": true,
+   "estimate": 1.30747073135845,
+   "se_or_ci": "HC3 SE of log-odds 0.0296; HC3 95% CI of OR 1.2339 to 1.3855; Bonferroni p 2.28e-18; nobs 2962",
+   "p_value": 1.1981100940973e-19,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rc_coefs.csv",
+   "note": "SDO_index rebuilt from the 4 intended items (SDO1_r, SDO2, SDO3_r, SDO4), whole script rerun from set.seed(2000). Because mice receives a different SDO_index, all imputed values change (outputs/Rc_vs_main_imputation_check.txt), so part of the shift is imputation noise. CT model: ConspMent OR 1.3075 (main run 1.3004), Truth is Political 1.3448 (1.3325); misinfo: ConspMent 1.1954 (1.1970), Truth 1.2129 (1.1975). At 2 decimals T1 would read 1.31, T3 1.34, T4 1.21 instead of 1.30, 1.33, 1.20. SDO coefficient itself: CT OR 1.054 (adj p 1) vs 1.164 (adj p .34) in the main run. Conclusions unchanged. Run's part 2 (linear-model bootstraps) was stopped to avoid OOM; model_CTB is final after part 1."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "MisinfoCT_HSK.r",
+   "line": 1035,
+   "description": "SDO_index = rowMeans(dplyr::select(., starts_with(\"SDO\")), na.rm = TRUE) averages six columns: the four raw items SDO1-SDO4 plus the reversed copies SDO1_r and SDO3_r created at lines 377 and 387. Each reversed item is averaged together with its own unreversed original, so the two reverse-keyed items cancel out and the index carries only SDO2 and SDO4, on a compressed scale. The paper describes a 4-item scale and the script's own reliability check (line 982) uses SDO1_r, SDO2, SDO3_r, SDO4.",
+   "evidence": "Printed names(dplyr::select(ds, starts_with(\"SDO\"))) just before original line 1029: SDO1 SDO2 SDO3 SDO4 SDO1_r SDO3_r. In every non-missing row SDO1 + SDO1_r = 12 and SDO3 + SDO3_r = 12, so for the 2506 rows with all four items the index equals 4 + (SDO2 + SDO4)/6 exactly (max abs diff 8.9e-16); SD 0.857, range 1 to 9, vs SD 1.990, range 1 to 11 for the 4-item mean; correlation 0.785 with the 4-item mean (outputs/sdo_columns_diagnostic.csv, sdo_columns_diagnostic_console.txt). SDO is a control variable, not a target. It touches T1 to T5 only through the control and through mice: with the 4-item index (R_c) T1 = 1.3075, T2 = 1.1954, T3 = 1.3448, T4 = 1.2129, N unchanged; directions and significance unchanged."
+  },
+  {
+   "file": "MisinfoCT_HSK.r",
+   "line": 1770,
+   "description": "Hard-coded exclusion subset(..., rownames(...) != \"1400\") under the comment 'row 1400 influential outlier -> remove'. In this reproduction the row named 1400 is not influential, so the exclusion does not do what the comment says. Which case the author meant cannot be determined from the deposit. Effect on the targets is negligible, but it is the reason N is 2962 rather than 2963.",
+   "evidence": "outputs/review_row1400.csv: in the preliminary model (original lines 1688-1696, N 2963) row '1400' has Cook's distance 6.3e-08, rank 2928 of 2963, standardized residual -0.09; no case has |standardized residual| > 3; the three largest Cook's distances are rows 3102, 782, 759 (0.0188, 0.0105, 0.0080). The 1400th row by position (row name 2285) is also unremarkable (rank 1439). The final models reproduce the paper's AIC and log-likelihood to 3 decimals, so the same row was removed in the authors' run. With the row kept, ORs change only in the 5th decimal (outputs/review_row1400_impact.csv)."
+  },
+  {
+   "file": "MisinfoCT_HSK.r",
+   "line": 3142,
+   "description": "Stray separator line of 50 dashes without '#'. Under source() R parses it with the next expression as unary minus applied to the assignment count_both_ones <- ..., so a top-to-bottom run stops. Does not affect any number; it is after all T1-T5 code. (Line 827 has the same kind of line, 80 dashes, but there it only negates a printed freq() value and does not stop the run.)",
+   "evidence": "outputs/run_main_attempt1_console.txt: 'Error: object 'count_both_ones' not found' immediately after the separator. Fixed by commenting it out (diffs/MisinfoCT_HSK.r.diff, hunk 2)."
+  },
+  {
+   "file": "MisinfoCT_HSK.r",
+   "line": 3153,
+   "description": "cor(ds_analysis_paper2_CTBs_Ant$COVID_CTB, ds_analysis_paper2_CTBs_Ant$misinfo_covid_beliefs) refers to columns that this object only gets when it is rebuilt at line 3207, so the deposited script cannot run top to bottom as written (it was evidently run out of order interactively). Print-only line, after all T1-T5 code, no effect on reported numbers.",
+   "evidence": "outputs/run_main_attempt2_console.txt: \"Error in cor(...) : 'x' must be numeric\"; the object built at line 1648 contains only COVID_CTB_dummy and misinfo_covid_beliefs_dummy as outcomes. Fixed by commenting it out (diffs/MisinfoCT_HSK.r.diff, hunk 3). The diagnostic pass (scripts/diag_find_all_errors.R) found no further failing expression."
+  }
+ ],
+ "env_fixes": [
+  "diffs/MisinfoCT_HSK.r.diff hunk 1 (new line 19): View <- function(...) invisible(NULL), because utils::View() at original lines 1159 and 1225 errors in non-interactive Rscript; no RNG use",
+  "diffs/MisinfoCT_HSK.r.diff hunk 2 (original line 3142): stray dash separator commented out so the script can be sourced top to bottom; after all target code (not strictly an environment fix, see diffs/README.md)",
+  "diffs/MisinfoCT_HSK.r.diff hunk 3 (original line 3153): print-only cor() line referencing not-yet-created columns commented out; after all target code (not strictly an environment fix, see diffs/README.md)",
+  "Working directory set to the run dir with published/, _tables/, _figures/, _data/ created before the run; rds placed at published/raw_data_CTvsMisinfo.rds (no code change)",
+  "18 missing CRAN packages installed into a fresh R_LIBS_USER; OpenMx/rpf/semTools from Debian binaries copied into that library (load-time dependencies only)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All five targets reproduced by script and equal to the paper at its reported rounding (T1 1.30, T2 1.20, T3 1.33, T4 1.20, T5 2962); model chi2, Nagelkerke R2, AIC and log-likelihood also match. Two non-environment edits were needed to run the script top to bottom, both after all target code.",
+ "confidence": "medium",
+ "confidence_reason": "Targets match exactly (even AIC to 3 decimals), but the script needed two non-environment line edits to run top to bottom, the environment differs from the authors' (R 4.5.0 aarch64 Linux vs 4.4.2 macOS, unpinned packages), significance stars differ from the paper in 6 table rows including T4's, and agreement with agent B is not yet known.",
+ "time_minutes": 74,
+ "uncertainties": [
+  "Significance stars: in 6 rows of Tables A1/A2 (CT: Alternative Media Use, Trust in Politics; misinfo: Truth is Political (T4), Trust in Science, Alternative Media Use) the reproduced Bonferroni-adjusted HC3 p lies between .0005 and .0017, and the stars printed by the authors' own code differ from the paper's. Log-odds, SEs and ORs in those rows match the paper at 2 decimals and AIC/logLik match to 3 decimals, so the fitted models look identical; the cause of the star differences (package version drift in sandwich/lmtest, or edits to the published table) could not be determined.",
+  "y-standardized coefficients: paper prints intercept values (-1.47, -0.55) that parameters 0.29.3 returns as NA; misinfo Truth is Political y-std 0.0853 here vs 0.08 in the paper. Likely parameters/insight version differences; not a target.",
+  "Table A2 small cell differences: Social Media Use OR 1.0807 here vs 1.09 in the paper; CIs of Alternative Media Use and Trust in Alternative Media in Table A2 differ from the reproduced ones (possibly swapped between the two rows, but not exactly).",
+  "Exact bit-for-bit equality of the mice imputation with the authors' run cannot be checked directly (no deposited imputed data); the identical AIC/logLik to 3 decimals strongly suggests it is the same. RNG: R 4.5.0 default Mersenne-Twister/Inversion/Rejection as in R 4.4.2; mice 3.17.0 and psych 2.4.12 here, authors' versions unknown.",
+  "Which case the author intended to remove at line 1770 cannot be determined; the removed row is not influential in this reproduction.",
+  "The main run's part 2 (linear-model bootstraps for Tables A3/A4, not targets) was OOM-killed once on the shared machine; see LOG.md for whether the final complete run finished.",
+  "Machine was shared and recycled twice during the work; all reported numbers come from runs whose consoles are saved in outputs/."
+ ]
+}

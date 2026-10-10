@@ -1,0 +1,852 @@
+{
+ "paper_id": "05_FNTC1J",
+ "agent": "A",
+ "generated_at_utc": "2026-10-10 06:30:40 UTC",
+ "r_version": "R version 4.5.0 (2025-04-11)",
+ "inputs": {
+  "items": "/workspace/audit_runs/05_FNTC1J/A/sdo_check/sdo_items.rds",
+  "main_checkpoint": "/workspace/audit_runs/05_FNTC1J/A/session_main_checkpoint_part1.RData",
+  "rc_checkpoint": "/workspace/audit_runs/05_FNTC1J/A/Rc/session_Rc_checkpoint_part1.RData",
+  "script": "/workspace/audit_runs/05_FNTC1J/A/orig/MisinfoCT_HSK.r",
+  "paper_text": "/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/05_FNTC1J/A/sdo_check/../outputs/paper_pdftotext.txt"
+ },
+ "code": {
+  "file": "MisinfoCT_HSK.r (deposited, sha256 fd86537e...cf157)",
+  "sdo_index_line": 1035,
+  "sdo_index_code": "SDO_index = rowMeans(dplyr::select(., starts_with(\"SDO\")), na.rm = TRUE),",
+  "reverse_SDO1_line": 377,
+  "reverse_SDO1_code": "ds_MisInfoCT_datamanag$SDO1_r <- 12 - ds_MisInfoCT_datamanag$SDO1",
+  "reverse_SDO3_line": 387,
+  "reverse_SDO3_code": "ds_MisInfoCT_datamanag$SDO3_r <- 12 - ds_MisInfoCT_datamanag$SDO3",
+  "authors_reliability_check_line": 982,
+  "authors_reliability_check_code": "calculate_alpha(c(\"SDO1_r\", \"SDO2\", \"SDO3_r\", \"SDO4\"))",
+  "row1400_line": 1770,
+  "row1400_code": "ds_analysis_paper2_CTBs_Ant <- subset(ds_analysis_paper2_CTBs_Ant, rownames(ds_analysis_paper2_CTBs_Ant) != \"1400\")",
+  "row1400_comment": "### Result: row 1400 influential outlier -> remove",
+  "columns_selected_by_starts_with_SDO": [
+   "SDO1",
+   "SDO2",
+   "SDO3",
+   "SDO4",
+   "SDO1_r",
+   "SDO3_r"
+  ],
+  "corrected_code": "SDO_index = rowMeans(dplyr::select(., c(\"SDO1_r\", \"SDO2\", \"SDO3_r\", \"SDO4\")), na.rm = TRUE)"
+ },
+ "paper_reported": [
+  {
+   "table": "Table A1. Binary logistic regression predicting belief in conspiracy theories.",
+   "page": 16,
+   "text_line": 689,
+   "raw": "Social Dominance                           0.15             0.06           0.07               1.16             1.03, 1.32",
+   "values": {
+    "log_odds": 0.15,
+    "se": 0.06,
+    "y_std": 0.07,
+    "odds_ratio": 1.16,
+    "ci_low": 1.03,
+    "ci_high": 1.32,
+    "stars": false
+   }
+  },
+  {
+   "table": "Table A2. Binary logistic regression predicting belief in misinformation.",
+   "page": 17,
+   "text_line": 741,
+   "raw": "Social Dominance                           0.07            0.06            0.03              1.07             0.95, 1.20",
+   "values": {
+    "log_odds": 0.07,
+    "se": 0.06,
+    "y_std": 0.03,
+    "odds_ratio": 1.07,
+    "ci_low": 0.95,
+    "ci_high": 1.2,
+    "stars": false
+   }
+  },
+  {
+   "table": "Table A3. Linear regression predicting count of believing in conspiracy theories.",
+   "page": 18,
+   "text_line": 793,
+   "raw": "Social Dominance                  0.03                0.03                -0.01, 0.07        -0.00, 0.06",
+   "values": {
+    "estimate": 0.03,
+    "std_beta": 0.03,
+    "ci_low": -0.01,
+    "ci_high": 0.07,
+    "std_ci_low": 0,
+    "std_ci_high": 0.06,
+    "stars": false
+   }
+  },
+  {
+   "table": "Table A4. Linear regression predicting count of believing in misinformation.",
+   "page": 19,
+   "text_line": 843,
+   "raw": "Social Dominance                 0.02                 0.01             -0.04, 0.07     -0.02, 0.04",
+   "values": {
+    "estimate": 0.02,
+    "std_beta": 0.01,
+    "ci_low": -0.04,
+    "ci_high": 0.07,
+    "std_ci_low": -0.02,
+    "std_ci_high": 0.04,
+    "stars": false
+   }
+  },
+  {
+   "table": "Table B1b. Descriptives and correlations.",
+   "page": 22,
+   "text_line": 1063,
+   "raw": "Social Dominance                                                                                     0.24                     0.09                                                                              0.14",
+   "raw_next_line": "5.53    0.85    1      9                                                                                                0.02                      0.02                 0.03",
+   "values": {
+    "mean": 5.53,
+    "sd": 0.85,
+    "min": 1,
+    "max": 9
+   }
+  }
+ ],
+ "paper_scale_description": [
+  "wing). Social dominance orientation was measured on an 11-point scale, asking the respondents to",
+  "indicate their agreement (1 = do not agree at all, 11 = agree totally) with four statements on the legitimacy",
+  "of groups dominating others (Pratto et al., 2013)."
+ ],
+ "cancellation": {
+  "algebra": "SDO1_r = 12 - SDO1 and SDO3_r = 12 - SDO3 (lines 377 and 387). With all four items present the authors' index is (SDO1 + SDO2 + SDO3 + SDO4 + (12 - SDO1) + (12 - SDO3)) / 6 = (24 + SDO2 + SDO4) / 6 = 4 + (SDO2 + SDO4) / 6. SDO1 and SDO3 drop out. With na.rm = TRUE and some items missing, SDO1 and SDO1_r are missing together (same for SDO3), so the index is (12 * k13 + SDO2 + SDO4) / (2 * k13 + k24), where k13 and k24 count the present items among {SDO1, SDO3} and {SDO2, SDO4}: still no dependence on the values of SDO1 or SDO3. The intended index is (SDO1_r + SDO2 + SDO3_r + SDO4) / 4 = (24 - SDO1 - SDO3 + SDO2 + SDO4) / 4. Items 1 and 3 are the pro-equality statements (We must consider all groups..., Group equality should be our ideal), so the original index contains no information from the two reverse-keyed items and is a linear rescaling of the SDO2 + SDO4 sum with slope 1/6 and range 1 to 9 instead of 1 to 11.",
+  "n_rows_item_stage": 2963,
+  "authors_expr_equals_mean_of_6_columns_max_abs_diff": 0,
+  "all_SDO1_plus_SDO1r_eq_12": true,
+  "all_SDO3_plus_SDO3r_eq_12": true,
+  "SDO1_and_SDO1r_missing_together": true,
+  "SDO3_and_SDO3r_missing_together": true,
+  "n_complete_4_items": 2506,
+  "complete_rows_max_abs_diff_from_4_plus_SDO2_SDO4_over_6": 8.88178419700125e-16,
+  "all_rows_max_abs_diff_from_closed_form": 0,
+  "missingness_patterns": {
+   "none": 79,
+   "SDO1": 12,
+   "SDO1+SDO2": 3,
+   "SDO1+SDO2+SDO3": 51,
+   "SDO1+SDO2+SDO3+SDO4": 2506,
+   "SDO1+SDO2+SDO4": 53,
+   "SDO1+SDO3": 11,
+   "SDO1+SDO3+SDO4": 112,
+   "SDO1+SDO4": 68,
+   "SDO2": 1,
+   "SDO2+SDO3": 6,
+   "SDO2+SDO3+SDO4": 18,
+   "SDO2+SDO4": 10,
+   "SDO3": 1,
+   "SDO3+SDO4": 12,
+   "SDO4": 20
+  },
+  "n_index_missing_before_imputation": 79,
+  "partial_derivative_check": {
+   "description": "SDO1 and SDO3 shifted by 5 points on every complete row (reversed copies recomputed); change in each index",
+   "authors_index_max_abs_change": 0,
+   "corrected_index_mean_abs_change": 1.71887470071828
+  },
+  "example_rows": [
+   {
+    "id": "265700800553160",
+    "SDO1": 11,
+    "SDO2": 6,
+    "SDO3": 11,
+    "SDO4": 6,
+    "SDO1_r": 1,
+    "SDO3_r": 1,
+    "authors_index": 6,
+    "four_plus_SDO2_SDO4_over_6": 6,
+    "corrected_4item_index": 3.5
+   },
+   {
+    "id": "265700800545871",
+    "SDO1": 8,
+    "SDO2": 9,
+    "SDO3": 11,
+    "SDO4": 1,
+    "SDO1_r": 4,
+    "SDO3_r": 1,
+    "authors_index": 5.66666666666667,
+    "four_plus_SDO2_SDO4_over_6": 5.66666666666667,
+    "corrected_4item_index": 3.75
+   },
+   {
+    "id": "265700800540678",
+    "SDO1": 5,
+    "SDO2": 6,
+    "SDO3": 5,
+    "SDO4": 2,
+    "SDO1_r": 7,
+    "SDO3_r": 7,
+    "authors_index": 5.33333333333333,
+    "four_plus_SDO2_SDO4_over_6": 5.33333333333333,
+    "corrected_4item_index": 5.5
+   },
+   {
+    "id": "265700800738363",
+    "SDO1": 6,
+    "SDO2": 8,
+    "SDO3": 7,
+    "SDO4": 4,
+    "SDO1_r": 6,
+    "SDO3_r": 5,
+    "authors_index": 6,
+    "four_plus_SDO2_SDO4_over_6": 6,
+    "corrected_4item_index": 5.75
+   },
+   {
+    "id": "265700800733421",
+    "SDO1": 8,
+    "SDO2": 5,
+    "SDO3": 9,
+    "SDO4": 1,
+    "SDO1_r": 4,
+    "SDO3_r": 3,
+    "authors_index": 5,
+    "four_plus_SDO2_SDO4_over_6": 5,
+    "corrected_4item_index": 3.25
+   }
+  ]
+ },
+ "index_comparison": {
+  "descriptives_item_stage": {
+   "authors_index": {
+    "n": 2884,
+    "mean": 5.53392857142857,
+    "sd": 0.857157273714896,
+    "min": 1,
+    "max": 9
+   },
+   "corrected_4item_index": {
+    "n": 2884,
+    "mean": 4.3871359223301,
+    "sd": 1.98965281815229,
+    "min": 1,
+    "max": 11
+   }
+  },
+  "descriptives_model_data": {
+   "authors_index": {
+    "n": 2962,
+    "mean": 5.5342561332433,
+    "sd": 0.848182073446952,
+    "min": 1,
+    "max": 9
+   },
+   "corrected_4item_index_Rc": {
+    "n": 2962,
+    "mean": 4.38967476930002,
+    "sd": 1.97140879887113,
+    "min": 1,
+    "max": 11
+   }
+  },
+  "check_authors_index_in_main_model_equals_item_stage": {
+   "n_compared": 2883,
+   "max_abs_diff_all": 0.416666666666667,
+   "n_compared_excluding_duplicate_id_rows": 2872,
+   "max_abs_diff_excluding_duplicate_id_rows": 0
+  },
+  "duplicate_ids": {
+   "note": "Side finding: the id column is not unique. The imputation step (lines 1210-1218) averages mice output by id and writes it back by id, so for duplicated ids every imputed column, including observed SDO_index values, is replaced by the mean over the respondents sharing that id.",
+   "n_duplicated_ids": 5,
+   "n_rows_with_duplicated_id": 11,
+   "rownames": [
+    "179",
+    "437",
+    "930",
+    "1647",
+    "1663",
+    "2010",
+    "2071",
+    "2679",
+    "4365",
+    "4366",
+    "4367"
+   ],
+   "n_rows_in_model_CTB": 11,
+   "n_rows_where_observed_SDO_index_was_overwritten": 4
+  },
+  "correlation": {
+   "item_stage_complete_4_items": 0.823490332987897,
+   "item_stage_all_available": 0.785465716101948,
+   "item_stage_n_all_available": 2884,
+   "model_data_2962_rows_main_vs_Rc_imputed": 0.781930610216273,
+   "model_data_n": 2962,
+   "authors_index_vs_sum_SDO2_SDO4_complete": 1,
+   "corrected_index_vs_mean_SDO1r_SDO3r_complete": 0.826016400859675,
+   "authors_index_vs_mean_SDO1r_SDO3r_complete": 0.360443019243242
+  },
+  "item_correlations_pairwise": {
+   "SDO1_SDO2": -0.156276327689561,
+   "SDO1_SDO3": 0.387880079972149,
+   "SDO2_SDO3": -0.434879258249926,
+   "SDO1_SDO4": -0.273825797703951,
+   "SDO2_SDO4": 0.231902832308825,
+   "SDO3_SDO4": -0.0575100499217342
+  },
+  "cronbach_alpha": {
+   "note": "psych::alpha, check.keys = FALSE, item-stage data (after the authors' -1 to NA recodes, before imputation). The authors' index is the mean of 6 columns; its alpha as a 6-column scale is reported, plus the alpha of what it effectively measures (SDO2, SDO4). The paper reports no alpha for SDO.",
+   "authors_index_6_columns_as_averaged": {
+    "columns": [
+     "SDO1",
+     "SDO2",
+     "SDO3",
+     "SDO4",
+     "SDO1_r",
+     "SDO3_r"
+    ],
+    "raw_alpha": -1.58893806794461,
+    "std_alpha": -1.72230840418875,
+    "n_complete": 2506,
+    "mean_inter_item_r": -0.117873144512745
+   },
+   "authors_index_effective_items_SDO2_SDO4": {
+    "columns": [
+     "SDO2",
+     "SDO4"
+    ],
+    "raw_alpha": 0.373711709587852,
+    "std_alpha": 0.376495331006252,
+    "n_complete": 2587,
+    "mean_inter_item_r": 0.231902832308825
+   },
+   "corrected_4item_index": {
+    "columns": [
+     "SDO1_r",
+     "SDO2",
+     "SDO3_r",
+     "SDO4"
+    ],
+    "raw_alpha": 0.582381800238319,
+    "std_alpha": 0.58052132434997,
+    "n_complete": 2506,
+    "mean_inter_item_r": 0.257045724307691
+   },
+   "raw_items_unreversed_SDO1_to_SDO4": {
+    "columns": [
+     "SDO1",
+     "SDO2",
+     "SDO3",
+     "SDO4"
+    ],
+    "raw_alpha": -0.287254205465005,
+    "std_alpha": -0.237797318123369,
+    "n_complete": 2506,
+    "mean_inter_item_r": -0.050451420214033
+   }
+  }
+ },
+ "sdo_coefficient": {
+  "versions": {
+   "a_original": "authors' index (6-column mean), main reproduction run (matches paper Tables A1/A2)",
+   "b_corrected_Rc": "4-item index, pre-registered R_c run: whole script rerun from set.seed(2000), so mice re-imputed every variable",
+   "b2_corrected_same_imputation": "4-item index swapped into the main run's imputed data, all other variables identical to (a); isolates the index change",
+   "b2_rows_using_Rc_imputed_value": 79
+  },
+  "refit_from_stored_data_max_abs_coef_diff": 0,
+  "Table_A1_logistic_CT": {
+   "a_original": {
+    "log_odds": 0.15196714001841,
+    "se_hc3": 0.0640858927047065,
+    "odds_ratio": 1.16412198277669,
+    "or_ci_low": 1.02671162546929,
+    "or_ci_high": 1.31992270971365,
+    "p_raw": 0.0177254404665801,
+    "p_bonferroni": 0.336783368865021,
+    "n_terms_bonferroni": 19,
+    "nobs": 2962,
+    "or_per_sd_of_index": 1.13757158748633,
+    "sd_of_index_in_model": 0.848182073446952
+   },
+   "b_corrected_Rc": {
+    "log_odds": 0.0529340890493035,
+    "se_hc3": 0.0293619920804932,
+    "odds_ratio": 1.05436014894931,
+    "or_ci_low": 0.995396271850623,
+    "or_ci_high": 1.11681684483869,
+    "p_raw": 0.0714180799769211,
+    "p_bonferroni": 1,
+    "n_terms_bonferroni": 19,
+    "nobs": 2962,
+    "or_per_sd_of_index": 1.10999413209795,
+    "sd_of_index_in_model": 1.97140879887113
+   },
+   "b2_corrected_same_imputation": {
+    "log_odds": 0.0537260044421174,
+    "se_hc3": 0.0293148279755939,
+    "odds_ratio": 1.05519544367855,
+    "or_ci_low": 0.996276945215531,
+    "or_ci_high": 1.11759830407307,
+    "p_raw": 0.0668435468445916,
+    "p_bonferroni": 1,
+    "n_terms_bonferroni": 19,
+    "nobs": 2962,
+    "or_per_sd_of_index": 1.1117570111202,
+    "sd_of_index_in_model": 1.97188787572929
+   }
+  },
+  "Table_A2_logistic_misinfo": {
+   "a_original": {
+    "log_odds": 0.0679827400988019,
+    "se_hc3": 0.0600019254840419,
+    "odds_ratio": 1.07034683423874,
+    "or_ci_low": 0.951592032953012,
+    "or_ci_high": 1.20392174996431,
+    "p_raw": 0.257210344311132,
+    "p_bonferroni": 1,
+    "n_terms_bonferroni": 19,
+    "nobs": 2962,
+    "or_per_sd_of_index": 1.05935659867721,
+    "sd_of_index_in_model": 0.848182073446952
+   },
+   "b_corrected_Rc": {
+    "log_odds": 0.00351520891659051,
+    "se_hc3": 0.0260081615430281,
+    "odds_ratio": 1.00352139450921,
+    "or_ci_low": 0.95364876039681,
+    "or_ci_high": 1.05600220024266,
+    "p_raw": 0.892487019767678,
+    "p_bonferroni": 1,
+    "n_terms_bonferroni": 19,
+    "nobs": 2962,
+    "or_per_sd_of_index": 1.00695398120351,
+    "sd_of_index_in_model": 1.97140879887113
+   },
+   "b2_corrected_same_imputation": {
+    "log_odds": 0.00535788628044211,
+    "se_hc3": 0.0258963639258114,
+    "odds_ratio": 1.00537226542227,
+    "or_ci_low": 0.955617018609486,
+    "or_ci_high": 1.05771807365997,
+    "p_raw": 0.836090110291323,
+    "p_bonferroni": 1,
+    "n_terms_bonferroni": 19,
+    "nobs": 2962,
+    "or_per_sd_of_index": 1.01062115927525,
+    "sd_of_index_in_model": 1.97188787572929
+   }
+  },
+  "Table_A3_linear_CT_count": {
+   "a_original": {
+    "estimate": 0.0339443822217848,
+    "se": 0.019887442064493,
+    "ci_low": -0.00505031972169068,
+    "ci_high": 0.0729390841652602,
+    "p": 0.0879600476108635,
+    "std_beta": 0.0263993412890374,
+    "p_hc1": 0.110805148834036,
+    "nobs": 2963,
+    "note": "OLS as in the authors' tab_model(model_lin) export (classical SE/CI, unadjusted p); p_hc1 = the authors' coeftest HC1 line, for reference"
+   },
+   "b_corrected_Rc": {
+    "estimate": 0.00926763010664665,
+    "se": 0.00846275064734893,
+    "ci_low": -0.007325878402148,
+    "ci_high": 0.0258611386154413,
+    "p": 0.273558690467522,
+    "std_beta": 0.0167529470297146,
+    "p_hc1": 0.277173221407311,
+    "nobs": 2963,
+    "note": "OLS as in the authors' tab_model(model_lin) export (classical SE/CI, unadjusted p); p_hc1 = the authors' coeftest HC1 line, for reference"
+   },
+   "b2_corrected_same_imputation": {
+    "estimate": 0.0106333673760362,
+    "se": 0.00843441638633794,
+    "ci_low": -0.00590458416070903,
+    "ci_high": 0.0271713189127814,
+    "p": 0.20751264327447,
+    "std_beta": 0.0192264394107685,
+    "p_hc1": 0.209719843535521,
+    "nobs": 2963,
+    "note": "OLS as in the authors' tab_model(model_lin) export (classical SE/CI, unadjusted p); p_hc1 = the authors' coeftest HC1 line, for reference"
+   }
+  },
+  "Table_A4_linear_misinfo_count": {
+   "a_original": {
+    "estimate": 0.0168064753118695,
+    "se": 0.026560254648225,
+    "ci_low": -0.0352720780883938,
+    "ci_high": 0.0688850287121327,
+    "p": 0.526934396003006,
+    "std_beta": 0.00974959770504655,
+    "p_hc1": 0.551848857038944,
+    "nobs": 2963,
+    "note": "OLS as in the authors' tab_model(model_lin) export (classical SE/CI, unadjusted p); p_hc1 = the authors' coeftest HC1 line, for reference"
+   },
+   "b_corrected_Rc": {
+    "estimate": 0.000375527490887308,
+    "se": 0.0112934727711428,
+    "ci_low": -0.0217683763449776,
+    "ci_high": 0.0225194313267522,
+    "p": 0.973476101618449,
+    "std_beta": 0.000506348038077442,
+    "p_hc1": 0.97389479345678,
+    "nobs": 2963,
+    "note": "OLS as in the authors' tab_model(model_lin) export (classical SE/CI, unadjusted p); p_hc1 = the authors' coeftest HC1 line, for reference"
+   },
+   "b2_corrected_same_imputation": {
+    "estimate": 0.00231269321206172,
+    "se": 0.0112625619522995,
+    "ci_low": -0.0197706016141723,
+    "ci_high": 0.0243959880382958,
+    "p": 0.837318003671369,
+    "std_beta": 0.00311911181043922,
+    "p_hc1": 0.840183425534022,
+    "nobs": 2963,
+    "note": "OLS as in the authors' tab_model(model_lin) export (classical SE/CI, unadjusted p); p_hc1 = the authors' coeftest HC1 line, for reference"
+   }
+  }
+ },
+ "targets_under_each_index": {
+  "a_original": {
+   "T1_CT_ConspMent": {
+    "odds_ratio": 1.30042252881477,
+    "se_hc3": 0.0293762900797254,
+    "p_bonferroni": 7.24718991503751e-18
+   },
+   "T2_misinfo_ConspMent": {
+    "odds_ratio": 1.19695274850594,
+    "se_hc3": 0.026293578015787,
+    "p_bonferroni": 1.53253235392218e-10
+   },
+   "T3_CT_Truth": {
+    "odds_ratio": 1.33250465289526,
+    "se_hc3": 0.0484493273057937,
+    "p_bonferroni": 5.93506315287917e-08
+   },
+   "T4_misinfo_Truth": {
+    "odds_ratio": 1.19751603470852,
+    "se_hc3": 0.0435633510691192,
+    "p_bonferroni": 0.000666704631789852
+   },
+   "T5_nobs_CT": 2962
+  },
+  "b_corrected_Rc": {
+   "T1_CT_ConspMent": {
+    "odds_ratio": 1.30747073135845,
+    "se_hc3": 0.0295607440569098,
+    "p_bonferroni": 2.27640917878487e-18
+   },
+   "T2_misinfo_ConspMent": {
+    "odds_ratio": 1.1953657032386,
+    "se_hc3": 0.0262810999491468,
+    "p_bonferroni": 2.12857280896746e-10
+   },
+   "T3_CT_Truth": {
+    "odds_ratio": 1.34476618631038,
+    "se_hc3": 0.0485311688229883,
+    "p_bonferroni": 1.96905624008543e-08
+   },
+   "T4_misinfo_Truth": {
+    "odds_ratio": 1.21287836953746,
+    "se_hc3": 0.0435937291583762,
+    "p_bonferroni": 0.000181416810917359
+   },
+   "T5_nobs_CT": 2962
+  },
+  "b2_corrected_same_imputation": {
+   "T1_CT_ConspMent": {
+    "odds_ratio": 1.30665558390174,
+    "se_hc3": 0.0294748318409368,
+    "p_bonferroni": 2.1687832982163e-18
+   },
+   "T2_misinfo_ConspMent": {
+    "odds_ratio": 1.19829655642923,
+    "se_hc3": 0.0262317806748619,
+    "p_bonferroni": 1.01444507165342e-10
+   },
+   "T3_CT_Truth": {
+    "odds_ratio": 1.33389644157797,
+    "se_hc3": 0.0485993543835244,
+    "p_bonferroni": 5.82092730489827e-08
+   },
+   "T4_misinfo_Truth": {
+    "odds_ratio": 1.20184926683798,
+    "se_hc3": 0.0436558339354156,
+    "p_bonferroni": 0.000481754472462495
+   },
+   "T5_nobs_CT": 2962
+  }
+ },
+ "row1400": {
+  "note": "kept = final glm formulas refit on the data before the line-1770 removal (preliminary model data, 2963 rows); removed = the paper's models (section 5)",
+  "a_original": {
+   "rows_before_removal": 2963,
+   "row_1400_present": true,
+   "row_1400_values": {
+    "COVID_CTB_dummy": "0",
+    "misinfo_covid_beliefs_dummy": "0",
+    "SDO_index": 5.5,
+    "ConspMent_index": 1.8
+   },
+   "row_1400_cooks_distance_prelim_model": 6.28442306386797e-08,
+   "row_1400_cooks_rank": 2928,
+   "top3_cooks_rownames": [
+    "3102",
+    "782",
+    "759"
+   ],
+   "kept": {
+    "targets": {
+     "T1_CT_ConspMent": {
+      "odds_ratio": 1.30043260013615,
+      "se_hc3": 0.0293765511618879,
+      "p_bonferroni": 7.23511949451658e-18
+     },
+     "T2_misinfo_ConspMent": {
+      "odds_ratio": 1.19697794729815,
+      "se_hc3": 0.0262949998280718,
+      "p_bonferroni": 1.52793101460415e-10
+     },
+     "T3_CT_Truth": {
+      "odds_ratio": 1.33251240828882,
+      "se_hc3": 0.0484501023727557,
+      "p_bonferroni": 5.93414789840625e-08
+     },
+     "T4_misinfo_Truth": {
+      "odds_ratio": 1.19753069214872,
+      "se_hc3": 0.0435661599551653,
+      "p_bonferroni": 0.000666663451337979
+     },
+     "T5_nobs_CT": 2963
+    },
+    "SDO_CT": {
+     "log_odds": 0.15196218456375,
+     "se_hc3": 0.0640870918665893,
+     "odds_ratio": 1.16411621403727,
+     "or_ci_low": 1.02670412457897,
+     "or_ci_high": 1.31991927113394,
+     "p_raw": 0.0177312780874269,
+     "p_bonferroni": 0.33689428366111,
+     "n_terms_bonferroni": 19,
+     "nobs": 2963,
+     "or_per_sd_of_index": 1.1375420940397,
+     "sd_of_index_in_model": 0.848039117609524
+    },
+    "SDO_misinfo": {
+     "log_odds": 0.0679418906995733,
+     "se_hc3": 0.0600048272622001,
+     "odds_ratio": 1.07030311210661,
+     "or_ci_low": 0.951547749954413,
+     "or_ci_high": 1.20387941838964,
+     "p_raw": 0.257519363114816,
+     "p_bonferroni": 1,
+     "n_terms_bonferroni": 19,
+     "nobs": 2963,
+     "or_per_sd_of_index": 1.05930960621798,
+     "sd_of_index_in_model": 0.848039117609524
+    }
+   }
+  },
+  "b_corrected_Rc": {
+   "rows_before_removal": 2963,
+   "row_1400_present": true,
+   "row_1400_values": {
+    "COVID_CTB_dummy": "0",
+    "misinfo_covid_beliefs_dummy": "0",
+    "SDO_index": 3.66666666666667,
+    "ConspMent_index": 1.8
+   },
+   "row_1400_cooks_distance_prelim_model": 5.78207008371242e-08,
+   "row_1400_cooks_rank": 2931,
+   "top3_cooks_rownames": [
+    "3102",
+    "782",
+    "759"
+   ],
+   "kept": {
+    "targets": {
+     "T1_CT_ConspMent": {
+      "odds_ratio": 1.30748070960349,
+      "se_hc3": 0.0295609915240571,
+      "p_bonferroni": 2.27260511478317e-18
+     },
+     "T2_misinfo_ConspMent": {
+      "odds_ratio": 1.19538926263648,
+      "se_hc3": 0.0262825490021948,
+      "p_bonferroni": 2.12303935021275e-10
+     },
+     "T3_CT_Truth": {
+      "odds_ratio": 1.34477333911383,
+      "se_hc3": 0.0485319591822255,
+      "p_bonferroni": 1.96893056399162e-08
+     },
+     "T4_misinfo_Truth": {
+      "odds_ratio": 1.21289098279617,
+      "se_hc3": 0.043596439491463,
+      "p_bonferroni": 0.000181447663015583
+     },
+     "T5_nobs_CT": 2963
+    },
+    "SDO_CT": {
+     "log_odds": 0.0529353556650106,
+     "se_hc3": 0.0293626305630057,
+     "odds_ratio": 1.05436148441928,
+     "or_ci_low": 0.995396286993565,
+     "or_ci_high": 1.11681965700763,
+     "p_raw": 0.0714174617186238,
+     "p_bonferroni": 1,
+     "n_terms_bonferroni": 19,
+     "nobs": 2963,
+     "or_per_sd_of_index": 1.10997997810655,
+     "sd_of_index_in_model": 1.97112073979475
+    },
+    "SDO_misinfo": {
+     "log_odds": 0.00351308659868498,
+     "se_hc3": 0.0260102292938435,
+     "odds_ratio": 1.00351926472005,
+     "or_ci_low": 0.953642871600487,
+     "or_ci_high": 1.05600423875045,
+     "p_raw": 0.892560027186484,
+     "p_bonferroni": 1,
+     "n_terms_bonferroni": 19,
+     "nobs": 2963,
+     "or_per_sd_of_index": 1.00694874915201,
+     "sd_of_index_in_model": 1.97112073979475
+    }
+   }
+  },
+  "b2_corrected_same_imputation": {
+   "rows_before_removal": 2963,
+   "row_1400_present": true,
+   "row_1400_values": {
+    "COVID_CTB_dummy": "0",
+    "misinfo_covid_beliefs_dummy": "0",
+    "SDO_index": 3.66666666666667,
+    "ConspMent_index": 1.8
+   },
+   "row_1400_cooks_distance_prelim_model": 6.28442306386797e-08,
+   "row_1400_cooks_rank": 2928,
+   "top3_cooks_rownames": [
+    "3102",
+    "782",
+    "759"
+   ],
+   "kept": {
+    "targets": {
+     "T1_CT_ConspMent": {
+      "odds_ratio": 1.30666516398516,
+      "se_hc3": 0.0294750802818589,
+      "p_bonferroni": 2.16535564045012e-18
+     },
+     "T2_misinfo_ConspMent": {
+      "odds_ratio": 1.19832021017475,
+      "se_hc3": 0.0262332443460509,
+      "p_bonferroni": 1.01182413650888e-10
+     },
+     "T3_CT_Truth": {
+      "odds_ratio": 1.33390311924805,
+      "se_hc3": 0.0486001189168921,
+      "p_bonferroni": 5.8205817711008e-08
+     },
+     "T4_misinfo_Truth": {
+      "odds_ratio": 1.20186086881759,
+      "se_hc3": 0.0436585830028911,
+      "p_bonferroni": 0.000481848514167043
+     },
+     "T5_nobs_CT": 2963
+    },
+    "SDO_CT": {
+     "log_odds": 0.0537273271664523,
+     "se_hc3": 0.0293154553877542,
+     "odds_ratio": 1.05519683941217,
+     "or_ci_low": 0.996277037888317,
+     "or_ci_high": 1.11760115666768,
+     "p_raw": 0.0668426695594041,
+     "p_bonferroni": 1,
+     "n_terms_bonferroni": 19,
+     "nobs": 2963,
+     "or_per_sd_of_index": 1.11174269922007,
+     "sd_of_index_in_model": 1.97159972490309
+    },
+    "SDO_misinfo": {
+     "log_odds": 0.00535632325708277,
+     "se_hc3": 0.0258984392401094,
+     "odds_ratio": 1.00537069400316,
+     "or_ci_low": 0.95561163796124,
+     "or_ci_high": 1.05772072273716,
+     "p_raw": 0.836150193232957,
+     "p_bonferroni": 1,
+     "n_terms_bonferroni": 19,
+     "nobs": 2963,
+     "or_per_sd_of_index": 1.01061648462173,
+     "sd_of_index_in_model": 1.97159972490309
+    }
+   }
+  }
+ },
+ "B_cross_check": {
+  "source_files": [
+   "B/outputs/code_review.md",
+   "B/results.json",
+   "B/outputs/main_all_terms.csv",
+   "B/outputs/Rc_all_terms.csv",
+   "B/outputs/diag_sdo_facts.csv",
+   "B/outputs/diag_sdo_selected_columns.csv"
+  ],
+  "B_code_review_flags_sdo_line_1035": true,
+  "B_code_review_heading": "## 1. SDO index averages six columns, not the four scale items (line 1035)  [real bug; touches T1-T4 only via a control]",
+  "B_results_json_lists_bug_at_line_1035": true,
+  "B_results_json_lists_bug_at_line_1770": true,
+  "B_selected_columns": [
+   "SDO1",
+   "SDO2",
+   "SDO3",
+   "SDO4",
+   "SDO1_r",
+   "SDO3_r"
+  ],
+  "B_n_complete": 2506,
+  "B_max_abs_diff_vs_4_plus_SDO2_SDO4_over_6": 8.88178419700125e-16,
+  "B_cor_orig_vs_4item_complete": 0.823490332987897,
+  "B_alpha_4item": 0.582381800238319,
+  "sdo_coefficient_A_vs_B": [
+   {
+    "model": "model_CTB",
+    "version": "a_original",
+    "B_odds_ratio": 1.16412198277669,
+    "A_odds_ratio": 1.16412198277669,
+    "abs_diff_odds_ratio": 0.0,
+    "B_p_raw": 0.0177254404665801,
+    "B_p_bonf": 0.336783368865021,
+    "abs_diff_p_raw": 0.0
+   },
+   {
+    "model": "model_misinfo",
+    "version": "a_original",
+    "B_odds_ratio": 1.07034683423874,
+    "A_odds_ratio": 1.07034683423874,
+    "abs_diff_odds_ratio": 0.0,
+    "B_p_raw": 0.257210344311132,
+    "B_p_bonf": 1.0,
+    "abs_diff_p_raw": 0.0
+   },
+   {
+    "model": "model_CTB",
+    "version": "b_corrected_Rc",
+    "B_odds_ratio": 1.05436014894931,
+    "A_odds_ratio": 1.05436014894931,
+    "abs_diff_odds_ratio": 0.0,
+    "B_p_raw": 0.0714180799769211,
+    "B_p_bonf": 1.0,
+    "abs_diff_p_raw": 0.0
+   },
+   {
+    "model": "model_misinfo",
+    "version": "b_corrected_Rc",
+    "B_odds_ratio": 1.00352139450921,
+    "A_odds_ratio": 1.00352139450921,
+    "abs_diff_odds_ratio": 0.0,
+    "B_p_raw": 0.892487019767678,
+    "B_p_bonf": 1.0,
+    "abs_diff_p_raw": 0.0
+   }
+  ],
+  "max_abs_diff_odds_ratio_A_vs_B": 0.0,
+  "B_mentions_duplicate_ids": false
+ }
+}

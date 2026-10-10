@@ -1,0 +1,42 @@
+Warning message:
+In readLines(args[5], encoding = "UTF-8") :
+  incomplete final line found on '/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/05_FNTC1J/A/sdo_check/../outputs/paper_pdftotext.txt'
+wrote /workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/05_FNTC1J/A/sdo_check/../outputs/sdo_check.json 
+List of 3
+ $ a_original                  :List of 11
+  ..$ log_odds            : num 0.152
+  ..$ se_hc3              : num 0.0641
+  ..$ odds_ratio          : num 1.16
+  ..$ or_ci_low           : num 1.03
+  ..$ or_ci_high          : num 1.32
+  ..$ p_raw               : num 0.0177
+  ..$ p_bonferroni        : num 0.337
+  ..$ n_terms_bonferroni  : int 19
+  ..$ nobs                : int 2962
+  ..$ or_per_sd_of_index  : num 1.14
+  ..$ sd_of_index_in_model: num 0.848
+ $ b_corrected_Rc              :List of 11
+  ..$ log_odds            : num 0.0529
+  ..$ se_hc3              : num 0.0294
+  ..$ odds_ratio          : num 1.05
+  ..$ or_ci_low           : num 0.995
+  ..$ or_ci_high          : num 1.12
+  ..$ p_raw               : num 0.0714
+  ..$ p_bonferroni        : num 1
+  ..$ n_terms_bonferroni  : int 19
+  ..$ nobs                : int 2962
+  ..$ or_per_sd_of_index  : num 1.11
+  ..$ sd_of_index_in_model: num 1.97
+ $ b2_corrected_same_imputation:List of 11
+  ..$ log_odds            : num 0.0537
+  ..$ se_hc3              : num 0.0293
+  ..$ odds_ratio          : num 1.06
+  ..$ or_ci_low           : num 0.996
+  ..$ or_ci_high          : num 1.12
+  ..$ p_raw               : num 0.0668
+  ..$ p_bonferroni        : num 1
+  ..$ n_terms_bonferroni  : int 19
+  ..$ nobs                : int 2962
+  ..$ or_per_sd_of_index  : num 1.11
+  ..$ sd_of_index_in_model: num 1.97
+wrote /workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/05_FNTC1J/SDO_FINDING.md

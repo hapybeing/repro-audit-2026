@@ -1,0 +1,11 @@
+--- MisinfoCT_HSK.r	2026-10-09 15:42:05.624150076 +0000
++++ MisinfoCT_HSK_envfix.r	2026-10-09 16:18:25.622398885 +0000
+@@ -3139,7 +3139,7 @@
+   misinfo_edu$perc_high_edu[misinfo_edu$misinfo_covid_beliefs_dummy == "1"]
+ )
+ 
+---------------------------------------------------
++# --------------------------------------------------
+ # --------------------------------------------------------------------------------
+ ## Contextualization of results ----
+ ### Because distributions are very similar: check overlap between CT and Misinfo-Believers ----

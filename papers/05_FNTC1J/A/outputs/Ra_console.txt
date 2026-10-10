@@ -1,0 +1,21 @@
+                        model                 term    B    n n_not_converged
+ConspMent_index           CTB      ConspMent_index 1000 2962               0
+EpistBel_Truth_index      CTB EpistBel_Truth_index 1000 2962               0
+ConspMent_index1      misinfo      ConspMent_index 1000 2962               0
+EpistBel_Truth_index1 misinfo EpistBel_Truth_index 1000 2962               0
+                      or_original or_pct_ci_low or_pct_ci_high boot_se_logodds
+ConspMent_index           1.30042       1.22874        1.37935       0.0296041
+EpistBel_Truth_index      1.33250       1.21690        1.46537       0.0477241
+ConspMent_index1          1.19695       1.14136        1.26594       0.0263354
+EpistBel_Truth_index1     1.19752       1.09710        1.30761       0.0446931
+                      p_boot or_pct_ci_low_converged_only
+ConspMent_index            0                      1.22874
+EpistBel_Truth_index       0                      1.21690
+ConspMent_index1           0                      1.14136
+EpistBel_Truth_index1      0                      1.09710
+                      or_pct_ci_high_converged_only
+ConspMent_index                             1.37935
+EpistBel_Truth_index                        1.46537
+ConspMent_index1                            1.26594
+EpistBel_Truth_index1                       1.30761
+EXIT 0
