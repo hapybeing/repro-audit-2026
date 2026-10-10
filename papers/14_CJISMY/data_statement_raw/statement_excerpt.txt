@@ -1,0 +1,7 @@
+Source: https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A01DEE38CA7EDB4CB3A63735B6033E60/S2049847024000335a.pdf/div-class-title-intra-ethnic-divisions-and-disagreement-over-self-determination-demands-in-ethnic-movements-div.pdf
+Downloaded 2026-10-10 15:30 UTC, HTTP 200, 278,790 bytes, 17 pages, sha256 dd635403b6d4affbee10f8148fc5f236c5e56843c39feb84a31cd5ff219e3b78. Text extracted with pdftotext (poppler).
+Verbatim, journal p. 829 (PDF page 15), end of Conclusion:
+"Supplementary material. The supplementary material for this article can be found at https://doi.org/10.1017/psrm.2024.33.
+To obtain replication material for this article, see https://doi.org/10.7910/DVN/CJISMY. The updated EPR-O data can be found at https://doi.org/10.7802/2767."
+Also p. 821 (Section 3.1): "It is available at https://doi.org/10.7802/2767." (the expanded EPR-O dataset)
+Also p. 815, footnote 1: "All hypotheses and variables were pre-registered at the Open Science Foundation at https://osf.io/8z6ng."

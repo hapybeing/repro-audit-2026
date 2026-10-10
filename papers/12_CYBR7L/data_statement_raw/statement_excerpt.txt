@@ -1,0 +1,3 @@
+Source: Zimbalist and Omodei (2026), PS: Political Science & Politics 59(4), p. 712, section 'DATA AVAILABILITY STATEMENT' (publisher PDF sha256 a89bc3aaf813b209ead80f53d834d8df70eb4c3deb7ec9d314b2b43e5a1cdf90).
+
+Research documentation and data that support the findings of this study are openly available at the PS: Political Science & Politics Harvard Dataverse at https://doi.org/10.7910/DVN/CYBR7L.

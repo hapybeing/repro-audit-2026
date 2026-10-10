@@ -1,0 +1,11 @@
+# 12_CYBR7L
+- Paper: Dominating the Narrative: How Scholars Outside of Africa Define African Politics in the Top Political Science Journals
+- Journal: PS Political Science & Politics (2026)
+- Paper DOI: https://doi.org/10.1017/s1049096526102029
+- Dataset DOI: https://doi.org/10.7910/DVN/CYBR7L
+- Dataset title: Replication Data for: Dominating the Narrative: How Scholars Outside of Africa Define African Politics in the Top Political Science Journals
+- Code language (Dataverse file types): Python
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 775550
+- Audit position 12, batch 3

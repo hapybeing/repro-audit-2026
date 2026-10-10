@@ -1,0 +1,3 @@
+Verification Materials: The data and materials required to verify the computational reproducibility of the results, pro-
+cedures, and analyses in this article are available on the American Journal of Political Science Dataverse within the
+Harvard Dataverse Network, at https://doi.org/10.7910/DVN/DX5T9G.

@@ -1,0 +1,11 @@
+# 15_1BBC4E
+- Paper: Electoral autocracies, hybrid regimes, and multiparty autocracies: same, same but different?
+- Journal: Democratization (2025)
+- Paper DOI: https://doi.org/10.1080/13510347.2025.2476183
+- Dataset DOI: https://doi.org/10.7910/DVN/1BBC4E
+- Dataset title: Replication Data for: Electoral Autocracies, Hybrid Regimes, and Multiparty Autocracies: Same, same but different?
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 70213237
+- Audit position 15, batch 3

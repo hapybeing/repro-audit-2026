@@ -1,0 +1,10 @@
+Source: publisher PDF, https://www.tandfonline.com/doi/pdf/10.1080/13510347.2025.2476183 , read as extracted text via the web_fetch tool on 2026-10-10 (~15:33 UTC). Page 1565 (first page), footer block:
+
+"Supplemental data for this article can be accessed online at https://doi.org/10.1080/13510347.2025.2476183"
+"Replication data: https://doi.org/10.7910/DVN/1BBC4E"
+
+Also in the HTML full-text page (https://www.tandfonline.com/doi/full/10.1080/13510347.2025.2476183), section "Supplemental Material": "Supplemental data for this article can be accessed online at https://doi.org/10.1080/13510347.2025.2476183", with a link "Download PDF (214.4 KB)" to fdem_a_2476183_sm8178.pdf.
+
+Target rows, Table 3 (p. 1575), "Correlations PDA classifications (based on all joint observations in pairing)":
+ARD row: 0.607 0.567 0.524 0.434 - 0.636 0.380
+Polity row: 0.383 0.398 - 0.310 0.524 0.484 0.177

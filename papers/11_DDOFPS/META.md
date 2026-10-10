@@ -1,0 +1,11 @@
+# 11_DDOFPS
+- Paper: Banco de Dados de Propaganda Eleitoral (HGPE) dos candidatos a deputado federal do Estado do Rio de Janeiro – 1998-2018*
+- Journal: Dados (2024)
+- Paper DOI: https://doi.org/10.1590/dados.2025.68.1.001
+- Dataset DOI: https://doi.org/10.7910/DVN/DDOFPS
+- Dataset title: Replication Data for: Banco de dados propaganda eleitoral (HGPE) dos candidatos a deputado federal do Estado do Rio de Janeiro – 1998-2018
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 11890263
+- Audit position 11, batch 3

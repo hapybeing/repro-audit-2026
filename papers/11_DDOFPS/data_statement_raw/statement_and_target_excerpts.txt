@@ -1,0 +1,10 @@
+Short excerpts only (not a transcription). Source: SciELO PDF (pt), browser print, sha256 45558bbbc82081530534de93efed0678013c40b0d93b67ecaf1f00c9bf3935b1, and SciELO HTML https://www.scielo.br/j/dados/a/5KCvrPtYzZNWj4MFNZBRPLB/?lang=pt (read 2026-10-10 via web_fetch; not saved, no hash).
+
+Data availability statement (HTML only, section "Declaração de disponibilidade de dados"; absent from the PDF):
+"Banco de dados: <https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DDOFPS>"
+
+p. 7: "totalizando 9.439 observações (1998: 1.071; 2002: 1.778; 2006: 1.351; 2010: 1.610; 2014: 2.703; 2018: 926) (Figura 2)."
+p. 9: "(aparece em apenas 1,8% dos programas) ... Em 2018, por exemplo, o valor é de 4,3% (40 de 926 [note 9]). Uma diferença estatisticamente significante (p-valor > 0,001) a partir da aplicação do teste Qui-Quadrado."
+p. 10: "a frequência observada de apelos políticos: 602 e 417 é maior do que a esperada: 524 e 342, respectivamente (teste Qui-Quadrado)."
+p. 11: "A correlação torna-se mais forte ao longo do tempo: 0,45 (2002); 0,61 (2006); 0,61 (2010); 0,69 (2014); e 0,72 (2018) [note 10]."
+p. 15: note 9 "O esperado é 16."; note 10 "Todas relações estatisticamente significativas ao nível de 5%."

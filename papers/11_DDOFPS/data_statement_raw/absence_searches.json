@@ -1,0 +1,113 @@
+[
+ {
+  "source": "Dataverse DDOFPS all versions file list",
+  "query": "exact filename bd_doxa_programas.xlsx",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/DDOFPS",
+  "utc": "2026-10-10T15:42:00Z",
+  "http": 200,
+  "total_results": 9,
+  "versions": [
+   1,
+   1,
+   1
+  ],
+  "relevant_hits": [],
+  "near_matches": [
+   "bd_doxa_programas_HGPE.RData",
+   "bd_doxa_programas_HGPE.xlsx",
+   "bd_doxa_programas_HGPE_v2.xlsx"
+  ],
+  "hit_rule": "a file with exactly this name in any version of the deposit"
+ },
+ {
+  "source": "Dataverse DDOFPS all versions file list",
+  "query": "exact filename bd_doxa_candidatos.xlsx",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/DDOFPS",
+  "utc": "2026-10-10T15:42:00Z",
+  "http": 200,
+  "total_results": 9,
+  "versions": [
+   1,
+   1,
+   1
+  ],
+  "relevant_hits": [],
+  "near_matches": [
+   "bd_doxa_candidatos_HGPE.RData",
+   "bd_doxa_candidatos_HGPE.xlsx"
+  ],
+  "hit_rule": "a file with exactly this name in any version of the deposit"
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "\"bd_doxa_programas.xlsx\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22bd_doxa_programas.xlsx%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:42:00Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "hit_rule": "a file named exactly bd_doxa_programas.xlsx or bd_doxa_candidatos.xlsx in any dataset"
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "\"bd_doxa_candidatos.xlsx\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22bd_doxa_candidatos.xlsx%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:42:00Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "hit_rule": "a file named exactly bd_doxa_programas.xlsx or bd_doxa_candidatos.xlsx in any dataset"
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "bd_doxa_programas",
+  "url": "https://dataverse.harvard.edu/api/search?q=bd_doxa_programas&type=file&per_page=100",
+  "utc": "2026-10-10T15:42:01Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "hit_rule": "a file named exactly bd_doxa_programas.xlsx or bd_doxa_candidatos.xlsx in any dataset"
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "bd_doxa_candidatos",
+  "url": "https://dataverse.harvard.edu/api/search?q=bd_doxa_candidatos&type=file&per_page=100",
+  "utc": "2026-10-10T15:42:01Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "hit_rule": "a file named exactly bd_doxa_programas.xlsx or bd_doxa_candidatos.xlsx in any dataset"
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "bd_doxa_programas_HGPE.xlsx",
+  "url": "https://dataverse.harvard.edu/api/search?q=bd_doxa_programas_HGPE.xlsx&type=file&per_page=100",
+  "utc": "2026-10-10T15:42:01Z",
+  "http": 200,
+  "total_results": 1,
+  "relevant_hits": [
+   [
+    "bd_doxa_programas_HGPE.xlsx",
+    "doi:10.7910/DVN/DDOFPS",
+    "7337779"
+   ]
+  ],
+  "hit_rule": "a file named exactly bd_doxa_programas.xlsx or bd_doxa_candidatos.xlsx in any dataset"
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "HGPE_lei.xlsx",
+  "url": "https://dataverse.harvard.edu/api/search?q=HGPE_lei.xlsx&type=file&per_page=100",
+  "utc": "2026-10-10T15:42:02Z",
+  "http": 200,
+  "total_results": 1,
+  "relevant_hits": [
+   [
+    "HGPE_lei.xlsx",
+    "doi:10.7910/DVN/DDOFPS",
+    "7337787"
+   ]
+  ],
+  "hit_rule": "a file named exactly bd_doxa_programas.xlsx or bd_doxa_candidatos.xlsx in any dataset"
+ }
+]

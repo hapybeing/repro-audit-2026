@@ -1,0 +1,125 @@
+[
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"helper_functions_eo2_extraction_analysis.R\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22helper_functions_eo2_extraction_analysis.R%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:34:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": []
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"GeoEPR-2019.csv\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22GeoEPR-2019.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:34:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": []
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"EPR_merged.csv\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22EPR_merged.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:34:06Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": []
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"gpw_v4_population_count_rev11_2000_30_min.tif\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22gpw_v4_population_count_rev11_2000_30_min.tif%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:34:06Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": []
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"data.csv\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22data.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T15:34:06Z",
+  "http": 200,
+  "total_results": 623,
+  "relevant_hits": []
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "authorName:\"Gremler\" type=dataset",
+  "url": "https://dataverse.harvard.edu/api/search?q=authorName%3A%22Gremler%22&type=dataset&per_page=100",
+  "utc": "2026-10-10T15:34:08Z",
+  "http": 200,
+  "total_results": 2,
+  "relevant_hits": [
+   {
+    "name": "Replication Data for: Intra-Ethnic Divisions and Disagreement over Self-Determination Demands in Ethnic Movements",
+    "doi": "doi:10.7910/DVN/CJISMY"
+   },
+   {
+    "name": "Replication Data for \"Reality or Rhetoric? Between-Group Inequality and the Use of Grievance Frames on Social Media\"",
+    "doi": "doi:10.7910/DVN/PGEGXZ"
+   }
+  ],
+  "note": "lists every dataset by this author; relevant if a second deposit could hold the missing files"
+ },
+ {
+  "source": "OSF API (node cited in article footnote 1)",
+  "query": "osfstorage root listing of node 8z6ng",
+  "url": "https://api.osf.io/v2/nodes/8z6ng/files/osfstorage/",
+  "utc": "2026-10-10T15:34:09Z",
+  "http": 200,
+  "total_results": 1,
+  "relevant_hits": [],
+  "note": "all files: prereg_osf_upload.pdf"
+ },
+ {
+  "source": "OSF API",
+  "query": "child components of node 8z6ng",
+  "url": "https://api.osf.io/v2/nodes/8z6ng/children/",
+  "utc": "2026-10-10T15:34:09Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": []
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "helper_functions_eo2_extraction_analysis",
+  "url": "https://api.github.com/search/repositories?q=helper_functions_eo2_extraction_analysis",
+  "utc": "2026-10-10T15:34:09Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "relevant_hits lists returned repo names (first 20) for inspection"
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "EPR-O disagreement self-determination",
+  "url": "https://api.github.com/search/repositories?q=EPR-O+disagreement+self-determination",
+  "utc": "2026-10-10T15:34:10Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "relevant_hits lists returned repo names (first 20) for inspection"
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "Gremler EPR",
+  "url": "https://api.github.com/search/repositories?q=Gremler+EPR",
+  "utc": "2026-10-10T15:34:10Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "relevant_hits lists returned repo names (first 20) for inspection"
+ },
+ {
+  "source": "DataCite API",
+  "query": "doi 10.7802/2767",
+  "url": "https://api.datacite.org/dois/10.7802/2767",
+  "utc": "2026-10-10T15:34:10Z",
+  "http": 200,
+  "total_results": 1,
+  "relevant_hits": [],
+  "note": "title=[{'lang': 'en', 'title': 'Ethnic Power Relations - Organizations (EPR-O) Dataset'}], publisher=GESIS Data Archive, url=https://search.gesis.org/research_data/SDN-10.7802-2767"
+ }
+]

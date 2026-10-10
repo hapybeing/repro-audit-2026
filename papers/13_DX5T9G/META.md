@@ -1,0 +1,11 @@
+# 13_DX5T9G
+- Paper: No Entry in a Pandemic: Public Support for Border Closures
+- Journal: American Journal of Political Science (2023)
+- Paper DOI: https://doi.org/10.1111/ajps.12790
+- Dataset DOI: https://doi.org/10.7910/DVN/DX5T9G
+- Dataset title: Replication Data for: No Entry in a Pandemic: Public Support for Border Closures
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: custom terms: This dataset is made available with limited information on how it can be used. You may wish to communicate with the Cont
+- Dataset size (bytes): 847156282
+- Audit position 13, batch 3

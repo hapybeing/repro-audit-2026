@@ -1,0 +1,11 @@
+# 14_CJISMY
+- Paper: Intra-ethnic divisions and disagreement over self-determination demands in ethnic movements
+- Journal: Political Science Research and Methods (2024)
+- Paper DOI: https://doi.org/10.1017/psrm.2024.33
+- Dataset DOI: https://doi.org/10.7910/DVN/CJISMY
+- Dataset title: Replication Data for: Intra-Ethnic Divisions and Disagreement over Self-Determination Demands in Ethnic Movements
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 265536687
+- Audit position 14, batch 3

@@ -1,0 +1,324 @@
+[
+ {
+  "id": 6911550,
+  "path": "replication/code/00_Run it all.R",
+  "orig": null,
+  "served": [
+   "bb4df219008eaac03f29da310f9c47eda18f483e3b3dc7e2294631bb5c417914",
+   4315
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "1a44e12a8dab748c63ec4b2b9e9f2ced"
+ },
+ {
+  "id": 6911552,
+  "path": "replication/code/01_Prepare data.R",
+  "orig": null,
+  "served": [
+   "92794c4d4a915ea847545ac74c274ab10ffe7bd6fc1e960b8ad025420c44fec8",
+   6186
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "23548d4563d935c88670baa05289e953"
+ },
+ {
+  "id": 6911541,
+  "path": "replication/code/02_Descriptives.R",
+  "orig": null,
+  "served": [
+   "93015a353ed7cdd9cbb70b1ddb3381de3392de7a186f689dfb9bef15d7917c0c",
+   5938
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "5687b2d10a3d194126688e8015e25d74"
+ },
+ {
+  "id": 6911557,
+  "path": "replication/code/03_Estimate main models.R",
+  "orig": null,
+  "served": [
+   "7a578a41c0ce65cbcf0f66937250eecaf437df1601b6ed362eb9a4acb1606dfb",
+   8161
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "2021e5031b9fc23af00b03efab94aece"
+ },
+ {
+  "id": 6911540,
+  "path": "replication/code/04_Make main graphs.R",
+  "orig": null,
+  "served": [
+   "ef939e9c5ba10d6896da660f81bc76b5748c924d801174071451784e8d0fa9dc",
+   7613
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "6da359341923a9fd0bc4027939b50381"
+ },
+ {
+  "id": 6911547,
+  "path": "replication/code/05_Make main tables.R",
+  "orig": null,
+  "served": [
+   "378ff3c35fae457f8f14c474e06d6a8ed01e12f85bd273552fcb868ffcf441eb",
+   4842
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "eae8f59f1d6c9acb9674a6253429968c"
+ },
+ {
+  "id": 6911558,
+  "path": "replication/code/06_Estimate Open.R",
+  "orig": null,
+  "served": [
+   "2afcfdd41c42765413cb52c38eafe670119695320baf5d6c05a8a3fdb81ee632",
+   9994
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "25e03db3ca9d33344b3d5bb5775983db"
+ },
+ {
+  "id": 6911542,
+  "path": "replication/code/07_Causal moderation for Open.R",
+  "orig": null,
+  "served": [
+   "397184217d30eab93fea37bbe70db455ba4e58874d1c901909029c3e60265124",
+   4797
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "86011d29f6a6f2bc083d249ea3e24bee"
+ },
+ {
+  "id": 6911545,
+  "path": "replication/code/08_Newspaper analysis.R",
+  "orig": null,
+  "served": [
+   "0d36271ca63a9b76138e2627ad02e06469552279c66b064110a18041b9cf950f",
+   3041
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "3d25db336a8a8761da3cc0260697fbea"
+ },
+ {
+  "id": 6911544,
+  "path": "replication/data/BES/BES-2017-F2F-codebook.pdf",
+  "orig": null,
+  "served": [
+   "846f6de7b72cb614adea91f2ce4c1272d901cf96111b33e0a33f8d5db6afb7a7",
+   1277586
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "47afafc4989fe5584da760d2d2bf2e32"
+ },
+ {
+  "id": 6911551,
+  "path": "replication/data/BES/bes_f2f_2017_v1.5.tab",
+  "orig": "bes_f2f_2017_v1.5.dta",
+  "served": [
+   "84978c8317ecdc3df675018345156705446aa34309e92718aae4267f3d6ed50a",
+   1822710
+  ],
+  "original": [
+   "2bbcc7e1bd8263938064bc6881ae92528d8b8bf5aee9bb12e92d02f865016340",
+   1845588
+  ],
+  "md5": "4bc67b56ba8a36e667adfce7bf0eb725"
+ },
+ {
+  "id": 6911548,
+  "path": "replication/data/cascara_geo_trimmed.png",
+  "orig": null,
+  "served": [
+   "e09eeaab5dbdb25515c1a98e0da6a40e762321da67a444491d2e9aae9ce038a6",
+   707747
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "1758a25d4d56b8383de09eb9c5667dad"
+ },
+ {
+  "id": 6911546,
+  "path": "replication/data/CCES/cces18_common_vv.dta",
+  "orig": null,
+  "served": [
+   null,
+   null
+  ],
+  "original": [
+   "3282e5c40228f32876460ffe34da5131fa6acd2b390fc9093d02e03d8691285a",
+   839424284
+  ],
+  "md5": "8c3c4edcc9221f12a26846cbbed3ea28"
+ },
+ {
+  "id": 6911543,
+  "path": "replication/data/CCES/CCES+Guide+2018.pdf",
+  "orig": null,
+  "served": [
+   "194e87c2aa2c0ea4e5b0aa21bf8e8c7ce40968836d61811c4528df1f07d492cd",
+   497715
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "08bf4bdea1d10ed84516194c5c3a79b1"
+ },
+ {
+  "id": 6911549,
+  "path": "replication/data/Codebook.pdf",
+  "orig": null,
+  "served": [
+   "a915142f0470b00b40efc95510e0e449d6a52b64b0ac32218243ece0948421ef",
+   90268
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "d7d3e023e58f86f4610071b4e4397147"
+ },
+ {
+  "id": 6911539,
+  "path": "replication/data/News Queries/News Codebook.pdf",
+  "orig": null,
+  "served": [
+   "bd081f4ec08c2557c2aa14ad3810ef202d805cf5c63b125d5729622aaf17ee85",
+   96522
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "005f053ae9afa6bd69dac3bc99658d31"
+ },
+ {
+  "id": 6911556,
+  "path": "replication/data/News Queries/News.tab",
+  "orig": "News.csv",
+  "served": [
+   "e322e9d6ed4c0594b0da97ddecdd256ec5e5dfdf1c0fbf4538c26e8717324dbc",
+   2901
+  ],
+  "original": [
+   "02af87ce84f7497db4aa9e6cc5a05e75c40792aca307bf0ac0f48cfb4e77aa08",
+   2570
+  ],
+  "md5": "44c55972a6dd3f0f44caca8905cc466c"
+ },
+ {
+  "id": 6911537,
+  "path": "replication/log/PandemicBorder.log",
+  "orig": null,
+  "served": [
+   "eb6c835e3947d5b678ddd908138a79c6a663c7179ca3728091cd2eeb95db6160",
+   8487
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "b154ec47f9e333d80a2b3f4979cc519a"
+ },
+ {
+  "id": 6911561,
+  "path": "replication/ReadMe.txt",
+  "orig": null,
+  "served": [
+   "ff240d623426fdf389e64c4343ade594649e4e77d1fd2141c4e2be2701037a13",
+   3557
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "605c0a13a7144c270f5ceeb96903afab"
+ },
+ {
+  "id": 6911562,
+  "path": "replication/data/Sample flow of survey - UK.pdf",
+  "orig": null,
+  "served": [
+   "428776ac2e7c4d2b6afba2fdf13381946a28974d98a4e2f6f36f3ed1488781ac",
+   727356
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "5e0d963e4ef66b4748a8d2d6e7ee487b"
+ },
+ {
+  "id": 6911559,
+  "path": "replication/data/ViralBorders - UK.tab",
+  "orig": "ViralBorders - UK.csv",
+  "served": [
+   "c2aeb554c18725573f1ea0ba2f63990dafc446ac40ccf7e9ab64eb87ce490abe",
+   1219576
+  ],
+  "original": [
+   "25b452348c82191c9c1877cdf965f781bbedd7dd6a45589a09e68d8bd4cffe1f",
+   1168013
+  ],
+  "md5": "59c8a4895618d7ed97da9196b9dbcffe"
+ },
+ {
+  "id": 6911553,
+  "path": "replication/data/ViralBorders - US.tab",
+  "orig": "ViralBorders - US.csv",
+  "served": [
+   "def222e5e296007172003483894f1ceb458a42f64dc83ee61045827387df09e2",
+   1221018
+  ],
+  "original": [
+   "3b348166bb2b104aed18017eafbb7d964f6401f7950f9cb1f147d18d40790f1d",
+   1169429
+  ],
+  "md5": "c0f0fe484197a312a14985ca6fd8ba20"
+ },
+ {
+  "id": 6911560,
+  "path": "replication/code/X_Auxiliary functions.R",
+  "orig": null,
+  "served": [
+   "5334fad543ab7cdd20800b01749970bc11963fa2df7bac439f28d671c144edd7",
+   1668
+  ],
+  "original": [
+   null,
+   null
+  ],
+  "md5": "1bc4cac9e54dc9dcf0a3e46d14260903"
+ }
+]
