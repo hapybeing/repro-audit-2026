@@ -1,0 +1,40 @@
+          model  type             term     estimate         se      p_value
+model1B model1B feols year_2018:juicio -0.052467241 0.01382460 1.778253e-04
+model2B model2B feols year_2018:juicio -0.066148594 0.01389930 3.002687e-06
+model3B model3B feols year_2018:juicio -0.034111265 0.01935329 7.897356e-02
+model4B model4B feols year_2018:juicio -0.066140702 0.01391801 3.100625e-06
+model1   model1  lmer juicio:year_2018 -0.062370965 0.01427120 1.240143e-05
+model2   model2  lmer juicio:year_2018 -0.067432502 0.01413080 1.823850e-06
+model3   model3  lmer juicio:year_2018 -0.038226760 0.01869984 4.093093e-02
+model4   model4  lmer juicio:year_2018 -0.067352943 0.01418462 2.051253e-06
+model1G model1G  lmer juicio:year_2018 -0.044667901 0.01655033 6.956622e-03
+model2G model2G  lmer juicio:year_2018 -0.050595874 0.01707177 3.039486e-03
+model3G model3G  lmer juicio:year_2018 -0.006253584 0.02390134 7.935978e-01
+model4G model4G  lmer juicio:year_2018 -0.050635659 0.01707745 3.026236e-03
+                  p_type                                   vcov nobs
+model1B   fixest default Standard-errors: Clustered (unique_id)  600
+model2B   fixest default Standard-errors: Clustered (unique_id)  600
+model3B   fixest default Standard-errors: Clustered (unique_id)  600
+model4B   fixest default Standard-errors: Clustered (unique_id)  600
+model1  Wald z two-sided                            model-based  600
+model2  Wald z two-sided                            model-based  600
+model3  Wald z two-sided                            model-based  600
+model4  Wald z two-sided                            model-based  600
+model1G Wald z two-sided                            model-based  297
+model2G Wald z two-sided                            model-based  297
+model3G Wald z two-sided                            model-based  297
+model4G Wald z two-sided                            model-based  297
+                             n_groups p_satterthwaite
+model1B unique_id=307;partido_gober=5              NA
+model2B unique_id=307;partido_gober=5              NA
+model3B unique_id=307;partido_gober=5              NA
+model4B unique_id=307;partido_gober=5              NA
+model1  unique_id=307;partido_gober=5    1.719870e-05
+model2  unique_id=307;partido_gober=5    2.855433e-06
+model3  unique_id=307;partido_gober=5    4.169122e-02
+model4  unique_id=307;partido_gober=5    3.198480e-06
+model1G unique_id=152;partido_gober=3    7.782108e-03
+model2G unique_id=152;partido_gober=3    3.525164e-03
+model3G unique_id=152;partido_gober=3    7.939536e-01
+model4G unique_id=152;partido_gober=3    3.512982e-03
+fixest version used: 0.12.1 

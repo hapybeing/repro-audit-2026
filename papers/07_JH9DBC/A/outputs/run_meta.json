@@ -1,0 +1,30 @@
+{
+ "run_date_ist": "2026-10-10",
+ "start_utc": "2026-10-10T12:31:00",
+ "end_utc": "2026-10-10T13:20:00",
+ "bugs": [],
+ "env_fixes": [
+  "none (no diff): working directory set to the folder with data.dta by scripts/run_authors.sh",
+  "none (no diff): data.dta downloaded with ?format=original as PREREG.md instructs",
+  "none (no diff): installed fixest, sjPlot, cobalt, WeightIt (current CRAN) into a per-run library; WeightIt is used via :: at line 214 without library()",
+  "none (no diff): fixest pinned to 0.12.1 (CRAN archive) for the primary run, because fixest >= 0.13.0 changed the default vcov to iid and drops fixed-effect singletons; see diffs/README.md"
+ ],
+ "class_reason_A": "All six pre-registered targets (Table B Models 1 to 3 interaction, Table B N, Table G Model 2G interaction, Table G N) match the supplement to its rounding, running replication.R unchanged with fixest 0.12.1. Per batch2_class_decisions.md item 4, this rests on supplementary Tables B and G; the main article's Table 2 was not compared because it could not be read.",
+ "confidence": "medium",
+ "confidence_reason": "Exact match by script, but the T4 match depends on pinning fixest 0.12.1 (current fixest 0.14.2 gives N 586 and IID SEs), the main text is unread, and A/B agreement is not yet known to this agent.",
+ "code_review_scope": "Read all 626 lines of replication.R. Ran the whole script. Checked the row-7 pick at lines 438 and 455 (outputs/sjplot_row7_check.txt: row 7 is juicio:year_2018 with sjPlot 2.9.0). No real bug found that changes a target.",
+ "unverified_observations": [
+  "replication.R lines 102 and 109: cbind() of the factor unique_id coerces it to its integer code, so data_0/data_1 carry unique_id = 1, not the district id; predictions use re.form = NA so the district is ignored and Figure 1 is not affected (reasoning only, not demonstrated by a run).",
+  "replication.R lines 199 to 207 compute Table A summaries on the 600-row `data`, while the supplement's Table A reports N = 900 and Year 2018 mean 0.33, which correspond to the 900-row `dataall` (noted in PREREG.md; Table A values were not compared by script).",
+  "Supplement Table G labels Model 3G's second interaction 'Indicted x Scandal' while line 605 fits mentions_prop*year_2018 (Scandal x Year 2018); a labelling difference in the table, not in the code (noted in PREREG.md).",
+  "Line 4 header comment gives DOI 10.1177/1354068825136682, one digit shorter than the article DOI 10.1177/13540688251366827."
+ ],
+ "uncertainties": [
+  "Main article Table 2 could not be read (paywalled); classification rests on supplementary Tables B and G (batch2_class_decisions.md item 4). The supplement was re-opened in a public browser on 2026-10-10 and all six target values confirmed (outputs/supplement_reverification_browser.md); the browser passed a Cloudflare 'verify you are human' check, no sign-in.",
+  "The fixest version choice (0.12.1) was made after seeing the 0.14.2 result (N 586, IID SE). It is a package-version environment fix allowed by the runbook, and PREREG.md section 2 already expected the default vcov to cluster by unique_id, which is the pre-0.13 behaviour. With current CRAN fixest 0.14.2 every coefficient is identical but T4 would be 586 vs 600 (not exact), so the class computed on current CRAN alone would not be A.",
+  "A convergence warning ('Model failed to converge with max|grad| = 0.00231195') is printed during the run; none of the saved lmer models carry a convergence message (outputs/convergence_check_fixest0142.txt), so it comes from a refit inside bootMer or the placebo loop (figures only).",
+  "The authors' code pins no versions and gives no sessionInfo; the exact versions the author used are unknown.",
+  "Pre-registered headline note (not a target): reproduced multilevel Table 2 interaction estimates for model1, model2, model4 are all negative, but rounded to two decimals they are 0.06, 0.07, 0.07 in magnitude, so not all lie within the abstract's 'between 3 and 6%' (values in T2 note, from outputs/targets_extracted.csv; model3 is 0.04). The main text's Table 2 could not be read, so these were not compared with printed values; the abstract range may refer to a different set of models or rounding. This note does not change the class.",
+  "R_a p_value 0 means none of the 1000 bootstrap replicates was >= 0; the resolution of this p-value is 1/1000."
+ ]
+}

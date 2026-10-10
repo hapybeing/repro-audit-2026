@@ -1,0 +1,166 @@
+{
+  "rows_total": 87936,
+  "distinct_resp_task_profile": 62112,
+  "duplicated_rows": 25824,
+  "respondents_with_32_rows": 1614,
+  "respondents_with_16_rows": 2268,
+  "rows_per_resp_by_sector": {
+    "Private Sector": {
+      "16": 48,
+      "32": 41024
+    },
+    "Public Sector": {
+      "16": 16,
+      "32": 10624
+    },
+    "3": {
+      "16": 36224
+    }
+  },
+  "dedup_rows": 62112,
+  "fig1_max_abs_estimate_change_dedup": 0.000900329929226951,
+  "fig1_max_rel_se_change_dedup": 0.00397651006024291,
+  "fc1_count_dedup": 0,
+  "excl0_levels_dedup": ["Since 1 Year", "Since 3 Years"],
+  "E1_dedup": {
+    "estimate": 0.659865578492532,
+    "lower": 0.645909421262296,
+    "upper": 0.673821735722768
+  },
+  "survey_rows": 4679,
+  "survey_distinct_v9": 4679,
+  "civic_respondents": 2482,
+  "civic_not_in_survey_data": 88,
+  "civic_in_survey_sector_na_or_empty": 231,
+  "civic_sector_values_in_survey": {
+    "1": 231,
+    ".b": 545,
+    "Private Sector": 1285,
+    "Public Sector": 333,
+    "5": 88
+  },
+  "civic_v184_ger_values": {
+    "1": 231,
+    ".b": 545,
+    "Ja": 333,
+    "Nein": 1285,
+    "5": 88
+  },
+  "civic_by_sector_and_v184_ger": [
+    {
+      "sector": "",
+      "v184_ger": "",
+      "Freq": 231
+    },
+    {
+      "sector": ".b",
+      "v184_ger": "",
+      "Freq": 0
+    },
+    {
+      "sector": "Private Sector",
+      "v184_ger": "",
+      "Freq": 0
+    },
+    {
+      "sector": "Public Sector",
+      "v184_ger": "",
+      "Freq": 0
+    },
+    {
+      "v184_ger": "",
+      "Freq": 0
+    },
+    {
+      "sector": "",
+      "v184_ger": ".b",
+      "Freq": 0
+    },
+    {
+      "sector": ".b",
+      "v184_ger": ".b",
+      "Freq": 545
+    },
+    {
+      "sector": "Private Sector",
+      "v184_ger": ".b",
+      "Freq": 0
+    },
+    {
+      "sector": "Public Sector",
+      "v184_ger": ".b",
+      "Freq": 0
+    },
+    {
+      "v184_ger": ".b",
+      "Freq": 0
+    },
+    {
+      "sector": "",
+      "v184_ger": "Ja",
+      "Freq": 0
+    },
+    {
+      "sector": ".b",
+      "v184_ger": "Ja",
+      "Freq": 0
+    },
+    {
+      "sector": "Private Sector",
+      "v184_ger": "Ja",
+      "Freq": 0
+    },
+    {
+      "sector": "Public Sector",
+      "v184_ger": "Ja",
+      "Freq": 333
+    },
+    {
+      "v184_ger": "Ja",
+      "Freq": 0
+    },
+    {
+      "sector": "",
+      "v184_ger": "Nein",
+      "Freq": 0
+    },
+    {
+      "sector": ".b",
+      "v184_ger": "Nein",
+      "Freq": 0
+    },
+    {
+      "sector": "Private Sector",
+      "v184_ger": "Nein",
+      "Freq": 1285
+    },
+    {
+      "sector": "Public Sector",
+      "v184_ger": "Nein",
+      "Freq": 0
+    },
+    {
+      "v184_ger": "Nein",
+      "Freq": 0
+    },
+    {
+      "sector": "",
+      "Freq": 0
+    },
+    {
+      "sector": ".b",
+      "Freq": 0
+    },
+    {
+      "sector": "Private Sector",
+      "Freq": 0
+    },
+    {
+      "sector": "Public Sector",
+      "Freq": 0
+    },
+    {
+      "Freq": 88
+    }
+  ]
+}

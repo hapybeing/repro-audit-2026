@@ -1,0 +1,105 @@
+"BY","statistic","outcome","feature","level","estimate","std.error","z","p","lower","upper","student"
+"General Student Sample - Public Administration","mm_difference","selected","Gender","Male",-0.00563531828613423,0.00740235682581471,-0.761287035837265,0.446485642224404,-0.0201436710654453,0.00887303449317683,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Gender","Female",0.00557209491764354,0.00745063682275744,0.747868276255793,0.454539614288116,-0.00903088491684897,0.0201750747521361,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Age","23 Years",-0.0165180160544141,0.0132136224694955,-1.25007476886426,0.211272235680701,-0.0424162401999345,0.00938020809110626,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Age","36 Years",0.0058652966339231,0.0131423138768239,0.446291017616492,0.655387043807046,-0.0198931652381728,0.031623758506019,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Age","48 Years",-0.00545634920627114,0.012583465769255,-0.433612591818904,0.664569789396591,-0.0301194889147036,0.0192067905021613,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Age","57 Years",0.0143239266005099,0.0131315427958388,1.09080302468716,0.275359565261845,-0.0114134243407806,0.0400612775418003,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Nationality","Vietnam",0.0105026852475461,0.0182282814125958,0.576175285525746,0.564496708439792,-0.0252240898212027,0.0462294603162948,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Nationality","Syria",0.0553583639975158,0.0181492132869739,3.05017981342737,0.00228704394492405,0.019786559607311,0.0909301683877205,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Nationality","Romania",-0.0155201287121548,0.0174011622786901,-0.891901843313143,0.372445546564649,-0.0496257800675243,0.0185855226432147,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Nationality","Turkey",0.0127277353689469,0.0175589523657731,0.724857332249302,0.468539559092752,-0.0216871788742228,0.0471426496121166,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Nationality","France",-0.00052538558982107,0.0180542297400875,-0.0291004156579723,0.976784504292383,-0.0359110256490044,0.0348602544693623,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Nationality","Germany",-0.0315275147671742,0.0119521146323169,-2.63781897488901,0.00834411111226286,-0.0549532289856096,-0.00810180054873879,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Household
+Composition","1 Adult",0.0150731855623097,0.0145662529224764,1.03480185621733,0.300761455883577,-0.0134761455554454,0.0436225166800647,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Household
+Composition","2 Adults",-0.0266225151709029,0.0141602066453888,-1.88009369055164,0.0600953102302936,-0.0543760102095098,0.00113097986770393,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Household
+Composition","2 Adults, 1 Child",0.0129469383385565,0.0143470671007867,0.902410105675645,0.366839054812738,-0.015172796462765,0.041066673139878,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Household
+Composition","1 Adult, 2 Childr.",0.0109687978084145,0.0148854944377226,0.736878298151624,0.461196362545364,-0.0182062351815931,0.0401438307984222,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Household
+Composition","2 Adults, 3 Childr.",0.00260649245921785,0.0144613979583368,0.180237931818703,0.856965780740476,-0.0257373267052234,0.0309503116236591,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Reason for
+Unemployment","Fired for wrongdoing",-0.0124046958527129,0.0136752971147457,-0.907087849618804,0.364360342848653,-0.0392077856754989,0.0143983939700731,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Reason for
+Unemployment","Voluntarily dismissal",0.022050898479934,0.0132972002720684,1.65831137598592,0.0972546340476757,-0.00401113514853618,0.0481129321084042,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Reason for
+Unemployment","Bankruptcy of employer",-0.00903028011661267,0.0129304164362581,-0.698375041602755,0.484942680672585,-0.0343734306367832,0.0163128704035579,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Reason for
+Unemployment","Disabled due to accident",-0.00394627186676988,0.0124981704403493,-0.315747963720327,0.752193817818493,-0.0284422358024976,0.0205496920689578,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Supportive
+Behavior","Low",0.0194858052139629,0.0114853052151767,1.69658575448341,0.0897750049293667,-0.00302497935923356,0.0419965897871593,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Supportive
+Behavior","Medium",0.00216081167148197,0.0105536740289728,0.204744969908103,0.837771383693699,-0.0185240093298805,0.0228456326728444,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Supportive
+Behavior","High",-0.0216975586817652,0.0116065613021467,-1.86942179659639,0.0615641544323203,-0.0444460008183289,0.00105088345479864,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Duration of
+Unemployment","6 Months",0.0140753750544835,0.0126808090921895,1.1099745254546,0.267010004038143,-0.010778554061036,0.0389293041700031,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Duration of
+Unemployment","1 Year",-0.0164416681891381,0.0133238915891551,-1.23399894686329,0.21720329667362,-0.0425560158377983,0.00967267945952216,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Duration of
+Unemployment","1.5 Years",0.0120160935310383,0.0130512473134084,0.920685451933266,0.357214673775169,-0.0135638811565674,0.037596068218644,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Duration of
+Unemployment","3 Years",-0.00967383130717125,0.0127809315230097,-0.756895637047683,0.449112389453033,-0.0347239967811429,0.0153763341668004,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Education
+Level","Unskilled",0.00834420741337161,0.0125957926886188,0.662459887968084,0.50767653365024,-0.0163430926130541,0.0330315074397973,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Education
+Level","Vocational Training",-0.0166701314509166,0.0128631679197083,-1.29595847266951,0.194989792325643,-0.0418814773006358,0.00854121439880272,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Education
+Level","Technical College",0.0137886644668195,0.0128530939964287,1.07278951438858,0.283365566486925,-0.0114029368560888,0.0389802657897278,"General Student Sample"
+"General Student Sample - Public Administration","mm_difference","selected","Education
+Level","University",-0.00622547365804071,0.0125320083991784,-0.49676583830321,0.619354188126048,-0.0307877587743838,0.0183368114583023,"General Student Sample"
+"Social Work - Public Administration","mm_difference","selected","Gender","Male",-0.00859609499505548,0.0130568632012891,-0.658358356255642,0.510307887906994,-0.0341870766206485,0.0169948866305375,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Gender","Female",0.00875349073369758,0.013243356512943,0.660972218420809,0.508630130163852,-0.0172030110660946,0.0347099925334897,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Age","23 Years",0.00774175175950043,0.0213969213415757,0.361816152703131,0.717489420692034,-0.0341954434500243,0.0496789469690252,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Age","36 Years",0.0166503486662732,0.0221616202755481,0.75131459068651,0.452463350233718,-0.0267856289128536,0.0600863262454,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Age","48 Years",-0.0272858710358208,0.0216374486967604,-1.26104844513883,0.207291393484388,-0.0696944911988043,0.0151227491271627,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Age","57 Years",0.000629737212368364,0.0228373439527964,0.027574888466452,0.978001210148457,-0.0441306344376662,0.045390108862403,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Nationality","Vietnam",-0.0116288878444946,0.0292812259553862,-0.397144841620114,0.691260654376183,-0.0690190361402309,0.0457612604512417,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Nationality","Syria",0.0941720743937597,0.0267398914525337,3.52178222416967,0.000428656122427342,0.0417628501962832,0.146581298591236,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Nationality","Romania",0.00293870281501918,0.0303805959114739,0.096729597522783,0.922941134613901,-0.0566061710003345,0.0624835766303729,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Nationality","Turkey",0.0412809268583252,0.0309338187971616,1.3344917783676,0.182042739540014,-0.0193482438883997,0.10191009760505,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Nationality","France",0.0200300115222862,0.031941920961506,0.627075984140869,0.530609428684387,-0.0425750031592905,0.082635026203863,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Nationality","Germany",-0.0732382385948492,0.0193349704564727,-3.78786400319176,0.000151947977544668,-0.111134084331682,-0.0353423928580167,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Household
+Composition","1 Adult",-0.0124875274996067,0.022806789880998,-0.547535517482493,0.584010876263052,-0.0571880142693354,0.0322129592701219,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Household
+Composition","2 Adults",-0.0724176943746148,0.0220645951661102,-3.28207673104484,0.00103045560474918,-0.115663506233647,-0.0291718825155823,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Household
+Composition","2 Adults, 1 Child",0.0468131057732754,0.0271716460714455,1.72286602181496,0.0849127561279354,-0.00644234192742715,0.100068553473978,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Household
+Composition","1 Adult, 2 Childr.",0.0604938271605086,0.0226547017010715,2.67025485299801,0.00757936948654445,0.0160914277459101,0.104896226575107,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Household
+Composition","2 Adults, 3 Childr.",0.0417804632426789,0.0235465840442992,1.77437471032212,0.0760011901551191,-0.00436999344309301,0.0879309199284509,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Reason for
+Unemployment","Fired for wrongdoing",0.0750829594921244,0.0220156407142917,3.41043717357649,0.000648588250847876,0.031933096595539,0.11823282238871,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Reason for
+Unemployment","Voluntarily dismissal",0.0576088222731483,0.0211561118047809,2.72303449729973,0.00646853030049054,0.0161436050828752,0.0990740394634215,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Reason for
+Unemployment","Bankruptcy of employer",-0.0746034428643785,0.0224989655265523,-3.31586102375838,0.000913612502520688,-0.118700604985829,-0.0305062807429276,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Reason for
+Unemployment","Disabled due to accident",-0.0472902940703571,0.021022090419392,-2.24955240544175,0.0244773726120165,-0.0884928341721099,-0.00608775396860438,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Supportive
+Behavior","Low",0.0525974364901244,0.01978831890407,2.65800428753482,0.00786048930190878,0.0138130441235542,0.0913818288566947,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Supportive
+Behavior","Medium",-0.00348752456310508,0.0190067808505488,-0.183488439758823,0.854414788529332,-0.0407401304922263,0.0337650813660161,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Supportive
+Behavior","High",-0.045999918240539,0.0185195055035818,-2.4838632020516,0.0129965723969997,-0.0822974820390506,-0.00970235444202734,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Duration of
+Unemployment","6 Months",-0.0248641471442137,0.0240798443009356,-1.03257092668359,0.301804739657289,-0.0720597747273795,0.0223314804389521,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Duration of
+Unemployment","1 Year",-0.0110139058679996,0.0194540648664583,-0.566149334013436,0.571292268835393,-0.0491431723591639,0.0271153606231647,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Duration of
+Unemployment","1.5 Years",0.00730911391563882,0.0226405373919861,0.322833057762399,0.746821675879486,-0.0370655239632864,0.051683751794564,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Duration of
+Unemployment","3 Years",0.0264344967315294,0.0195375713791373,1.35300832526999,0.176052970730697,-0.0118584395169603,0.0647274329800191,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Education
+Level","Unskilled",0.100087798916748,0.0236962082452386,4.2237896409802,2.40228289506839e-05,0.0536440841859196,0.146531513647577,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Education
+Level","Vocational Training",-0.0417113625615748,0.0213579398649354,-1.9529675064801,0.0508234455896106,-0.0835721554808204,0.000149430357670739,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Education
+Level","Technical College",-0.0127379014846659,0.0220839373051617,-0.576794858120187,0.564078043474662,-0.0560216232396233,0.0305458202702916,"Social Work"
+"Social Work - Public Administration","mm_difference","selected","Education
+Level","University",-0.0444893791667547,0.0203554136213123,-2.18562884520185,0.0288427704955968,-0.0843852567549428,-0.00459350157856667,"Social Work"

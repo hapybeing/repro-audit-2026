@@ -1,0 +1,4 @@
+"id","estimate","se","ci_low","ci_high","p_value","n_used","n_failed","rows_dropped","nobs","n_clusters","extra"
+"R_a",-0.0661485940362168,0.0136790598249885,-0.0920076634776636,-0.0381826430095822,0,1000,0,NA,586,307,""
+"R_b",-0.0661485940362168,0.0143012984681075,NA,NA,5.69623731009016e-06,586,NA,0,586,NA,"secondary 1/99 pct trim: dropped=12 nobs=566 estimate=-0.062787 se=0.013881 p=9.09521e-06"
+"R_c",-0.0661485940362168,0.0284876318789393,NA,NA,0.0269729928815603,586,NA,0,586,32,"vcov: Standard-errors: Clustered (id_estado) ; multilevel model2 secondary: not applicable"

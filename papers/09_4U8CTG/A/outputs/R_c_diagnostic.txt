@@ -1,0 +1,3 @@
+rows_swd_ch_ne_w2_minus_w1=0
+rows_swd_comparison_NA=0
+rows_lrem_ch_ne_w2_minus_w1=0

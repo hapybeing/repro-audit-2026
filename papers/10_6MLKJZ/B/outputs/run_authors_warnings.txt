@@ -1,0 +1,118 @@
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] `html_encoding_repair()` was deprecated in rvest 1.0.0.
+ℹ Instead, re-load using the `encoding` argument of `read_html()`
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] NAs introduced by coercion
+[03_data_prep_and_merge.R] Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 1 of `x` matches multiple rows in `y`.
+ℹ Row 1 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.
+[04_analysis.R] svyglm not fitted by maximum likelihood.

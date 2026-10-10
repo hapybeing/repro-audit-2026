@@ -1,0 +1,22 @@
+Analysis of Deviance Table
+
+Model 1: selected ~ Gender + Age + Citizenship + Composition + Unemployment + 
+    Supportive + Since + Education
+Model 2: selected ~ Gender + Age + Citizenship + Composition + Unemployment + 
+    Supportive + Since + Education + sector + Gender:sector + 
+    Age:sector + Citizenship:sector + Composition:sector + Unemployment:sector + 
+    Supportive:sector + Since:sector + Education:sector
+  Resid. Df Resid. Dev Df Deviance      F Pr(>F)
+1     25863     5518.8                          
+2     25838     5513.3 25   5.4427 1.0203 0.4343
+Analysis of Deviance Table
+
+Model 1: selected ~ Gender + Age + Citizenship + Composition + Unemployment + 
+    Supportive + Since + Education
+Model 2: selected ~ Gender + Age + Citizenship + Composition + Unemployment + 
+    Supportive + Since + Education + sector + Gender:sector + 
+    Age:sector + Citizenship:sector + Composition:sector + Unemployment:sector + 
+    Supportive:sector + Since:sector + Education:sector
+  Resid. Df Resid. Dev Df Deviance      F Pr(>F)
+1     25863     5518.8                          
+2     25838     5513.3 25   5.4427 1.0203 0.4343

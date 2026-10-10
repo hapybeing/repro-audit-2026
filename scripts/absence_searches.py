@@ -1,6 +1,6 @@
-"""Re-runnable searches behind the batch 1 absence claims (01, 03, 04).
+"""Re-runnable searches behind the absence claims of batch 1 (01, 03, 04) and batch 2 (08, 09, 10).
 
-Usage: python3 scripts/absence_searches.py 01|03|04   (run from repo/)
+Usage: python3 scripts/absence_searches.py 01|03|04|08|09|10   (run from repo/)
 Writes papers/<id>/data_statement_raw/absence_searches.json: one record per query with the exact URL,
 UTC time, HTTP status, total result count and the hits that could be relevant. Public APIs only, no sign-in.
 ABSENCE_SEARCHES.md is generated from that JSON by scripts/make_absence_md.py.
@@ -280,11 +280,162 @@ def run04():
         "OSF component mtd4z holds data and code but is not cited by the article; this search shows whether it is indexed")
 
 
+# ---------------------------------------------------------------- batch 2 helpers
+def zenodo(paper, q, note=""):
+    # Anonymous Zenodo requests accept at most size=25 (size=100 returns HTTP 400, which is what the pre-registration
+    # search for 10 hit); 25 is used here.
+    url = "https://zenodo.org/api/records?" + urllib.parse.urlencode({"q": q, "size": "25"})
+    t, st, body = get(url)
+    h = json.loads(body)["hits"] if st == 200 else {"hits": [], "total": None}
+    rec(paper, "Zenodo REST API", q, url, t, st, h["total"],
+        [{"title": x["metadata"]["title"], "doi": x.get("doi")} for x in h["hits"]], note)
+
+
+def datacite(paper, q, note=""):
+    url = "https://api.datacite.org/dois?" + urllib.parse.urlencode({"query": q, "page[size]": "100"})
+    t, st, body = get(url)
+    d = json.loads(body) if st == 200 else {"data": [], "meta": {}}
+    rec(paper, "DataCite REST API (all DataCite repositories)", q, url, t, st, d["meta"].get("total"),
+        [{"doi": x["id"], "title": (x["attributes"]["titles"] or [{}])[0].get("title")} for x in d["data"]], note)
+
+
+def dv(paper, base, q, typ, note="", label="Harvard Dataverse Search API"):
+    url = base + "/api/search?" + urllib.parse.urlencode({"q": q, "type": typ, "per_page": "100"})
+    t, st, body = get(url)
+    d = json.loads(body)["data"] if st == 200 else {"items": [], "total_count": None}
+    rec(paper, label, f"{q}, type={typ}", url, t, st, d["total_count"],
+        [{"name": x.get("name"), "dataset": x.get("dataset_name"),
+          "doi": x.get("dataset_persistent_id") or x.get("global_id")} for x in d["items"]], note)
+
+
+def datacite_details(paper, note):
+    """Fetch the DataCite record of every non-deposit DOI that this paper's DataCite searches returned (versions folded)."""
+    seen = sorted({x["doi"].lower().split(".v")[0] for r in RECS if r["paper"] == paper and r["source"].startswith("DataCite")
+                   for x in (r["relevant_hits"] or []) if isinstance(x, dict) and not x["doi"].lower().startswith("10.7910/")})
+    for doi in seen:
+        url = "https://api.datacite.org/dois/" + doi
+        t, st, body = get(url)
+        a = json.loads(body)["data"]["attributes"] if st == 200 else {}
+        rec(paper, "DataCite DOI record (item returned by the searches above)", doi, url, t, st, None,
+            {"title": (a.get("titles") or [{}])[0].get("title"), "resource_type": (a.get("types") or {}).get("resourceTypeGeneral"),
+             "url": a.get("url"), "sizes": a.get("sizes"),
+             "relations": [(x.get("relationType"), x.get("relatedIdentifier")) for x in a.get("relatedIdentifiers", [])]}, note)
+
+
+def osf_title(paper, title, note=""):
+    url = "https://api.osf.io/v2/nodes/?" + urllib.parse.urlencode({"filter[title]": title})
+    t, st, body = get(url, headers={"Accept": "application/vnd.api+json"})
+    d = json.loads(body) if st == 200 else {"data": [], "links": {"meta": {}}}
+    rec(paper, "OSF API v2 public nodes (title filter)", title, url, t, st, d.get("links", {}).get("meta", {}).get("total"),
+        [{"id": n["id"], "title": n["attributes"]["title"]} for n in d.get("data", [])], note)
+
+
+def github_repos(paper, q, note=""):
+    url = "https://api.github.com/search/repositories?" + urllib.parse.urlencode({"q": q})
+    t, st, body = get(url, headers={"Accept": "application/vnd.github+json"})
+    d = json.loads(body) if st == 200 else {"items": [], "total_count": None}
+    rec(paper, "GitHub repository search API (unauthenticated)", q, url, t, st, d.get("total_count"),
+        [{"repo": r["full_name"], "description": r.get("description")} for r in d.get("items", [])],
+        note or "GitHub code search (file contents and names) needs sign-in and was not used")
+
+
+# ---------------------------------------------------------------- 08
+def run08():
+    P = "08_SQRZR8"
+    H = "https://dataverse.harvard.edu"
+    dv(P, H, 'fileName:"data_preparation_rep.R"', "file", "relevant = any file named data_preparation_rep.R")
+    dv(P, H, "data_preparation_rep", "file", "relevant = any file named data_preparation_rep.R")
+    dv(P, H, '"Knowing is Disturbing"', "dataset", "relevant = a dataset for this article other than doi:10.7910/DVN/SQRZR8")
+    url = H + "/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/SQRZR8"
+    t, st, body = get(url)
+    vers = []
+    if st == 200:
+        for v in json.loads(body)["data"]:
+            vers.append({"version": f'{v.get("versionNumber")}.{v.get("versionMinorNumber")}', "state": v.get("versionState"),
+                         "files": [f["dataFile"]["filename"] for f in v.get("files", [])]})
+    rec(P, "Harvard Dataverse dataset versions API", "all versions of doi:10.7910/DVN/SQRZR8", url, t, st, len(vers), vers,
+        "relevant = any version whose file list contains data_preparation_rep.R")
+    zenodo(P, '"Knowing is Disturbing"', "relevant = a record for this article")
+    zenodo(P, "data_preparation_rep", "relevant = a record containing data_preparation_rep.R")
+    datacite(P, '"Knowing is Disturbing"', "relevant = a DOI for this article other than 10.7910/DVN/SQRZR8 and the article itself")
+    datacite(P, 'relatedIdentifiers.relatedIdentifier:"10.1017/S1537592725103551"', "relevant = a DOI other than 10.7910/DVN/SQRZR8 that declares this article as related")
+    datacite_details(P, "a DataCite item is a hit only if it is a dataset or software record holding data_preparation_rep.R or other material for this article")
+    osf_title(P, "Knowing is Disturbing", "relevant = a node for this article")
+    github_repos(P, '"Knowing is Disturbing"', "relevant = a repository for this article; GitHub code search (file names) needs sign-in and was not used")
+
+
+# ---------------------------------------------------------------- 09
+def run09():
+    P = "09_4U8CTG"
+    E, H = "https://data.sciencespo.fr", "https://dataverse.harvard.edu"
+    for q in ["elipss_fes2022_v3", "elipss_fes2022_cses_v4", "study1_fes_panel"]:
+        dv(P, E, q, "file", "relevant = a file with this name", label="Sciences Po data repository (ELIPSS) Search API")
+    for q in ['"study1_fes_panel"', "elipss_fes2022"]:
+        dv(P, H, q, "file", "relevant = a file with this name", label="Harvard Dataverse Search API")
+    # the two FES 2022 waves the 00 script reads: list each file with its restricted flag
+    for doi, wave in [("doi:10.21410/7E4/DST7ZY", "wave 3"), ("doi:10.21410/7E4/W76IMT", "wave 4")]:
+        url = E + "/api/datasets/:persistentId/?persistentId=" + doi
+        t, st, body = get(url)
+        files = []
+        if st == 200:
+            for f in json.loads(body)["data"]["latestVersion"]["files"]:
+                df = f["dataFile"]
+                files.append({"id": df["id"], "file": df.get("filename"), "restricted": f.get("restricted")})
+        unr = [x for x in files if x["restricted"] is False]
+        rec(P, f"ELIPSS dataset metadata API (FES 2022 {wave})", f"file list and restricted flags of {doi}", url, t, st, len(files),
+            {"files": files, "unrestricted": unr},
+            "relevant = an unrestricted data file (CSV or tab) the 00 script could read after renaming; both waves are needed")
+    # anonymous access probes to one restricted data file per wave
+    for fid, wave in [(5296, "wave 3 CSV zip"), (5346, "wave 4 data file")]:
+        url = f"{E}/api/access/datafile/{fid}"
+        t, st, body = get(url, headers={"Accept": "*/*"}, raw=True)
+        rec(P, "ELIPSS file access API (anonymous request)", f"datafile {fid} ({wave})", url, t, st, None,
+            {"bytes_returned": len(body) if isinstance(body, (bytes, bytearray)) else 0},
+            "relevant = HTTP 200 with the data file")
+    zenodo(P, "study1_fes_panel", "relevant = a record containing the Study 1 panel files")
+    zenodo(P, '"Blinded by out-group hatred"', "relevant = a record for this article")
+    datacite(P, '"Blinded by out-group hatred"', "relevant = a DOI for this article other than 10.7910/DVN/4U8CTG and the article itself")
+    osf_title(P, "Blinded by out-group hatred", "relevant = a node holding Study 1 data (the pre-analysis plan osf.io/b4tjr is a plan, not data)")
+    github_repos(P, "study1_fes_panel", "relevant = a repository holding the Study 1 panel files")
+
+
+# ---------------------------------------------------------------- 10
+TEXT10 = ["data availab", "availability", "replication", "dataverse", "10.7910", "osf", "github", "zenodo", "figshare",
+          "repository", "on request", "upon request"]
+
+
+def run10():
+    P = "10_6MLKJZ"
+    D = "papers/10_6MLKJZ/data_statement_raw"
+    import os
+    for f in ["sage_html_structure_and_end_matter.md", "article_pdf_read_notes_2026-10-10.md", "supplement_pdf_transcript_2026-10-10.md"]:
+        path = os.path.join(D, f)
+        L = open(path, encoding="utf-8").read().split("\n")
+        counts = {k: [i + 1 for i, l in enumerate(L) if k in l.lower()] for k in TEXT10}
+        rec(P, f"Transcript of the article or appendix ({f})", "case-insensitive term search, line numbers per term", path, now(), "local file",
+            None, counts, "a matching line is a hit only if it names a data or code location for this article; each was read in context (see the table note)")
+    url = "https://api.crossref.org/works/10.1177/09520767231210025"
+    t, st, body = get(url)
+    m = json.loads(body)["message"] if st == 200 else {}
+    rec(P, "Crossref REST API (publisher-registered metadata)", "relation and link fields", url, t, st, None,
+        {"relation": m.get("relation"), "link_urls": [l["URL"] for l in m.get("link", [])]})
+    datacite(P, 'relatedIdentifiers.relatedIdentifier:"10.1177/09520767231210025"', "relevant = any DOI that declares this article as related")
+    datacite(P, '"Prioritizing Exceptional Social Needs"', "relevant = a DOI for this article other than 10.7910/DVN/6MLKJZ and the article itself")
+    datacite_details(P, "a Sage figshare item is a hit only if it holds data or code beyond the online appendix that was read")
+    zenodo(P, '"10.1177/09520767231210025"', "relevant = any record; redo of the pre-registration query that returned HTTP 400 (size 100)")
+    zenodo(P, '"Prioritizing Exceptional Social Needs"', "relevant = any record; redo of the pre-registration query that returned HTTP 400 (size 100)")
+    dv(P, "https://dataverse.harvard.edu", '"Prioritizing Exceptional Social Needs"', "dataset", "relevant = a dataset other than doi:10.7910/DVN/6MLKJZ")
+    osf_title(P, "Prioritizing exceptional social needs", "relevant = any node")
+    github_repos(P, "Prioritizing exceptional social needs", "relevant = any repository")
+
+
 if __name__ == "__main__":
     which = sys.argv[1]
-    pid = {"01": "01_5BIH0P", "03": "03_3IOGQ8", "04": "04_PSHE5L"}[which]
+    pid = {"01": "01_5BIH0P", "03": "03_3IOGQ8", "04": "04_PSHE5L", "08": "08_SQRZR8", "09": "09_4U8CTG", "10": "10_6MLKJZ"}[which]
     part = sys.argv[2] if len(sys.argv) > 2 else "all"
-    out = f"papers/{pid}/data_statement_raw/absence_searches.json"
+    # Batch 2: a new file name, because 08's pre-registration search log (data_statement_raw/absence_searches.json)
+    # is frozen in batches/batch2_prereg_hashes.txt and must not be overwritten.
+    out = f"papers/{pid}/data_statement_raw/" + ("absence_searches.json" if which in ("01", "03", "04") else "absence_searches_scripted.json")
     if which == "03":
         run03(part)
         if part != "all":  # chunked run: keep records of the other chunks, replace this chunk's
@@ -294,7 +445,7 @@ if __name__ == "__main__":
             for r in RECS: r["chunk"] = part
             RECS[:0] = keep
     else:
-        {"01": run01, "04": run04}[which]()
+        {"01": run01, "04": run04, "08": run08, "09": run09, "10": run10}[which]()
     json.dump({"script": "scripts/absence_searches.py", "paper": pid, "run_started_utc": RECS[0]["utc"] if RECS else now(),
                "records": RECS}, open(out, "w"), indent=1, ensure_ascii=False)
     print("wrote", out, len(RECS), "records")

@@ -1,0 +1,86 @@
+                                  id
+1                                 T1
+2                                 T2
+3                                 T3
+4                                 T4
+5                                 T5
+6                                 T6
+7                      S_all_private
+8                       S_all_public
+9                  S_civic_sector_NA
+10               S_total_respondents
+11                      S_total_rows
+12               S_samplelabel_civic
+13                S_samplelabel_hsvn
+14                  S_samplelabel_rh
+15                 S_samplelabel_uhh
+16                  S_cross_civic_NA
+17 S_cross_hsvn_PublicAdministration
+18                   S_cross_hsvn_NA
+19             S_cross_rh_SocialWork
+20                     S_cross_rh_NA
+21  S_cross_uhh_GeneralStudentSample
+22                    S_cross_uhh_NA
+23                  S_tableD_rows_D0
+24                  S_tableD_rows_D1
+25                  S_tableD_resp_D0
+26                  S_tableD_resp_D1
+27         S_rows_per_resp_civic_min
+28         S_rows_per_resp_civic_max
+                                                          definition value
+1                                   civic & sector == Private Sector  1285
+2                                    civic & sector == Public Sector   333
+3                                                        civic (all)  2482
+4                                   student == Public Administration   510
+5                                  student == General Student Sample   636
+6                                             student == Social Work   123
+7  all pooled_df2, sector == Private Sector (what by=~sector groups)  1285
+8                            all pooled_df2, sector == Public Sector   333
+9                                                  civic & sector NA   864
+10                                                    all pooled_df2  3882
+11                                                rows of pooled_df2 87936
+12                                    Sample label: civic (N = 2482)  2482
+13                                      Sample label: hsvn (N = 528)   528
+14                                        Sample label: rh (N = 128)   128
+15                                       Sample label: uhh (N = 744)   744
+16                              Sample x student civic (N = 2482) NA  2482
+17             Sample x student hsvn (N = 528) Public Administration   510
+18                                Sample x student hsvn (N = 528) NA    18
+19                         Sample x student rh (N = 128) Social Work   123
+20                                  Sample x student rh (N = 128) NA     5
+21             Sample x student uhh (N = 744) General Student Sample   636
+22                                 Sample x student uhh (N = 744) NA   108
+23          table(match_data$D) at 03 line 94, D=0 (rows of task==1)  2570
+24          table(match_data$D) at 03 line 94, D=1 (rows of task==1)   666
+25                       distinct respondents in match_data with D=0  1285
+26                       distinct respondents in match_data with D=1   333
+27                                     min rows per civic respondent    16
+28                                     max rows per civic respondent    32
+       feature n_levels
+1       Gender        2
+2          Age        4
+3  Citizenship        6
+4  Composition        5
+5 Unemployment        4
+6   Supportive        3
+7        Since        4
+8    Education        4
+                                                                                            levels
+1                                                                                    Male | Female
+2                                                        23 Years | 36 Years | 48 Years | 57 Years
+3                                            Vietnam | Syria | Romania | Turkey | France | Germany
+4                1 Adult | 2 Adults | 2 Adults, 1 Child | 1 Adult, 2 Childr. | 2 Adults, 3 Childr.
+5 Fired for wrongdoing | Voluntarily dismissal | Bankruptcy of employer | Disabled due to accident
+6                                                                              Low | Medium | High
+7                                                          6 Months | 1 Year | 1.5 Years | 3 Years
+8                                 Unskilled | Vocational Training | Technical College | University
+  n_NA_rows
+1         0
+2         0
+3         0
+4         0
+5         0
+6         0
+7         0
+8         0
+selected NA rows: 0  table(selected):      0     1  43968 43968  

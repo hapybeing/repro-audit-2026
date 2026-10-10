@@ -26,7 +26,7 @@ PATH_RE = re.compile(r"(?:[\w.*-]+/)*[\w.*-]+\.(?:md|json|csv|txt|tsv|py|R|r|rds
 URL_RE = re.compile(r"https?://[^\s)|>`]+")
 DOI_RE = re.compile(r"\b10\.\d{4,9}/[^\s)|,;`]+")
 ALNUM_RE = re.compile(r"\b(?=\w*[A-Za-z])(?=\w*\d)\w+\b")       # T4, SDO2, 5BIH0P, 2XWT, R_a ...
-OBS_RE = re.compile(r"\b0[1-9]-\d+\b")                             # observation ids 05-1
+OBS_RE = re.compile(r"\b0[1-9]-\d+\b|(?<![\d-])(?:1\d|2[0-5])-\d+\b(?!-)")  # observation ids 05-1, 10-1 (not inside dates)
 PAPER_RE = re.compile(r"(?<![\w.:-])0[1-9](?![\w.-]|:\d)")               # paper labels 01..05 (leading zero)
 CHG_RE = re.compile(r"#\d+[a-z]?\b")                               # CHANGELOG refs #4, #4d
 LABEL_RE = re.compile(r"(?i)\b(?:batch(?:es)?|revision|section|rule)\s+\d+(?:\s+(?:to|and)\s+\d+)?\b|\bSHA-?256\b")  # document labels, not measurements
@@ -122,11 +122,11 @@ def generic(path, structured_lines, section_rule=None):
         if i in structured_lines:
             counts["covered by a structured check"] += len(NUM_RE.findall(mask(line)[0]))
             continue
-        pm = re.search(r"papers/(0[1-9]_[A-Z0-9]{6})", line)
+        pm = re.search(r"papers/((?:0[1-9]|1\d|2[0-5])_[A-Z0-9]{6})", line)
         paper_dir = f"papers/{pm.group(1)}" if pm else None
         files = cited_files(line, paper_dir) + sec_files
         if path == TARGETS:
-            pid = re.search(r"\|\s*(0[1-9]_[A-Z0-9]{6})\s*\|", line)
+            pid = re.search(r"\|\s*((?:0[1-9]|1\d|2[0-5])_[A-Z0-9]{6})\s*\|", line)
             if pid:
                 files += [f"papers/{pid.group(1)}/targets.json", f"papers/{pid.group(1)}/A/results.json", f"papers/{pid.group(1)}/B/results.json"]
         m, ids = mask(line)
@@ -175,6 +175,9 @@ say(f"== Structured checks: {REPORT}")
 cj = json.load(open(f"batches/batch{K}_counts_rule4.json"))
 keymap = {"Main": "counts_main", "Excluding 01": "counts_excluding_no_target", "If the uncited OSF": "counts_if_uncited_OSF_counted",
           "If 02 were judged": "counts_if_02_run_as_is"}
+if K != "1":  # batch 2 on: one line per paper alternative, plus all alternatives together (scripts/apply_class_rules.py)
+    keymap = {"Main": "counts_main", "All alternatives together": "counts_all_alternatives"}
+    keymap.update({f"Alternative for {pid}": f"counts_if_{pid}_alt" for pid in cj.get("alternatives", {})})
 for i, line in enumerate(rep, 1):
     for pre, key in keymap.items():
         if line.startswith(f"- {pre}"):
@@ -183,12 +186,12 @@ for i, line in enumerate(rep, 1):
             check(f"line {i} counts '{pre}'", got, {c: want.get(c, "0") for c in got})
             nm = re.search(r"\((\d+) papers\)", line)
             if nm:
-                nk = "n_main" if key == "counts_main" else "n_excluding_no_target"
+                nk = "n_main" if key == "counts_main" else ("n_excluding_no_target" if K == "1" else key.replace("counts_", "n_", 1))
                 check(f"line {i} n", int(nm.group(1)), cj[nk])
             covered.add(i)
 rr = {r["paper_id"][:2]: r for r in csv.DictReader(open(f"batches/batch{K}_results_rule4.csv"))}
 for i, line in enumerate(rep, 1):
-    m = re.match(r"\|\s*(0[1-9])_\w+ \|.*\| ([A-E]) / ([A-E]) \| ([A-E]) \|", line)
+    m = re.match(r"\|\s*(0[1-9]|1\d|2[0-5])_\w+ \|.*\| ([A-E]) / ([A-E]) \| ([A-E]) \|", line)
     if m:
         r = rr[m.group(1)]
         check(f"line {i} paper {m.group(1)} classes A/B/rule4", (m.group(2), m.group(3), m.group(4)),
@@ -235,7 +238,7 @@ def fmt(v):
 key = {(r["paper"], r["target_id"]): r for r in rows}
 for i, line in enumerate(tg, 1):
     cells = [c.strip() for c in line.strip().strip("|").split("|")]
-    if len(cells) == 9 and re.match(r"0[1-9]_", cells[0]):
+    if len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
         r = key.get((cells[0], cells[1]))
         if r is None:
             check(f"line {i} row {cells[0]} {cells[1]} exists in CSV", False, True); continue
@@ -257,6 +260,7 @@ for i, line in enumerate(tg, 1):
             check(f"line {i} 01 internal {cells[0].split(' ')[0]} deposited/A/B", (cells[2], cells[3], cells[4]),
                   (fmt(r["paper_value"]), fmt(r["A_value"]), fmt(r["B_value"])))
 tcount = {"A and B match paper at reported rounding": None, "no paper target": None, "not computed by A or B": None}
+tcount.update({k: None for k in tc})
 for i, line in enumerate(tg, 1):
     m = re.match(r"- (.+?): (\d+)$", line.strip())
     if m and m.group(1) in tcount:
@@ -284,12 +288,39 @@ for i, line in enumerate(tg, 1):
         check(f"line {i} 02 as-is {c[0]} paper/A/B found in source files", (bool(srcP), bool(srcA), bool(srcB)), (True, True, True))
         aval = float(next(x for x in nums_in("papers/02_ELBOXX/A/outputs/targets_pathA_clock2026.csv")[1] if abs(round(x, 6) - a) < 5e-7 or f"{x:.6g}" == c[2]))
         check(f"line {i} 02 as-is {c[0]} relative difference (derived: (A - paper) / paper, 4 decimals)", f"{rel:+.4f}", f"{(aval - p) / p:+.4f}")
+if K == "2":
+    a06 = "papers/06_VSV5DM/A/outputs/targets_extracted.csv"; b06 = "papers/06_VSV5DM/B/outputs/targets_extracted.csv"
+    a07 = "papers/07_JH9DBC/A/outputs/targets_extracted_fixest0142.csv"; b07 = "papers/07_JH9DBC/B/outputs/targets_extracted_fixest_current.csv"
+    sec = None
+    for i, line in enumerate(tg, 1):
+        if line.startswith("## "):
+            sec = "06" if line.startswith("## 06_VSV5DM T4") else ("07" if line.startswith("## 07_JH9DBC with current") else ("10" if line.startswith("## 10_6MLKJZ figure-claim") else None))
+            continue
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if sec == "06" and line.startswith("| AME p") or sec == "06" and line.startswith("| coefficient p"):
+            check(f"line {i} 06 T4 reading '{c[0]}' paper/A/B found in source files",
+                  (bool(matches(c[1], ["papers/06_VSV5DM/targets.json"])), bool(matches(c[2], [a06])), bool(matches(c[3], [b06]))), (True, True, True))
+            covered_t = True
+        if sec == "07" and re.match(r"\| T\d", line):
+            check(f"line {i} 07 fixest 0.14.2 {c[0]} paper/A/B found in source files",
+                  (bool(matches(c[1], ["papers/07_JH9DBC/targets.json"])), bool(matches(c[2], [a07])), bool(matches(c[3], [b07]))), (True, True, True))
+            pv, av = float(c[1]), float(c[2])
+            check(f"line {i} 07 {c[0]} relative difference (derived from the printed values: (A - paper) / paper, 4 decimals; A printed to 6 significant digits)",
+                  c[5], f"{(av - pv) / pv:+.4f}")
+        if sec == "10" and re.match(r"\| FC\d", line):
+            fa = json.load(open("papers/10_6MLKJZ/A/outputs/figure_claims.json")); fb = json.load(open("papers/10_6MLKJZ/B/outputs/figure_claims.json"))
+            want = {"FC1": (f"count {fa['FC1']['count_CI_excludes_0']}, holds {fa['FC1']['same_conclusion']}", f"count {fb['FC1']['count_excluding_0']}, holds {fb['FC1']['same_conclusion']}"),
+                    "FC2": (f"holds {fa['FC2']['same_conclusion']}", f"holds {fb['FC2']['same_conclusion']}"),
+                    "FC3": (f"strict {fa['FC3']['same_conclusion_strict']}, lenient {fa['FC3']['same_conclusion_lenient']}", f"strict {fb['FC3']['strict_same_conclusion']}, lenient {fb['FC3']['lenient_same_conclusion']}")}[c[0]]
+            check(f"line {i} 10 {c[0]} A/B outcome vs figure_claims.json", (c[2], c[3]), want)
 say("")
 
 # ---------------------------------------------------------------- generic trace of everything else
 say("== Generic trace (numbers not covered above)")
 generic(REPORT, covered)
 t_struct = {i for i, l in enumerate(tg, 1) if (re.match(r"\| T\d", l) or l.startswith("- ") or l.startswith("Internal-check counts"))}
+if K == "2":
+    t_struct |= {i for i, l in enumerate(tg, 1) if re.match(r"\| (FC\d|AME p|coefficient p)", l)}
 
 
 def t_sections(h):
@@ -299,6 +330,12 @@ def t_sections(h):
         return ["papers/02_ELBOXX/A/outputs/clock_comparison.json"]
     if "Paper targets" in h or "Counts" in h:
         return [f"batches/batch{K}_targets.csv"]
+    if h.startswith("## 06_VSV5DM T4"):
+        return ["papers/06_VSV5DM/targets.json", "papers/06_VSV5DM/A/outputs/targets_extracted.csv"]
+    if h.startswith("## 07_JH9DBC with current"):
+        return ["papers/07_JH9DBC/A/outputs/targets_extracted_fixest0142.csv", "papers/07_JH9DBC/A/environment.txt", "papers/07_JH9DBC/B/environment.txt"]
+    if h.startswith("## 10_6MLKJZ figure-claim"):
+        return ["papers/10_6MLKJZ/A/outputs/figure_claims.json", "papers/10_6MLKJZ/PREREG.md"]
     return []
 
 

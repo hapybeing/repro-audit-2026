@@ -1,0 +1,305 @@
+{
+ "script": "scripts/absence_searches.py",
+ "paper": "09_4U8CTG",
+ "run_started_utc": "2026-10-10T14:41:33Z",
+ "records": [
+  {
+   "paper": "09_4U8CTG",
+   "source": "Sciences Po data repository (ELIPSS) Search API",
+   "query": "elipss_fes2022_v3, type=file",
+   "url": "https://data.sciencespo.fr/api/search?q=elipss_fes2022_v3&type=file&per_page=100",
+   "utc": "2026-10-10T14:41:33Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a file with this name"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "Sciences Po data repository (ELIPSS) Search API",
+   "query": "elipss_fes2022_cses_v4, type=file",
+   "url": "https://data.sciencespo.fr/api/search?q=elipss_fes2022_cses_v4&type=file&per_page=100",
+   "utc": "2026-10-10T14:41:34Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a file with this name"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "Sciences Po data repository (ELIPSS) Search API",
+   "query": "study1_fes_panel, type=file",
+   "url": "https://data.sciencespo.fr/api/search?q=study1_fes_panel&type=file&per_page=100",
+   "utc": "2026-10-10T14:41:35Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a file with this name"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "Harvard Dataverse Search API",
+   "query": "\"study1_fes_panel\", type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=%22study1_fes_panel%22&type=file&per_page=100",
+   "utc": "2026-10-10T14:41:35Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a file with this name"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "Harvard Dataverse Search API",
+   "query": "elipss_fes2022, type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=elipss_fes2022&type=file&per_page=100",
+   "utc": "2026-10-10T14:41:35Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a file with this name"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "ELIPSS dataset metadata API (FES 2022 wave 3)",
+   "query": "file list and restricted flags of doi:10.21410/7E4/DST7ZY",
+   "url": "https://data.sciencespo.fr/api/datasets/:persistentId/?persistentId=doi:10.21410/7E4/DST7ZY",
+   "utc": "2026-10-10T14:41:36Z",
+   "http": 200,
+   "total_results": 8,
+   "relevant_hits": {
+    "files": [
+     {
+      "id": 5302,
+      "file": "Documentation_FES2022_V3.pdf",
+      "restricted": false
+     },
+     {
+      "id": 11115,
+      "file": "fr.cdsp.ddi.elipss.202203.fes2022_v3.doc.xml",
+      "restricted": false
+     },
+     {
+      "id": 5296,
+      "file": "fr.cdsp.ddi.elipss.fes3_2022_V3.csv.zip",
+      "restricted": true
+     },
+     {
+      "id": 5297,
+      "file": "fr.cdsp.ddi.elipss.fes3_2022_V3.sas.zip",
+      "restricted": false
+     },
+     {
+      "id": 5298,
+      "file": "fr.cdsp.ddi.elipss.fes3_2022_V3.tab",
+      "restricted": true
+     },
+     {
+      "id": 5301,
+      "file": "fr.cdsp.ddi.elipss.fes3_2022_V4.tab",
+      "restricted": true
+     },
+     {
+      "id": 5299,
+      "file": "Questionnaire_FES2022_V3.pdf",
+      "restricted": false
+     },
+     {
+      "id": 5369,
+      "file": "Questionnaire_FESV3_202204_EN.pdf",
+      "restricted": false
+     }
+    ],
+    "unrestricted": [
+     {
+      "id": 5302,
+      "file": "Documentation_FES2022_V3.pdf",
+      "restricted": false
+     },
+     {
+      "id": 11115,
+      "file": "fr.cdsp.ddi.elipss.202203.fes2022_v3.doc.xml",
+      "restricted": false
+     },
+     {
+      "id": 5297,
+      "file": "fr.cdsp.ddi.elipss.fes3_2022_V3.sas.zip",
+      "restricted": false
+     },
+     {
+      "id": 5299,
+      "file": "Questionnaire_FES2022_V3.pdf",
+      "restricted": false
+     },
+     {
+      "id": 5369,
+      "file": "Questionnaire_FESV3_202204_EN.pdf",
+      "restricted": false
+     }
+    ]
+   },
+   "note": "relevant = an unrestricted data file (CSV or tab) the 00 script could read after renaming; both waves are needed"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "ELIPSS dataset metadata API (FES 2022 wave 4)",
+   "query": "file list and restricted flags of doi:10.21410/7E4/W76IMT",
+   "url": "https://data.sciencespo.fr/api/datasets/:persistentId/?persistentId=doi:10.21410/7E4/W76IMT",
+   "utc": "2026-10-10T14:41:37Z",
+   "http": 200,
+   "total_results": 8,
+   "relevant_hits": {
+    "files": [
+     {
+      "id": 5347,
+      "file": "Documentation_FES2022_V4_CSES.pdf",
+      "restricted": false
+     },
+     {
+      "id": 5348,
+      "file": "fr_cdsp_ddi_202204fes4_cses.sas.zip",
+      "restricted": true
+     },
+     {
+      "id": 11116,
+      "file": "fr.cdsp.ddi.elipss.202204.fes2022_v4.doc.xml",
+      "restricted": false
+     },
+     {
+      "id": 5346,
+      "file": "fr_cdsp_ddi_elipss_202204fes4_cses-1.tab",
+      "restricted": true
+     },
+     {
+      "id": 5350,
+      "file": "fr_cdsp_ddi_elipss_202204fes4_cses.tab",
+      "restricted": true
+     },
+     {
+      "id": 5349,
+      "file": "fr_cdsp_ddi_elipss_202204fes4_cses.zip",
+      "restricted": true
+     },
+     {
+      "id": 5352,
+      "file": "Questionnaire_CSES_Module6.txt",
+      "restricted": false
+     },
+     {
+      "id": 5345,
+      "file": "Questionnaire_FES2022_V4_CSES.pdf",
+      "restricted": false
+     }
+    ],
+    "unrestricted": [
+     {
+      "id": 5347,
+      "file": "Documentation_FES2022_V4_CSES.pdf",
+      "restricted": false
+     },
+     {
+      "id": 11116,
+      "file": "fr.cdsp.ddi.elipss.202204.fes2022_v4.doc.xml",
+      "restricted": false
+     },
+     {
+      "id": 5352,
+      "file": "Questionnaire_CSES_Module6.txt",
+      "restricted": false
+     },
+     {
+      "id": 5345,
+      "file": "Questionnaire_FES2022_V4_CSES.pdf",
+      "restricted": false
+     }
+    ]
+   },
+   "note": "relevant = an unrestricted data file (CSV or tab) the 00 script could read after renaming; both waves are needed"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "ELIPSS file access API (anonymous request)",
+   "query": "datafile 5296 (wave 3 CSV zip)",
+   "url": "https://data.sciencespo.fr/api/access/datafile/5296",
+   "utc": "2026-10-10T14:41:38Z",
+   "http": 403,
+   "total_results": null,
+   "relevant_hits": {
+    "bytes_returned": 0
+   },
+   "note": "relevant = HTTP 200 with the data file"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "ELIPSS file access API (anonymous request)",
+   "query": "datafile 5346 (wave 4 data file)",
+   "url": "https://data.sciencespo.fr/api/access/datafile/5346",
+   "utc": "2026-10-10T14:41:38Z",
+   "http": 403,
+   "total_results": null,
+   "relevant_hits": {
+    "bytes_returned": 0
+   },
+   "note": "relevant = HTTP 200 with the data file"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "Zenodo REST API",
+   "query": "study1_fes_panel",
+   "url": "https://zenodo.org/api/records?q=study1_fes_panel&size=25",
+   "utc": "2026-10-10T14:41:39Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a record containing the Study 1 panel files"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "Zenodo REST API",
+   "query": "\"Blinded by out-group hatred\"",
+   "url": "https://zenodo.org/api/records?q=%22Blinded+by+out-group+hatred%22&size=25",
+   "utc": "2026-10-10T14:41:40Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a record for this article"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "\"Blinded by out-group hatred\"",
+   "url": "https://api.datacite.org/dois?query=%22Blinded+by+out-group+hatred%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:41:41Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "doi": "10.7910/dvn/4u8ctg",
+     "title": "Replication Data for: Blinded by Out-group Hatred: Why Does Radical Party Entry Fail to Boost Its Voters’ Satisfaction with Democracy?"
+    }
+   ],
+   "note": "relevant = a DOI for this article other than 10.7910/DVN/4U8CTG and the article itself"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "OSF API v2 public nodes (title filter)",
+   "query": "Blinded by out-group hatred",
+   "url": "https://api.osf.io/v2/nodes/?filter%5Btitle%5D=Blinded+by+out-group+hatred",
+   "utc": "2026-10-10T14:41:42Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a node holding Study 1 data (the pre-analysis plan osf.io/b4tjr is a plan, not data)"
+  },
+  {
+   "paper": "09_4U8CTG",
+   "source": "GitHub repository search API (unauthenticated)",
+   "query": "study1_fes_panel",
+   "url": "https://api.github.com/search/repositories?q=study1_fes_panel",
+   "utc": "2026-10-10T14:41:43Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a repository holding the Study 1 panel files"
+  }
+ ]
+}

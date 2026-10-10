@@ -1,0 +1,117 @@
+--- deposit/replication_scripts/02_supplementary_materials.R	2026-10-10 12:46:51.722351217 +0000
++++ run/replication_scripts/02_supplementary_materials.R	2026-10-10 12:53:01.908798377 +0000
+@@ -111,10 +111,12 @@
+   stop("TinyTeX installed. Please restart R and run the script again.")
+ }
+ 
++if (FALSE) { # AUDIT B: env fix, tinytex::tinytex_root() errors on Debian system TeX Live (/usr/share/texlive has no bin/); block only installs LaTeX packages, 02 never compiles LaTeX
+ if (tinytex::tinytex_root() != "") {
+   tinytex::tlmgr_install(c("standalone", "pgf", "xcolor", "makecell",
+                             "tabu", "booktabs", "longtable"))
+ }
++} # AUDIT B: end skip
+ 
+ 
+ # -----------------------------------------------------------------------------
+@@ -143,10 +145,12 @@
+ fr_exp      <- read_csv(file.path(dir_data, "study2_experiment_data.csv"))
+ fr_exp_long <- read_csv(file.path(dir_data, "study2_experiment_data_long.csv"))
+ pilot       <- read_csv(file.path(dir_data, "pilot_study_data.csv"))
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ panel       <- read_csv(file.path(dir_data, "study1_fes_panel.csv"),
+                         locale = locale(encoding = "UTF-8"))
+ panel_long  <- read_csv(file.path(dir_data, "study1_fes_panel_long.csv"),
+                         locale = locale(encoding = "UTF-8"))
++} # AUDIT B: end skip
+ 
+ # Qualitative codebook results (aggregated)
+ qual_table  <- read_csv2(file.path(dir_data,
+@@ -159,6 +163,7 @@
+ # 2. Data preparation
+ # =============================================================================
+ 
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ # --- 2a. FES panel -----------------------------------------------------------
+ 
+ # Fix encoding issue with Zemmour's party name
+@@ -190,6 +195,7 @@
+ panel_short <- panel_long |>
+   filter(choice_pres_1st %in% c("Mélenchon voters", "Le Pen voters",
+                                  "Macron voters",    "Zemmour voters"))
++} # AUDIT B: end skip
+ 
+ # --- 2b. Experimental Facebook data ------------------------------------------
+ 
+@@ -250,6 +256,7 @@
+ # 3. Models
+ # =============================================================================
+ 
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ # --- 3a. FES panel models ----------------------------------------------------
+ 
+ baseline_model_panel <- panel |>
+@@ -284,6 +291,7 @@
+               age + sex + education + income + employment +
+               democracy_works + poly(lr, 2) + pol_interest,
+             weights = weight_w2, data = _)
++} # AUDIT B: end skip
+ 
+ # --- 3b. Experimental models: SWD --------------------------------------------
+ 
+@@ -1215,6 +1223,7 @@
+        plot = fige1, width = 8, height = 5, dpi = fig_dpi)
+ 
+ 
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ # =============================================================================
+ # FIGURE F1
+ # FES panel: affect distribution by party and top 4 candidate voter groups.
+@@ -1260,6 +1269,7 @@
+ 
+ ggsave(file.path(dir_out, "figF1_fes_affect_distribution.png"),
+        plot = figf1, width = 12, height = 10, dpi = fig_dpi)
++} # AUDIT B: end skip
+ 
+ 
+ # =============================================================================
+@@ -1452,6 +1462,7 @@
+ 
+ 
+ # =============================================================================
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ # TABLE B4 — FES descriptive statistics: Zemmour supporters
+ # =============================================================================
+ 
+@@ -1466,6 +1477,7 @@
+      labels = c("Gender","Age","Education","Left-right"),
+      title  = "Table B4: Descriptive statistics: representative sample of Zemmour supporters in the FES 2022")
+ sink()
++} # AUDIT B: end skip
+ 
+ 
+ # =============================================================================
+@@ -1786,6 +1798,7 @@
+ sink()
+ 
+ 
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ # =============================================================================
+ # TABLE F1 — FES vote choice distribution
+ # =============================================================================
+@@ -1813,9 +1826,11 @@
+   row_spec(nrow(summary_t) + 1, bold = TRUE)
+ 
+ save_tex(tabf1, "tableF1_fes_vote_choice.tex")
++} # AUDIT B: end skip
+ 
+ 
+ # =============================================================================
++if (FALSE) { # AUDIT B: missing-input skip (Study 1 FES data not in deposit; restricted at ELIPSS)
+ # TABLES F2 / F3 — FES panel regression tables
+ # =============================================================================
+ 
+@@ -1859,3 +1874,4 @@
+        fontsize = "scriptsize", float.pos = "h!",
+        caption = "Table F3: OLS Specifications. DV: Change in Affects toward LREM")
+ sink()
++} # AUDIT B: end skip

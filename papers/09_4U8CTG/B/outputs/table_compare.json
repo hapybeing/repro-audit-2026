@@ -1,0 +1,132 @@
+{
+ "tableA1_hypotheses.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableA2_microtargeting.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableA3_exp_descriptives.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableA4_vignettes_english.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableA5_vignettes_french.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableA6_election_results.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableB1_descriptives_zemmour.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableB2_descriptives_lepen.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableB3_descriptives_others.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableB4_fes_zemmour_descriptives.tex": {
+  "regenerated": false,
+  "identical_to_deposit_ignoring_line_endings": null,
+  "n_diff_lines": null
+ },
+ "tableC1_qualitative_codebook.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableC2_icr.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD10_simulated_vs_real.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD1_manipulation_check_zemmour.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD2_manipulation_check_macron_lepen.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD3_ez_swd.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD4_ez_swd_expectations.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD5_ez_lrem.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD6_mlp_swd.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD7_others_swd.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD8_mht_swd.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableD9_mht_lrem.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableE1_pilot_swd.tex": {
+  "regenerated": true,
+  "identical_to_deposit_ignoring_line_endings": true,
+  "n_diff_lines": 1
+ },
+ "tableF1_fes_vote_choice.tex": {
+  "regenerated": false,
+  "identical_to_deposit_ignoring_line_endings": null,
+  "n_diff_lines": null
+ },
+ "tableF2_fes_swd.tex": {
+  "regenerated": false,
+  "identical_to_deposit_ignoring_line_endings": null,
+  "n_diff_lines": null
+ },
+ "tableF3_fes_lrem.tex": {
+  "regenerated": false,
+  "identical_to_deposit_ignoring_line_endings": null,
+  "n_diff_lines": null
+ }
+}

@@ -1,7 +1,9 @@
-"""Generate papers/<id>/ABSENCE_SEARCHES.md from papers/<id>/data_statement_raw/absence_searches.json.
-Usage (from repo/): python3 scripts/make_absence_md.py
+"""Generate papers/<id>/ABSENCE_SEARCHES.md from papers/<id>/data_statement_raw/absence_searches.json (batch 1)
+or absence_searches_scripted.json (batch 2: 08, 09, 10; 08's pre-registration log keeps its frozen name).
+Usage (from repo/): python3 scripts/make_absence_md.py [1|2]   (default 1; batch 1 output is unchanged)
 No number is typed by hand: counts are read from the JSON written by scripts/absence_searches.py."""
-import json, re
+import json, re, sys
+BATCH = sys.argv[1] if len(sys.argv) > 1 else "1"
 
 CLAIM = {
     "01_5BIH0P": ("The production trajectory of 2XWT, 310 K, seed #3 (dynamic-nopbc.xtc, dynamic-nopbc-2.xtc, system_reduced.xtc) "
@@ -14,7 +16,72 @@ CLAIM = {
 }
 
 
+CLAIM2 = {
+    "08_SQRZR8": ("The data preparation script data_preparation_rep.R, named in the deposit's ReadMe.txt, is not deposited at any location the article points to or that these searches reach.",
+                  "a file named data_preparation_rep.R anywhere searched; a version of DVN/SQRZR8 listing it; or a dataset, software or other non-text record for this article other than DVN/SQRZR8"),
+    "09_4U8CTG": ("The Study 1 inputs (study1_fes_panel.csv, study1_fes_panel_long.csv, or the ELIPSS files elipss_fes2022_v3.csv and elipss_fes2022_cses_v4.csv that 00_fes_data_preprocessing.R reads) are not openly downloadable: the FES 2022 wave 3 and wave 4 data files sit behind registration at ELIPSS.",
+                  "a public copy of any of the four files, or unrestricted FES 2022 data files for BOTH wave 3 and wave 4 (the 00 script needs both), or HTTP 200 with data on an anonymous request to a restricted ELIPSS data file"),
+    "10_6MLKJZ": ("The article and its online appendix contain no data availability statement and name no data or code location (so rule #4 materials are the deposit DVN/6MLKJZ alone).",
+                  "a transcript line that names a data or code location for this article (not an agent's note saying none exists); a record that links this article to a dataset or software other than DVN/6MLKJZ; any Zenodo, OSF or GitHub record for this article"),
+}
+DEPOSIT = {"08_SQRZR8": "10.7910/dvn/sqrzr8", "09_4U8CTG": "10.7910/dvn/4u8ctg", "10_6MLKJZ": "10.7910/dvn/6mlkjz"}
+
+
+def judge2(pid, r):
+    h, src, q = r["relevant_hits"], r["source"], r["query"]
+    dep = DEPOSIT[pid]
+    if src.startswith("Transcript"):
+        nz = {k: v for k, v in h.items() if v}
+        if not nz:
+            return "none: all term counts 0"
+        lines = sorted({n for v in nz.values() for n in v})
+        return ("matching lines " + ", ".join(map(str, lines)) + " (terms: " + ", ".join(nz) + "); each was read: "
+                + {"sage_html": "line 52 is Sage's licence sentence on permission requests ('permission requests for re-use'), not a data statement",
+                   "article_pdf": "every line is the reader's note that no data, replication, Dataverse, OSF or GitHub statement exists",
+                   "supplement": "lines 131 to 132 are the reader's note that the appendix has no data statement and names no repository"}[
+                    "sage_html" if "sage_html" in r["url"] else ("article_pdf" if "article_pdf" in r["url"] else "supplement")]
+                + "; no hit")
+    if src.startswith("Crossref"):
+        return f"relation field: {h['relation'] or 'empty'}; links: publisher PDF/XML only ({len(h['link_urls'])} entries); no hit"
+    if src.startswith("ELIPSS dataset metadata"):
+        data = [x for x in h["unrestricted"] if not re.search(r"\.(pdf|xml|txt)$", x["file"] or "", re.I)]
+        return (f"{len(h['files'])} files, {len(h['unrestricted'])} unrestricted; unrestricted data files: "
+                + (", ".join(x["file"] for x in data) if data else "none") + " (restricted: "
+                + ", ".join(x["file"] for x in h["files"] if x["restricted"]) + ")")
+    if src.startswith("ELIPSS file access"):
+        return f"HTTP {r['http']}, {h['bytes_returned']} bytes: " + ("no data returned; no hit" if r["http"] != 200 else "data returned: HIT")
+    if src.startswith("Harvard Dataverse dataset versions"):
+        bad = [v["version"] for v in h if "data_preparation_rep.R" in v["files"]]
+        return f"{len(h)} version(s) ({', '.join(v['version'] for v in h)}), files per version: " + "; ".join(", ".join(v["files"]) for v in h) + ("; none lists data_preparation_rep.R" if not bad else f"; HIT in {bad}")
+    if src.startswith("DataCite DOI record"):
+        return (f"{h['resource_type']} record, sizes {h['sizes'] or 'not given'}, relations {h['relations'] or 'none'}"
+                + {"Text": ": a text record (article copy or appendix), not data or code; no hit",
+                   "Collection": ": collection record lists no files or sizes; the figshare API returns 'Entity not found' and sage.figshare.com blocks scripted requests, so its contents were not established; the only item DOI returned for this article is the appendix record above"}.get(h["resource_type"], ""))
+    if isinstance(h, list):
+        if not h:
+            return "none"
+        others = []
+        for x in h:
+            d = (x.get("doi") or "").lower().replace("doi:", "")
+            if d.startswith(dep) or d == dep:
+                continue
+            if pid == "08_SQRZR8" and q.endswith("type=file"):
+                if x.get("name") == "data_preparation_rep.R":
+                    others.append(x)
+                continue
+            others.append(x)
+        if pid == "08_SQRZR8" and q.startswith("Guo"):
+            others = []
+        if not others:
+            return "only the audited deposit " + dep.upper().replace("10.7910/DVN/", "doi:10.7910/DVN/") if len(h) else "none"
+        return (f"{len(others)} item(s) other than the deposit, not hits by themselves; each DOI is checked in a 'DataCite DOI record' row of this table: "
+                + "; ".join(f"{x.get('doi') or x.get('name') or x.get('repo')} ({re.sub('<[^>]+>', '', x.get('title') or x.get('dataset') or x.get('description') or '')})" for x in others))
+    return str(h)
+
+
 def judge(pid, r):
+    if pid in CLAIM2:
+        return judge2(pid, r)
     h = r["relevant_hits"]
     if pid == "03_3IOGQ8" and isinstance(h, list):
         bad = []
@@ -62,11 +129,12 @@ def judge(pid, r):
     return str(h)
 
 
-for pid in CLAIM:
-    d = json.load(open(f"papers/{pid}/data_statement_raw/absence_searches.json"))
-    claim, rule = CLAIM[pid]
+for pid in (CLAIM if BATCH == "1" else CLAIM2):
+    fn = "absence_searches.json" if BATCH == "1" else "absence_searches_scripted.json"
+    d = json.load(open(f"papers/{pid}/data_statement_raw/{fn}"))
+    claim, rule = (CLAIM if BATCH == "1" else CLAIM2)[pid]
     L = [f"# Absence searches: {pid}", "",
-         f"Generated by `scripts/make_absence_md.py` from `data_statement_raw/absence_searches.json`, which `scripts/absence_searches.py {pid[:2]}` writes. "
+         f"Generated by `scripts/make_absence_md.py{'' if BATCH == '1' else ' 2'}` from `data_statement_raw/{fn}`, which `scripts/absence_searches.py {pid[:2]}` writes. "
          "Re-run both scripts from the repo root to repeat every search below. Public APIs only, no sign-in, no author contact.", "",
          f"**Claim checked:** {claim}", "",
          f"**What would count as a hit against the claim:** {rule}.", "",

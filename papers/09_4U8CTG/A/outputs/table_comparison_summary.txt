@@ -1,0 +1,27 @@
+# Regenerated tables (run 2, 02 sourced with print.eval=TRUE) vs deposited copies; CR characters stripped before comparing
+IDENTICAL tableA1_hypotheses.tex
+IDENTICAL tableA2_microtargeting.tex
+IDENTICAL tableA3_exp_descriptives.tex
+IDENTICAL tableA4_vignettes_english.tex
+IDENTICAL tableA5_vignettes_french.tex
+IDENTICAL tableA6_election_results.tex
+IDENTICAL tableB1_descriptives_zemmour.tex
+IDENTICAL tableB2_descriptives_lepen.tex
+IDENTICAL tableB3_descriptives_others.tex
+NOT_REGENERATED(Study1 skipped) tableB4_fes_zemmour_descriptives.tex
+IDENTICAL tableC1_qualitative_codebook.tex
+IDENTICAL tableC2_icr.tex
+IDENTICAL tableD10_simulated_vs_real.tex
+IDENTICAL tableD1_manipulation_check_zemmour.tex
+IDENTICAL tableD2_manipulation_check_macron_lepen.tex
+IDENTICAL tableD3_ez_swd.tex
+IDENTICAL tableD4_ez_swd_expectations.tex
+IDENTICAL tableD5_ez_lrem.tex
+IDENTICAL tableD6_mlp_swd.tex
+IDENTICAL tableD7_others_swd.tex
+IDENTICAL tableD8_mht_swd.tex
+IDENTICAL tableD9_mht_lrem.tex
+IDENTICAL tableE1_pilot_swd.tex
+NOT_REGENERATED(Study1 skipped) tableF1_fes_vote_choice.tex
+NOT_REGENERATED(Study1 skipped) tableF2_fes_swd.tex
+NOT_REGENERATED(Study1 skipped) tableF3_fes_lrem.tex

@@ -1,0 +1,12 @@
+  check         role              outcome    n   estimate        se    ci_low
+1   R_a   primary_T1      positive_emo_rv 4507 -0.2010034 0.0586059 -0.313086
+2   R_b   primary_T1      positive_emo_rv 4507 -0.2010034 0.0576641 -0.314053
+3   R_a secondary_T3 general_attitude_fic 4507 -0.5316951 0.0989614 -0.719875
+4   R_b secondary_T3 general_attitude_fic 4481 -0.4881388 0.0968610 -0.678034
+5   R_c   primary_T1           pos_mean_z 4507 -0.0893661 0.0348453 -0.157680
+     ci_high     p_value dropped_or_bad n_valid_draws
+1 -0.0848522 2.00000e-03              0          1000
+2 -0.0879533 4.95438e-04              0            NA
+3 -0.3255141 0.00000e+00              0          1000
+4 -0.2982433 4.85023e-07             26            NA
+5 -0.0210521 1.03601e-02              0            NA

@@ -1,0 +1,287 @@
+{
+ "script": "scripts/absence_searches.py",
+ "paper": "10_6MLKJZ",
+ "run_started_utc": "2026-10-10T14:45:01Z",
+ "records": [
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Transcript of the article or appendix (sage_html_structure_and_end_matter.md)",
+   "query": "case-insensitive term search, line numbers per term",
+   "url": "papers/10_6MLKJZ/data_statement_raw/sage_html_structure_and_end_matter.md",
+   "utc": "2026-10-10T14:45:01Z",
+   "http": "local file",
+   "total_results": null,
+   "relevant_hits": {
+    "data availab": [],
+    "availability": [],
+    "replication": [],
+    "dataverse": [],
+    "10.7910": [],
+    "osf": [],
+    "github": [],
+    "zenodo": [],
+    "figshare": [],
+    "repository": [],
+    "on request": [
+     52
+    ],
+    "upon request": []
+   },
+   "note": "a matching line is a hit only if it names a data or code location for this article; each was read in context (see the table note)"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Transcript of the article or appendix (article_pdf_read_notes_2026-10-10.md)",
+   "query": "case-insensitive term search, line numbers per term",
+   "url": "papers/10_6MLKJZ/data_statement_raw/article_pdf_read_notes_2026-10-10.md",
+   "utc": "2026-10-10T14:45:01Z",
+   "http": "local file",
+   "total_results": null,
+   "relevant_hits": {
+    "data availab": [
+     23,
+     46,
+     181
+    ],
+    "availability": [
+     23,
+     46,
+     181
+    ],
+    "replication": [
+     23,
+     46,
+     47,
+     181
+    ],
+    "dataverse": [
+     181
+    ],
+    "10.7910": [],
+    "osf": [
+     181
+    ],
+    "github": [
+     181
+    ],
+    "zenodo": [],
+    "figshare": [],
+    "repository": [],
+    "on request": [],
+    "upon request": []
+   },
+   "note": "a matching line is a hit only if it names a data or code location for this article; each was read in context (see the table note)"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Transcript of the article or appendix (supplement_pdf_transcript_2026-10-10.md)",
+   "query": "case-insensitive term search, line numbers per term",
+   "url": "papers/10_6MLKJZ/data_statement_raw/supplement_pdf_transcript_2026-10-10.md",
+   "utc": "2026-10-10T14:45:01Z",
+   "http": "local file",
+   "total_results": null,
+   "relevant_hits": {
+    "data availab": [
+     132
+    ],
+    "availability": [
+     131,
+     132
+    ],
+    "replication": [
+     132
+    ],
+    "dataverse": [
+     132
+    ],
+    "10.7910": [],
+    "osf": [
+     132
+    ],
+    "github": [
+     132
+    ],
+    "zenodo": [],
+    "figshare": [],
+    "repository": [
+     132
+    ],
+    "on request": [],
+    "upon request": []
+   },
+   "note": "a matching line is a hit only if it names a data or code location for this article; each was read in context (see the table note)"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Crossref REST API (publisher-registered metadata)",
+   "query": "relation and link fields",
+   "url": "https://api.crossref.org/works/10.1177/09520767231210025",
+   "utc": "2026-10-10T14:45:01Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": {
+    "relation": {},
+    "link_urls": [
+     "https://journals.sagepub.com/doi/pdf/10.1177/09520767231210025",
+     "https://journals.sagepub.com/doi/full-xml/10.1177/09520767231210025",
+     "https://journals.sagepub.com/doi/pdf/10.1177/09520767231210025"
+    ]
+   },
+   "note": ""
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "relatedIdentifiers.relatedIdentifier:\"10.1177/09520767231210025\"",
+   "url": "https://api.datacite.org/dois?query=relatedIdentifiers.relatedIdentifier%3A%2210.1177%2F09520767231210025%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:45:01Z",
+   "http": 200,
+   "total_results": 2,
+   "relevant_hits": [
+    {
+     "doi": "10.25384/sage.24542291",
+     "title": "<b>Supplemental Material - Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior</b>"
+    },
+    {
+     "doi": "10.25384/sage.24542291.v1",
+     "title": "<b>Supplemental Material - Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior</b>"
+    }
+   ],
+   "note": "relevant = any DOI that declares this article as related"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "\"Prioritizing Exceptional Social Needs\"",
+   "url": "https://api.datacite.org/dois?query=%22Prioritizing+Exceptional+Social+Needs%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:45:02Z",
+   "http": 200,
+   "total_results": 5,
+   "relevant_hits": [
+    {
+     "doi": "10.25384/sage.24542291",
+     "title": "<b>Supplemental Material - Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior</b>"
+    },
+    {
+     "doi": "10.7910/dvn/6mlkjz",
+     "title": "Replication Data for: Prioritizing Exceptional Social Needs. Experimental Evidence on the Role of Discrimination and Client Deservingness in Public Employees’ and Citizens’ Discretionary Behavior"
+    },
+    {
+     "doi": "10.25384/sage.c.6924332",
+     "title": "Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior"
+    },
+    {
+     "doi": "10.25384/sage.c.6924332.v1",
+     "title": "Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior"
+    },
+    {
+     "doi": "10.25384/sage.24542291.v1",
+     "title": "<b>Supplemental Material - Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior</b>"
+    }
+   ],
+   "note": "relevant = a DOI for this article other than 10.7910/DVN/6MLKJZ and the article itself"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "DataCite DOI record (item returned by the searches above)",
+   "query": "10.25384/sage.24542291",
+   "url": "https://api.datacite.org/dois/10.25384/sage.24542291",
+   "utc": "2026-10-10T14:45:03Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": {
+    "title": "<b>Supplemental Material - Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior</b>",
+    "resource_type": "Text",
+    "url": "http://journals.sagepub.com/doi/full/10.1177/09520767231210025#supplementary-materials",
+    "sizes": [
+     "251291 Bytes"
+    ],
+    "relations": [
+     [
+      "IsSupplementTo",
+      "10.1177/09520767231210025"
+     ]
+    ]
+   },
+   "note": "a Sage figshare item is a hit only if it holds data or code beyond the online appendix that was read"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "DataCite DOI record (item returned by the searches above)",
+   "query": "10.25384/sage.c.6924332",
+   "url": "https://api.datacite.org/dois/10.25384/sage.c.6924332",
+   "utc": "2026-10-10T14:45:03Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": {
+    "title": "Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior",
+    "resource_type": "Collection",
+    "url": "https://sage.figshare.com/collections/Prioritizing_exceptional_social_needs_Experimental_evidence_on_the_role_of_discrimination_and_client_deservingness_in_public_employees_and_citizens_discretionary_behavior/6924332",
+    "sizes": [],
+    "relations": []
+   },
+   "note": "a Sage figshare item is a hit only if it holds data or code beyond the online appendix that was read"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Zenodo REST API",
+   "query": "\"10.1177/09520767231210025\"",
+   "url": "https://zenodo.org/api/records?q=%2210.1177%2F09520767231210025%22&size=25",
+   "utc": "2026-10-10T14:45:04Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = any record; redo of the pre-registration query that returned HTTP 400 (size 100)"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Zenodo REST API",
+   "query": "\"Prioritizing Exceptional Social Needs\"",
+   "url": "https://zenodo.org/api/records?q=%22Prioritizing+Exceptional+Social+Needs%22&size=25",
+   "utc": "2026-10-10T14:45:05Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = any record; redo of the pre-registration query that returned HTTP 400 (size 100)"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "Harvard Dataverse Search API",
+   "query": "\"Prioritizing Exceptional Social Needs\", type=dataset",
+   "url": "https://dataverse.harvard.edu/api/search?q=%22Prioritizing+Exceptional+Social+Needs%22&type=dataset&per_page=100",
+   "utc": "2026-10-10T14:45:07Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "name": "Replication Data for: Prioritizing Exceptional Social Needs. Experimental Evidence on the Role of Discrimination and Client Deservingness in Public Employees’ and Citizens’ Discretionary Behavior",
+     "dataset": null,
+     "doi": "doi:10.7910/DVN/6MLKJZ"
+    }
+   ],
+   "note": "relevant = a dataset other than doi:10.7910/DVN/6MLKJZ"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "OSF API v2 public nodes (title filter)",
+   "query": "Prioritizing exceptional social needs",
+   "url": "https://api.osf.io/v2/nodes/?filter%5Btitle%5D=Prioritizing+exceptional+social+needs",
+   "utc": "2026-10-10T14:45:07Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = any node"
+  },
+  {
+   "paper": "10_6MLKJZ",
+   "source": "GitHub repository search API (unauthenticated)",
+   "query": "Prioritizing exceptional social needs",
+   "url": "https://api.github.com/search/repositories?q=Prioritizing+exceptional+social+needs",
+   "utc": "2026-10-10T14:45:08Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = any repository"
+  }
+ ]
+}

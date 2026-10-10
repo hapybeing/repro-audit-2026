@@ -1,0 +1,42 @@
+{
+ "rh": {
+  "sha256_deposited": "42bdcab412b510ece0339b8cf83c3f94eb9421a9d5a1c581287797b88179e665",
+  "sha256_regenerated": "5d95d27db582cfb3489e609d0b26e118f0a95499270d15d20d8f19ceb1155deb",
+  "rows_deposited": 202,
+  "rows_regenerated": 202,
+  "cols_deposited": 316,
+  "cols_regenerated": 316,
+  "parsed_cells_identical": true,
+  "ResponseIds_identical": true
+ },
+ "uhh": {
+  "sha256_deposited": "fae3eda2cb7a69670600d7dcb6208430ba23548cc35e0044fd8ac1ed34ce392f",
+  "sha256_regenerated": "71cbf71e7ac78afb30e00883b192baf2b895cfc999673e41a7d4df1fb1bf77cc",
+  "rows_deposited": 818,
+  "rows_regenerated": 818,
+  "cols_deposited": 314,
+  "cols_regenerated": 314,
+  "parsed_cells_identical": true,
+  "ResponseIds_identical": true
+ },
+ "hsvn": {
+  "sha256_deposited": "0ebc9e197a822ff5f5418dcc39a8782f800ffd108cf9261def6026fa4d45b785",
+  "sha256_regenerated": "a50cbf4c37aaa3f706d6ade229f9bb0697ef13a5d4520503e616421e1102a286",
+  "rows_deposited": 595,
+  "rows_regenerated": 595,
+  "cols_deposited": 313,
+  "cols_regenerated": 313,
+  "parsed_cells_identical": true,
+  "ResponseIds_identical": true
+ },
+ "civic": {
+  "sha256_deposited": "54ac646031ba7e50531cdbd4269e3c747710dc8de39524b4dff38c692495be0e",
+  "sha256_regenerated": "b76134c098942c11cf08f7e18df69bf7e2da53453096d46843b0a0ba77c08132",
+  "rows_deposited": 2544,
+  "rows_regenerated": 2544,
+  "cols_deposited": 389,
+  "cols_regenerated": 389,
+  "parsed_cells_identical": true,
+  "ResponseIds_identical": true
+ }
+}

@@ -1,0 +1,95 @@
+# Environment, agent A, 09_4U8CTG
+Date (IST): Sat Oct 10 18:16:52 IST 2026
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+R_LIBS_USER=/workspace/audit_runs/09_4U8CTG/A/rlib (texreg, stargazer, vtable, jtools, binom from CRAN source, Ncpus=1)
+Other R packages: Debian r-cran-* system binaries in /usr/lib/R/site-library and /usr/lib/R/library (installed system-wide by the shared setup on this machine)
+pdflatex: pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+Seeds: 02 uses set.seed(123) (power simulation only, not targets). Robustness R_a: set.seed(20261010).
+Python: Python 3.12.15
+
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] pdftools_3.5.0   tinytex_0.56     scales_1.3.0     binom_1.1-2     
+ [5] MASS_7.3-65      plotrix_3.8-4    jtools_2.3.1     gridExtra_2.3   
+ [9] vtable_1.4.8     stargazer_5.2.3  texreg_1.40      kableExtra_1.4.0
+[13] here_1.0.1       patchwork_1.3.0  broom_1.0.7      estimatr_1.0.6  
+[17] lubridate_1.9.4  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     
+[21] purrr_1.0.4      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    
+[25] ggplot2_3.5.1    tidyverse_2.0.0 
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1    viridisLite_0.4.2   farver_2.1.2       
+ [4] fastmap_1.2.0       TH.data_1.1-3       digest_0.6.37      
+ [7] timechange_0.3.0    estimability_1.5.1  lifecycle_1.0.4    
+[10] qpdf_1.3.4          survival_3.8-3      magrittr_2.0.3     
+[13] compiler_4.5.0      rlang_1.1.5         tools_4.5.0        
+[16] knitr_1.50          askpass_1.2.1       xml2_1.3.8         
+[19] multcomp_1.4-28     withr_3.0.2         grid_4.5.0         
+[22] xtable_1.8-4        colorspace_2.1-1    future_1.34.0      
+[25] emmeans_1.10.7      globals_0.16.3      cli_3.6.4          
+[28] mvtnorm_1.3-3       rmarkdown_2.29      generics_0.1.3     
+[31] rstudioapi_0.17.1   httr_1.4.7          tzdb_0.5.0         
+[34] pander_0.6.6        splines_4.5.0       parallel_4.5.0     
+[37] vctrs_0.6.5         Matrix_1.7-3        sandwich_3.1-1     
+[40] hms_1.1.3           Formula_1.2-5       listenv_0.9.1      
+[43] systemfonts_1.2.1   glue_1.8.0          parallelly_1.42.0  
+[46] codetools_0.2-20    stringi_1.8.4       gtable_0.3.6       
+[49] broom.mixed_0.2.9.6 munsell_0.5.1       pillar_1.10.1      
+[52] furrr_0.3.1         htmltools_0.5.8.1   R6_2.6.1           
+[55] rprojroot_2.0.4     evaluate_1.0.3      lattice_0.22-7     
+[58] backports_1.5.0     Rcpp_1.0.14         svglite_2.1.3      
+[61] coda_0.19-4.1       nlme_3.1-168        xfun_0.51          
+[64] zoo_1.8-14          pkgconfig_2.0.3    
+
+Versions with library path:
+tidyverse 2.0.0 /usr/lib/R/site-library 
+dplyr 1.1.4 /usr/lib/R/site-library 
+readr 2.1.5 /usr/lib/R/site-library 
+ggplot2 3.5.1 /usr/lib/R/site-library 
+estimatr 1.0.6 /usr/lib/R/site-library 
+broom 1.0.7 /usr/lib/R/site-library 
+patchwork 1.3.0 /usr/lib/R/site-library 
+here 1.0.1 /usr/lib/R/site-library 
+kableExtra 1.4.0 /usr/lib/R/site-library 
+knitr 1.50 /usr/lib/R/site-library 
+texreg 1.40 /workspace/audit_runs/09_4U8CTG/A/rlib 
+stargazer 5.2.3 /workspace/audit_runs/09_4U8CTG/A/rlib 
+vtable 1.4.8 /workspace/audit_runs/09_4U8CTG/A/rlib 
+gridExtra 2.3 /usr/lib/R/site-library 
+jtools 2.3.1 /workspace/audit_runs/09_4U8CTG/A/rlib 
+plotrix 3.8-4 /usr/lib/R/site-library 
+MASS 7.3-65 /usr/lib/R/library 
+binom 1.1-2 /workspace/audit_runs/09_4U8CTG/A/rlib 
+scales 1.3.0 /usr/lib/R/site-library 
+tinytex 0.56 /usr/lib/R/site-library 
+pdftools 3.5.0 /usr/lib/R/site-library 

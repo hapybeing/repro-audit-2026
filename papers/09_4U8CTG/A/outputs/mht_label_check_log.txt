@@ -1,0 +1,23 @@
+treatment levels: control danger_contr win_govt win_mainstream win_parl 
+               dv row    label_in_02_table             actual_term
+1          swd_ch   1            Intercept             (Intercept)
+2          swd_ch   2  In-group Government   treatmentdanger_contr
+3          swd_ch   3  In-group Parliament       treatmentwin_govt
+4          swd_ch   4 Out-group Government treatmentwin_mainstream
+5          swd_ch   5              Placebo       treatmentwin_parl
+6  affect_LREM_ch   1            Intercept             (Intercept)
+7  affect_LREM_ch   2  In-group Government   treatmentdanger_contr
+8  affect_LREM_ch   3  In-group Parliament       treatmentwin_govt
+9  affect_LREM_ch   4 Out-group Government treatmentwin_mainstream
+10 affect_LREM_ch   5              Placebo       treatmentwin_parl
+      actual_term_label     p_value label_matches
+1             Intercept 0.003248557          TRUE
+2               Placebo 0.337296488         FALSE
+3   In-group Government 0.309620823         FALSE
+4  Out-group Government 0.046144376          TRUE
+5   In-group Parliament 0.171823739         FALSE
+6             Intercept 0.612994049          TRUE
+7               Placebo 0.923152295         FALSE
+8   In-group Government 0.823247659         FALSE
+9  Out-group Government 0.137411823          TRUE
+10  In-group Parliament 0.827652526         FALSE

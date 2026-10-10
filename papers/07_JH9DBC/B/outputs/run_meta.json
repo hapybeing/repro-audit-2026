@@ -1,0 +1,31 @@
+{
+ "ran": true,
+ "could_not_run_reason": "",
+ "bugs": [],
+ "env_fixes": [
+  "diffs/01_fixest_0.12.1_run_wrapper.diff: primary run uses fixest 0.12.1 (CRAN release current at the code date, August 2025) instead of current CRAN 0.14.2, because fixest 0.13.0 changed the default vcov (cluster -> IID) and started dropping singleton fixed effects (600 -> 586 obs in Table B). authors' replication.R unchanged",
+  "Installed fixest, cobalt, WeightIt (used via WeightIt:: at line 214, never library()'d) and sjPlot from CRAN source into a per-run library (no Debian binaries available); no code change needed"
+ ],
+ "fallback_class": "D",
+ "class_reason": {
+  "A": "With fixest 0.12.1 (the CRAN version current when the code was written) and the authors' code unchanged, all six pre-registered targets (Table B T1 to T4, Table G T5 and T6, read from the Supplementary Material) match to the paper's rounding; the main article's Table 2 was not compared because its text could not be read (batch 2 decision 4).",
+  "B": "All six pre-registered targets are within 5% with the same conclusion but not all match to rounding; the main article's Table 2 was not compared (batch 2 decision 4).",
+  "D": "At least one target differs beyond 5% or changes the conclusion; see targets."
+ },
+ "confidence": "medium",
+ "confidence_reason": "All targets matched by script, but T4 (N) matches only after pinning fixest to the version current at the code date (current CRAN gives 586), targets come from the supplement, and B could not re-open the supplement to re-confirm the paper values (Cloudflare block), so they rest on the PREREG screenshots.",
+ "time_minutes": 40,
+ "uncertainties": [
+  "Paper values: B's public browser attempt to re-open the Supplementary Material and the main article (2026-10-10 about 18:05 IST) was blocked by a full-page Cloudflare interstitial on every journals.sagepub.com URL, so B could not independently re-confirm the six paper values and could not read the main Table 2 (outputs/supplement_reopen_attempt_B.md). Paper values are as copied in PREREG.md from hashed screenshots.",
+  "Version dependence of T4: with current CRAN fixest 0.14.2 (PREREG step 2 read literally) Table B nobs is 586 (14 singleton districts dropped) and SEs are IID; coefficients are identical to 0.12.1 and SEs differ only in the fourth decimal (T1 0.0142 vs 0.0138), so under 0.14.2 T4 alone fails exact match (rel diff -2.3%, within 5%) and the class would be B. The primary run uses fixest 0.12.1 as a package-version environment fix; the comparison team should decide which run is primary.",
+  "The authors' fixest version is not stated; 0.12.1 is inferred from the code date (August 2025) and CRAN release dates (0.12.1 on 2024-06-13, next 0.13.2 on 2025-09-08). Table B's reported 600 observations and district-clustered SEs are consistent with a pre-0.13 fixest.",
+  "Satterthwaite p-values (secondary, lmerTest) were computed by refitting formula(model) with lmerTest::lmer on the same data, because the authors' script rm()s datasubset before the end of the session; lme4 estimates in the refit are not used for any target.",
+  "One lme4 convergence warning ('Model failed to converge with max|grad| = 0.00231195 (tol = 0.002, component 1)') appeared in both runs; it is not from any model kept in the session (all Table 2, B, C, D, F, G lmer models report no convergence message, outputs/code_checks.txt), so it comes from a model inside the Figure B placebo loop or Figure 1 bootMer, which do not affect targets.",
+  "Unverified observation: 14 of 307 districts in the 2015/2018 data have one row only (e.g. CIUDAD DE MEXICO.25 to .27 appear in 2012 and 2015 only; CHIAPAS.13, MEXICO.41 in 2018 only), consistent with district boundaries changing between 2015 and 2018. Not confirmed as a coding issue; it is what makes T4 version-dependent.",
+  "Unverified observation (as noted in PREREG): replication.R lines 199 to 207 compute Table A summaries on the 600-row data (mean year_2018 = 0.5), while the supplement's Table A reports N = 900 and Year 2018 mean 0.33, which matches the 900-row dataall (outputs/code_checks.txt). Table A is not a target.",
+  "Figure B (line 438): row 7 of sjPlot::get_model_data(type='est') is juicio:year_2018 under sjPlot 2.9.0 (outputs/code_checks.txt), so the placebo loop extracts the intended term in this environment.",
+  "During the run, the platform's file-change notices listed file names being written in REPO/papers/07_JH9DBC/A/; B did not open, list or read any of them.",
+  "R_a secondary (multilevel model2 cluster bootstrap) was fit in the same replicate loop as the primary (same draws, same seed); the PREREG names this secondary generically, so its exact bootstrap form (new_id random intercept) is my implementation choice.",
+  "Pre-registered headline note (not a target, does not affect class): the reproduced Table 2 multilevel interaction estimates are model1 -0.0624, model2 -0.0674, model4 -0.0674 (outputs/targets_extracted_fixest0121.csv); rounded to two decimals 0.06, 0.07, 0.07, so model2 and model4 fall outside the abstract's 'between 3 and 6%' as the PREREG criterion reads it. The main Table 2 could not be read, so whether it prints the same values is unknown; across Table 2 model3 (-0.038) and Table B (-0.034 to -0.066) the range of reproduced interaction estimates is about 0.03 to 0.07. Recorded in the T2 note."
+ ]
+}

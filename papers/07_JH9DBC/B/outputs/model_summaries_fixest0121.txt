@@ -1,0 +1,399 @@
+===== model1B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 600
+Fixed-effects: unique_id: 307,  partido_gober: 5
+Standard-errors: Clustered (unique_id) 
+                  Estimate Std. Error   t value   Pr(>|t|)    
+year_2018        -0.155067   0.011118 -13.94794  < 2.2e-16 ***
+log_pobtot        0.085922   0.030738   2.79527 0.00551333 ** 
+log_pib           0.289250   0.101031   2.86297 0.00448656 ** 
+year_2018:juicio -0.052467   0.013825  -3.79521 0.00017783 ***
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.039922     Adj. R2: 0.773992
+                 Within R2: 0.74204 
+===== model2B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 600
+Fixed-effects: unique_id: 307,  partido_gober: 5
+Standard-errors: Clustered (unique_id) 
+                  Estimate Std. Error   t value   Pr(>|t|)    
+year_2018        -0.166470   0.010264 -16.21917  < 2.2e-16 ***
+log_pobtot        0.094255   0.030437   3.09672 2.1380e-03 ** 
+log_pib           0.261202   0.091820   2.84473 4.7446e-03 ** 
+econ_growth       0.014090   0.006099   2.31018 2.1543e-02 *  
+hom_per100        0.011990   0.003117   3.84596 1.4612e-04 ***
+year_2018:juicio -0.066149   0.013899  -4.75913 3.0027e-06 ***
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.038797     Adj. R2: 0.785038
+                 Within R2: 0.756368
+===== model3B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 600
+Fixed-effects: unique_id: 307,  partido_gober: 5
+Standard-errors: Clustered (unique_id) 
+                         Estimate Std. Error   t value   Pr(>|t|)    
+year_2018               -0.147586   0.015886 -9.290453  < 2.2e-16 ***
+log_pobtot               0.088343   0.029737  2.970832 0.00320525 ** 
+log_pib                  0.285984   0.090410  3.163194 0.00171720 ** 
+econ_growth              0.015417   0.005918  2.605076 0.00963413 ** 
+hom_per100               0.013306   0.003516  3.784136 0.00018556 ***
+mentions_prop           -0.033425   0.078422 -0.426224 0.67024394    
+year_2018:juicio        -0.034111   0.019353 -1.762557 0.07897356 .  
+year_2018:mentions_prop -0.150241   0.100794 -1.490574 0.13710345    
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.038283     Adj. R2: 0.789208
+                 Within R2: 0.762783
+===== model4B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 600
+Fixed-effects: unique_id: 307,  partido_gober: 5
+Standard-errors: Clustered (unique_id) 
+                  Estimate Std. Error    t value   Pr(>|t|)    
+year_2018        -0.166415   0.010304 -16.150799  < 2.2e-16 ***
+log_pobtot        0.094736   0.030978   3.058196 2.4235e-03 ** 
+log_pib           0.261693   0.091541   2.858743 4.5452e-03 ** 
+econ_growth       0.014234   0.006099   2.333886 2.0249e-02 *  
+hom_per100        0.011958   0.003129   3.821492 1.6067e-04 ***
+prev_exp_fleg     0.002002   0.008595   0.232948 8.1596e-01    
+year_2018:juicio -0.066141   0.013918  -4.752167 3.1006e-06 ***
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.038793     Adj. R2: 0.784323
+                 Within R2: 0.756422
+===== model1 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + (1 | unique_id) + (1 | partido_gober)
+   Data: data
+
+REML criterion at convergence: -1296
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.88351 -0.47422 -0.07372  0.45454  3.15877 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.003626 0.06021 
+ partido_gober (Intercept) 0.013361 0.11559 
+ Residual                  0.003484 0.05903 
+Number of obs: 600, groups:  unique_id, 307; partido_gober, 5
+
+Fixed effects:
+                  Estimate Std. Error t value
+(Intercept)      -0.752558   0.328067  -2.294
+juicio           -0.006118   0.014567  -0.420
+year_2018        -0.130409   0.005505 -23.689
+log_pobtot        0.086977   0.024296   3.580
+log_pib          -0.006614   0.005486  -1.206
+juicio:year_2018 -0.062371   0.014271  -4.370
+
+Correlation of Fixed Effects:
+            (Intr) juicio y_2018 lg_pbt log_pb
+juicio      -0.024                            
+year_2018    0.312  0.165                     
+log_pobtot  -0.963  0.022 -0.314              
+log_pib     -0.279 -0.005 -0.097  0.064       
+juc:yr_2018  0.011 -0.491 -0.343 -0.012  0.013
+===== model2 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + econ_growth + hom_per100 + (1 | unique_id) + (1 |  
+    partido_gober)
+   Data: data
+
+REML criterion at convergence: -1290.1
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.79087 -0.49989 -0.06301  0.41908  2.89572 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.003806 0.0617  
+ partido_gober (Intercept) 0.013978 0.1182  
+ Residual                  0.003295 0.0574  
+Number of obs: 600, groups:  unique_id, 307; partido_gober, 5
+
+Fixed effects:
+                  Estimate Std. Error t value
+(Intercept)      -0.914142   0.326514  -2.800
+juicio           -0.010501   0.014773  -0.711
+year_2018        -0.141128   0.006102 -23.130
+log_pobtot        0.093868   0.023989   3.913
+log_pib          -0.002246   0.005644  -0.398
+econ_growth       0.002023   0.004631   0.437
+hom_per100        0.007601   0.002042   3.723
+juicio:year_2018 -0.067433   0.014131  -4.772
+
+Correlation of Fixed Effects:
+            (Intr) juicio y_2018 lg_pbt log_pb ecn_gr hm_100
+juicio      -0.017                                          
+year_2018    0.333  0.191                                   
+log_pobtot  -0.960  0.018 -0.312                            
+log_pib     -0.300 -0.023 -0.181  0.076                     
+econ_growth -0.042  0.141  0.047  0.026  0.009              
+hom_per100  -0.133 -0.059 -0.451  0.078  0.198  0.234       
+juc:yr_2018  0.028 -0.479 -0.266 -0.022 -0.005 -0.170 -0.116
+===== model3 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + econ_growth + hom_per100 + mentions_prop + mentions_prop *  
+    year_2018 + (1 | unique_id) + (1 | partido_gober)
+   Data: data
+
+REML criterion at convergence: -1288.7
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.83381 -0.49298 -0.06429  0.41913  2.86000 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.003804 0.06168 
+ partido_gober (Intercept) 0.014145 0.11893 
+ Residual                  0.003264 0.05713 
+Number of obs: 600, groups:  unique_id, 307; partido_gober, 5
+
+Fixed effects:
+                         Estimate Std. Error t value
+(Intercept)             -0.876630   0.325839  -2.690
+juicio                  -0.017021   0.015455  -1.101
+year_2018               -0.117101   0.012337  -9.492
+log_pobtot               0.090334   0.023954   3.771
+log_pib                 -0.002341   0.005634  -0.416
+econ_growth              0.001046   0.004642   0.225
+hom_per100               0.008317   0.002068   4.021
+mentions_prop            0.077797   0.080117   0.971
+juicio:year_2018        -0.038227   0.018700  -2.044
+year_2018:mentions_prop -0.210831   0.101755  -2.072
+
+Correlation of Fixed Effects:
+            (Intr) juicio yr_2018 lg_pbt log_pb ecn_gr hm_100 mntns_ j:_201
+juicio      -0.024                                                         
+year_2018    0.204 -0.126                                                  
+log_pobtot  -0.959  0.033 -0.211                                           
+log_pib     -0.300 -0.022 -0.093   0.076                                   
+econ_growth -0.046  0.164 -0.068   0.032  0.009                            
+hom_per100  -0.123 -0.055 -0.132   0.070  0.192  0.224                     
+mentins_prp  0.020 -0.294  0.597  -0.044  0.005 -0.091 -0.039              
+juc:yr_2018  0.053 -0.455  0.438  -0.057 -0.009 -0.185  0.009  0.253       
+yr_2018:mn_ -0.043  0.273 -0.857   0.065  0.003  0.108 -0.072 -0.802 -0.566
+===== model4 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + econ_growth + hom_per100 + prev_exp_fleg + (1 |  
+    unique_id) + (1 | partido_gober)
+   Data: data
+
+REML criterion at convergence: -1284.4
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.77093 -0.49795 -0.05257  0.42768  3.00937 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.003725 0.06103 
+ partido_gober (Intercept) 0.013819 0.11755 
+ Residual                  0.003321 0.05763 
+Number of obs: 600, groups:  unique_id, 307; partido_gober, 5
+
+Fixed effects:
+                  Estimate Std. Error t value
+(Intercept)      -0.947974   0.327354  -2.896
+juicio           -0.011009   0.014723  -0.748
+year_2018        -0.140598   0.006124 -22.957
+log_pobtot        0.096832   0.024083   4.021
+log_pib          -0.002724   0.005617  -0.485
+econ_growth       0.002587   0.004649   0.557
+hom_per100        0.007382   0.002041   3.616
+prev_exp_fleg     0.011087   0.007138   1.553
+juicio:year_2018 -0.067353   0.014185  -4.748
+
+Correlation of Fixed Effects:
+            (Intr) juicio y_2018 lg_pbt log_pb ecn_gr hm_100 prv_x_
+juicio      -0.015                                                 
+year_2018    0.328  0.191                                          
+log_pobtot  -0.961  0.016 -0.306                                   
+log_pib     -0.294 -0.022 -0.183  0.072                            
+econ_growth -0.047  0.140  0.052  0.033  0.004                     
+hom_per100  -0.129 -0.059 -0.451  0.073  0.201  0.227              
+prev_xp_flg -0.070 -0.024  0.046  0.081 -0.048  0.084 -0.050       
+juc:yr_2018  0.028 -0.483 -0.266 -0.022 -0.005 -0.168 -0.115  0.003
+===== model1G 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + (1 | unique_id) + (1 | partido_gober)
+   Data: datasubset
+
+REML criterion at convergence: -671.7
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5794 -0.5280 -0.1158  0.4954  2.7885 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.002158 0.04646 
+ partido_gober (Intercept) 0.018152 0.13473 
+ Residual                  0.003474 0.05894 
+Number of obs: 297, groups:  unique_id, 152; partido_gober, 3
+
+Fixed effects:
+                  Estimate Std. Error t value
+(Intercept)      -1.658701   0.432429  -3.836
+juicio           -0.033228   0.015270  -2.176
+year_2018        -0.140554   0.008252 -17.032
+log_pobtot        0.152716   0.032212   4.741
+log_pib          -0.004337   0.006778  -0.640
+juicio:year_2018 -0.044668   0.016550  -2.699
+
+Correlation of Fixed Effects:
+            (Intr) juicio y_2018 lg_pbt log_pb
+juicio      -0.032                            
+year_2018    0.316  0.236                     
+log_pobtot  -0.962  0.032 -0.322              
+log_pib     -0.242 -0.017 -0.086  0.042       
+juc:yr_2018 -0.005 -0.544 -0.448  0.004  0.026
+===== model2G 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + econ_growth + hom_per100 + (1 | unique_id) + (1 |  
+    partido_gober)
+   Data: datasubset
+
+REML criterion at convergence: -655.9
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.52483 -0.51691 -0.09756  0.49249  2.83511 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.002311 0.04807 
+ partido_gober (Intercept) 0.019770 0.14060 
+ Residual                  0.003380 0.05814 
+Number of obs: 297, groups:  unique_id, 152; partido_gober, 3
+
+Fixed effects:
+                  Estimate Std. Error t value
+(Intercept)      -1.724145   0.437915  -3.937
+juicio           -0.034418   0.015508  -2.219
+year_2018        -0.145088   0.008890 -16.320
+log_pobtot        0.155835   0.032333   4.820
+log_pib          -0.003489   0.006959  -0.501
+econ_growth       0.009947   0.007636   1.303
+hom_per100        0.002574   0.003021   0.852
+juicio:year_2018 -0.050596   0.017072  -2.964
+
+Correlation of Fixed Effects:
+            (Intr) juicio y_2018 lg_pbt log_pb ecn_gr hm_100
+juicio      -0.010                                          
+year_2018    0.350  0.251                                   
+log_pobtot  -0.960  0.016 -0.339                            
+log_pib     -0.264 -0.039 -0.134  0.059                     
+econ_growth -0.061  0.007 -0.258  0.038  0.026              
+hom_per100  -0.162 -0.136 -0.354  0.118  0.160  0.219       
+juc:yr_2018  0.042 -0.473 -0.276 -0.029 -0.018 -0.165 -0.271
+===== model3G 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + econ_growth + hom_per100 + mentions_prop + mentions_prop *  
+    year_2018 + (1 | unique_id) + (1 | partido_gober)
+   Data: datasubset
+
+REML criterion at convergence: -656.3
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5354 -0.5155 -0.1063  0.5454  2.8847 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.002909 0.05394 
+ partido_gober (Intercept) 0.020789 0.14418 
+ Residual                  0.002983 0.05462 
+Number of obs: 297, groups:  unique_id, 152; partido_gober, 3
+
+Fixed effects:
+                         Estimate Std. Error t value
+(Intercept)             -1.623612   0.430444  -3.772
+juicio                  -0.034776   0.016457  -2.113
+year_2018               -0.108624   0.018906  -5.746
+log_pobtot               0.150385   0.031586   4.761
+log_pib                 -0.005837   0.007349  -0.794
+econ_growth              0.006753   0.007580   0.891
+hom_per100               0.004795   0.003125   1.535
+mentions_prop           -0.045310   0.103708  -0.437
+juicio:year_2018        -0.006254   0.023901  -0.262
+year_2018:mentions_prop -0.210165   0.137157  -1.532
+
+Correlation of Fixed Effects:
+            (Intr) juicio yr_2018 lg_pbt log_pb ecn_gr hm_100 mntns_ j:_201
+juicio      -0.015                                                         
+year_2018    0.216 -0.056                                                  
+log_pobtot  -0.955  0.022 -0.195                                           
+log_pib     -0.279 -0.017 -0.180   0.061                                   
+econ_growth -0.076  0.044 -0.367   0.048  0.065                            
+hom_per100  -0.138 -0.132  0.009   0.100  0.120  0.150                     
+mentins_prp  0.009 -0.278  0.431  -0.018 -0.044 -0.100 -0.019              
+juc:yr_2018  0.077 -0.365  0.562  -0.053 -0.110 -0.321 -0.029  0.189       
+yr_2018:mn_ -0.051  0.237 -0.848   0.041  0.118  0.256 -0.140 -0.736 -0.622
+===== model4G 
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+voto_pro_gober ~ juicio + year_2018 + juicio * year_2018 + log_pobtot +  
+    log_pib + econ_growth + hom_per100 + prev_exp_fleg + (1 |  
+    unique_id) + (1 | partido_gober)
+   Data: datasubset
+
+REML criterion at convergence: -648.7
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5046 -0.5358 -0.1018  0.4686  2.8517 
+
+Random effects:
+ Groups        Name        Variance Std.Dev.
+ unique_id     (Intercept) 0.002328 0.04824 
+ partido_gober (Intercept) 0.019629 0.14010 
+ Residual                  0.003382 0.05815 
+Number of obs: 297, groups:  unique_id, 152; partido_gober, 3
+
+Fixed effects:
+                  Estimate Std. Error t value
+(Intercept)      -1.738199   0.438975  -3.960
+juicio           -0.034389   0.015533  -2.214
+year_2018        -0.144469   0.008959 -16.125
+log_pobtot        0.156961   0.032424   4.841
+log_pib          -0.003614   0.006977  -0.518
+econ_growth       0.010431   0.007678   1.358
+hom_per100        0.002323   0.003057   0.760
+prev_exp_fleg     0.005346   0.009196   0.581
+juicio:year_2018 -0.050636   0.017077  -2.965
+
+Correlation of Fixed Effects:
+            (Intr) juicio y_2018 lg_pbt log_pb ecn_gr hm_100 prv_x_
+juicio      -0.010                                                 
+year_2018    0.341  0.249                                          
+log_pobtot  -0.960  0.016 -0.329                                   
+log_pib     -0.262 -0.039 -0.137  0.057                            
+econ_growth -0.066  0.008 -0.243  0.044  0.022                     
+hom_per100  -0.152 -0.135 -0.365  0.107  0.163  0.202              
+prev_xp_flg -0.056  0.003  0.120  0.062 -0.032  0.101 -0.143       
+juc:yr_2018  0.042 -0.472 -0.275 -0.029 -0.018 -0.164 -0.268 -0.004

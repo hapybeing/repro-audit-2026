@@ -1,0 +1,13 @@
+             category Freq
+1                  .b  545
+2  not_in_survey_data   88
+3      Private Sector 1285
+4       Public Sector  333
+5 sector_empty_string  231
+            sector        v184_ger Freq
+1               .b              .b  545
+7          <empty>         <empty>  231
+13 <not in survey> <not in survey>   88
+20   Public Sector              Ja  333
+24  Private Sector            Nein 1285
+alt: 1849 

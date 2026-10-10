@@ -1,0 +1,52 @@
+{
+  "fixest_version": "0.12.1",
+  "model2B_default_vcov": "Clustered (unique_id) ",
+  "R_a": {
+    "estimate": -0.0661485940362168,
+    "ci_low": -0.0920076634776636,
+    "ci_high": -0.0381826430095822,
+    "boot_se": 0.0136790598249885,
+    "p_value": 0,
+    "n_rep": 1000,
+    "n_not_estimable": 0,
+    "pass": true,
+    "secondary_model2_multilevel": {
+      "estimate": -0.0674325021482193,
+      "ci_low": -0.0913179234930323,
+      "ci_high": -0.0434783743619008,
+      "boot_se": 0.0125892733406231,
+      "p_value": 0,
+      "n_not_estimable": 0
+    }
+  },
+  "R_b": {
+    "estimate": -0.0661485940362168,
+    "se": 0.0138993002693285,
+    "p_value": 3.0026868252224e-06,
+    "rows_dropped": 0,
+    "nobs": 600,
+    "pass": true,
+    "secondary_trim_1_99": {
+      "rows_dropped": 12,
+      "estimate": -0.0627869694573744,
+      "se": 0.0138231581122261,
+      "p_value": 8.03868564711576e-06,
+      "nobs": 588
+    },
+    "secondary_model2_multilevel": {
+      "estimate": -0.0674325021482193,
+      "se": 0.0141308008621526,
+      "p_wald": 1.8238496368897e-06,
+      "nobs": 600
+    }
+  },
+  "R_c": {
+    "estimate": -0.0661485940362168,
+    "se": 0.0284818438945777,
+    "p_value": 0.0269442985888687,
+    "n_clusters": 32,
+    "pass": true,
+    "secondary_model2_multilevel": "not applicable",
+    "indicted_states": ["CHIHUAHUA", "QUINTANA ROO", "SONORA", "VERACRUZ"]
+  }
+}

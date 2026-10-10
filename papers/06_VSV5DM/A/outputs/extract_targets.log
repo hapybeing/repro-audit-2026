@@ -1,0 +1,90 @@
+cut line in purled file: 688 
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+Loading required package: usethis
+file saved to Total Activity Analysis_RaceAndGender/Percent_covid_dangers_sd_event_partisan_gender_race_budget.pdf
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Percent_covid_dangers_sd_event_partisan_gender_race_budget.pdf
+file saved to Total Activity Analysis_RaceAndGender/Averagesbyraceandgender_total_and_covid_only.pdf
+file saved to Total Activity Analysis_RaceAndGender/Averagesbyraceandgender_covid_only.pdf
+file saved to Total Activity Analysis_RaceAndGender/Averages_dangers_sd_event_partisan_gender_race.pdf
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Averagesbyraceandgenderandparty_total_and_covid_only.pdf
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Averagesbyraceandgenderandparty_covid_only.pdf
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Averages_dangers_sd_event_partisan_gender_race.pdf
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Comparing Social Distancing Variables.pdf
+Version:  1.40
+Date:     2026-08-24
+Author:   Philip Leifeld (University of Manchester)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/CountModel_WhiteGOPmen_reference_racegenderparty.doc'.
+
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_white_men_gop.pdf
+Warning message:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead. 
+                               quantity                         term
+rpgDemocratic Men of Color          AME   rpgDemocratic Men of Color
+1                                  coef   rpgDemocratic Men of Color
+rpgDemocratic White Men             AME      rpgDemocratic White Men
+11                                 coef      rpgDemocratic White Men
+rpgDemocratic White Women           AME    rpgDemocratic White Women
+12                                 coef    rpgDemocratic White Women
+rpgDemocratic Women of Color        AME rpgDemocratic Women of Color
+13                                 coef rpgDemocratic Women of Color
+rpgRepublican White Women           AME    rpgRepublican White Women
+14                                 coef    rpgRepublican White Women
+15                                 nobs                        covid
+16                             deviance                        covid
+17                           dispersion                        covid
+                                    estimate            se         stat
+rpgDemocratic Men of Color   1.728056118e+01 6.32565020971 2.7318237028
+1                            2.648501562e-01 0.09544765666 2.7748209376
+rpgDemocratic White Men      5.384852794e+00 5.11386318549 1.0529911729
+11                           9.029057760e-02 0.08537681953 1.0575537728
+rpgDemocratic White Women    1.020868823e+01 5.36146520150 1.9040855159
+12                           1.647852994e-01 0.08543869154 1.9286964309
+rpgDemocratic Women of Color 1.505273383e+01 6.30805976434 2.3862700092
+13                           2.343938133e-01 0.09674855116 2.4227113532
+rpgRepublican White Women    6.096562109e+00 6.28364992965 0.9702262503
+14                           1.016366698e-01 0.10137100016 1.0026207653
+15                           6.350000000e+02            NA           NA
+16                           1.062259503e+04            NA           NA
+17                           1.705005388e+01            NA           NA
+                                          p        lower       upper
+rpgDemocratic Men of Color   0.006298483410  4.882514589 29.67860777
+1                            0.005691587436           NA          NA
+rpgDemocratic White Men      0.292345037709 -4.638134872 15.40784046
+11                           0.290675498081           NA          NA
+rpgDemocratic White Women    0.056899047750 -0.299590465 20.71696693
+12                           0.054229959272           NA          NA
+rpgDemocratic Women of Color 0.017020249610  2.689163882 27.41630378
+13                           0.015693910194           NA          NA
+rpgRepublican White Women    0.331933728837 -6.219165444 18.41228966
+14                           0.316439476278           NA          NA
+15                                       NA           NA          NA
+16                                       NA           NA          NA
+17                                       NA           NA          NA

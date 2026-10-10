@@ -1,0 +1,120 @@
+{
+ "script": "scripts/p06_supplement_attempts.py",
+ "target_file": "sj-zip-2-prq-10.1177_10659129241301785.zip",
+ "attempts": [
+  {
+   "route": "Sage downloadSupplement URL (as linked on the article page)",
+   "url": "https://journals.sagepub.com/action/downloadSupplement?doi=10.1177%2F10659129241301785&file=sj-zip-2-prq-10.1177_10659129241301785.zip",
+   "utc": "2026-10-10T14:43:48Z",
+   "http": 403,
+   "bytes": 6076,
+   "what_came_back": "Cloudflare interstitial"
+  },
+  {
+   "route": "Sage suppl_file URL",
+   "url": "https://journals.sagepub.com/doi/suppl/10.1177/10659129241301785/suppl_file/sj-zip-2-prq-10.1177_10659129241301785.zip",
+   "utc": "2026-10-10T14:43:48Z",
+   "http": 403,
+   "bytes": 5977,
+   "what_came_back": "Cloudflare interstitial"
+  },
+  {
+   "route": "Sage supplementary listing",
+   "url": "https://journals.sagepub.com/doi/suppl/10.1177/10659129241301785",
+   "utc": "2026-10-10T14:43:48Z",
+   "http": 403,
+   "bytes": 5751,
+   "what_came_back": "Cloudflare interstitial"
+  },
+  {
+   "route": "Sage article landing page",
+   "url": "https://journals.sagepub.com/doi/full/10.1177/10659129241301785",
+   "utc": "2026-10-10T14:43:48Z",
+   "http": 403,
+   "bytes": 5748,
+   "what_came_back": "Cloudflare interstitial"
+  },
+  {
+   "route": "DOI resolver",
+   "url": "https://doi.org/10.1177/10659129241301785",
+   "utc": "2026-10-10T14:43:48Z",
+   "http": 403,
+   "bytes": 5733,
+   "what_came_back": "Cloudflare interstitial"
+  },
+  {
+   "route": "Crossref metadata (relation and links)",
+   "url": "https://api.crossref.org/works/10.1177/10659129241301785",
+   "utc": "2026-10-10T14:43:49Z",
+   "http": 200,
+   "bytes": 13398,
+   "what_came_back": "response body: {\"status\":\"ok\",\"message-type\":\"work\",\"message-version\":\"1.0.0\",\"message\":{\"indexed\":{\"date-parts\":[[2026,5,4]],\"date-time\":\"2026-05-04T21:45:52Z\",\"timestamp\":1777931152778,\"version\":\"3.51.4\"},\"reference-count\":68,\"publisher\":\"SAGE Publicati"
+  },
+  {
+   "route": "DataCite: records declaring the article as related (Sage figshare supplements are registered there)",
+   "url": "https://api.datacite.org/dois?query=relatedIdentifiers.relatedIdentifier%3A%2210.1177%2F10659129241301785%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:43:49Z",
+   "http": 200,
+   "bytes": 206,
+   "what_came_back": "response body: {\"data\":[],\"meta\":{\"total\":0,\"totalPages\":0,\"page\":1},\"links\":{\"self\":\"https://api.datacite.org/dois?query=relatedIdentifiers.relatedIdentifier%3A%2210.1177%2F10659129241301785%22\\u0026page%5Bsize%5D=100\"}}",
+   "datacite_total": 0,
+   "datacite_dois": []
+  },
+  {
+   "route": "DataCite: title search",
+   "url": "https://api.datacite.org/dois?query=%22Leadership+in+a+Pandemic%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:43:49Z",
+   "http": 200,
+   "bytes": 19463,
+   "what_came_back": "response body: {\"data\":[{\"id\":\"10.82161/643f-6613\",\"type\":\"dois\",\"attributes\":{\"doi\":\"10.82161/643f-6613\",\"identifiers\":[],\"creators\":[{\"name\":\"Joseph Capo-Chichi\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Esther-Mary D'Arcy\",\"affiliation\":[],\"nameI",
+   "datacite_total": 7,
+   "datacite_dois": [
+    "10.82161/643f-6613",
+    "10.7910/dvn/vsv5dm",
+    "10.7910/dvn/9ahfr2",
+    "10.13140/rg.2.2.17985.36962",
+    "10.5281/zenodo.4587174",
+    "10.5281/zenodo.4587175",
+    "10.34619/wyf6-tn12"
+   ]
+  },
+  {
+   "route": "Unpaywall",
+   "url": "https://api.unpaywall.org/v2/10.1177/10659129241301785?email=repro-audit-2026@users.noreply.github.com",
+   "utc": "2026-10-10T14:43:50Z",
+   "http": 200,
+   "bytes": 3022,
+   "what_came_back": "response body: {\"best_oa_location\":{\"endpoint_id\":null,\"evidence\":\"deprecated\",\"host_type\":\"publisher\",\"is_best\":true,\"license\":\"cc-by-nc\",\"oa_date\":\"2024-12-03\",\"pmh_id\":null,\"repository_institution\":null,\"updated\":\"deprecated\",\"url\":\"https://journals.sa"
+  },
+  {
+   "route": "Wayback availability of the downloadSupplement URL",
+   "url": "http://archive.org/wayback/available?url=journals.sagepub.com%2Faction%2FdownloadSupplement%3Fdoi%3D10.1177%252F10659129241301785%26file%3Dsj-zip-2-prq-10.1177_10659129241301785.zip",
+   "utc": "2026-10-10T14:43:51Z",
+   "http": 404,
+   "bytes": 10,
+   "what_came_back": "not found "
+  },
+  {
+   "route": "Wayback availability of the suppl_file URL",
+   "url": "http://archive.org/wayback/available?url=journals.sagepub.com/doi/suppl/10.1177/10659129241301785/suppl_file/sj-zip-2-prq-10.1177_10659129241301785.zip",
+   "utc": "2026-10-10T14:43:51Z",
+   "http": 404,
+   "bytes": 10,
+   "what_came_back": "not found "
+  },
+  {
+   "route": "Wayback CDX for the article's suppl path",
+   "url": "https://web.archive.org/cdx/search/cdx?url=journals.sagepub.com/doi/suppl/10.1177/10659129241301785*&output=json",
+   "utc": "2026-10-10T14:43:51Z",
+   "http": 200,
+   "bytes": 3,
+   "what_came_back": "response body: [] "
+  }
+ ],
+ "earlier_attempts_not_scripted_here": [
+  "2026-10-10 about 12:24 UTC, curl with a browser User-Agent on the downloadSupplement URL: HTTP 403, 5884-byte Cloudflare page (DATA_STATEMENT.md)",
+  "2026-10-10 about 12:18 to 12:22 UTC, Hark browser agent: downloadSupplement URL (3 navigations) and suppl_file URL (1 navigation) timed out; clicking the ZIP link on the article page 3 times produced no download (DATA_STATEMENT.md)",
+  "2026-10-10 earlier, Google Docs viewer, DOI resolver and r.jina.ai proxy: Cloudflare or Sage 'cookieAbsent' interstitial (DATA_STATEMENT.md)",
+  "2026-10-10, figshare API v2 POST /articles/search for '\"Leadership in a Pandemic\"': no record for this article (agent console, not saved)"
+ ]
+}

@@ -1,0 +1,20 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10, after this run; not part of the agent's record.** This file keeps the agent's run-time wording, which may call an item a "bug". Under CHANGELOG_METHOD.md #4d, the status in `batches/batch2_code_observations.csv` applies. For 06_VSV5DM: out of scope: not reproducibility: 06-2, 06-3; unverified agent observation: 06-1. Only "verified finding" items are findings; "unverified agent observation" items are unverified and are not claims about the paper. Nothing here says the paper is wrong.
+<!-- status-note:end -->
+
+# LOG: 06_VSV5DM, agent A
+
+Times are IST (Asia/Kolkata), taken from the shell clock and file modification times.
+
+- 2026-10-10 18:01 IST. Start. Read batch2_run_brief.md, AGENT_RUNBOOK.md, PROTOCOL.md, PREREG.md, targets.json, DATA_STATEMENT.md, META.md, batch2_class_decisions.md. Did not open B/ or any other paper's folder (file-change notices from other agents appeared in tool output; their content was not read).
+- 18:02 IST. `Rscript` missing. Ran `bash REPO/scripts/setup_env.sh`; its apt-get failed (`dpkg: error: cannot access archive '/var/cache/apt/archives/libsystemd-shared_257.13-1~deb13u1_arm64.deb'`) because another agent's apt-get install was running at the same time. That concurrent install completed and provided R 4.5 plus Debian r-cran-* binaries (including rtweet 2.0.0, prediction 0.3.18, ggeffects, ggpubr, tidytext, devtools, rio, xtable, MASS). Not retried.
+- 18:05 IST. Downloaded the 5 deposit files with `curl -L -A "repro-audit-2026"` from `https://dataverse.harvard.edu/api/access/datafile/<id>` (ids 10692909 to 10692913), all HTTP 200. sha256 identical to PREREG table (checksums.sha256).
+- 18:06 IST. Missing packages margins, texreg, betareg, eeptools (no Debian binaries). Installed from CRAN source into clean library /workspace/audit_runs/06_VSV5DM/A/rlib with Ncpus=1: margins 0.3.28, texreg 1.40, betareg 3.2.6, eeptools 1.3.0 (done 18:09).
+- 18:09 IST. Created the three output folders in RUNDIR (env fix, diffs/00_output_dirs.diff). Purled `Multivariate Analysis.Rmd` with `knitr::purl(..., documentation = 0)` to multivariate.R (1062 lines). Cut point for target extraction found by grep for `marginaleffects_table_white_men_gop.doc`: purled line 688.
+- 18:10 IST. `scripts/extract_targets.R` (sources purled lines 1 to 688 expression by expression; no errors) wrote outputs/targets_extracted.csv and outputs/extract_targets.log. nobs = 635, deviance 10622.595.
+- 18:10 to 18:11 IST. Full run of multivariate.R via `scripts/run_full.R` (expression by expression, errors logged and continued): 446 expressions, TOTAL ERRORS: 0 (outputs/multivariate_full_run.log). Only a ggplot2 deprecation warning. The `basics2=basics[,c(25,2,4:11)]` line did not error. Copied the authors' Table A10 html (CountModel_WhiteGOPmen_reference_racegenderparty.doc), Table A8 html (marginaleffects_table_white_men_gop.doc) and Figure 4 pdf into outputs/. The A8 html COVID column reads 17.28 (4.88 29.68), 5.38 (-4.64 15.41), 10.21 (-0.3 20.72), 15.05 (2.69 27.42), as in the paper.
+- 18:11 to 18:12 IST. `scripts/robustness.R`: direct AME formula equals margins AME for all five levels (abs diff 0). R_a bootstrap 1000/1000 resamples used, 0 dropped. R_b dropped 13 rows (|z| > 3). R_c glm.nb converged, theta 2.232, no warnings.
+- 18:13 IST. Checked hard-coded group sizes and the 643 to 635 row loss (outputs/group_size_check.txt): 5 rows missing age_rescaled, 3 missing Last.Vote.Share.
+- Finding on T4: the pre-registered T4 quantity (delta-method AME p from summary(margins)) is 0.0569; the paper says p = .054. The quasi-Poisson coefficient p for Democratic White Women from summary(covid) is 0.0542. Recorded as reproduced; not resolved. PREREG not edited.
+- Code review: read Rmd lines 1-140 and 470-720 line by line; checked the htmlreg custom.coef.names order against names(coef(covid)) (22 names, in order). No real bug found. Time-Series Analysis.Rmd not run (not needed for any target).
+- 2026-10-10 18:16 IST. Wrote environment.txt, diffs/, built results.json with scripts/build_results.py. End.

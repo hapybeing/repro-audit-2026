@@ -1,0 +1,37 @@
+"BY","outcome","statistic","feature","level","estimate","std.error","z","p","lower","upper","student"
+"Public Administration","selected","mm","Kid(s)
+x
+Nationality","Foreign x No Kid(s)",0.306620209059235,0.00873503770202675,35.1023337870759,6.2101655515829e-270,0.289499849759663,0.323740568358807,"Public Administration"
+"Public Administration","selected","mm","Kid(s)
+x
+Nationality","Native x No Kid(s)",0.334451901565993,0.0157581608255105,21.2240441806228,5.72790470451699e-100,0.303566473885403,0.365337329246584,"Public Administration"
+"Public Administration","selected","mm","Kid(s)
+x
+Nationality","Foreign x Kid(s)",0.611751475962894,0.0066928839272253,91.4032698930296,0,0.598633664512825,0.624869287412962,"Public Administration"
+"Public Administration","selected","mm","Kid(s)
+x
+Nationality","Native x Kid(s)",0.63765038924277,0.0112852291902755,56.5030960817557,0,0.615531746472549,0.65976903201299,"Public Administration"
+"General Student Sample","selected","mm","Kid(s)
+x
+Nationality","Foreign x No Kid(s)",0.305377071356102,0.00749560821014568,40.7407995181443,0,0.290685949221993,0.32006819349021,"General Student Sample"
+"General Student Sample","selected","mm","Kid(s)
+x
+Nationality","Native x No Kid(s)",0.314410480349345,0.0137179013398631,22.9197216512771,2.95461026489726e-116,0.287523887779739,0.34129707291895,"General Student Sample"
+"General Student Sample","selected","mm","Kid(s)
+x
+Nationality","Foreign x Kid(s)",0.640954366458119,0.00592587919540296,108.161902280314,0,0.629339856658394,0.652568876257844,"General Student Sample"
+"General Student Sample","selected","mm","Kid(s)
+x
+Nationality","Native x Kid(s)",0.602162777461544,0.0108386546408521,55.5569669312949,0,0.580919404724606,0.623406150198482,"General Student Sample"
+"Social Work","selected","mm","Kid(s)
+x
+Nationality","Foreign x No Kid(s)",0.298333333333332,0.0150150332605702,19.8689758561349,7.5528071005326e-88,0.268904408915944,0.327762257750721,"Social Work"
+"Social Work","selected","mm","Kid(s)
+x
+Nationality","Native x No Kid(s)",0.206349206349207,0.0245893539640688,8.39181080766637,4.78710834762896e-17,0.158154958176524,0.254543454521889,"Social Work"
+"Social Work","selected","mm","Kid(s)
+x
+Nationality","Foreign x Kid(s)",0.69387755102041,0.0138528604543351,50.0891172121257,0,0.666726443447054,0.721028658593766,"Social Work"
+"Social Work","selected","mm","Kid(s)
+x
+Nationality","Native x Kid(s)",0.629518072289158,0.0261197549513326,24.1012242826206,2.42690732109775e-128,0.578324293299534,0.680711851278781,"Social Work"

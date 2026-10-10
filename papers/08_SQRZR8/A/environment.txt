@@ -1,0 +1,845 @@
+# environment, 08_SQRZR8 agent A
+date_ist: Sat Oct 10 18:18:30 IST 2026
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+Rscript (R) version 4.5.0 (2025-04-11)
+Python 3.12.15
+seeds: driver set.seed(20261009) before source(main_rep.R) (affects only mediation bootstrap); R_a set.seed(20261009) reset before each of T1 and T3 bootstraps
+R library: Debian r-cran-* binaries in /usr/lib/R/site-library, plus per-run lib /workspace/audit_runs/08_SQRZR8/A/rlib (CRAN source)
+per-run lib contents:
+            Package     Version
+bayestestR  bayestestR  0.19.0 
+coefplot    coefplot    1.2.9  
+datawizard  datawizard  1.4.0  
+effectsize  effectsize  1.0.3  
+insight     insight     1.5.4  
+ltm         ltm         1.2-0  
+mediation   mediation   4.5.1  
+parameters  parameters  0.29.3 
+performance performance 0.18.2 
+plotly      plotly      4.12.1 
+sjPlot      sjPlot      2.9.0  
+sjstats     sjstats     0.19.1 
+useful      useful      1.2.7  
+
+Debian r-cran packages installed:
+r-base 4.5.0-3
+r-base-core 4.5.0-3
+r-base-dev 4.5.0-3
+r-base-html 4.5.0-3
+r-cran-abind 1.4-8-1
+r-cran-acepack 1.6.1-1
+r-cran-actuar 3.3-5-1
+r-cran-ade4 1.7-23-1
+r-cran-adegraphics 
+r-cran-adephylo 
+r-cran-admisc 0.37-1
+r-cran-aer 1.2-14-1
+r-cran-afex 1.4-1-3
+r-cran-amelia 1.8.3-1
+r-cran-ape 5.8-1-1
+r-cran-areal 0.1.8+dfsg-2
+r-cran-arm 1.14-4-1
+r-cran-askpass 1.2.1-1
+r-cran-assertthat 0.2.1-2
+r-cran-av 0.9.0+dfsg-1+b1
+r-cran-backports 1.5.0-2+b2
+r-cran-base64enc 0.1-3-3+b1
+r-cran-base64url 1.4-2+b2
+r-cran-batchjobs 1.9-1
+r-cran-batchtools 0.9.17+dfsg-1+b1
+r-cran-bayesfactor 0.9.12-4.7+dfsg-1+b1
+r-cran-bayesfm 0.1.7-1+b1
+r-cran-bayesplot 1.11.1-1
+r-cran-bayestestr 0.15.2-1
+r-cran-bbmisc 1.13-1+b1
+r-cran-bbmle 1.0.25.1-1
+r-cran-bdsmatrix 1.3-7-1+b1
+r-cran-beeswarm 0.4.0-1+b2
+r-cran-bench 1.1.4-1
+r-cran-bh 1.84.0-1
+r-cran-biasedurn 2.0.12-1
+r-cran-bigmemory 
+r-cran-biocmanager 1.30.25+dfsg-1
+r-cran-bit 4.6.0+dfsg-1
+r-cran-bit64 4.6.0-1-4
+r-cran-bitops 1.0-9-1
+r-cran-blme 1.0-6-1
+r-cran-blob 1.2.4-1
+r-cran-bookdown 0.42+dfsg-1
+r-cran-boot 1.3-31-1
+r-cran-bradleyterry2 1.1-2-2
+r-cran-brew 1.0-10-1
+r-cran-brglm 0.7.2-1+b2
+r-cran-brglm2 0.9.2+dfsg-1+b1
+r-cran-bridgesampling 1.1-2-1
+r-cran-brio 1.1.5-1+b1
+r-cran-brms 2.22.0-1
+r-cran-brobdingnag 1.2-9-1
+r-cran-broom 1.0.7+dfsg-1
+r-cran-broom.helpers 1.14.0-3
+r-cran-broom.mixed 0.2.9.6-3
+r-cran-bslib 0.9.0+dfsg-3
+r-cran-ca 0.71.1-2
+r-cran-cachem 1.1.0-1
+r-cran-caic4 1.0-1
+r-cran-cairo 1.6-2-1+b1
+r-cran-callr 3.7.6-1
+r-cran-car 3.1-3-1
+r-cran-cardata 3.0.5-1
+r-cran-caret 7.0-1+dfsg-1
+r-cran-catools 1.18.3-1
+r-cran-cba 0.2-25-1
+r-cran-cellranger 1.1.0-3
+r-cran-cftime 1.5.1-1
+r-cran-checkmate 2.3.2-1
+r-cran-chk 0.10.0-1
+r-cran-chron 2.3-62-1
+r-cran-class 7.3-23-1
+r-cran-classint 0.4-11+dfsg-1
+r-cran-cli 3.6.4-1
+r-cran-clipr 0.8.0-1
+r-cran-clock 0.7.2-1
+r-cran-clubsandwich 0.5.11-1
+r-cran-clue 0.3-66-1
+r-cran-cluster 2.1.8.1-1
+r-cran-cmprsk 2.2-12-1
+r-cran-coda 0.19-4.1-1
+r-cran-codetools 0.2-20-1
+r-cran-coin 1.4-3-1+b1
+r-cran-collapse 2.1.0-1
+r-cran-colorspace 2.1-1+dfsg-1
+r-cran-colourpicker 1.3.0+dfsg-1
+r-cran-commonmark 1.9.5-1
+r-cran-conflicted 1.2.0-1.1
+r-cran-conquer 1.3.3-1+b1
+r-cran-contfrac 1.1-12-2+b1
+r-cran-corpcor 
+r-cran-corrplot 0.95-1
+r-cran-covr 3.6.4+dfsg-1+b1
+r-cran-cowplot 1.1.3+dfsg-1
+r-cran-cpp11 0.5.2-1
+r-cran-crayon 1.5.3-1
+r-cran-credentials 2.0.2-1
+r-cran-crosstalk 1.2.1+dfsg-1
+r-cran-crul 1.5.0+dfsg-1
+r-cran-cubature 
+r-cran-cubelyr 1.0.2-1
+r-cran-curl 6.2.1+dfsg-1
+r-cran-cvar 0.5-2
+r-cran-cvst 0.2-3-1
+r-cran-cyclocomp 1.1.1-1
+r-cran-data.table 1.17.0+dfsg-1
+r-cran-datawizard 1.0.1+dfsg-1
+r-cran-dbi 1.2.3-1
+r-cran-dbitest 1.8.2-1
+r-cran-dbplyr 2.5.0+dfsg-1
+r-cran-dbscan 1.2.2+ds-2
+r-cran-ddalpha 1.3.16-1
+r-cran-decor 1.0.2-1+b1
+r-cran-deldir 2.0-4-1+b1
+r-cran-dendextend 
+r-cran-deoptimr 1.1-3-1-1
+r-cran-deriv 4.1.6-1
+r-cran-desc 1.4.3-1
+r-cran-desolve 1.40-1+b1
+r-cran-devtools 2.4.5-1
+r-cran-dfoptim 2023.1.0-1
+r-cran-dharma 
+r-cran-diagram 1.6.5-2
+r-cran-diagrammer 1.0.11+ds-2
+r-cran-dials 1.2.1-1
+r-cran-dicedesign 1.10-1+b1
+r-cran-dichromat 1:2.0-0.1-1
+r-cran-diffobj 0.3.5-1+b2
+r-cran-digest 0.6.37-1
+r-cran-dimred 0.2.6-4
+r-cran-diptest 0.77-1-1
+r-cran-distributional 0.5.0-1
+r-cran-doby 4.6.26-1
+r-cran-docopt 0.7.1-2
+r-cran-domc 1.3.8-1
+r-cran-doparallel 1.0.17-1
+r-cran-dorng 1.8.6.1-1
+r-cran-dotcall64 1.2-1
+r-cran-downlit 0.4.4-1
+r-cran-dplyr 1.1.4-4
+r-cran-drr 0.0.4-2
+r-cran-dt 0.33+dfsg-1
+r-cran-dtplyr 1.3.1-1
+r-cran-dygraphs 1.1.1.6+dfsg-4
+r-cran-dynlm 0.3.6-2
+r-cran-e1071 1.7-16-1
+r-cran-eaf 2.5.1-1
+r-cran-earth 5.3.4-1
+r-cran-effects 4.2.2-1
+r-cran-effectsize 
+r-cran-ellipse 0.5.0-1
+r-cran-ellipsis 0.3.2-2+b1
+r-cran-elliptic 1.4-0-2
+r-cran-emdbook 1.3.13+ds-1
+r-cran-emmeans 1.10.7+dfsg-1
+r-cran-emoa 0.5-3-1
+r-cran-energy 1.7-12-1
+r-cran-enrichwith 0.3.1+dfsg-2
+r-cran-epi 2.59-1
+r-cran-epir 2.0.80+dfsg-1
+r-cran-estimability 1.5.1-1
+r-cran-estimatr 1.0.6-1
+r-cran-etm 1.1.1-1+b1
+r-cran-evaluate 1.0.3-1
+r-cran-evd 2.3-7.1-1
+r-cran-exactextractr 0.10.0-1+b2
+r-cran-expint 0.1-8-1+b1
+r-cran-expm 1.0-0-1
+r-cran-extradistr 1.10.0-1+b1
+r-cran-factoextra 
+r-cran-factominer 2.11-1+b1
+r-cran-fansi 1.0.6-2
+r-cran-farver 2.1.2-1+b1
+r-cran-fastica 1.2-7-1
+r-cran-fastmap 1.2.0-1
+r-cran-fastmatch 1.1-6-1
+r-cran-fauxpas 0.5.2+dfsg-1
+r-cran-fbasics 4041.97-1
+r-cran-ff 4.5.2+ds-1
+r-cran-fgarch 4033.92-1+b1
+r-cran-fields 16.3.1-1
+r-cran-filehash 
+r-cran-fit.models 0.64-1
+r-cran-flashclust 1.01-2-3+b1
+r-cran-flexmix 2.3-20-1
+r-cran-flextable 0.9.7-1
+r-cran-fnn 1.1.4.1-1
+r-cran-fontawesome 0.5.3-1
+r-cran-fontbitstreamvera 0.1.1+dfsg-5
+r-cran-fontliberation 0.1.0+dfsg-6
+r-cran-fontquiver 0.2.1-4
+r-cran-forcats 1.0.0-1
+r-cran-foreach 1.5.2-1
+r-cran-forecast 8.23.0-1+b1
+r-cran-foreign 0.8.90-1
+r-cran-formatr 1.14-2
+r-cran-formattable 0.2.1+dfsg-1
+r-cran-formula 1.2-5-1
+r-cran-fpc 2.2-13-1
+r-cran-fracdiff 1.5-3-1+b1
+r-cran-fs 1.6.5+dfsg-1
+r-cran-furrr 0.3.1-1
+r-cran-futile.logger 1.4.3-4
+r-cran-futile.options 1.0.1-3
+r-cran-future 1.34.0+dfsg-1
+r-cran-future.apply 1.11.3+dfsg-1
+r-cran-future.batchtools 
+r-cran-gam 1.22-5-1
+r-cran-gamm4 0.2-6-2
+r-cran-gargle 1.5.2-1
+r-cran-gbm 
+r-cran-gbrd 0.4.12-1
+r-cran-gbutils 0.5-3
+r-cran-gclus 1.3.2-2
+r-cran-gdata 3.0.1-1
+r-cran-gdtools 0.4.1-1
+r-cran-gee 4.13-29-1
+r-cran-geepack 1.3.12-1
+r-cran-generics 0.1.3-1
+r-cran-geometry 0.5.2-1
+r-cran-geosphere 1.5-20-1
+r-cran-gert 2.1.4+dfsg-1+b1
+r-cran-getopt 
+r-cran-gfonts 0.2.0-3
+r-cran-ggally 2.2.1-1
+r-cran-gganimate 1.0.9-1
+r-cran-ggbeeswarm 0.7.2-1
+r-cran-ggeffects 2.2.1+dfsg-1
+r-cran-ggforce 0.4.2-1+b1
+r-cran-ggfortify 0.4.17+dfsg-1
+r-cran-ggplot2 3.5.1+dfsg-1
+r-cran-ggpubr 0.6.0-1
+r-cran-ggraph 
+r-cran-ggrepel 0.9.6-1
+r-cran-ggridges 0.5.6-1
+r-cran-ggsci 3.2.0-1
+r-cran-ggseqlogo 0.2-1
+r-cran-ggsignif 0.6.4-1
+r-cran-ggstats 0.7.0-2
+r-cran-ggthemes 5.1.0-1
+r-cran-gh 1.4.1-1+deb13u1
+r-cran-git2r 0.35.0-1+b1
+r-cran-gitcreds 0.1.2-1
+r-cran-glmmtmb 1.1.10+dfsg-1
+r-cran-glmnet 4.1-8-1+b1
+r-cran-globals 0.16.3-1
+r-cran-glue 1.8.0-1
+r-cran-gmm 1.8-1+b1
+r-cran-gmp 0.7-5-1
+r-cran-gnm 
+r-cran-goftest 1.2-3-1+b2
+r-cran-googledrive 2.1.1-3
+r-cran-googlesheets4 1.1.1-1
+r-cran-googlevis 0.7.3+dfsg-1
+r-cran-gower 1.0.2-1
+r-cran-gparotation 2024.3-1-1
+r-cran-gplots 3.2.0-1
+r-cran-gregmisc 
+r-cran-gridbase 0.4-7-5
+r-cran-gridextra 2.3-3
+r-cran-gridgraphics 0.5-1-1
+r-cran-gridsvg 1.7-5-1
+r-cran-gsl 2.1-8-1+b1
+r-cran-gss 2.2-9-1
+r-cran-gstat 
+r-cran-gtable 0.3.6+dfsg-1
+r-cran-gtools 3.9.5-1+b1
+r-cran-hardhat 1.4.1+dfsg-1
+r-cran-haven 2.5.4-1+b1
+r-cran-here 1.0.1-2
+r-cran-hexbin 1.28.5-1
+r-cran-highr 0.11+dfsg-1
+r-cran-hmisc 5.2-3-1
+r-cran-hms 1.1.3-1
+r-cran-hsaur3 1.0-15-1
+r-cran-htmltable 2.4.3-1
+r-cran-htmltools 0.5.8.1-1+b1
+r-cran-htmlwidgets 1.6.4+dfsg-1
+r-cran-httpcode 0.3.0-2
+r-cran-httptest2 1.1.0+ds-2
+r-cran-httpuv 1.6.15+dfsg-1+b2
+r-cran-httr 1.4.7+dfsg-1
+r-cran-httr2 1.1.1-1
+r-cran-hunspell 3.0.5+dfsg-1
+r-cran-hypergeo 1.2-13-4
+r-cran-ids 1.0.1-2
+r-cran-igraph 2.1.4-1
+r-cran-ini 0.3.1-2
+r-cran-inline 0.3.21-1
+r-cran-insight 1.1.0+dfsg-1
+r-cran-intergraph 2.0-4-2
+r-cran-interp 1.1-6-1+b1
+r-cran-intervals 0.15.5-1
+r-cran-inum 1.0-5-1
+r-cran-ipred 0.9-15-1
+r-cran-irace 4.2.0-1
+r-cran-irdisplay 1.1-1
+r-cran-irlba 2.3.5.1-4+b2
+r-cran-isoband 0.2.7-1+b1
+r-cran-isocodes 2024.02.12-1
+r-cran-iterators 1.0.14-1
+r-cran-itertools 0.1-3-3
+r-cran-janeaustenr 1.0.0-1
+r-cran-jomo 2.7-6-1+b1
+r-cran-jpeg 0.1-10-1+b1
+r-cran-jquerylib 0.1.4+dfsg-4
+r-cran-jsonlite 1.9.1+dfsg-1
+r-cran-kableextra 1.4.0+dfsg-1
+r-cran-kernlab 0.9-33-1
+r-cran-kernsmooth 2.23-26-1
+r-cran-kmi 0.5.5-2
+r-cran-knitr 1.50+dfsg-1
+r-cran-ks 1.14.3-1
+r-cran-labeling 0.4.3-1
+r-cran-labelled 2.14.0-1
+r-cran-lambda.r 1.2.4-2
+r-cran-later 1.4.1+dfsg-1
+r-cran-lattice 0.22-7-1
+r-cran-latticeextra 0.6-30-1
+r-cran-lava 1.8.1+dfsg-1
+r-cran-lavaan 0.6.19-1
+r-cran-lavasearch2 2.0.3+dfsg-1+b1
+r-cran-lazyeval 0.2.2-1+b2
+r-cran-lbfgsb3c 2024-3.5-1
+r-cran-leaps 3.2-1+b1
+r-cran-learnbayes 2.15.1-4
+r-cran-lhs 1.2.0-1
+r-cran-libcoin 1.0-10-1+b1
+r-cran-lifecycle 1.0.4+dfsg-1
+r-cran-linprog 0.9-4-1
+r-cran-lintr 3.2.0-1
+r-cran-listenv 0.9.1+dfsg-1
+r-cran-littler 0.3.21-1
+r-cran-lme4 1.1-37-1
+r-cran-lmertest 3.1-3-2
+r-cran-lmtest 0.9.40-1+b1
+r-cran-lobstr 1.1.2-1+b1
+r-cran-locfit 1.5-9.12-1
+r-cran-logcondens 2.1.8-1
+r-cran-logger 
+r-cran-logspline 2.1.22-1+b1
+r-cran-loo 2.8.0-1
+r-cran-lpsolve 5.6.23-1
+r-cran-lsmeans 2.30-0-2
+r-cran-lubridate 1.9.4+dfsg-1
+r-cran-lwgeom 0.2-14-1
+r-cran-magic 1.6-1-1
+r-cran-magick 2.8.5+dfsg-1+b1
+r-cran-magrittr 2.0.3-1+b1
+r-cran-mapdata 2.3.1-1
+r-cran-mapproj 1.2.11-1+b1
+r-cran-maps 3.4.2.1-1
+r-cran-maptree 1.4-8-1
+r-cran-marginaleffects 0.25.0-1
+r-cran-markdown 1.13-1
+r-cran-mass 7.3-65-1
+r-cran-matching 
+r-cran-matchit 4.7.1-1
+r-cran-mathjaxr 1.8-0-1
+r-cran-matrix 1.7-3-1
+r-cran-matrixmodels 0.5-4-1
+r-cran-matrixstats 1.5.0-1
+r-cran-maxlik 1.5-2.1-1
+r-cran-mclogit 0.9.6-2
+r-cran-mclust 6.1.1-1
+r-cran-mcmcpack 
+r-cran-mda 0.5-5-1
+r-cran-memisc 0.99.31.8.2+dfsg-1
+r-cran-memoise 2.0.1-1
+r-cran-mertools 0.6.2-2
+r-cran-metadat 1.2-0-2
+r-cran-metafor 4.8-0-1
+r-cran-mets 1.3.5+dfsg-1
+r-cran-mgcv 1.9-3-1
+r-cran-mice 3.17.0-1
+r-cran-microbenchmark 1.5.0-1
+r-cran-mime 0.12-2+b1
+r-cran-miniui 0.1.1.1-3
+r-cran-minqa 1.2.8-1
+r-cran-misc3d 0.9-1-1
+r-cran-misctools 0.6-28-1
+r-cran-mitml 0.4-5-1
+r-cran-mitools 2.4-2
+r-cran-mlbench 2.1-6-1
+r-cran-mlmetrics 1.1.3-1
+r-cran-mlmrev 1.0-8-2
+r-cran-mlr 2.19.2+dfsg-1
+r-cran-mnormt 2.1.1-2+b1
+r-cran-mockery 0.4.4+dfsg-1
+r-cran-modeldata 1.4.0-1
+r-cran-modelmetrics 1.2.2.2-1+b2
+r-cran-modelr 0.1.11-1
+r-cran-modeltools 0.2-23-2
+r-cran-msm 1.8.2-1
+r-cran-multcomp 1.4-28-1
+r-cran-multcompview 0.1-10-1
+r-cran-multicool 1.0.1-1+b1
+r-cran-munsell 0.5.1-1
+r-cran-mvtnorm 1.3-3-1
+r-cran-nanoarrow 0.6.0-1
+r-cran-nanotime 0.3.12-1
+r-cran-ncdf4 1.23-1+b1
+r-cran-ncdfgeom 1.1.6+dfsg-1
+r-cran-ncmeta 0.4.0-1
+r-cran-network 1.19.0-1
+r-cran-nfactors 2.4.1.1-2
+r-cran-nleqslv 3.3.5-1+b1
+r-cran-nlme 3.1.168-1
+r-cran-nloptr 2.2.1-2
+r-cran-nlp 0.3-2-1
+r-cran-nmf 0.28-1
+r-cran-nnet 7.3-20-1
+r-cran-nnls 1.6-1
+r-cran-numderiv 2016.8-1.1-3
+r-cran-officer 0.6.7+dfsg-1
+r-cran-openssl 2.3.2+dfsg-1
+r-cran-openxlsx 4.2.8-1
+r-cran-optimparallel 1.0-2-2
+r-cran-optimx 2024-12.2-1
+r-cran-ordinal 2023.12-4.1-1
+r-cran-packrat 0.9.2-1
+r-cran-palmerpenguins 0.1.1-1
+r-cran-pammtools 0.5.93-1
+r-cran-pan 1.9-1+b1
+r-cran-pander 0.6.6+dfsg-1
+r-cran-parallelly 1.42.0-1
+r-cran-parallelmap 1.5.1-1
+r-cran-parameters 0.24.2-2
+r-cran-paramhelpers 1.14.2-1
+r-cran-party 1.3-18-1
+r-cran-partykit 1.2-23-1
+r-cran-patchwork 1.3.0-1
+r-cran-patrick 
+r-cran-pbapply 1.7-2-1
+r-cran-pbivnorm 0.6.0-4+b1
+r-cran-pbkrtest 0.5.4-1
+r-cran-pbmcapply 1.5.1-1+b1
+r-cran-pcapp 2.0-5-1
+r-cran-pcict 0.5-4.4-1+b1
+r-cran-pdftools 3.5.0-1
+r-cran-pec 2023.04.12-1+b1
+r-cran-performance 
+r-cran-performanceanalytics 
+r-cran-permute 0.9-7-1
+r-cran-phangorn 2.12.1+dfsg-1
+r-cran-pillar 1.10.1+dfsg-1
+r-cran-pingr 2.0.5-1
+r-cran-pixmap 0.4-13-1
+r-cran-pkgbuild 1.4.6-1
+r-cran-pkgconfig 2.0.3-2
+r-cran-pkgdown 2.1.1-2
+r-cran-pkgkitten 0.2.4-1
+r-cran-pkgload 1.4.0-1
+r-cran-pkgmaker 0.32.10-1
+r-cran-pki 0.1-14-1
+r-cran-plm 2.6-5-1
+r-cran-plogr 0.2.0-3
+r-cran-plot3d 1.4.1-1
+r-cran-plotmo 3.6.4-1
+r-cran-plotrix 3.8-4-1
+r-cran-pls 2.8-5-1
+r-cran-plumber 1.3.0+ds-1
+r-cran-plyr 1.8.9-1+b1
+r-cran-png 0.1-8-1+b2
+r-cran-polspline 1.1.25-1+b1
+r-cran-polyclip 1.10-7-1
+r-cran-polycor 0.8-1-1
+r-cran-polynom 1.4-1+dfsg-1
+r-cran-poorman 0.2.7+dfsg-1
+r-cran-popepi 0.4.13+dfsg-1
+r-cran-posterior 1.6.1+dfsg-1
+r-cran-prabclus 2.3-4-1
+r-cran-pracma 2.4.4-3
+r-cran-praise 1.0.0-4
+r-cran-prediction 0.3.18-1
+r-cran-prettyunits 1.2.0-1
+r-cran-proc 1.18.5-1+b1
+r-cran-processx 3.8.6-1
+r-cran-prodlim 2024.06.25-1+b1
+r-cran-profilemodel 0.6.1-1
+r-cran-profmem 0.6.0+dfsg-1
+r-cran-profvis 0.4.0+dfsg-1
+r-cran-progress 1.2.3-1
+r-cran-progressr 0.15.1-1
+r-cran-projpred 2.8.0+dfsg-1+b1
+r-cran-promises 1.3.2+dfsg-1
+r-cran-proxy 0.4-27-1+b1
+r-cran-ps 1.9.0-1
+r-cran-pscl 1.5.9-1+b1
+r-cran-psych 2.4.12-1
+r-cran-psychotools 0.7-4-1
+r-cran-psychotree 0.16-1-1
+r-cran-psychtools 
+r-cran-publish 2023.01.17-1
+r-cran-purrr 1.0.4-1
+r-cran-purrrlyr 0.0.8-1+b1
+r-cran-pvclust 2.2-0-2
+r-cran-qap 0.1-2-1+b1
+r-cran-qpdf 1.3.4+dfsg-2+b1
+r-cran-quadprog 1.5-8-1+b2
+r-cran-quantmod 0.4.27-1
+r-cran-quantreg 6.1-1
+r-cran-quickjsr 1.6.0-1
+r-cran-qvcalc 1.0.4-1
+r-cran-r.cache 0.16.0-1
+r-cran-r.devices 2.17.2+ds-1
+r-cran-r.methodss3 1.8.2-1
+r-cran-r.oo 1.27.0-1
+r-cran-r.rsp 0.46.0+ds-1
+r-cran-r.utils 2.13.0-1
+r-cran-r6 2.6.1-1
+r-cran-ragg 1.3.3-1
+r-cran-randomforest 4.7-1.2-1
+r-cran-ranger 0.17.0-1
+r-cran-rann 2.6.2-1
+r-cran-rappdirs 0.3.3-1+b1
+r-cran-raster 3.6-31-1
+r-cran-rbibutils 2.3-1
+r-cran-rcmdcheck 1.4.0-4
+r-cran-rcolorbrewer 1.1-3-1
+r-cran-rcpp 1.0.14-1
+r-cran-rcpparmadillo 14.4.2-1-1
+r-cran-rcppcctz 0.2.13-1
+r-cran-rcppdate 0.0.5-1
+r-cran-rcppeigen 0.3.4.0.2-1
+r-cran-rcppml 0.3.7-2+b1
+r-cran-rcppparallel 5.1.7+dfsg-6
+r-cran-rcppprogress 0.4.2-2
+r-cran-rcpproll 0.3.1-1
+r-cran-rcpptoml 0.2.3+dfsg-1
+r-cran-rcsdp 0.1.57.5-1+b1
+r-cran-rcurl 1.98-1.16+dfsg-1
+r-cran-rdpack 2.6.3-1
+r-cran-readr 2.1.5-1+b1
+r-cran-readxl 1.4.5-1
+r-cran-recipes 1.1.0+dfsg-1
+r-cran-reformulas 0.4.1-1
+r-cran-registry 0.5-1-2
+r-cran-relimp 1.0-5-4
+r-cran-relsurv 2.3-2-1
+r-cran-rematch 2.0.0-1
+r-cran-rematch2 2.1.2-2
+r-cran-remotes 2.5.0+dfsg-1
+r-cran-renv 1.1.2-1
+r-cran-repr 1.1.7-1
+r-cran-reprex 2.1.1-1
+r-cran-reshape 0.8.9-1
+r-cran-reshape2 1.4.4-2+b1
+r-cran-reticulate 1.41.0.1+dfsg-1
+r-cran-rex 1.2.1-1
+r-cran-rgenoud 5.9-0.11-1
+r-cran-rgl 1.3.18-1
+r-cran-rglpk 
+r-cran-rhpcblasctl 0.23-42-1+b1
+r-cran-rio 1.2.3-1
+r-cran-riskregression 2023.12.21+ds-1+b1
+r-cran-rjags 
+r-cran-rjava 1.0-11-2
+r-cran-rlang 1.1.5-3
+r-cran-rlrsim 3.1-8-1+b1
+r-cran-rmariadb 1.3.3+ds-1
+r-cran-rmarkdown 2.29+dfsg-1
+r-cran-rmpfr 1.0-0-2
+r-cran-rmpi 0.7-3.3-1
+r-cran-rms 8.0-0-1
+r-cran-rmysql 0.11.1-1
+r-cran-rnaturalearth 
+r-cran-rnetcdf 2.9-2-1
+r-cran-rngtools 1.5.2-1
+r-cran-robumeta 2.1-1
+r-cran-robust 0.7-5-1
+r-cran-robustbase 0.99-4-1-1
+r-cran-rocr 1.0-11-3
+r-cran-rodbc 
+r-cran-rose 0.0-4-2
+r-cran-roxygen2 7.3.2-1
+r-cran-rpart 4.1.24-1
+r-cran-rpostgresql 0.7-7+dfsg-1
+r-cran-rprojroot 2.0.4-2
+r-cran-rrcov 1.7-6-1
+r-cran-rsample 1.2.1+dfsg-1
+r-cran-rsconnect 1.3.4-1
+r-cran-rsolnp 1.16+dfsg-4
+r-cran-rspectra 0.16-2-1
+r-cran-rsqlite 2.3.9-1
+r-cran-rstan 2.32.7-1
+r-cran-rstanarm 2.32.1-2+b1
+r-cran-rstantools 2.4.0-1
+r-cran-rstatix 0.7.2-1
+r-cran-rstudioapi 0.17.1-1
+r-cran-rsvg 2.6.1-1
+r-cran-rsymphony 
+r-cran-rtdists 0.11-5-1+b1
+r-cran-rtsne 0.17-1+b1
+r-cran-rtweet 2.0.0+dfsg-1
+r-cran-runit 0.4.33-1
+r-cran-rversions 2.1.2-1
+r-cran-rvest 1.0.4-1
+r-cran-rwiener 1.3-3-1+b2
+r-cran-s2 1.1.7-2
+r-cran-s7 0.2.0-1
+r-cran-sandwich 3.1-1-1
+r-cran-sass 0.4.9+dfsg-1+b1
+r-cran-scales 1.3.0-1
+r-cran-scatterplot3d 0.3-44-1
+r-cran-segmented 2.1-4-1
+r-cran-selectr 0.4-2-2
+r-cran-sem 
+r-cran-sendmailr 1.4-0-1
+r-cran-seqinr 4.2-36-1+b1
+r-cran-seriation 1.5.7-1
+r-cran-sessioninfo 1.2.3-1
+r-cran-setrng 2024.2-1-1
+r-cran-sf 1.0-19+dfsg-2
+r-cran-sfsmisc 1.1-20-1
+r-cran-sftime 0.2-0-6
+r-cran-shape 1.4.6.1-1
+r-cran-shiny 1.10.0+dfsg-2
+r-cran-shinyjs 2.1.0-1
+r-cran-shinystan 2.6.0-1
+r-cran-shinythemes 1.2.0+dfsg-1
+r-cran-sjlabelled 1.2.0-1
+r-cran-sjmisc 2.8.10-1
+r-cran-sjplot 
+r-cran-sjstats 
+r-cran-slam 0.1-55-1
+r-cran-slider 0.3.2-1
+r-cran-sm 2.2-6.0-1+b1
+r-cran-smcfcs 1.9.2+dfsg-2
+r-cran-sna 2.8-1
+r-cran-snakecase 0.11.1-1
+r-cran-snow 
+r-cran-snowballc 0.7.1-1+b1
+r-cran-sodium 1.4.0+dfsg-1
+r-cran-sourcetools 0.1.7-1-1+b1
+r-cran-sp 1:2.2-0+dfsg-1
+r-cran-spacefillr 0.4.0-1
+r-cran-spacetime 1.3-3-1
+r-cran-spam 2.11-1-1
+r-cran-sparsem 1.84-2-1+b1
+r-cran-sparsevctrs 0.2.0-2
+r-cran-spatial 7.3-18-1
+r-cran-spatialreg 1.3-6+dfsg-1
+r-cran-spatstat 3.3-1-1
+r-cran-spatstat.data 3.1-6-1
+r-cran-spatstat.explore 3.3-4-1
+r-cran-spatstat.geom 3.3-6-1
+r-cran-spatstat.linnet 3.2-5-1
+r-cran-spatstat.model 3.3-4-1
+r-cran-spatstat.random 3.3-3-1
+r-cran-spatstat.sparse 3.1-0-1
+r-cran-spatstat.univar 3.1-2-1
+r-cran-spatstat.utils 3.1-3-1
+r-cran-spdata 2.3.4-1
+r-cran-spdep 1.3-5+dfsg-1+b1
+r-cran-spelling 2.3.1-1
+r-cran-splines2 0.5.4-1
+r-cran-squarem 2021.1-1
+r-cran-stabledist 0.7-2-1
+r-cran-stablelearner 0.1-5+ds-1
+r-cran-stanheaders 2.32.10-1
+r-cran-stars 0.6-8-1
+r-cran-statmod 1.5.0-1+b1
+r-cran-statnet.common 4.11.0-1
+r-cran-stringdist 0.9.15-1
+r-cran-stringi 1.8.4-1+b1
+r-cran-stringr 1.5.1-1
+r-cran-strucchange 1.5-4-1
+r-cran-suppdists 
+r-cran-survey 4.4-2-2
+r-cran-survival 3.8-3-1
+r-cran-svglite 2.1.3-2
+r-cran-swagger 5.17.14.1-1
+r-cran-sys 3.4.3-1
+r-cran-systemfit 1.1-30-1
+r-cran-systemfonts 1.2.1-1
+r-cran-tensor 1.5-4
+r-cran-tensora 0.36.2.1-1+b1
+r-cran-terra 1.8-29-1
+r-cran-testit 0.13-1
+r-cran-testthat 3.2.3-1
+r-cran-textshaping 0.3.7-2+b1
+r-cran-tgp 2.4-23-1
+r-cran-th.data 1.1-3-1
+r-cran-thematic 0.1.6-1
+r-cran-themis 1.0.3-1
+r-cran-threejs 0.3.3+dfsg-2
+r-cran-tibble 3.2.1+dfsg-3
+r-cran-tidygraph 
+r-cran-tidyr 1.3.1-1+b1
+r-cran-tidyselect 1.2.1+dfsg-1
+r-cran-tidytext 0.4.2-1
+r-cran-tidyverse 2.0.0+dfsg-2
+r-cran-tikzdevice 
+r-cran-timechange 0.3.0-2
+r-cran-timedate 4041.110-1
+r-cran-timereg 2.0.6-1
+r-cran-timeseries 4041.111-1
+r-cran-tinytest 1.4.1-1
+r-cran-tinytex 0.56-1
+r-cran-tkrplot 
+r-cran-tm 0.7-16-1
+r-cran-tmb 1.9.17-1
+r-cran-tokenizers 0.3.0-1+b1
+r-cran-transformr 0.1.5-1+b1
+r-cran-triebeard 0.4.1-1+b1
+r-cran-truncdist 1.0-2-4
+r-cran-truncnorm 1.0-9-2+b1
+r-cran-tseries 0.10-58-1
+r-cran-tsp 1.2-4-1+b1
+r-cran-ttr 0.24.4-1+b1
+r-cran-tufte 0.13-1
+r-cran-tweenr 2.0.3-1+b1
+r-cran-tzdb 0.5.0-1
+r-cran-ucminf 1.2.2-1+b1
+r-cran-unitizer 1.4.22-1
+r-cran-units 0.8-7+dfsg-2
+r-cran-urca 1.3-4-1+b1
+r-cran-urlchecker 1.0.1-2
+r-cran-urltools 1.7.3+dfsg-2+b1
+r-cran-uroot 2.1-3-1
+r-cran-usethis 3.1.0-1
+r-cran-utf8 1.2.4-1+b1
+r-cran-uuid 1.2-1-1
+r-cran-v8 
+r-cran-vcd 1:1.4-13-1
+r-cran-vcr 1.6.0+dfsg-1
+r-cran-vctrs 0.6.5-1+b2
+r-cran-vdiffr 1.0.8-1
+r-cran-vegan 2.6-10+dfsg-3
+r-cran-venndiagram 1.7.3-1
+r-cran-vgam 1.1-13-1
+r-cran-vioplot 0.5.1-1
+r-cran-vipor 0.4.7-1
+r-cran-viridis 0.6.5-1
+r-cran-viridislite 0.4.2-2
+r-cran-visnetwork 2.1.2+ds-1
+r-cran-vr 
+r-cran-vroom 1.6.5-1+b1
+r-cran-waldo 0.6.1-2
+r-cran-warp 0.2.1-1+b2
+r-cran-waveslim 
+r-cran-webfakes 1.3.2-1
+r-cran-webmockr 2.0.0-1
+r-cran-webshot 0.5.5-1
+r-cran-webutils 1.2.2-1
+r-cran-whisker 0.4.1-1
+r-cran-whoami 1.3.0-2
+r-cran-withr 3.0.2+dfsg-1
+r-cran-wk 0.9.4-1
+r-cran-wordcloud 2.6-2+b1
+r-cran-writexl 1.5.4-1
+r-cran-xfun 0.51+dfsg-1
+r-cran-xml 3.99-0.18-1
+r-cran-xml2 1.3.8-1
+r-cran-xmlparsedata 1.0.5-2
+r-cran-xopen 1.0.1+dfsg-1
+r-cran-xslt 1.5.1-1
+r-cran-xtable 1:1.8-4-2
+r-cran-xts 0.14.1-1
+r-cran-yaml 2.3.10-1
+r-cran-zeallot 0.1.0-3
+r-cran-zelig 
+r-cran-zip 2.3.2-1
+r-cran-zoo 1.8-14-1
+
+## sessionInfo() at end of segment run (outputs/sessionInfo_run.txt)
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] sjPlot_2.9.0   estimatr_1.0.6
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6       xfun_0.51          bayestestR_0.19.0  ggplot2_3.5.1     
+ [5] insight_1.5.4      rstatix_0.7.2      lattice_0.22-7     vctrs_0.6.5       
+ [9] tools_4.5.0        generics_0.1.3     datawizard_1.4.0   sandwich_3.1-1    
+[13] tibble_3.2.1       pkgconfig_2.0.3    Matrix_1.7-3       lifecycle_1.0.4   
+[17] compiler_4.5.0     stringr_1.5.1      sjmisc_2.8.10      munsell_0.5.1     
+[21] codetools_0.2-20   snakecase_0.11.1   carData_3.0-5      Formula_1.2-5     
+[25] pillar_1.10.1      car_3.1-3          ggpubr_0.6.0       tidyr_1.3.1       
+[29] MASS_7.3-65        abind_1.4-8        multcomp_1.4-28    useful_1.2.7      
+[33] tidyselect_1.2.1   sjlabelled_1.2.0   performance_0.18.2 mvtnorm_1.3-3     
+[37] stringi_1.8.4      dplyr_1.1.4        reshape2_1.4.4     purrr_1.0.4       
+[41] splines_4.5.0      coefplot_1.2.9     cowplot_1.1.3      grid_4.5.0        
+[45] colorspace_2.1-1   cli_3.6.4          magrittr_2.0.3     survival_3.8-3    
+[49] broom_1.0.7        TH.data_1.1-3      withr_3.0.2        scales_1.3.0      
+[53] backports_1.5.0    estimability_1.5.1 emmeans_1.10.7     gridExtra_2.3     
+[57] ggsignif_0.6.4     zoo_1.8-14         coda_0.19-4.1      evaluate_1.0.3    
+[61] knitr_1.50         parameters_0.29.3  rlang_1.1.5        Rcpp_1.0.14       
+[65] xtable_1.8-4       glue_1.8.0         effectsize_1.0.3   R6_2.6.1          
+[69] plyr_1.8.9        

@@ -1,0 +1,6 @@
+# Not a file edit: directory creation in RUNDIR (/workspace/audit_runs/06_VSV5DM/A/run) before running the authors' code.
+--- RUNDIR (as deposited)
++++ RUNDIR (as run)
++Total Activity Analysis_RaceAndGender/
++Total Activity Analysis_RaceAndGenderAndParty_v1/
++Total Activity Analysis_RaceAndGenderAndParty_v2/

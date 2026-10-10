@@ -1,0 +1,109 @@
+{
+ "description": "make_mht_table label vector vs actual coefficient order (02 line 1729-1730)",
+ "rows": [
+  {
+   "model": "model_1_ez",
+   "position": "1",
+   "actual_term": "(Intercept)",
+   "label_in_code": "Intercept",
+   "p_original": "0.00324855703495461",
+   "p_bonferroni": "0.016242785174773",
+   "p_holm": "0.016242785174773",
+   "label_matches_term": "TRUE"
+  },
+  {
+   "model": "model_1_ez",
+   "position": "2",
+   "actual_term": "treatmentdanger_contr",
+   "label_in_code": "In-group Government",
+   "p_original": "0.337296488159174",
+   "p_bonferroni": "1",
+   "p_holm": "0.619241645084838",
+   "label_matches_term": "FALSE"
+  },
+  {
+   "model": "model_1_ez",
+   "position": "3",
+   "actual_term": "treatmentwin_govt",
+   "label_in_code": "In-group Parliament",
+   "p_original": "0.309620822542419",
+   "p_bonferroni": "1",
+   "p_holm": "0.619241645084838",
+   "label_matches_term": "FALSE"
+  },
+  {
+   "model": "model_1_ez",
+   "position": "4",
+   "actual_term": "treatmentwin_mainstream",
+   "label_in_code": "Out-group Government",
+   "p_original": "0.0461443755871707",
+   "p_bonferroni": "0.230721877935854",
+   "p_holm": "0.184577502348683",
+   "label_matches_term": "TRUE"
+  },
+  {
+   "model": "model_1_ez",
+   "position": "5",
+   "actual_term": "treatmentwin_parl",
+   "label_in_code": "Placebo",
+   "p_original": "0.171823739441544",
+   "p_bonferroni": "0.859118697207721",
+   "p_holm": "0.515471218324632",
+   "label_matches_term": "FALSE"
+  },
+  {
+   "model": "model_1_ez_lrem",
+   "position": "1",
+   "actual_term": "(Intercept)",
+   "label_in_code": "Intercept",
+   "p_original": "0.61299404882136",
+   "p_bonferroni": "1",
+   "p_holm": "1",
+   "label_matches_term": "TRUE"
+  },
+  {
+   "model": "model_1_ez_lrem",
+   "position": "2",
+   "actual_term": "treatmentdanger_contr",
+   "label_in_code": "In-group Government",
+   "p_original": "0.92315229479193",
+   "p_bonferroni": "1",
+   "p_holm": "1",
+   "label_matches_term": "FALSE"
+  },
+  {
+   "model": "model_1_ez_lrem",
+   "position": "3",
+   "actual_term": "treatmentwin_govt",
+   "label_in_code": "In-group Parliament",
+   "p_original": "0.823247658926829",
+   "p_bonferroni": "1",
+   "p_holm": "1",
+   "label_matches_term": "FALSE"
+  },
+  {
+   "model": "model_1_ez_lrem",
+   "position": "4",
+   "actual_term": "treatmentwin_mainstream",
+   "label_in_code": "Out-group Government",
+   "p_original": "0.137411823212295",
+   "p_bonferroni": "0.687059116061474",
+   "p_holm": "0.687059116061474",
+   "label_matches_term": "TRUE"
+  },
+  {
+   "model": "model_1_ez_lrem",
+   "position": "5",
+   "actual_term": "treatmentwin_parl",
+   "label_in_code": "Placebo",
+   "p_original": "0.827652525976604",
+   "p_bonferroni": "1",
+   "p_holm": "1",
+   "label_matches_term": "FALSE"
+  }
+ ],
+ "n_mislabelled_rows_D8": 3,
+ "n_mislabelled_rows_D9": 3,
+ "target_rows_affected": [],
+ "source_file": "outputs/mht_label_check.csv"
+}

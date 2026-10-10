@@ -1,0 +1,25 @@
+"BY","outcome","statistic","feature","level","estimate","std.error","z","p","lower","upper","sector"
+"Private Sector","selected","mm","Kid(s)
+x
+Nationality","Foreign x No Kid(s)",0.329669386002574,0.00587025273740657,56.1593172814939,0,0.318163902057109,0.341174869948038,"Private Sector"
+"Private Sector","selected","mm","Kid(s)
+x
+Nationality","Native x No Kid(s)",0.395680436149996,0.0102729611405792,38.5166877140245,0,0.375545802299882,0.415815070000111,"Private Sector"
+"Private Sector","selected","mm","Kid(s)
+x
+Nationality","Foreign x Kid(s)",0.579022333637119,0.00465783181001584,124.311558951535,0,0.569893151043443,0.588151516230795,"Private Sector"
+"Private Sector","selected","mm","Kid(s)
+x
+Nationality","Native x Kid(s)",0.653954404728432,0.00783552653424095,83.4601735914843,0,0.638597054921412,0.669311754535452,"Private Sector"
+"Public Sector","selected","mm","Kid(s)
+x
+Nationality","Foreign x No Kid(s)",0.324710687542549,0.0114431162278253,28.3760717865451,3.99187381992525e-177,0.302282591865105,0.347138783219992,"Public Sector"
+"Public Sector","selected","mm","Kid(s)
+x
+Nationality","Native x No Kid(s)",0.424342105263162,0.020058780720228,21.1549301615945,2.48557162928398e-99,0.385027617477728,0.463656593048595,"Public Sector"
+"Public Sector","selected","mm","Kid(s)
+x
+Nationality","Foreign x Kid(s)",0.572161642078253,0.00883109003866276,64.7894698812167,0,0.554853023658244,0.589470260498262,"Public Sector"
+"Public Sector","selected","mm","Kid(s)
+x
+Nationality","Native x Kid(s)",0.648977335544455,0.0151043548020395,42.9662401373693,0,0.619373344122743,0.678581326966167,"Public Sector"

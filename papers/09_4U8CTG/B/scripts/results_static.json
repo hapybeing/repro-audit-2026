@@ -1,0 +1,48 @@
+{
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "Partial: Study 1 (T5, T6) not run. FES 2022 microdata (study1_fes_panel*.csv and the ELIPSS raw CSVs) are not in the deposit and are registration-only at ELIPSS; the audit does not register. Study 2 (T1 to T4) ran in full.",
+ "bugs": [
+  {
+   "file": "replication_scripts/02_supplementary_materials.R",
+   "line": 1729,
+   "description": "make_mht_table() attaches a fixed label vector c('Intercept','In-group Government','In-group Parliament','Out-group Government','Placebo') to summary(model)$coefficients[,4], whose order follows the factor levels (control ref, danger_contr, win_govt, win_mainstream, win_parl). Rows 2, 3 and 5 of Tables D8 and D9 carry the wrong labels: 'In-group Government' shows the Placebo p-value, 'In-group Parliament' shows the In-group Government p-value, 'Placebo' shows the In-group Parliament p-value. The Out-group Government row (position 4) is correct; Bonferroni/Holm adjustments are computed over the same 5 p-values so the adjusted values themselves are unaffected, only their row labels.",
+   "evidence": "outputs/mht_label_check.csv (from scripts/extra_checks.R): model_1_ez position 2 term treatmentdanger_contr p 0.3373 labelled 'In-group Government' (deposited Table D8 row 'In-group Government & 0.34'); position 3 treatmentwin_govt p 0.3096 labelled 'In-group Parliament' (D8: 0.31); position 5 treatmentwin_parl p 0.1718 labelled 'Placebo' (D8: 0.17). Same pattern for model_1_ez_lrem / Table D9. Regenerated D8/D9 identical to deposited copies (outputs/table_compare.json). Does not touch any target."
+  },
+  {
+   "file": "replication_scripts/02_supplementary_materials.R",
+   "line": 587,
+   "description": "Figure D1 (and Figure D4 via treatment_labels_plot, lines 743-746, used at line 754): positional labels c('Control','Placebo','In-group Government','In-group Parliament','Out-group Government') are applied to treatment levels in alphabetical order (control, danger_contr, win_govt, win_mainstream, win_parl), so the win_mainstream bar is labelled 'In-group Parliament' and the win_parl bar 'Out-group Government'. Figure labels only; no estimate affected.",
+   "evidence": "outputs/figure_label_check.csv rows 4-5 (levels from the run: control danger_contr win_govt win_mainstream win_parl, outputs/extra_checks_log.txt). Arm sizes in the Zemmour block: win_mainstream 24, win_parl 26, so the two bars are swapped in label."
+  },
+  {
+   "file": "replication_scripts/02_supplementary_materials.R",
+   "line": 642,
+   "description": "Figure D2 legend: recode_treatment() (lines 672-674) orders levels control, win_parl, win_govt, win_mainstream, danger_contr; legend labels c('Control','T1a','T1b','T2','Placebo') then call win_parl 'T1a' and win_govt 'T1b', whereas Table A4 (lines 1339-1343) defines T1a = In-group Government and T1b = In-group Parliament. Figure legend only.",
+   "evidence": "outputs/figure_label_check.csv rows 7-8."
+  }
+ ],
+ "env_fixes": [
+  "diffs/02_supplementary_materials.R.diff: skip deposited lines 114-117 (tinytex::tinytex_root() errors with Debian system TeX Live; block only installs LaTeX packages, no LaTeX is compiled by 02)",
+  "diffs/02_supplementary_materials.R.diff: missing-input skip of Study 1 FES blocks (deposited lines 146-149, 162-192, 253-286, 1218-1262, 1455-1468, 1789-1815, 1819-1861), as allowed by PREREG plan item 1",
+  "Packages texreg 1.40, stargazer 5.2.3, vtable 1.4.8, binom, jtools 2.3.1 installed from CRAN source into a fresh per-run library (no code change)",
+  "Run via source(print.eval = TRUE) so texreg tables inside sink() are written (execution mode, no code change; targets identical either way)"
+ ],
+ "proposed_class": "C",
+ "class_reason": "Per batch2_class_decisions.md #2: T5/T6 (Study 1, half the abstract's main claim) depend on FES data available only behind registration, so materials are not available to the audit and the main class is C. Alternative class on openly available targets T1 to T4: A (all four match the paper to its rounding, and all 22 regenerated Study 2 tables are identical to the deposited ones).",
+ "confidence": "medium",
+ "confidence_reason": "Study 2 matched exactly by script in a clean library; Study 1 could not be verified at all, and A/B agreement is not yet known to this agent.",
+ "time_minutes": 25,
+ "uncertainties": [
+  "T5 and T6 not reproduced (data registration-only); nothing is known from this run about Study 1.",
+  "T1 classical p = 0.0461 (from outputs/targets_extracted.csv), close to 0.05; the paper's '*' and conclusion are reproduced, but robust-SE Model 2 p = 0.0967 and two of three pre-registered robustness checks (R_a bootstrap CI includes 0, p 0.086; R_b outlier exclusion p 0.32; R_c ANCOVA p 0.17) do not keep p < 0.05 for T1. Robustness does not change the class.",
+  "R_b for T1 drops 2 rows, both in the control arm with swd_ch = 10 (the scale maximum); the estimate moves from -1.27 to -0.54. This reflects the pre-registered |z|>3 rule applied to a bounded change score; recorded as observed, not interpreted.",
+  "R_a secondary (LREM) bootstrap CI excludes 0 (upper -0.010, p 0.041) whereas the paper's Model 1 classical p is 0.137 (not significant); R_b and R_c secondary keep 'negative, not significant'.",
+  "The Dataverse metadata API (fetched 2026-10-10 12:46 UTC, copy outputs/dataverse_metadata_api_4U8CTG.json) lists 64 files for version 1.0 (35 non-image + 27 PNG, of which 15 in figures_supplementary_materials); PREREG says 66 files and 29 PNG (17 appendix figures). All 35 non-image files listed in PREREG were present with matching sha256 (checksums.sha256). PNGs were not downloaded by either PREREG or this run, so the difference does not touch any input.",
+  "Text p. 14 'close to -1.5 points' vs Table D3 Model 1 -1.27, and other text/table inconsistencies listed in PREREG, were not re-examined beyond the targets.",
+  "01_manuscript.R was not run (not required by PREREG); code review covered 02 in full (read end to end) and none of 00/01.",
+  "Figure outputs were regenerated (outputs/figures_regenerated/) but not compared pixel-wise with the deposited PNGs (not downloaded).",
+  "Unverified observation: Table D3 Model 4 (model_4_ez, 02 line 294) controls for income and gender only, while Model 3 and the Le Pen/Others Model 4 use age, gender, educ, income; this matches the deposited table, and whether it is intended could not be determined.",
+  "Unverified observation: make_comp_plot (02 lines 751-752) labels m_check3 with difficulty_labels[seq_len(n unique values)], which is correct only if the observed values are exactly 1..k; not checked."
+ ]
+}

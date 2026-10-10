@@ -1,0 +1,9 @@
+"feature","n_levels","levels","n_NA_rows"
+"Gender",2,"Male | Female",0
+"Age",4,"23 Years | 36 Years | 48 Years | 57 Years",0
+"Citizenship",6,"Vietnam | Syria | Romania | Turkey | France | Germany",0
+"Composition",5,"1 Adult | 2 Adults | 2 Adults, 1 Child | 1 Adult, 2 Childr. | 2 Adults, 3 Childr.",0
+"Unemployment",4,"Fired for wrongdoing | Voluntarily dismissal | Bankruptcy of employer | Disabled due to accident",0
+"Supportive",3,"Low | Medium | High",0
+"Since",4,"6 Months | 1 Year | 1.5 Years | 3 Years",0
+"Education",4,"Unskilled | Vocational Training | Technical College | University",0

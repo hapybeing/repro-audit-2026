@@ -1,0 +1,11 @@
+"model","position","actual_term","label_in_code","p_original","p_bonferroni","p_holm","label_matches_term"
+"model_1_ez",1,"(Intercept)","Intercept",0.00324855703495461,0.016242785174773,0.016242785174773,TRUE
+"model_1_ez",2,"treatmentdanger_contr","In-group Government",0.337296488159174,1,0.619241645084838,FALSE
+"model_1_ez",3,"treatmentwin_govt","In-group Parliament",0.309620822542419,1,0.619241645084838,FALSE
+"model_1_ez",4,"treatmentwin_mainstream","Out-group Government",0.0461443755871707,0.230721877935854,0.184577502348683,TRUE
+"model_1_ez",5,"treatmentwin_parl","Placebo",0.171823739441544,0.859118697207721,0.515471218324632,FALSE
+"model_1_ez_lrem",1,"(Intercept)","Intercept",0.61299404882136,1,1,TRUE
+"model_1_ez_lrem",2,"treatmentdanger_contr","In-group Government",0.92315229479193,1,1,FALSE
+"model_1_ez_lrem",3,"treatmentwin_govt","In-group Parliament",0.823247658926829,1,1,FALSE
+"model_1_ez_lrem",4,"treatmentwin_mainstream","Out-group Government",0.137411823212295,0.687059116061474,0.687059116061474,TRUE
+"model_1_ez_lrem",5,"treatmentwin_parl","Placebo",0.827652525976604,1,1,FALSE

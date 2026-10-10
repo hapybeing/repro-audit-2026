@@ -1,0 +1,26 @@
+trying URL 'https://cloud.r-project.org/src/contrib/jtools_2.3.1.tar.gz'
+Content type 'application/x-gzip' length 4861876 bytes (4.6 MB)
+==================================================
+downloaded 4.6 MB
+
+* installing *source* package ‘jtools’ ...
+** this is package ‘jtools’ version ‘2.3.1’
+** package ‘jtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (jtools)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp47EsxC/downloaded_packages’

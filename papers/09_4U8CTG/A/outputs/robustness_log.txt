@@ -1,0 +1,21 @@
+          check             dv   n   estimate        se    ci_low     ci_high
+Estimate    R_a         swd_ch 123 -1.2660256 0.7458474 -2.788542  0.20544872
+Estimate1   R_a affect_LREM_ch 120 -0.5113043 0.2619051 -1.045304 -0.01034783
+Estimate2   R_b         swd_ch 121 -0.5416667 0.5476282 -1.626313  0.54297995
+Estimate3   R_b affect_LREM_ch 117 -0.5113043 0.2672939 -1.040913  0.01830418
+Estimate4   R_c         swd_w2 123 -0.8187774 0.5924732 -1.992140  0.35458469
+Estimate5   R_c affect_LREM_w2 120 -0.3745865 0.3353997 -1.039011  0.28983770
+                   p dropped          dropped_arms
+Estimate  0.08600000      NA                  <NA>
+Estimate1 0.04100000      NA                  <NA>
+Estimate2 0.32466610       2             control:2
+Estimate3 0.05831542       3 win_govt:2;win_parl:1
+Estimate4 0.16961520      NA                  <NA>
+Estimate5 0.26641274      NA                  <NA>
+                                                extra
+Estimate                          B=2000; n_NA_boot=0
+Estimate1                         B=2000; n_NA_boot=0
+Estimate2                       range_z=-2.089..4.212
+Estimate3                        range_z=-4.248..4.22
+Estimate4                 swd_w2 ~ treatment + swd_w1
+Estimate5 affect_LREM_w2 ~ treatment + affect_LREM_w1

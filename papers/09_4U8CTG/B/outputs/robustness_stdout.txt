@@ -1,0 +1,25 @@
+zemmour rows: 123; treatment levels: control,danger_contr,win_govt,win_mainstream,win_parl 
+reference level: control 
+R_c diagnostic: rows with swd_ch != swd_w2 - swd_w1: 0 (comparisons NA: 0) 
+R_c diagnostic (secondary): rows with affect_LREM_ch != affect_LREM_w2 - affect_LREM_w1: 0 
+  check        outcome    estimate         se     ci_low      ci_high
+1   R_a         swd_ch -1.26602564 0.74584740 -2.7885417  0.205448718
+2   R_a affect_LREM_ch -0.51130435 0.26190515 -1.0453043 -0.010347826
+3   R_b         swd_ch -0.54166667 0.54762818         NA           NA
+4   R_b affect_LREM_ch -0.51130435 0.26729386         NA           NA
+5   R_c         swd_w2 -0.81877742 0.59247319         NA           NA
+6   R_c affect_LREM_w2 -0.37458650 0.33539969         NA           NA
+     p_value   n
+1 0.08600000 123
+2 0.04100000 120
+3 0.32466610 121
+4 0.05831542 117
+5 0.16961520 123
+6 0.26641274 120
+                                                                          note
+1                                       B=2000 stratified; NA boot estimates=0
+2                                       B=2000 stratified; NA boot estimates=0
+3                                  dropped 2 arms=control;control values=10;10
+4                      dropped 3 arms=win_govt;win_govt;win_parl values=-5;5;4
+5                    swd_w2 ~ treatment + swd_w1; diag rows swd_ch != w2-w1: 0
+6 affect_LREM_w2 ~ treatment + affect_LREM_w1; diag rows affect ch != w2-w1: 0

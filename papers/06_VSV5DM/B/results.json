@@ -1,0 +1,153 @@
+{
+ "paper_id": "06_VSV5DM",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Average marginal effect (difference in expected count of COVID posts, Jan-Sep 2020) for Democratic White Women vs Republican White Men, quasi-Poisson COVID count model (object `covid`, rpg reference = Republican White Men), from margins::margins(covid, variables = \"rpg\")",
+   "paper_value": 10.21,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 10.2086882343428,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.001311765657201036,
+   "rel_diff": -0.0001284785168659193,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "AME p (delta method, summary(margins)) = 0.056899; CI [-0.2996, 20.7170]; paper A8 CI (-0.3 20.72). Authors' html output cross-check: {\"A8_DWW\": \"10.21 ( -0.3 20.72 )\", \"A8_DMOC\": \"17.28 ( 4.88 29.68 )\", \"A8_DWOC\": \"15.05 ( 2.69 27.42 )\", \"A10_DWW_All_and_COVID\": [\"0.49 (0.14) ***\", \"0.16 (0.09) *\"], \"A10_Num_obs_All_and_COVID\": \"635 635\"}"
+  },
+  {
+   "id": "T2",
+   "description": "Average marginal effect for Democratic Men of Color vs Republican White Men, same COVID count model",
+   "paper_value": 17.28,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 17.280561178572,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0005611785719992213,
+   "rel_diff": 3.2475611805510486e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "AME p = 0.006298; CI [4.8825, 29.6786]; paper A8 CI (4.88 29.68)."
+  },
+  {
+   "id": "T3",
+   "description": "Average marginal effect for Democratic Women of Color vs Republican White Men, same COVID count model",
+   "paper_value": 15.05,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 15.0527338322066,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.002733832206599729,
+   "rel_diff": 0.00018164998050496537,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "AME p = 0.017020; CI [2.6892, 27.4163]; paper A8 CI (2.69 27.42)."
+  },
+  {
+   "id": "T4",
+   "description": "p-value of the T1 average marginal effect (Democratic White Women vs Republican White Men, COVID model), column p of summary(margins(...))",
+   "paper_value": 0.054,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.0568990477503398,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.002899047750339799,
+   "rel_diff": 0.05368606945073702,
+   "match_to_rounding": false,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "Pre-registered quantity is the AME p from summary(margins(...)): reproduced 0.056899, which rounds to 0.057, not 0.054. The quasi-Poisson coefficient p for Democratic White Women from summary(covid) (t test, dispersion 17.0501), printed by the authors' own code in outputs/multivariate_full_run.log, is 0.054230, which rounds to 0.054 and equals the paper's 0.054. Observation only: the paper's 'p = .054' matches the coefficient p, not the AME p; the paper's conclusion band (0.05 <= p < 0.10) holds for both."
+  },
+  {
+   "id": "T5",
+   "description": "Quasi-Poisson coefficient (log scale) for Democratic White Women in the COVID count model (coef(covid)[\"rpgDemocratic White Women\"])",
+   "paper_value": 0.16,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.164785299426372,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.004785299426371986,
+   "rel_diff": 0.029908121414824913,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "coef SE 0.08544 (paper 0.09), t-test p 0.054230 (one star in A10, legend *p<0.1)."
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in the COVID quasi-Poisson count model (nobs(covid))",
+   "paper_value": 635,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 635.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "643 rows in by_leg2; 8 dropped for missing age_rescaled (5) or Last.Vote.Share (3), see outputs/group_counts_check.txt."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, set.seed(20261010), B=1000 resamples of the 635 model rows, quasi-Poisson refit, direct AME formula; primary estimate Democratic Women of Color AME",
+   "ran": true,
+   "estimate": 15.0527338322066,
+   "se_or_ci": "boot SE 6.7666; 95% percentile CI [-0.6033, 26.7021]",
+   "p_value": 0.06,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_a_bootstrap_summary.csv",
+   "note": "Resamples dropped (level absent or NA coef): 0 of 1000. Direct-formula check vs margins: max abs diff 0 over 5 levels (outputs/R_a_direct_formula_check.csv). Secondary: Democratic Men of Color: AME 17.2806, boot SE 7.1608, 95% pct CI [1.0981, 30.0288], p_boot 0.030, matches paper pattern: True; Democratic White Women: AME 10.2087, boot SE 6.3709, 95% pct CI [-2.6584, 22.1629], p_boot 0.112, matches paper pattern: False. Draws in outputs/R_a_bootstrap_draws.csv."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on covid within the 635 model rows, refit identical quasi-Poisson, margins AME; primary Democratic Women of Color",
+   "ran": true,
+   "estimate": 10.3758853735292,
+   "se_or_ci": "SE 5.5602; 95% CI [-0.5219, 21.2737]",
+   "p_value": 0.0620281586052345,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_b_outlier_exclusion.csv",
+   "note": "Rows dropped: 13 (covid > 303.84; values 306;326;332;342;347;348;359;368;371;441;447;559;906); groups: Republican White Men:1; Democratic White Men:1; Democratic White Women:3; Democratic Men of Color:5; Democratic Women of Color:3; n used 622. Secondary: Democratic Men of Color: AME 12.4526, SE 5.8418, p 0.0330, CI [1.0028, 23.9024], matches paper pattern: True; Democratic White Women: AME 10.8872, SE 5.1579, p 0.0348, CI [0.7780, 20.9964], matches paper pattern: False."
+  },
+  {
+   "id": "R_c",
+   "description": "Negative binomial (MASS::glm.nb) with identical formula on the 635 rows, margins AME; primary Democratic Women of Color",
+   "ran": true,
+   "estimate": 19.5451345072565,
+   "se_or_ci": "SE 14.0840; 95% CI [-8.0591, 47.1493]",
+   "p_value": 0.16521282761831,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_c_negbin.csv",
+   "note": "theta 2.2323 (SE 0.1451), converged TRUE, warnings: ''. Secondary: Democratic Men of Color: AME 3.2033, SE 12.5390, p 0.7984, CI [-21.3726, 27.7792], matches paper pattern: False; Democratic White Women: AME 17.5943, SE 12.9332, p 0.1737, CI [-7.7544, 42.9430], matches paper pattern: False."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Multivariate Analysis.Rmd",
+   "line": 1095,
+   "description": "Hard-coded sample-size labels in the detailed race and ethnicity chunk do not match the deposited data (labels only; the means in that table and all model estimates are unaffected). Line 1094 hard-codes freq c(335,102,42,52,48,46,19,4,2,1,1,1) and line 1095 labels 'Black Men (n=42)', 'Black Women (n=52)', 'Latino Men (n=48)', 'Latina Woman (n=46)', 'Asian Women (n=4)', 'Middle Eastern Men (n=1)'.",
+   "evidence": "table(by_leg$race_gender) in outputs/group_counts_check.txt gives Black Man 44, Black Woman 50, Latino Man 47, Latina Woman 47, Asian American Woman 5, Middle Eastern Man 2 (White Woman 101, matching the label but not freq 102). race_gender is a factor whose level order equals the label order, so group_by rows align with labels; the labels appear in the authors' output outputs/meansbyraceandgenderandethnicity.doc. Not used by any target."
+  }
+ ],
+ "env_fixes": [
+  "diffs/README.md: created the three output folders the code writes to (no authors' file edited)",
+  "diffs/README.md: rtweet installed as Debian binary r-cran-rtweet 2.0.0, so library(rtweet) ran unchanged (no comment-out needed)"
+ ],
+ "proposed_class": "C",
+ "class_reason": "Strict reading: targets not matching to rounding: T4. T1, T2, T3, T5, T6 match the paper to rounding (and the authors' own A8/A10 html outputs reproduce the published cells), but T4 as pre-registered (AME p from summary(margins)) is 0.0569 vs the paper's 0.054 (rel diff 5.4%, outside 5%, same conclusion band), so neither A nor B applies and D does not apply (conclusion unchanged); the source of the text's p = .054 is unclear from the code, as it equals the coefficient p (0.0542), hence C. Alternative: A if T4 is read as the coefficient p.",
+ "confidence": "medium",
+ "confidence_reason": "All numbers matched by script and the full authors' pipeline ran without error, but the class turns on a judgement about which p-value the text's .054 reports; package versions are not pinned by the authors.",
+ "time_minutes": 15,
+ "uncertainties": [
+  "T4: the pre-registered AME p (0.0569) differs from the paper's .054 by more than 5% relative; the coefficient t-test p (0.0542) printed by the authors' code equals .054. Which quantity the text reports cannot be confirmed from the deposit; this drives the C vs A proposal.",
+  "Package versions: none pinned by the authors; run used R 4.5.0, margins 0.3.28, prediction 0.3.18 (Debian), texreg 1.40 (see environment.txt). Exact agreement of A8 and A10 cells suggests drift is not material.",
+  "R_a bootstrap and R_c negative binomial change the significance pattern for some groups (see robustness notes); robustness does not change the class.",
+  "Time-Series Analysis.Rmd (glmer models, Table 1, A16 to A20) was not run; PREREG says it is not needed for any target.",
+  "Sage supplementary ZIP was not checked by agent B (not needed; Dataverse deposit holds every file the code reads).",
+  "R_a 'same_direction_and_significance_as_paper' for the primary estimate uses the PREREG rule: percentile 95% CI excludes 0."
+ ]
+}

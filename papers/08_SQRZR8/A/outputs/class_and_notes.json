@@ -1,0 +1,21 @@
+{
+ "proposed_class": "D",
+ "class_reason": "Mechanical application of the pre-registered criteria: T1 to T5 (all five Table 3 coefficients) match the paper to 3 decimals with the same significance buckets, but T6 does not: every Table 3 model uses 4,507 rows, not the 4,057 in the Table 3 note (difference 450, about 11%), and the pre-registered T6 criterion (within 5 of 4057) fails, so neither A nor B applies. The 4,507 equals the paper's own stated final sample (pp. 967, 972) and the data file has no missing covariates, so the N difference does not change any estimate or significance conclusion; alternative class on the coefficient targets T1 to T5 alone: A. Whether an N-only mismatch 'affects the conclusion' (D) is for the lead to decide with agent B; D also needs B to see it.",
+ "confidence": "medium",
+ "confidence_reason": "Coefficients, SEs and R2 match exactly by script and the environment is close, but the class turns on how an N-only discrepancy is treated, which needed judgement; A/B agreement not yet known.",
+ "uncertainties": [
+  "Class judgement: T6 fails its pre-registered criterion while every coefficient, SE (to the 3 decimals shown) and R2 matches. The class rules do not say how a sample-size-only mismatch with identical estimates should be classed; I report D (mechanical) with A (T1 to T5) as the alternative.",
+  "Origin of 4,057 not determined. The deposited data_cleaned_rep.csv has 4,507 rows and 0 missing values in all 18 covariates (checked by Python before the run and by nobs() after), and no line of main_rep.R subsets the Table 3 data. A digit transposition in the table note is one possibility; I could not verify it and did not contact the authors.",
+  "Execution: the reproduction result comes from a segmented run (main_rep.R lines 1-252, 253-331, 332-449 in original order, separate R processes joined by save.image/load) after one full run lost its objects to my driver and a second full run was killed by a sandbox recycle. Run 1 shows the whole unchanged script runs end to end in one process.",
+  "Package versions differ from the authors' (R 4.5.0 aarch64 Debian vs R 4.3.2 macOS; estimatr 1.0.6 Debian binary; sjPlot 2.9.0 and mediation 4.5.1 from CRAN source). No version pins were given. The targets are deterministic OLS, and all five coefficients match.",
+  "Figure 3 (mediation bootstrap) is not seed-fixed in main_rep.R; I set set.seed(20261009) in my driver. Figure 3 values were not compared with the paper (not a target).",
+  "The preview Table 3 run (out of order, on the segment-1 image) is kept in outputs/ for transparency; results.json uses only outputs/targets_extracted.csv from the in-order run."
+ ],
+ "bugs": [],
+ "code_observations": [
+  {"status": "checked, no issue", "file": "main_rep.R", "line": 283, "description": "Figure 3 labels 'Result 1'..'Result 8' are hard-coded by position and depend on the order of unique(data$condition) (line 194). In the deposited data the order matches all 8 labels.", "evidence": "outputs/code_check_fig3_labels.json (all_consistent true)"},
+  {"status": "unverified observation (documentation, not a bug)", "file": "main_rep.R", "line": 371, "description": "The comment says 'models without control ... Table D2', but the models in this block (lines 352-361) include covariates_str and build tab_3, the with-controls Table 3.", "evidence": "main_rep.R lines 354-356 and 371-372 as deposited"},
+  {"status": "unverified observation (documentation, not a bug)", "file": "main_rep.R", "line": 160, "description": "covariates_str includes LifeSat_1 (life satisfaction), which the Table 3 note does not list among the controls. The reproduced coefficients match Table 3 with it included.", "evidence": "main_rep.R lines 156-162; outputs/targets_extracted.csv"},
+  {"status": "environment note", "file": "main_rep.R", "line": 238, "description": "mediation::mediate is called without library(mediation); works once the package is installed, so no change was made.", "evidence": "run completed with mediation 4.5.1 installed"}
+ ]
+}

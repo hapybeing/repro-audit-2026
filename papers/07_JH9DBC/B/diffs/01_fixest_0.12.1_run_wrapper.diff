@@ -1,0 +1,19 @@
+--- run_main.sh	2026-10-10 12:38:49.060620677 +0000
++++ run_main_fx0121.sh	2026-10-10 12:57:44.752794098 +0000
+@@ -1,11 +1,11 @@
+ #!/bin/bash
+ # Runs the authors' replication.R unchanged, top to bottom, in one R session (PREREG section 2 step 5).
+ set -u
+-RUN=/workspace/audit_runs/07_JH9DBC/B/run
++RUN=/workspace/audit_runs/07_JH9DBC/B/run_fx0121
+ OUT=/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/07_JH9DBC/B/outputs
+ mkdir -p $RUN; cp /workspace/audit_runs/07_JH9DBC/B/dl/replication.R /workspace/audit_runs/07_JH9DBC/B/dl/data.dta $RUN/
+ cd $RUN
+-export R_LIBS_USER=/workspace/audit_runs/07_JH9DBC/B/rlib
+-Rscript -e 'source("replication.R", echo=TRUE, max.deparse.length=Inf); save.image("session.RData")' > $OUT/replication_stdout.txt 2> $OUT/replication_stderr.txt
+-echo "EXIT $?" >> $OUT/replication_stdout.txt
+-cp -f session.RData $OUT/session.RData 2>/dev/null; cp -f Rplots.pdf $OUT/Rplots.pdf 2>/dev/null
++export R_LIBS_USER=/workspace/audit_runs/07_JH9DBC/B/rlib_fx0121:/workspace/audit_runs/07_JH9DBC/B/rlib
++Rscript -e 'cat("fixest", as.character(packageVersion("fixest")), "from", find.package("fixest"), "\n"); source("replication.R", echo=TRUE, max.deparse.length=Inf); save.image("session.RData")' > $OUT/replication_stdout_fixest0121.txt 2> $OUT/replication_stderr_fixest0121.txt
++echo "EXIT $?" >> $OUT/replication_stdout_fixest0121.txt
++cp -f session.RData $OUT/session_fixest0121.RData 2>/dev/null; cp -f Rplots.pdf $OUT/Rplots_fixest0121.pdf 2>/dev/null

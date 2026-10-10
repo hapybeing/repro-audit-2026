@@ -1,0 +1,72 @@
+{
+  "fig1_rows": 64,
+  "fig1_sectors": ["Private Sector", "Public Sector"],
+  "fig1_duplicate_level_rows": 0,
+  "fig2_rows": 32,
+  "fig2_contrast": "Public Sector",
+  "FC1": {
+    "count_CI_excludes_0": 0,
+    "n_levels": 24,
+    "levels_excluding_0": [],
+    "paper_claim": 0,
+    "same_conclusion": true,
+    "Since_count": 2,
+    "Since_levels": ["1 Year", "3 Years"],
+    "Education_count": 0,
+    "Education_levels": [],
+    "ci_outside_plot_limits_pm0.1": []
+  },
+  "FC2": {
+    "by_sector": {
+      "Private Sector": {
+        "ranking": ["Composition", "Unemployment", "Supportive", "Citizenship", "Age", "Since", "Education", "Gender"],
+        "ranges": [0.321199, 0.262986, 0.169488, 0.106429, 0.039676, 0.031944, 0.030155, 0.019137],
+        "largest": "Composition"
+      },
+      "Public Sector": {
+        "ranking": ["Composition", "Unemployment", "Supportive", "Citizenship", "Age", "Since", "Education", "Gender"],
+        "ranges": [0.321865, 0.255805, 0.156578, 0.135971, 0.04718, 0.041536, 0.032139, 0.015038],
+        "largest": "Composition"
+      }
+    },
+    "same_conclusion": true
+  },
+  "FC3": {
+    "values": [
+      {
+        "sector": "Private Sector",
+        "level": "Syria",
+        "estimate": 0.443803,
+        "std.error": 0.009029,
+        "lower": 0.426107,
+        "upper": 0.461499
+      },
+      {
+        "sector": "Private Sector",
+        "level": "Germany",
+        "estimate": 0.550232,
+        "std.error": 0.005983,
+        "lower": 0.538505,
+        "upper": 0.561958
+      },
+      {
+        "sector": "Public Sector",
+        "level": "Syria",
+        "estimate": 0.422707,
+        "std.error": 0.016914,
+        "lower": 0.389556,
+        "upper": 0.455857
+      },
+      {
+        "sector": "Public Sector",
+        "level": "Germany",
+        "estimate": 0.558678,
+        "std.error": 0.01111,
+        "lower": 0.536903,
+        "upper": 0.580452
+      }
+    ],
+    "same_conclusion_strict": true,
+    "same_conclusion_lenient": true
+  }
+}

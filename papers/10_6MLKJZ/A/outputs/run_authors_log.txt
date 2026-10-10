@@ -1,0 +1,501 @@
+
+######## sourcing 01_preparation_function.R 
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   4.0.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(data.table)
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:lubridate’:
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+> library(cregg)
+> library(Hmisc)
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+> library(here)
+here() starts at /workspace/audit_runs/10_6MLKJZ/A/run/analysis
+> here()
+[1] "/workspace/audit_runs/10_6MLKJZ/A/run/analysis"
+> four_surveys <- c(rh = "../data/conjoint_data/raw_data/data_rh.csv", 
++     uhh = "../data/conjoint_data/raw_data/data_uhh.csv", hsvn = "../data/conjoint_data/raw_data/data_hsvn.csv", 
++     civic = "../data/conjoint_data/raw_data/data_civic.csv")
+> prep_data <- function(x) {
++     sam <- gsub(".*_|.csv", "", x)
++     df <- fread(x, data.table = F)
++     df <- df[!grepl("preview", df$DistributionChannel), ]
++     df <- df[as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)), 
++         ]
++     df <- df[df$cj0_daten != "Nein", ]
++     replace_answer <- function(x) ifelse(grepl("Person A", x), 
++         "1", ifelse(grepl("Person B", x), "2", x))
++     df$cj1_choice <- replace_answer(df$cj1_choice)
++     df$cj2_choice <- replace_answer(df$cj2_choice)
++     df$cj3_choice <- replace_answer(df$cj3_choice)
++     df$cj4_choice <- replace_answer(df$cj4_choice)
++     df$cj5_choice <- replace_answer(df$cj5_choice)
++     df$cj6_choice <- replace_answer(df$cj6_choice)
++     df$cj7_choice <- replace_answer(df$Q87)
++     df$cj8_choice <- replace_answer(df$Q90)
++     df$cj4_choice[df$cj4_choice == "x"] <- "1"
++     write.table(df, file = paste0("../data/conjoint_data/prep_data/prep_csv_", 
++         sam, ".csv"), row.names = F, sep = ",")
++     dfcj <- cjoint::read.qualtrics(paste0("../data/conjoint_data/prep_data/prep_csv_", 
++         sam, ".csv"), responses = paste0("cj", 1:8, "_choice"), 
++         respondentID = "ResponseId", new.format = TRUE)
++     names(dfcj) <- rvest::repair_encoding(paste(names(dfcj)), 
++         from = "utf8")
++     dfcj <- dfcj %>% rename(Age = "Alter", Citizenship = "Staatsangehörigkeit", 
++         Education = "Bildungsgrad", Since = "Dauer.des.ALG.II.Bezuges", 
++         Gender = "Geschlecht", Composition = "Zusammensetzung.der.Bedarfsgemeinschaft", 
++         Unemployment = "Grund.für.Arbeitslosigkeit", Supportive = "Grad.der.Mitwirkung.(zum.Beispiel.Pünktlichkeit.oder.Vollständigkeit.der.Unterlagen)")
++     dfcj$Sample <- paste0(sam, "\n(N = ", nrow(dfcj)/16, ")")
++     dfcj <- modify_if(dfcj, is.factor, function(x) rvest::repair_encoding(paste(x), 
++         from = "utf8"))
++     dfcj$Gender[dfcj$Gender == "Männlich"] <- "Male"
++     dfcj$Gender[dfcj$Gender == "Weiblich"] <- "Female"
++     dfcj$Age <- gsub("Jahre", "Years", dfcj$Age)
++     dfcj$Education[dfcj$Education == "Universität"] <- "University"
++     dfcj$Education[dfcj$Education == "Ungelernt"] <- "Unskilled"
++     dfcj$Education[dfcj$Education == "Fachhochschule"] <- "Technical College"
++     dfcj$Education[dfcj$Education == "Berufsausbildung"] <- "Vocational Training"
++     dfcj$Citizenship[dfcj$Citizenship == "Vietnam"] <- "Vietnam"
++     dfcj$Citizenship[dfcj$Citizenship == "Türkei"] <- "Turkey"
++     dfcj$Citizenship[dfcj$Citizenship == "Syrien"] <- "Syria"
++     dfcj$Citizenship[dfcj$Citizenship == "Rumänien"] <- "Romania"
++     dfcj$Citizenship[dfcj$Citizenship == "Frankreich"] <- "France"
++     dfcj$Citizenship[dfcj$Citizenship == "Deutschland"] <- "Germany"
++     dfcj$Composition[dfcj$Composition == "2 Erwachsene, 3 Kinder"] <- "2 Adults, 3 Childr."
++     dfcj$Composition[dfcj$Composition == "2 Erwachsene, 1 Kind"] <- "2 Adults, 1 Child"
++     dfcj$Composition[dfcj$Composition == "2 Erwachsene"] <- "2 Adults"
++     dfcj$Composition[dfcj$Composition == "1 Erwachsene/r, 2 Kinder"] <- "1 Adult, 2 Childr."
++     dfcj$Composition[dfcj$Composition == "1 Erwachsene/r"] <- "1 Adult"
++     dfcj$Since[grepl("0,5 Jahre", dfcj$Since)] <- "6 Months"
++     dfcj$Since[grepl("3 Jahre", dfcj$Since)] <- "3 Years"
++     dfcj$Since[grepl("18 Monate", dfcj$Since)] <- "1.5 Years"
++     dfcj$Since[grepl("12 Monate", dfcj$Since)] <- "1 Year"
++     dfcj$Unemployment[grepl("Fehlverhalten", dfcj$Unemployment)] <- "Fired for wrongdoing"
++     dfcj$Unemployment[grepl("Unfalls", dfcj$Unemployment)] <- "Disabled due to accident"
++     dfcj$Unemployment[grepl("Insolvenz", dfcj$Unemployment)] <- "Bankruptcy of employer"
++     dfcj$Unemployment[grepl("Freiwillige", dfcj$Unemployment)] <- "Voluntarily dismissal"
++     dfcj$Supportive[grepl("Mittlere", dfcj$Supportive)] <- "Medium"
++     dfcj$Supportive[grepl("Hohe", dfcj$Supportive)] <- "High"
++     dfcj$Supportive[grepl("Geringe", dfcj$Supportive)] <- "Low"
++     dfcj$Gender <- factor(dfcj$Gender, levels = c("Male", "Female"))
++     dfcj$Age <- factor(dfcj$Age, levels = paste(c(23, 36, 48, 
++         57), "Years"))
++     dfcj$Education <- factor(dfcj$Education, levels = c("Unskilled", 
++         "Vocational Training", "Technical College", "University"))
++     dfcj$Citizenship <- factor(dfcj$Citizenship, levels = c("Vietnam", 
++         "Syria", "Romania", "Turkey", "France", "Germany"))
++     dfcj$Composition <- factor(dfcj$Composition, levels = c("1 Adult", 
++         "2 Adults", "2 Adults, 1 Child", "1 Adult, 2 Childr.", 
++         "2 Adults, 3 Childr."))
++     dfcj$Since <- factor(dfcj$Since, levels = c("6 Months", "1 Year", 
++         "1.5 Years", "3 Years"))
++     dfcj$Unemployment <- factor(dfcj$Unemployment, levels = c("Fired for wrongdoing", 
++         "Voluntarily dismissal", "Bankruptcy of employer", "Disabled due to accident"))
++     dfcj$Supportive <- factor(dfcj$Supportive, levels = c("Low", 
++         "Medium", "High"))
++     dfcj$respondentIndex <- dfcj$Response.ID
++     dfcj <- dfcj %>% select(-Response.ID, -respondent)
++     names_col <- names(dfcj)
++     for (i in 2:length(names_col)) {
++         if (grepl("rowpos", names_col[i])) 
++             names_col[i] <- paste0(names_col[(i - 1)], "_rowpos")
++     }
++     return(dfcj)
++ }
+
+######## sourcing 02_plot_function.R 
+> plot_sw <- function(data) {
++     ggplot(data, aes(y = estimate, x = level)) + geom_point(size = 1.5, 
++         position = position_dodge(width = 0.8)) + geom_errorbar(aes(ymax = lower, 
++         ymin = upper, width = 0), position = position_dodge(0.8)) + 
++         coord_flip() + theme_bw() + geom_hline(yintercept = 0.5, 
++         colour = "black", linetype = 2, size = 0.7) + facet_grid(feature ~ 
++         ., scales = "free_y", space = "free_y", switch = "both") + 
++         scale_x_discrete(position = "top") + theme(plot.background = element_rect(fill = "white"), 
++         axis.text.x = element_text(size = 11, color = "black"), 
++         axis.text.y = element_text(size = 8.5, color = "black"), 
++         strip.text.y.left = element_text(angle = 0, color = "black", 
++             size = 8.5), strip.background = element_rect(fill = "white")) + 
++         theme(axis.title.y = element_blank(), plot.margin = unit(c(1, 
++             1, 1, 3), "line")) + scale_y_continuous(breaks = seq(0.2, 
++         0.8, by = 0.1)) + ylab("Marginal Means") + theme(legend.position = "right") + 
++         scale_shape_manual(values = c(6, 1, 4))
++ }
+> plot_group_colour <- function(data, Sample, vline = 0.5) {
++     ggplot(data, aes(y = estimate, x = level, group = Sample, 
++         colour = Sample)) + geom_point(size = 1.5, position = position_dodge(width = 0.8)) + 
++         geom_errorbar(aes(ymax = lower, ymin = upper, width = 0), 
++             position = position_dodge(0.8)) + coord_flip() + 
++         theme_bw() + geom_hline(yintercept = vline, colour = "black", 
++         linetype = 2, size = 0.7) + facet_grid(feature ~ ., scales = "free_y", 
++         space = "free_y", switch = "both") + scale_x_discrete(position = "top") + 
++         theme(plot.background = element_rect(fill = "white"), 
++             axis.text.x = element_text(size = 11, color = "black"), 
++             axis.text.y = element_text(size = 8.5, color = "black"), 
++             strip.text.y.left = element_text(angle = 0, color = "black", 
++                 size = 8.5), strip.background = element_rect(fill = "white")) + 
++         theme(axis.title.y = element_blank(), plot.margin = unit(c(1, 
++             1, 1, 3), "line")) + scale_y_continuous(breaks = seq(0.2, 
++         0.8, by = 0.1)) + ylab("Marginal Means") + theme(legend.position = "bottom")
++ }
+> plot_group_sw <- function(data, Sample, vline = 0.5) {
++     ggplot(data, aes(y = estimate, x = level, group = Sample, 
++         shape = Sample, linetype = Sample)) + geom_point(size = 1.5, 
++         position = position_dodge(width = 0.8)) + geom_errorbar(aes(ymax = lower, 
++         ymin = upper, width = 0), position = position_dodge(0.8)) + 
++         coord_flip() + theme_bw() + geom_hline(yintercept = vline, 
++         colour = "black", linetype = 2, size = 0.7) + facet_grid(feature ~ 
++         ., scales = "free_y", space = "free_y", switch = "both") + 
++         scale_x_discrete(position = "top") + theme(plot.background = element_rect(fill = "white"), 
++         axis.text.x = element_text(size = 11, color = "black"), 
++         axis.text.y = element_text(size = 8.5, color = "black"), 
++         strip.text.y.left = element_text(angle = 0, color = "black", 
++             size = 8.5), strip.background = element_rect(fill = "white")) + 
++         theme(axis.title.y = element_blank(), plot.margin = unit(c(1, 
++             1, 1, 3), "line")) + scale_y_continuous(breaks = seq(0.2, 
++         0.8, by = 0.1)) + scale_linetype_manual(values = c("solid", 
++         "solid", "solid", "solid")) + ylab("Marginal Means") + 
++         theme(legend.position = "bottom") + scale_shape_manual(values = c(1, 
++         6, 0, 8))
++ }
+
+######## sourcing 03_data_prep_and_merge.R 
+> library(ebal)
+##
+## ebal Package: Implements Entropy Balancing.
+
+## See https://web.stanford.edu/~jhain/ for additional information.
+
+> library(cobalt)
+ cobalt (Version 5.0.0, Build Date: 2026-08-25)
+> pooled_df <- purrr::map_df(four_surveys, function(x) prep_data(x))
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+[1] "New qualtrics format detected."
+Warning: `html_encoding_repair()` was deprecated in rvest 1.0.0.
+ℹ Instead, re-load using the `encoding` argument of `read_html()`
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+[1] "New qualtrics format detected."
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+[1] "New qualtrics format detected."
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+Warning in `[.data.frame`(df, as.numeric(df$Progress) == 100 | is.na(as.numeric(df$Progress)),  :
+  NAs introduced by coercion
+[1] "New qualtrics format detected."
+> pooled_df$Sample <- as.factor(pooled_df$Sample)
+> C2 <- data.table::fread("../data/survey_data/survey_data.csv", 
++     data.table = F)
+> C2_merg <- subset(C2, select = c(v9, student, sector, 
++     age_group, female, v184_ger, west, lr_3))
+> C2_merg <- C2_merg %>% rename(respondentIndex = v9)
+> pooled_df2 <- merge(pooled_df, C2_merg, by = "respondentIndex", 
++     all.x = T)
+> pooled_df2$student <- factor(pooled_df2$student, levels = c("Public Administration", 
++     "General Student Sample", "Social Work"))
+> pooled_df2$sector <- factor(pooled_df2$sector, levels = c("Private Sector", 
++     "Public Sector"))
+> pooled_df2$v184_ger <- factor(pooled_df2$v184_ger, 
++     levels = c("Ja", "Nein"))
+> pooled_df2$west <- factor(pooled_df2$west, levels = c("east", 
++     "west"))
+> pooled_df2$female <- factor(pooled_df2$female, levels = c("male", 
++     "female"))
+> pooled_df2$age_group <- factor(pooled_df2$age_group, 
++     levels = c("18-34", "35-54", "55 and older"))
+> pooled_df2$lr_3 <- factor(pooled_df2$lr_3, levels = c("left", 
++     "middle", "right"))
+> label(pooled_df2$Composition) <- "Household\nComposition"
+> label(pooled_df2$Unemployment) <- "Reason for\nUnemployment"
+> label(pooled_df2$Since) <- "Duration of\nUnemployment"
+> label(pooled_df2$Supportive) <- "Supportive\nBehavior"
+> label(pooled_df2$Education) <- "Education\nLevel"
+> label(pooled_df2$Citizenship) <- "Nationality"
+> pooled_df2$Citizenship_bin <- factor(ifelse(grepl("Germany", 
++     pooled_df2$Citizenship), "Native", "Foreign"))
+> pooled_df2$kid <- factor(ifelse(grepl("Child", pooled_df2$Composition), 
++     "Kids", "No Kids"))
+> attach(pooled_df2)
+> pooled_df2$Children[Citizenship_bin == "Native" & 
++     kid == "Kids"] <- "Native x Kid(s)"
+> pooled_df2$Children[Citizenship_bin == "Native" & 
++     kid == "No Kids"] <- "Native x No Kid(s)"
+> pooled_df2$Children[Citizenship_bin == "Foreign" & 
++     kid == "Kids"] <- "Foreign x Kid(s)"
+> pooled_df2$Children[Citizenship_bin == "Foreign" & 
++     kid == "No Kids"] <- "Foreign x No Kid(s)"
+> table(pooled_df2$Children)
+
+   Foreign x Kid(s) Foreign x No Kid(s)     Native x Kid(s)  Native x No Kid(s) 
+              26601               17764               10665                7082 
+> pooled_df2$Children <- factor(pooled_df2$Children, 
++     levels = c("Foreign x No Kid(s)", "Native x No Kid(s)", "Foreign x Kid(s)", 
++         "Native x Kid(s)"))
+> detach(pooled_df2)
+> label(pooled_df2$Children) <- "Kid(s)\nx\nNationality"
+> match_data <- filter(pooled_df2, grepl("civic", Sample))
+> match_data$D <- as.numeric(match_data$sector == "Public Sector")
+> match_data <- filter(match_data, !is.na(D) & task == 
++     1)
+> table(match_data$D)
+
+   0    1 
+2570  666 
+> match_data$young <- as.numeric(match_data$age_group == 
++     "18-34")
+> match_data$mid_age <- as.numeric(match_data$age_group == 
++     "35-54")
+> match_data$gender <- as.numeric(match_data$female == 
++     "female")
+> match_data$nongerman <- as.numeric(match_data$v184_ger == 
++     "Ja")
+> match_data$eastgerman <- as.numeric(match_data$west == 
++     "east")
+> match_data$left <- as.numeric(match_data$lr_3 == "left")
+> match_data$center <- as.numeric(match_data$lr_3 == 
++     "middle")
+> X = match_data[, c("respondentIndex", "D", "young", 
++     "mid_age", "gender", "eastgerman", "left", "center")]
+> X = na.omit(X)
+> balance_vars <- X[, -c(1, 2)]
+> treatment <- X$D
+> ewei <- ebalance(Treatment = treatment, X = balance_vars)
+> X$ebal <- 1
+> X$ebal[X$D == 0] <- ewei$w
+> bal.tab(balance_vars, treat = treatment, weights = X$ebal, 
++     disp = c("means", "sds"), un = TRUE)
+Balance Measures
+             Type M.0.Un M.1.Un Diff.Un M.0.Adj M.1.Adj Diff.Adj
+young      Binary 0.2871 0.3464  0.0593  0.3465  0.3464  -0.0001
+mid_age    Binary 0.4282 0.3795 -0.0487  0.3795  0.3795   0.0000
+gender     Binary 0.4563 0.5452  0.0889  0.5452  0.5452   0.0000
+eastgerman Binary 0.2363 0.2078 -0.0285  0.2079  0.2078  -0.0000
+left       Binary 0.2059 0.2229  0.0170  0.2229  0.2229  -0.0000
+center     Binary 0.7051 0.7108  0.0057  0.7107  0.7108   0.0001
+
+Effective sample sizes
+           Control Treated
+Unadjusted 2564.       664
+Adjusted   2410.79     664
+> ebalw <- X[, c("respondentIndex", "ebal")]
+> pooled_df2 <- left_join(pooled_df2, ebalw)
+Joining with `by = join_by(respondentIndex)`
+Warning in left_join(pooled_df2, ebalw) :
+  Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 1 of `x` matches multiple rows in `y`.
+ℹ Row 1 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.
+> match_cj <- filter(pooled_df2, !is.na(ebal))
+
+######## sourcing 04_analysis.R 
+> marginal_means_grouped_sector <- cj(data = pooled_df2, 
++     formula = selected ~ Gender + Age + Citizenship + Composition + 
++         Unemployment + Supportive + Citizenship + Since + Education, 
++     estimate = "mm", by = ~sector, id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(marginal_means_grouped_sector, marginal_means_grouped_sector$sector) + 
++     expand_limits(y = c(0.2, 0.8))
+Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+> ggsave(file = "../figures/figure_01.png", width = 8, 
++     height = 8)
+> marginal_means_grouped_sector_mmdiff <- cj(data = pooled_df2, 
++     formula = selected ~ Gender + Age + Citizenship + Composition + 
++         Unemployment + Supportive + Since + Education, estimate = "mm_diff", 
++     by = ~sector, id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(marginal_means_grouped_sector_mmdiff, 
++     marginal_means_grouped_sector_mmdiff$sector, vline = 0) + 
++     scale_y_continuous(limits = c(-0.1, 0.1))
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
+> ggsave(file = "../figures/figure_02.png", width = 8, 
++     height = 8)
+> marginal_means_grouped_student <- cj(data = pooled_df2, 
++     formula = selected ~ Gender + Age + Citizenship + Composition + 
++         Unemployment + Supportive + Since + Education, estimate = "mm", 
++     by = ~student, id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(marginal_means_grouped_student, 
++     marginal_means_grouped_student$student) + expand_limits(y = c(0.2, 
++     0.8))
+> ggsave(file = "../figures/figure_03.png", width = 8, 
++     height = 8)
+> marginal_means_grouped_student_mmdiff <- cj(data = pooled_df2, 
++     formula = selected ~ Gender + Age + Citizenship + Composition + 
++         Unemployment + Supportive + Since + Education, estimate = "mm_diff", 
++     by = ~student, id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(marginal_means_grouped_student_mmdiff, 
++     marginal_means_grouped_student_mmdiff$student, vline = 0) + 
++     scale_y_continuous(limits = c(-0.15, 0.15))
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
+> ggsave(file = "../figures/figure_04.png", width = 8, 
++     height = 8)
+> x1 <- cj(data = match_cj, formula = selected ~ Gender + 
++     Age + Citizenship + Composition + Unemployment + Supportive + 
++     Since + Education, estimate = "mm", by = ~sector, weights = ~ebal, 
++     id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(x1, x1$sector) + expand_limits(y = c(0.2, 
++     0.8))
+> ggsave(file = "../figures/figure_A2.png", width = 8, 
++     height = 8)
+> marginal_means_grouped_sector_children <- cj(data = pooled_df2, 
++     formula = selected ~ Children, estimate = "mm", by = ~sector, 
++     id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(marginal_means_grouped_sector_children, 
++     marginal_means_grouped_sector_children$sector) + expand_limits(y = c(0.2, 
++     0.8))
+> ggsave(file = "../figures/figure_A3.png", width = 8, 
++     height = 3)
+> marginal_means_grouped_student_children <- cj(data = pooled_df2, 
++     formula = selected ~ Children, estimate = "mm", by = ~student, 
++     id = ~respondentIndex)
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+Warning in logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+> plot_group_colour(marginal_means_grouped_student_children, 
++     marginal_means_grouped_student_children$student) + expand_limits(y = c(0.2, 
++     0.8))
+> ggsave(file = "../figures/figure_A4.png", width = 8, 
++     height = 3)
+
+######## warnings() after 04:
+
+DONE

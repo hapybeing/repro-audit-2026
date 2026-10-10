@@ -1,0 +1,1652 @@
+
+#### [expr 1, purled line 1] library(foreign)
+
+#### [expr 2, purled line 2] library(ggplot2)
+
+#### [expr 3, purled line 3] library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+#### [expr 4, purled line 4] library(tidytext)
+
+#### [expr 5, purled line 5] library(lubridate)
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+#### [expr 6, purled line 6] library(readr)
+
+#### [expr 7, purled line 7] library(scales)
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+#### [expr 8, purled line 8] library(broom)
+
+#### [expr 9, purled line 9] library(httr)
+
+#### [expr 10, purled line 10] library(rtweet)
+
+#### [expr 11, purled line 11] library(ggeffects)
+
+#### [expr 12, purled line 12] library(ggpubr)
+
+#### [expr 13, purled line 13] library(devtools)
+Loading required package: usethis
+
+#### [expr 14, purled line 14] library(stringr)
+
+#### [expr 15, purled line 15] library(rio)
+
+#### [expr 16, purled line 16] library(eeptools)
+
+#### [expr 17, purled line 17] theme_set(theme_pubr())
+
+#### [expr 18, purled line 19] load("StateLeg_COVIDFacebookActivity.Rdata")
+
+#### [expr 19, purled line 22] table(by_leg$rpg)
+
+     Republican White Men      Democratic White Men     Independent White Men 
+                      242                        91                         2 
+   Republican White Women    Democratic White Women   Republican Men of Color 
+                       38                        63                         6 
+  Democratic Men of Color Republican Women of Color Democratic Women of Color 
+                      108                         3                       101 
+
+#### [expr 20, purled line 23] by_leg2=subset(by_leg,rpg !="Independent White Men" & rpg !="Republican Men of Color" & rpg !="Republican Women of Color")
+
+#### [expr 21, purled line 24] table(by_leg2$rpg)
+
+     Republican White Men      Democratic White Men     Independent White Men 
+                      242                        91                         0 
+   Republican White Women    Democratic White Women   Republican Men of Color 
+                       38                        63                         0 
+  Democratic Men of Color Republican Women of Color Democratic Women of Color 
+                      108                         0                       101 
+
+#### [expr 22, purled line 25] by_leg2$rpg=factor(by_leg2$rpg,levels = c("Republican White Men","Democratic White Men","Republican White Women","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 23, purled line 26] table(by_leg2$rpg)
+
+     Republican White Men      Democratic White Men    Republican White Women 
+                      242                        91                        38 
+   Democratic White Women   Democratic Men of Color Democratic Women of Color 
+                       63                       108                       101 
+
+#### [expr 24, purled line 28] by_leg2$rpg2=factor(by_leg2$rpg,levels = c("Democratic White Women","Republican White Men","Democratic White Men","Republican White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 25, purled line 32] basics= by_leg %>%    group_by(poc)  %>%    summarize(total=sum(general),mean_total=mean(general),covid=sum(covid),testing=sum(testing),sd=sum(sd),events=sum(event),partisan=sum(partisan),gender=sum(g
+
+#### [expr 26, purled line 36] basics$prop_covid=basics$covid/basics$total
+
+#### [expr 27, purled line 37] basics$prop_testing=basics$testing/basics$total
+
+#### [expr 28, purled line 38] basics$prop_sd=basics$sd/basics$total
+
+#### [expr 29, purled line 39] basics$prop_events=basics$events/basics$total
+
+#### [expr 30, purled line 40] basics$prop_partisan=basics$partisan/basics$total
+
+#### [expr 31, purled line 41] basics$prop_gender=basics$gender/basics$total
+
+#### [expr 32, purled line 42] basics$prop_racial=basics$racial/basics$total
+
+#### [expr 33, purled line 43] basics$prop_budget=basics$budget/basics$total
+
+#### [expr 34, purled line 44] basics$prop_all_sd=basics$all_sd/basics$total
+
+#### [expr 35, purled line 45] basics$prop_non_covid_sd=basics$non_covid_sd/basics$total
+
+#### [expr 36, purled line 48] basics$freq=c(335,101,114,104)
+
+#### [expr 37, purled line 49] basics$Group= c("White Men (n=335)","White Women (n=101)","Men of Color (n=114)","Women of Color (n=104)")
+
+#### [expr 38, purled line 50] basics$Group=factor(basics$Group,levels = c("White Men (n=335)","White Women (n=101)","Men of Color (n=114)","Women of Color (n=104)"))
+
+#### [expr 39, purled line 51] basics$group3= c("White Men","White Women","Men of Color","Women of Color")
+
+#### [expr 40, purled line 52] basics$group3=factor(basics$group3,levels = c("White Men","White Women","Men of Color","Women of Color"))
+
+#### [expr 41, purled line 57] p1=ggplot(data = basics, aes(x=group3, y=total))+  geom_bar(stat="identity")+   geom_text(aes(label=total), hjust=1.6, color="white", size=3)+   theme_minimal()+ggtitle("All") +   ylab("# of Total Pos
+
+#### [expr 42, purled line 64] p2=ggplot(data = basics, aes(x=group3, y=prop_covid*100))+  geom_bar(stat="identity") +ggtitle("COVID") +   geom_text(aes(label=percent(prop_covid,accuracy = .1)), hjust=1.6, color="white", size=3)+  
+
+#### [expr 43, purled line 71] p3=ggplot(data = basics, aes(x=group3, y=prop_testing*100))+  geom_bar(stat="identity")+ggtitle("COVID-Dangers") +   geom_text(aes(label=percent(prop_testing,accuracy = .1)), hjust=1.6, color="white",
+
+#### [expr 44, purled line 77] p4=ggplot(data = basics, aes(x=group3, y=prop_sd*100))+  geom_bar(stat="identity")+ggtitle("COVID-Social Distancing") +   geom_text(aes(label=percent(prop_sd,accuracy = .1)), hjust=1.6, color="white",
+
+#### [expr 45, purled line 83] p5=ggplot(data = basics, aes(x=group3, y=prop_events*100))+  geom_bar(stat="identity")+ggtitle("COVID-Events") +   geom_text(aes(label=percent(prop_events,accuracy = .1)), hjust=1.6, color="white", si
+
+#### [expr 46, purled line 89] p6=ggplot(data = basics, aes(x=group3, y=prop_partisan*100))+  geom_bar(stat="identity")+ggtitle("COVID-Partisan") +   geom_text(aes(label=percent(prop_partisan,accuracy = .1)), hjust=1.6, color="whit
+
+#### [expr 47, purled line 96] p7=ggplot(data = basics, aes(x=group3, y=prop_gender*100))+  geom_bar(stat="identity")+ggtitle("COVID-Women") +   geom_text(aes(label=percent(prop_gender,accuracy = .1)), hjust=1.6, color="white", siz
+
+#### [expr 48, purled line 103] p8=ggplot(data = basics, aes(x=group3, y=prop_racial*100))+  geom_bar(stat="identity")+ggtitle("COVID-Race") +   geom_text(aes(label=percent(prop_racial,accuracy = .1)), hjust=1.6, color="white", size
+
+#### [expr 49, purled line 109] p9=ggplot(data = basics, aes(x=group3, y=prop_budget*100))+  geom_bar(stat="identity")+ggtitle("Budget") +   geom_text(aes(label=percent(prop_budget,accuracy = .1)), hjust=1.6, color="white", size=3)+
+
+#### [expr 50, purled line 116] together <- ggarrange(p2,p3, p4,p5,p6,p7,p8,p9, ncol = 2, nrow = 4,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 51, purled line 117] ggexport(together,filename = "Total Activity Analysis_RaceAndGender/Percent_covid_dangers_sd_event_partisan_gender_race_budget.pdf",height =5,width = 6 )
+file saved to Total Activity Analysis_RaceAndGender/Percent_covid_dangers_sd_event_partisan_gender_race_budget.pdf
+
+#### [expr 52, purled line 120] library(xtable)
+
+#### [expr 53, purled line 121] print(xtable(basics),type="html",file="Total Activity Analysis_RaceAndGender/totalsandprops.doc")
+
+#### [expr 54, purled line 123] names(basics)
+ [1] "poc"               "total"             "mean_total"       
+ [4] "covid"             "testing"           "sd"               
+ [7] "events"            "partisan"          "gender"           
+[10] "racial"            "budget"            "all_sd"           
+[13] "non_covid_sd"      "prop_covid"        "prop_testing"     
+[16] "prop_sd"           "prop_events"       "prop_partisan"    
+[19] "prop_gender"       "prop_racial"       "prop_budget"      
+[22] "prop_all_sd"       "prop_non_covid_sd" "freq"             
+[25] "Group"             "group3"           
+
+#### [expr 55, purled line 124] basics2=basics[,c(25,2,4:11)]
+
+#### [expr 56, purled line 125] colnames(basics2)=c("","All","COVID","COVID-Dangers","COVID-Social Distancing","COVID-Events","COVID-Partisan","COVID-Women","COVID-Race","Budget")
+
+#### [expr 57, purled line 126] print(xtable(basics2),type="html",file="Total Activity Analysis_RaceAndGender/sumsbyraceandgender.doc")
+
+#### [expr 58, purled line 131] basics= by_leg2 %>%    group_by(rpg)  %>%    summarize(total=sum(general),mean_total=mean(general),covid=sum(covid),testing=sum(testing),sd=sum(sd),events=sum(event),partisan=sum(partisan),gender=sum(
+
+#### [expr 59, purled line 135] basics$prop_covid=basics$covid/basics$total
+
+#### [expr 60, purled line 136] basics$prop_testing=basics$testing/basics$total
+
+#### [expr 61, purled line 137] basics$prop_sd=basics$sd/basics$total
+
+#### [expr 62, purled line 138] basics$prop_events=basics$events/basics$total
+
+#### [expr 63, purled line 139] basics$prop_partisan=basics$partisan/basics$total
+
+#### [expr 64, purled line 140] basics$prop_gender=basics$gender/basics$total
+
+#### [expr 65, purled line 141] basics$prop_racial=basics$racial/basics$total
+
+#### [expr 66, purled line 142] basics$prop_budget=basics$budget/basics$total
+
+#### [expr 67, purled line 143] basics$prop_all_sd=basics$all_sd/basics$total
+
+#### [expr 68, purled line 144] basics$prop_non_covid_sd=basics$non_covid_sd/basics$total
+
+#### [expr 69, purled line 147] basics$freq=c(242,91,38,63,108,101)
+
+#### [expr 70, purled line 148] basics$Group= c("Republican White Men (n=242)","Democratic White Men (n=91)","Republican White Women (n=38)","Democratic White Women (n=63)","Democratic Men of Color (n=108)","Democratic Women of Colo
+
+#### [expr 71, purled line 149] basics$Group=factor(basics$Group,levels= c("Republican White Men (n=242)","Democratic White Men (n=91)","Republican White Women (n=38)","Democratic White Women (n=63)","Democratic Men of Color (n=108)
+
+#### [expr 72, purled line 150] basics$group2=rownames(basics)
+
+#### [expr 73, purled line 151] basics$group3= c("Republican White Men","Democratic White Men","Republican White Women","Democratic White Women","Democratic Men of Color","Democratic Women of Color")
+
+#### [expr 74, purled line 152] basics$group3=factor(basics$group3,levels =c("Republican White Men","Democratic White Men","Republican White Women","Democratic White Women","Democratic Men of Color","Democratic Women of Color") )
+
+#### [expr 75, purled line 156] p1=ggplot(data = basics, aes(x=group3, y=total))+  geom_bar(stat="identity")+   geom_text(aes(label=total), hjust=1.6, color="white", size=3)+   theme_minimal()+ggtitle("All") +   ylab("# of Total Pos
+
+#### [expr 76, purled line 163] p2=ggplot(data = basics, aes(x=group3, y=prop_covid*100))+  geom_bar(stat="identity") +ggtitle("COVID") +   geom_text(aes(label=percent(prop_covid,accuracy = .1)), hjust=1.6, color="white", size=3)+  
+
+#### [expr 77, purled line 170] p3=ggplot(data = basics, aes(x=group3, y=prop_testing*100))+  geom_bar(stat="identity")+ggtitle("COVID-Dangers") +   geom_text(aes(label=percent(prop_testing,accuracy = .1)), hjust=1.6, color="white",
+
+#### [expr 78, purled line 176] p4=ggplot(data = basics, aes(x=group3, y=prop_sd*100))+  geom_bar(stat="identity")+ggtitle("COVID-Social Distancing") +   geom_text(aes(label=percent(prop_sd,accuracy = .1)), hjust=1.6, color="white",
+
+#### [expr 79, purled line 182] p5=ggplot(data = basics, aes(x=group3, y=prop_events*100))+  geom_bar(stat="identity")+ggtitle("COVID-Events") +   geom_text(aes(label=percent(prop_events,accuracy = .1)), hjust=1.6, color="white", si
+
+#### [expr 80, purled line 188] p6=ggplot(data = basics, aes(x=group3, y=prop_partisan*100))+  geom_bar(stat="identity")+ggtitle("COVID-Partisan") +   geom_text(aes(label=percent(prop_partisan,accuracy = .1)), hjust=1.6, color="whit
+
+#### [expr 81, purled line 195] p7=ggplot(data = basics, aes(x=group3, y=prop_gender*100))+  geom_bar(stat="identity")+ggtitle("COVID-Women") +   geom_text(aes(label=percent(prop_gender,accuracy = .1)), hjust=1.6, color="white", siz
+
+#### [expr 82, purled line 202] p8=ggplot(data = basics, aes(x=group3, y=prop_racial*100))+  geom_bar(stat="identity")+ggtitle("COVID-Race") +   geom_text(aes(label=percent(prop_racial,accuracy = .1)), hjust=1.6, color="white", size
+
+#### [expr 83, purled line 208] p9=ggplot(data = basics, aes(x=group3, y=prop_budget*100))+  geom_bar(stat="identity")+ggtitle("Budget") +   geom_text(aes(label=percent(prop_budget,accuracy = .1)), hjust=1.6, color="white", size=3)+
+
+#### [expr 84, purled line 215] together <- ggarrange(p2,p3, p4,p5,p6,p7,p8,p9, ncol = 2, nrow = 4,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 85, purled line 216] ggexport(together,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/Percent_covid_dangers_sd_event_partisan_gender_race_budget.pdf",height =5,width = 6 )
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Percent_covid_dangers_sd_event_partisan_gender_race_budget.pdf
+
+#### [expr 86, purled line 219] library(xtable)
+
+#### [expr 87, purled line 220] print(xtable(basics),type="html",file="Total Activity Analysis_RaceAndGenderAndParty_v1/totalsandprops.doc")
+
+#### [expr 88, purled line 222] names(basics)
+ [1] "rpg"               "total"             "mean_total"       
+ [4] "covid"             "testing"           "sd"               
+ [7] "events"            "partisan"          "gender"           
+[10] "racial"            "budget"            "all_sd"           
+[13] "non_covid_sd"      "prop_covid"        "prop_testing"     
+[16] "prop_sd"           "prop_events"       "prop_partisan"    
+[19] "prop_gender"       "prop_racial"       "prop_budget"      
+[22] "prop_all_sd"       "prop_non_covid_sd" "freq"             
+[25] "Group"             "group2"            "group3"           
+
+#### [expr 89, purled line 223] basics2=basics[,c(25,2,4:11)]
+
+#### [expr 90, purled line 224] colnames(basics2)=c("","All","COVID","COVID-Dangers","COVID-Social Distancing","COVID-Events","COVID-Partisan","COVID-Women","COVID-Race","Budget")
+
+#### [expr 91, purled line 225] print(xtable(basics2),type="html",file="Total Activity Analysis_RaceAndGenderAndParty_v1/sumsbyraceandgenderandparty.doc")
+
+#### [expr 92, purled line 229] summary(aov(general~poc, data = by_leg))
+             Df   Sum Sq Mean Sq F value   Pr(>F)    
+poc           3  1004102  334701   6.618 0.000208 ***
+Residuals   650 32873166   50574                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#### [expr 93, purled line 232] TukeyHSD(aov(general~poc, data = by_leg))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = general ~ poc, data = by_leg)
+
+$poc
+                                 diff         lwr       upr     p adj
+White Woman-White Man        66.26771   0.5143903 132.02103 0.0474060
+Man of Color-White Man       52.76007 -10.0466178 115.56675 0.1345796
+Woman of Color-White Man    101.45069  36.4301263 166.47125 0.0003796
+Man of Color-White Woman    -13.50764 -92.6599637  65.64468 0.9715898
+Woman of Color-White Woman   35.18298 -45.7372524 116.10321 0.6773915
+Woman of Color-Man of Color  48.69062 -29.8540435 127.23529 0.3811917
+
+
+#### [expr 94, purled line 233] TukeyHSD(aov(covid~poc, data = by_leg))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = covid ~ poc, data = by_leg)
+
+$poc
+                                  diff        lwr      upr     p adj
+White Woman-White Man       21.6390424  -3.223342 46.50143 0.1132110
+Man of Color-White Man      30.6234093   6.875195 54.37162 0.0052207
+Woman of Color-White Man    29.6846441   5.099327 54.26996 0.0105087
+Man of Color-White Woman     8.9843669 -20.944394 38.91313 0.8665641
+Woman of Color-White Woman   8.0456017 -22.551634 38.64284 0.9057068
+Woman of Color-Man of Color -0.9387652 -30.637762 28.76023 0.9998064
+
+
+#### [expr 95, purled line 236] t.test(by_leg$general[by_leg$poc=="White Man"],by_leg$general[by_leg$poc!="White Man"])
+
+	Welch Two Sample t-test
+
+data:  by_leg$general[by_leg$poc == "White Man"] and by_leg$general[by_leg$poc != "White Man"]
+t = -4.107, df = 564.4, p-value = 4.601e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -107.78024  -38.04144
+sample estimates:
+mean of x mean of y 
+ 180.7224  253.6332 
+
+
+#### [expr 96, purled line 238] table(by_leg$poc)
+
+     White Man    White Woman   Man of Color Woman of Color 
+           335            101            114            104 
+
+#### [expr 97, purled line 239] basics= by_leg %>%    group_by(poc)  %>%    summarize(average_total=round(mean(general)),average_covid=round(mean(covid)),average_testing=round(mean(testing)),average_sd=round(mean(sd)),average_events
+
+#### [expr 98, purled line 243] basics$freq=c(335,101,114,104)
+
+#### [expr 99, purled line 244] basics$Group= c("White Men (n=335)","White Women (n=101)","Men of Color (n=114)","Women of Color (n=104)")
+
+#### [expr 100, purled line 245] basics$Group=factor(basics$Group,levels = c("White Men (n=335)","White Women (n=101)","Men of Color (n=114)","Women of Color (n=104)"))
+
+#### [expr 101, purled line 246] basics$group3= c("White Men","White Women","Men of Color","Women of Color")
+
+#### [expr 102, purled line 247] basics$group3=factor(basics$group3,levels = c("White Men","White Women","Men of Color","Women of Color"))
+
+#### [expr 103, purled line 252] p1=ggplot(data = basics, aes(x=group3, y=average_total))+  geom_bar(stat="identity")+   geom_text(aes(label=average_total), hjust=1.6, color="white", size=3)+   theme_minimal()+ggtitle("All") +   ylab
+
+#### [expr 104, purled line 259] p2=ggplot(data = basics, aes(x=group3, y=average_covid))+  geom_bar(stat="identity") +   geom_text(aes(label=average_covid), hjust=1.6, color="white", size=3)+   theme_minimal()+ ggtitle("COVID") +   
+
+#### [expr 105, purled line 266] p3=ggplot(data = basics, aes(x=group3, y=average_testing))+  geom_bar(stat="identity")+ggtitle("COVID-Dangers") +   geom_text(aes(label=average_testing), hjust=1.6, color="white", size=3)+   theme_min
+
+#### [expr 106, purled line 272] p4=ggplot(data = basics, aes(x=group3, y=average_sd))+  geom_bar(stat="identity")+ggtitle("COVID-Social Distancing") +   geom_text(aes(label=average_sd), hjust=1.6, color="white", size=3)+   theme_min
+
+#### [expr 107, purled line 278] p5=ggplot(data = basics, aes(x=group3, y=average_events))+  geom_bar(stat="identity")+ggtitle("COVID-Events") +   geom_text(aes(label=average_events), hjust=1.6, color="white", size=3)+   theme_minima
+
+#### [expr 108, purled line 284] p6=ggplot(data = basics, aes(x=group3, y=average_partisan))+  geom_bar(stat="identity")+ggtitle("COVID-Partisan") +   geom_text(aes(label=average_partisan), hjust=1.6, color="white", size=3)+   theme_
+
+#### [expr 109, purled line 291] p7=ggplot(data = basics, aes(x=group3, y=average_gender))+  geom_bar(stat="identity")+ggtitle("COVID-Women") +   geom_text(aes(label=average_gender), hjust=1.6, color="white", size=3)+   theme_minimal
+
+#### [expr 110, purled line 298] p8=ggplot(data = basics, aes(x=group3, y=average_racial))+  geom_bar(stat="identity")+ggtitle("COVID-Race") +   geom_text(aes(label=average_racial), hjust=1.6, color="white", size=3)+   theme_minimal(
+
+#### [expr 111, purled line 304] p9=ggplot(data = basics, aes(x=group3, y=average_all_sd))+  geom_bar(stat="identity")+ggtitle("Social Distancing") +   geom_text(aes(label=average_all_sd), hjust=1.6, color="white", size=3)+   theme_m
+
+#### [expr 112, purled line 310] p10=ggplot(data = basics, aes(x=group3, y=average_non_covid_sd))+  geom_bar(stat="identity")+ggtitle("Non-COVID Social Distancing") +   geom_text(aes(label=average_non_covid_sd), hjust=1.6, color="whi
+
+#### [expr 113, purled line 317] together <- ggarrange(p1, p2, ncol = 2, nrow = 1,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 114, purled line 318] ggexport(together,filename = "Total Activity Analysis_RaceAndGender/Averagesbyraceandgender_total_and_covid_only.pdf",height =3,width = 6)
+file saved to Total Activity Analysis_RaceAndGender/Averagesbyraceandgender_total_and_covid_only.pdf
+
+#### [expr 115, purled line 320] ggexport(p2,filename = "Total Activity Analysis_RaceAndGender/Averagesbyraceandgender_covid_only.pdf",height =3,width = 6)
+file saved to Total Activity Analysis_RaceAndGender/Averagesbyraceandgender_covid_only.pdf
+
+#### [expr 116, purled line 322] together <- ggarrange(p3, p4,p5,p6,p7,p8, ncol = 2, nrow = 3,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 117, purled line 323] ggexport(together,filename = "Total Activity Analysis_RaceAndGender/Averages_dangers_sd_event_partisan_gender_race.pdf",height =5,width = 6 )
+file saved to Total Activity Analysis_RaceAndGender/Averages_dangers_sd_event_partisan_gender_race.pdf
+
+#### [expr 118, purled line 325] library(xtable)
+
+#### [expr 119, purled line 326] print(xtable(basics),type="html",file="Total Activity Analysis_RaceAndGender/totalsandmeans.doc")
+
+#### [expr 120, purled line 328] names(basics)
+ [1] "poc"                  "average_total"        "average_covid"       
+ [4] "average_testing"      "average_sd"           "average_events"      
+ [7] "average_partisan"     "average_gender"       "average_racial"      
+[10] "average_budget"       "average_all_sd"       "average_non_covid_sd"
+[13] "freq"                 "Group"                "group3"              
+
+#### [expr 121, purled line 329] basics2=basics[,c(14,2:10)]
+
+#### [expr 122, purled line 330] colnames(basics2)=c("","All","COVID","COVID-Dangers","COVID-Social Distancing","COVID-Events","COVID-Partisan","COVID-Women","COVID-Race","Budget")
+
+#### [expr 123, purled line 331] print(xtable(basics2),type="html",file="Total Activity Analysis_RaceAndGender/meansbyraceandgender.doc")
+
+#### [expr 124, purled line 337] table(by_leg2$rpg)
+
+     Republican White Men      Democratic White Men    Republican White Women 
+                      242                        91                        38 
+   Democratic White Women   Democratic Men of Color Democratic Women of Color 
+                       63                       108                       101 
+
+#### [expr 125, purled line 338] basics= by_leg2 %>%    group_by(rpg)  %>%  summarize(average_total=round(mean(general)),average_covid=round(mean(covid)),average_testing=round(mean(testing)),average_sd=round(mean(sd)),average_events=
+
+#### [expr 126, purled line 343] TukeyHSD(aov(general~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = general ~ rpg, data = by_leg2)
+
+$rpg
+                                                        diff        lwr
+Democratic White Men-Republican White Men          43.388566  -28.04899
+Republican White Women-Republican White Men        46.832753  -54.53794
+Democratic White Women-Republican White Men        98.287223   16.11882
+Democratic Men of Color-Republican White Men       47.289868  -19.93769
+Democratic Women of Color-Republican White Men    105.403363   36.58386
+Republican White Women-Democratic White Men         3.444187 -108.76159
+Democratic White Women-Democratic White Men        54.898657  -40.31566
+Democratic Men of Color-Democratic White Men        3.901302  -78.76468
+Democratic Women of Color-Democratic White Men     62.014797  -21.95094
+Democratic White Women-Republican White Women      51.454470  -67.87054
+Democratic Men of Color-Republican White Women      0.457115 -109.11641
+Democratic Women of Color-Republican White Women   58.570610  -51.98678
+Democratic Men of Color-Democratic White Women    -50.997354 -143.09505
+Democratic Women of Color-Democratic White Women    7.116140  -86.14996
+Democratic Women of Color-Democratic Men of Color  58.113495  -22.30083
+                                                        upr     p adj
+Democratic White Men-Republican White Men         114.82612 0.5083172
+Republican White Women-Republican White Men       148.20344 0.7736112
+Democratic White Women-Republican White Men       180.45562 0.0087177
+Democratic Men of Color-Republican White Men      114.51742 0.3372774
+Democratic Women of Color-Republican White Men    174.22287 0.0002025
+Republican White Women-Democratic White Men       115.64997 0.9999993
+Democratic White Women-Democratic White Men       150.11297 0.5668297
+Democratic Men of Color-Democratic White Men       86.56728 0.9999938
+Democratic Women of Color-Democratic White Men    145.98053 0.2827353
+Democratic White Women-Republican White Women     170.77948 0.8207621
+Democratic Men of Color-Republican White Women    110.03064 1.0000000
+Democratic Women of Color-Republican White Women  169.12800 0.6551647
+Democratic Men of Color-Democratic White Women     41.10034 0.6102592
+Democratic Women of Color-Democratic White Women  100.38224 0.9999323
+Democratic Women of Color-Democratic Men of Color 138.52782 0.3067496
+
+
+#### [expr 127, purled line 344] TukeyHSD(aov(covid~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = covid ~ rpg, data = by_leg2)
+
+$rpg
+                                                       diff        lwr      upr
+Democratic White Men-Republican White Men         15.486741 -12.017108 42.99059
+Republican White Women-Republican White Men       12.147238 -26.881029 51.17550
+Democratic White Women-Republican White Men       35.038633   3.403352 66.67391
+Democratic Men of Color-Republican White Men      29.497628   3.614653 55.38060
+Democratic Women of Color-Republican White Men    32.039890   5.544006 58.53577
+Republican White Women-Democratic White Men       -3.339503 -46.539338 39.86033
+Democratic White Women-Democratic White Men       19.551893 -17.106137 56.20992
+Democratic Men of Color-Democratic White Men      14.010887 -17.815966 45.83774
+Democratic Women of Color-Democratic White Men    16.553150 -15.774115 48.88041
+Democratic White Women-Republican White Women     22.891395 -23.049383 68.83217
+Democratic Men of Color-Republican White Women    17.350390 -24.836012 59.53679
+Democratic Women of Color-Republican White Women  19.892652 -22.672544 62.45785
+Democratic Men of Color-Democratic White Women    -5.541005 -40.999120 29.91711
+Democratic Women of Color-Democratic White Women  -2.998743 -38.906700 32.90921
+Democratic Women of Color-Democratic Men of Color  2.542263 -28.417692 33.50222
+                                                      p adj
+Democratic White Men-Republican White Men         0.5925380
+Republican White Women-Republican White Men       0.9489656
+Democratic White Women-Republican White Men       0.0200545
+Democratic Men of Color-Republican White Men      0.0149552
+Democratic Women of Color-Republican White Men    0.0076634
+Republican White Women-Democratic White Men       0.9999278
+Democratic White Women-Democratic White Men       0.6485114
+Democratic Men of Color-Democratic White Men      0.8074909
+Democratic Women of Color-Democratic White Men    0.6876312
+Democratic White Women-Republican White Women     0.7122280
+Democratic Men of Color-Republican White Women    0.8484413
+Democratic Women of Color-Republican White Women  0.7649207
+Democratic Men of Color-Democratic White Women    0.9977583
+Democratic Women of Color-Democratic White Women  0.9998942
+Democratic Women of Color-Democratic Men of Color 0.9999027
+
+
+#### [expr 128, purled line 345] TukeyHSD(aov(sd~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = sd ~ rpg, data = by_leg2)
+
+$rpg
+                                                          diff          lwr
+Democratic White Men-Republican White Men          2.844246662  -5.61684831
+Republican White Women-Republican White Men        2.753153545  -9.25323426
+Democratic White Women-Republican White Men        8.162927981  -1.56913239
+Democratic Men of Color-Republican White Men       8.157636976   0.19517642
+Democratic Women of Color-Republican White Men     8.068161362  -0.08285045
+Republican White Women-Democratic White Men       -0.091093117 -13.38079360
+Democratic White Women-Democratic White Men        5.318681319  -5.95854307
+Democratic Men of Color-Democratic White Men       5.313390313  -4.47760396
+Democratic Women of Color-Democratic White Men     5.223914699  -4.72102293
+Democratic White Women-Republican White Women      5.409774436  -8.72313078
+Democratic Men of Color-Republican White Women     5.404483431  -7.57345126
+Democratic Women of Color-Republican White Women   5.315007817  -7.77945683
+Democratic Men of Color-Democratic White Women    -0.005291005 -10.91338157
+Democratic Women of Color-Democratic White Women  -0.094766620 -11.14124367
+Democratic Women of Color-Democratic Men of Color -0.089475614  -9.61378316
+                                                        upr     p adj
+Democratic White Men-Republican White Men         11.305342 0.9300169
+Republican White Women-Republican White Men       14.759541 0.9865535
+Democratic White Women-Republican White Men       17.894988 0.1585664
+Democratic Men of Color-Republican White Men      16.120098 0.0410023
+Democratic Women of Color-Republican White Men    16.219173 0.0541937
+Republican White Women-Democratic White Men       13.198607 1.0000000
+Democratic White Women-Democratic White Men       16.595906 0.7578643
+Democratic Men of Color-Democratic White Men      15.104385 0.6310875
+Democratic Women of Color-Democratic White Men    15.168852 0.6634652
+Democratic White Women-Republican White Women     19.542680 0.8837292
+Democratic Men of Color-Republican White Women    18.382418 0.8415094
+Democratic Women of Color-Republican White Women  18.409472 0.8555000
+Democratic Men of Color-Democratic White Women    10.902800 1.0000000
+Democratic Women of Color-Democratic White Women  10.951710 1.0000000
+Democratic Women of Color-Democratic Men of Color  9.434832 1.0000000
+
+
+#### [expr 129, purled line 346] TukeyHSD(aov(event~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = event ~ rpg, data = by_leg2)
+
+$rpg
+                                                         diff          lwr
+Democratic White Men-Republican White Men          4.68781219   1.16049221
+Republican White Women-Republican White Men       -0.34688995  -5.35219620
+Democratic White Women-Republican White Men        8.45093795   4.39376910
+Democratic Men of Color-Republican White Men       5.00252525   1.68307945
+Democratic Women of Color-Republican White Men     4.96264626   1.56459591
+Republican White Women-Democratic White Men       -5.03470214 -10.57500468
+Democratic White Women-Democratic White Men        3.76312576  -0.93820178
+Democratic Men of Color-Democratic White Men       0.31471306  -3.76702456
+Democratic Women of Color-Democratic White Men     0.27483408  -3.87108052
+Democratic White Women-Republican White Women      8.79782790   2.90600432
+Democratic Men of Color-Republican White Women     5.34941520  -0.06091625
+Democratic Women of Color-Republican White Women   5.30953622  -0.14937506
+Democratic Men of Color-Democratic White Women    -3.44841270  -7.99585318
+Democratic Women of Color-Democratic White Women  -3.48829169  -8.09342368
+Democratic Women of Color-Democratic Men of Color -0.03987899  -4.01043840
+                                                         upr     p adj
+Democratic White Men-Republican White Men          8.2151322 0.0021961
+Republican White Women-Republican White Men        4.6584163 0.9999580
+Democratic White Women-Republican White Men       12.5081068 0.0000001
+Democratic Men of Color-Republican White Men       8.3219711 0.0002750
+Democratic Women of Color-Republican White Men     8.3606966 0.0004855
+Republican White Women-Democratic White Men        0.5056004 0.0992979
+Democratic White Women-Democratic White Men        8.4644533 0.2004192
+Democratic Men of Color-Democratic White Men       4.3964507 0.9999287
+Democratic Women of Color-Democratic White Men     4.4207487 0.9999663
+Democratic White Women-Republican White Women     14.6896515 0.0003261
+Democratic Men of Color-Republican White Women    10.7597467 0.0546626
+Democratic Women of Color-Republican White Women  10.7684475 0.0619621
+Democratic Men of Color-Democratic White Women     1.0990278 0.2544990
+Democratic Women of Color-Democratic White Women   1.1168403 0.2556637
+Democratic Women of Color-Democratic Men of Color  3.9306804 1.0000000
+
+
+#### [expr 130, purled line 347] TukeyHSD(aov(partisan~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = partisan ~ rpg, data = by_leg2)
+
+$rpg
+                                                        diff        lwr
+Democratic White Men-Republican White Men         -7.1710108 -14.536358
+Republican White Women-Republican White Men        1.1468030  -9.304707
+Democratic White Women-Republican White Men       -4.3272990 -12.799017
+Democratic Men of Color-Republican White Men      -3.2201561 -10.151445
+Democratic Women of Color-Republican White Men    -3.8023893 -10.897811
+Republican White Women-Democratic White Men        8.3178138  -3.250815
+Democratic White Women-Democratic White Men        2.8437118  -6.973065
+Democratic Men of Color-Democratic White Men       3.9508547  -4.572165
+Democratic Women of Color-Democratic White Men     3.3686215  -5.288405
+Democratic White Women-Republican White Women     -5.4741019 -17.776736
+Democratic Men of Color-Republican White Women    -4.3669591 -15.664197
+Democratic Women of Color-Republican White Women  -4.9491923 -16.347869
+Democratic Men of Color-Democratic White Women     1.1071429  -8.388304
+Democratic Women of Color-Democratic White Women   0.5249096  -9.091002
+Democratic Women of Color-Democratic Men of Color -0.5822332  -8.873103
+                                                         upr     p adj
+Democratic White Men-Republican White Men          0.1943368 0.0614966
+Republican White Women-Republican White Men       11.5983131 0.9995953
+Democratic White Women-Republican White Men        4.1444187 0.6898988
+Democratic Men of Color-Republican White Men       3.7111323 0.7694253
+Democratic Women of Color-Republican White Men     3.2930322 0.6437903
+Republican White Women-Democratic White Men       19.8864422 0.3124640
+Democratic White Women-Democratic White Men       12.6604883 0.9623002
+Democratic Men of Color-Democratic White Men      12.4738741 0.7710979
+Democratic Women of Color-Democratic White Men    12.0256479 0.8763290
+Democratic White Women-Republican White Women      6.8285326 0.8003407
+Democratic Men of Color-Republican White Women     6.9302785 0.8793584
+Democratic Women of Color-Republican White Women   6.4494841 0.8164272
+Democratic Men of Color-Democratic White Women    10.6025898 0.9994556
+Democratic Women of Color-Democratic White Women  10.1408215 0.9999871
+Democratic Women of Color-Democratic Men of Color  7.7086365 0.9999551
+
+
+#### [expr 131, purled line 348] TukeyHSD(aov(gender~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = gender ~ rpg, data = by_leg2)
+
+$rpg
+                                                        diff         lwr
+Democratic White Men-Republican White Men          0.8293979 -1.84407607
+Republican White Women-Republican White Men        2.2429317 -1.55075753
+Democratic White Women-Republican White Men        6.0674931  2.99242897
+Democratic Men of Color-Republican White Men       1.2897153 -1.22620381
+Democratic Women of Color-Republican White Men     3.8859750  1.31047879
+Republican White Women-Democratic White Men        1.4135338 -2.78564701
+Democratic White Women-Democratic White Men        5.2380952  1.67480164
+Democratic Men of Color-Democratic White Men       0.4603175 -2.63336818
+Democratic Women of Color-Democratic White Men     3.0565771 -0.08575043
+Democratic White Women-Republican White Women      3.8245614 -0.64104901
+Democratic Men of Color-Republican White Women    -0.9532164 -5.05388778
+Democratic Women of Color-Republican White Women   1.6430433 -2.49444842
+Democratic Men of Color-Democratic White Women    -4.7777778 -8.22443521
+Democratic Women of Color-Democratic White Women  -2.1815182 -5.67190192
+Democratic Women of Color-Democratic Men of Color  2.5962596 -0.41316033
+                                                        upr     p adj
+Democratic White Men-Republican White Men          3.502872 0.9496519
+Republican White Women-Republican White Men        6.036621 0.5389267
+Democratic White Women-Republican White Men        9.142557 0.0000004
+Democratic Men of Color-Republican White Men       3.805634 0.6865952
+Democratic Women of Color-Republican White Men     6.461471 0.0002690
+Republican White Women-Democratic White Men        5.612715 0.9296252
+Democratic White Women-Democratic White Men        8.801389 0.0004326
+Democratic Men of Color-Democratic White Men       3.554003 0.9982275
+Democratic Women of Color-Democratic White Men     6.198905 0.0619264
+Democratic White Women-Republican White Women      8.290172 0.1415693
+Democratic Men of Color-Republican White Women     3.147455 0.9856977
+Democratic Women of Color-Republican White Women   5.780535 0.8666326
+Democratic Men of Color-Democratic White Women    -1.331120 0.0011584
+Democratic Women of Color-Democratic White Women   1.308866 0.4751962
+Democratic Women of Color-Democratic Men of Color  5.605680 0.1358873
+
+
+#### [expr 132, purled line 349] TukeyHSD(aov(racial~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = racial ~ rpg, data = by_leg2)
+
+$rpg
+                                                       diff        lwr      upr
+Democratic White Men-Republican White Men         0.3227227 -1.8382882 2.483734
+Republican White Women-Republican White Men       0.5500217 -2.5164767 3.616520
+Democratic White Women-Republican White Men       1.3044077 -1.1812148 3.790030
+Democratic Men of Color-Republican White Men      3.2395929  1.2059360 5.273250
+Democratic Women of Color-Republican White Men    3.5948368  1.5130228 5.676651
+Republican White Women-Democratic White Men       0.2272990 -3.1669647 3.621563
+Democratic White Women-Democratic White Men       0.9816850 -1.8985811 3.861951
+Democratic Men of Color-Democratic White Men      2.9168702  0.4161956 5.417545
+Democratic Women of Color-Democratic White Men    3.2721140  0.7321214 5.812107
+Democratic White Women-Republican White Women     0.7543860 -2.8552369 4.364009
+Democratic Men of Color-Republican White Women    2.6895712 -0.6250658 6.004208
+Democratic Women of Color-Republican White Women  3.0448150 -0.2995843 6.389214
+Democratic Men of Color-Democratic White Women    1.9351852 -0.8508020 4.721172
+Democratic Women of Color-Democratic White Women  2.2904290 -0.5309029 5.111761
+Democratic Women of Color-Democratic Men of Color 0.3552439 -2.0773175 2.787805
+                                                      p adj
+Democratic White Men-Republican White Men         0.9981961
+Republican White Women-Republican White Men       0.9956873
+Democratic White Women-Republican White Men       0.6643913
+Democratic Men of Color-Republican White Men      0.0000922
+Democratic Women of Color-Republican White Men    0.0000151
+Republican White Women-Democratic White Men       0.9999645
+Democratic White Women-Democratic White Men       0.9260191
+Democratic Men of Color-Democratic White Men      0.0116220
+Democratic Women of Color-Democratic White Men    0.0034070
+Democratic White Women-Republican White Women     0.9912023
+Democratic Men of Color-Republican White Women    0.1877129
+Democratic Women of Color-Republican White Women  0.0981261
+Democratic Men of Color-Democratic White Women    0.3517638
+Democratic Women of Color-Democratic White Women  0.1872578
+Democratic Women of Color-Democratic Men of Color 0.9983797
+
+
+#### [expr 133, purled line 350] TukeyHSD(aov(all_sd~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = all_sd ~ rpg, data = by_leg2)
+
+$rpg
+                                                        diff        lwr
+Democratic White Men-Republican White Men          6.9917809  -4.201557
+Republican White Women-Republican White Men        5.0872118 -10.796259
+Democratic White Women-Republican White Men       15.4447724   2.570051
+Democratic Men of Color-Republican White Men      12.6749311   2.141246
+Democratic Women of Color-Republican White Men    15.2508387   4.467715
+Republican White Women-Democratic White Men       -1.9045691 -19.485758
+Democratic White Women-Democratic White Men        8.4529915  -6.465856
+Democratic Men of Color-Democratic White Men       5.6831502  -7.269536
+Democratic Women of Color-Democratic White Men     8.2590578  -4.897283
+Democratic White Women-Republican White Women     10.3575606  -8.339120
+Democratic Men of Color-Republican White Women     7.5877193  -9.581029
+Democratic Women of Color-Republican White Women  10.1636269  -7.159281
+Democratic Men of Color-Democratic White Women    -2.7698413 -17.200355
+Democratic Women of Color-Democratic White Women  -0.1939337 -14.807521
+Democratic Women of Color-Democratic Men of Color  2.5759076 -10.023974
+                                                       upr     p adj
+Democratic White Men-Republican White Men         18.18512 0.4758864
+Republican White Women-Republican White Men       20.97068 0.9425407
+Democratic White Women-Republican White Men       28.31949 0.0084272
+Democratic Men of Color-Republican White Men      23.20862 0.0081292
+Democratic Women of Color-Republican White Men    26.03396 0.0008377
+Republican White Women-Democratic White Men       15.67662 0.9996199
+Democratic White Women-Democratic White Men       23.37184 0.5858396
+Democratic Men of Color-Democratic White Men      18.63584 0.8096724
+Democratic Women of Color-Democratic White Men    21.41540 0.4700718
+Democratic White Women-Republican White Women     29.05424 0.6097909
+Democratic Men of Color-Republican White Women    24.75647 0.8048948
+Democratic Women of Color-Republican White Women  27.48653 0.5475148
+Democratic Men of Color-Democratic White Women    11.66067 0.9940730
+Democratic Women of Color-Democratic White Women  14.41965 1.0000000
+Democratic Women of Color-Democratic Men of Color 15.17579 0.9920535
+
+
+#### [expr 134, purled line 351] TukeyHSD(aov(non_covid_sd~rpg, data = by_leg2))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = non_covid_sd ~ rpg, data = by_leg2)
+
+$rpg
+                                                         diff         lwr
+Democratic White Men-Republican White Men          4.14753428  0.06540948
+Republican White Women-Republican White Men        2.33405829 -3.45852218
+Democratic White Women-Republican White Men        7.28184442  2.58653191
+Democratic Men of Color-Republican White Men       4.51729415  0.67573962
+Democratic Women of Color-Republican White Men     7.18267736  3.25015473
+Republican White Women-Democratic White Men       -1.81347600 -8.22520121
+Democratic White Women-Democratic White Men        3.13431013 -2.30647945
+Democratic Men of Color-Democratic White Men       0.36975987 -4.35398578
+Democratic Women of Color-Democratic White Men     3.03514307 -1.76287381
+Democratic White Women-Republican White Women      4.94778613 -1.87075013
+Democratic Men of Color-Republican White Women     2.18323587 -4.07807537
+Democratic Women of Color-Republican White Women   4.84861907 -1.46891300
+Democratic Men of Color-Democratic White Women    -2.76455026 -8.02724820
+Democratic Women of Color-Democratic White Women  -0.09916706 -5.42863069
+Democratic Women of Color-Democratic Men of Color  2.66538320 -1.92969724
+                                                        upr     p adj
+Democratic White Men-Republican White Men          8.229659 0.0439476
+Republican White Women-Republican White Men        8.126639 0.8593024
+Democratic White Women-Republican White Men       11.977157 0.0001587
+Democratic Men of Color-Republican White Men       8.358849 0.0106141
+Democratic Women of Color-Republican White Men    11.115200 0.0000036
+Republican White Women-Democratic White Men        4.598249 0.9659710
+Democratic White Women-Democratic White Men        8.575100 0.5677892
+Democratic Men of Color-Democratic White Men       5.093506 0.9999232
+Democratic Women of Color-Democratic White Men     7.833160 0.4611395
+Democratic White Women-Republican White Women     11.766322 0.3021911
+Democratic Men of Color-Republican White Women     8.444547 0.9189816
+Democratic Women of Color-Republican White Women  11.166151 0.2420094
+Democratic Men of Color-Democratic White Women     2.498148 0.6634161
+Democratic Women of Color-Democratic White Women   5.230297 0.9999999
+Democratic Women of Color-Democratic Men of Color  7.260464 0.5602134
+
+
+#### [expr 135, purled line 355] t.test(by_leg2$budget[by_leg2$rpg=="Democratic Women of Color" | by_leg2$rpg=="Democratic Men of Color" |by_leg2$rpg=="Democratic White Women" |by_leg2$rpg=="Democratic White Men"],by_leg2$budget[by_l
+
+	Welch Two Sample t-test
+
+data:  by_leg2$budget[by_leg2$rpg == "Democratic Women of Color" | by_leg2$rpg == "Democratic Men of Color" | by_leg2$rpg == "Democratic White Women" | by_leg2$rpg == "Democratic White Men"] and by_leg2$budget[by_leg2$rpg == "Republican White Men"]
+t = 0.036937, df = 518.19, p-value = 0.9705
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.653307  1.716668
+sample estimates:
+mean of x mean of y 
+ 7.672176  7.640496 
+
+
+#### [expr 136, purled line 358] table(by_leg2$rpg)
+
+     Republican White Men      Democratic White Men    Republican White Women 
+                      242                        91                        38 
+   Democratic White Women   Democratic Men of Color Democratic Women of Color 
+                       63                       108                       101 
+
+#### [expr 137, purled line 359] table(by_leg2$poc)
+
+     White Man    White Woman   Man of Color Woman of Color 
+           333            101            108            101 
+
+#### [expr 138, purled line 361] by_leg2$Legislator[by_leg2$GOP!= by_leg2$Republican]
+[1] "Al Muratsuchi"       "Andrew Gounardes"    "Betsy Holland"      
+[4] "Howard Watts"        "Jim Wood"            "Kevin Thomas"       
+[7] "Monica Martinez"     "Pete Harckham"       "Rebecca Bauer-Kahan"
+
+#### [expr 139, purled line 364] basics$freq=c(242,91,38,63,108,101)
+
+#### [expr 140, purled line 365] basics$Group= c("Republican White Men (n=242)","Democratic White Men (n=91)","Republican White Women (n=38)","Democratic White Women (n=63)","Democratic Men of Color (n=108)","Democratic Women of Colo
+
+#### [expr 141, purled line 366] basics$Group=factor(basics$Group,levels= c("Republican White Men (n=242)","Democratic White Men (n=91)","Republican White Women (n=38)","Democratic White Women (n=63)","Democratic Men of Color (n=108)
+
+#### [expr 142, purled line 367] basics$group2=rownames(basics)
+
+#### [expr 143, purled line 368] basics$group3= c("Republican White Men","Democratic White Men","Republican White Women","Democratic White Women","Democratic Men of Color","Democratic Women of Color")
+
+#### [expr 144, purled line 369] basics$group3=factor(basics$group3,levels =c("Republican White Men","Democratic White Men","Republican White Women","Democratic White Women","Democratic Men of Color","Democratic Women of Color") )
+
+#### [expr 145, purled line 375] p1=ggplot(data = basics, aes(x=group3, y=average_total))+  geom_bar(stat="identity")+   geom_text(aes(label=average_total), hjust=1.6, color="white", size=3)+   theme_minimal()+ggtitle("All") +   ylab
+
+#### [expr 146, purled line 382] p2=ggplot(data = basics, aes(x=group3, y=average_covid))+  geom_bar(stat="identity") +   geom_text(aes(label=average_covid), hjust=1.6, color="white", size=3)+   theme_minimal()+    ylab("Mean # of Po
+
+#### [expr 147, purled line 388] p3=ggplot(data = basics, aes(x=group3, y=average_testing))+  geom_bar(stat="identity")+ggtitle("COVID-Dangers") +   geom_text(aes(label=average_testing), hjust=1.6, color="white", size=3)+   theme_min
+
+#### [expr 148, purled line 395] p4=ggplot(data = basics, aes(x=group3, y=average_sd))+  geom_bar(stat="identity")+ggtitle("COVID-Social Distancing") +   geom_text(aes(label=average_sd), hjust=1.6, color="white", size=3)+   theme_min
+
+#### [expr 149, purled line 401] p5=ggplot(data = basics, aes(x=group3, y=average_events))+  geom_bar(stat="identity")+ggtitle("COVID-Events") +   geom_text(aes(label=average_events), hjust=1.6, color="white", size=3)+   theme_minima
+
+#### [expr 150, purled line 407] p6=ggplot(data = basics, aes(x=group3, y=average_partisan))+  geom_bar(stat="identity")+ggtitle("COVID-Partisan") +   geom_text(aes(label=average_partisan), hjust=1.6, color="white", size=3)+   theme_
+
+#### [expr 151, purled line 414] p7=ggplot(data = basics, aes(x=group3, y=average_gender))+  geom_bar(stat="identity")+ggtitle("COVID-Women") +   geom_text(aes(label=average_gender), hjust=1.6, color="white", size=3)+   theme_minimal
+
+#### [expr 152, purled line 420] p8=ggplot(data = basics, aes(x=group3, y=average_racial))+  geom_bar(stat="identity")+ggtitle("COVID-Race") +   geom_text(aes(label=average_racial), hjust=1.6, color="white", size=3)+   theme_minimal(
+
+#### [expr 153, purled line 426] p9=ggplot(data = basics, aes(x=group3, y=average_all_sd))+  geom_bar(stat="identity")+ggtitle("All Social Distancing") +   geom_text(aes(label=average_all_sd), hjust=1.6, color="white", size=3)+   the
+
+#### [expr 154, purled line 432] p10=ggplot(data = basics, aes(x=group3, y=average_non_covid_sd))+  geom_bar(stat="identity")+ggtitle("Non-COVID Social Distancing") +   geom_text(aes(label=average_non_covid_sd), hjust=1.6, color="whi
+
+#### [expr 155, purled line 438] together <- ggarrange(p1, p2, ncol = 2, nrow = 1,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 156, purled line 439] ggexport(together,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/Averagesbyraceandgenderandparty_total_and_covid_only.pdf",height =3,width = 6)
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Averagesbyraceandgenderandparty_total_and_covid_only.pdf
+
+#### [expr 157, purled line 441] ggexport(p2,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/Averagesbyraceandgenderandparty_covid_only.pdf",height =3,width = 6)
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Averagesbyraceandgenderandparty_covid_only.pdf
+
+#### [expr 158, purled line 443] together <- ggarrange(p3,p4,p5,p6,p7,p8, ncol = 2, nrow = 3,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 159, purled line 444] ggexport(together,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/Averages_dangers_sd_event_partisan_gender_race.pdf",height =6,width = 8 )
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Averages_dangers_sd_event_partisan_gender_race.pdf
+
+#### [expr 160, purled line 446] together <- ggarrange(p4,p8,p9, ncol = 2, nrow = 2,common.legend = TRUE, font.label = list(size=12),vjust = .5)
+
+#### [expr 161, purled line 447] ggexport(together,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/Comparing Social Distancing Variables.pdf",height =6,width = 7.5 )
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/Comparing Social Distancing Variables.pdf
+
+#### [expr 162, purled line 452] library(xtable)
+
+#### [expr 163, purled line 453] print(xtable(basics),type="html",file="Total Activity Analysis_RaceAndGenderAndParty_v1/totalsandmeansbyracegenderandparty.doc")
+
+#### [expr 164, purled line 456] names(basics)
+ [1] "rpg"                  "average_total"        "average_covid"       
+ [4] "average_testing"      "average_sd"           "average_events"      
+ [7] "average_partisan"     "average_gender"       "average_racial"      
+[10] "average_budget"       "average_all_sd"       "average_non_covid_sd"
+[13] "freq"                 "Group"                "group2"              
+[16] "group3"              
+
+#### [expr 165, purled line 457] basics2=basics[,c(14,2:10)]
+
+#### [expr 166, purled line 458] colnames(basics2)=c("","All","COVID","COVID-Dangers","COVID-Social Distancing","COVID-Events","COVID-Partisan","COVID-Women","COVID-Race","Budget")
+
+#### [expr 167, purled line 459] print(xtable(basics2),type="html",file="Total Activity Analysis_RaceAndGenderAndParty_v1/meansbyraceandgenderandparty.doc")
+
+#### [expr 168, purled line 463] general=glm(general ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq
+
+#### [expr 169, purled line 465] covid=glm(covid ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mil
+
+#### [expr 170, purled line 466] summary(covid)
+
+Call:
+glm(formula = covid ~ rpg + senator + age_rescaled + leader_or_chair + 
+    X.voteTrump2016_resclaed + Last.Vote.Share + Bill.Sponsor.2019_rescaled + 
+    COVID.Rate.per.100.000_rescaled + perc_white + Population.Density..Per.sq.mile._rescaled + 
+    College_Educated_rescaled + median_income_rescaled + State + 
+    general_rescaled, family = "quasipoisson", data = by_leg2)
+
+Coefficients:
+                                          Estimate Std. Error t value Pr(>|t|)
+(Intercept)                                3.50880    0.19299  18.181  < 2e-16
+rpgDemocratic White Men                    0.09029    0.08538   1.058 0.290675
+rpgRepublican White Women                  0.10164    0.10137   1.003 0.316439
+rpgDemocratic White Women                  0.16479    0.08544   1.929 0.054230
+rpgDemocratic Men of Color                 0.26485    0.09545   2.775 0.005692
+rpgDemocratic Women of Color               0.23439    0.09675   2.423 0.015694
+senator                                    0.05371    0.07166   0.749 0.453858
+age_rescaled                              -0.24660    0.11804  -2.089 0.037112
+leader_or_chair                           -0.03910    0.04815  -0.812 0.417125
+X.voteTrump2016_resclaed                  -0.23731    0.17766  -1.336 0.182118
+Last.Vote.Share                           -0.03114    0.08950  -0.348 0.727997
+Bill.Sponsor.2019_rescaled                 0.14411    0.15547   0.927 0.354312
+COVID.Rate.per.100.000_rescaled            0.44138    0.25335   1.742 0.081974
+perc_white                                 0.48098    0.13952   3.447 0.000605
+Population.Density..Per.sq.mile._rescaled  0.37533    0.20319   1.847 0.065203
+College_Educated_rescaled                 -0.47639    0.76327  -0.624 0.532764
+median_income_rescaled                     0.12365    0.15007   0.824 0.410290
+StateGeorgia                              -1.01322    0.14652  -6.915 1.18e-11
+StateNevada                               -1.57781    0.21706  -7.269 1.11e-12
+StateNew York                             -0.47929    0.10241  -4.680 3.53e-06
+StateTexas                                -0.32875    0.13227  -2.486 0.013202
+general_rescaled                           6.73225    0.17392  38.708  < 2e-16
+                                             
+(Intercept)                               ***
+rpgDemocratic White Men                      
+rpgRepublican White Women                    
+rpgDemocratic White Women                 .  
+rpgDemocratic Men of Color                ** 
+rpgDemocratic Women of Color              *  
+senator                                      
+age_rescaled                              *  
+leader_or_chair                              
+X.voteTrump2016_resclaed                     
+Last.Vote.Share                              
+Bill.Sponsor.2019_rescaled                   
+COVID.Rate.per.100.000_rescaled           .  
+perc_white                                ***
+Population.Density..Per.sq.mile._rescaled .  
+College_Educated_rescaled                    
+median_income_rescaled                       
+StateGeorgia                              ***
+StateNevada                               ***
+StateNew York                             ***
+StateTexas                                *  
+general_rescaled                          ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 17.05005)
+
+    Null deviance: 45565  on 634  degrees of freedom
+Residual deviance: 10623  on 613  degrees of freedom
+  (8 observations deleted due to missingness)
+AIC: NA
+
+Number of Fisher Scoring iterations: 5
+
+
+#### [expr 171, purled line 468] testing=glm(testing ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq
+
+#### [expr 172, purled line 470] socialdistance=glm(sd ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.
+
+#### [expr 173, purled line 472] events=glm(event ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 174, purled line 474] partisan=glm(partisan ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.s
+
+#### [expr 175, purled line 476] gender=glm(gender ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 176, purled line 478] race=glm(racial ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mile
+
+#### [expr 177, purled line 480] summary(race)
+
+Call:
+glm(formula = racial ~ rpg + senator + age_rescaled + leader_or_chair + 
+    X.voteTrump2016_resclaed + Last.Vote.Share + Bill.Sponsor.2019_rescaled + 
+    COVID.Rate.per.100.000_rescaled + perc_white + Population.Density..Per.sq.mile._rescaled + 
+    College_Educated_rescaled + median_income_rescaled + State + 
+    general_rescaled, family = "quasipoisson", data = by_leg2)
+
+Coefficients:
+                                           Estimate Std. Error t value Pr(>|t|)
+(Intercept)                                0.269843   0.414332   0.651  0.51511
+rpgDemocratic White Men                   -0.384496   0.201200  -1.911  0.05647
+rpgRepublican White Women                 -0.004823   0.239183  -0.020  0.98392
+rpgDemocratic White Women                 -0.233642   0.198986  -1.174  0.24078
+rpgDemocratic Men of Color                 0.424216   0.205198   2.067  0.03912
+rpgDemocratic Women of Color               0.428472   0.203253   2.108  0.03543
+senator                                    0.011021   0.160709   0.069  0.94535
+age_rescaled                              -0.028730   0.250798  -0.115  0.90883
+leader_or_chair                           -0.202822   0.107153  -1.893  0.05885
+X.voteTrump2016_resclaed                  -1.037270   0.389475  -2.663  0.00794
+Last.Vote.Share                            0.044149   0.201589   0.219  0.82672
+Bill.Sponsor.2019_rescaled                 0.110956   0.341276   0.325  0.74520
+COVID.Rate.per.100.000_rescaled           -0.066633   0.612308  -0.109  0.91338
+perc_white                                 0.319007   0.298203   1.070  0.28515
+Population.Density..Per.sq.mile._rescaled  0.823242   0.446494   1.844  0.06570
+College_Educated_rescaled                  0.066238   2.030594   0.033  0.97399
+median_income_rescaled                     0.854189   0.316807   2.696  0.00721
+StateGeorgia                              -0.831247   0.341412  -2.435  0.01519
+StateNevada                               -0.654151   0.394369  -1.659  0.09768
+StateNew York                             -0.025372   0.224035  -0.113  0.90987
+StateTexas                                -0.184256   0.301498  -0.611  0.54134
+general_rescaled                           7.083971   0.380166  18.634  < 2e-16
+                                             
+(Intercept)                                  
+rpgDemocratic White Men                   .  
+rpgRepublican White Women                    
+rpgDemocratic White Women                    
+rpgDemocratic Men of Color                *  
+rpgDemocratic Women of Color              *  
+senator                                      
+age_rescaled                                 
+leader_or_chair                           .  
+X.voteTrump2016_resclaed                  ** 
+Last.Vote.Share                              
+Bill.Sponsor.2019_rescaled                   
+COVID.Rate.per.100.000_rescaled              
+perc_white                                   
+Population.Density..Per.sq.mile._rescaled .  
+College_Educated_rescaled                    
+median_income_rescaled                    ** 
+StateGeorgia                              *  
+StateNevada                               .  
+StateNew York                                
+StateTexas                                   
+general_rescaled                          ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 4.047126)
+
+    Null deviance: 4269.2  on 634  degrees of freedom
+Residual deviance: 1993.7  on 613  degrees of freedom
+  (8 observations deleted due to missingness)
+AIC: NA
+
+Number of Fisher Scoring iterations: 6
+
+
+#### [expr 178, purled line 481] sd_all=glm( all_sd~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 179, purled line 483] sd_non_covid_only=glm( non_covid_sd~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.D
+
+#### [expr 180, purled line 485] budget=glm( budget~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 181, purled line 487] library(texreg)
+Version:  1.40
+Date:     2026-08-24
+Author:   Philip Leifeld (University of Manchester)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+
+#### [expr 182, purled line 488] htmlreg(list(general,covid,testing,socialdistance,events,partisan,gender,race,budget),single.row=TRUE,caption = "Count Model Using Totals and White Men as Reference", file = "Total Activity Analysis_R
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/CountModel_WhiteGOPmen_reference_racegenderparty.doc'.
+
+
+#### [expr 183, purled line 496] library(margins)
+
+#### [expr 184, purled line 497] library(ggplot2)
+
+#### [expr 185, purled line 498] library(ggpubr)
+
+#### [expr 186, purled line 499] theme_set(theme_pubr())
+
+#### [expr 187, purled line 500] res <-margins(general, variables="rpg", data = by_leg2)
+
+#### [expr 188, purled line 501] res2 <-margins(covid, variables="rpg", data = by_leg2)
+
+#### [expr 189, purled line 502] res3 <-margins(socialdistance, variables="rpg", data = by_leg2)
+
+#### [expr 190, purled line 503] res4 <-margins(events, variables="rpg", data = by_leg2)
+
+#### [expr 191, purled line 504] res5<-margins(partisan, variables="rpg", data = by_leg2)
+
+#### [expr 192, purled line 505] res6<-margins(gender, variables="rpg", data = by_leg2)
+
+#### [expr 193, purled line 506] res7<-margins(race, variables="rpg", data = by_leg2)
+
+#### [expr 194, purled line 507] res8<-margins(sd_all, variables="rpg", data = by_leg2)
+
+#### [expr 195, purled line 508] res9<-margins(sd_non_covid_only, variables="rpg", data = by_leg2)
+
+#### [expr 196, purled line 509] res10<-margins(testing, variables="rpg", data = by_leg2)
+
+#### [expr 197, purled line 510] res11<-margins(budget, variables="rpg", data = by_leg2)
+
+#### [expr 198, purled line 513] gen_marg=as.data.frame(summary(res))
+
+#### [expr 199, purled line 514] covid_marg=as.data.frame(summary(res2))
+
+#### [expr 200, purled line 515] sd_marg=as.data.frame(summary(res3))
+
+#### [expr 201, purled line 516] event_marg=as.data.frame(summary(res4))
+
+#### [expr 202, purled line 517] partisan_marg=as.data.frame(summary(res5))
+
+#### [expr 203, purled line 518] gender_marg=as.data.frame(summary(res6))
+
+#### [expr 204, purled line 519] race_marg=as.data.frame(summary(res7))
+
+#### [expr 205, purled line 520] sd_all_marg=as.data.frame(summary(res8))
+
+#### [expr 206, purled line 521] non_covid_sd_marg=as.data.frame(summary(res9))
+
+#### [expr 207, purled line 522] testing_marg=as.data.frame(summary(res10))
+
+#### [expr 208, purled line 523] budget_marg=as.data.frame(summary(res11))
+
+#### [expr 209, purled line 525] RGP=gsub("rpg", "", gen_marg$factor)
+
+#### [expr 210, purled line 527] gen_marg$RGP= RGP
+
+#### [expr 211, purled line 528] sd_marg$RGP=RGP
+
+#### [expr 212, purled line 529] covid_marg$RGP= RGP
+
+#### [expr 213, purled line 530] event_marg$RGP=RGP
+
+#### [expr 214, purled line 531] partisan_marg$RGP= RGP
+
+#### [expr 215, purled line 532] gender_marg$RGP= RGP
+
+#### [expr 216, purled line 533] race_marg$RGP= RGP
+
+#### [expr 217, purled line 534] sd_all_marg$RGP= RGP
+
+#### [expr 218, purled line 535] non_covid_sd_marg$RGP= RGP
+
+#### [expr 219, purled line 536] testing_marg$RGP= RGP
+
+#### [expr 220, purled line 537] budget_marg$RGP=RGP
+
+#### [expr 221, purled line 540] gen_marg$RGP=factor(gen_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 222, purled line 541] covid_marg$RGP=factor(covid_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 223, purled line 542] sd_marg$RGP=factor(sd_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 224, purled line 543] event_marg$RGP=factor(event_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 225, purled line 544] partisan_marg$RGP=factor(partisan_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 226, purled line 545] gender_marg$RGP=factor(gender_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 227, purled line 546] race_marg$RGP=factor(race_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 228, purled line 547] sd_all_marg$RGP=factor(sd_all_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 229, purled line 548] non_covid_sd_marg$RGP=factor(non_covid_sd_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 230, purled line 549] testing_marg$RGP=factor(testing_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 231, purled line 550] budget_marg$RGP=factor(budget_marg$RGP,levels = c("Republican White Women","Democratic White Men","Democratic White Women","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 232, purled line 554] f1=ggplot(gen_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0, alpha=.6)+   theme_bw()+   xlab("")+   ylab("
+
+#### [expr 233, purled line 563] f2=ggplot(covid_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yla
+
+#### [expr 234, purled line 571] f3=ggplot(sd_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   ylab("
+
+#### [expr 235, purled line 579] f4=ggplot(event_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yla
+
+#### [expr 236, purled line 587] f5=ggplot(partisan_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   
+
+#### [expr 237, purled line 596] f6=ggplot(gender_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yl
+
+#### [expr 238, purled line 604] f7=ggplot(race_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   ylab
+
+#### [expr 239, purled line 613] f8=ggplot(sd_all_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yl
+
+#### [expr 240, purled line 622] f9=ggplot(non_covid_sd_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")
+
+#### [expr 241, purled line 630] f10=ggplot(testing_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   
+
+#### [expr 242, purled line 638] f11=ggplot(budget_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   y
+
+#### [expr 243, purled line 647] together <- ggarrange(f2,f10,f3,f4,f5,f6,f7, ncol = 2, nrow = 4,common.legend = TRUE, legend = "none",font.label = list(size=12),vjust = .5)
+
+#### [expr 244, purled line 648] ggexport(together,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_white_men_gop.pdf",height =9,width = 8 )
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_white_men_gop.pdf
+
+#### [expr 245, purled line 651] gen_marg$AME=round(gen_marg$AME,2)
+
+#### [expr 246, purled line 652] covid_marg$AME=round(covid_marg$AME,2)
+
+#### [expr 247, purled line 653] sd_marg$AME=round(sd_marg$AME,2)
+
+#### [expr 248, purled line 654] event_marg$AME=round(event_marg$AME,2)
+
+#### [expr 249, purled line 655] partisan_marg$AME=round(partisan_marg$AME,2)
+
+#### [expr 250, purled line 656] gender_marg$AME=round(gender_marg$AME,2)
+
+#### [expr 251, purled line 657] race_marg$AME=round(race_marg$AME,2)
+
+#### [expr 252, purled line 658] testing_marg$AME=round(testing_marg$AME,2)
+
+#### [expr 253, purled line 661] gen_marg$CI <-paste(round(gen_marg$lower,2),round(gen_marg$upper,2))
+
+#### [expr 254, purled line 662] covid_marg$CI <-paste(round(covid_marg$lower,2),round(covid_marg$upper,2))
+
+#### [expr 255, purled line 663] sd_marg$CI <-paste(round(sd_marg$lower,2),round(sd_marg$upper,2))
+
+#### [expr 256, purled line 664] event_marg$CI <-paste(round(event_marg$lower,2),round(event_marg$upper,2))
+
+#### [expr 257, purled line 665] partisan_marg$CI <-paste(round(partisan_marg$lower,2),round(partisan_marg$upper,2))
+
+#### [expr 258, purled line 666] gender_marg$CI <-paste(round(gender_marg$lower,2),round(gender_marg$upper,2))
+
+#### [expr 259, purled line 667] race_marg$CI <-paste(round(race_marg$lower,2),round(race_marg$upper,2))
+
+#### [expr 260, purled line 668] testing_marg$CI <-paste(round(testing_marg$lower,2),round(testing_marg$upper,2))
+
+#### [expr 261, purled line 672] gen_marg$AME_CI=paste(gen_marg$AME, "(", gen_marg$CI, ")")
+
+#### [expr 262, purled line 673] covid_marg$AME_CI=paste(covid_marg$AME, "(", covid_marg$CI, ")")
+
+#### [expr 263, purled line 674] testing_marg$AME_CI=paste(testing_marg$AME, "(", testing_marg$CI, ")")
+
+#### [expr 264, purled line 675] sd_marg$AME_CI=paste(sd_marg$AME, "(", sd_marg$CI, ")")
+
+#### [expr 265, purled line 676] event_marg$AME_CI=paste(event_marg$AME, "(", event_marg$CI, ")")
+
+#### [expr 266, purled line 677] partisan_marg$AME_CI=paste(partisan_marg$AME, "(", partisan_marg$CI, ")")
+
+#### [expr 267, purled line 678] gender_marg$AME_CI=paste(gender_marg$AME, "(", gender_marg$CI, ")")
+
+#### [expr 268, purled line 679] race_marg$AME_CI=paste(race_marg$AME, "(", race_marg$CI, ")")
+
+#### [expr 269, purled line 682] names(testing_marg)
+ [1] "factor" "AME"    "SE"     "z"      "p"      "lower"  "upper"  "RGP"   
+ [9] "CI"     "AME_CI"
+
+#### [expr 270, purled line 684] rg_me=cbind(covid_marg[,c(8,10)],testing_marg[,c(10)],sd_marg[,c(10)],event_marg[,c(10)],partisan_marg[,c(10)],gender_marg[,c(10)],race_marg[,c(10)])
+
+#### [expr 271, purled line 685] colnames(rg_me)=c("Group","COVID","COVID-Dangers","COVID-Social Distancing", "COVID-Events","COVID-Partisan","COVID-Women","COVID-Race")
+
+#### [expr 272, purled line 687] library(xtable)
+
+#### [expr 273, purled line 688] print(xtable(rg_me),type="html",file="Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_table_white_men_gop.doc")
+
+#### [expr 274, purled line 690] general=glm(general ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.s
+
+#### [expr 275, purled line 692] covid=glm(covid ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 276, purled line 694] testing=glm(testing ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.s
+
+#### [expr 277, purled line 696] socialdistance=glm(sd ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per
+
+#### [expr 278, purled line 698] events=glm(event ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.m
+
+#### [expr 279, purled line 700] partisan=glm(partisan ~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.
+
+#### [expr 280, purled line 702] gender=glm(gender ~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.m
+
+#### [expr 281, purled line 704] race=glm(racial ~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mil
+
+#### [expr 282, purled line 706] sd_all=glm( all_sd~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.m
+
+#### [expr 283, purled line 708] sd_non_covid_only=glm( non_covid_sd~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.
+
+#### [expr 284, purled line 710] budget=glm( budget~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.m
+
+#### [expr 285, purled line 712] htmlreg(list(general,covid,testing,socialdistance,events,partisan,gender,race,budget),single.row=TRUE,caption = "Count Model Using Totals and White Women Dems as Reference", file = "Total Activity Ana
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/CountModel_Whitewomendems_reference_racegenderparty.doc'.
+
+
+#### [expr 286, purled line 721] library(margins)
+
+#### [expr 287, purled line 722] library(ggplot2)
+
+#### [expr 288, purled line 723] library(ggpubr)
+
+#### [expr 289, purled line 724] theme_set(theme_pubr())
+
+#### [expr 290, purled line 725] res <-margins(general, variables="rpg2", data = by_leg2)
+
+#### [expr 291, purled line 726] res2 <-margins(covid, variables="rpg2", data = by_leg2)
+
+#### [expr 292, purled line 727] res3 <-margins(socialdistance, variables="rpg2", data = by_leg2)
+
+#### [expr 293, purled line 728] res4 <-margins(events, variables="rpg2", data = by_leg2)
+
+#### [expr 294, purled line 729] res5<-margins(partisan, variables="rpg2", data = by_leg2)
+
+#### [expr 295, purled line 730] res6<-margins(gender, variables="rpg2", data = by_leg2)
+
+#### [expr 296, purled line 731] res7<-margins(race, variables="rpg2", data = by_leg2)
+
+#### [expr 297, purled line 732] res8<-margins(sd_all, variables="rpg2", data = by_leg2)
+
+#### [expr 298, purled line 733] res9<-margins(sd_non_covid_only, variables="rpg2", data = by_leg2)
+
+#### [expr 299, purled line 734] res10<-margins(testing, variables="rpg2", data = by_leg2)
+
+#### [expr 300, purled line 735] res11<-margins(budget, variables="rpg2", data = by_leg2)
+
+#### [expr 301, purled line 738] gen_marg=as.data.frame(summary(res))
+
+#### [expr 302, purled line 739] covid_marg=as.data.frame(summary(res2))
+
+#### [expr 303, purled line 740] sd_marg=as.data.frame(summary(res3))
+
+#### [expr 304, purled line 741] event_marg=as.data.frame(summary(res4))
+
+#### [expr 305, purled line 742] partisan_marg=as.data.frame(summary(res5))
+
+#### [expr 306, purled line 743] gender_marg=as.data.frame(summary(res6))
+
+#### [expr 307, purled line 744] race_marg=as.data.frame(summary(res7))
+
+#### [expr 308, purled line 745] sd_all_marg=as.data.frame(summary(res8))
+
+#### [expr 309, purled line 746] non_covid_sd_marg=as.data.frame(summary(res9))
+
+#### [expr 310, purled line 747] testing_marg=as.data.frame(summary(res10))
+
+#### [expr 311, purled line 748] budget_marg=as.data.frame(summary(res11))
+
+#### [expr 312, purled line 750] RGP=gsub("rpg2", "", gen_marg$factor)
+
+#### [expr 313, purled line 752] gen_marg$RGP= RGP
+
+#### [expr 314, purled line 753] sd_marg$RGP=RGP
+
+#### [expr 315, purled line 754] covid_marg$RGP= RGP
+
+#### [expr 316, purled line 755] event_marg$RGP=RGP
+
+#### [expr 317, purled line 756] partisan_marg$RGP= RGP
+
+#### [expr 318, purled line 757] gender_marg$RGP= RGP
+
+#### [expr 319, purled line 758] race_marg$RGP= RGP
+
+#### [expr 320, purled line 759] sd_all_marg$RGP= RGP
+
+#### [expr 321, purled line 760] non_covid_sd_marg$RGP= RGP
+
+#### [expr 322, purled line 761] testing_marg$RGP= RGP
+
+#### [expr 323, purled line 762] budget_marg$RGP=RGP
+
+#### [expr 324, purled line 765] gen_marg$RGP=factor(gen_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 325, purled line 766] covid_marg$RGP=factor(covid_marg$RGP,levels =c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 326, purled line 767] sd_marg$RGP=factor(sd_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 327, purled line 768] event_marg$RGP=factor(event_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 328, purled line 769] partisan_marg$RGP=factor(partisan_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 329, purled line 770] gender_marg$RGP=factor(gender_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 330, purled line 771] race_marg$RGP=factor(race_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 331, purled line 772] sd_all_marg$RGP=factor(sd_all_marg$RGP,levels =c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 332, purled line 773] non_covid_sd_marg$RGP=factor(non_covid_sd_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 333, purled line 774] testing_marg$RGP=factor(testing_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 334, purled line 775] budget_marg$RGP=factor(budget_marg$RGP,levels = c("Republican White Women","Republican White Men","Democratic White Men","Democratic Men of Color","Democratic Women of Color"))
+
+#### [expr 335, purled line 779] f1=ggplot(gen_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   ylab(
+
+#### [expr 336, purled line 788] f2=ggplot(covid_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yla
+
+#### [expr 337, purled line 796] f3=ggplot(sd_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   ylab("
+
+#### [expr 338, purled line 804] f4=ggplot(event_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yla
+
+#### [expr 339, purled line 812] f5=ggplot(partisan_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   
+
+#### [expr 340, purled line 821] f6=ggplot(gender_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yl
+
+#### [expr 341, purled line 829] f7=ggplot(race_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   ylab
+
+#### [expr 342, purled line 838] f8=ggplot(sd_all_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   yl
+
+#### [expr 343, purled line 847] f9=ggplot(non_covid_sd_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")
+
+#### [expr 344, purled line 855] f10=ggplot(testing_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   
+
+#### [expr 345, purled line 863] f11=ggplot(budget_marg,aes(x=RGP, y=AME))+   geom_point(size=2)+   geom_errorbar(aes(ymin=lower, ymax=upper), width=0, size=1.2)+     geom_hline(yintercept=0,  alpha=.6)+   theme_bw()+   xlab("")+   y
+
+#### [expr 346, purled line 872] together <- ggarrange(f2,f10,f3,f4,f5,f6,f7, ncol = 2, nrow = 5,common.legend = TRUE, legend = "none",font.label = list(size=12),vjust = .5)
+
+#### [expr 347, purled line 873] ggexport(together,filename = "Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_white_womendems.pdf",height =9,width = 8 )
+file saved to Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_white_womendems.pdf
+
+#### [expr 348, purled line 875] gen_marg$AME=round(gen_marg$AME,2)
+
+#### [expr 349, purled line 876] covid_marg$AME=round(covid_marg$AME,2)
+
+#### [expr 350, purled line 877] sd_marg$AME=round(sd_marg$AME,2)
+
+#### [expr 351, purled line 878] event_marg$AME=round(event_marg$AME,2)
+
+#### [expr 352, purled line 879] partisan_marg$AME=round(partisan_marg$AME,2)
+
+#### [expr 353, purled line 880] gender_marg$AME=round(gender_marg$AME,2)
+
+#### [expr 354, purled line 881] race_marg$AME=round(race_marg$AME,2)
+
+#### [expr 355, purled line 882] testing_marg$AME=round(testing_marg$AME,2)
+
+#### [expr 356, purled line 884] gen_marg$CI <-paste(round(gen_marg$lower,2),round(gen_marg$upper,2))
+
+#### [expr 357, purled line 885] covid_marg$CI <-paste(round(covid_marg$lower,2),round(covid_marg$upper,2))
+
+#### [expr 358, purled line 886] sd_marg$CI <-paste(round(sd_marg$lower,2),round(sd_marg$upper,2))
+
+#### [expr 359, purled line 887] event_marg$CI <-paste(round(event_marg$lower,2),round(event_marg$upper,2))
+
+#### [expr 360, purled line 888] partisan_marg$CI <-paste(round(partisan_marg$lower,2),round(partisan_marg$upper,2))
+
+#### [expr 361, purled line 889] gender_marg$CI <-paste(round(gender_marg$lower,2),round(gender_marg$upper,2))
+
+#### [expr 362, purled line 890] race_marg$CI <-paste(round(race_marg$lower,2),round(race_marg$upper,2))
+
+#### [expr 363, purled line 891] testing_marg$CI <-paste(round(testing_marg$lower,2),round(testing_marg$upper,2))
+
+#### [expr 364, purled line 895] gen_marg$AME_CI=paste(gen_marg$AME, "(", gen_marg$CI, ")")
+
+#### [expr 365, purled line 896] covid_marg$AME_CI=paste(covid_marg$AME, "(", covid_marg$CI, ")")
+
+#### [expr 366, purled line 897] testing_marg$AME_CI=paste(testing_marg$AME, "(", testing_marg$CI, ")")
+
+#### [expr 367, purled line 898] sd_marg$AME_CI=paste(sd_marg$AME, "(", sd_marg$CI, ")")
+
+#### [expr 368, purled line 899] event_marg$AME_CI=paste(event_marg$AME, "(", event_marg$CI, ")")
+
+#### [expr 369, purled line 900] partisan_marg$AME_CI=paste(partisan_marg$AME, "(", partisan_marg$CI, ")")
+
+#### [expr 370, purled line 901] gender_marg$AME_CI=paste(gender_marg$AME, "(", gender_marg$CI, ")")
+
+#### [expr 371, purled line 902] race_marg$AME_CI=paste(race_marg$AME, "(", race_marg$CI, ")")
+
+#### [expr 372, purled line 905] names(testing_marg)
+ [1] "factor" "AME"    "SE"     "z"      "p"      "lower"  "upper"  "RGP"   
+ [9] "CI"     "AME_CI"
+
+#### [expr 373, purled line 907] rg_me=cbind(covid_marg[,c(8,10)],testing_marg[,c(10)],sd_marg[,c(10)],event_marg[,c(10)],partisan_marg[,c(10)],gender_marg[,c(10)],race_marg[,c(10)])
+
+#### [expr 374, purled line 908] colnames(rg_me)=c("Group","COVID","COVID-Dangers","COVID-Social Distancing", "COVID-Events","COVID-Partisan","COVID-Women","COVID-Race")
+
+#### [expr 375, purled line 911] library(xtable)
+
+#### [expr 376, purled line 912] print(xtable(rg_me),type="html",file="Total Activity Analysis_RaceAndGenderAndParty_v1/marginaleffects_table_white_women_dems.doc")
+
+#### [expr 377, purled line 914] general=glm(general ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq
+
+#### [expr 378, purled line 916] covid=glm(covid ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mil
+
+#### [expr 379, purled line 918] testing=glm(testing ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq
+
+#### [expr 380, purled line 920] socialdistance=glm(sd ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.
+
+#### [expr 381, purled line 922] events=glm(event ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 382, purled line 924] partisan=glm(partisan ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.s
+
+#### [expr 383, purled line 926] gender=glm(gender ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 384, purled line 928] race=glm(racial ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mile
+
+#### [expr 385, purled line 930] summary(race)
+
+Call:
+glm(formula = racial ~ rpg + senator + age_rescaled + leader_or_chair + 
+    X.voteTrump2016_resclaed + Last.Vote.Share + Bill.Sponsor.2019_rescaled + 
+    COVID.Rate.per.100.000_rescaled + perc_white + Population.Density..Per.sq.mile._rescaled + 
+    College_Educated_rescaled + median_income_rescaled + State + 
+    general_rescaled, family = "quasipoisson", data = by_leg2)
+
+Coefficients:
+                                           Estimate Std. Error t value Pr(>|t|)
+(Intercept)                                0.269843   0.414332   0.651  0.51511
+rpgDemocratic White Men                   -0.384496   0.201200  -1.911  0.05647
+rpgRepublican White Women                 -0.004823   0.239183  -0.020  0.98392
+rpgDemocratic White Women                 -0.233642   0.198986  -1.174  0.24078
+rpgDemocratic Men of Color                 0.424216   0.205198   2.067  0.03912
+rpgDemocratic Women of Color               0.428472   0.203253   2.108  0.03543
+senator                                    0.011021   0.160709   0.069  0.94535
+age_rescaled                              -0.028730   0.250798  -0.115  0.90883
+leader_or_chair                           -0.202822   0.107153  -1.893  0.05885
+X.voteTrump2016_resclaed                  -1.037270   0.389475  -2.663  0.00794
+Last.Vote.Share                            0.044149   0.201589   0.219  0.82672
+Bill.Sponsor.2019_rescaled                 0.110956   0.341276   0.325  0.74520
+COVID.Rate.per.100.000_rescaled           -0.066633   0.612308  -0.109  0.91338
+perc_white                                 0.319007   0.298203   1.070  0.28515
+Population.Density..Per.sq.mile._rescaled  0.823242   0.446494   1.844  0.06570
+College_Educated_rescaled                  0.066238   2.030594   0.033  0.97399
+median_income_rescaled                     0.854189   0.316807   2.696  0.00721
+StateGeorgia                              -0.831247   0.341412  -2.435  0.01519
+StateNevada                               -0.654151   0.394369  -1.659  0.09768
+StateNew York                             -0.025372   0.224035  -0.113  0.90987
+StateTexas                                -0.184256   0.301498  -0.611  0.54134
+general_rescaled                           7.083971   0.380166  18.634  < 2e-16
+                                             
+(Intercept)                                  
+rpgDemocratic White Men                   .  
+rpgRepublican White Women                    
+rpgDemocratic White Women                    
+rpgDemocratic Men of Color                *  
+rpgDemocratic Women of Color              *  
+senator                                      
+age_rescaled                                 
+leader_or_chair                           .  
+X.voteTrump2016_resclaed                  ** 
+Last.Vote.Share                              
+Bill.Sponsor.2019_rescaled                   
+COVID.Rate.per.100.000_rescaled              
+perc_white                                   
+Population.Density..Per.sq.mile._rescaled .  
+College_Educated_rescaled                    
+median_income_rescaled                    ** 
+StateGeorgia                              *  
+StateNevada                               .  
+StateNew York                                
+StateTexas                                   
+general_rescaled                          ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 4.047126)
+
+    Null deviance: 4269.2  on 634  degrees of freedom
+Residual deviance: 1993.7  on 613  degrees of freedom
+  (8 observations deleted due to missingness)
+AIC: NA
+
+Number of Fisher Scoring iterations: 6
+
+
+#### [expr 386, purled line 931] sd_all=glm( all_sd~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 387, purled line 933] sd_non_covid_only=glm( non_covid_sd~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.D
+
+#### [expr 388, purled line 935] budget=glm( budget~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.mi
+
+#### [expr 389, purled line 937] library(texreg)
+
+#### [expr 390, purled line 938] htmlreg(list(general,covid,testing,socialdistance,events,partisan,gender,race,budget),single.row=TRUE,caption = "Count Model Using Totals and White Men as Reference", file = "Total Activity Analysis_R
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/CountModel_WhiteGOPmen_reference_racegenderparty.doc'.
+
+
+#### [expr 391, purled line 944] covid=glm(covid ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population.Densi
+
+#### [expr 392, purled line 946] testing=glm(testing ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population.D
+
+#### [expr 393, purled line 948] socialdistance=glm(sd ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population
+
+#### [expr 394, purled line 950] events=glm(event ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population.Dens
+
+#### [expr 395, purled line 952] partisan=glm(partisan ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population.
+
+#### [expr 396, purled line 954] gender=glm(gender ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population.Dens
+
+#### [expr 397, purled line 956] race=glm(racial ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000+perc_asian+perc_black+perc_latino+Population.Densit
+
+#### [expr 398, purled line 958] library(texreg)
+
+#### [expr 399, purled line 959] htmlreg(list(covid,testing,socialdistance,events,partisan,gender,race),single.row=TRUE,caption = "Count Model Using Totals and White Men as Reference", file = "Total Activity Analysis_RaceAndGenderAnd
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/CountModel_WhiteGOPmen_reference_racegenderparty_appendix_extra_race_controls.doc'.
+
+
+#### [expr 400, purled line 964] library(betareg)
+
+#### [expr 401, purled line 967] by_leg2$prop_covid2=by_leg2$prop_covid+.00001
+
+#### [expr 402, purled line 968] by_leg2$prop_testing2=by_leg2$prop_testing+.00001
+
+#### [expr 403, purled line 969] by_leg2$prop_sd2=by_leg2$prop_sd+.00001
+
+#### [expr 404, purled line 970] by_leg2$prop_event2=by_leg2$prop_event+.00001
+
+#### [expr 405, purled line 971] by_leg2$prop_partisan2=by_leg2$prop_partisan+.00001
+
+#### [expr 406, purled line 972] by_leg2$prop_gender2=by_leg2$prop_gender+.00001
+
+#### [expr 407, purled line 973] by_leg2$prop_racial2=by_leg2$prop_racial+.00001
+
+#### [expr 408, purled line 975] covid=betareg(prop_covid2 ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..
+
+#### [expr 409, purled line 978] testing=betareg(prop_testing2 ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Densi
+
+#### [expr 410, purled line 980] socialdistance=betareg(prop_sd2 ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Den
+
+#### [expr 411, purled line 982] events=betareg(prop_event2 ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density.
+
+#### [expr 412, purled line 984] partisan=betareg(prop_partisan2 ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Dens
+
+#### [expr 413, purled line 986] gender=betareg(prop_gender2 ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density.
+
+#### [expr 414, purled line 988] race=betareg(prop_racial2 ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..P
+
+#### [expr 415, purled line 992] library(texreg)
+
+#### [expr 416, purled line 993] htmlreg(list(covid,testing,socialdistance,events,partisan,gender,race),caption = "Frac_Logit Model Using Proportions and GOP White Men as Reference", file = "Total Activity Analysis_RaceAndGenderAndPa
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/FractionalModel_WhiteGOPmen_reference_racegenderparty.doc'.
+
+
+#### [expr 417, purled line 1001] covid=betareg(prop_covid2 ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density.
+
+#### [expr 418, purled line 1003] testing=betareg(prop_testing2 ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Dens
+
+#### [expr 419, purled line 1005] socialdistance=betareg(prop_sd2 ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.De
+
+#### [expr 420, purled line 1007] events=betareg(prop_event2 ~rpg2 +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density
+
+#### [expr 421, purled line 1009] partisan=betareg(prop_partisan2 ~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Den
+
+#### [expr 422, purled line 1011] gender=betareg(prop_gender2 ~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density
+
+#### [expr 423, purled line 1013] race=betareg(prop_racial2 ~rpg2+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..
+
+#### [expr 424, purled line 1017] library(texreg)
+
+#### [expr 425, purled line 1018] htmlreg(list(covid,testing,socialdistance,events,partisan,gender,race),caption = "Frac_Logit Model Using Proportions and Dem White Women as Reference", file = "Total Activity Analysis_RaceAndGenderAnd
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/FractionalModel_WhiteDemwomen_reference_racegenderparty.doc'.
+
+
+#### [expr 426, purled line 1023] covid=lm(prop_covid ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq
+
+#### [expr 427, purled line 1025] testing=lm(prop_testing ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Pe
+
+#### [expr 428, purled line 1027] socialdistance=lm(prop_sd ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..
+
+#### [expr 429, purled line 1029] events=lm(prop_event ~rpg +senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.s
+
+#### [expr 430, purled line 1031] partisan=lm(prop_partisan ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..P
+
+#### [expr 431, purled line 1033] gender=lm(prop_gender ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.s
+
+#### [expr 432, purled line 1035] race=lm(prop_racial ~rpg+senator+age_rescaled+leader_or_chair+X.voteTrump2016_resclaed+Last.Vote.Share+Bill.Sponsor.2019_rescaled+COVID.Rate.per.100.000_rescaled+perc_white+Population.Density..Per.sq.
+
+#### [expr 433, purled line 1037] tapply(by_leg2$prop_covid,by_leg2$rpg,mean)
+     Republican White Men      Democratic White Men    Republican White Women 
+                0.2548874                 0.3054403                 0.2845219 
+   Democratic White Women   Democratic Men of Color Democratic Women of Color 
+                0.2783627                 0.2849304                 0.2831843 
+
+#### [expr 434, purled line 1039] library(texreg)
+
+#### [expr 435, purled line 1040] htmlreg(list(covid,testing,socialdistance,events,partisan,gender,race),caption = "OLS Model Using Proportions and White Men as Reference", file = "Total Activity Analysis_RaceAndGenderAndParty_v1/OLSM
+The table was written to the file 'Total Activity Analysis_RaceAndGenderAndParty_v1/OLSModel_WhiteGOPmen_reference_racegenderparty.doc'.
+
+
+#### [expr 436, purled line 1045] table(by_leg$race_gender)
+
+            White Man           White Woman             Black Man 
+                  335                   101                    44 
+          Black Woman            Latino Man          Latina Woman 
+                   50                    47                    47 
+   Asian American Man  Asian American Woman   Native American Man 
+                   19                     5                     2 
+Native American Woman    Middle Eastern Man  Middle Eastern Woman 
+                    1                     2                     1 
+
+#### [expr 437, purled line 1046] basics= by_leg %>%    group_by(race_gender)  %>%  summarize(average_total=round(mean(general)),average_covid=round(mean(covid)),average_testing=round(mean(testing)),average_sd=round(mean(sd)),average_
+
+#### [expr 438, purled line 1051] basics$freq=c(335,102,42,52,48,46,19,4,2,1,1,1)
+
+#### [expr 439, purled line 1052] basics$Group= c("White Men (n=335)","White Women (n=101)","Black Men (n=42)", "Black Women (n=52)","Latino Men (n=48)","Latina Woman (n=46)","Asian Men (n=19)", "Asian Women (n=4)","Native American Me
+
+#### [expr 440, purled line 1053] basics$Group=factor(basics$Group,levels =c("White Men (n=335)","White Women (n=101)","Black Men (n=42)", "Black Women (n=52)","Latino Men (n=48)","Latina Woman (n=46)","Asian Men (n=19)", "Asian Women
+
+#### [expr 441, purled line 1055] basics$group3= c("White Men","White Women","Black Men", "Black Women","Latino Men","Latina Woman","Asian Men", "Asian Women","Native American Men","Native American Women", "Middle Eastern Men","Middle
+
+#### [expr 442, purled line 1056] basics$group3=factor(basics$group3,levels = c("White Men","White Women","Black Men", "Black Women","Latino Men","Latina Woman","Asian Men", "Asian Women","Native American Men","Native American Women",
+
+#### [expr 443, purled line 1059] names(basics)
+ [1] "race_gender"          "average_total"        "average_covid"       
+ [4] "average_testing"      "average_sd"           "average_events"      
+ [7] "average_partisan"     "average_gender"       "average_racial"      
+[10] "average_budget"       "average_all_sd"       "average_non_covid_sd"
+[13] "freq"                 "Group"                "group3"              
+
+#### [expr 444, purled line 1060] basics2=basics[,c(14,2:10)]
+
+#### [expr 445, purled line 1061] colnames(basics2)=c("","All","COVID","COVID-Dangers","COVID-Social Distancing","COVID-Events","COVID-Partisan","COVID-Women","COVID-Race","Budget")
+
+#### [expr 446, purled line 1062] print(xtable(basics2),type="html",file="Total Activity Analysis_RaceAndGender/meansbyraceandgenderandethnicity.doc")
+Warning message:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead. 
+
+TOTAL ERRORS: 0 

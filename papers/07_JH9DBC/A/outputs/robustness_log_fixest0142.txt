@@ -1,0 +1,22 @@
+NOTE: 14/0 fixed-effect singletons were removed (14 observations).
+The variable 'juicio' has been removed because of collinearity (see
+$collin.var).
+NOTE: 14/0 fixed-effect singletons were removed (14 observations).
+The variable 'juicio' has been removed because of collinearity (see
+$collin.var).
+NOTE: 22/0 fixed-effect singletons were removed (22 observations).
+The variable 'juicio' has been removed because of collinearity (see
+$collin.var).
+     id    estimate         se      ci_low     ci_high      p_value n_used
+R_a R_a -0.06614859 0.01367906 -0.09200766 -0.03818264 0.000000e+00   1000
+R_b R_b -0.06614859 0.01430130          NA          NA 5.696237e-06    586
+R_c R_c -0.06614859 0.02848763          NA          NA 2.697299e-02    586
+    n_failed rows_dropped nobs n_clusters
+R_a        0           NA  586        307
+R_b       NA            0  586         NA
+R_c       NA            0  586         32
+                                                                                         extra
+R_a                                                                                           
+R_b  secondary 1/99 pct trim: dropped=12 nobs=566 estimate=-0.062787 se=0.013881 p=9.09521e-06
+R_c vcov: Standard-errors: Clustered (id_estado) ; multilevel model2 secondary: not applicable
+fixest version used: 0.14.2 

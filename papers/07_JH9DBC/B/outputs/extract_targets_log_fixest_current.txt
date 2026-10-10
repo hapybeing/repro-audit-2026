@@ -1,0 +1,39 @@
+       id   model     estimate         se            p
+1      T1 model1B -0.052467241 0.01422130 2.692575e-04
+2      T2 model2B -0.066148594 0.01430130 5.696237e-06
+3      T3 model3B -0.034111265 0.01958567 8.266498e-02
+4   secB4 model4B -0.066140702 0.01432510 5.918789e-06
+5   secG1 model1G -0.044667901 0.01655033 6.956622e-03
+6      T5 model2G -0.050595874 0.01707177 3.039486e-03
+7   secG3 model3G -0.006253584 0.02390134 7.935978e-01
+8   secG4 model4G -0.050635659 0.01707745 3.026236e-03
+9  tab2_1  model1 -0.062370965 0.01427120 1.240143e-05
+10 tab2_2  model2 -0.067432502 0.01413080 1.823850e-06
+11 tab2_3  model3 -0.038226760 0.01869984 4.093093e-02
+12 tab2_4  model4 -0.067352943 0.01418462 2.051253e-06
+                         p_type vcov fixest_version nobs
+1  fixest t, model default vcov  IID         0.14.2  586
+2  fixest t, model default vcov  IID         0.14.2  586
+3  fixest t, model default vcov  IID         0.14.2  586
+4  fixest t, model default vcov  IID         0.14.2  586
+5              Wald z two-sided lmer         0.14.2  297
+6              Wald z two-sided lmer         0.14.2  297
+7              Wald z two-sided lmer         0.14.2  297
+8              Wald z two-sided lmer         0.14.2  297
+9              Wald z two-sided lmer         0.14.2  600
+10             Wald z two-sided lmer         0.14.2  600
+11             Wald z two-sided lmer         0.14.2  600
+12             Wald z two-sided lmer         0.14.2  600
+                                                                        note
+1  term year_2018:juicio; vcov: ; fixef sizes: unique_id 293 partido_gober 5
+2  term year_2018:juicio; vcov: ; fixef sizes: unique_id 293 partido_gober 5
+3  term year_2018:juicio; vcov: ; fixef sizes: unique_id 293 partido_gober 5
+4  term year_2018:juicio; vcov: ; fixef sizes: unique_id 293 partido_gober 5
+5         Satterthwaite p=0.00778211 | groups: unique_id 152 partido_gober 3
+6         Satterthwaite p=0.00352516 | groups: unique_id 152 partido_gober 3
+7           Satterthwaite p=0.793954 | groups: unique_id 152 partido_gober 3
+8         Satterthwaite p=0.00351298 | groups: unique_id 152 partido_gober 3
+9        Satterthwaite p=1.71987e-05 | groups: unique_id 307 partido_gober 5
+10       Satterthwaite p=2.85543e-06 | groups: unique_id 307 partido_gober 5
+11         Satterthwaite p=0.0416912 | groups: unique_id 307 partido_gober 5
+12       Satterthwaite p=3.19848e-06 | groups: unique_id 307 partido_gober 5

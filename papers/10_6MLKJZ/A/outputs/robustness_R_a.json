@@ -1,0 +1,17 @@
+{
+  "E1_cregg": 0.659697188175823,
+  "E1_cregg_se": 0.00712553874821003,
+  "E1_unweighted_check": 0.659697188175919,
+  "n_resp_private": 1285,
+  "n_resp_public": 333,
+  "B": 1000,
+  "seed": 20261009,
+  "boot_ci_lower": 0.645554704756934,
+  "boot_ci_upper": 0.673080903426863,
+  "boot_se": 0.00707209455822125,
+  "p_value": 0,
+  "same_dir_sig": true,
+  "FC1_count": 0,
+  "FC1_levels": [],
+  "Since_Education_levels_excl0": ["1 Year", "3 Years"]
+}

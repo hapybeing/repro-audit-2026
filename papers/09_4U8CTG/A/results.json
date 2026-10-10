@@ -1,0 +1,156 @@
+{
+ "paper_id": "09_4U8CTG",
+ "agent": "A",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "Partial: Study 2 targets T1 to T4 ran. Study 1 targets T5 and T6 could not run: FES 2022 inputs not in the deposit and registration-only at ELIPSS.",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "ATE of Out-group Government treatment (win_mainstream) on change in SWD, Zemmour block, Model 1 baseline OLS without controls (model_1_ez)",
+   "paper_value": -1.27,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.26602564102564,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.003974358974359937,
+   "rel_diff": 0.0031294165152440452,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "model_1_ez, term treatmentwin_mainstream; classical SE 0.628203 (paper 0.63), two-sided p 0.046144. Regenerated tables_supplementary_materials/tableD3_ez_swd.tex compared with the deposited copy: see outputs/table_comparison_summary.txt."
+  },
+  {
+   "id": "T2",
+   "description": "Number of observations in model_1_ez (Zemmour block, DV change in SWD)",
+   "paper_value": 123,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 123,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(model_1_ez)"
+  },
+  {
+   "id": "T3",
+   "description": "ATE of Out-group Government treatment (win_mainstream) on change in feelings towards LREM, Zemmour block, Model 1 baseline OLS without controls (model_1_ez_lrem)",
+   "paper_value": -0.51,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -0.511304347826088,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0013043478260880148,
+   "rel_diff": -0.002557544757035323,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "model_1_ez_lrem, term treatmentwin_mainstream; classical SE 0.341797 (paper 0.34), two-sided p 0.137412."
+  },
+  {
+   "id": "T4",
+   "description": "Number of observations in model_1_ez_lrem (Zemmour block, DV change in feelings towards LREM)",
+   "paper_value": 120,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 120,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(model_1_ez_lrem)"
+  },
+  {
+   "id": "T5",
+   "description": "Study 1 (FES 2022 panel): coefficient of 'Vote for Eric Zemmour' on SWD change (normalised -1 to 1), full specification, weighted lm_robust HC2, reference other candidate (full_model_panel). Needs FES microdata restricted at ELIPSS; expected not runnable under audit rules",
+   "paper_value": -0.11,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": null,
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not run: FES 2022 microdata (study1_fes_panel.csv, built by 00 from ELIPSS wave 3/4 files) are not in the deposit and are restricted at ELIPSS; registration not permitted under audit rules. Study 1 code in 02 was skipped (diffs/02_supplementary_materials.R.diff)."
+  },
+  {
+   "id": "T6",
+   "description": "Study 1: number of observations in the full-specification SWD change model (full_model_panel). Needs FES microdata restricted at ELIPSS",
+   "paper_value": 892,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": null,
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not run: FES 2022 microdata (study1_fes_panel.csv, built by 00 from ELIPSS wave 3/4 files) are not in the deposit and are restricted at ELIPSS; registration not permitted under audit rules. Study 1 code in 02 was skipped (diffs/02_supplementary_materials.R.diff)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Stratified case bootstrap within treatment arms, set.seed(20261010), B = 2000, percentile 95% CI; T1 (secondary T3)",
+   "ran": true,
+   "estimate": -1.26602564102564,
+   "se_or_ci": "SE 0.7458; 95% CI [-2.7885, 0.2054] (percentile)",
+   "p_value": 0.086,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "n = 123. Secondary (LREM, affect_LREM_ch): estimate -0.5113, SE 0.2619, 95% CI [-1.0453, -0.0103], p 0.0410, n = 120; same as paper's 'negative, not significant at 5%': False. p_value = min(1, 2*min(share >= 0, share <= 0)); SE = SD of bootstrap estimates."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on the outcome within the analysis sample, refit lm(dv ~ treatment), classical SE; T1 (secondary T3)",
+   "ran": true,
+   "estimate": -0.541666666666666,
+   "se_or_ci": "SE 0.5476; 95% CI [-1.6263, 0.5430]",
+   "p_value": 0.32466610487943,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "n = 121. Secondary (LREM, affect_LREM_ch): estimate -0.5113, SE 0.2673, 95% CI [-1.0409, 0.0183], p 0.0583, n = 117; same as paper's 'negative, not significant at 5%': True. Primary dropped 2 row(s) (control:2); secondary dropped 3 (win_govt:2;win_parl:1). range_z=-2.089..4.212 (primary)."
+  },
+  {
+   "id": "R_c",
+   "description": "ANCOVA lm(swd_w2 ~ treatment + swd_w1), classical SE; T1 (secondary lm(affect_LREM_w2 ~ treatment + affect_LREM_w1))",
+   "ran": true,
+   "estimate": -0.818777422152727,
+   "se_or_ci": "SE 0.5925; 95% CI [-1.9921, 0.3546]",
+   "p_value": 0.169615202358937,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "n = 123. Secondary (LREM, affect_LREM_w2): estimate -0.3746, SE 0.3354, 95% CI [-1.0390, 0.2898], p 0.2664, n = 120; same as paper's 'negative, not significant at 5%': True. Diagnostic before fitting: rows_swd_ch_ne_w2_minus_w1=0; rows_swd_comparison_NA=0; rows_lrem_ch_ne_w2_minus_w1=0."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "replication_scripts/02_supplementary_materials.R",
+   "line": 1729,
+   "description": "make_mht_table attaches a fixed label vector (Intercept, In-group Government, In-group Parliament, Out-group Government, Placebo) to summary(model)$coefficients[, 4], whose rows follow the treatment factor levels (control, danger_contr, win_govt, win_mainstream, win_parl). Three of the five row labels in Tables D8 and D9 therefore sit next to another coefficient's p-value; the Out-group Government row is correct.",
+   "evidence": "row 2 labelled 'In-group Government' holds p of treatmentdanger_contr (0.3373); row 3 labelled 'In-group Parliament' holds p of treatmentwin_govt (0.3096); row 5 labelled 'Placebo' holds p of treatmentwin_parl (0.1718). Source: outputs/mht_label_check.csv. Does not touch any target."
+  }
+ ],
+ "env_fixes": [
+  "diffs/02_supplementary_materials.R.diff: commented out the LaTeX/TinyTeX block (lines 108 to 117; tinytex::tinytex_root() errors on the system TeX Live and would stop the script) and every line that reads or uses the missing Study 1 FES inputs (lines 146 to 149, 162 to 192, 253 to 286, 1218 to 1262, 1454 to 1468, 1789 to 1815, 1818 to 1861). Study 2 code untouched.",
+  "Packages: texreg, stargazer, vtable, jtools, binom installed from CRAN source into a per-run R_LIBS_USER (no Debian binaries); everything else from Debian r-cran-* system binaries (see environment.txt)."
+ ],
+ "proposed_class": "C",
+ "class_reason": "Study 2 targets T1 to T4 reproduce exactly to the paper's rounding, but Study 1 targets T5 and T6 (half the abstract's main claim) rest on FES data available only on registration at ELIPSS, so under batch2_class_decisions.md item 2 the main class is C. Alternative class on openly available targets T1 to T4 only: A.",
+ "alternative_class_open_targets_only": "A",
+ "confidence": "high",
+ "confidence_reason": "T1 to T4 parsed by script from the authors' unmodified Study 2 code and match to rounding; class follows a pre-fixed batch rule. A/B agreement not yet known.",
+ "time_minutes": 19,
+ "uncertainties": [
+  "T5 and T6 (Study 1, FES 2022 panel) were not reproduced: the inputs are not in the deposit and are registration-only at ELIPSS. Whether the Study 1 half of the abstract's claim reproduces is unknown to this audit.",
+  "T1 p-value: reproduced two-sided classical OLS p = 0.0461 (t = -2.015), just under 0.05, matching the paper's * mark; the paper's own D8 rounds it to 0.05. A small change in data or method could move it across the threshold (see R_a, R_b, R_c, none of which keeps p < 0.05).",
+  "R_b removes 2 control-arm rows with z > 3 on swd_ch (z max 4.21); the T1 estimate then shrinks to -0.54 (p = 0.32). This shows the Model 1 estimate is sensitive to two control-arm observations; it is a pre-registered robustness outcome and does not change the class.",
+  "Environment: most R packages are Debian system binaries installed machine-wide by the shared setup (not a fresh per-run library); only texreg, stargazer, vtable, jtools and binom are in the per-run library. No versions are pinned by the authors (README: R 4.1 or higher). All 22 regenerated Study 2 tables are byte-identical to the deposited ones after stripping CR line endings, so version drift did not affect any reported number.",
+  "Run 1 of the extraction sourced 02 with source(echo = FALSE), which does not auto-print, so the texreg() tables written via sink() were empty files. Run 2 used print.eval = TRUE (equivalent to running 02 top level with Rscript); target values were identical in both runs (cmp of targets_extracted.csv). This concerns how 02 is invoked, not the authors' analysis.",
+  "The dataset API lists 64 files (27 PNG); PREREG.md says 66 files and 29 PNG. All 37 non-image files match the PREREG sha256 values exactly. The count difference was not investigated further.",
+  "01_manuscript.R was not run (not required by the PREREG); Figures 3 and 6 were not regenerated or compared.",
+  "Code observations not confirmed by a run, from reading 02: (i) model_4_ez (02 line 294) uses controls income + gender only, while model_3_ez uses age + gender + educ + income; whether this is intended is not stated in the code. (ii) Text p. 15 attributes the 90% significance of the LREM effect to the controls + robust SE specification, but the reproduced Model 4 LREM p = 0.107 and Model 2 (robust, no controls) p = 0.058, consistent with the PREREG note. Both are descriptions, not verified errors."
+ ]
+}

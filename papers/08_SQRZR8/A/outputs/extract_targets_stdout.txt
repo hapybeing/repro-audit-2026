@@ -1,0 +1,53 @@
+                 outcome                         term     estimate        se
+1        positive_emo_rv surveillance_facPersonalized -0.201003376 0.0576641
+2        positive_emo_rv       surveillance_facPublic -0.080145890 0.0566324
+3        positive_emo_rv   censorship_facPersonalized -0.222069598 0.0575973
+4        positive_emo_rv         censorship_facPublic -0.188911451 0.0574135
+5           negative_emo surveillance_facPersonalized  0.211350587 0.0793002
+6           negative_emo       surveillance_facPublic  0.027714035 0.0774659
+7           negative_emo   censorship_facPersonalized  0.026151848 0.0785984
+8           negative_emo         censorship_facPublic  0.071637248 0.0775213
+9         neutral_emo_rv surveillance_facPersonalized  0.050812012 0.0356856
+10        neutral_emo_rv       surveillance_facPublic -0.000982095 0.0361783
+11        neutral_emo_rv   censorship_facPersonalized  0.065308645 0.0361107
+12        neutral_emo_rv         censorship_facPublic  0.016795344 0.0357070
+13  general_attitude_fic surveillance_facPersonalized -0.531695071 0.0986410
+14  general_attitude_fic       surveillance_facPublic -0.250665170 0.0941214
+15  general_attitude_fic   censorship_facPersonalized -0.351633750 0.0958827
+16  general_attitude_fic         censorship_facPublic -0.176844023 0.0947790
+17 general_attitude_real surveillance_facPersonalized -0.237095951 0.0789739
+18 general_attitude_real       surveillance_facPublic -0.105913287 0.0787759
+19 general_attitude_real   censorship_facPersonalized -0.017616680 0.0803835
+20 general_attitude_real         censorship_facPublic -0.004429148 0.0791890
+       p_value nobs        r2 se_type
+1  4.95438e-04 4507 0.1000442     HC2
+2  1.57081e-01 4507 0.1000442     HC2
+3  1.17084e-04 4507 0.1000442     HC2
+4  1.00831e-03 4507 0.1000442     HC2
+5  7.72191e-03 4507 0.1312430     HC2
+6  7.20542e-01 4507 0.1312430     HC2
+7  7.39356e-01 4507 0.1312430     HC2
+8  3.55485e-01 4507 0.1312430     HC2
+9  1.54551e-01 4507 0.0558731     HC2
+10 9.78345e-01 4507 0.0558731     HC2
+11 7.05854e-02 4507 0.0558731     HC2
+12 6.38117e-01 4507 0.0558731     HC2
+13 7.39896e-08 4507 0.2880737     HC2
+14 7.76752e-03 4507 0.2880737     HC2
+15 2.47934e-04 4507 0.2880737     HC2
+16 6.21268e-02 4507 0.2880737     HC2
+17 2.69509e-03 4507 0.4002478     HC2
+18 1.78859e-01 4507 0.4002478     HC2
+19 8.26537e-01 4507 0.4002478     HC2
+20 9.55399e-01 4507 0.4002478     HC2
+             Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
+Sadness       0.400  0.095  0.122  0.148  0.103
+Anger         0.413  0.142  0.121  0.207  0.155
+Fear          0.396  0.115  0.147  0.146 -0.008
+Disgust       0.417  0.139  0.187  0.160  0.133
+DoNotCare     0.229 -0.243  0.389 -0.833 -0.008
+Helplessness  0.350  0.110 -0.092 -0.186 -0.185
+Secured       0.062 -0.586  0.114  0.187 -0.081
+Happiness     0.108 -0.659  0.163  0.308 -0.140
+Curiosity     0.220 -0.296 -0.635 -0.156  0.654
+Surprised     0.317 -0.034 -0.558 -0.076 -0.678

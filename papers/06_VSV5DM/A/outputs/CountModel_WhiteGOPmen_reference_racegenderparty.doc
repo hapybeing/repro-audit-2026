@@ -1,0 +1,348 @@
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>Count Model Using Totals and White Men as Reference</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">All</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID-Dangers</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID-Social Distancing</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID-Events</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID-Partisan</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID-Women</th>
+<th style="padding-left: 5px;padding-right: 5px;">COVID-Race</th>
+<th style="padding-left: 5px;padding-right: 5px;">Budget</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Constant</td>
+<td style="padding-left: 5px;padding-right: 5px;">5.50 (0.31)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">3.51 (0.19)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">1.93 (0.37)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">1.57 (0.31)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.64 (0.35)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">1.29 (0.35)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.87 (0.37)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.27 (0.41)</td>
+<td style="padding-left: 5px;padding-right: 5px;">1.33 (0.28)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Democratic White Men</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02 (0.14)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.09 (0.09)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.17 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.23 (0.14)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.55 (0.16)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.46 (0.16)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.17 (0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.38 (0.20)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.31 (0.11)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Republican White Women</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.33 (0.16)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.10 (0.10)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.08 (0.19)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.20 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.48 (0.27)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.00 (0.15)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.28 (0.19)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.00 (0.24)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.02 (0.13)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Democratic White Women</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.49 (0.14)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.16 (0.09)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.10 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.30 (0.14)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.91 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.48 (0.16)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.59 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.23 (0.20)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.30 (0.12)<sup class="texreg-stars">&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Democratic MOC</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.11 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.26 (0.10)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.38 (0.18)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.55 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.71 (0.18)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.14 (0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.21 (0.19)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.42 (0.21)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.44 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Democratic WOC</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.40 (0.16)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.23 (0.10)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.14 (0.19)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.49 (0.16)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.68 (0.18)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.23 (0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.62 (0.18)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.43 (0.20)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.51 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Senator</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.36 (0.11)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.05 (0.07)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.14 (0.14)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.12 (0.12)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.29 (0.13)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.21 (0.13)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.43 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.01 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02 (0.10)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Age</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.81 (0.18)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.25 (0.12)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.33 (0.22)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.39 (0.19)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.69 (0.21)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.12 (0.20)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.36 (0.23)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.25)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.37 (0.17)<sup class="texreg-stars">&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Party Leader</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.10 (0.08)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.04 (0.05)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.15 (0.09)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.11 (0.08)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.01 (0.09)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.08 (0.08)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.08 (0.10)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.20 (0.11)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.17 (0.07)<sup class="texreg-stars">&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Trump 2016 Vote Share</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.14 (0.29)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.24 (0.18)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.04 (0.33)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.04 (0.29)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.33 (0.32)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.28 (0.32)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.38 (0.35)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.04 (0.39)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.49 (0.26)<sup class="texreg-stars">&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Previous Vote Share</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.15)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.09)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.05 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.07 (0.14)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.18 (0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.08 (0.15)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.39 (0.18)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.04 (0.20)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.20 (0.13)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">2019 Bill Sponsorship</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.44 (0.30)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.14 (0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.01 (0.33)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.25 (0.25)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.27)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.62 (0.31)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.32 (0.32)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.11 (0.34)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.97 (0.25)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Covid Rate per 100,000</td>
+<td style="padding-left: 5px;padding-right: 5px;">1.38 (0.36)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.44 (0.25)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.30 (0.45)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.39)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.11 (0.51)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.44 (0.39)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.62 (0.58)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.07 (0.61)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.99 (0.29)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">% White</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.01 (0.23)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.48 (0.14)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.28 (0.26)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.53 (0.23)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.50 (0.26)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.30 (0.26)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.28 (0.28)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.32 (0.30)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.89 (0.22)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Population Density</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.43 (0.33)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.38 (0.20)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.43 (0.36)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.16 (0.34)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.97 (0.36)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.05 (0.33)</td>
+<td style="padding-left: 5px;padding-right: 5px;">1.34 (0.43)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.82 (0.45)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">1.01 (0.34)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">% College Educated</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.93 (1.25)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.48 (0.76)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.58 (1.73)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.48 (1.43)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.45 (2.34)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.05 (2.34)</td>
+<td style="padding-left: 5px;padding-right: 5px;">1.32 (1.21)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.07 (2.03)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.12 (1.05)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Median Income</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.08 (0.24)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.12 (0.15)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.13 (0.29)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.48 (0.24)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.97 (0.26)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.67 (0.26)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.89 (0.27)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.85 (0.32)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.18 (0.20)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">GA Legislator</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.01 (0.24)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.01 (0.15)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.54 (0.27)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.60 (0.23)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.10 (0.28)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.16 (0.25)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.90 (0.30)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.83 (0.34)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.24 (0.20)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">NV Legislator</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.49 (0.31)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.58 (0.22)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.63 (0.47)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.79 (0.40)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-2.03 (0.43)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.36 (0.44)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.49 (0.39)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.65 (0.39)<sup class="texreg-stars">&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.03 (0.31)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">NY Legislator</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.26 (0.18)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.48 (0.10)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.32 (0.20)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.58 (0.17)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.73 (0.17)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.22 (0.20)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.13 (0.19)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.22)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.10 (0.17)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">TX Legislator</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.26 (0.23)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.33 (0.13)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.21 (0.26)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.18 (0.21)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.59 (0.24)<sup class="texreg-stars">&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.38 (0.24)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.90 (0.26)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.18 (0.30)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.84 (0.22)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Total Posts</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">6.73 (0.17)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">6.67 (0.32)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">7.17 (0.27)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">6.18 (0.34)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">6.60 (0.29)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">6.88 (0.37)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">7.08 (0.38)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">6.89 (0.28)<sup class="texreg-stars">&#42;&#42;&#42;</sup></td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">AIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">BIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Log Likelihood</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">80821.40</td>
+<td style="padding-left: 5px;padding-right: 5px;">10622.60</td>
+<td style="padding-left: 5px;padding-right: 5px;">6304.37</td>
+<td style="padding-left: 5px;padding-right: 5px;">5016.78</td>
+<td style="padding-left: 5px;padding-right: 5px;">3018.34</td>
+<td style="padding-left: 5px;padding-right: 5px;">5476.43</td>
+<td style="padding-left: 5px;padding-right: 5px;">2085.84</td>
+<td style="padding-left: 5px;padding-right: 5px;">1993.68</td>
+<td style="padding-left: 5px;padding-right: 5px;">2598.04</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+<td style="padding-left: 5px;padding-right: 5px;">635</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="10"><sup class="texreg-stars">&#42;&#42;&#42;</sup>p &lt; 0.01; <sup class="texreg-stars">&#42;&#42;</sup>p &lt; 0.05; <sup class="texreg-stars">&#42;</sup>p &lt; 0.1</td>
+</tr>
+</tfoot>
+</table>

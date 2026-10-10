@@ -1,0 +1,14 @@
+Warning message:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the sjPlot package.
+  Please report the issue at <https://github.com/strengejacke/sjPlot/issues>. 
+              term     estimate     conf.low    conf.high
+1           juicio -0.010500986 -0.039515790  0.018513818
+2        year_2018 -0.141127619 -0.153111155 -0.129144083
+3       log_pobtot  0.093867675  0.046752555  0.140982796
+4          log_pib -0.002246001 -0.013329848  0.008837846
+5      econ_growth  0.002023438 -0.007071728  0.011118605
+6       hom_per100  0.007600980  0.003591083  0.011610876
+7 juicio:year_2018 -0.067432502 -0.095185392 -0.039679613
+row7 term: juicio:year_2018  row7 estimate: -0.0674325  fixef interaction: -0.0674325 

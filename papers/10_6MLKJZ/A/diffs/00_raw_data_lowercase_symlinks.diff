@@ -1,0 +1,9 @@
+--- deposit: data/conjoint_data/raw_data/ (file listing)
++++ run copy: data/conjoint_data/raw_data/ (file listing, symlinks added)
+@@ -1,4 +1,6 @@
+ data_HSVN.csv
+ data_UHH.csv
+ data_civic.csv
++data_hsvn.csv -> data_HSVN.csv
+ data_rh.csv
++data_uhh.csv -> data_UHH.csv

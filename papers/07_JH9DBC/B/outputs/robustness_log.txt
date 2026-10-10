@@ -1,0 +1,138 @@
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+$fixest_version
+[1] "0.12.1"
+
+$model2B_default_vcov
+[1] "Clustered (unique_id) "
+
+$R_a
+$R_a$estimate
+[1] -0.06614859
+
+$R_a$ci_low
+[1] -0.09200766
+
+$R_a$ci_high
+[1] -0.03818264
+
+$R_a$boot_se
+[1] 0.01367906
+
+$R_a$p_value
+[1] 0
+
+$R_a$n_rep
+[1] 1000
+
+$R_a$n_not_estimable
+[1] 0
+
+$R_a$pass
+[1] TRUE
+
+$R_a$secondary_model2_multilevel
+$R_a$secondary_model2_multilevel$estimate
+[1] -0.0674325
+
+$R_a$secondary_model2_multilevel$ci_low
+[1] -0.09131792
+
+$R_a$secondary_model2_multilevel$ci_high
+[1] -0.04347837
+
+$R_a$secondary_model2_multilevel$boot_se
+[1] 0.01258927
+
+$R_a$secondary_model2_multilevel$p_value
+[1] 0
+
+$R_a$secondary_model2_multilevel$n_not_estimable
+[1] 0
+
+
+
+$R_b
+$R_b$estimate
+   Estimate 
+-0.06614859 
+
+$R_b$se
+Std. Error 
+ 0.0138993 
+
+$R_b$p_value
+    Pr(>|t|) 
+3.002687e-06 
+
+$R_b$rows_dropped
+[1] 0
+
+$R_b$nobs
+[1] 600
+
+$R_b$pass
+[1] TRUE
+
+$R_b$secondary_trim_1_99
+$R_b$secondary_trim_1_99$rows_dropped
+[1] 12
+
+$R_b$secondary_trim_1_99$estimate
+   Estimate 
+-0.06278697 
+
+$R_b$secondary_trim_1_99$se
+Std. Error 
+0.01382316 
+
+$R_b$secondary_trim_1_99$p_value
+    Pr(>|t|) 
+8.038686e-06 
+
+$R_b$secondary_trim_1_99$nobs
+[1] 588
+
+
+$R_b$secondary_model2_multilevel
+$R_b$secondary_model2_multilevel$estimate
+[1] -0.0674325
+
+$R_b$secondary_model2_multilevel$se
+[1] 0.0141308
+
+$R_b$secondary_model2_multilevel$p_wald
+[1] 1.82385e-06
+
+$R_b$secondary_model2_multilevel$nobs
+[1] 600
+
+
+
+$R_c
+$R_c$estimate
+   Estimate 
+-0.06614859 
+
+$R_c$se
+Std. Error 
+0.02848184 
+
+$R_c$p_value
+ Pr(>|t|) 
+0.0269443 
+
+$R_c$n_clusters
+[1] 32
+
+$R_c$pass
+[1] TRUE
+
+$R_c$secondary_model2_multilevel
+[1] "not applicable"
+
+$R_c$indicted_states
+[1] "CHIHUAHUA"    "QUINTANA ROO" "SONORA"       "VERACRUZ"    
+
+

@@ -1,0 +1,42 @@
+# Check of hard-coded group sizes (multivariate.R lines 48/243: 335,101,114,104; lines 147/364: 242,91,38,63,108,101) against the deposited data
+
+     White Man    White Woman   Man of Color Woman of Color 
+           335            101            114            104 
+
+     Republican White Men      Democratic White Men     Independent White Men 
+                      242                        91                         2 
+   Republican White Women    Democratic White Women   Republican Men of Color 
+                       38                        63                         6 
+  Democratic Men of Color Republican Women of Color Democratic Women of Color 
+                      108                         3                       101 
+rows in by_leg2: 643  rows in model: 635 
+                                    covid 
+                                        0 
+                                      rpg 
+                                        0 
+                                  senator 
+                                        0 
+                             age_rescaled 
+                                        5 
+                          leader_or_chair 
+                                        0 
+                 X.voteTrump2016_resclaed 
+                                        0 
+                          Last.Vote.Share 
+                                        3 
+               Bill.Sponsor.2019_rescaled 
+                                        0 
+          COVID.Rate.per.100.000_rescaled 
+                                        0 
+                               perc_white 
+                                        0 
+Population.Density..Per.sq.mile._rescaled 
+                                        0 
+                College_Educated_rescaled 
+                                        0 
+                   median_income_rescaled 
+                                        0 
+                                    State 
+                                        0 
+                         general_rescaled 
+                                        0 

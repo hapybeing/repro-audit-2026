@@ -1,0 +1,72 @@
+{
+  "fig1_rows": 64,
+  "fig1_sectors": ["Private Sector", "Public Sector"],
+  "fig1_duplicate_level_rows": 0,
+  "fig2_rows": 32,
+  "fig2_contrast": "Public Sector",
+  "FC1": {
+    "count_CI_excludes_0": 0,
+    "n_levels": 24,
+    "levels_excluding_0": [],
+    "paper_claim": 0,
+    "same_conclusion": true,
+    "Since_count": 2,
+    "Since_levels": ["1 Year", "3 Years"],
+    "Education_count": 0,
+    "Education_levels": [],
+    "ci_outside_plot_limits_pm0.1": []
+  },
+  "FC2": {
+    "by_sector": {
+      "Private Sector": {
+        "ranking": ["Composition", "Unemployment", "Supportive", "Citizenship", "Age", "Since", "Education", "Gender"],
+        "ranges": [0.321199419212035, 0.262986327717998, 0.169487954486905, 0.106428522920352, 0.03967627117449, 0.031943808796789, 0.030155410040882, 0.0191373940983161],
+        "largest": "Composition"
+      },
+      "Public Sector": {
+        "ranking": ["Composition", "Unemployment", "Supportive", "Citizenship", "Age", "Since", "Education", "Gender"],
+        "ranges": [0.321865015288403, 0.255805243445637, 0.156578405031825, 0.135970822576391, 0.0471801309517401, 0.0415363803201619, 0.032139029989816, 0.015038444142904],
+        "largest": "Composition"
+      }
+    },
+    "same_conclusion": true
+  },
+  "FC3": {
+    "values": [
+      {
+        "sector": "Private Sector",
+        "level": "Syria",
+        "estimate": 0.443803056027147,
+        "std.error": 0.00902867460240814,
+        "lower": 0.426107178978296,
+        "upper": 0.461498933075999
+      },
+      {
+        "sector": "Private Sector",
+        "level": "Germany",
+        "estimate": 0.550231578947499,
+        "std.error": 0.00598299405636625,
+        "lower": 0.538505126077304,
+        "upper": 0.561958031817694
+      },
+      {
+        "sector": "Public Sector",
+        "level": "Syria",
+        "estimate": 0.422706863373951,
+        "std.error": 0.0169137739986045,
+        "lower": 0.389556475494036,
+        "upper": 0.455857251253865
+      },
+      {
+        "sector": "Public Sector",
+        "level": "Germany",
+        "estimate": 0.558677685950342,
+        "std.error": 0.0111098004326275,
+        "lower": 0.536902877226965,
+        "upper": 0.580452494673719
+      }
+    ],
+    "same_conclusion_strict": true,
+    "same_conclusion_lenient": true
+  }
+}

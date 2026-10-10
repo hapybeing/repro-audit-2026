@@ -1,0 +1,20 @@
+{
+ "ran": true,
+ "could_not_run_reason": "",
+ "bugs": [],
+ "code_review": "None found. Read all 449 lines of main_rep.R. append_rep.R (673 lines) was not reviewed line by line because no target uses it. Checked the Figure 3 label mapping (main_rep.R lines 194, 273-299): the labels 'Result 1' to 'Result 8' are recycled over the 32 mediate() results and mapped to arm names by the order of unique(data$condition); outputs/run_meta.json shows that order is control, PublicSurv, PublicBoth, PersonalSurvPublicCensor, PersonalCensorPublicSurv, Personalboth, PublicCensor, PersonalCensor, PersonalSurv, which matches the case_when mapping at lines 283-290, and the Category vector at line 296 matches the mediator-then-outcome loop order (positive_fic, positive_real, negative_fic, negative_real). Not a bug. Unverified observations (no output change demonstrated): main_rep.R line 371 comment says 'models without control ... Table D2' but the block fits models with covariates_str; main_rep.R sets no seed, so Figure 3 bootstrap CIs are not seed-fixed (no target depends on them).",
+ "env_fixes": ["diffs/README.md: no authors' file changed; data_cleaned_rep.csv downloaded with ?format=original; ltm, coefplot, sjPlot, mediation (CRAN source, per-run library, Ncpus=1) installed because they were absent and had no Debian binary candidate; objects saved with save() after source() for extraction."],
+ "proposed_class": "D",
+ "class_reason": "T1 to T5 (all Table 3 coefficients) match the paper to 3 decimals with the same signs and significance buckets, but T6 fails its pre-registered criterion: every Table 3 model uses 4,507 rows (the data have no missing values in any model variable), while the Table 3 note prints N = 4,057; under the strict rules no target set that includes T6 qualifies for A or B. Alternative class on T1 to T5 alone: A. The reproduced N equals the 4,507 the paper itself reports in the abstract, methods, Table 1 and online Tables D1/D2, so this looks like a difference in the printed N only; it does not change any coefficient-based conclusion. Final D needs agent A to see the same.",
+ "confidence": "medium",
+ "confidence_reason": "Numbers are deterministic and matched by script, but the class turns on how a printed-N-only mismatch (T6) is weighed, which is a judgement for the batch decision.",
+ "uncertainties": [
+  "T6: reproduced N is 4,507 for all five column (1) models and the data have 0 missing values in all 38 model variables (outputs/run_meta.json), so the 4,057 in the Table 3 note cannot arise from listwise deletion in the deposited cleaned data. Whether 4,057 is a typo for 4,507 cannot be confirmed from the materials; the matching coefficients, SEs and R2 to 3 decimals on 4,507 rows are consistent with that reading (inference, not verified).",
+  "Class: PROTOCOL section 7 has no category for 'all estimates exact, only a printed N differs'. I proposed D because the pre-registered T6 criterion fails, with A as the alternative on T1 to T5; the batch decision may weigh this differently.",
+  "R_c (alternative positive-emotion outcome = standardized mean of Secured and Happiness): coefficient is negative but p is above 0.001, so it does not meet the pre-registered 'negative and p < 0.001' criterion; it is negative and p < 0.05. Robustness does not change the class.",
+  "R_b for T1 dropped 0 rows (no |z| > 3 on positive_emo_rv), so its estimate equals the original.",
+  "Environment: R 4.5.0 on aarch64 Debian 13 vs the authors' R 4.3.2 on macOS; estimatr 1.0.6 (HC2 default). PCA signs matched online Table C1, so no sign-aligned rerun was needed.",
+  "Data preparation script data_preparation_rep.R named in ReadMe.txt is not in the deposit (DATA_STATEMENT.md); the raw-to-cleaned step was not reproduced. Targets use only the deposited cleaned file.",
+  "The mediation block (Figure 3) ran to completion without a seed; its outputs were saved in outputs/session_models.RData (object results) but not compared to the paper, since no target depends on them."
+ ]
+}

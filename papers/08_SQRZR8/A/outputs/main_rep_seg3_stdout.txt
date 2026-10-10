@@ -1,0 +1,124 @@
+
+> data$surveillance_fac <- factor(data$Surveillance, 
++     levels = c(0, 1, 2), labels = c("No Mention", "Personalized", 
++         "Public"))
+
+> data$censorship_fac <- factor(data$Censorship, levels = c(0, 
++     1, 2), labels = c("No Mention", "Personalized", "Public"))
+
+> outcomes <- c("positive_emo_rv", "negative_emo", "neutral_emo_rv", 
++     "general_attitude_fic", "general_attitude_real")
+
+> fit_models <- function(outcome) {
++     formula_main <- as.formula(paste0(outcome, " ~ surveillance_fac + censorship_fac + ", 
++         covariates_str))
++     formula_interact <- as.formula(paste0(outcome, " ~ surveillance_fac * censorship_fac + ", 
++         covariates_str))
++     list(mod2 = lm_robust(formula_main, data = data), mod4 = lm_robust(formula_interact, 
++         data = data))
++ }
+
+> models <- lapply(outcomes, fit_models)
+
+> names(models) <- outcomes
+
+> all_models <- unlist(models, recursive = FALSE)
+
+> tab_3 <- tab_model(all_models$positive_emo_rv.mod2, 
++     all_models$positive_emo_rv.mod4, all_models$negative_emo.mod2, 
++     all_models$negative_emo.mod4, all_models$neutral_emo_rv.mod2, 
++     all_models$neutral_emo_rv.mod4, all_models$general_attitude_fic.mod2, 
++     all_models$general_attitude_fic.mod4, all_models$general_attitude_real.mod2, 
++     all_models$general_attitude_real.mod4, dv.labels = c("Positive Emotion \n (main)", 
++         "Positive Emotion \n (main+interactions)", "Negative Emotion \n (main)", 
++         "Negative Emotion \n (main+interactions)", "Neutral Emotion \n (main)", 
++         "Neutral Emotion b\n (main+interactions)", "Attitude towards fictitious scenario \n (main)", 
++         "Attitude towards fictitious scenario \n (main+interactions)", 
++         "Attitude towards real-life scenario \n (main)", "Attitude towards real-life scenario \n (main+interactions)"), 
++     digits = 3, p.style = "stars", show.ci = FALSE, show.se = TRUE, 
++     collapse.se = TRUE, rm.terms = c("Age", "Gender", "Education", 
++         "Ethnicity", "MonthlyIncome", "CCPMembership", "rural", 
++         "OverseaExperience_yes", "nationalism_nor", "liberalism_nor", 
++         "vpnsavvy", "conservation_nor", "openness_nor", "conscientiousness_nor", 
++         "neuroticism_nor", "extraversion_nor", "agreeableness_nor", 
++         "LifeSat_1"))
+
+> group_means_att <- data %>% group_by(condition) %>% 
++     summarise(Mean_real = mean(general_attitude_real, na.rm = TRUE), 
++         Mean_hypo = mean(general_attitude_fic, na.rm = TRUE), 
++         Mean_Diff = mean(general_attitude_real - general_attitude_fic, 
++             na.rm = TRUE), SD_Diff = sd(general_attitude_real - 
++             general_attitude_fic, na.rm = TRUE), N = n(), .groups = "drop")
+
+> t_test_results_att <- data %>% group_by(condition) %>% 
++     summarise(t_statistic = t.test(general_attitude_real, general_attitude_fic, 
++         paired = TRUE)$statistic, p_value = t.test(general_attitude_real, 
++         general_attitude_fic, paired = TRUE)$p.value, .groups = "drop")
+
+> final_results_diff_att <- left_join(group_means_att, 
++     t_test_results_att, by = "condition")
+
+> final_results_diff_att <- final_results_diff_att %>% 
++     mutate(SE = SD_Diff/sqrt(N), p_adj = p.adjust(p_value, method = "bonferroni"), 
++         Sig_Original = ifelse(p_value < 0.05, "Significant", 
++             "Not Significant"), Sig_Bonferroni = ifelse(p_adj < 
++             0.05, "Significant", "Not Significant"))
+
+> print(final_results_diff_att)
+# A tibble: 9 × 12
+  condition     Mean_real Mean_hypo Mean_Diff SD_Diff     N t_statistic  p_value
+  <chr>             <dbl>     <dbl>     <dbl>   <dbl> <int>       <dbl>    <dbl>
+1 PersonalCens…      15.0      14.4     0.697    2.52   511        6.25 8.67e-10
+2 PersonalCens…      14.8      13.9     0.919    2.43   520        8.62 8.27e-17
+3 PersonalSurv       14.5      13.8     0.662    2.43   512        6.17 1.42e- 9
+4 PersonalSurv…      14.8      14.0     0.870    2.57   506        7.61 1.39e-13
+5 Personalboth       14.8      13.8     1.01     2.61   483        8.51 2.19e-16
+6 PublicBoth         14.9      14.3     0.614    2.20   515        6.33 5.30e-10
+7 PublicCensor       14.8      14.2     0.571    2.62   489        4.82 1.95e- 6
+8 PublicSurv         14.9      14.4     0.553    2.46   499        5.02 7.17e- 7
+9 control            15.0      14.7     0.369    2.31   472        3.47 5.72e- 4
+# ℹ 4 more variables: SE <dbl>, p_adj <dbl>, Sig_Original <chr>,
+#   Sig_Bonferroni <chr>
+
+> diff_att_df <- data.frame(final_results_diff_att)
+
+> (sum(diff_att_df$Mean_Diff/diff_att_df$Mean_hypo) * 
++     100)/9
+[1] 4.945179
+
+> attitude_df_fic <- data %>% dplyr::select(Attitude.I_1, 
++     Attitude.I_2, Attitude.I_3, Attitude.I_4)
+
+> attitude_df_real <- data %>% dplyr::select(Attitude.II_1, 
++     Attitude.II_2, Attitude.II_3, Attitude.II_4)
+
+> cronbach.alpha(attitude_df_fic, CI = TRUE)
+
+Cronbach's alpha for the 'attitude_df_fic' data-set
+
+Items: 4
+Sample units: 4507
+alpha: 0.801
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+0.790 0.812 
+
+
+
+> cronbach.alpha(attitude_df_real, CI = TRUE)
+
+Cronbach's alpha for the 'attitude_df_real' data-set
+
+Items: 4
+Sample units: 4507
+alpha: 0.776
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+0.762 0.788 
+
+
+
+SEGMENT 332 449 ELAPSED_MIN 0.1164274 
+SEGMENT_DONE

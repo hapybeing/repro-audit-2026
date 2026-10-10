@@ -1,0 +1,69 @@
+===== model1B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 586
+Fixed-effects: unique_id: 293,  partido_gober: 5
+Standard-errors: IID 
+                  Estimate Std. Error   t value   Pr(>|t|)    
+year_2018        -0.155067   0.008227 -18.84751  < 2.2e-16 ***
+log_pobtot        0.085922   0.029565   2.90617 0.00394587 ** 
+log_pib           0.289250   0.075320   3.84030 0.00015146 ***
+year_2018:juicio -0.052467   0.014221  -3.68934 0.00026926 ***
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.040396     Adj. R2: 0.774412
+                 Within R2: 0.74204 
+===== model2B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 586
+Fixed-effects: unique_id: 293,  partido_gober: 5
+Standard-errors: IID 
+                  Estimate Std. Error   t value   Pr(>|t|)    
+year_2018        -0.166470   0.008523 -19.53075  < 2.2e-16 ***
+log_pobtot        0.094255   0.028963   3.25433 1.2746e-03 ** 
+log_pib           0.261202   0.082031   3.18420 1.6136e-03 ** 
+econ_growth       0.014090   0.006157   2.28849 2.2846e-02 *  
+hom_per100        0.011990   0.003035   3.94990 9.8765e-05 ***
+year_2018:juicio -0.066149   0.014301  -4.62536 5.6962e-06 ***
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.039258     Adj. R2: 0.785437
+                 Within R2: 0.756368
+===== model3B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 586
+Fixed-effects: unique_id: 293,  partido_gober: 5
+Standard-errors: IID 
+                         Estimate Std. Error    t value   Pr(>|t|)    
+year_2018               -0.147586   0.014435 -10.224135  < 2.2e-16 ***
+log_pobtot               0.088343   0.028773   3.070389 2.3470e-03 ** 
+log_pib                  0.285984   0.081903   3.491751 5.5711e-04 ***
+econ_growth              0.015417   0.006199   2.487027 1.3462e-02 *  
+hom_per100               0.013306   0.003044   4.370564 1.7461e-05 ***
+mentions_prop           -0.033425   0.090704  -0.368510 7.1277e-01    
+year_2018:juicio        -0.034111   0.019586  -1.741644 8.2665e-02 .  
+year_2018:mentions_prop -0.150241   0.113756  -1.320732 1.8767e-01    
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.038738     Adj. R2: 0.7896  
+                 Within R2: 0.762783
+===== model4B 
+OLS estimation, Dep. Var.: voto_pro_gober
+Observations: 586
+Fixed-effects: unique_id: 293,  partido_gober: 5
+Standard-errors: IID 
+                  Estimate Std. Error    t value   Pr(>|t|)    
+year_2018        -0.166415   0.008540 -19.485395  < 2.2e-16 ***
+log_pobtot        0.094736   0.029076   3.258261 1.2582e-03 ** 
+log_pib           0.261693   0.082191   3.183977 1.6154e-03 ** 
+econ_growth       0.014234   0.006194   2.297924 2.2298e-02 *  
+hom_per100        0.011958   0.003043   3.929662 1.0707e-04 ***
+prev_exp_fleg     0.002002   0.008061   0.248390 8.0401e-01    
+year_2018:juicio -0.066141   0.014325  -4.617119 5.9188e-06 ***
+... 1 variable was removed because of collinearity (juicio)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.039254     Adj. R2: 0.784724
+                 Within R2: 0.756422

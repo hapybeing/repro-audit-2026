@@ -1,0 +1,11 @@
+"figure","level","label_shown","correct_label","match"
+"D1 x-axis and D4 fill","control","Control","Control",TRUE
+"D1 x-axis and D4 fill","danger_contr","Placebo Social Norm","Placebo Social Norm",TRUE
+"D1 x-axis and D4 fill","win_govt","In-group Government","In-group Government",TRUE
+"D1 x-axis and D4 fill","win_mainstream","In-group Parliament","Out-group Government",FALSE
+"D1 x-axis and D4 fill","win_parl","Out-group Government","In-group Parliament",FALSE
+"D2 legend","control","Control","Control",TRUE
+"D2 legend","win_parl","T1a","T1b",FALSE
+"D2 legend","win_govt","T1b","T1a",FALSE
+"D2 legend","win_mainstream","T2","T2",TRUE
+"D2 legend","danger_contr","Placebo","Placebo",TRUE

@@ -1,0 +1,108 @@
+== Convergence messages of lmer models left in session ==
+model1 : none  singular: FALSE 
+model1C : none  singular: FALSE 
+model1D : none  singular: FALSE 
+model1G : none  singular: FALSE 
+model2 : none  singular: FALSE 
+model2C : none  singular: FALSE 
+model2D : none  singular: FALSE 
+model2G : none  singular: FALSE 
+model3 : none  singular: FALSE 
+model3C : none  singular: FALSE 
+model3D : none  singular: FALSE 
+model3G : none  singular: FALSE 
+model4 : none  singular: FALSE 
+model4D : none  singular: FALSE 
+model4G : none  singular: FALSE 
+nlandtamps : none  singular: FALSE 
+onlyPAN : none  singular: FALSE 
+onlyPRI : none  singular: FALSE 
+withNL : none  singular: FALSE 
+wover : none  singular: FALSE 
+
+== Figure B: which term is row 7 of get_model_data(type='est')? (replication.R line 438 and 455) ==
+              term     estimate   std.error conf.level     conf.low
+1           juicio -0.010500986 0.014773324       0.95 -0.039515790
+2        year_2018 -0.141127619 0.006101597       0.95 -0.153111155
+3       log_pobtot  0.093867675 0.023989372       0.95  0.046752555
+4          log_pib -0.002246001 0.005643507       0.95 -0.013329848
+5      econ_growth  0.002023438 0.004630941       0.95 -0.007071728
+6       hom_per100  0.007600980 0.002041699       0.95  0.003591083
+7 juicio:year_2018 -0.067432502 0.014130801       0.95 -0.095185392
+     conf.high
+1  0.018513818
+2 -0.129144083
+3  0.140982796
+4  0.008837846
+5  0.011118605
+6  0.011610876
+7 -0.039679613
+row 7 term: juicio:year_2018 
+
+== Missingness and singletons in data (600 rows) ==
+rows: 600  districts: 307 
+districts with one row: 14 
+NA counts:
+         unique_id          id_estado             estado        id_distrito 
+                 0                  0                  0                  0 
+          distrito             juicio      mentions_prop          elec_year 
+                 0                  0                  0                  0 
+    voto_pro_gober      partido_gober      prev_exp_fleg        econ_growth 
+                 0                  0                  0                  0 
+st_elections_15_18         log_pobtot            log_pib         hom_per100 
+                 0                  0                  0                  0 
+         year_2018          year_2015          year_2012 
+                 0                  0                  0 
+
+== Table A inputs: data (2015+2018) vs dataall ==
+nrow(data) 600  nrow(dataall) 900  mean year_2018 data 0.5  dataall 0.3333333 
+non-missing prev_exp_fleg in dataall: 600 
+
+== Figure 1 newdata: unique_id coerced inside cbind (line 98 to 115) ==
+dataall$unique_id[33] = BAJA CALIFORNIA.1 ; predictions use re.form=NA so unique_id is not used by predict.
+
+== The 14 districts with one row in data (fixest >= 0.13 drops them as singletons) ==
+             unique_id           estado id_distrito elec_year juicio
+1           CHIAPAS.13          CHIAPAS          13      2018      0
+2  CIUDAD DE MEXICO.25 CIUDAD DE MEXICO          25      2012      0
+3  CIUDAD DE MEXICO.26 CIUDAD DE MEXICO          26      2012      0
+4  CIUDAD DE MEXICO.27 CIUDAD DE MEXICO          27      2012      0
+5  CIUDAD DE MEXICO.25 CIUDAD DE MEXICO          25      2015      0
+6  CIUDAD DE MEXICO.27 CIUDAD DE MEXICO          27      2015      0
+7  CIUDAD DE MEXICO.26 CIUDAD DE MEXICO          26      2015      0
+8        GUANAJUATO.15       GUANAJUATO          15      2018      0
+9           JALISCO.20          JALISCO          20      2018      0
+10           MEXICO.41           MEXICO          41      2018      0
+11           OAXACA.11           OAXACA          11      2012      0
+12           OAXACA.11           OAXACA          11      2015      0
+13           PUEBLA.16           PUEBLA          16      2012      0
+14           PUEBLA.16           PUEBLA          16      2015      0
+15         QUERETARO.5        QUERETARO           5      2018      0
+16      QUINTANA ROO.4     QUINTANA ROO           4      2018      1
+17           SINALOA.8          SINALOA           8      2012      0
+18           SINALOA.8          SINALOA           8      2015      0
+19        TAMAULIPAS.9       TAMAULIPAS           9      2018      0
+20         VERACRUZ.21         VERACRUZ          21      2012      1
+21         VERACRUZ.21         VERACRUZ          21      2015      1
+   st_elections_15_18
+1                   0
+2                   0
+3                   0
+4                   0
+5                   0
+6                   0
+7                   0
+8                   0
+9                   0
+10                  1
+11                  1
+12                  1
+13                  1
+14                  1
+15                  0
+16                  1
+17                  1
+18                  1
+19                  1
+20                  1
+21                  1

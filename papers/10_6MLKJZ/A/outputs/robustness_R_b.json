@@ -1,0 +1,49 @@
+{
+  "per_sample": {
+    "rh": {
+      "n_resp_in_pooled": 128,
+      "n_matched_duration": 128,
+      "dup_ids": 0,
+      "p01": 541.07,
+      "p99": 146948.230000001,
+      "dropped": 4
+    },
+    "uhh": {
+      "n_resp_in_pooled": 744,
+      "n_matched_duration": 744,
+      "dup_ids": 0,
+      "p01": 377.29,
+      "p99": 47709.5600000019,
+      "dropped": 16
+    },
+    "hsvn": {
+      "n_resp_in_pooled": 528,
+      "n_matched_duration": 528,
+      "dup_ids": 0,
+      "p01": 384.72,
+      "p99": 13901.48,
+      "dropped": 12
+    },
+    "civic": {
+      "n_resp_in_pooled": 2482,
+      "n_matched_duration": 2482,
+      "dup_ids": 0,
+      "p01": 189.81,
+      "p99": 6591.91000000001,
+      "dropped": 50
+    }
+  },
+  "total_dropped": 82,
+  "n_resp_private": 1273,
+  "n_resp_public": 325,
+  "E1": 0.660130718954209,
+  "se": 0.00714868700371271,
+  "lower": 0.646119549890183,
+  "upper": 0.674141888018236,
+  "z_vs_0.5": 22.4000181950958,
+  "p_value": 3.93417609171628e-111,
+  "same_dir_sig": true,
+  "FC1_count": 0,
+  "FC1_levels": [],
+  "Since_Education_levels_excl0": ["1 Year", "3 Years"]
+}

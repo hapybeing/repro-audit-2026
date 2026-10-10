@@ -1,0 +1,53 @@
+{
+ "rows": [
+  {
+   "result": "Result 1",
+   "arm_in_data_order": "PublicSurv",
+   "hardcoded_label": "Public Surv",
+   "consistent": true
+  },
+  {
+   "result": "Result 2",
+   "arm_in_data_order": "PublicBoth",
+   "hardcoded_label": "Public Both",
+   "consistent": true
+  },
+  {
+   "result": "Result 3",
+   "arm_in_data_order": "PersonalSurvPublicCensor",
+   "hardcoded_label": "Personal. Surv & Public Censor",
+   "consistent": true
+  },
+  {
+   "result": "Result 4",
+   "arm_in_data_order": "PersonalCensorPublicSurv",
+   "hardcoded_label": "Personal. Censor & Public Surv",
+   "consistent": true
+  },
+  {
+   "result": "Result 5",
+   "arm_in_data_order": "Personalboth",
+   "hardcoded_label": "Personal. Both",
+   "consistent": true
+  },
+  {
+   "result": "Result 6",
+   "arm_in_data_order": "PublicCensor",
+   "hardcoded_label": "Public Censor",
+   "consistent": true
+  },
+  {
+   "result": "Result 7",
+   "arm_in_data_order": "PersonalCensor",
+   "hardcoded_label": "Personal. Censor",
+   "consistent": true
+  },
+  {
+   "result": "Result 8",
+   "arm_in_data_order": "PersonalSurv",
+   "hardcoded_label": "Personal. Surv",
+   "consistent": true
+  }
+ ],
+ "all_consistent": true
+}

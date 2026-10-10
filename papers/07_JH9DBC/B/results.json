@@ -1,0 +1,151 @@
+{
+ "paper_id": "07_JH9DBC",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Table B Model 1 (fixed effects by district and party, SE clustered by district; model1B): coefficient on Year 2018 x Indicted (juicio:year_2018), outcome vote share of the governor's party's legislative candidates",
+   "paper_value": -0.052,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.0524672406924215,
+   "source_file": "outputs/targets_extracted_fixest0121.csv",
+   "abs_diff": -0.0004672406924215028,
+   "rel_diff": -0.008985397931182746,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.013825, p 0.000177825 (fixest t, model default vcov; vcov Clustered (unique_id)); reproduced star band *** vs paper ***; SE rounded 0.014. term year_2018:juicio; vcov: Clustered (unique_id); fixef sizes: unique_id 307 partido_gober 5 | Run with fixest 0.14.2 (current CRAN, PREREG step 2 literally): value -0.0524672406924215, SE 0.014221, p 0.000269257, vcov IID (targets_extracted_fixest_current.csv)."
+  },
+  {
+   "id": "T2",
+   "description": "Table B Model 2 (adds economic growth and homicides; model2B): coefficient on Year 2018 x Indicted (juicio:year_2018)",
+   "paper_value": -0.066,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.0661485940362168,
+   "source_file": "outputs/targets_extracted_fixest0121.csv",
+   "abs_diff": -0.00014859403621679534,
+   "rel_diff": -0.002251424791163566,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.013899, p 3.00269e-06 (fixest t, model default vcov; vcov Clustered (unique_id)); reproduced star band *** vs paper ***; SE rounded 0.014. term year_2018:juicio; vcov: Clustered (unique_id); fixef sizes: unique_id 307 partido_gober 5 | Run with fixest 0.14.2 (current CRAN, PREREG step 2 literally): value -0.0661485940362168, SE 0.014301, p 5.69624e-06, vcov IID (targets_extracted_fixest_current.csv). | Headline check (Table 2 multilevel, paper values unread): model1 -0.062371 (|.|2dp=0.06); model2 -0.067433 (|.|2dp=0.07); model4 -0.067353 (|.|2dp=0.07); negative and within 0.03 to 0.06: False."
+  },
+  {
+   "id": "T3",
+   "description": "Table B Model 3 (adds Scandal and Scandal x Year 2018; model3B): coefficient on Year 2018 x Indicted (juicio:year_2018)",
+   "paper_value": -0.034,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.034111264674509,
+   "source_file": "outputs/targets_extracted_fixest0121.csv",
+   "abs_diff": -0.00011126467450899707,
+   "rel_diff": -0.003272490426735208,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.019353, p 0.0789736 (fixest t, model default vcov; vcov Clustered (unique_id)); reproduced star band none vs paper none; SE rounded 0.019. term year_2018:juicio; vcov: Clustered (unique_id); fixef sizes: unique_id 307 partido_gober 5 | Run with fixest 0.14.2 (current CRAN, PREREG step 2 literally): value -0.034111264674509, SE 0.019586, p 0.082665, vcov IID (targets_extracted_fixest_current.csv)."
+  },
+  {
+   "id": "T4",
+   "description": "Table B number of observations (nobs(model1B); same for Models 2 to 4)",
+   "paper_value": 600,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 600,
+   "source_file": "outputs/targets_extracted_fixest0121.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs across the four models: [600, 600, 600, 600]. term year_2018:juicio; vcov: Clustered (unique_id); fixef sizes: unique_id 307 partido_gober 5 | Run with fixest 0.14.2 (current CRAN, PREREG step 2 literally): value 586 (targets_extracted_fixest_current.csv)."
+  },
+  {
+   "id": "T5",
+   "description": "Table G Model 2G (multilevel lmer, random intercepts district and party, states with a gubernatorial election; model2G): coefficient on Indicted x Year 2018 (juicio:year_2018)",
+   "paper_value": -0.051,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.0505958740661643,
+   "source_file": "outputs/targets_extracted_fixest0121.csv",
+   "abs_diff": 0.0004041259338356945,
+   "rel_diff": 0.007924037918346952,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.017072, p 0.00303949 (Wald z two-sided; vcov lmer); reproduced star band ** vs paper **; SE rounded 0.017. Satterthwaite p=0.00352516 | groups: unique_id 152 partido_gober 3 | Run with fixest 0.14.2 (current CRAN, PREREG step 2 literally): value -0.0505958740661643, SE 0.017072, p 0.00303949, vcov lmer (targets_extracted_fixest_current.csv)."
+  },
+  {
+   "id": "T6",
+   "description": "Table G number of observations (nobs(model2G); same for 1G, 3G, 4G)",
+   "paper_value": 297,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 297,
+   "source_file": "outputs/targets_extracted_fixest0121.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs across the four models: [297, 297, 297, 297]. Satterthwaite p=0.00352516 | groups: unique_id 152 partido_gober 3 | Run with fixest 0.14.2 (current CRAN, PREREG step 2 literally): value 297 (targets_extracted_fixest_current.csv)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Cluster (district) bootstrap of model2B, seed 20261010, 1000 replicates, percentile CI",
+   "ran": true,
+   "estimate": -0.0661485940362168,
+   "se_or_ci": "95% percentile CI [-0.092008, -0.038183], bootstrap SE 0.013679",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "not-estimable replicates: 0. Secondary model2 (multilevel): {\"estimate\": -0.0674325021482193, \"ci_low\": -0.0913179234930323, \"ci_high\": -0.0434783743619008, \"boot_se\": 0.0125892733406231, \"p_value\": 0, \"n_not_estimable\": 0}"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z|>3 on voto_pro_gober, refit model2B",
+   "ran": true,
+   "estimate": -0.0661485940362168,
+   "se_or_ci": "SE 0.013899 (fixest default)",
+   "p_value": 3.0026868252224e-06,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "rows dropped 0, nobs 600. Secondary 1/99 trim: {\"rows_dropped\": 12, \"estimate\": -0.0627869694573744, \"se\": 0.0138231581122261, \"p_value\": 8.03868564711576e-06, \"nobs\": 588}. Secondary model2 (multilevel, |z|<=3 data): {\"estimate\": -0.0674325021482193, \"se\": 0.0141308008621526, \"p_wald\": 1.8238496368897e-06, \"nobs\": 600}"
+  },
+  {
+   "id": "R_c",
+   "description": "model2B with SE clustered by state (vcov=~id_estado)",
+   "ran": true,
+   "estimate": -0.0661485940362168,
+   "se_or_ci": "SE 0.028482, 32 clusters",
+   "p_value": 0.0269442985888687,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "indicted states: ['CHIHUAHUA', 'QUINTANA ROO', 'SONORA', 'VERACRUZ']. Secondary model2: not applicable."
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/01_fixest_0.12.1_run_wrapper.diff: primary run uses fixest 0.12.1 (CRAN release current at the code date, August 2025) instead of current CRAN 0.14.2, because fixest 0.13.0 changed the default vcov (cluster -> IID) and started dropping singleton fixed effects (600 -> 586 obs in Table B). authors' replication.R unchanged",
+  "Installed fixest, cobalt, WeightIt (used via WeightIt:: at line 214, never library()'d) and sjPlot from CRAN source into a per-run library (no Debian binaries available); no code change needed"
+ ],
+ "proposed_class": "A",
+ "class_reason": "With fixest 0.12.1 (the CRAN version current when the code was written) and the authors' code unchanged, all six pre-registered targets (Table B T1 to T4, Table G T5 and T6, read from the Supplementary Material) match to the paper's rounding; the main article's Table 2 was not compared because its text could not be read (batch 2 decision 4).",
+ "confidence": "medium",
+ "confidence_reason": "All targets matched by script, but T4 (N) matches only after pinning fixest to the version current at the code date (current CRAN gives 586), targets come from the supplement, and B could not re-open the supplement to re-confirm the paper values (Cloudflare block), so they rest on the PREREG screenshots.",
+ "time_minutes": 40,
+ "uncertainties": [
+  "Paper values: B's public browser attempt to re-open the Supplementary Material and the main article (2026-10-10 about 18:05 IST) was blocked by a full-page Cloudflare interstitial on every journals.sagepub.com URL, so B could not independently re-confirm the six paper values and could not read the main Table 2 (outputs/supplement_reopen_attempt_B.md). Paper values are as copied in PREREG.md from hashed screenshots.",
+  "Version dependence of T4: with current CRAN fixest 0.14.2 (PREREG step 2 read literally) Table B nobs is 586 (14 singleton districts dropped) and SEs are IID; coefficients are identical to 0.12.1 and SEs differ only in the fourth decimal (T1 0.0142 vs 0.0138), so under 0.14.2 T4 alone fails exact match (rel diff -2.3%, within 5%) and the class would be B. The primary run uses fixest 0.12.1 as a package-version environment fix; the comparison team should decide which run is primary.",
+  "The authors' fixest version is not stated; 0.12.1 is inferred from the code date (August 2025) and CRAN release dates (0.12.1 on 2024-06-13, next 0.13.2 on 2025-09-08). Table B's reported 600 observations and district-clustered SEs are consistent with a pre-0.13 fixest.",
+  "Satterthwaite p-values (secondary, lmerTest) were computed by refitting formula(model) with lmerTest::lmer on the same data, because the authors' script rm()s datasubset before the end of the session; lme4 estimates in the refit are not used for any target.",
+  "One lme4 convergence warning ('Model failed to converge with max|grad| = 0.00231195 (tol = 0.002, component 1)') appeared in both runs; it is not from any model kept in the session (all Table 2, B, C, D, F, G lmer models report no convergence message, outputs/code_checks.txt), so it comes from a model inside the Figure B placebo loop or Figure 1 bootMer, which do not affect targets.",
+  "Unverified observation: 14 of 307 districts in the 2015/2018 data have one row only (e.g. CIUDAD DE MEXICO.25 to .27 appear in 2012 and 2015 only; CHIAPAS.13, MEXICO.41 in 2018 only), consistent with district boundaries changing between 2015 and 2018. Not confirmed as a coding issue; it is what makes T4 version-dependent.",
+  "Unverified observation (as noted in PREREG): replication.R lines 199 to 207 compute Table A summaries on the 600-row data (mean year_2018 = 0.5), while the supplement's Table A reports N = 900 and Year 2018 mean 0.33, which matches the 900-row dataall (outputs/code_checks.txt). Table A is not a target.",
+  "Figure B (line 438): row 7 of sjPlot::get_model_data(type='est') is juicio:year_2018 under sjPlot 2.9.0 (outputs/code_checks.txt), so the placebo loop extracts the intended term in this environment.",
+  "During the run, the platform's file-change notices listed file names being written in REPO/papers/07_JH9DBC/A/; B did not open, list or read any of them.",
+  "R_a secondary (multilevel model2 cluster bootstrap) was fit in the same replicate loop as the primary (same draws, same seed); the PREREG names this secondary generically, so its exact bootstrap form (new_id random intercept) is my implementation choice.",
+  "Pre-registered headline note (not a target, does not affect class): the reproduced Table 2 multilevel interaction estimates are model1 -0.0624, model2 -0.0674, model4 -0.0674 (outputs/targets_extracted_fixest0121.csv); rounded to two decimals 0.06, 0.07, 0.07, so model2 and model4 fall outside the abstract's 'between 3 and 6%' as the PREREG criterion reads it. The main Table 2 could not be read, so whether it prints the same values is unknown; across Table 2 model3 (-0.038) and Table B (-0.034 to -0.066) the range of reproduced interaction estimates is about 0.03 to 0.07. Recorded in the T2 note."
+ ]
+}

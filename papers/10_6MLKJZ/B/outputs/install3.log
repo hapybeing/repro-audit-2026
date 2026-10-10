@@ -1,0 +1,41 @@
+trying URL 'https://cloud.r-project.org/src/contrib/Archive/shinyBS/shinyBS_0.61.1.tar.gz'
+Content type 'application/x-gzip' length 26624 bytes (26 KB)
+==================================================
+downloaded 26 KB
+
+* installing *source* package ‘shinyBS’ ...
+** this is package ‘shinyBS’ version ‘0.61.1’
+** package ‘shinyBS’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (shinyBS)
+trying URL 'https://cloud.r-project.org/src/contrib/Archive/cjoint/cjoint_2.1.0.tar.gz'
+Content type 'application/x-gzip' length 957075 bytes (934 KB)
+==================================================
+downloaded 934 KB
+
+* installing *source* package ‘cjoint’ ...
+** this is package ‘cjoint’ version ‘2.1.0’
+** package ‘cjoint’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cjoint)
+2.1.0 0.61.1 

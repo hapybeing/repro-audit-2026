@@ -1,0 +1,5 @@
+--- /tmp/p_orig.txt	2026-10-10 13:08:43.520000000 +0000
++++ /tmp/p_new.txt	2026-10-10 13:08:43.520000000 +0000
+@@ -1 +1 @@
+-cjoint 2.1.3 (CRAN current, published 2026-05-19)
++cjoint 2.1.0 (CRAN archive, 2018-10-19; current CRAN version until 2023-08-22) + shinyBS 0.61.1 (archived dependency)

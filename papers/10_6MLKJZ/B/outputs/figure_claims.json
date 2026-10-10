@@ -1,0 +1,96 @@
+{
+  "FC1": {
+    "count_excluding_0": 0,
+    "paper_claim": 0,
+    "same_conclusion": true,
+    "levels_excluding_0": [
+      {
+        "feature": "Since",
+        "level": "1 Year",
+        "estimate": -0.0317141237733058,
+        "lower": -0.057014679254324,
+        "upper": -0.00641356829228754
+      },
+      {
+        "feature": "Since",
+        "level": "3 Years",
+        "estimate": 0.0310872688760456,
+        "lower": 0.00456676247073242,
+        "upper": 0.0576077752813588
+      }
+    ],
+    "not_in_FC1_counts": {
+      "Since": 2,
+      "Education": 0
+    },
+    "source": "outputs/cj_marginal_means_grouped_sector_mmdiff.csv"
+  },
+  "FC2": {
+    "by_sector": {
+      "Private Sector": {
+        "ranges": {
+          "Age": 0.03967627117449,
+          "Citizenship": 0.106428522920352,
+          "Composition": 0.321199419212035,
+          "Education": 0.030155410040882,
+          "Gender": 0.0191373940983161,
+          "Since": 0.031943808796789,
+          "Supportive": 0.169487954486905,
+          "Unemployment": 0.262986327717998
+        },
+        "largest": "Composition"
+      },
+      "Public Sector": {
+        "ranges": {
+          "Age": 0.0471801309517401,
+          "Citizenship": 0.135970822576391,
+          "Composition": 0.321865015288403,
+          "Education": 0.032139029989816,
+          "Gender": 0.015038444142904,
+          "Since": 0.0415363803201619,
+          "Supportive": 0.156578405031825,
+          "Unemployment": 0.255805243445637
+        },
+        "largest": "Composition"
+      }
+    },
+    "same_conclusion": true,
+    "source": "outputs/cj_marginal_means_grouped_sector.csv"
+  },
+  "FC3": {
+    "by_sector": {
+      "Private Sector": {
+        "Syria": {
+          "estimate": 0.443803056027147,
+          "std.error": 0.00902867460240814,
+          "lower": 0.426107178978296,
+          "upper": 0.461498933075999
+        },
+        "Germany": {
+          "estimate": 0.550231578947499,
+          "std.error": 0.00598299405636625,
+          "lower": 0.538505126077304,
+          "upper": 0.561958031817694
+        }
+      },
+      "Public Sector": {
+        "Syria": {
+          "estimate": 0.422706863373951,
+          "std.error": 0.0169137739986045,
+          "lower": 0.389556475494036,
+          "upper": 0.455857251253865
+        },
+        "Germany": {
+          "estimate": 0.558677685950342,
+          "std.error": 0.0111098004326275,
+          "lower": 0.536902877226965,
+          "upper": 0.580452494673719
+        }
+      }
+    },
+    "strict_same_conclusion": true,
+    "lenient_same_conclusion": true,
+    "source": "outputs/cj_marginal_means_grouped_sector.csv"
+  },
+  "note_md_BY": "Public Sector - Private Sector"
+}

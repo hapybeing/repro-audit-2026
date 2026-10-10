@@ -1,0 +1,48 @@
+             model position             actual_term        label_in_code
+1       model_1_ez        1             (Intercept)            Intercept
+2       model_1_ez        2   treatmentdanger_contr  In-group Government
+3       model_1_ez        3       treatmentwin_govt  In-group Parliament
+4       model_1_ez        4 treatmentwin_mainstream Out-group Government
+5       model_1_ez        5       treatmentwin_parl              Placebo
+6  model_1_ez_lrem        1             (Intercept)            Intercept
+7  model_1_ez_lrem        2   treatmentdanger_contr  In-group Government
+8  model_1_ez_lrem        3       treatmentwin_govt  In-group Parliament
+9  model_1_ez_lrem        4 treatmentwin_mainstream Out-group Government
+10 model_1_ez_lrem        5       treatmentwin_parl              Placebo
+    p_original p_bonferroni     p_holm label_matches_term
+1  0.003248557   0.01624279 0.01624279               TRUE
+2  0.337296488   1.00000000 0.61924165              FALSE
+3  0.309620823   1.00000000 0.61924165              FALSE
+4  0.046144376   0.23072188 0.18457750               TRUE
+5  0.171823739   0.85911870 0.51547122              FALSE
+6  0.612994049   1.00000000 1.00000000               TRUE
+7  0.923152295   1.00000000 1.00000000              FALSE
+8  0.823247659   1.00000000 1.00000000              FALSE
+9  0.137411823   0.68705912 0.68705912               TRUE
+10 0.827652526   1.00000000 1.00000000              FALSE
+treatment levels: control danger_contr win_govt win_mainstream win_parl 
+
+       control   danger_contr       win_govt win_mainstream       win_parl 
+            26             23             24             24             26 
+                  figure          level          label_shown
+1  D1 x-axis and D4 fill        control              Control
+2  D1 x-axis and D4 fill   danger_contr  Placebo Social Norm
+3  D1 x-axis and D4 fill       win_govt  In-group Government
+4  D1 x-axis and D4 fill win_mainstream  In-group Parliament
+5  D1 x-axis and D4 fill       win_parl Out-group Government
+6              D2 legend        control              Control
+7              D2 legend       win_parl                  T1a
+8              D2 legend       win_govt                  T1b
+9              D2 legend win_mainstream                   T2
+10             D2 legend   danger_contr              Placebo
+          correct_label match
+1               Control  TRUE
+2   Placebo Social Norm  TRUE
+3   In-group Government  TRUE
+4  Out-group Government FALSE
+5   In-group Parliament FALSE
+6               Control  TRUE
+7                   T1b FALSE
+8                   T1a FALSE
+9                    T2  TRUE
+10              Placebo  TRUE

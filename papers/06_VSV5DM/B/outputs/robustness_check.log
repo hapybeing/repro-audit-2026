@@ -1,0 +1,54 @@
+                                                 level margins_AME direct_AME
+rpgDemocratic Men of Color     Democratic Men of Color   17.280561  17.280561
+rpgDemocratic White Men           Democratic White Men    5.384853   5.384853
+rpgDemocratic White Women       Democratic White Women   10.208688  10.208688
+rpgDemocratic Women of Color Democratic Women of Color   15.052734  15.052734
+rpgRepublican White Women       Republican White Women    6.096562   6.096562
+                             abs_diff within_1e6
+rpgDemocratic Men of Color          0       TRUE
+rpgDemocratic White Men             0       TRUE
+rpgDemocratic White Women           0       TRUE
+rpgDemocratic Women of Color        0       TRUE
+rpgRepublican White Women           0       TRUE
+                        factor       AME       SE         z          p
+1   rpgDemocratic Men of Color 12.452605 5.841842 2.1316228 0.03303787
+2      rpgDemocratic White Men  4.179577 4.594148 0.9097610 0.36294854
+3    rpgDemocratic White Women 10.887246 5.157852 2.1108101 0.03478864
+4 rpgDemocratic Women of Color 10.375885 5.560215 1.8660944 0.06202816
+5    rpgRepublican White Women  3.635025 5.358228 0.6784005 0.49751779
+       lower    upper                     level n_used n_dropped
+1  1.0028039 23.90241   Democratic Men of Color    622        13
+2 -4.8247879 13.18394      Democratic White Men    622        13
+3  0.7780419 20.99645    Democratic White Women    622        13
+4 -0.5219350 21.27371 Democratic Women of Color    622        13
+5 -6.8669092 14.13696    Republican White Women    622        13
+                                                                                                                    dropped_groups
+1 Republican White Men:1; Democratic White Men:1; Democratic White Women:3; Democratic Men of Color:5; Democratic Women of Color:3
+2 Republican White Men:1; Democratic White Men:1; Democratic White Women:3; Democratic Men of Color:5; Democratic Women of Color:3
+3 Republican White Men:1; Democratic White Men:1; Democratic White Women:3; Democratic Men of Color:5; Democratic Women of Color:3
+4 Republican White Men:1; Democratic White Men:1; Democratic White Women:3; Democratic Men of Color:5; Democratic Women of Color:3
+5 Republican White Men:1; Democratic White Men:1; Democratic White Women:3; Democratic Men of Color:5; Democratic Women of Color:3
+                                 dropped_covid_values z_cut_value
+1 306;326;332;342;347;348;359;368;371;441;447;559;906    303.8359
+2 306;326;332;342;347;348;359;368;371;441;447;559;906    303.8359
+3 306;326;332;342;347;348;359;368;371;441;447;559;906    303.8359
+4 306;326;332;342;347;348;359;368;371;441;447;559;906    303.8359
+5 306;326;332;342;347;348;359;368;371;441;447;559;906    303.8359
+                        factor       AME       SE         z         p
+1   rpgDemocratic Men of Color  3.203308 12.53896 0.2554683 0.7983614
+2      rpgDemocratic White Men 12.984689 11.51426 1.1277048 0.2594446
+3    rpgDemocratic White Women 17.594309 12.93324 1.3603947 0.1737051
+4 rpgDemocratic Women of Color 19.545135 14.08403 1.3877512 0.1652128
+5    rpgRepublican White Women 17.395244 14.24814 1.2208782 0.2221321
+       lower    upper                     level    theta  theta_SE converged
+1 -21.372611 27.77923   Democratic Men of Color 2.232256 0.1450967      TRUE
+2  -9.582850 35.55223      Democratic White Men 2.232256 0.1450967      TRUE
+3  -7.754373 42.94299    Democratic White Women 2.232256 0.1450967      TRUE
+4  -8.059065 47.14933 Democratic Women of Color 2.232256 0.1450967      TRUE
+5 -10.530597 45.32109    Republican White Women 2.232256 0.1450967      TRUE
+  n_used warnings
+1    635         
+2    635         
+3    635         
+4    635         
+5    635         

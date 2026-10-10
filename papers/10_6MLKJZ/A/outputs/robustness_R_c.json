@@ -1,0 +1,13 @@
+{
+  "baseline_Composition": "1 Adult",
+  "AMCE": 0.320660262795954,
+  "se": 0.0116517642783106,
+  "lower": 0.297823224454115,
+  "upper": 0.343497301137793,
+  "p_value": 1.00313611177894e-166,
+  "same_dir_sig": true,
+  "anova_F": 2.06069704306571,
+  "anova_df": 25,
+  "anova_p": 0.00138488777881339,
+  "anova_same_conclusion": false
+}

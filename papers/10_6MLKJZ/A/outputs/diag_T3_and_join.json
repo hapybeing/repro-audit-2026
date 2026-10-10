@@ -1,0 +1,55 @@
+{
+  "T3_context": {
+    "survey_data_rows": 4679,
+    "survey_data_unique_v9": 4679,
+    "civic_resp_in_pooled": 2482,
+    "civic_resp_found_in_survey_data": 2394,
+    "civic_sectorNA": 864,
+    "civic_sectorNA_not_in_survey_data": 88,
+    "civic_sectorNA_in_survey_data": 776,
+    "civic_sectorNA_in_survey_v184_ger": {
+      "1": 231,
+      ".b": 545
+    },
+    "civic_with_sector_v184_ger": {
+      "Ja": 333,
+      "Nein": 1285
+    },
+    "survey_data_sector_table": {
+      "1": 1500,
+      ".a": 969,
+      ".b": 592,
+      "Private Sector": 1285,
+      "Public Sector": 333
+    },
+    "survey_data_student_table": {
+      "1": 3410,
+      "General Student Sample": 636,
+      "Public Administration": 510,
+      "Social Work": 123
+    }
+  },
+  "join_duplication": {
+    "rows_pooled_df2": 87936,
+    "respondents": 3882,
+    "rows_per_resp": {
+      "16": 2268,
+      "32": 1614
+    },
+    "sector_resp_with_32_rows": 1614,
+    "sector_resp_with_16_rows": 4,
+    "rows_after_dedup": 62112,
+    "fig1_max_abs_diff_estimate": 0.000900329929226951,
+    "fig1_max_abs_diff_se": 6.38507210432779e-05,
+    "fig2_max_abs_diff_estimate": 0.00104179345321481,
+    "fig2_dedup_levels_CI_excl0": ["1 Year", "3 Years"]
+  },
+  "supp_R_c_anova_dedup": {
+    "note": "supplementary, not pre-registered",
+    "rows": 25888,
+    "dedup_unclustered_F": 1.02027696967778,
+    "dedup_unclustered_p": 0.43433919126041,
+    "dedup_clustered_stat": 1.02027696967778,
+    "dedup_clustered_p": 0.43433919126041
+  }
+}

@@ -1,0 +1,11 @@
+
+> results <- run_all_mediations(med_models = mediator_models, 
++     out_models = outcome_models, arms = treatment_arms)
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+

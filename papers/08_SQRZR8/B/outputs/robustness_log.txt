@@ -1,0 +1,13 @@
+  check              outcome           role  estimate       se   ci_low
+1   R_a      positive_emo_rv   primary (T1) -0.201003 0.058606 -0.31309
+2   R_b      positive_emo_rv   primary (T1) -0.201003 0.057664 -0.31405
+3   R_a general_attitude_fic secondary (T3) -0.531695 0.098961 -0.71987
+4   R_b general_attitude_fic secondary (T3) -0.488139 0.096861 -0.67803
+5   R_c           pos_mean_z   primary (T1) -0.089366 0.034845 -0.15768
+    ci_high    p_value n_used n_dropped n_bad_resamples same_dir_sig
+1 -0.084852 2.0000e-03   4507        NA               0         TRUE
+2 -0.087953 4.9544e-04   4507         0              NA         TRUE
+3 -0.325514 0.0000e+00   4507        NA               0         TRUE
+4 -0.298243 4.8502e-07   4481        26              NA         TRUE
+5 -0.021052 1.0360e-02   4507         0              NA        FALSE
+AFTER_DONE

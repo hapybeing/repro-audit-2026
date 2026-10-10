@@ -1,0 +1,4 @@
+zemmour rows: 123; treatment levels: control,danger_contr,win_govt,win_mainstream,win_parl
+reference level: control
+R_c diagnostic: rows with swd_ch != swd_w2 - swd_w1: 0 (comparisons NA: 0)
+R_c diagnostic (secondary): rows with affect_LREM_ch != affect_LREM_w2 - affect_LREM_w1: 0

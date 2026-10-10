@@ -1,0 +1,69 @@
+table(by_leg$poc):
+
+     White Man    White Woman   Man of Color Woman of Color 
+           335            101            114            104 
+
+table(by_leg$rpg):
+
+     Republican White Men      Democratic White Men     Independent White Men 
+                      242                        91                         2 
+   Republican White Women    Democratic White Women   Republican Men of Color 
+                       38                        63                         6 
+  Democratic Men of Color Republican Women of Color Democratic Women of Color 
+                      108                         3                       101 
+
+nrow(by_leg2) = 643 
+
+     Republican White Men      Democratic White Men     Independent White Men 
+                      242                        91                         0 
+   Republican White Women    Democratic White Women   Republican Men of Color 
+                       38                        63                         0 
+  Democratic Men of Color Republican Women of Color Democratic Women of Color 
+                      108                         0                       101 
+
+Missing values per model variable in by_leg2:
+                                    covid 
+                                        0 
+                                      rpg 
+                                        0 
+                                  senator 
+                                        0 
+                             age_rescaled 
+                                        5 
+                          leader_or_chair 
+                                        0 
+                 X.voteTrump2016_resclaed 
+                                        0 
+                          Last.Vote.Share 
+                                        3 
+               Bill.Sponsor.2019_rescaled 
+                                        0 
+          COVID.Rate.per.100.000_rescaled 
+                                        0 
+                               perc_white 
+                                        0 
+Population.Density..Per.sq.mile._rescaled 
+                                        0 
+                College_Educated_rescaled 
+                                        0 
+                   median_income_rescaled 
+                                        0 
+                                    State 
+                                        0 
+                         general_rescaled 
+                                        0 
+complete cases: 635 
+
+ race_gender 
+
+            White Man           White Woman             Black Man 
+                  335                   101                    44 
+          Black Woman            Latino Man          Latina Woman 
+                   50                    47                    47 
+   Asian American Man  Asian American Woman   Native American Man 
+                   19                     5                     2 
+Native American Woman    Middle Eastern Man  Middle Eastern Woman 
+                    1                     2                     1 
+
+class(by_leg$race_gender): factor 
+levels in group_by order: White Man / White Woman / Black Man / Black Woman / Latino Man / Latina Woman / Asian American Man / Asian American Woman / Native American Man / Native American Woman / Middle Eastern Man / Middle Eastern Woman 

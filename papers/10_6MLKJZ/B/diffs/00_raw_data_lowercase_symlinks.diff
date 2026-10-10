@@ -1,0 +1,15 @@
+--- /tmp/b_orig.txt	2026-10-10 13:08:43.500000000 +0000
++++ /tmp/b_new.txt	2026-10-10 13:08:43.508000000 +0000
+@@ -1,5 +1,7 @@
+-total 24509
+--rw-r--r-- data_HSVN.csv
+--rw-r--r-- data_UHH.csv
+--rw-r--r-- data_civic.csv
+--rw-r--r-- data_rh.csv
++total   
++-rw-r--r-- data_HSVN.csv  
++-rw-r--r-- data_UHH.csv  
++-rw-r--r-- data_civic.csv  
++lrwxrwxrwx data_hsvn.csv -> data_HSVN.csv
++-rw-r--r-- data_rh.csv  
++lrwxrwxrwx data_uhh.csv -> data_UHH.csv

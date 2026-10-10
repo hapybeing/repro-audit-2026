@@ -1,0 +1,86 @@
+{
+ "rule": "PROTOCOL.md section 7 with CHANGELOG_METHOD #4 and the pre-run batch2_class_decisions.md. Classes were set by the lead after both blind agents reported; A and B agreed on every reproduced number. Where a class needed a reading made after results, it is CHANGELOG_METHOD #6 and the count is shown both ways.",
+ "counts_main": {
+  "A": 1,
+  "B": 0,
+  "C": 4,
+  "D": 0,
+  "E": 0
+ },
+ "n_main": 5,
+ "alternatives": {
+  "06_VSV5DM": {
+   "class_rule4": "C",
+   "alt_class": "A",
+   "alt_label": "A if T4 (text 'p = .054') is read as the coefficient p (0.0542, printed by the authors' code) instead of the pre-registered AME p (0.0569)"
+  },
+  "07_JH9DBC": {
+   "class_rule4": "A",
+   "alt_class": "B",
+   "alt_label": "B with current CRAN fixest 0.14.2 (identical coefficients, T4 N 586 vs 600, IID SEs); A uses fixest 0.12.1, the CRAN release when the code was written, chosen after seeing the 0.14.2 output"
+  },
+  "08_SQRZR8": {
+   "class_rule4": "C",
+   "alt_class": "D",
+   "alt_label": "D as both agents proposed by reading T6's pre-registered criterion literally; A on the five coefficient targets alone. C because the code cannot produce the printed N (4,057) while every estimate matches"
+  },
+  "09_4U8CTG": {
+   "class_rule4": "C",
+   "alt_class": "A",
+   "alt_label": "A on the openly available Study 2 targets T1 to T4; Study 1 data (T5, T6) sit behind ELIPSS registration (pre-run decision #2)"
+  },
+  "10_6MLKJZ": {
+   "class_rule4": "C",
+   "alt_class": "A",
+   "alt_label": "A if T3 is counted as respondents coded in survey_data.csv (1,849) or set aside; the deposited code yields 2,482 and has no step that removes the rest"
+  }
+ },
+ "counts_if_06_VSV5DM_alt": {
+  "A": 2,
+  "B": 0,
+  "C": 3,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_06_VSV5DM_alt": 5,
+ "counts_if_07_JH9DBC_alt": {
+  "A": 0,
+  "B": 1,
+  "C": 4,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_07_JH9DBC_alt": 5,
+ "counts_if_08_SQRZR8_alt": {
+  "A": 1,
+  "B": 0,
+  "C": 3,
+  "D": 1,
+  "E": 0
+ },
+ "n_if_08_SQRZR8_alt": 5,
+ "counts_if_09_4U8CTG_alt": {
+  "A": 2,
+  "B": 0,
+  "C": 3,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_09_4U8CTG_alt": 5,
+ "counts_if_10_6MLKJZ_alt": {
+  "A": 2,
+  "B": 0,
+  "C": 3,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_10_6MLKJZ_alt": 5,
+ "counts_all_alternatives": {
+  "A": 3,
+  "B": 1,
+  "C": 0,
+  "D": 1,
+  "E": 0
+ },
+ "n_all_alternatives": 5
+}

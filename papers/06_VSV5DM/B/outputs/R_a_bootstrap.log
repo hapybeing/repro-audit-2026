@@ -1,0 +1,8 @@
+                      level original_AME  boot_SE   ci_lower ci_upper p_boot
+1    Democratic White Women     10.20869 6.370871 -2.6583934 22.16290  0.112
+2   Democratic Men of Color     17.28056 7.160779  1.0981191 30.02881  0.030
+3 Democratic Women of Color     15.05273 6.766576 -0.6033135 26.70207  0.060
+     B n_dropped n_used     seed
+1 1000         0   1000 20261010
+2 1000         0   1000 20261010
+3 1000         0   1000 20261010

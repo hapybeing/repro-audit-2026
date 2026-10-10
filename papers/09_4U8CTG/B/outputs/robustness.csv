@@ -1,0 +1,7 @@
+"check","outcome","estimate","se","ci_low","ci_high","p_value","n","note"
+"R_a","swd_ch",-1.26602564102564,0.745847395516253,-2.78854166666666,0.205448717948714,0.086,123,"B=2000 stratified; NA boot estimates=0"
+"R_a","affect_LREM_ch",-0.511304347826088,0.261905148217048,-1.04530434782608,-0.0103478260869571,0.041,120,"B=2000 stratified; NA boot estimates=0"
+"R_b","swd_ch",-0.541666666666666,0.547628182443277,NA,NA,0.32466610487943,121,"dropped 2 arms=control;control values=10;10"
+"R_b","affect_LREM_ch",-0.511304347826086,0.267293862681936,NA,NA,0.0583154200651716,117,"dropped 3 arms=win_govt;win_govt;win_parl values=-5;5;4"
+"R_c","swd_w2",-0.818777422152727,0.592473192629538,NA,NA,0.169615202358937,123,"swd_w2 ~ treatment + swd_w1; diag rows swd_ch != w2-w1: 0"
+"R_c","affect_LREM_w2",-0.374586500871602,0.335399687622447,NA,NA,0.266412743962356,120,"affect_LREM_w2 ~ treatment + affect_LREM_w1; diag rows affect ch != w2-w1: 0"

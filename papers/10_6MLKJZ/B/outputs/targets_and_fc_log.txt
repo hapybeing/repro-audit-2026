@@ -1,0 +1,132 @@
+                      id                               definition     n
+1                     T1         civic & sector == Private Sector  1285
+2                     T2          civic & sector == Public Sector   333
+3                     T3                              civic (all)  2482
+4                     T4         student == Public Administration   510
+5                     T5        student == General Student Sample   636
+6                     T6                   student == Social Work   123
+7        sec_all_private all pooled_df2, sector == Private Sector  1285
+8         sec_all_public  all pooled_df2, sector == Public Sector   333
+9    sec_civic_na_sector                        civic & sector NA   864
+10 sec_total_respondents                           all pooled_df2  3882
+11        sec_rows_total                       rows of pooled_df2 87936
+12    sample_label_civic                         civic (N = 2482)  2482
+13     sample_label_hsvn                           hsvn (N = 528)   528
+14       sample_label_rh                             rh (N = 128)   128
+15      sample_label_uhh                            uhh (N = 744)   744
+16  sec_resp_not_16_rows        respondents whose row count != 16  1614
+                  feature n_levels n_NA
+Gender             Gender        2    0
+Age                   Age        4    0
+Citizenship   Citizenship        6    0
+Composition   Composition        5    0
+Unemployment Unemployment        4    0
+Supportive     Supportive        3    0
+Since               Since        4    0
+Education       Education        4    0
+                                                                                                 levels
+Gender                                                                                      Male|Female
+Age                                                                 23 Years|36 Years|48 Years|57 Years
+Citizenship                                                 Vietnam|Syria|Romania|Turkey|France|Germany
+Composition                   1 Adult|2 Adults|2 Adults, 1 Child|1 Adult, 2 Childr.|2 Adults, 3 Childr.
+Unemployment Fired for wrongdoing|Voluntarily dismissal|Bankruptcy of employer|Disabled due to accident
+Supportive                                                                              Low|Medium|High
+Since                                                                 6 Months|1 Year|1.5 Years|3 Years
+Education                                    Unskilled|Vocational Training|Technical College|University
+sector groups in Figure 1 output: Private Sector | Public Sector  rows: 64 
+{
+  "FC1": {
+    "count_excluding_0": 0,
+    "paper_claim": 0,
+    "same_conclusion": true,
+    "levels_excluding_0": [
+      {
+        "feature": "Since",
+        "level": "1 Year",
+        "estimate": -0.031714,
+        "lower": -0.057015,
+        "upper": -0.006414
+      },
+      {
+        "feature": "Since",
+        "level": "3 Years",
+        "estimate": 0.031087,
+        "lower": 0.004567,
+        "upper": 0.057608
+      }
+    ],
+    "not_in_FC1_counts": {
+      "Since": 2,
+      "Education": 0
+    },
+    "source": "outputs/cj_marginal_means_grouped_sector_mmdiff.csv"
+  },
+  "FC2": {
+    "by_sector": {
+      "Private Sector": {
+        "ranges": {
+          "Age": 0.039676,
+          "Citizenship": 0.106429,
+          "Composition": 0.321199,
+          "Education": 0.030155,
+          "Gender": 0.019137,
+          "Since": 0.031944,
+          "Supportive": 0.169488,
+          "Unemployment": 0.262986
+        },
+        "largest": "Composition"
+      },
+      "Public Sector": {
+        "ranges": {
+          "Age": 0.04718,
+          "Citizenship": 0.135971,
+          "Composition": 0.321865,
+          "Education": 0.032139,
+          "Gender": 0.015038,
+          "Since": 0.041536,
+          "Supportive": 0.156578,
+          "Unemployment": 0.255805
+        },
+        "largest": "Composition"
+      }
+    },
+    "same_conclusion": true,
+    "source": "outputs/cj_marginal_means_grouped_sector.csv"
+  },
+  "FC3": {
+    "by_sector": {
+      "Private Sector": {
+        "Syria": {
+          "estimate": 0.443803,
+          "std.error": 0.009029,
+          "lower": 0.426107,
+          "upper": 0.461499
+        },
+        "Germany": {
+          "estimate": 0.550232,
+          "std.error": 0.005983,
+          "lower": 0.538505,
+          "upper": 0.561958
+        }
+      },
+      "Public Sector": {
+        "Syria": {
+          "estimate": 0.422707,
+          "std.error": 0.016914,
+          "lower": 0.389556,
+          "upper": 0.455857
+        },
+        "Germany": {
+          "estimate": 0.558678,
+          "std.error": 0.01111,
+          "lower": 0.536903,
+          "upper": 0.580452
+        }
+      }
+    },
+    "strict_same_conclusion": true,
+    "lenient_same_conclusion": true,
+    "source": "outputs/cj_marginal_means_grouped_sector.csv"
+  },
+  "note_md_BY": "Public Sector - Private Sector"
+}

@@ -1,0 +1,621 @@
+
+> rm(list = ls())
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+> library(ltm)
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Loading required package: msm
+Loading required package: polycor
+
+> library(coefplot)
+
+> library(ggpubr)
+
+> library(estimatr)
+
+> library(sjPlot)
+
+> data <- read.csv("data_cleaned_rep.csv", sep = ",")
+
+> table(data$condition)
+
+                 control             Personalboth           PersonalCensor 
+                     472                      483                      511 
+PersonalCensorPublicSurv             PersonalSurv PersonalSurvPublicCensor 
+                     520                      512                      506 
+              PublicBoth             PublicCensor               PublicSurv 
+                     515                      489                      499 
+
+> table(data$Surveillance, data$Censorship)
+   
+      0   1   2
+  0 472 511 489
+  1 512 483 506
+  2 499 520 515
+
+> df_emotion <- data[, c("Sadness", "Anger", "Fear", 
++     "Disgust", "DoNotCare", "Helplessness", "Secured", "Happiness", 
++     "Curiosity", "Surprised")]
+
+> cor_emotion <- cor(df_emotion)
+
+> mean(cor(df_emotion))
+[1] 0.3629679
+
+> pca_emotion <- princomp(df_emotion)
+
+> names(pca_emotion)
+[1] "sdev"     "loadings" "center"   "scale"    "n.obs"    "scores"   "call"    
+
+> summary(pca_emotion, loadings = TRUE)
+Importance of components:
+                          Comp.1    Comp.2     Comp.3     Comp.4     Comp.5
+Standard deviation     2.2944083 1.6636267 1.00916634 0.94763542 0.83967052
+Proportion of Variance 0.3886649 0.2043364 0.07518988 0.06630044 0.05205371
+Cumulative Proportion  0.3886649 0.5930012 0.66819110 0.73449154 0.78654525
+                           Comp.6     Comp.7     Comp.8    Comp.9    Comp.10
+Standard deviation     0.80133120 0.79572798 0.77796824 0.7256416 0.69573984
+Proportion of Variance 0.04740869 0.04674801 0.04468457 0.0388757 0.03573778
+Cumulative Proportion  0.83395394 0.88070195 0.92538652 0.9642622 1.00000000
+
+Loadings:
+             Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9
+Sadness       0.400         0.122  0.148  0.103  0.157         0.132  0.859
+Anger         0.413  0.142  0.121  0.207  0.155  0.111        -0.362 -0.205
+Fear          0.396  0.115  0.147  0.146         0.162         0.776 -0.392
+Disgust       0.417  0.139  0.187  0.160  0.133               -0.470 -0.246
+DoNotCare     0.229 -0.243  0.389 -0.833         0.195                     
+Helplessness  0.350  0.110        -0.186 -0.185 -0.881                     
+Secured             -0.586  0.114  0.187                0.769              
+Happiness     0.108 -0.659  0.163  0.308 -0.140 -0.116 -0.629              
+Curiosity     0.220 -0.296 -0.635 -0.156  0.654                            
+Surprised     0.317        -0.558        -0.678  0.326        -0.120       
+             Comp.10
+Sadness             
+Anger        -0.733 
+Fear                
+Disgust       0.669 
+DoNotCare           
+Helplessness        
+Secured             
+Happiness           
+Curiosity           
+Surprised           
+
+> pc_emotion = pca_emotion$scores
+
+> cor(pc_emotion)
+               Comp.1        Comp.2        Comp.3        Comp.4        Comp.5
+Comp.1   1.000000e+00  5.227800e-16  6.774242e-15  5.092755e-15  1.145598e-14
+Comp.2   5.227800e-16  1.000000e+00 -4.336175e-15 -9.729551e-15  8.440966e-15
+Comp.3   6.774242e-15 -4.336175e-15  1.000000e+00  1.339269e-15 -1.494001e-14
+Comp.4   5.092755e-15 -9.729551e-15  1.339269e-15  1.000000e+00 -1.294461e-14
+Comp.5   1.145598e-14  8.440966e-15 -1.494001e-14 -1.294461e-14  1.000000e+00
+Comp.6   7.998942e-15  5.835150e-15  6.919589e-15 -2.135755e-14  9.892330e-15
+Comp.7  -2.612675e-15  2.240038e-14 -1.047280e-14 -2.247066e-14  1.914931e-14
+Comp.8  -2.437954e-14 -1.039285e-14 -1.957500e-14 -3.080583e-14 -2.270440e-14
+Comp.9  -1.372746e-14 -8.474328e-15  4.883612e-15 -1.411073e-14  1.000254e-14
+Comp.10  4.290543e-15  8.058464e-15 -1.677000e-14  8.536236e-15 -1.085075e-14
+               Comp.6        Comp.7        Comp.8        Comp.9       Comp.10
+Comp.1   7.998942e-15 -2.612675e-15 -2.437954e-14 -1.372746e-14  4.290543e-15
+Comp.2   5.835150e-15  2.240038e-14 -1.039285e-14 -8.474328e-15  8.058464e-15
+Comp.3   6.919589e-15 -1.047280e-14 -1.957500e-14  4.883612e-15 -1.677000e-14
+Comp.4  -2.135755e-14 -2.247066e-14 -3.080583e-14 -1.411073e-14  8.536236e-15
+Comp.5   9.892330e-15  1.914931e-14 -2.270440e-14  1.000254e-14 -1.085075e-14
+Comp.6   1.000000e+00  2.326333e-14 -2.035692e-14  1.500570e-14 -2.453008e-14
+Comp.7   2.326333e-14  1.000000e+00  1.466555e-14 -5.691831e-15  2.605133e-16
+Comp.8  -2.035692e-14  1.466555e-14  1.000000e+00 -1.234993e-14 -3.301775e-14
+Comp.9   1.500570e-14 -5.691831e-15 -1.234993e-14  1.000000e+00 -1.761154e-14
+Comp.10 -2.453008e-14  2.605133e-16 -3.301775e-14 -1.761154e-14  1.000000e+00
+
+> df_components_emotion <- data.frame(pc_emotion)
+
+> round(cor(df_emotion, pca_emotion$scores), 3)
+             Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9
+Sadness       0.796  0.137  0.107  0.122  0.075  0.109  0.021  0.089  0.542
+Anger         0.802  0.199  0.103  0.166  0.110  0.075  0.047 -0.238 -0.126
+Fear          0.777  0.164  0.127  0.118 -0.006  0.111 -0.030  0.516 -0.243
+Disgust       0.802  0.194  0.158  0.127  0.094  0.002  0.005 -0.307 -0.150
+DoNotCare     0.471 -0.362  0.353 -0.708 -0.006  0.140 -0.030 -0.032 -0.010
+Helplessness  0.719  0.164 -0.083 -0.158 -0.139 -0.632  0.024  0.048  0.029
+Secured       0.120 -0.825  0.097  0.150 -0.058 -0.037  0.518  0.024 -0.017
+Happiness     0.193 -0.853  0.128  0.227 -0.091 -0.073 -0.389 -0.029  0.009
+Curiosity     0.454 -0.443 -0.576 -0.133  0.494  0.008 -0.034  0.042 -0.028
+Surprised     0.648 -0.050 -0.503 -0.064 -0.508  0.233  0.004 -0.083 -0.008
+             Comp.10
+Sadness        0.030
+Anger         -0.431
+Fear           0.033
+Disgust        0.390
+DoNotCare     -0.024
+Helplessness  -0.040
+Secured        0.018
+Happiness     -0.022
+Curiosity      0.022
+Surprised      0.017
+
+> data$negative_emo <- pc_emotion[, "Comp.1"]
+
+> data$neutral_emo <- pc_emotion[, "Comp.3"]
+
+> data$positive_emo <- pc_emotion[, "Comp.2"]
+
+> positive_emo.df <- data.frame(data$positive_emo)
+
+> positive_emo.df <- positive_emo.df * (-1)
+
+> data$positive_emo_rv <- positive_emo.df$data.positive_emo
+
+> neutral_emo.df <- data.frame(data$neutral_emo)
+
+> neutral_emo.df <- neutral_emo.df * (-1)
+
+> data$neutral_emo_rv <- neutral_emo.df$data.neutral_emo
+
+> data$general_attitude_fic <- rowSums(data[, c("Attitude.I_1", 
++     "Attitude.I_2", "Attitude.I_3", "Attitude.I_4")])
+
+> data$general_attitude_real <- rowSums(data[, c("Attitude.II_1", 
++     "Attitude.II_2", "Attitude.II_3", "Attitude.II_4")])
+
+> subset <- data[data$condition == "PersonalCensor" | 
++     data$condition == "control" | data$condition == "PersonalSurv" | 
++     data$condition == "PublicCensor" | data$condition == "PublicSurv", 
++     ]
+
+> mod_positive <- lm(positive_emo_rv ~ condition, data = subset)
+
+> mod_negative <- lm(negative_emo ~ condition, data = subset)
+
+> mod_neutral <- lm(neutral_emo_rv ~ condition, data = subset)
+
+> mod_attitude_fic <- lm(general_attitude_fic ~ condition, 
++     data = subset)
+
+> mod_attitude_real <- lm(general_attitude_real ~ condition, 
++     data = subset)
+
+> conditionlab <- c("Personal\nCensorship", "Personal\nSurveillance", 
++     "Public\nCensorship", "Public\nSurveillance")
+
+> plot_effectemotion_subset <- multiplot(mod_positive, 
++     mod_neutral, mod_negative, intercept = FALSE, title = "", 
++     dodgeHeight = 0.3, ylab = "Condition", xlab = "Treatment Effect on Emotions", 
++     pointSize = 2.5, horizontal = TRUE) + theme_bw() + xlim(-0.8, 
++     0.8) + theme(axis.text.x = element_text(angle = 45, vjust = 1, 
++     hjust = 1)) + scale_y_discrete(labels = conditionlab) + scale_color_manual(name = "emotion", 
++     values = c("darkred", "grey", "darkgreen"), labels = c("negative", 
++         "neutral", "positive")) + scale_shape_manual(name = "emotion", 
++     labels = c("negative", "neutral", "positive"), values = c(16, 
++         17, 18))
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+Scale for shape is already present.
+Adding another scale for shape, which will replace the existing scale.
+
+> plot_effectattitude_subset <- multiplot(mod_attitude_fic, 
++     mod_attitude_real, intercept = FALSE, title = "", dodgeHeight = 0.2, 
++     ylab = "Condition", xlab = "Treatment Effect on Political Attitudes", 
++     pointSize = 2.5, horizontal = TRUE) + theme_bw() + xlim(-1.5, 
++     0.5) + theme(axis.text.x = element_text(angle = 45, vjust = 1, 
++     hjust = 1)) + scale_y_discrete(labels = conditionlab) + scale_color_manual(name = "scenario", 
++     values = c("darksalmon", "grey4"), labels = c("fictitious", 
++         "real-life")) + scale_shape_manual(name = "scenario", 
++     labels = c("fictitious", "real-life"), values = c(22, 25))
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+Scale for shape is already present.
+Adding another scale for shape, which will replace the existing scale.
+
+> subset2 <- data[data$condition == "control" | data$condition == 
++     "Personalboth" | data$condition == "PersonalCensorPublicSurv" | 
++     data$condition == "PersonalSurvPublicCensor" | data$condition == 
++     "PublicBoth", ]
+
+> mod_positive <- lm(positive_emo_rv ~ condition, data = subset2)
+
+> mod_negative <- lm(negative_emo ~ condition, data = subset2)
+
+> mod_neutral <- lm(neutral_emo_rv ~ condition, data = subset2)
+
+> mod_attitude_fic <- lm(general_attitude_fic ~ condition, 
++     data = subset2)
+
+> mod_attitude_real <- lm(general_attitude_real ~ condition, 
++     data = subset2)
+
+> conditionlab2 <- c("Personal\nBoth", "Personal Cens.\nPublic Surv.", 
++     "Personal Surv.\nPublic Cens.", "Public\nBoth")
+
+> plot_effectemotion_subset2 <- multiplot(mod_positive, 
++     mod_neutral, mod_negative, intercept = FALSE, title = "", 
++     dodgeHeight = 0.3, ylab = "Condition", xlab = "", pointSize = 2.5, 
++     horizontal = TRUE) + theme_bw() + xlim(-0.8, 0.8) + theme(axis.text.x = element_text(angle = 45, 
++     vjust = 1, hjust = 1)) + scale_y_discrete(labels = conditionlab2) + 
++     scale_color_manual(name = "emotion", values = c("darkred", 
++         "grey", "darkgreen"), labels = c("negative", "neutral", 
++         "positive")) + scale_shape_manual(name = "emotion", labels = c("negative", 
++     "neutral", "positive"), values = c(16, 17, 18))
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+Scale for shape is already present.
+Adding another scale for shape, which will replace the existing scale.
+
+> plot_effectattitude_subset2 <- multiplot(mod_attitude_fic, 
++     mod_attitude_real, intercept = FALSE, title = "", dodgeHeight = 0.2, 
++     ylab = "Condition", xlab = "", pointSize = 2.5, horizontal = TRUE) + 
++     theme_bw() + xlim(-1.5, 0.5) + theme(axis.text.x = element_text(angle = 45, 
++     vjust = 1, hjust = 1)) + scale_y_discrete(labels = conditionlab2) + 
++     scale_color_manual(name = "scenario", values = c("darksalmon", 
++         "grey4"), labels = c("fictitious", "real-life")) + scale_shape_manual(name = "scenario", 
++     labels = c("fictitious", "real-life"), values = c(22, 25))
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+Scale for shape is already present.
+Adding another scale for shape, which will replace the existing scale.
+
+> plot_emotion <- ggarrange(plot_effectemotion_subset, 
++     plot_effectemotion_subset2, ncol = 2, common.legend = TRUE, 
++     legend = "right", align = "hv")
+
+> plot_attitude <- ggarrange(plot_effectattitude_subset, 
++     plot_effectattitude_subset2, ncol = 2, common.legend = TRUE, 
++     legend = "right", align = "hv")
+
+> fig_2 <- ggarrange(plot_emotion, plot_attitude, nrow = 2, 
++     common.legend = FALSE, legend = "right", align = "hv")
+
+> covariates_str <- paste("Age", "Gender", "Education", 
++     "Ethnicity", "MonthlyIncome", "CCPMembership", "rural", "OverseaExperience_yes", 
++     "nationalism_nor", "liberalism_nor", "vpnsavvy", "conservation_nor", 
++     "openness_nor", "conscientiousness_nor", "neuroticism_nor", 
++     "extraversion_nor", "agreeableness_nor", "LifeSat_1", sep = " + ")
+
+> form_med_positive_a <- as.formula(paste("positive_emo_rv ~ condition +", 
++     covariates_str))
+
+> form_med_positive_bc_fic <- as.formula(paste("general_attitude_fic ~ condition + positive_emo_rv +", 
++     covariates_str))
+
+> form_med_positive_bc_real <- as.formula(paste("general_attitude_real ~ condition + positive_emo_rv +", 
++     covariates_str))
+
+> form_med_negative_a <- as.formula(paste("negative_emo ~ condition +", 
++     covariates_str))
+
+> form_med_negative_bc_fic <- as.formula(paste("general_attitude_fic ~ condition + negative_emo +", 
++     covariates_str))
+
+> form_med_negative_bc_real <- as.formula(paste("general_attitude_real ~ condition + negative_emo +", 
++     covariates_str))
+
+> med_positive_a <- lm(form_med_positive_a, data = data)
+
+> med_positive_bc_fic <- lm(form_med_positive_bc_fic, 
++     data = data)
+
+> med_positive_bc_real <- lm(form_med_positive_bc_real, 
++     data = data)
+
+> med_negative_a <- lm(form_med_negative_a, data = data)
+
+> med_negative_bc_fic <- lm(form_med_negative_bc_fic, 
++     data = data)
+
+> med_negative_bc_real <- lm(form_med_negative_bc_real, 
++     data = data)
+
+> unique(data$condition)
+[1] "control"                  "PublicSurv"              
+[3] "PublicBoth"               "PersonalSurvPublicCensor"
+[5] "PersonalCensorPublicSurv" "Personalboth"            
+[7] "PublicCensor"             "PersonalCensor"          
+[9] "PersonalSurv"            
+
+> treatment_arms <- setdiff(unique(data$condition), 
++     "control")
+
+> mediator_models <- list(positive_emo_rv = med_positive_a, 
++     negative_emo = med_negative_a)
+
+> outcome_models <- list(fic = list(positive_emo_rv = med_positive_bc_fic, 
++     negative_emo = med_negative_bc_fic), real = list(positive_emo_rv = med_positive_bc_real, 
++     negative_emo = med_negative_bc_real))
+
+> run_all_mediations <- function(med_models, out_models, 
++     arms, treat_var = "condition", control_value = "control", 
++     boot = TRUE, sims = 1000) {
++     if (!length(med_models)) 
++         stop("No mediator models supplied.")
++     if (!length(out_models)) 
++         stop("No outcome models supplied.")
++     if (!length(arms)) 
++         stop("No treatment arms supplied.")
++     res <- list()
++     for (med_name in names(med_models)) {
++         model_m <- med_models[[med_name]]
++         for (out_name in names(out_models)) {
++             model_y <- out_models[[out_name]][[med_name]]
++             if (is.null(model_y)) {
++                 stop(sprintf("Missing outcome model for outcome='%s' & mediator='%s'.", 
++                   out_name, med_name))
++             }
++             for (arm in arms) {
++                 key <- paste("results", med_name, out_name, arm, 
++                   sep = "_")
++                 res[[key]] <- mediation::mediate(model.m = model_m, 
++                   model.y = model_y, treat = treat_var, mediator = med_name, 
++                   control.value = control_value, treat.value = arm, 
++                   boot = boot, sims = sims)
++             }
++         }
++     }
++     res
++ }
+
+> results <- run_all_mediations(med_models = mediator_models, 
++     out_models = outcome_models, arms = treatment_arms)
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+
+> extract_results <- function(med_res, label) {
++     data.frame(Estimate = c(med_res$d0, med_res$z0, med_res$tau.coef), 
++         LowerCI = c(med_res$d0.ci[1], med_res$z0.ci[1], med_res$tau.ci[1]), 
++         UpperCI = c(med_res$d0.ci[2], med_res$z0.ci[2], med_res$tau.ci[2]), 
++         Effect = factor(c("ACME", "ADE", "Total Effect"), levels = c("ACME", 
++             "ADE", "Total Effect")), Condition = label)
++ }
+
+> labels <- paste("Result", 1:8)
+
+> results_list <- mapply(extract_results, results, labels, 
++     SIMPLIFY = FALSE)
+
+> results_df <- bind_rows(results_list)
+
+> results_df <- results_df %>% mutate(Condition = case_when(Condition == 
++     "Result 1" ~ "Public Surv", Condition == "Result 2" ~ "Public Both", 
++     Condition == "Result 3" ~ "Personal. Surv & Public Censor", 
++     Condition == "Result 4" ~ "Personal. Censor & Public Surv", 
++     Condition == "Result 5" ~ "Personal. Both", Condition == 
++         "Result 6" ~ "Public Censor", Condition == "Result 7" ~ 
++         "Personal. Censor", Condition == "Result 8" ~ "Personal. Surv", 
++     TRUE ~ Condition))
+
+> mediator_outcome <- rep(c("positive_fic", "positive_real", 
++     "negative_fic", "negative_real"), each = 24)
+
+> results_df$Category <- mediator_outcome
+
+> results_df$Effect <- factor(results_df$Effect, levels = c("Total Effect", 
++     "ADE", "ACME"))
+
+> levels(results_df$Effect)
+[1] "Total Effect" "ADE"          "ACME"        
+
+> position_dodge <- position_dodge(width = 0.5)
+
+> results_df$Category <- factor(results_df$Category, 
++     levels = c("positive_fic", "positive_real", "negative_fic", 
++         "negative_real"))
+
+> fig_3 <- ggplot(results_df, aes(x = Estimate, y = Effect, 
++     color = Condition, shape = Condition)) + geom_point(size = 3, 
++     position = position_dodge, stroke = 0.5) + geom_errorbar(aes(xmin = LowerCI, 
++     xmax = UpperCI), width = 0.5, position = position_dodge, 
++     size = 0.6) + labs(x = "Estimate", y = "Effect", title = "", 
++     color = "Treatment", shape = "Treatment") + theme_bw() + 
++     geom_vline(xintercept = 0, linetype = "dashed", color = "black", 
++         size = 0.5) + theme(legend.title = element_text(size = 10)) + 
++     scale_color_brewer(palette = "Dark2") + scale_shape_manual(values = 1:8) + 
++     theme(legend.position = "bottom") + facet_wrap(~Category, 
++     ncol = 2, labeller = labeller(Category = c(positive_fic = "Positive emotions: attitudes (fictitious)", 
++         positive_real = "Positive emotions: attitudes (real-life)", 
++         negative_fic = "Negative emotions: attitudes (fictitious)", 
++         negative_real = "Negative emotions: attitudes (real-life)")))
+
+> data$surveillance_fac <- factor(data$Surveillance, 
++     levels = c(0, 1, 2), labels = c("No Mention", "Personalized", 
++         "Public"))
+
+> data$censorship_fac <- factor(data$Censorship, levels = c(0, 
++     1, 2), labels = c("No Mention", "Personalized", "Public"))
+
+> outcomes <- c("positive_emo_rv", "negative_emo", "neutral_emo_rv", 
++     "general_attitude_fic", "general_attitude_real")
+
+> fit_models <- function(outcome) {
++     formula_main <- as.formula(paste0(outcome, " ~ surveillance_fac + censorship_fac + ", 
++         covariates_str))
++     formula_interact <- as.formula(paste0(outcome, " ~ surveillance_fac * censorship_fac + ", 
++         covariates_str))
++     list(mod2 = lm_robust(formula_main, data = data), mod4 = lm_robust(formula_interact, 
++         data = data))
++ }
+
+> models <- lapply(outcomes, fit_models)
+
+> names(models) <- outcomes
+
+> all_models <- unlist(models, recursive = FALSE)
+
+> tab_3 <- tab_model(all_models$positive_emo_rv.mod2, 
++     all_models$positive_emo_rv.mod4, all_models$negative_emo.mod2, 
++     all_models$negative_emo.mod4, all_models$neutral_emo_rv.mod2, 
++     all_models$neutral_emo_rv.mod4, all_models$general_attitude_fic.mod2, 
++     all_models$general_attitude_fic.mod4, all_models$general_attitude_real.mod2, 
++     all_models$general_attitude_real.mod4, dv.labels = c("Positive Emotion \n (main)", 
++         "Positive Emotion \n (main+interactions)", "Negative Emotion \n (main)", 
++         "Negative Emotion \n (main+interactions)", "Neutral Emotion \n (main)", 
++         "Neutral Emotion b\n (main+interactions)", "Attitude towards fictitious scenario \n (main)", 
++         "Attitude towards fictitious scenario \n (main+interactions)", 
++         "Attitude towards real-life scenario \n (main)", "Attitude towards real-life scenario \n (main+interactions)"), 
++     digits = 3, p.style = "stars", show.ci = FALSE, show.se = TRUE, 
++     collapse.se = TRUE, rm.terms = c("Age", "Gender", "Education", 
++         "Ethnicity", "MonthlyIncome", "CCPMembership", "rural", 
++         "OverseaExperience_yes", "nationalism_nor", "liberalism_nor", 
++         "vpnsavvy", "conservation_nor", "openness_nor", "conscientiousness_nor", 
++         "neuroticism_nor", "extraversion_nor", "agreeableness_nor", 
++         "LifeSat_1"))
+
+> group_means_att <- data %>% group_by(condition) %>% 
++     summarise(Mean_real = mean(general_attitude_real, na.rm = TRUE), 
++         Mean_hypo = mean(general_attitude_fic, na.rm = TRUE), 
++         Mean_Diff = mean(general_attitude_real - general_attitude_fic, 
++             na.rm = TRUE), SD_Diff = sd(general_attitude_real - 
++             general_attitude_fic, na.rm = TRUE), N = n(), .groups = "drop")
+
+> t_test_results_att <- data %>% group_by(condition) %>% 
++     summarise(t_statistic = t.test(general_attitude_real, general_attitude_fic, 
++         paired = TRUE)$statistic, p_value = t.test(general_attitude_real, 
++         general_attitude_fic, paired = TRUE)$p.value, .groups = "drop")
+
+> final_results_diff_att <- left_join(group_means_att, 
++     t_test_results_att, by = "condition")
+
+> final_results_diff_att <- final_results_diff_att %>% 
++     mutate(SE = SD_Diff/sqrt(N), p_adj = p.adjust(p_value, method = "bonferroni"), 
++         Sig_Original = ifelse(p_value < 0.05, "Significant", 
++             "Not Significant"), Sig_Bonferroni = ifelse(p_adj < 
++             0.05, "Significant", "Not Significant"))
+
+> print(final_results_diff_att)
+# A tibble: 9 × 12
+  condition     Mean_real Mean_hypo Mean_Diff SD_Diff     N t_statistic  p_value
+  <chr>             <dbl>     <dbl>     <dbl>   <dbl> <int>       <dbl>    <dbl>
+1 PersonalCens…      15.0      14.4     0.697    2.52   511        6.25 8.67e-10
+2 PersonalCens…      14.8      13.9     0.919    2.43   520        8.62 8.27e-17
+3 PersonalSurv       14.5      13.8     0.662    2.43   512        6.17 1.42e- 9
+4 PersonalSurv…      14.8      14.0     0.870    2.57   506        7.61 1.39e-13
+5 Personalboth       14.8      13.8     1.01     2.61   483        8.51 2.19e-16
+6 PublicBoth         14.9      14.3     0.614    2.20   515        6.33 5.30e-10
+7 PublicCensor       14.8      14.2     0.571    2.62   489        4.82 1.95e- 6
+8 PublicSurv         14.9      14.4     0.553    2.46   499        5.02 7.17e- 7
+9 control            15.0      14.7     0.369    2.31   472        3.47 5.72e- 4
+# ℹ 4 more variables: SE <dbl>, p_adj <dbl>, Sig_Original <chr>,
+#   Sig_Bonferroni <chr>
+
+> diff_att_df <- data.frame(final_results_diff_att)
+
+> (sum(diff_att_df$Mean_Diff/diff_att_df$Mean_hypo) * 
++     100)/9
+[1] 4.945179
+
+> attitude_df_fic <- data %>% dplyr::select(Attitude.I_1, 
++     Attitude.I_2, Attitude.I_3, Attitude.I_4)
+
+> attitude_df_real <- data %>% dplyr::select(Attitude.II_1, 
++     Attitude.II_2, Attitude.II_3, Attitude.II_4)
+
+> cronbach.alpha(attitude_df_fic, CI = TRUE)
+
+Cronbach's alpha for the 'attitude_df_fic' data-set
+
+Items: 4
+Sample units: 4507
+alpha: 0.801
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+ 0.79  0.81 
+
+
+
+> cronbach.alpha(attitude_df_real, CI = TRUE)
+
+Cronbach's alpha for the 'attitude_df_real' data-set
+
+Items: 4
+Sample units: 4507
+alpha: 0.776
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+0.763 0.788 
+
+
+Warning message:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead. 
+RUN_DONE
+exit 0

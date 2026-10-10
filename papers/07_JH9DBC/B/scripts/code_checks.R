@@ -1,0 +1,27 @@
+# Code-review checks run on the saved session and the data. Writes outputs/code_checks.txt
+.libPaths(c("/workspace/audit_runs/07_JH9DBC/B/rlib", .libPaths()))
+suppressPackageStartupMessages({library(lme4); library(sjPlot); library(haven); library(dplyr)})
+OUT <- "/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/07_JH9DBC/B/outputs"
+load(file.path(OUT, "session_fixest_current.RData"))
+sink(file.path(OUT, "code_checks.txt"))
+cat("== Convergence messages of lmer models left in session ==\n")
+for (n in ls()) { o <- get(n); if (inherits(o, "merMod")) { msg <- o@optinfo$conv$lme4$messages; cat(n, ":", if (is.null(msg)) "none" else paste(msg, collapse=" | "), " singular:", isSingular(o), "\n") } }
+cat("\n== Figure B: which term is row 7 of get_model_data(type='est')? (replication.R line 438 and 455) ==\n")
+mod <- lmer(voto_pro_gober ~ juicio + year_2018 + juicio*year_2018 + log_pobtot + log_pib + econ_growth + hom_per100 + (1|unique_id) + (1|partido_gober), data = data)
+g <- get_model_data(mod, type="est", ci.lvl=0.95); print(as.data.frame(g)[, 1:6])
+cat("row 7 term:", as.character(g$term[7]), "\n")
+cat("\n== Missingness and singletons in data (600 rows) ==\n")
+cat("rows:", nrow(data), " districts:", length(unique(data$unique_id)), "\n")
+tab <- table(data$unique_id); cat("districts with one row:", sum(tab == 1), "\n")
+cat("NA counts:\n"); print(colSums(is.na(data)))
+cat("\n== Table A inputs: data (2015+2018) vs dataall ==\n")
+cat("nrow(data)", nrow(data), " nrow(dataall)", nrow(dataall), " mean year_2018 data", mean(data$year_2018), " dataall", mean(dataall$year_2018), "\n")
+cat("non-missing prev_exp_fleg in dataall:", sum(!is.na(dataall$prev_exp_fleg)), "\n")
+cat("\n== Figure 1 newdata: unique_id coerced inside cbind (line 98 to 115) ==\n")
+cat("dataall$unique_id[33] =", dataall$unique_id[33], "; predictions use re.form=NA so unique_id is not used by predict.\n")
+sink()
+sink(file.path(OUT, "code_checks.txt"), append=TRUE)
+cat("\n== The 14 districts with one row in data (fixest >= 0.13 drops them as singletons) ==\n")
+one <- names(tab)[tab == 1]
+print(as.data.frame(dataall[dataall$unique_id %in% one, c("unique_id","estado","id_distrito","elec_year","juicio","st_elections_15_18")]))
+sink()

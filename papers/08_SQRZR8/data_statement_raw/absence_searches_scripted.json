@@ -1,0 +1,177 @@
+{
+ "script": "scripts/absence_searches.py",
+ "paper": "08_SQRZR8",
+ "run_started_utc": "2026-10-10T14:44:54Z",
+ "records": [
+  {
+   "paper": "08_SQRZR8",
+   "source": "Harvard Dataverse Search API",
+   "query": "fileName:\"data_preparation_rep.R\", type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22data_preparation_rep.R%22&type=file&per_page=100",
+   "utc": "2026-10-10T14:44:54Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = any file named data_preparation_rep.R"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "Harvard Dataverse Search API",
+   "query": "data_preparation_rep, type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=data_preparation_rep&type=file&per_page=100",
+   "utc": "2026-10-10T14:44:54Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = any file named data_preparation_rep.R"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "Harvard Dataverse Search API",
+   "query": "\"Knowing is Disturbing\", type=dataset",
+   "url": "https://dataverse.harvard.edu/api/search?q=%22Knowing+is+Disturbing%22&type=dataset&per_page=100",
+   "utc": "2026-10-10T14:44:54Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "name": "Replication Data for: Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy",
+     "dataset": null,
+     "doi": "doi:10.7910/DVN/SQRZR8"
+    }
+   ],
+   "note": "relevant = a dataset for this article other than doi:10.7910/DVN/SQRZR8"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "Harvard Dataverse dataset versions API",
+   "query": "all versions of doi:10.7910/DVN/SQRZR8",
+   "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/SQRZR8",
+   "utc": "2026-10-10T14:44:55Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "version": "1.0",
+     "state": "RELEASED",
+     "files": [
+      "append_rep.R",
+      "data_cleaned_rep.tab",
+      "data_raw_rep.csv",
+      "main_rep.R",
+      "ReadMe.txt"
+     ]
+    }
+   ],
+   "note": "relevant = any version whose file list contains data_preparation_rep.R"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "Zenodo REST API",
+   "query": "\"Knowing is Disturbing\"",
+   "url": "https://zenodo.org/api/records?q=%22Knowing+is+Disturbing%22&size=25",
+   "utc": "2026-10-10T14:44:55Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a record for this article"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "Zenodo REST API",
+   "query": "data_preparation_rep",
+   "url": "https://zenodo.org/api/records?q=data_preparation_rep&size=25",
+   "utc": "2026-10-10T14:44:56Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a record containing data_preparation_rep.R"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "\"Knowing is Disturbing\"",
+   "url": "https://api.datacite.org/dois?query=%22Knowing+is+Disturbing%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:44:58Z",
+   "http": 200,
+   "total_results": 2,
+   "relevant_hits": [
+    {
+     "doi": "10.17169/refubium-50186",
+     "title": "Knowing Is Disturbing: Emotions and Public Attitudes toward Digital Control under Autocracy"
+    },
+    {
+     "doi": "10.7910/dvn/sqrzr8",
+     "title": "Replication Data for: Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy"
+    }
+   ],
+   "note": "relevant = a DOI for this article other than 10.7910/DVN/SQRZR8 and the article itself"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "relatedIdentifiers.relatedIdentifier:\"10.1017/S1537592725103551\"",
+   "url": "https://api.datacite.org/dois?query=relatedIdentifiers.relatedIdentifier%3A%2210.1017%2FS1537592725103551%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T14:44:58Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "doi": "10.17169/refubium-50186",
+     "title": "Knowing Is Disturbing: Emotions and Public Attitudes toward Digital Control under Autocracy"
+    }
+   ],
+   "note": "relevant = a DOI other than 10.7910/DVN/SQRZR8 that declares this article as related"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "DataCite DOI record (item returned by the searches above)",
+   "query": "10.17169/refubium-50186",
+   "url": "https://api.datacite.org/dois/10.17169/refubium-50186",
+   "utc": "2026-10-10T14:44:59Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": {
+    "title": "Knowing Is Disturbing: Emotions and Public Attitudes toward Digital Control under Autocracy",
+    "resource_type": "Text",
+    "url": "https://refubium.fu-berlin.de/handle/fub188/50459",
+    "sizes": [
+     "22 Seiten"
+    ],
+    "relations": [
+     [
+      "IsIdenticalTo",
+      "10.1017/s1537592725103551"
+     ],
+     [
+      "IsIdenticalTo",
+      "https://doi.org/10.1017/S1537592725103551"
+     ]
+    ]
+   },
+   "note": "a DataCite item is a hit only if it is a dataset or software record holding data_preparation_rep.R or other material for this article"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "OSF API v2 public nodes (title filter)",
+   "query": "Knowing is Disturbing",
+   "url": "https://api.osf.io/v2/nodes/?filter%5Btitle%5D=Knowing+is+Disturbing",
+   "utc": "2026-10-10T14:44:59Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a node for this article"
+  },
+  {
+   "paper": "08_SQRZR8",
+   "source": "GitHub repository search API (unauthenticated)",
+   "query": "\"Knowing is Disturbing\"",
+   "url": "https://api.github.com/search/repositories?q=%22Knowing+is+Disturbing%22",
+   "utc": "2026-10-10T14:45:01Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "relevant = a repository for this article; GitHub code search (file names) needs sign-in and was not used"
+  }
+ ]
+}

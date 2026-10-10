@@ -1,0 +1,75 @@
+There were 16 warnings (use warnings() to see them)
+There were 16 warnings (use warnings() to see them)
+Warning messages:
+1: In logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+2: In logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+{
+  "R_a": {
+    "estimate": 0.659697,
+    "unweighted_mean_check": 0.659697,
+    "ci_lower": 0.645555,
+    "ci_upper": 0.673081,
+    "boot_se": 0.007072,
+    "p_value": 0,
+    "B": 1000,
+    "seed": 20261009,
+    "n_resp": [1285, 333],
+    "same": true,
+    "fc1_count": 0,
+    "fc1_levels": [],
+    "other_levels_excl0": ["Since::1 Year", "Since::3 Years"]
+  },
+  "R_b": {
+    "estimate": 0.660131,
+    "se": 0.007149,
+    "ci_lower": 0.64612,
+    "ci_upper": 0.674142,
+    "p_value": 3.934176e-111,
+    "same": true,
+    "fc1_count": 0,
+    "fc1_levels": [],
+    "dropped_per_sample": {
+      "civic": {
+        "n_resp": 2482,
+        "n_no_duration": 0,
+        "p01": 189.81,
+        "p99": 6591.91,
+        "dropped": 50
+      },
+      "hsvn": {
+        "n_resp": 528,
+        "n_no_duration": 0,
+        "p01": 384.72,
+        "p99": 13901.48,
+        "dropped": 12
+      },
+      "rh": {
+        "n_resp": 128,
+        "n_no_duration": 0,
+        "p01": 541.07,
+        "p99": 146948.23,
+        "dropped": 4
+      },
+      "uhh": {
+        "n_resp": 744,
+        "n_no_duration": 0,
+        "p01": 377.29,
+        "p99": 47709.56,
+        "dropped": 16
+      }
+    },
+    "total_dropped": 82
+  },
+  "R_c": {
+    "estimate": 0.32066,
+    "se": 0.011652,
+    "ci_lower": 0.297823,
+    "ci_upper": 0.343497,
+    "p_value": 1.003136e-166,
+    "baseline": "1 Adult",
+    "same": true,
+    "anova_F": 2.060697,
+    "anova_p": 0.001385,
+    "anova_same_as_paper": false
+  }
+}

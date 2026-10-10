@@ -1,0 +1,159 @@
+{
+ "paper_id": "10_6MLKJZ",
+ "agent": "A",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "N of the general population sample, citizens / private sector: distinct respondentIndex in pooled_df2 with grepl('civic', Sample) and sector == 'Private Sector'. The paper prints no numeric estimate for its headline result (figures only); figure claims FC1-FC3 in PREREG.md carry the headline conclusion",
+   "paper_value": 1285,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1285,
+   "source_file": "outputs/sample_sizes.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Also equals distinct respondents in match_data with D=0; table(match_data$D) prints 2570 = rows at task 1 (2 profiles per respondent), not respondents. Figure-claim checks: FC1 count 0 of 24 levels (paper 0, same=True); Since levels excluding 0: ['1 Year', '3 Years']; FC2 largest range: {'Private Sector': 'Composition', 'Public Sector': 'Composition'} (same=True); FC3 strict=True, lenient=True (outputs/figure_claims.json)"
+  },
+  {
+   "id": "T2",
+   "description": "N of the general population sample, public employees / public sector: distinct respondentIndex in pooled_df2 with grepl('civic', Sample) and sector == 'Public Sector'",
+   "paper_value": 333,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 333,
+   "source_file": "outputs/sample_sizes.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "table(match_data$D) prints 666 rows = 2 x 333 respondents."
+  },
+  {
+   "id": "T3",
+   "description": "N of the general population sample, total including no sector identified: distinct respondentIndex in pooled_df2 with grepl('civic', Sample)",
+   "paper_value": 1849,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 2482,
+   "source_file": "outputs/sample_sizes.csv",
+   "abs_diff": 633,
+   "rel_diff": 0.342347,
+   "match_to_rounding": false,
+   "within_5pct": false,
+   "same_conclusion": false,
+   "note": "Distinct civic respondents in pooled_df2 = 2482 (also the N in the Sample label). Of these, 864 have sector NA: 88 are not in survey_data.csv at all, and of the 776 that are, v184_ger is '1' for 231 and '.b' for 545. T1 + T2 + the '1' group = 1849. The deposited R code has no step that reduces the civic sample to Table 2's total; the figures group only by sector, so Figures 1-2 use exactly the T1/T2 respondents (outputs/diag_T3_and_join.json)."
+  },
+  {
+   "id": "T4",
+   "description": "N of the public administration student sample: distinct respondentIndex in pooled_df2 with student == 'Public Administration'",
+   "paper_value": 510,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 510,
+   "source_file": "outputs/sample_sizes.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Sample label hsvn shows N = 528 (510 Public Administration + 18 with student NA)."
+  },
+  {
+   "id": "T5",
+   "description": "N of the general student sample: distinct respondentIndex in pooled_df2 with student == 'General Student Sample'",
+   "paper_value": 636,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 636,
+   "source_file": "outputs/sample_sizes.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Sample label uhh shows N = 744 (636 + 108 with student NA)."
+  },
+  {
+   "id": "T6",
+   "description": "N of the social work student sample: distinct respondentIndex in pooled_df2 with student == 'Social Work'",
+   "paper_value": 123,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 123,
+   "source_file": "outputs/sample_sizes.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Sample label rh shows N = 128 (123 + 5 with student NA). Paper text says 127; Table 2 says 123."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Respondent-level cluster bootstrap (B=1000, seed 20261009) of E1 = Figure 1 MM of Composition '2 Adults, 3 Childr.', Private Sector",
+   "ran": true,
+   "estimate": 0.659697188175823,
+   "se_or_ci": "bootstrap SE 0.007072; percentile 95% CI [0.645555, 0.673081]",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_R_a.json",
+   "note": "p = 0 means no bootstrap draw <= 0.5 (resolution 1/1000). Secondary FC1 count (bootstrap percentile CIs) = 0 (paper 0). Since levels excluding 0: ['1 Year', '3 Years']. Rows as in pooled_df2 (including the duplicated rows, see bugs); unweighted check equals cregg: 0.659697188."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop respondents below 1st / above 99th percentile of Qualtrics 'Duration (in seconds)' within each of the 4 samples, rerun Figure 1 and 2 cj() calls",
+   "ran": true,
+   "estimate": 0.660130718954209,
+   "se_or_ci": "SE 0.007149; 95% CI [0.646120, 0.674142]",
+   "p_value": 3.93417609171628e-111,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_R_b.json",
+   "note": "Dropped 82 respondents ({'rh': 4, 'uhh': 16, 'hsvn': 12, 'civic': 50}); sector groups now 1273 private / 325 public. FC1 count = 0 (paper 0). z vs 0.5 = 22.400."
+  },
+  {
+   "id": "R_c",
+   "description": "AMCE instead of MM: Composition '2 Adults, 3 Childr.' vs '1 Adult', Private Sector; secondary cj_anova omnibus test of sector differences",
+   "ran": true,
+   "estimate": 0.320660262795954,
+   "se_or_ci": "clustered SE 0.011652; 95% CI [0.297823, 0.343497]",
+   "p_value": 1.00313611177894e-166,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_R_c.json",
+   "note": "Secondary (pre-registered as written): cj_anova F = 2.0607, df = 25, p = 0.001385; same conclusion as paper (p >= .05): False. This test is unclustered and runs on pooled_df2 rows including the duplicated rows from the many-to-many join (resid. df 51662, outputs/robustness_R_c_anova.txt). Supplementary, not pre-registered: on de-duplicated rows F = 1.0203, p = 0.4343 (outputs/supp_R_c_anova_dedup.txt; passing id= to cj_anova gave the same F, so cregg 0.4.0 cj_anova does not cluster)."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Prioritzing_Social_Needs/analysis/03_data_prep_and_merge.R",
+   "line": 133,
+   "description": "left_join(pooled_df2, ebalw) is many-to-many: ebalw comes from match_data filtered to task == 1, which has two rows (two profiles) per respondent, so every pooled_df2 row of a respondent in X is matched twice and duplicated. pooled_df2 is then used for Figures 1-4 and A3-A4.",
+   "evidence": "dplyr warning 'Detected an unexpected many-to-many relationship' (outputs/run_authors_log.txt); table(match_data$D) = 2570/666 rows for 1285/333 respondents; pooled_df2 has 87936 rows for 3882 respondents ({'16': 2268, '32': 1614}), 62112 after removing exact duplicates. 4 sector respondents (NA on a balance variable) keep 16 rows, the other 1614 get 32, so they are weighted half as much. Effect on the figures is small: max |change| of a Figure 1 MM 0.00090, of a Figure 2 difference 0.00104; same Figure 2 levels exclude 0 after de-duplication (['1 Year', '3 Years']) (outputs/diag_T3_and_join.json, outputs/code_check_join_dedup_fig1.csv). Statement `pooled_df2 <- left_join(pooled_df2, ebalw)` starts at line 133; ebalw is built at line 131 from X (lines 103-112)."
+  }
+ ],
+ "env_fixes": [
+  "diffs/00_raw_data_lowercase_symlinks.diff: code reads data_uhh.csv / data_hsvn.csv, deposit has data_UHH.csv / data_HSVN.csv (case-sensitive Linux); symlinks in the run copy, no code change",
+  "diffs/README.md item 2: cjoint 2.1.0 (CRAN archive, current when scripts were last revised in July 2023) instead of 2.1.3; 2.1.3 fails in read.qualtrics ('replacement has 0 rows')",
+  "diffs/README.md item 3: cregg 0.4.0 from CRAN archive tarball (archived 2024-09-05)",
+  "diffs/README.md item 4: 04_analysis.R run after sourcing 01-03 by a wrapper, since its source() lines are commented out (no code change)"
+ ],
+ "proposed_class": "C",
+ "class_reason": "T1, T2, T4, T5, T6 reproduce exactly and FC1-FC3 hold, but T3 (Table 2 general-population total) does not: ['T3'] gives 2482 vs 1849. The step that reduces the 2482 civic respondents the code keeps to 1849 is not in the deposited code (undocumented step), so the reported total cannot be produced from it; under PROTOCOL 7 / batch 2 decision 3 that is C, not D, since the figures' sector groups (1285 / 333) and all figure claims reproduce.",
+ "confidence": "medium",
+ "confidence_reason": "Single agent run (B not compared); class hinges on how T3's undocumented sample step is read; package versions differ from the authors' unrecorded ones.",
+ "time_minutes": 25,
+ "uncertainties": [
+  "Figure-claim checks (pre-registered, not in targets.json): FC1 count 0 of 24 levels (paper 0, same=True); Since levels excluding 0: ['1 Year', '3 Years']; FC2 largest range: {'Private Sector': 'Composition', 'Public Sector': 'Composition'} (same=True); FC3 strict=True, lenient=True (outputs/figure_claims.json)",
+  "Alternative reading (judgment, not pre-registered): if T3 is read as the respondents survey_data.csv codes (sector Private/Public plus v184_ger == '1'), the count is 1849, equal to 1849, and every target would be exact (class A). I did not adopt it because targets.json defines T3 on pooled_df2 and it rests on my reading of a Stata-coded variable without a codebook.",
+  "The 88 civic respondents absent from survey_data.csv equal the 88 non-German respondents footnote 5 excludes; and 1849 + 88 = 1937, the appendix total. This is a numeric coincidence check, not verified with a nationality variable.",
+  "Unverified observation: in 03_data_prep_and_merge.R line 98 (`match_data$nongerman <- as.numeric(match_data$v184_ger == \"Ja\")`), v184_ger is used as a nationality flag, but among civic respondents with a sector it is 'Ja' for exactly the 333 public and 'Nein' for exactly the 1285 private respondents (outputs/diag_T3_and_join.json), so it may be a sector variable. nongerman is not used in any estimate, so this has no effect on outputs.",
+  "R_c secondary omnibus test fails the paper's conclusion as pre-registered (p = 0.0014), but that test is unclustered and inflated by the duplicated rows; on de-duplicated rows p = 0.4343 (supplementary, not pre-registered).",
+  "Figure 2 levels of Duration '1 Year' and '3 Years' have 95% CIs excluding 0 (also in R_a and R_b). The paper makes no claim about Duration, so FC1 is unaffected; noted as in PREREG.",
+  "No CI end fell outside the Figure 2 / 4 axis limits (no ggplot 'Removed rows' warnings in outputs/run_authors_log.txt). Regenerated Figures 1 and 2 look the same as the deposited PNGs by eye (outputs/figures_regenerated/); no pixel comparison.",
+  "Authors' package versions are not recorded. cjoint 2.1.0 was chosen by release date; cregg 0.4.0, ggplot2 4.0.3, rvest 1.0.4 used (environment.txt).",
+  "The data cleaning the paper describes (speeders, inconsistent patterns, German nationality only) is not in the deposited R code; the raw files are not pre-restricted (2482 civic respondents survive the R filters).",
+  "Agent B has not been compared; per PROTOCOL 8 confidence cannot be high before that."
+ ]
+}

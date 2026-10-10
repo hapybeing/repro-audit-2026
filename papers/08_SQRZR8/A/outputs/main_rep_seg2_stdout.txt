@@ -1,0 +1,129 @@
+
+> results <- run_all_mediations(med_models = mediator_models, 
++     out_models = outcome_models, arms = treatment_arms)
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+Running nonparametric bootstrap
+
+
+> extract_results <- function(med_res, label) {
++     data.frame(Estimate = c(med_res$d0, med_res$z0, med_res$tau.coef), 
++         LowerCI = c(med_res$d0.ci[1], med_res$z0.ci[1], med_res$tau.ci[1]), 
++         UpperCI = c(med_res$d0.ci[2], med_res$z0.ci[2], med_res$tau.ci[2]), 
++         Effect = factor(c("ACME", "ADE", "Total Effect"), levels = c("ACME", 
++             "ADE", "Total Effect")), Condition = label)
++ }
+
+> labels <- paste("Result", 1:8)
+
+> results_list <- mapply(extract_results, results, labels, 
++     SIMPLIFY = FALSE)
+
+> results_df <- bind_rows(results_list)
+
+> results_df <- results_df %>% mutate(Condition = case_when(Condition == 
++     "Result 1" ~ "Public Surv", Condition == "Result 2" ~ "Public Both", 
++     Condition == "Result 3" ~ "Personal. Surv & Public Censor", 
++     Condition == "Result 4" ~ "Personal. Censor & Public Surv", 
++     Condition == "Result 5" ~ "Personal. Both", Condition == 
++         "Result 6" ~ "Public Censor", Condition == "Result 7" ~ 
++         "Personal. Censor", Condition == "Result 8" ~ "Personal. Surv", 
++     TRUE ~ Condition))
+
+> mediator_outcome <- rep(c("positive_fic", "positive_real", 
++     "negative_fic", "negative_real"), each = 24)
+
+> results_df$Category <- mediator_outcome
+
+> results_df$Effect <- factor(results_df$Effect, levels = c("Total Effect", 
++     "ADE", "ACME"))
+
+> levels(results_df$Effect)
+[1] "Total Effect" "ADE"          "ACME"        
+
+> position_dodge <- position_dodge(width = 0.5)
+
+> results_df$Category <- factor(results_df$Category, 
++     levels = c("positive_fic", "positive_real", "negative_fic", 
++         "negative_real"))
+
+> fig_3 <- ggplot(results_df, aes(x = Estimate, y = Effect, 
++     color = Condition, shape = Condition)) + geom_point(size = 3, 
++     position = position_dodge, stroke = 0.5) + geom_errorbar(aes(xmin = LowerCI, 
++     xmax = UpperCI), width = 0.5, position = position_dodge, 
++     size = 0.6) + labs(x = "Estimate", y = "Effect", title = "", 
++     color = "Treatment", shape = "Treatment") + theme_bw() + 
++     geom_vline(xintercept = 0, linetype = "dashed", color = "black", 
++         size = 0.5) + theme(legend.title = element_text(size = 10)) + 
++     scale_color_brewer(palette = "Dark2") + scale_shape_manual(values = 1:8) + 
++     theme(legend.position = "bottom") + facet_wrap(~Category, 
++     ncol = 2, labeller = labeller(Category = c(positive_fic = "Positive emotions: attitudes (fictitious)", 
++         positive_real = "Positive emotions: attitudes (real-life)", 
++         negative_fic = "Negative emotions: attitudes (fictitious)", 
++         negative_real = "Negative emotions: attitudes (real-life)")))
+Warning message:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead. 
+
+SEGMENT 253 331 ELAPSED_MIN 20.9947 
+SEGMENT_DONE

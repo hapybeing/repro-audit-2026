@@ -1,0 +1,31 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+ cobalt (Version 5.0.0, Build Date: 2026-08-25)
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+The variable 'juicio' has been removed because of collinearity (see $collin.var).
+Warning messages:
+1: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the sjPlot package.
+  Please report the issue at <https://github.com/strengejacke/sjPlot/issues>. 
+2: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model failed to converge with max|grad| = 0.00231195 (tol = 0.002, component 1)

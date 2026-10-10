@@ -1,0 +1,206 @@
+$E1_cregg
+[1] 0.6596972
+
+$E1_cregg_se
+[1] 0.007125539
+
+$E1_unweighted_check
+[1] 0.6596972
+
+$n_resp_private
+[1] 1285
+
+$n_resp_public
+[1] 333
+
+$B
+[1] 1000
+
+$seed
+[1] 20261009
+
+$boot_ci_lower
+[1] 0.6455547
+
+$boot_ci_upper
+[1] 0.6730809
+
+$boot_se
+[1] 0.007072095
+
+$p_value
+[1] 0
+
+$same_dir_sig
+[1] TRUE
+
+$FC1_count
+[1] 0
+
+$FC1_levels
+character(0)
+
+$Since_Education_levels_excl0
+[1] "1 Year"  "3 Years"
+
+There were 16 warnings (use warnings() to see them)
+$per_sample
+$per_sample$rh
+$per_sample$rh$n_resp_in_pooled
+[1] 128
+
+$per_sample$rh$n_matched_duration
+[1] 128
+
+$per_sample$rh$dup_ids
+[1] 0
+
+$per_sample$rh$p01
+[1] 541.07
+
+$per_sample$rh$p99
+[1] 146948.2
+
+$per_sample$rh$dropped
+[1] 4
+
+
+$per_sample$uhh
+$per_sample$uhh$n_resp_in_pooled
+[1] 744
+
+$per_sample$uhh$n_matched_duration
+[1] 744
+
+$per_sample$uhh$dup_ids
+[1] 0
+
+$per_sample$uhh$p01
+[1] 377.29
+
+$per_sample$uhh$p99
+[1] 47709.56
+
+$per_sample$uhh$dropped
+[1] 16
+
+
+$per_sample$hsvn
+$per_sample$hsvn$n_resp_in_pooled
+[1] 528
+
+$per_sample$hsvn$n_matched_duration
+[1] 528
+
+$per_sample$hsvn$dup_ids
+[1] 0
+
+$per_sample$hsvn$p01
+[1] 384.72
+
+$per_sample$hsvn$p99
+[1] 13901.48
+
+$per_sample$hsvn$dropped
+[1] 12
+
+
+$per_sample$civic
+$per_sample$civic$n_resp_in_pooled
+[1] 2482
+
+$per_sample$civic$n_matched_duration
+[1] 2482
+
+$per_sample$civic$dup_ids
+[1] 0
+
+$per_sample$civic$p01
+[1] 189.81
+
+$per_sample$civic$p99
+[1] 6591.91
+
+$per_sample$civic$dropped
+[1] 50
+
+
+
+$total_dropped
+[1] 82
+
+$n_resp_private
+[1] 1273
+
+$n_resp_public
+[1] 325
+
+$E1
+[1] 0.6601307
+
+$se
+[1] 0.007148687
+
+$lower
+[1] 0.6461195
+
+$upper
+[1] 0.6741419
+
+$z_vs_0.5
+[1] 22.40002
+
+$p_value
+[1] 3.934176e-111
+
+$same_dir_sig
+[1] TRUE
+
+$FC1_count
+[1] 0
+
+$FC1_levels
+factor()
+32 Levels: Male Female 23 Years 36 Years 48 Years 57 Years Vietnam ... University
+
+$Since_Education_levels_excl0
+[1] 1 Year  3 Years
+32 Levels: Male Female 23 Years 36 Years 48 Years 57 Years Vietnam ... University
+
+There were 32 warnings (use warnings() to see them)
+$baseline_Composition
+[1] "1 Adult"
+
+$AMCE
+[1] 0.3206603
+
+$se
+[1] 0.01165176
+
+$lower
+[1] 0.2978232
+
+$upper
+[1] 0.3434973
+
+$p_value
+[1] 1.003136e-166
+
+$same_dir_sig
+[1] TRUE
+
+$anova_F
+[1] 2.060697
+
+$anova_df
+[1] 25
+
+$anova_p
+[1] 0.001384888
+
+$anova_same_conclusion
+[1] FALSE
+
+Warning messages:
+1: In logLik.svyglm(x) : svyglm not fitted by maximum likelihood.
+2: In logLik.svyglm(x) : svyglm not fitted by maximum likelihood.

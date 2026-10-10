@@ -1,0 +1,3725 @@
+--- ../dl/replication_scripts/02_supplementary_materials.R	2026-10-10 12:31:49.286803400 +0000
++++ replication_scripts/02_supplementary_materials.R	2026-10-10 12:36:33.179026016 +0000
+@@ -1,1861 +1,1861 @@
+-# =============================================================================
+-# 02_supplementary_materials.R
+-# "Blinded by Out-group Hatred: Why Does Radical Party Entry Fail to
+-#  Boost Its Voters' Satisfaction with Democracy?"
+-#
+-# Replication script for all figures and tables in the supplementary materials.
+-# Manuscript figures and tables are produced by 01_manuscript.R.
+-#
+-# Figures produced (saved to figures_supplementary_materials/):
+-#   Figure A1  - Facebook ads [static images, stored in facebook_ads/]
+-#   Figure B1  - Like-dislike distributions across all three blocks
+-#   Figure B2  - Distribution of electoral expectations
+-#   Figure D1  - Treatment distribution across blocks
+-#   Figure D2  - Covariate balance plots
+-#   Figure D3  - ATE on winner perceptions (manipulation check)
+-#   Figure D4  - Comprehension check distribution
+-#   Figure D5  - ATE on SWD/LREM: all model specifications
+-#   Figure D6  - Post-experimental power simulation and simulated vs. real ATE
+-#   Figure D7  - Simulated vs. real-data ATE comparison
+-#   Figure D8  - Electoral uncertainty bar plots
+-#   Figure D9  - ATE on SWD: Le Pen and Others blocks
+-#   Figure D10 - Perceptions of electoral winners among Zemmour voters
+-#   Figure D11 - Descriptive trajectories of SWD and LREM feelings
+-#   Figure E1  - Pilot study ATE on SWD
+-#   Figure F1  - FES affect distribution by top 4 candidates
+-#
+-# Tables produced (saved to tables_supplementary_materials/):
+-#   Table A1   - Summary of hypotheses
+-#   Table A2   - Micro-targeting strategy
+-#   Table A3   - Experimental sample descriptive statistics
+-#   Table A4   - Vignettes all blocks (English)
+-#   Table A5   - Vignettes all blocks (French)
+-#   Table A6   - 2022 French presidential election results
+-#   Table B1   - Descriptive statistics: Zemmour block
+-#   Table B2   - Descriptive statistics: Le Pen block
+-#   Table B3   - Descriptive statistics: Others block
+-#   Table B4   - Descriptive statistics: FES Zemmour supporters
+-#   Table C1   - Qualitative codebook schema and results
+-#   Table C2   - Inter-coder reliability
+-#   Table D1   - ATE on winner perceptions: Zemmour
+-#   Table D2   - ATE on winner perceptions: Macron/Le Pen
+-#   Table D3   - OLS specifications: Zemmour block, DV = SWD change
+-#   Table D4   - OLS specifications: Zemmour block + expectations, DV = SWD
+-#   Table D5   - OLS specifications: Zemmour block, DV = LREM affect change
+-#   Table D6   - OLS specifications: Le Pen block, DV = SWD change
+-#   Table D7   - OLS specifications: Others block, DV = SWD change
+-#   Table D8   - Multiple hypotheses testing: SWD
+-#   Table D9   - Multiple hypotheses testing: LREM affect
+-#   Table D10  - Simulated vs. real data regression table
+-#   Table E1   - Pilot study OLS specifications
+-#   Table F1   - FES vote choice distribution
+-#   Table F2   - FES panel OLS: DV = SWD change
+-#   Table F3   - FES panel OLS: DV = LREM affect
+-#
+-# Figure A1 requires no R code. Static images are in facebook_ads/.
+-#
+-# Project structure (relative to _replication_files.Rproj):
+-#   data/                            <- CSV datasets
+-#   facebook_ads/                    <- Figure A1 static images
+-#   figures_manuscript/              <- output for 01_manuscript.R
+-#   figures_supplementary_materials/ <- figure output (created automatically)
+-#   tables_manuscript/               <- output for 01_manuscript.R
+-#   tables_supplementary_materials/  <- table output (created automatically)
+-#   scripts/                         <- this script
+-#
+-# To run: open _replication_files.Rproj, then Session -> Restart R -> Source.
+-# =============================================================================
+-
+-
+-rm(list = ls())
+-
+-
+-# -----------------------------------------------------------------------------
+-# 0a. Packages
+-# -----------------------------------------------------------------------------
+-
+-pkgs <- c("tidyverse", "estimatr", "broom", "patchwork", "here",
+-          "kableExtra", "texreg", "stargazer", "vtable",
+-          "gridExtra", "grid", "jtools", "plotrix", "MASS", "binom", "scales",
+-          "tinytex", "pdftools")
+-
+-install.packages(setdiff(pkgs, rownames(installed.packages())))
+-
+-library(tidyverse)
+-library(estimatr)
+-library(broom)
+-library(patchwork)
+-library(here)
+-library(kableExtra)
+-library(texreg)      # regression tables via texreg()
+-library(stargazer)   # descriptive statistics tables
+-library(vtable)      # st() summary tables
+-library(gridExtra)   # grid.arrange() for multi-panel figures
+-library(grid)
+-library(jtools)      # plot_summs() for coefficient plots
+-library(plotrix)     # std.error() used in covariate balance
+-library(MASS)        # mvrnorm() used in power simulation
+-library(binom)        # used in power simulation
+-library(scales)      # percent_format() used in FES affect plot
+-
+-
+-# -----------------------------------------------------------------------------
+-# 0b. LaTeX setup
+-# pdflatex is needed only if you want to compile .tex outputs directly.
+-# TinyTeX is used here; if you have MiKTeX, packages install automatically.
+-# -----------------------------------------------------------------------------
+-
+-if (Sys.which("pdflatex") == "") {
+-  message("pdflatex not found. Installing TinyTeX...")
+-  tinytex::install_tinytex(repository = "illinois")
+-  stop("TinyTeX installed. Please restart R and run the script again.")
+-}
+-
+-if (tinytex::tinytex_root() != "") {
+-  tinytex::tlmgr_install(c("standalone", "pgf", "xcolor", "makecell",
+-                            "tabu", "booktabs", "longtable"))
+-}
+-
+-
+-# -----------------------------------------------------------------------------
+-# 0c. Paths and output settings
+-# -----------------------------------------------------------------------------
+-
+-dir_data   <- here("data")
+-dir_out    <- here("figures_supplementary_materials")
+-dir_tables <- here("tables_supplementary_materials")
+-fig_dpi    <- 600
+-
+-if (!dir.exists(dir_out))    dir.create(dir_out,    recursive = TRUE)
+-if (!dir.exists(dir_tables)) dir.create(dir_tables, recursive = TRUE)
+-
+-# Helper: save a kable LaTeX table to the tables output folder
+-save_tex <- function(kable_obj, filename) {
+-  writeLines(as.character(kable_obj),
+-             file.path(dir_tables, filename))
+-}
+-
+-
+-# =============================================================================
+-# 1. Data import
+-# =============================================================================
+-
+-fr_exp      <- read_csv(file.path(dir_data, "study2_experiment_data.csv"))
+-fr_exp_long <- read_csv(file.path(dir_data, "study2_experiment_data_long.csv"))
+-pilot       <- read_csv(file.path(dir_data, "pilot_study_data.csv"))
+-panel       <- read_csv(file.path(dir_data, "study1_fes_panel.csv"),
+-                        locale = locale(encoding = "UTF-8"))
+-panel_long  <- read_csv(file.path(dir_data, "study1_fes_panel_long.csv"),
+-                        locale = locale(encoding = "UTF-8"))
+-
+-# Qualitative codebook results (aggregated)
+-qual_table  <- read_csv2(file.path(dir_data,
+-                "study2_qualitative_answers_proportions.csv"))
+-qual_icr  <- readRDS(file.path(dir_data,
+-                                   "study2_qualitative_answers_icr.rds"))
+-
+-
+-# =============================================================================
+-# 2. Data preparation
+-# =============================================================================
+-
+-# --- 2a. FES panel -----------------------------------------------------------
+-
+-# Fix encoding issue with Zemmour's party name
+-panel <- panel |>
+-  mutate(choice_pres_1st = if_else(
+-    str_detect(choice_pres_1st, "Zemmour REC"),
+-    "Eric Zemmour REC",
+-    choice_pres_1st
+-  )) |>
+-  mutate(across(where(is.character), as.factor)) |>
+-  mutate(across(where(is.integer),   as.numeric)) |>
+-  mutate(treatment_pres_1st = factor(
+-    treatment_pres_1st,
+-    levels = c(
+-      "Other candidate",
+-      "Abstention",
+-      "Blank/Null",
+-      "Éric Zemmour (new/loser)",
+-      "Marine Le Pen (old/winner)",
+-      "Jean-Luc Mélenchon (old/loser)",
+-      "Emmanuel Macron (old/winner)"
+-    )
+-  ))
+-
+-# Zemmour voters subset for FES descriptives
+-Z_voters <- panel |> filter(choice_pres_1st == "Eric Zemmour REC")
+-
+-# Long panel subset: top 4 candidates only (used for affect distributions)
+-panel_short <- panel_long |>
+-  filter(choice_pres_1st %in% c("Mélenchon voters", "Le Pen voters",
+-                                 "Macron voters",    "Zemmour voters"))
+-
+-# --- 2b. Experimental Facebook data ------------------------------------------
+-
+-fr_exp <- fr_exp |>
+-  mutate(across(where(is.character), as.factor)) |>
+-  mutate(opened_quest = as.character(opened_quest)) |>
+-  filter(!is.na(treatment), !is.na(swd_ch)) |>
+-  mutate(
+-    munic_size    = as.factor(munic_size),
+-    gender        = as.factor(gender),
+-    paris         = as.factor(paris),
+-    educ          = as.factor(educ),
+-    occup_current = as.factor(occup_current),
+-    income        = as.factor(income)
+-  )
+-
+-# Block subsets
+-zemmour <- fr_exp |> filter(block == "EZ")
+-mlp     <- fr_exp |> filter(block == "MLP")
+-others  <- fr_exp |> filter(block == "Others")
+-
+-# Combined Zemmour + Others (used for manipulation check models)
+-fr_exp_subset <- fr_exp |> filter(block %in% c("EZ", "Others"))
+-
+-# Covariate subset for balance checks
+-fr_exp_covs <- fr_exp |>
+-  dplyr::select(treatment, age, gender, educ, munic_size, paris, income, lr, block)
+-
+-# --- 2c. Pilot data ----------------------------------------------------------
+-
+-pilot[pilot == 88] <- NA
+-pilot <- pilot |>
+-  filter(Q00a == 1) |>
+-  mutate(
+-    attention      = ifelse(grepl("3", Q14, fixed = TRUE), 1, 0),
+-    duration       = log(`Duration (in seconds)`),
+-    age            = as.numeric(2022 - Q2b),
+-    gender         = Q1,
+-    paris          = Q3.2.,
+-    educ           = as.factor(Q4),
+-    income         = as.factor(Q6),
+-    ext_eff_index  = ((12 - Q13_3) + (12 - Q13_4)) / 2,
+-    int_eff_index  = ((12 - Q13_1) + (12 - Q13_2)) / 2
+-  )
+-
+-# Pilot Zemmour subsample + treatment coding
+-zemmour_pilot <- pilot |>
+-  filter(Q20a == 12 | Q20b == 12) |>
+-  mutate(treatment = ifelse(!is.na(`TIME_C_First Click`), 1,
+-                     ifelse(!is.na(`Time_T1_First Click`), 2,
+-                     ifelse(!is.na(`Time_T2_First Click`), 3,
+-                     ifelse(!is.na(`Time_T3_First Click`), 4,
+-                     ifelse(!is.na(`Time_T4_First Click`), 5, 0)))))) |>
+-  rename(M3 = `M3#1_1`, M4 = `M4#1_1`)
+-
+-
+-# =============================================================================
+-# 3. Models
+-# =============================================================================
+-
+-# --- 3a. FES panel models ----------------------------------------------------
+-
+-baseline_model_panel <- panel |>
+-  filter(!is.na(lr)) |>
+-  lm_robust(ch_swd ~ democracy_works + treatment_pres_1st,
+-            weights = weight_w2, data = _)
+-
+-soc_model_panel <- panel |>
+-  filter(!is.na(lr)) |>
+-  lm_robust(ch_swd ~ democracy_works + treatment_pres_1st +
+-              age + sex + education + income + employment,
+-            weights = weight_w2, data = _)
+-
+-full_model_panel <- panel |>
+-  filter(!is.na(lr)) |>
+-  lm_robust(ch_swd ~ democracy_works + treatment_pres_1st +
+-              age + sex + education + income + employment +
+-              poly(lr, 2) + pol_interest,
+-            weights = weight_w2, data = _)
+-
+-baseline_affect <- lm_robust(affect_EM ~ treatment_pres_1st,
+-                              weights = weight_w2, data = panel)
+-
+-soc_affect <- panel |>
+-  lm_robust(affect_EM ~ treatment_pres_1st +
+-              age + sex + education + income + employment,
+-            weights = weight_w2, data = _)
+-
+-full_affect <- panel |>
+-  filter(!is.na(lr)) |>
+-  lm_robust(affect_EM ~ treatment_pres_1st +
+-              age + sex + education + income + employment +
+-              democracy_works + poly(lr, 2) + pol_interest,
+-            weights = weight_w2, data = _)
+-
+-# --- 3b. Experimental models: SWD --------------------------------------------
+-
+-model_1_ez  <- lm(swd_ch ~ treatment, data = zemmour)
+-model_2_ez  <- lm_robust(swd_ch ~ treatment, data = zemmour)
+-model_3_ez  <- lm(swd_ch ~ treatment + age + gender + educ + income,
+-                  data = zemmour)
+-model_4_ez  <- lm_robust(swd_ch ~ treatment + income + gender,
+-                         data = zemmour)
+-
+-model_1_ez_exp <- lm(swd_ch ~ treatment + zemmour_winner2ndr, data = zemmour)
+-model_2_ez_exp <- lm_robust(swd_ch ~ treatment + zemmour_winner2ndr,
+-                             data = zemmour)
+-model_3_ez_exp <- lm(swd_ch ~ treatment + age + gender + zemmour_winner2ndr,
+-                     data = zemmour)
+-model_4_ez_exp <- lm_robust(swd_ch ~ treatment + age + gender +
+-                               zemmour_winner2ndr, data = zemmour)
+-
+-model_1_mlp <- lm(swd_ch ~ treatment, data = mlp)
+-model_2_mlp <- lm_robust(swd_ch ~ treatment, data = mlp)
+-model_3_mlp <- lm(swd_ch ~ treatment + age + gender + educ + income,
+-                  data = mlp)
+-model_4_mlp <- lm_robust(swd_ch ~ treatment + age + gender + educ + income,
+-                          data = mlp)
+-
+-model_1_oth <- lm(swd_ch ~ treatment, data = others)
+-model_2_oth <- lm_robust(swd_ch ~ treatment, data = others)
+-model_3_oth <- lm(swd_ch ~ treatment + age + gender + educ + income,
+-                  data = others)
+-model_4_oth <- lm_robust(swd_ch ~ treatment + age + gender + educ + income,
+-                          data = others)
+-
+-# --- 3c. Experimental models: LREM affect ------------------------------------
+-
+-model_1_ez_lrem <- lm(affect_LREM_ch ~ treatment, data = zemmour)
+-model_2_ez_lrem <- lm_robust(affect_LREM_ch ~ treatment, data = zemmour)
+-model_3_ez_lrem <- lm(affect_LREM_ch ~ treatment + age + gender + educ,
+-                      data = zemmour)
+-model_4_ez_lrem <- lm_robust(affect_LREM_ch ~ treatment + age + gender + educ,
+-                              data = zemmour)
+-
+-# --- 3d. Manipulation check models -------------------------------------------
+-
+-winner_zemmour_model <- lm(
+-  winner_zemmour ~ treatment + age + gender + educ + income +
+-    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
+-    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
+-  data = fr_exp_subset)
+-
+-winner_zemmour_model_r <- lm_robust(
+-  winner_zemmour ~ treatment + age + gender + educ + income +
+-    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
+-    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
+-  data = fr_exp_subset)
+-
+-winner_macron_model <- lm(
+-  winner_macron ~ treatment + age + gender + educ + income +
+-    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
+-    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
+-  data = fr_exp_subset)
+-
+-winner_macron_model_r <- lm_robust(
+-  winner_macron ~ treatment + age + gender + educ + income +
+-    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
+-    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
+-  data = fr_exp_subset)
+-
+-winner_lepen_model <- lm(
+-  winner_lepen ~ treatment + age + gender + educ + income +
+-    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
+-    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
+-  data = fr_exp_subset)
+-
+-winner_lepen_model_r <- lm_robust(
+-  winner_lepen ~ treatment + age + gender + educ + income +
+-    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
+-    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
+-  data = fr_exp_subset)
+-
+-# --- 3e. Pilot models --------------------------------------------------------
+-
+-model_1_pilot <- lm(Q11_1 ~ as.factor(treatment), data = zemmour_pilot)
+-model_2_pilot <- lm_robust(Q11_1 ~ as.factor(treatment), data = zemmour_pilot)
+-
+-
+-# =============================================================================
+-# 4. Shared plot helpers
+-# =============================================================================
+-
+-dodge_width <- 0.8
+-
+-# Treatment coefficient labels used across multiple plots
+-coef_names_ez <- c(
+-  "treatmentdanger_contr"   = "Placebo \n Social Norm",
+-  "treatmentwin_parl"       = "In-group \n Parliament \n (Zemmour)",
+-  "treatmentwin_govt"       = "In-group \n Government \n (Zemmour)",
+-  "treatmentwin_mainstream" = "Out-group \n Government \n (Macron)"
+-)
+-
+-coef_names_mlp <- c(
+-  "treatmentdanger_contr"   = "Placebo \n Social Norm",
+-  "treatmentwin_parl"       = "In-group \n Parliament \n (Le Pen)",
+-  "treatmentwin_govt"       = "In-group \n Government \n (Le Pen)",
+-  "treatmentwin_mainstream" = "Out-group \n Government \n (Macron)"
+-)
+-
+-coef_names_others <- coef_names_ez   # same labels for Others block
+-
+-theme_coef <- theme_minimal() +
+-  theme(
+-    text             = element_text(color = "black", size = 22),
+-    panel.grid.major = element_line(color = "grey90"),
+-    panel.grid.minor = element_line(color = "grey95"),
+-    legend.position  = "bottom",
+-    legend.text      = element_text(size = 12)
+-  )
+-
+-# Build a tidy CI data frame from a model for use in coef plots
+-make_coef_df <- function(model, model_label) {
+-  broom::tidy(model) |>
+-    dplyr::select(term, estimate, std.error) |>
+-    mutate(
+-      model       = model_label,
+-      lower_ci_95 = estimate - std.error * 1.96,
+-      upper_ci_95 = estimate + std.error * 1.96,
+-      lower_ci_90 = estimate - std.error * 1.645,
+-      upper_ci_90 = estimate + std.error * 1.645
+-    )
+-}
+-
+-# Combine all four standard model specs into one data frame for a block
+-make_combined_df <- function(m1, m2, m3, m4, coef_levels) {
+-  bind_rows(
+-    make_coef_df(m1, "Non-Robust SE"),
+-    make_coef_df(m2, "Robust SE"),
+-    make_coef_df(m3, "Non-Robust SE + Controls"),
+-    make_coef_df(m4, "Robust SE + Controls")
+-  ) |>
+-    mutate(
+-      term  = factor(term,  levels = coef_levels),
+-      model = factor(model, levels = c("Robust SE + Controls",
+-                                       "Robust SE",
+-                                       "Non-Robust SE + Controls",
+-                                       "Non-Robust SE"))
+-    )
+-}
+-
+-treatment_levels <- c("treatmentdanger_contr", "treatmentwin_parl",
+-                      "treatmentwin_govt",     "treatmentwin_mainstream")
+-
+-combined_ez_df      <- make_combined_df(model_1_ez,      model_2_ez,
+-                                        model_3_ez,      model_4_ez,
+-                                        treatment_levels)
+-combined_ez_exp_df  <- make_combined_df(model_1_ez_exp,  model_2_ez_exp,
+-                                        model_3_ez_exp,  model_4_ez_exp,
+-                                        treatment_levels)
+-combined_mlp_df     <- make_combined_df(model_1_mlp,     model_2_mlp,
+-                                        model_3_mlp,     model_4_mlp,
+-                                        treatment_levels)
+-combined_oth_df     <- make_combined_df(model_1_oth,     model_2_oth,
+-                                        model_3_oth,     model_4_oth,
+-                                        treatment_levels)
+-combined_ez_lrem_df <- make_combined_df(model_1_ez_lrem, model_2_ez_lrem,
+-                                        model_3_ez_lrem, model_4_ez_lrem,
+-                                        treatment_levels)
+-
+-# Standard 4-model coef plot (all specifications overlaid)
+-make_coef_plot <- function(df, coef_names, y_range, y_label, title) {
+-  df |>
+-    filter(grepl("^treatment", term)) |>
+-    mutate(term = recode(term, !!!coef_names)) |>
+-    ggplot(aes(x = term, y = estimate, color = model)) +
+-    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+-    geom_linerange(aes(ymin = lower_ci_95, ymax = upper_ci_95),
+-                   position = position_dodge(width = dodge_width),
+-                   linewidth = 1) +
+-    geom_linerange(aes(ymin = lower_ci_90, ymax = upper_ci_90),
+-                   position = position_dodge(width = dodge_width),
+-                   linewidth = 1.4) +
+-    geom_point(size = 3, position = position_dodge(width = dodge_width)) +
+-    scale_color_manual(
+-      values = c("grey70", "grey50", "grey30", "black"),
+-      name   = "Model"
+-    ) +
+-    ylim(y_range[1], y_range[2]) +
+-    coord_flip() +
+-    labs(title = title, x = "", y = y_label) +
+-    theme_coef
+-}
+-
+-# Single-model coef plot (baseline only, used in scope condition figures)
+-make_single_coef_plot <- function(df, model_name, coef_names,
+-                                  y_range, y_label, title) {
+-  df |>
+-    filter(model == model_name, grepl("^treatment", term)) |>
+-    mutate(term = recode(term, !!!coef_names), term = fct_inorder(term)) |>
+-    ggplot(aes(x = term, y = estimate)) +
+-    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+-    geom_segment(aes(xend = term, y = upper_ci_95, yend = lower_ci_95),
+-                 color = "black", linewidth = 1) +
+-    geom_segment(aes(xend = term, y = upper_ci_90, yend = lower_ci_90),
+-                 color = "black", linewidth = 1.5) +
+-    geom_point(size = 2.5, shape = 21, fill = "white",
+-               position = position_dodge(width = dodge_width)) +
+-    ylim(y_range[1], y_range[2]) +
+-    coord_flip() +
+-    labs(title = title, x = "", y = y_label) +
+-    theme_coef
+-}
+-
+-# Simulate data with the observed effect size for the out-group condition
+-simulate_data_coefs <- function(group_size) {
+-  n                <- group_size * 5
+-  treatment_levels <- c("control","danger_contr","win_govt",
+-                        "win_mainstream","win_parl")
+-  treatment        <- factor(rep(treatment_levels, each = group_size),
+-                             levels = treatment_levels)
+-  swd_ch           <- rnorm(n, mean = 0, sd = sd_residual)
+-  swd_ch[treatment == "win_mainstream"] <- rnorm(
+-    sum(treatment == "win_mainstream"),
+-    mean = effect_size_mainstream, sd = sd_residual
+-  )
+-  model_sim   <- lm(swd_ch ~ treatment, data = data.frame(swd_ch, treatment))
+-  coefs       <- summary(model_sim)$coefficients
+-  list(
+-    model_sim   = model_sim,
+-    coefs_df    = data.frame(
+-      term      = rownames(coefs),
+-      estimate  = coefs[, "Estimate"],
+-      std.error = coefs[, "Std. Error"]
+-    )
+-  )
+-}
+-
+-# =============================================================================
+-# FIGURE A1
+-# Facebook ads. Static images, no R code required.
+-# Source files: facebook_ads/
+-# =============================================================================
+-
+-
+-# =============================================================================
+-# FIGURE B1
+-# Like-dislike distributions across all three experimental blocks (wave 1).
+-# =============================================================================
+-
+-make_affect_plot <- function(block_id, block_title) {
+-  fr_exp_long |>
+-    filter(block == block_id, wave == 1, !is.na(affect.x)) |>
+-    ggplot(aes(x = as.factor(affect.x))) +
+-    geom_bar() +
+-    facet_wrap(~party) +
+-    scale_x_discrete(
+-      labels = c("-5","-4","-3","-2","-1","0","1","2","3","4","5")
+-    ) +
+-    labs(title = block_title, y = "N", x = NULL) +
+-    theme_bw() +
+-    theme(text = element_text(size = 22))
+-}
+-
+-figb1 <- grid.arrange(
+-  make_affect_plot("EZ",     "Zemmour supporters"),
+-  make_affect_plot("MLP",    "Le Pen supporters"),
+-  make_affect_plot("Others", "Other party supporters"),
+-  ncol = 2
+-)
+-
+-ggsave(file.path(dir_out, "figB1_affect_distributions_blocks.png"),
+-       plot = figb1, width = 20, height = 18, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE B2
+-# Distribution of electoral expectations (Zemmour winning 1st round) by block.
+-# =============================================================================
+-
+-figb2 <- ggplot(fr_exp,
+-                aes(x      = as.factor(zemmour_winner1str),
+-                    group  = interaction(block, zemmour_winner1str))) +
+-  geom_bar(aes(y = after_stat(prop), group = block),
+-           stat = "count", width = 0.6) +
+-  scale_y_continuous(labels = scales::percent_format()) +
+-  scale_x_discrete(labels = c("Zemmour \n not passing \n 1st round",
+-                               "Zemmour \n passing \n 1st round")) +
+-  facet_wrap(~block) +
+-  labs(x = "", y = "Percentage") +
+-  theme_bw()
+-
+-ggsave(file.path(dir_out, "figB2_electoral_expectations.png"),
+-       plot = figb2, width = 9, height = 6, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D1
+-# Distribution of treatment assignment across the three blocks.
+-# =============================================================================
+-
+-make_treat_plot <- function(data, title) {
+-  ggplot(data, aes(as.factor(treatment))) +
+-    geom_bar(width = 0.6) +
+-    scale_x_discrete(labels = c("Control", "Placebo \n Social Norm",
+-                                 "In-group \n Government",
+-                                 "In-group \n Parliament",
+-                                 "Out-group \n Government")) +
+-    labs(title = title, x = "Treatment Group", y = "Frequency") +
+-    theme_bw() +
+-    theme(text = element_text(size = 22))
+-}
+-
+-figd1 <- grid.arrange(
+-  make_treat_plot(zemmour, "Block I: Zemmour"),
+-  make_treat_plot(mlp,     "Block II: Le Pen"),
+-  make_treat_plot(others,  "Block III: Others"),
+-  ncol = 2
+-)
+-
+-ggsave(file.path(dir_out, "figD1_treatment_distribution.png"),
+-       plot = figd1, width = 20, height = 18, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D2
+-# Covariate balance across treatment conditions within each block.
+-# Covariates are standardised; points show means with 95% CIs.
+-# =============================================================================
+-
+-# Standardise covariates and reshape to long format for plotting
+-prep_balance <- function(data) {
+-  data |>
+-    mutate(
+-      age        = as.numeric(age),
+-      gender     = as.numeric(gender),
+-      educ       = as.numeric(educ),
+-      munic_size = as.numeric(munic_size),
+-      paris      = as.numeric(paris),
+-      income     = as.numeric(income),
+-      lr         = as.numeric(lr)
+-    ) |>
+-    mutate(across(-treatment,
+-                  ~ (. - mean(., na.rm = TRUE)) / sd(., na.rm = TRUE))) |>
+-    pivot_longer(cols = !treatment,
+-                 names_to = "variable", values_to = "value") |>
+-    group_by(treatment, variable) |>
+-    summarise(
+-      mean_val = mean(value, na.rm = TRUE),
+-      lci      = mean_val - 1.96 * plotrix::std.error(value, na.rm = TRUE),
+-      hci      = mean_val + 1.96 * plotrix::std.error(value, na.rm = TRUE),
+-      .groups  = "drop"
+-    )
+-}
+-
+-axis_labels <- c("Paris Area", "Municipality Size", "Left-Right Scale",
+-                 "Income", "Gender", "Education", "Age")
+-
+-treatment_colors <- c("black", "grey30", "grey45", "grey70", "grey85")
+-treatment_legend <- c("Control", "T1a", "T1b", "T2", "Placebo")
+-
+-make_balance_plot <- function(data, title) {
+-  ggplot(data) +
+-    geom_linerange(aes(x = variable, ymin = lci, ymax = hci,
+-                       color = factor(treatment)),
+-                   linewidth = 1,
+-                   position  = position_dodge(width = 0.5)) +
+-    geom_point(aes(x = variable, y = mean_val, color = factor(treatment)),
+-               size     = 2,
+-               position = position_dodge(width = 0.5)) +
+-    geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.4) +
+-    scale_x_discrete(labels = axis_labels) +
+-    scale_color_manual(name   = "Treatment",
+-                       labels = treatment_legend,
+-                       values = treatment_colors) +
+-    ylim(-1.5, 1.5) +
+-    coord_flip() +
+-    labs(title = title, x = "", y = "Mean Standardised Value") +
+-    theme_bw() +
+-    theme(text = element_text(size = 22),
+-          plot.title = element_text(size = 22, face = "bold", hjust = 0.5))
+-}
+-
+-ez_covs  <- fr_exp_covs |> filter(block == "EZ")  |> dplyr::select(-block)
+-mlp_covs <- fr_exp_covs |> filter(block == "MLP") |> dplyr::select(-block)
+-oth_covs <- fr_exp_covs |> filter(block == "Others") |> dplyr::select(-block)
+-
+-# Recode treatment factor labels for plotting
+-recode_treatment <- function(data) {
+-  data |> mutate(treatment = factor(treatment,
+-    levels = c("control","win_parl","win_govt","win_mainstream","danger_contr"),
+-    labels = c("cntr","t1","t2","t3","plc")))
+-}
+-
+-ez_covs  <- recode_treatment(ez_covs)  |> prep_balance()
+-mlp_covs <- recode_treatment(mlp_covs) |> prep_balance()
+-oth_covs <- recode_treatment(oth_covs) |> prep_balance()
+-
+-figd2 <- grid.arrange(
+-  make_balance_plot(ez_covs,  "Block I: Zemmour"),
+-  make_balance_plot(mlp_covs, "Block II: Le Pen"),
+-  make_balance_plot(oth_covs, "Block III: Others"),
+-  ncol = 2
+-)
+-
+-ggsave(file.path(dir_out, "figD2_covariate_balance.png"),
+-       plot = figd2, width = 20, height = 18, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D3
+-# ATE on perceptions of Zemmour, Macron, and Le Pen as election winners.
+-# Uses jtools::plot_summs() for the dual-model coefficient plots.
+-# =============================================================================
+-
+-manip_coefs <- c(
+-  "In-group \n Parliament"   = "treatmentwin_parl",
+-  "In-group \n Government"   = "treatmentwin_govt",
+-  "Out-group \n Government"  = "treatmentwin_mainstream",
+-  "Placebo \n Social Norm"   = "treatmentdanger_contr"
+-)
+-
+-make_winner_plot <- function(m, mr, x_label) {
+-  plot_summs(m, mr,
+-             legend.title    = "Models",
+-             coefs           = manip_coefs,
+-             inner_ci_level  = 0.9,
+-             model.names     = c("Non-Robust SE", "Robust SE"),
+-             colors          = c("grey65", "grey30")) +
+-    theme_bw() +
+-    xlim(-1, 1) +
+-    labs(title = "", x = x_label, y = "") +
+-    theme(text = element_text(size = 22),
+-          plot.title    = element_text(size = 24, face = "bold", hjust = 0.5),
+-          axis.text.x   = element_text(size = 22))
+-}
+-
+-figd3 <- grid.arrange(
+-  make_winner_plot(winner_zemmour_model, winner_zemmour_model_r,
+-                   "Perceptions of Zemmour's Success (Blocks I & III)"),
+-  make_winner_plot(winner_macron_model,  winner_macron_model_r,
+-                   "Perceptions of Macron's Success (Blocks I & III)"),
+-  make_winner_plot(winner_lepen_model,   winner_lepen_model_r,
+-                   "Perceptions of Le Pen's Success (Block II)"),
+-  ncol = 1
+-)
+-
+-ggsave(file.path(dir_out, "figD3_winner_perceptions_coefplot.png"),
+-       plot = figd3, width = 16, height = 16, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D4
+-# Comprehension check: stacked barplot of perceived text difficulty
+-# by treatment condition, for each block.
+-# =============================================================================
+-
+-difficulty_labels <- c("Very easy", "More or less easy",
+-                        "Neither easy nor difficult",
+-                        "More or less difficult", "Very difficult")
+-treatment_labels_plot <- c("Control", "Placebo \n Social Norm",
+-                            "In-group \n Government",
+-                            "In-group \n Parliament",
+-                            "Out-group \n Government")
+-
+-make_comp_plot <- function(data, title) {
+-  data |>
+-    filter(!is.na(m_check3)) |>
+-    ggplot(aes(
+-      x    = factor(m_check3, labels = difficulty_labels[seq_len(
+-               length(unique(na.omit(data$m_check3))))]),
+-      fill = factor(treatment, labels = treatment_labels_plot)
+-    )) +
+-    geom_bar(stat = "count") +
+-    scale_fill_manual(values = c("black","grey30","grey45","grey70","grey85")) +
+-    guides(fill = guide_legend(title = "Treatment")) +
+-    labs(title = title, x = "") +
+-    theme_bw() +
+-    theme(text = element_text(size = 22),
+-          plot.title  = element_text(size = 24, face = "bold", hjust = 0.5),
+-          axis.text.x = element_text(angle = 45, hjust = 1, size = 18))
+-}
+-
+-figd4 <- grid.arrange(
+-  make_comp_plot(zemmour, "Block I: Zemmour supporters"),
+-  make_comp_plot(mlp,     "Block II: Le Pen supporters"),
+-  make_comp_plot(others,  "Block III: Other party supporters"),
+-  ncol = 2
+-)
+-
+-ggsave(file.path(dir_out, "figD4_comprehension_check.png"),
+-       plot = figd4, width = 20, height = 20, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D5
+-# ATE on SWD and LREM affect: all model specifications across blocks.
+-# Five panels: Zemmour SWD, Zemmour SWD + expectations, Zemmour LREM,
+-# Le Pen SWD, Others SWD.
+-# =============================================================================
+-
+-p_ez_swd <- make_coef_plot(combined_ez_df, coef_names_ez, c(-4, 4),
+-  "Estimated Change in SWD",
+-  "\n \n ATE on Change in SWD \n among Zemmour's supporters")
+-
+-p_ez_exp_swd <- make_coef_plot(combined_ez_exp_df, coef_names_ez, c(-4, 4),
+-  "Estimated Change in SWD",
+-  "\n \n ATE on Change in SWD among Zemmour's \n supporters controlling for electoral expectations")
+-
+-p_ez_lrem <- make_coef_plot(combined_ez_lrem_df, coef_names_ez, c(-3, 3),
+-  "Estimated Change in Feelings towards LREM",
+-  "\n \n ATE on Change in Feelings towards \n LREM among Zemmour's supporters")
+-
+-p_mlp_swd <- make_coef_plot(combined_mlp_df, coef_names_mlp, c(-4, 4),
+-  "Estimated Change in SWD",
+-  "\n \n ATE on Change in SWD among \n Le Pen's supporters")
+-
+-p_oth_swd <- make_coef_plot(combined_oth_df, coef_names_others, c(-4, 4),
+-  "Estimated Change in SWD",
+-  "\n \n ATE on Change in SWD among \n 'Other Party' supporters")
+-
+-figd5 <- grid.arrange(p_ez_swd, p_ez_exp_swd, p_ez_lrem,
+-                      p_mlp_swd, p_oth_swd, ncol = 2)
+-
+-ggsave(file.path(dir_out, "figD5_coefplots_all_specs.png"),
+-       plot = figd5, width = 20, height = 24, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D6 — Post-experimental power simulation and simulated vs. real ATE
+-# Runs 500 simulations per group size (n=20 to 250) to estimate power for
+-# the out-group win treatment. Also plots ATE from simulated (n=300) vs.
+-# real data (n=123) side by side.
+-# =============================================================================
+-
+-effect_size_mainstream <- -1.2660  # observed ATE for out-group win condition
+-sd_residual            <- 2.219    # residual SD from baseline model
+-n_simulations          <- 500
+-group_sizes            <- seq(20, 250, by = 10)
+-set.seed(123)
+-
+-# --- Power simulation --------------------------------------------------------
+-
+-simulate_power <- function(group_size) {
+-  n          <- group_size * 5
+-  trt_levels <- c("control", "danger_contr", "win_govt",
+-                  "win_mainstream", "win_parl")
+-  treatment  <- factor(rep(trt_levels, each = group_size), levels = trt_levels)
+-  swd_ch     <- rnorm(n, mean = 0, sd = sd_residual)
+-  swd_ch[treatment == "win_mainstream"] <- rnorm(
+-    sum(treatment == "win_mainstream"),
+-    mean = effect_size_mainstream, sd = sd_residual
+-  )
+-  model  <- lm(swd_ch ~ treatment, data = data.frame(swd_ch, treatment))
+-  pval   <- summary(model)$coefficients["treatmentwin_mainstream", "Pr(>|t|)"]
+-  pval < 0.05
+-}
+-
+-power_results <- map_dfr(group_sizes, function(gs) {
+-  hits <- replicate(n_simulations, simulate_power(gs))
+-  ci   <- binom.confint(sum(hits, na.rm = TRUE), n_simulations,
+-                        conf.level = 0.95, methods = "wilson")
+-  tibble(group_size = gs,
+-         power      = mean(hits, na.rm = TRUE),
+-         lower_ci   = ci$lower,
+-         upper_ci   = ci$upper)
+-})
+-
+-min_size_80 <- min(power_results$group_size[power_results$power >= 0.80])
+-
+-plot_power <- ggplot(power_results, aes(x = group_size, y = power)) +
+-  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci), alpha = 0.2) +
+-  geom_line(color = "black") +
+-  geom_hline(yintercept = 0.80, linetype = "dashed", color = "red") +
+-  geom_vline(xintercept = min_size_80, linetype = "dashed", color = "grey50") +
+-  annotate("text", x = min_size_80 - 35, y = 0.80,
+-           label = paste("Min. group\nsize =", min_size_80),
+-           vjust = -1, hjust = 0, size = 3.5) +
+-  labs(title = "Power Analysis for Out-group Win Treatment",
+-       x = "Group Size", y = "Estimated Power") +
+-  theme_minimal() +
+-  theme(plot.title = element_text(hjust = 0.5))
+-
+-# --- Simulated coefficient plot (n = 300) ------------------------------------
+-
+-sim_coefs <- simulate_data_coefs(60)   # group_size = 60 -> n = 300 total
+-
+-coef_names_sim <- c(
+-  "treatmentdanger_contr"   = "Placebo \n Social Norm",
+-  "treatmentwin_parl"       = "In-group \n Parliament",
+-  "treatmentwin_govt"       = "In-group \n Government",
+-  "treatmentwin_mainstream" = "Out-group \n Government"
+-)
+-
+-plot_sim <- sim_coefs$coefs_df |>
+-  filter(term != "(Intercept)") |>
+-  mutate(
+-    lower_ci_95 = estimate - 1.96  * std.error,
+-    upper_ci_95 = estimate + 1.96  * std.error,
+-    lower_ci_90 = estimate - 1.645 * std.error,
+-    upper_ci_90 = estimate + 1.645 * std.error,
+-    term        = recode(factor(term, levels = names(coef_names_sim)),
+-                         !!!coef_names_sim),
+-    term        = fct_inorder(term)
+-  ) |>
+-  ggplot(aes(x = term, y = estimate)) +
+-  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+-  geom_segment(aes(xend = term, y = upper_ci_95, yend = lower_ci_95),
+-               color = "black", linewidth = 1) +
+-  geom_segment(aes(xend = term, y = upper_ci_90, yend = lower_ci_90),
+-               color = "black", linewidth = 1.5) +
+-  geom_point(size = 3) +
+-  ylim(-4, 4) + coord_flip() +
+-  labs(title = "ATE on Change in SWD\nSimulated data (n = 300)",
+-       x = "", y = "Estimated Change in SWD") +
+-  theme_coef
+-
+-# --- Real data coefficient plot (n = 123) ------------------------------------
+-
+-plot_real <- make_single_coef_plot(
+-  combined_ez_df, "Non-Robust SE", coef_names_ez, c(-4, 4),
+-  "Estimated Change in SWD",
+-  "ATE on Change in SWD\nReal data (n = 123)"
+-)
+-
+-# --- Combine and save --------------------------------------------------------
+-
+-figd6_top    <- plot_power
+-figd6_bottom <- plot_real + plot_sim +
+-  plot_layout(guides = "collect", ncol = 2)
+-
+-figd6 <- figd6_top / figd6_bottom +
+-  plot_layout(heights = c(1, 1.2))
+-
+-ggsave(file.path(dir_out, "figD6_power_simulation.png"),
+-       plot = figd6, width = 12, height = 10, dpi = fig_dpi)
+-
+-# =============================================================================
+-# FIGURE D7
+-# Simulated vs. real-data ATE on SWD change (n=300 simulated, n=123 real).
+-# =============================================================================
+-
+-result         <- simulate_data_coefs(60)
+-model_sim      <- result$model_sim
+-sim_coefs_df   <- result$coefs_df |>
+-  mutate(
+-    lower_ci_95 = estimate - 1.96  * std.error,
+-    upper_ci_95 = estimate + 1.96  * std.error,
+-    lower_ci_90 = estimate - 1.645 * std.error,
+-    upper_ci_90 = estimate + 1.645 * std.error
+-  ) |>
+-  filter(term != "(Intercept)") |>
+-  mutate(
+-    term = factor(term, levels = c("treatmentdanger_contr","treatmentwin_parl",
+-                                   "treatmentwin_govt","treatmentwin_mainstream")),
+-    term = recode(term, !!!c(
+-      "treatmentdanger_contr"   = "Zemmour \n Placebo",
+-      "treatmentwin_parl"       = "In-group \n Parliament",
+-      "treatmentwin_govt"       = "In-group \n Government",
+-      "treatmentwin_mainstream" = "Out-group \n Government"
+-    ))
+-  )
+-
+-plot_sim <- ggplot(sim_coefs_df, aes(x = term, y = estimate)) +
+-  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+-  geom_segment(aes(xend = term, y = upper_ci_95, yend = lower_ci_95),
+-               color = "black", linewidth = 1) +
+-  geom_segment(aes(xend = term, y = upper_ci_90, yend = lower_ci_90),
+-               color = "black", linewidth = 1.5) +
+-  geom_point(size = 3) +
+-  ylim(-4, 4) + coord_flip() +
+-  labs(title = "ATE on Change in SWD \n Simulated data (n=300)",
+-       x = "", y = "Estimated Change in SWD") +
+-  theme_coef
+-
+-plot_real <- make_single_coef_plot(
+-  combined_ez_df, "Non-Robust SE", coef_names_ez, c(-4, 4),
+-  "Estimated Change in SWD",
+-  "ATE on Change in SWD \n Real data (n=123)"
+-)
+-
+-figd7 <- (plot_real + plot_sim) +
+-  plot_layout(guides = "collect", ncol = 2, nrow = 1)
+-
+-ggsave(file.path(dir_out, "figD7_simulated_vs_real.png"),
+-       plot = figd7, width = 16, height = 8, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D8
+-# Pre-electoral expectations and perceptions of winners/losers.
+-# Left: who will win 2nd round (wave 1). Right: who won 1st round (wave 2).
+-# =============================================================================
+-
+-avg_exp <- tibble(
+-  candidate = factor(c("Macron","Le Pen","Mélenchon","Zemmour"),
+-                     levels = c("Macron","Le Pen","Mélenchon","Zemmour")),
+-  average   = c(mean(fr_exp$macron_winner2ndr,    na.rm = TRUE),
+-                mean(fr_exp$lepen_winner2ndr,      na.rm = TRUE),
+-                mean(fr_exp$melenchon_winner2ndr,  na.rm = TRUE),
+-                mean(fr_exp$zemmour_winner2ndr,    na.rm = TRUE)),
+-  se        = c(sd(fr_exp$macron_winner2ndr,   na.rm=TRUE) /
+-                  sqrt(sum(!is.na(fr_exp$macron_winner2ndr))),
+-                sd(fr_exp$lepen_winner2ndr,    na.rm=TRUE) /
+-                  sqrt(sum(!is.na(fr_exp$lepen_winner2ndr))),
+-                sd(fr_exp$melenchon_winner2ndr,na.rm=TRUE) /
+-                  sqrt(sum(!is.na(fr_exp$melenchon_winner2ndr))),
+-                sd(fr_exp$zemmour_winner2ndr,  na.rm=TRUE) /
+-                  sqrt(sum(!is.na(fr_exp$zemmour_winner2ndr))))
+-)
+-
+-avg_wl <- tibble(
+-  party   = factor(c("Macron","Le Pen"), levels = c("Macron","Le Pen")),
+-  average = c(mean(fr_exp$winner_macron, na.rm = TRUE),
+-              mean(fr_exp$winner_lepen,  na.rm = TRUE)),
+-  se      = c(sd(fr_exp$winner_macron, na.rm=TRUE) /
+-                sqrt(sum(!is.na(fr_exp$winner_macron))),
+-              sd(fr_exp$winner_lepen,  na.rm=TRUE) /
+-                sqrt(sum(!is.na(fr_exp$winner_lepen))))
+-)
+-
+-plot_exp <- ggplot(avg_exp, aes(x = candidate, y = average, fill = candidate)) +
+-  geom_bar(stat = "identity") +
+-  geom_errorbar(aes(ymin = average - se, ymax = average + se), width = 0.2) +
+-  scale_fill_viridis_d(option = "viridis", begin = 0, end = 0.9) +
+-  labs(title    = "Who will win the 2nd round?",
+-       subtitle = "Asked before the 1st round \n",
+-       x = " \n Candidate", y = "Average Value \n ") +
+-  theme_minimal() +
+-  theme(legend.position = "none",
+-        plot.title    = element_text(hjust = 0.5),
+-        plot.subtitle = element_text(hjust = 0.5)) +
+-  ylim(0, 0.5)
+-
+-plot_wl <- ggplot(avg_wl, aes(x = party, y = average, fill = party)) +
+-  geom_bar(stat = "identity") +
+-  geom_errorbar(aes(ymin = average - se, ymax = average + se), width = 0.2) +
+-  scale_fill_viridis_d(option = "viridis", begin = 0, end = 0.3) +
+-  labs(title    = "Who are the winners and losers of the 1st round?",
+-       subtitle = "Asked between the 1st and 2nd round \n",
+-       x = " \n Candidate", y = "Average Score \n ") +
+-  theme_minimal() +
+-  theme(legend.position = "none",
+-        plot.title    = element_text(hjust = 0.5),
+-        plot.subtitle = element_text(hjust = 0.5)) +
+-  ylim(0, 5)
+-
+-figd8 <- grid.arrange(arrangeGrob(plot_exp, plot_wl, ncol = 2))
+-
+-ggsave(file.path(dir_out, "figD8_electoral_uncertainty.png"),
+-       plot = figd8, width = 9, height = 6, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D9
+-# ATE on SWD change: Le Pen block (left) and Others block (right).
+-# Baseline non-robust SE + controls specification.
+-# =============================================================================
+-
+-p_mlp_single <- make_single_coef_plot(
+-  combined_mlp_df, "Non-Robust SE + Controls", coef_names_mlp,
+-  c(-4, 4), "\nEstimated Change in SWD",
+-  "ATE on change in SWD among Le Pen's supporters \n"
+-)
+-
+-p_oth_single <- make_single_coef_plot(
+-  combined_oth_df, "Non-Robust SE + Controls", coef_names_others,
+-  c(-4, 4), "\nEstimated Change in SWD",
+-  "ATE on change in SWD among 'others' \n"
+-)
+-
+-figd9 <- (p_mlp_single + p_oth_single) +
+-  plot_layout(guides = "collect", ncol = 2, nrow = 1)
+-
+-ggsave(file.path(dir_out, "figD9_lepen_others_coefplot.png"),
+-       plot = figd9, width = 18, height = 9, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D10
+-# Perceptions of electoral winners (Zemmour vs Macron) among Zemmour voters.
+-# =============================================================================
+-
+-winner_labels <- c("1\nClearly\na loser", "2\nRather\na loser",
+-                   "3\nNeither", "4\nRather\na winner", "5\nClearly\na winner")
+-
+-plot_winner_bars <- function(data, var, title) {
+-  avg <- mean(pull(data, {{ var }}), na.rm = TRUE)
+-  plot_data <- data |>
+-    filter(!is.na({{ var }})) |>
+-    mutate(response = factor({{ var }}, levels = 1:5, labels = winner_labels)) |>
+-    count(response) |>
+-    mutate(pct = n / sum(n))
+-  ggplot(plot_data, aes(x = response, y = pct)) +
+-    geom_vline(xintercept = avg, linetype = "dashed", color = "grey80") +
+-    geom_col(fill = "grey40", color = "black") +
+-    geom_text(aes(label = scales::percent(pct, accuracy = 1)),
+-              vjust = -0.4, size = 3.5) +
+-    annotate("text", x = avg + 0.1, y = 0.50,
+-             label = paste0("Mean = ", round(avg, 2)),
+-             hjust = 0, size = 3.5) +
+-    scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+-                       limits = c(0, 0.55)) +
+-    labs(title = title, x = "", y = "") +
+-    theme_minimal() +
+-    theme(text = element_text(color = "black"),
+-          panel.grid.major.x = element_blank(),
+-          panel.grid.minor   = element_blank())
+-}
+-
+-p_zemmour_w <- plot_winner_bars(zemmour, winner_zemmour, "Is Zemmour a winner?")
+-p_macron_w  <- plot_winner_bars(zemmour, winner_macron,  "Is Macron a winner?")
+-
+-figd10 <- (p_zemmour_w | p_macron_w) +
+-  plot_annotation(
+-    title = "Perceptions of electoral winners among Zemmour voters",
+-    theme = theme(plot.title = element_text(color = "black"))
+-  )
+-
+-ggsave(file.path(dir_out, "figD10_winner_perceptions_bars.png"),
+-       plot = figd10, width = 9, height = 5, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE D11
+-# Descriptive trajectories of SWD and LREM feelings by wave,
+-# treatment condition, and voter block.
+-# =============================================================================
+-
+-treatment_labels_d11 <- c(
+-  "control"        = "Control",
+-  "danger_contr"   = "Placebo\nSocial Norm",
+-  "win_parl"       = "In-group\nParliament",
+-  "win_govt"       = "In-group\nGovernment",
+-  "win_mainstream" = "Out-group\nGovernment"
+-)
+-block_labels_d11 <- c("EZ" = "Zemmour voters",
+-                      "MLP" = "Le Pen voters",
+-                      "Others" = "Other voters")
+-
+-desc_data <- fr_exp |>
+-  filter(!is.na(treatment)) |>
+-  mutate(
+-    treatment = recode(treatment, !!!treatment_labels_d11),
+-    block     = recode(block, !!!block_labels_d11),
+-    block     = factor(block, levels = c("Zemmour voters",
+-                                         "Le Pen voters", "Other voters"))
+-  ) |>
+-  dplyr::select(treatment, block, swd_w1, swd_w2, affect_LREM_w1, affect_LREM_w2) |>
+-  pivot_longer(cols      = c(swd_w1, swd_w2, affect_LREM_w1, affect_LREM_w2),
+-               names_to  = "variable", values_to = "value") |>
+-  mutate(
+-    wave = if_else(str_ends(variable, "w1"),
+-                   "Wave 1\n(pre-experiment)", "Wave 2\n(post-experiment)"),
+-    dv   = if_else(str_starts(variable, "swd"), "SWD", "Feelings toward LREM")
+-  ) |>
+-  group_by(treatment, block, wave, dv) |>
+-  summarise(mean = mean(value, na.rm = TRUE),
+-            se   = sd(value, na.rm = TRUE) / sqrt(sum(!is.na(value))),
+-            .groups = "drop") |>
+-  mutate(wave = factor(wave, levels = c("Wave 1\n(pre-experiment)",
+-                                        "Wave 2\n(post-experiment)")))
+-
+-desc_avg <- desc_data |>
+-  group_by(block, wave, dv) |>
+-  summarise(mean = mean(mean), se = mean(se), .groups = "drop") |>
+-  mutate(treatment = "Average")
+-
+-make_desc_plot <- function(dv_label, y_label) {
+-  ggplot() +
+-    geom_point(data = filter(desc_data, dv == dv_label),
+-               aes(x = wave, y = mean, color = treatment),
+-               size = 2, position = position_dodge(width = 0.4)) +
+-    geom_errorbar(data = filter(desc_data, dv == dv_label),
+-                  aes(x = wave, y = mean,
+-                      ymin = mean - 1.96 * se, ymax = mean + 1.96 * se,
+-                      color = treatment),
+-                  width = 0.15, position = position_dodge(width = 0.4)) +
+-    geom_line(data = filter(desc_avg, dv == dv_label),
+-              aes(x = wave, y = mean, group = treatment),
+-              color = "black", linewidth = 1, linetype = "dashed", alpha = 0.6) +
+-    geom_point(data = filter(desc_avg, dv == dv_label),
+-               aes(x = wave, y = mean),
+-               color = "black", size = 3, shape = 18, alpha = 0.6) +
+-    facet_wrap(~block, nrow = 1) +
+-    labs(title = dv_label, x = "", y = y_label, color = "Condition") +
+-    theme_minimal() +
+-    theme(text = element_text(color = "black"),
+-          panel.grid.minor = element_blank(),
+-          legend.position  = "bottom")
+-}
+-
+-figd11 <- (make_desc_plot("SWD", "Mean SWD (original scale)") /
+-           make_desc_plot("Feelings toward LREM",
+-                          "Mean feelings toward LREM (original scale)")) +
+-  plot_layout(guides = "collect") &
+-  theme(legend.position = "bottom") &
+-  plot_annotation(
+-    caption = paste0(
+-      "Note: Points and error bars show means with 95% CIs per treatment ",
+-      "condition.\nThe dashed line and diamond show the average across all ",
+-      "conditions."
+-    ),
+-    theme = theme(plot.caption = element_text(size = 8, hjust = 0,
+-                                              color = "black", face = "italic"))
+-  )
+-
+-ggsave(file.path(dir_out, "figD11_descriptive_trajectories.png"),
+-       plot = figd11, width = 10, height = 8, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE E1
+-# Pilot study: ATE on SWD among Zemmour supporters.
+-# =============================================================================
+-
+-fige1 <- plot_summs(model_1_pilot, model_2_pilot,
+-           legend.title   = "Models",
+-           coefs          = c(
+-             "In-group \n Parliament"             = "as.factor(treatment)2",
+-             "Out-group \n Government"            = "as.factor(treatment)3",
+-             "Final Placebo (Social Norm)"        = "as.factor(treatment)4",
+-             "Discarded Placebo (Economy+COVID)"  = "as.factor(treatment)5"
+-           ),
+-           inner_ci_level = 0.9,
+-           model.names    = c("Non-Robust SE", "Robust SE"),
+-           colors         = c("grey65", "grey30")) +
+-  theme_bw() +
+-  labs(title = "ATE on SWD (Pilot Study)", x = "Effect on SWD", y = "") +
+-  theme(text = element_text(size = 14))
+-
+-ggsave(file.path(dir_out, "figE1_pilot_coefplot.png"),
+-       plot = fige1, width = 8, height = 5, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# FIGURE F1
+-# FES panel: affect distribution by party and top 4 candidate voter groups.
+-# =============================================================================
+-
+-facet_means <- panel_short |>
+-  filter(!is.na(affect)) |>
+-  mutate(affect_num = as.numeric(as.character(affect))) |>
+-  group_by(choice_pres_1st, party) |>
+-  summarise(mean_affect = mean(affect_num, na.rm = TRUE), .groups = "drop") |>
+-  mutate(
+-    party = recode(party, "EM affect" = "LREM affect"),
+-    choice_pres_1st = recode(choice_pres_1st,
+-                             "Mélenchon voters" = "Mélenchon\nvoters",
+-                             "Zemmour voters"   = "Zemmour\nvoters")
+-  )
+-
+-figf1 <- panel_short |>
+-  filter(!is.na(affect)) |>
+-  mutate(
+-    party = recode(party, "EM affect" = "LREM affect"),
+-    choice_pres_1st = recode(choice_pres_1st,
+-                             "Mélenchon voters" = "Mélenchon\nvoters",
+-                             "Zemmour voters"   = "Zemmour\nvoters")
+-  ) |>
+-  ggplot(aes(x = as.factor(affect))) +
+-  geom_bar(aes(y = after_stat(prop) * 100, group = 1)) +
+-  geom_vline(data = facet_means,
+-             aes(xintercept = mean_affect + 1),
+-             linetype = "dashed", color = "grey40",
+-             linewidth = 0.5, alpha = 0.4) +
+-  geom_text(data = facet_means,
+-            aes(x = mean_affect + 1, y = 70,
+-                label = round(mean_affect - 5, 1)),
+-            color = "grey50", size = 2.5, hjust = -0.2) +
+-  facet_grid(choice_pres_1st ~ party) +
+-  scale_y_continuous(labels = scales::label_number(suffix = "%")) +
+-  scale_x_discrete(labels = c("-5","-4","-3","-2","-1",
+-                               "0","1","2","3","4","5")) +
+-  labs(subtitle = "Dashed line indicates mean affect score (-5 to 5 scale)",
+-       y = "Percentage of Observations", x = NULL) +
+-  theme_light()
+-
+-ggsave(file.path(dir_out, "figF1_fes_affect_distribution.png"),
+-       plot = figf1, width = 12, height = 10, dpi = fig_dpi)
+-
+-
+-# =============================================================================
+-# TABLE A1 — Summary of hypotheses
+-# =============================================================================
+-
+-taba1 <- data.frame(
+-  Hypothesis  = c("Hypothesis 1a", "Hypothesis 1b", "Hypothesis 3",
+-                  "Hypothesis 2",  "Hypothesis 4"),
+-  Treatment   = c("T1a", "T1b", "T2", "T1a < T1b", "T2"),
+-  Expectation = c("+SWD", "+SWD", "-SWD", "$\\Delta SWD$", "-OutgroupAffects")
+-) |>
+-  kable(format = "latex", booktabs = TRUE, escape = FALSE,
+-        caption = "Table A1: Summary of the hypotheses") |>
+-  pack_rows("Pre-registered", 1, 3) |>
+-  pack_rows("Exploratory",    4, 5) |>
+-  kable_styling(latex_options = "HOLD_position")
+-
+-save_tex(taba1, "tableA1_hypotheses.tex")
+-
+-
+-# =============================================================================
+-# TABLE A2 — Micro-targeting strategy
+-# =============================================================================
+-
+-taba2 <- data.frame(
+-  Age     = c("18-39","40-65","+65","18-39","40-65","+65"),
+-  Gender  = c("Female","Female","Female","Male","Male","Male"),
+-  Ads     = c("Ad 1/Ad 2","Ad 2/Ad 3","Ad 3",
+-              "Ad 4/Ad 5","Ad 5/Ad 6","Ad 6"),
+-  Interests = c(
+-    "M6 TV channel/RTL TV/Touche Pas à Mon Poste",
+-    "M6 TV channel/TF1/Touche Pas à Mon Poste",
+-    "M6 TV channel/TF1/Touche Pas à Mon Poste",
+-    "M6 TV channel/RTL TV/Touche Pas à Mon Poste",
+-    "M6 TV channel/TF1/Touche Pas à Mon Poste",
+-    "M6 TV channel/TF1/Touche Pas à Mon Poste"
+-  )
+-) |>
+-  kable(format = "latex", booktabs = TRUE, escape = FALSE,
+-        caption = "Table A2: Summary of the micro-targeting strategy") |>
+-  kable_styling(latex_options = "HOLD_position")
+-
+-save_tex(taba2, "tableA2_microtargeting.tex")
+-
+-
+-# =============================================================================
+-# TABLE A3 — Experimental sample descriptive statistics (vtable)
+-# Printed directly to LaTeX via st(); captured with sink()
+-# =============================================================================
+-
+-sink(file.path(dir_tables, "tableA3_exp_descriptives.tex"))
+-fr_exp |>
+-  dplyr::select(block, gender, age, educ, lr) |>
+-  mutate(
+-    gender = factor(gender, levels = c("2","1","0"),
+-                    labels = c("male","female","other")),
+-    block  = factor(block,
+-                    labels = c("Zemmour's voters","Le Pen's voters","Others")),
+-    educ   = factor(educ, labels = c(
+-      "Primary school or none", "Middle School", "Professional certificate",
+-      "High School", "University first-cycle", "University second-cycle"
+-    ))
+-  ) |>
+-  st(group  = "block", out = "latex",
+-     labels = c("Gender","Age","Education","Left-right"),
+-     title  = "Table A3: Summary of descriptive statistics")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLE A4 — Vignettes all blocks (English)
+-# =============================================================================
+-
+-condition_a4 <- c(
+-  r"(\textbf{Control})",
+-  r"(\makecell[tl]{\textbf{T1a} \\ In-group Government \\ \textit{(Zemmour version -} \\ \textit{Blocks I and III)}}})",
+-  r"(\makecell[tl]{\textbf{T1a} \\ In-group Government \\ \textit{(Le Pen version -} \\ \textit{Block II)}}})",
+-  r"(\makecell[tl]{\textbf{T1b} \\ In-group Parliament \\ \textit{(Zemmour version -} \\ \textit{Blocks I and III)}}})",
+-  r"(\makecell[tl]{\textbf{T1b} \\ In-group Parliament \\ \textit{(Le Pen version -} \\ \textit{Block II)}}})",
+-  r"(\makecell[tl]{\textbf{T2} \\ Out-group Government})",
+-  r"(\makecell[tl]{\textbf{Placebo} \\ Social Norm})"
+-)
+-
+-text_a4 <- c(
+-  r"(The results of the first round of the presidential elections were known already the 10th of April. Among the competing candidates, Emmanuel Macron and Marine Le Pen passed to the second round. The candidate Jean-Luc Mélenchon and the candidate Éric Zemmour were the third and fourth most voted candidates, respectively.)",
+-  r"(+ Some people highlight that the candidate \textbf{Éric Zemmour} obtained particularly \textbf{good} results, especially because \textbf{the winner of the second round may include him in the new government}.)",
+-  r"(+ Some people highlight that the candidate Marine Le Pen obtained particularly \textbf{good} results, especially because \textbf{she has a great chance of becoming the winner of the second round}.)",
+-  r"(+ Some people highlight that the candidate \textbf{Éric Zemmour} obtained particularly \textbf{good} results, especially because \textbf{with the confirmation of these results in the legislative elections, he could play a central role in the National Assembly}.)",
+-  r"(+ Some people highlight that the candidate \textbf{Marine Le Pen} obtained particularly \textbf{good} results, especially because \textbf{with the confirmation of these results in the legislative elections, she could play a central role in the National Assembly}.)",
+-  r"(+ Some people highlight that the candidate \textbf{Emmanuel Macron} obtained particularly \textbf{good} results, especially because \textbf{he has a great chance of becoming the winner of the second round}.)",
+-  r"(+ Some people highlight that the candidate \textbf{Éric Zemmour} obtained particularly \textbf{worrying} results, \textbf{especially because of his controversial opinions during the campaign}.)"
+-)
+-
+-taba4 <- data.frame(Condition = condition_a4, Text = text_a4) |>
+-  kable(format = "latex", booktabs = TRUE, escape = FALSE,
+-        caption = "Table A4: Description of the vignettes by treatment condition (all blocks, English)") |>
+-  kable_styling(latex_options = c("HOLD_position", "scale_down")) |>
+-  column_spec(2, width = "18cm")
+-
+-save_tex(taba4, "tableA4_vignettes_english.tex")
+-
+-
+-# =============================================================================
+-# TABLE A5 — Vignettes all blocks (French, original)
+-# =============================================================================
+-
+-text_a5 <- c(
+-  r"(Les résultats du premier tour de l'élection présidentielle sont connus depuis le 10 avril dernier. Parmi les candidats, Emmanuel Macron et Marine Le Pen ont été qualifiés pour le second tour. Les candidats suivants, Jean-Luc Mélenchon et Éric Zemmour sont respectivement les troisième et quatrième candidats à avoir obtenu le plus de voix.)",
+-  r"(+ Certaines personnes soulignent que les résultats d'Éric Zemmour sont particulièrement bons, notamment parce que le gagnant du second tour des élections pourrait l'intégrer dans le nouveau gouvernement.)",
+-  r"(+ Certaines personnes soulignent que les résultats de Marine Le Pen sont particulièrement bons, notamment parce qu'elle a de grandes chances de gagner le second tour des élections.)",
+-  r"(+ Certaines personnes soulignent que les résultats d'Éric Zemmour sont particulièrement bons, notamment parce qu'avec la confirmation d'un tel résultat lors des élections législatives, il pourrait jouer un rôle indispensable dans l'Assemblée nationale.)",
+-  r"(+ Certaines personnes soulignent que les résultats de Marine Le Pen sont particulièrement bons, notamment parce qu'avec la confirmation d'un tel résultat lors des élections législatives, elle pourrait jouer un rôle indispensable dans l'Assemblée nationale.)",
+-  r"(+ Certaines personnes soulignent que les résultats d'Emmanuel Macron sont particulièrement bons, notamment parce qu'il a de grandes chances de gagner le second tour des élections.)",
+-  r"(+ Certaines personnes soulignent que les résultats d'Éric Zemmour sont particulièrement inquiétants, notamment du fait de ses opinions controversées pendant la campagne.)"
+-)
+-
+-taba5 <- data.frame(Condition = condition_a4, Text = text_a5) |>
+-  kable(format = "latex", booktabs = TRUE, escape = FALSE,
+-        caption = "Table A5: Description of the vignettes by treatment condition (all blocks, French original)") |>
+-  kable_styling(latex_options = c("HOLD_position", "scale_down")) |>
+-  column_spec(2, width = "18cm")
+-
+-save_tex(taba5, "tableA5_vignettes_french.tex")
+-
+-
+-# =============================================================================
+-# TABLE A6 — 2022 French presidential election results
+-# =============================================================================
+-
+-candidate_a6 <- c(
+-  r"(\textbf{Emmanuel Macron} \\ La République en Marche)",
+-  r"(\textbf{Marine Le Pen} \\ Rassemblement National)",
+-  r"(\textbf{Jean-Luc Mélenchon} \\ La France Insoumise)",
+-  r"(\textbf{Éric Zemmour} \\ Reconquête)",
+-  r"(\textbf{Valérie Pécresse} \\ Les Républicains)",
+-  r"(\textbf{Yannick Jadot} \\ Europe Écologie les Verts)",
+-  r"(\textbf{Jean Lassalle} \\ Résistons)",
+-  r"(\textbf{Fabien Roussel} \\ Parti Communiste Français)",
+-  r"(\textbf{Nicolas Dupont-Aignan} \\ Debout la France)",
+-  r"(\textbf{Anne Hidalgo} \\ Parti Socialiste)",
+-  r"(\textbf{Philippe Poutou} \\ Nouveau Parti Anticapitaliste)",
+-  r"(\textbf{Nathalie Arthaud} \\ Lutte Ouvrière)"
+-)
+-
+-round_one <- c("27.85 \\%","23.15 \\%","21.95 \\%","7.07 \\%","4.78 \\%",
+-               "4.63 \\%","3.13 \\%","2.28 \\%","2.06 \\%","1.74 \\%",
+-               "0.76 \\%","0.56 \\%")
+-round_two <- c("58.55 \\%","41.45 \\%","-","-","-","-","-","-","-","-","-","-")
+-
+-taba6 <- data.frame(
+-  "Candidate and party"  = candidate_a6,
+-  "1st round results"    = round_one,
+-  "2nd round results"    = round_two,
+-  check.names = FALSE
+-) |>
+-  kable(format = "latex", booktabs = TRUE, escape = FALSE,
+-        caption = "Table A6: Party and candidates results in the 2022 French presidential elections") |>
+-  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+-
+-save_tex(taba6, "tableA6_election_results.tex")
+-
+-
+-# =============================================================================
+-# TABLES B1 / B2 / B3 — Descriptive statistics per experimental block
+-# Uses stargazer(); output captured with sink()
+-# =============================================================================
+-
+-make_desc_table <- function(data, block_label, filename) {
+-  desc <- data |>
+-    dplyr::select(munic_size, gender, educ, occup_current, income, swd_ch) |>
+-    mutate(across(where(is.factor), as.numeric))
+-  colnames(desc) <- c("Municipality Size","Gender","Education",
+-                       "Occupation","Income","SWD Change")
+-  sink(file.path(dir_tables, filename))
+-  stargazer(as.data.frame(desc), digits = 1,
+-            title         = block_label,
+-            table.placement = "H",
+-            header        = FALSE,
+-            type          = "latex")
+-  sink()
+-}
+-
+-make_desc_table(zemmour, "Table B1: Descriptive statistics - Zemmour block",
+-                "tableB1_descriptives_zemmour.tex")
+-make_desc_table(mlp,     "Table B2: Descriptive statistics - Le Pen block",
+-                "tableB2_descriptives_lepen.tex")
+-make_desc_table(others,  "Table B3: Descriptive statistics - Others block",
+-                "tableB3_descriptives_others.tex")
+-
+-
+-# =============================================================================
+-# TABLE B4 — FES descriptive statistics: Zemmour supporters
+-# =============================================================================
+-
+-sink(file.path(dir_tables, "tableB4_fes_zemmour_descriptives.tex"))
+-Z_voters |>
+-  dplyr::select(sex, age_n, education, lr) |>
+-  mutate(education = factor(education, labels = c(
+-    "Primary, middle school, or none", "Professional Certificate",
+-    "High School", "University first-cycle", "University second-cycle"
+-  ))) |>
+-  st(out    = "latex",
+-     labels = c("Gender","Age","Education","Left-right"),
+-     title  = "Table B4: Descriptive statistics: representative sample of Zemmour supporters in the FES 2022")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLE C1 — Qualitative codebook schema and results
+-# The data contain aggregated coding counts by block — no individual responses.
+-# =============================================================================
+-sink(file.path(dir_tables, "tableC1_qualitative_codebook.tex"))
+-stargazer(qual_table, summary = FALSE,
+-          title           = "Table C1: Qualitative codebook schema and results",
+-          font.size       = "tiny",
+-          rownames        = FALSE,
+-          header          = FALSE,
+-          column.sep.width = "0.01pt",
+-          type            = "latex")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLE C2 — Inter-coder reliability
+-# The data contain only summary statistics (Cohen's kappa,
+-# Krippendorff's alpha, percent agreement per coding variable).
+-# No individual responses are stored in this file.
+-# =============================================================================
+-
+-icr_results  <- qual_icr$icr_results
+-overall_alpha <- qual_icr$overall_alpha
+-
+-icr_table <- icr_results |>
+-  dplyr::select(variable, n, pct_agree, kappa, alpha, note) |>
+-  mutate(
+-    label = case_when(
+-      variable == "1.1_Disgust_Loathing"  ~ "Disgust / Loathing",
+-      variable == "1.2_Disapointment"     ~ "Disappointment",
+-      variable == "1.3_Fatalism"          ~ "Fatalism",
+-      variable == "1.5_Fear_Anxiety"      ~ "Fear / Anxiety",
+-      variable == "1.7_Satisfaction"      ~ "Satisfaction",
+-      variable == "1.8_Hope"              ~ "Hope",
+-      variable == "1.9_Pride_Enthusiasm"  ~ "Pride / Enthusiasm",
+-      variable == "1.12_Other_Feelings"   ~ "Other Feelings",
+-      variable == "2.1.1_R_Zemmour"       ~ "Zemmour",
+-      variable == "2.1.2_Radical_Right"   ~ "Radical Right",
+-      variable == "2.1.3_RN_LePen"        ~ "RN / Le Pen",
+-      variable == "2.1.4_LREM_Macron"     ~ "LREM / Macron",
+-      variable == "2.1.8_Positive_Other"  ~ "Other (positive)",
+-      variable == "2.2.1_LREM_Macron"     ~ "LREM / Macron",
+-      variable == "2.2.2_LFI_Mélenchon"  ~ "LFI / Mélenchon",
+-      variable == "2.2.5_RN_LePen"        ~ "RN / Le Pen",
+-      variable == "2.2.9_R_Zemmour"       ~ "Zemmour",
+-      variable == "2.2.14_Media"          ~ "Media",
+-      variable == "2.2.15_French_people"  ~ "French People",
+-      variable == "2.2.16_Negative_Other" ~ "Other (negative)",
+-      variable == "2.3_Descriptive"       ~ "Descriptive",
+-      variable == "3_Demo_evaluation"     ~ "Democratic Evaluation"
+-    ),
+-    section = case_when(
+-      str_starts(variable, "1\\.")  ~ "Emotions",
+-      str_starts(variable, "2\\.1") ~ "Positive evaluations",
+-      str_starts(variable, "2\\.2") ~ "Negative evaluations",
+-      str_starts(variable, "2\\.3") ~ "Descriptive statements",
+-      str_starts(variable, "3")     ~ "Democratic evaluation",
+-      TRUE                          ~ "Other"
+-    ),
+-    section   = factor(section, levels = c(
+-      "Emotions", "Positive evaluations", "Negative evaluations",
+-      "Descriptive statements", "Democratic evaluation"
+-    )),
+-    pct_agree = sprintf("%.0f\\%%", pct_agree * 100),
+-    kappa     = if_else(is.na(kappa), "---", sprintf("%.2f", kappa)),
+-    alpha     = sprintf("%.2f", alpha)
+-  ) |>
+-  arrange(section, variable) |>
+-  dplyr::select(section, label, n, pct_agree, kappa, alpha)
+-
+-section_counts <- icr_table |> count(section) |> arrange(section)
+-
+-tabc2 <- icr_table |>
+-  dplyr::select(-section) |>
+-  kbl(
+-    format    = "latex",
+-    booktabs  = TRUE,
+-    longtable = TRUE,
+-    col.names = c("Code", "$n$", "\\% Agree", "$\\kappa$", "$\\alpha$"),
+-    escape    = FALSE,
+-    align     = c("l", "c", "c", "c", "c"),
+-    caption   = "Table C2: Intercoder reliability statistics",
+-    label     = "tab:tabc2"
+-  ) |>
+-  kable_styling(latex_options = c("hold_position", "repeat_header"),
+-                font_size     = 10) |>
+-  pack_rows(
+-    index           = deframe(section_counts[, c("section", "n")]),
+-    bold            = TRUE,
+-    italic          = FALSE,
+-    latex_gap_space = "0.5em"
+-  ) |>
+-  footnote(
+-    general = c(
+-      paste0("$n$ = number of statements with complete ratings from both ",
+-             "coders. \\\\% Agree = simple percent agreement. $\\\\kappa$ = ",
+-             "Cohen's kappa (unweighted); dashes indicate kappa is undefined ",
+-             "due to zero variance in one coder's ratings. $\\\\alpha$ = ",
+-             "Krippendorff's alpha (nominal). Landis \\\\& Koch (1977) ",
+-             "benchmarks: $\\\\kappa < 0.40$ poor, $0.40$--$0.60$ moderate, ",
+-             "$0.60$--$0.80$ substantial, $\\\\geq 0.80$ almost perfect."),
+-      paste0("Overall Krippendorff's $\\\\alpha$ (all variables combined) = ",
+-             sprintf("%.2f", overall_alpha), ".")
+-    ),
+-    general_title  = "",
+-    escape         = FALSE,
+-    threeparttable = TRUE
+-  )
+-
+-save_tex(tabc2, "tableC2_icr.tex")
+-
+-
+-# =============================================================================
+-# TABLES D1 / D2 — Manipulation check regression tables
+-# =============================================================================
+-
+-manip_coef_names <- c(
+-  "(Intercept)",
+-  "Placebo Social Norm", "In-group Government", "Out-group Government",
+-  "In-group Parliament",
+-  "Age", "Gender (= Female)", "Gender (= Other)",
+-  "Education (= Middle School)", "Education (= Professional certificate)",
+-  "Education (= High School)", "Education (= University first-cycle)",
+-  "Education (= University second-cycle)",
+-  "Income (= 2nd Quintile)", "Income (= 3rd Quintile)",
+-  "Income (= 4th Quintile)", "Income (= 5th Quintile)",
+-  "Zemmour Likely Winner 1st Round", "Zemmour Likely Winner 2nd Round",
+-  "Macron Likely Winner 2nd Round",  "Le Pen Likely Winner 2nd Round",
+-  "Macron Likely Winner 1st Round",  "Le Pen Likely Winner 1st Round"
+-)
+-
+-sink(file.path(dir_tables, "tableD1_manipulation_check_zemmour.tex"))
+-texreg(list(winner_zemmour_model, winner_zemmour_model_r),
+-       dcolumn            = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars              = c(0.001, 0.01, 0.05, 0.1),
+-       include.ci         = FALSE,
+-       custom.model.names = c("DV: Zemmour W", "DV: Zemmour W"),
+-       custom.gof.rows    = list("Robust Std. Errors" = c("No","Yes")),
+-       custom.coef.names  = manip_coef_names,
+-       fontsize           = "scriptsize", float.pos = "h!",
+-       caption = "Table D1: OLS Specifications. DV: Perceptions of Zemmour as a Winner")
+-sink()
+-
+-sink(file.path(dir_tables, "tableD2_manipulation_check_macron_lepen.tex"))
+-texreg(list(winner_macron_model, winner_macron_model_r,
+-            winner_lepen_model,  winner_lepen_model_r),
+-       dcolumn            = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars              = c(0.001, 0.01, 0.05, 0.1),
+-       include.ci         = FALSE,
+-       custom.model.names = c("DV: Macron W","DV: Macron W",
+-                              "DV: Le Pen W","DV: Le Pen W"),
+-       custom.gof.rows    = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
+-       custom.coef.names  = manip_coef_names,
+-       fontsize           = "scriptsize", float.pos = "h!",
+-       caption = "Table D2: OLS Specifications. DV: Perceptions of Macron/Le Pen as a Winner")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLES D3–D7 — Experiment regression tables
+-# =============================================================================
+-
+-swd_coef_names_full <- c(
+-  "(Intercept)", "Placebo Social Norm", "In-group Government",
+-  "Out-group Government", "In-group Parliament",
+-  "Age", "Gender (= Female)",
+-  "Education (= Middle School)", "Education (= Professional certificate)",
+-  "Education (= High School)", "Education (= University first-cycle)",
+-  "Education (= University second-cycle)",
+-  "Income (= 2nd Quintile)", "Income (= 3rd Quintile)",
+-  "Income (= 4th Quintile)", "Income (= 5th Quintile)"
+-)
+-
+-sink(file.path(dir_tables, "tableD3_ez_swd.tex"))
+-texreg(list(model_1_ez, model_2_ez, model_3_ez, model_4_ez),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
+-       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
+-       custom.coef.names = swd_coef_names_full,
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table D3: OLS specifications Block I (Zemmour). DV: Change in SWD")
+-sink()
+-
+-sink(file.path(dir_tables, "tableD4_ez_swd_expectations.tex"))
+-texreg(list(model_1_ez_exp, model_2_ez_exp, model_3_ez_exp, model_4_ez_exp),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
+-       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
+-       custom.coef.names = c("(Intercept)", "Placebo Social Norm",
+-                             "In-group Government", "Out-group Government",
+-                             "In-group Parliament",
+-                             "Expectation: Zemmour wins 2nd round",
+-                             "Age", "Gender (= Female)"),
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table D4: OLS specifications Block I + electoral expectations. DV: Change in SWD")
+-sink()
+-
+-sink(file.path(dir_tables, "tableD5_ez_lrem.tex"))
+-texreg(list(model_1_ez_lrem, model_2_ez_lrem, model_3_ez_lrem, model_4_ez_lrem),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
+-       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
+-       custom.coef.names = c("(Intercept)", "Placebo Social Norm",
+-                             "In-group Government", "Out-group Government",
+-                             "In-group Parliament",
+-                             "Age", "Gender (= Female)",
+-                             "Education (= Middle School)",
+-                             "Education (= Professional certificate)",
+-                             "Education (= High School)",
+-                             "Education (= University first-cycle)",
+-                             "Education (= University second-cycle)"),
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table D5: OLS specifications Block I (Zemmour). DV: Change in Affects toward LREM")
+-sink()
+-
+-sink(file.path(dir_tables, "tableD6_mlp_swd.tex"))
+-texreg(list(model_1_mlp, model_2_mlp, model_3_mlp, model_4_mlp),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
+-       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
+-       custom.coef.names = swd_coef_names_full,
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table D6: OLS Specifications Block II (Le Pen). DV: Change in SWD")
+-sink()
+-
+-sink(file.path(dir_tables, "tableD7_others_swd.tex"))
+-texreg(list(model_1_oth, model_2_oth, model_3_oth, model_4_oth),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
+-       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
+-       custom.coef.names = c("(Intercept)", "Placebo Social Norm",
+-                             "In-group Government", "Out-group Government",
+-                             "In-group Parliament",
+-                             "Age", "Gender (= Female)", "Gender (= Other)",
+-                             "Education (= Middle School)",
+-                             "Education (= Professional certificate)",
+-                             "Education (= High School)",
+-                             "Education (= University first-cycle)",
+-                             "Education (= University second-cycle)",
+-                             "Income (= 2nd Quintile)", "Income (= 3rd Quintile)",
+-                             "Income (= 4th Quintile)", "Income (= 5th Quintile)"),
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table D7: OLS Specifications Block III (Others). DV: Change in SWD")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLES D8 / D9 — Multiple hypotheses testing corrections
+-# =============================================================================
+-
+-make_mht_table <- function(model, caption, filename) {
+-  pvals      <- as.numeric(summary(model)$coefficients[, 4])
+-  trt_group  <- c("Intercept", "In-group Government", "In-group Parliament",
+-                  "Out-group Government", "Placebo")
+-  df <- data.frame(
+-    Coefficient          = trt_group,
+-    "Original p-values"  = pvals,
+-    "Bonferroni"         = p.adjust(pvals, method = "bonferroni"),
+-    "Holm"               = p.adjust(pvals, method = "holm"),
+-    check.names = FALSE
+-  )
+-  tbl <- kable(df, format = "latex", booktabs = TRUE, escape = FALSE,
+-               digits = 2, caption = caption) |>
+-    kable_styling(latex_options = "HOLD_position")
+-  save_tex(tbl, filename)
+-}
+-
+-make_mht_table(model_1_ez,
+-  "Table D8: p-values before/after MHT correction - ATE on Change in SWD",
+-  "tableD8_mht_swd.tex")
+-
+-make_mht_table(model_1_ez_lrem,
+-  "Table D9: p-values before/after MHT correction - ATE on Change in Feelings toward LREM",
+-  "tableD9_mht_lrem.tex")
+-
+-
+-# =============================================================================
+-# TABLE D10 — Simulated vs. real data regression table
+-# =============================================================================
+-
+-sink(file.path(dir_tables, "tableD10_simulated_vs_real.tex"))
+-texreg(list(model_sim, model_1_ez),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Simulated data", "Real data"),
+-       custom.coef.names  = c("(Intercept)", "Placebo Social Norm",
+-                              "In-group Government", "Out-group Government",
+-                              "In-group Parliament"),
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table D10: OLS comparing simulated and real data. DV: Change in SWD")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLE E1 — Pilot study regression table
+-# =============================================================================
+-
+-sink(file.path(dir_tables, "tableE1_pilot_swd.tex"))
+-texreg(list(model_1_pilot, model_2_pilot),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Model 1","Model 2"),
+-       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes")),
+-       custom.coef.names  = c("(Intercept)", "In-group Parliament",
+-                              "Out-group Government",
+-                              "Final Placebo (Social Norm)",
+-                              "Discarded Placebo (Economy + COVID)"),
+-       fontsize = "footnotesize", float.pos = "h!",
+-       caption = "Table E1: OLS Specifications Pilot Study. DV: SWD")
+-sink()
+-
+-
+-# =============================================================================
+-# TABLE F1 — FES vote choice distribution
+-# =============================================================================
+-
+-summary_t <- panel |>
+-  filter(!is.na(choice_pres_1st)) |>
+-  mutate(choice_pres_1st = factor(choice_pres_1st, levels = c(
+-    "Nathalie Arthaud LO", "Philippe Poutou NPA", "Fabien Roussel PCF",
+-    "Jean-Luc Mélenchon LFI", "Yannick Jadot EELV", "Anne Hidalgo PS",
+-    "Emmanuel Macron LREM", "Valérie Pécresse LR", "Jean Lassalle RES",
+-    "Nicolas Dupont-Aignan DLR", "Marine Le Pen RN", "Eric Zemmour REC",
+-    "Blank", "Null", "Abstention"
+-  ))) |>
+-  count(choice_pres_1st) |>
+-  mutate(percentage = round(n / sum(n) * 100, 1))
+-
+-tabf1 <- bind_rows(
+-  summary_t,
+-  tibble(choice_pres_1st = "Total", n = sum(summary_t$n), percentage = 100.0)
+-) |>
+-  kable(format = "latex", booktabs = TRUE, escape = FALSE,
+-        col.names = c("Vote Choice (1st Round)", "N", "Percentage"),
+-        caption   = "Table F1: Distribution of Presidential Vote Choice (1st Round) - FES 2022") |>
+-  kable_styling(latex_options = "HOLD_position") |>
+-  row_spec(nrow(summary_t) + 1, bold = TRUE)
+-
+-save_tex(tabf1, "tableF1_fes_vote_choice.tex")
+-
+-
+-# =============================================================================
+-# TABLES F2 / F3 — FES panel regression tables
+-# =============================================================================
+-
+-fes_coef_names <- c(
+-  "(Intercept)", "Pre-election SWD",
+-  "Abstention", "Blank/Null Vote",
+-  "Vote for Éric Zemmour", "Vote for Marine Le Pen",
+-  "Vote for Jean-Luc Mélenchon", "Vote for Emmanuel Macron",
+-  "Age (= 30-34)","Age (= 35-39)","Age (= 40-44)","Age (= 45-49)",
+-  "Age (= 50-54)","Age (= 55-59)","Age (= 60-64)","Age (= 65-69)",
+-  "Age (= 70+)","Age (= -25)", "Gender (= Male)",
+-  "Education (= High School)", "Education (= Middle School or Less)",
+-  "Education (= Undergraduate Studies)", "Education (= Vocational Training)",
+-  "Income (= From 1400 to 1650)", "Income (= From 1650 to 1900)",
+-  "Income (= From 1900 to 2200)", "Income (= From 2200 to 2500)",
+-  "Income (= From 2500 to 3200)", "Income (= From 650 to 950)",
+-  "Income (= From 950 to 1200)",  "Income (= Less than 650)",
+-  "Income (= More than 3200)",
+-  "Employment (= Retired)", "Employment (= Student)",
+-  "Employment (= Unemployed)",
+-  "Left-Right Ideology", "Left-Right Ideology Squared", "Political Interest"
+-)
+-
+-sink(file.path(dir_tables, "tableF2_fes_swd.tex"))
+-texreg(list(baseline_model_panel, soc_model_panel, full_model_panel),
+-       custom.gof.rows    = list("Robust SE" = c("Yes","Yes","Yes")),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       single.row = TRUE, stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Baseline","Soc. controls","Full spec."),
+-       custom.coef.names  = fes_coef_names,
+-       fontsize = "scriptsize", float.pos = "h!",
+-       caption = "Table F2: OLS Specifications. DV: Change in SWD")
+-sink()
+-
+-sink(file.path(dir_tables, "tableF3_fes_lrem.tex"))
+-texreg(list(baseline_affect, soc_affect, full_affect),
+-       custom.gof.rows    = list("Robust SE" = c("Yes","Yes","Yes")),
+-       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
+-       single.row = TRUE, stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
+-       custom.model.names = c("Baseline","Soc. controls","Full spec."),
+-       fontsize = "scriptsize", float.pos = "h!",
+-       caption = "Table F3: OLS Specifications. DV: Change in Affects toward LREM")
+-sink()
++# =============================================================================
++# 02_supplementary_materials.R
++# "Blinded by Out-group Hatred: Why Does Radical Party Entry Fail to
++#  Boost Its Voters' Satisfaction with Democracy?"
++#
++# Replication script for all figures and tables in the supplementary materials.
++# Manuscript figures and tables are produced by 01_manuscript.R.
++#
++# Figures produced (saved to figures_supplementary_materials/):
++#   Figure A1  - Facebook ads [static images, stored in facebook_ads/]
++#   Figure B1  - Like-dislike distributions across all three blocks
++#   Figure B2  - Distribution of electoral expectations
++#   Figure D1  - Treatment distribution across blocks
++#   Figure D2  - Covariate balance plots
++#   Figure D3  - ATE on winner perceptions (manipulation check)
++#   Figure D4  - Comprehension check distribution
++#   Figure D5  - ATE on SWD/LREM: all model specifications
++#   Figure D6  - Post-experimental power simulation and simulated vs. real ATE
++#   Figure D7  - Simulated vs. real-data ATE comparison
++#   Figure D8  - Electoral uncertainty bar plots
++#   Figure D9  - ATE on SWD: Le Pen and Others blocks
++#   Figure D10 - Perceptions of electoral winners among Zemmour voters
++#   Figure D11 - Descriptive trajectories of SWD and LREM feelings
++#   Figure E1  - Pilot study ATE on SWD
++#   Figure F1  - FES affect distribution by top 4 candidates
++#
++# Tables produced (saved to tables_supplementary_materials/):
++#   Table A1   - Summary of hypotheses
++#   Table A2   - Micro-targeting strategy
++#   Table A3   - Experimental sample descriptive statistics
++#   Table A4   - Vignettes all blocks (English)
++#   Table A5   - Vignettes all blocks (French)
++#   Table A6   - 2022 French presidential election results
++#   Table B1   - Descriptive statistics: Zemmour block
++#   Table B2   - Descriptive statistics: Le Pen block
++#   Table B3   - Descriptive statistics: Others block
++#   Table B4   - Descriptive statistics: FES Zemmour supporters
++#   Table C1   - Qualitative codebook schema and results
++#   Table C2   - Inter-coder reliability
++#   Table D1   - ATE on winner perceptions: Zemmour
++#   Table D2   - ATE on winner perceptions: Macron/Le Pen
++#   Table D3   - OLS specifications: Zemmour block, DV = SWD change
++#   Table D4   - OLS specifications: Zemmour block + expectations, DV = SWD
++#   Table D5   - OLS specifications: Zemmour block, DV = LREM affect change
++#   Table D6   - OLS specifications: Le Pen block, DV = SWD change
++#   Table D7   - OLS specifications: Others block, DV = SWD change
++#   Table D8   - Multiple hypotheses testing: SWD
++#   Table D9   - Multiple hypotheses testing: LREM affect
++#   Table D10  - Simulated vs. real data regression table
++#   Table E1   - Pilot study OLS specifications
++#   Table F1   - FES vote choice distribution
++#   Table F2   - FES panel OLS: DV = SWD change
++#   Table F3   - FES panel OLS: DV = LREM affect
++#
++# Figure A1 requires no R code. Static images are in facebook_ads/.
++#
++# Project structure (relative to _replication_files.Rproj):
++#   data/                            <- CSV datasets
++#   facebook_ads/                    <- Figure A1 static images
++#   figures_manuscript/              <- output for 01_manuscript.R
++#   figures_supplementary_materials/ <- figure output (created automatically)
++#   tables_manuscript/               <- output for 01_manuscript.R
++#   tables_supplementary_materials/  <- table output (created automatically)
++#   scripts/                         <- this script
++#
++# To run: open _replication_files.Rproj, then Session -> Restart R -> Source.
++# =============================================================================
++
++
++rm(list = ls())
++
++
++# -----------------------------------------------------------------------------
++# 0a. Packages
++# -----------------------------------------------------------------------------
++
++pkgs <- c("tidyverse", "estimatr", "broom", "patchwork", "here",
++          "kableExtra", "texreg", "stargazer", "vtable",
++          "gridExtra", "grid", "jtools", "plotrix", "MASS", "binom", "scales",
++          "tinytex", "pdftools")
++
++install.packages(setdiff(pkgs, rownames(installed.packages())))
++
++library(tidyverse)
++library(estimatr)
++library(broom)
++library(patchwork)
++library(here)
++library(kableExtra)
++library(texreg)      # regression tables via texreg()
++library(stargazer)   # descriptive statistics tables
++library(vtable)      # st() summary tables
++library(gridExtra)   # grid.arrange() for multi-panel figures
++library(grid)
++library(jtools)      # plot_summs() for coefficient plots
++library(plotrix)     # std.error() used in covariate balance
++library(MASS)        # mvrnorm() used in power simulation
++library(binom)        # used in power simulation
++library(scales)      # percent_format() used in FES affect plot
++
++
++# -----------------------------------------------------------------------------
++# 0b. LaTeX setup
++# pdflatex is needed only if you want to compile .tex outputs directly.
++# TinyTeX is used here; if you have MiKTeX, packages install automatically.
++# -----------------------------------------------------------------------------
++
++#SKIP_LATEX# if (Sys.which("pdflatex") == "") {
++#SKIP_LATEX#   message("pdflatex not found. Installing TinyTeX...")
++#SKIP_LATEX#   tinytex::install_tinytex(repository = "illinois")
++#SKIP_LATEX#   stop("TinyTeX installed. Please restart R and run the script again.")
++#SKIP_LATEX# }
++#SKIP_LATEX# 
++#SKIP_LATEX# if (tinytex::tinytex_root() != "") {
++#SKIP_LATEX#   tinytex::tlmgr_install(c("standalone", "pgf", "xcolor", "makecell",
++#SKIP_LATEX#                             "tabu", "booktabs", "longtable"))
++#SKIP_LATEX# }
++
++
++# -----------------------------------------------------------------------------
++# 0c. Paths and output settings
++# -----------------------------------------------------------------------------
++
++dir_data   <- here("data")
++dir_out    <- here("figures_supplementary_materials")
++dir_tables <- here("tables_supplementary_materials")
++fig_dpi    <- 600
++
++if (!dir.exists(dir_out))    dir.create(dir_out,    recursive = TRUE)
++if (!dir.exists(dir_tables)) dir.create(dir_tables, recursive = TRUE)
++
++# Helper: save a kable LaTeX table to the tables output folder
++save_tex <- function(kable_obj, filename) {
++  writeLines(as.character(kable_obj),
++             file.path(dir_tables, filename))
++}
++
++
++# =============================================================================
++# 1. Data import
++# =============================================================================
++
++fr_exp      <- read_csv(file.path(dir_data, "study2_experiment_data.csv"))
++fr_exp_long <- read_csv(file.path(dir_data, "study2_experiment_data_long.csv"))
++pilot       <- read_csv(file.path(dir_data, "pilot_study_data.csv"))
++#SKIP_MISSING_STUDY1# panel       <- read_csv(file.path(dir_data, "study1_fes_panel.csv"),
++#SKIP_MISSING_STUDY1#                         locale = locale(encoding = "UTF-8"))
++#SKIP_MISSING_STUDY1# panel_long  <- read_csv(file.path(dir_data, "study1_fes_panel_long.csv"),
++#SKIP_MISSING_STUDY1#                         locale = locale(encoding = "UTF-8"))
++
++# Qualitative codebook results (aggregated)
++qual_table  <- read_csv2(file.path(dir_data,
++                "study2_qualitative_answers_proportions.csv"))
++qual_icr  <- readRDS(file.path(dir_data,
++                                   "study2_qualitative_answers_icr.rds"))
++
++
++# =============================================================================
++# 2. Data preparation
++# =============================================================================
++
++#SKIP_MISSING_STUDY1# # --- 2a. FES panel -----------------------------------------------------------
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# # Fix encoding issue with Zemmour's party name
++#SKIP_MISSING_STUDY1# panel <- panel |>
++#SKIP_MISSING_STUDY1#   mutate(choice_pres_1st = if_else(
++#SKIP_MISSING_STUDY1#     str_detect(choice_pres_1st, "Zemmour REC"),
++#SKIP_MISSING_STUDY1#     "Eric Zemmour REC",
++#SKIP_MISSING_STUDY1#     choice_pres_1st
++#SKIP_MISSING_STUDY1#   )) |>
++#SKIP_MISSING_STUDY1#   mutate(across(where(is.character), as.factor)) |>
++#SKIP_MISSING_STUDY1#   mutate(across(where(is.integer),   as.numeric)) |>
++#SKIP_MISSING_STUDY1#   mutate(treatment_pres_1st = factor(
++#SKIP_MISSING_STUDY1#     treatment_pres_1st,
++#SKIP_MISSING_STUDY1#     levels = c(
++#SKIP_MISSING_STUDY1#       "Other candidate",
++#SKIP_MISSING_STUDY1#       "Abstention",
++#SKIP_MISSING_STUDY1#       "Blank/Null",
++#SKIP_MISSING_STUDY1#       "Éric Zemmour (new/loser)",
++#SKIP_MISSING_STUDY1#       "Marine Le Pen (old/winner)",
++#SKIP_MISSING_STUDY1#       "Jean-Luc Mélenchon (old/loser)",
++#SKIP_MISSING_STUDY1#       "Emmanuel Macron (old/winner)"
++#SKIP_MISSING_STUDY1#     )
++#SKIP_MISSING_STUDY1#   ))
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# # Zemmour voters subset for FES descriptives
++#SKIP_MISSING_STUDY1# Z_voters <- panel |> filter(choice_pres_1st == "Eric Zemmour REC")
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# # Long panel subset: top 4 candidates only (used for affect distributions)
++#SKIP_MISSING_STUDY1# panel_short <- panel_long |>
++#SKIP_MISSING_STUDY1#   filter(choice_pres_1st %in% c("Mélenchon voters", "Le Pen voters",
++#SKIP_MISSING_STUDY1#                                  "Macron voters",    "Zemmour voters"))
++
++# --- 2b. Experimental Facebook data ------------------------------------------
++
++fr_exp <- fr_exp |>
++  mutate(across(where(is.character), as.factor)) |>
++  mutate(opened_quest = as.character(opened_quest)) |>
++  filter(!is.na(treatment), !is.na(swd_ch)) |>
++  mutate(
++    munic_size    = as.factor(munic_size),
++    gender        = as.factor(gender),
++    paris         = as.factor(paris),
++    educ          = as.factor(educ),
++    occup_current = as.factor(occup_current),
++    income        = as.factor(income)
++  )
++
++# Block subsets
++zemmour <- fr_exp |> filter(block == "EZ")
++mlp     <- fr_exp |> filter(block == "MLP")
++others  <- fr_exp |> filter(block == "Others")
++
++# Combined Zemmour + Others (used for manipulation check models)
++fr_exp_subset <- fr_exp |> filter(block %in% c("EZ", "Others"))
++
++# Covariate subset for balance checks
++fr_exp_covs <- fr_exp |>
++  dplyr::select(treatment, age, gender, educ, munic_size, paris, income, lr, block)
++
++# --- 2c. Pilot data ----------------------------------------------------------
++
++pilot[pilot == 88] <- NA
++pilot <- pilot |>
++  filter(Q00a == 1) |>
++  mutate(
++    attention      = ifelse(grepl("3", Q14, fixed = TRUE), 1, 0),
++    duration       = log(`Duration (in seconds)`),
++    age            = as.numeric(2022 - Q2b),
++    gender         = Q1,
++    paris          = Q3.2.,
++    educ           = as.factor(Q4),
++    income         = as.factor(Q6),
++    ext_eff_index  = ((12 - Q13_3) + (12 - Q13_4)) / 2,
++    int_eff_index  = ((12 - Q13_1) + (12 - Q13_2)) / 2
++  )
++
++# Pilot Zemmour subsample + treatment coding
++zemmour_pilot <- pilot |>
++  filter(Q20a == 12 | Q20b == 12) |>
++  mutate(treatment = ifelse(!is.na(`TIME_C_First Click`), 1,
++                     ifelse(!is.na(`Time_T1_First Click`), 2,
++                     ifelse(!is.na(`Time_T2_First Click`), 3,
++                     ifelse(!is.na(`Time_T3_First Click`), 4,
++                     ifelse(!is.na(`Time_T4_First Click`), 5, 0)))))) |>
++  rename(M3 = `M3#1_1`, M4 = `M4#1_1`)
++
++
++# =============================================================================
++# 3. Models
++# =============================================================================
++
++#SKIP_MISSING_STUDY1# # --- 3a. FES panel models ----------------------------------------------------
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# baseline_model_panel <- panel |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(lr)) |>
++#SKIP_MISSING_STUDY1#   lm_robust(ch_swd ~ democracy_works + treatment_pres_1st,
++#SKIP_MISSING_STUDY1#             weights = weight_w2, data = _)
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# soc_model_panel <- panel |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(lr)) |>
++#SKIP_MISSING_STUDY1#   lm_robust(ch_swd ~ democracy_works + treatment_pres_1st +
++#SKIP_MISSING_STUDY1#               age + sex + education + income + employment,
++#SKIP_MISSING_STUDY1#             weights = weight_w2, data = _)
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# full_model_panel <- panel |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(lr)) |>
++#SKIP_MISSING_STUDY1#   lm_robust(ch_swd ~ democracy_works + treatment_pres_1st +
++#SKIP_MISSING_STUDY1#               age + sex + education + income + employment +
++#SKIP_MISSING_STUDY1#               poly(lr, 2) + pol_interest,
++#SKIP_MISSING_STUDY1#             weights = weight_w2, data = _)
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# baseline_affect <- lm_robust(affect_EM ~ treatment_pres_1st,
++#SKIP_MISSING_STUDY1#                               weights = weight_w2, data = panel)
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# soc_affect <- panel |>
++#SKIP_MISSING_STUDY1#   lm_robust(affect_EM ~ treatment_pres_1st +
++#SKIP_MISSING_STUDY1#               age + sex + education + income + employment,
++#SKIP_MISSING_STUDY1#             weights = weight_w2, data = _)
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# full_affect <- panel |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(lr)) |>
++#SKIP_MISSING_STUDY1#   lm_robust(affect_EM ~ treatment_pres_1st +
++#SKIP_MISSING_STUDY1#               age + sex + education + income + employment +
++#SKIP_MISSING_STUDY1#               democracy_works + poly(lr, 2) + pol_interest,
++#SKIP_MISSING_STUDY1#             weights = weight_w2, data = _)
++
++# --- 3b. Experimental models: SWD --------------------------------------------
++
++model_1_ez  <- lm(swd_ch ~ treatment, data = zemmour)
++model_2_ez  <- lm_robust(swd_ch ~ treatment, data = zemmour)
++model_3_ez  <- lm(swd_ch ~ treatment + age + gender + educ + income,
++                  data = zemmour)
++model_4_ez  <- lm_robust(swd_ch ~ treatment + income + gender,
++                         data = zemmour)
++
++model_1_ez_exp <- lm(swd_ch ~ treatment + zemmour_winner2ndr, data = zemmour)
++model_2_ez_exp <- lm_robust(swd_ch ~ treatment + zemmour_winner2ndr,
++                             data = zemmour)
++model_3_ez_exp <- lm(swd_ch ~ treatment + age + gender + zemmour_winner2ndr,
++                     data = zemmour)
++model_4_ez_exp <- lm_robust(swd_ch ~ treatment + age + gender +
++                               zemmour_winner2ndr, data = zemmour)
++
++model_1_mlp <- lm(swd_ch ~ treatment, data = mlp)
++model_2_mlp <- lm_robust(swd_ch ~ treatment, data = mlp)
++model_3_mlp <- lm(swd_ch ~ treatment + age + gender + educ + income,
++                  data = mlp)
++model_4_mlp <- lm_robust(swd_ch ~ treatment + age + gender + educ + income,
++                          data = mlp)
++
++model_1_oth <- lm(swd_ch ~ treatment, data = others)
++model_2_oth <- lm_robust(swd_ch ~ treatment, data = others)
++model_3_oth <- lm(swd_ch ~ treatment + age + gender + educ + income,
++                  data = others)
++model_4_oth <- lm_robust(swd_ch ~ treatment + age + gender + educ + income,
++                          data = others)
++
++# --- 3c. Experimental models: LREM affect ------------------------------------
++
++model_1_ez_lrem <- lm(affect_LREM_ch ~ treatment, data = zemmour)
++model_2_ez_lrem <- lm_robust(affect_LREM_ch ~ treatment, data = zemmour)
++model_3_ez_lrem <- lm(affect_LREM_ch ~ treatment + age + gender + educ,
++                      data = zemmour)
++model_4_ez_lrem <- lm_robust(affect_LREM_ch ~ treatment + age + gender + educ,
++                              data = zemmour)
++
++# --- 3d. Manipulation check models -------------------------------------------
++
++winner_zemmour_model <- lm(
++  winner_zemmour ~ treatment + age + gender + educ + income +
++    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
++    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
++  data = fr_exp_subset)
++
++winner_zemmour_model_r <- lm_robust(
++  winner_zemmour ~ treatment + age + gender + educ + income +
++    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
++    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
++  data = fr_exp_subset)
++
++winner_macron_model <- lm(
++  winner_macron ~ treatment + age + gender + educ + income +
++    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
++    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
++  data = fr_exp_subset)
++
++winner_macron_model_r <- lm_robust(
++  winner_macron ~ treatment + age + gender + educ + income +
++    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
++    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
++  data = fr_exp_subset)
++
++winner_lepen_model <- lm(
++  winner_lepen ~ treatment + age + gender + educ + income +
++    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
++    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
++  data = fr_exp_subset)
++
++winner_lepen_model_r <- lm_robust(
++  winner_lepen ~ treatment + age + gender + educ + income +
++    zemmour_winner1str + zemmour_winner2ndr + macron_winner2ndr +
++    lepen_winner2ndr + macron_winner1str + lepen_winner1str,
++  data = fr_exp_subset)
++
++# --- 3e. Pilot models --------------------------------------------------------
++
++model_1_pilot <- lm(Q11_1 ~ as.factor(treatment), data = zemmour_pilot)
++model_2_pilot <- lm_robust(Q11_1 ~ as.factor(treatment), data = zemmour_pilot)
++
++
++# =============================================================================
++# 4. Shared plot helpers
++# =============================================================================
++
++dodge_width <- 0.8
++
++# Treatment coefficient labels used across multiple plots
++coef_names_ez <- c(
++  "treatmentdanger_contr"   = "Placebo \n Social Norm",
++  "treatmentwin_parl"       = "In-group \n Parliament \n (Zemmour)",
++  "treatmentwin_govt"       = "In-group \n Government \n (Zemmour)",
++  "treatmentwin_mainstream" = "Out-group \n Government \n (Macron)"
++)
++
++coef_names_mlp <- c(
++  "treatmentdanger_contr"   = "Placebo \n Social Norm",
++  "treatmentwin_parl"       = "In-group \n Parliament \n (Le Pen)",
++  "treatmentwin_govt"       = "In-group \n Government \n (Le Pen)",
++  "treatmentwin_mainstream" = "Out-group \n Government \n (Macron)"
++)
++
++coef_names_others <- coef_names_ez   # same labels for Others block
++
++theme_coef <- theme_minimal() +
++  theme(
++    text             = element_text(color = "black", size = 22),
++    panel.grid.major = element_line(color = "grey90"),
++    panel.grid.minor = element_line(color = "grey95"),
++    legend.position  = "bottom",
++    legend.text      = element_text(size = 12)
++  )
++
++# Build a tidy CI data frame from a model for use in coef plots
++make_coef_df <- function(model, model_label) {
++  broom::tidy(model) |>
++    dplyr::select(term, estimate, std.error) |>
++    mutate(
++      model       = model_label,
++      lower_ci_95 = estimate - std.error * 1.96,
++      upper_ci_95 = estimate + std.error * 1.96,
++      lower_ci_90 = estimate - std.error * 1.645,
++      upper_ci_90 = estimate + std.error * 1.645
++    )
++}
++
++# Combine all four standard model specs into one data frame for a block
++make_combined_df <- function(m1, m2, m3, m4, coef_levels) {
++  bind_rows(
++    make_coef_df(m1, "Non-Robust SE"),
++    make_coef_df(m2, "Robust SE"),
++    make_coef_df(m3, "Non-Robust SE + Controls"),
++    make_coef_df(m4, "Robust SE + Controls")
++  ) |>
++    mutate(
++      term  = factor(term,  levels = coef_levels),
++      model = factor(model, levels = c("Robust SE + Controls",
++                                       "Robust SE",
++                                       "Non-Robust SE + Controls",
++                                       "Non-Robust SE"))
++    )
++}
++
++treatment_levels <- c("treatmentdanger_contr", "treatmentwin_parl",
++                      "treatmentwin_govt",     "treatmentwin_mainstream")
++
++combined_ez_df      <- make_combined_df(model_1_ez,      model_2_ez,
++                                        model_3_ez,      model_4_ez,
++                                        treatment_levels)
++combined_ez_exp_df  <- make_combined_df(model_1_ez_exp,  model_2_ez_exp,
++                                        model_3_ez_exp,  model_4_ez_exp,
++                                        treatment_levels)
++combined_mlp_df     <- make_combined_df(model_1_mlp,     model_2_mlp,
++                                        model_3_mlp,     model_4_mlp,
++                                        treatment_levels)
++combined_oth_df     <- make_combined_df(model_1_oth,     model_2_oth,
++                                        model_3_oth,     model_4_oth,
++                                        treatment_levels)
++combined_ez_lrem_df <- make_combined_df(model_1_ez_lrem, model_2_ez_lrem,
++                                        model_3_ez_lrem, model_4_ez_lrem,
++                                        treatment_levels)
++
++# Standard 4-model coef plot (all specifications overlaid)
++make_coef_plot <- function(df, coef_names, y_range, y_label, title) {
++  df |>
++    filter(grepl("^treatment", term)) |>
++    mutate(term = recode(term, !!!coef_names)) |>
++    ggplot(aes(x = term, y = estimate, color = model)) +
++    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
++    geom_linerange(aes(ymin = lower_ci_95, ymax = upper_ci_95),
++                   position = position_dodge(width = dodge_width),
++                   linewidth = 1) +
++    geom_linerange(aes(ymin = lower_ci_90, ymax = upper_ci_90),
++                   position = position_dodge(width = dodge_width),
++                   linewidth = 1.4) +
++    geom_point(size = 3, position = position_dodge(width = dodge_width)) +
++    scale_color_manual(
++      values = c("grey70", "grey50", "grey30", "black"),
++      name   = "Model"
++    ) +
++    ylim(y_range[1], y_range[2]) +
++    coord_flip() +
++    labs(title = title, x = "", y = y_label) +
++    theme_coef
++}
++
++# Single-model coef plot (baseline only, used in scope condition figures)
++make_single_coef_plot <- function(df, model_name, coef_names,
++                                  y_range, y_label, title) {
++  df |>
++    filter(model == model_name, grepl("^treatment", term)) |>
++    mutate(term = recode(term, !!!coef_names), term = fct_inorder(term)) |>
++    ggplot(aes(x = term, y = estimate)) +
++    geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
++    geom_segment(aes(xend = term, y = upper_ci_95, yend = lower_ci_95),
++                 color = "black", linewidth = 1) +
++    geom_segment(aes(xend = term, y = upper_ci_90, yend = lower_ci_90),
++                 color = "black", linewidth = 1.5) +
++    geom_point(size = 2.5, shape = 21, fill = "white",
++               position = position_dodge(width = dodge_width)) +
++    ylim(y_range[1], y_range[2]) +
++    coord_flip() +
++    labs(title = title, x = "", y = y_label) +
++    theme_coef
++}
++
++# Simulate data with the observed effect size for the out-group condition
++simulate_data_coefs <- function(group_size) {
++  n                <- group_size * 5
++  treatment_levels <- c("control","danger_contr","win_govt",
++                        "win_mainstream","win_parl")
++  treatment        <- factor(rep(treatment_levels, each = group_size),
++                             levels = treatment_levels)
++  swd_ch           <- rnorm(n, mean = 0, sd = sd_residual)
++  swd_ch[treatment == "win_mainstream"] <- rnorm(
++    sum(treatment == "win_mainstream"),
++    mean = effect_size_mainstream, sd = sd_residual
++  )
++  model_sim   <- lm(swd_ch ~ treatment, data = data.frame(swd_ch, treatment))
++  coefs       <- summary(model_sim)$coefficients
++  list(
++    model_sim   = model_sim,
++    coefs_df    = data.frame(
++      term      = rownames(coefs),
++      estimate  = coefs[, "Estimate"],
++      std.error = coefs[, "Std. Error"]
++    )
++  )
++}
++
++# =============================================================================
++# FIGURE A1
++# Facebook ads. Static images, no R code required.
++# Source files: facebook_ads/
++# =============================================================================
++
++
++# =============================================================================
++# FIGURE B1
++# Like-dislike distributions across all three experimental blocks (wave 1).
++# =============================================================================
++
++make_affect_plot <- function(block_id, block_title) {
++  fr_exp_long |>
++    filter(block == block_id, wave == 1, !is.na(affect.x)) |>
++    ggplot(aes(x = as.factor(affect.x))) +
++    geom_bar() +
++    facet_wrap(~party) +
++    scale_x_discrete(
++      labels = c("-5","-4","-3","-2","-1","0","1","2","3","4","5")
++    ) +
++    labs(title = block_title, y = "N", x = NULL) +
++    theme_bw() +
++    theme(text = element_text(size = 22))
++}
++
++figb1 <- grid.arrange(
++  make_affect_plot("EZ",     "Zemmour supporters"),
++  make_affect_plot("MLP",    "Le Pen supporters"),
++  make_affect_plot("Others", "Other party supporters"),
++  ncol = 2
++)
++
++ggsave(file.path(dir_out, "figB1_affect_distributions_blocks.png"),
++       plot = figb1, width = 20, height = 18, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE B2
++# Distribution of electoral expectations (Zemmour winning 1st round) by block.
++# =============================================================================
++
++figb2 <- ggplot(fr_exp,
++                aes(x      = as.factor(zemmour_winner1str),
++                    group  = interaction(block, zemmour_winner1str))) +
++  geom_bar(aes(y = after_stat(prop), group = block),
++           stat = "count", width = 0.6) +
++  scale_y_continuous(labels = scales::percent_format()) +
++  scale_x_discrete(labels = c("Zemmour \n not passing \n 1st round",
++                               "Zemmour \n passing \n 1st round")) +
++  facet_wrap(~block) +
++  labs(x = "", y = "Percentage") +
++  theme_bw()
++
++ggsave(file.path(dir_out, "figB2_electoral_expectations.png"),
++       plot = figb2, width = 9, height = 6, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D1
++# Distribution of treatment assignment across the three blocks.
++# =============================================================================
++
++make_treat_plot <- function(data, title) {
++  ggplot(data, aes(as.factor(treatment))) +
++    geom_bar(width = 0.6) +
++    scale_x_discrete(labels = c("Control", "Placebo \n Social Norm",
++                                 "In-group \n Government",
++                                 "In-group \n Parliament",
++                                 "Out-group \n Government")) +
++    labs(title = title, x = "Treatment Group", y = "Frequency") +
++    theme_bw() +
++    theme(text = element_text(size = 22))
++}
++
++figd1 <- grid.arrange(
++  make_treat_plot(zemmour, "Block I: Zemmour"),
++  make_treat_plot(mlp,     "Block II: Le Pen"),
++  make_treat_plot(others,  "Block III: Others"),
++  ncol = 2
++)
++
++ggsave(file.path(dir_out, "figD1_treatment_distribution.png"),
++       plot = figd1, width = 20, height = 18, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D2
++# Covariate balance across treatment conditions within each block.
++# Covariates are standardised; points show means with 95% CIs.
++# =============================================================================
++
++# Standardise covariates and reshape to long format for plotting
++prep_balance <- function(data) {
++  data |>
++    mutate(
++      age        = as.numeric(age),
++      gender     = as.numeric(gender),
++      educ       = as.numeric(educ),
++      munic_size = as.numeric(munic_size),
++      paris      = as.numeric(paris),
++      income     = as.numeric(income),
++      lr         = as.numeric(lr)
++    ) |>
++    mutate(across(-treatment,
++                  ~ (. - mean(., na.rm = TRUE)) / sd(., na.rm = TRUE))) |>
++    pivot_longer(cols = !treatment,
++                 names_to = "variable", values_to = "value") |>
++    group_by(treatment, variable) |>
++    summarise(
++      mean_val = mean(value, na.rm = TRUE),
++      lci      = mean_val - 1.96 * plotrix::std.error(value, na.rm = TRUE),
++      hci      = mean_val + 1.96 * plotrix::std.error(value, na.rm = TRUE),
++      .groups  = "drop"
++    )
++}
++
++axis_labels <- c("Paris Area", "Municipality Size", "Left-Right Scale",
++                 "Income", "Gender", "Education", "Age")
++
++treatment_colors <- c("black", "grey30", "grey45", "grey70", "grey85")
++treatment_legend <- c("Control", "T1a", "T1b", "T2", "Placebo")
++
++make_balance_plot <- function(data, title) {
++  ggplot(data) +
++    geom_linerange(aes(x = variable, ymin = lci, ymax = hci,
++                       color = factor(treatment)),
++                   linewidth = 1,
++                   position  = position_dodge(width = 0.5)) +
++    geom_point(aes(x = variable, y = mean_val, color = factor(treatment)),
++               size     = 2,
++               position = position_dodge(width = 0.5)) +
++    geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.4) +
++    scale_x_discrete(labels = axis_labels) +
++    scale_color_manual(name   = "Treatment",
++                       labels = treatment_legend,
++                       values = treatment_colors) +
++    ylim(-1.5, 1.5) +
++    coord_flip() +
++    labs(title = title, x = "", y = "Mean Standardised Value") +
++    theme_bw() +
++    theme(text = element_text(size = 22),
++          plot.title = element_text(size = 22, face = "bold", hjust = 0.5))
++}
++
++ez_covs  <- fr_exp_covs |> filter(block == "EZ")  |> dplyr::select(-block)
++mlp_covs <- fr_exp_covs |> filter(block == "MLP") |> dplyr::select(-block)
++oth_covs <- fr_exp_covs |> filter(block == "Others") |> dplyr::select(-block)
++
++# Recode treatment factor labels for plotting
++recode_treatment <- function(data) {
++  data |> mutate(treatment = factor(treatment,
++    levels = c("control","win_parl","win_govt","win_mainstream","danger_contr"),
++    labels = c("cntr","t1","t2","t3","plc")))
++}
++
++ez_covs  <- recode_treatment(ez_covs)  |> prep_balance()
++mlp_covs <- recode_treatment(mlp_covs) |> prep_balance()
++oth_covs <- recode_treatment(oth_covs) |> prep_balance()
++
++figd2 <- grid.arrange(
++  make_balance_plot(ez_covs,  "Block I: Zemmour"),
++  make_balance_plot(mlp_covs, "Block II: Le Pen"),
++  make_balance_plot(oth_covs, "Block III: Others"),
++  ncol = 2
++)
++
++ggsave(file.path(dir_out, "figD2_covariate_balance.png"),
++       plot = figd2, width = 20, height = 18, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D3
++# ATE on perceptions of Zemmour, Macron, and Le Pen as election winners.
++# Uses jtools::plot_summs() for the dual-model coefficient plots.
++# =============================================================================
++
++manip_coefs <- c(
++  "In-group \n Parliament"   = "treatmentwin_parl",
++  "In-group \n Government"   = "treatmentwin_govt",
++  "Out-group \n Government"  = "treatmentwin_mainstream",
++  "Placebo \n Social Norm"   = "treatmentdanger_contr"
++)
++
++make_winner_plot <- function(m, mr, x_label) {
++  plot_summs(m, mr,
++             legend.title    = "Models",
++             coefs           = manip_coefs,
++             inner_ci_level  = 0.9,
++             model.names     = c("Non-Robust SE", "Robust SE"),
++             colors          = c("grey65", "grey30")) +
++    theme_bw() +
++    xlim(-1, 1) +
++    labs(title = "", x = x_label, y = "") +
++    theme(text = element_text(size = 22),
++          plot.title    = element_text(size = 24, face = "bold", hjust = 0.5),
++          axis.text.x   = element_text(size = 22))
++}
++
++figd3 <- grid.arrange(
++  make_winner_plot(winner_zemmour_model, winner_zemmour_model_r,
++                   "Perceptions of Zemmour's Success (Blocks I & III)"),
++  make_winner_plot(winner_macron_model,  winner_macron_model_r,
++                   "Perceptions of Macron's Success (Blocks I & III)"),
++  make_winner_plot(winner_lepen_model,   winner_lepen_model_r,
++                   "Perceptions of Le Pen's Success (Block II)"),
++  ncol = 1
++)
++
++ggsave(file.path(dir_out, "figD3_winner_perceptions_coefplot.png"),
++       plot = figd3, width = 16, height = 16, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D4
++# Comprehension check: stacked barplot of perceived text difficulty
++# by treatment condition, for each block.
++# =============================================================================
++
++difficulty_labels <- c("Very easy", "More or less easy",
++                        "Neither easy nor difficult",
++                        "More or less difficult", "Very difficult")
++treatment_labels_plot <- c("Control", "Placebo \n Social Norm",
++                            "In-group \n Government",
++                            "In-group \n Parliament",
++                            "Out-group \n Government")
++
++make_comp_plot <- function(data, title) {
++  data |>
++    filter(!is.na(m_check3)) |>
++    ggplot(aes(
++      x    = factor(m_check3, labels = difficulty_labels[seq_len(
++               length(unique(na.omit(data$m_check3))))]),
++      fill = factor(treatment, labels = treatment_labels_plot)
++    )) +
++    geom_bar(stat = "count") +
++    scale_fill_manual(values = c("black","grey30","grey45","grey70","grey85")) +
++    guides(fill = guide_legend(title = "Treatment")) +
++    labs(title = title, x = "") +
++    theme_bw() +
++    theme(text = element_text(size = 22),
++          plot.title  = element_text(size = 24, face = "bold", hjust = 0.5),
++          axis.text.x = element_text(angle = 45, hjust = 1, size = 18))
++}
++
++figd4 <- grid.arrange(
++  make_comp_plot(zemmour, "Block I: Zemmour supporters"),
++  make_comp_plot(mlp,     "Block II: Le Pen supporters"),
++  make_comp_plot(others,  "Block III: Other party supporters"),
++  ncol = 2
++)
++
++ggsave(file.path(dir_out, "figD4_comprehension_check.png"),
++       plot = figd4, width = 20, height = 20, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D5
++# ATE on SWD and LREM affect: all model specifications across blocks.
++# Five panels: Zemmour SWD, Zemmour SWD + expectations, Zemmour LREM,
++# Le Pen SWD, Others SWD.
++# =============================================================================
++
++p_ez_swd <- make_coef_plot(combined_ez_df, coef_names_ez, c(-4, 4),
++  "Estimated Change in SWD",
++  "\n \n ATE on Change in SWD \n among Zemmour's supporters")
++
++p_ez_exp_swd <- make_coef_plot(combined_ez_exp_df, coef_names_ez, c(-4, 4),
++  "Estimated Change in SWD",
++  "\n \n ATE on Change in SWD among Zemmour's \n supporters controlling for electoral expectations")
++
++p_ez_lrem <- make_coef_plot(combined_ez_lrem_df, coef_names_ez, c(-3, 3),
++  "Estimated Change in Feelings towards LREM",
++  "\n \n ATE on Change in Feelings towards \n LREM among Zemmour's supporters")
++
++p_mlp_swd <- make_coef_plot(combined_mlp_df, coef_names_mlp, c(-4, 4),
++  "Estimated Change in SWD",
++  "\n \n ATE on Change in SWD among \n Le Pen's supporters")
++
++p_oth_swd <- make_coef_plot(combined_oth_df, coef_names_others, c(-4, 4),
++  "Estimated Change in SWD",
++  "\n \n ATE on Change in SWD among \n 'Other Party' supporters")
++
++figd5 <- grid.arrange(p_ez_swd, p_ez_exp_swd, p_ez_lrem,
++                      p_mlp_swd, p_oth_swd, ncol = 2)
++
++ggsave(file.path(dir_out, "figD5_coefplots_all_specs.png"),
++       plot = figd5, width = 20, height = 24, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D6 — Post-experimental power simulation and simulated vs. real ATE
++# Runs 500 simulations per group size (n=20 to 250) to estimate power for
++# the out-group win treatment. Also plots ATE from simulated (n=300) vs.
++# real data (n=123) side by side.
++# =============================================================================
++
++effect_size_mainstream <- -1.2660  # observed ATE for out-group win condition
++sd_residual            <- 2.219    # residual SD from baseline model
++n_simulations          <- 500
++group_sizes            <- seq(20, 250, by = 10)
++set.seed(123)
++
++# --- Power simulation --------------------------------------------------------
++
++simulate_power <- function(group_size) {
++  n          <- group_size * 5
++  trt_levels <- c("control", "danger_contr", "win_govt",
++                  "win_mainstream", "win_parl")
++  treatment  <- factor(rep(trt_levels, each = group_size), levels = trt_levels)
++  swd_ch     <- rnorm(n, mean = 0, sd = sd_residual)
++  swd_ch[treatment == "win_mainstream"] <- rnorm(
++    sum(treatment == "win_mainstream"),
++    mean = effect_size_mainstream, sd = sd_residual
++  )
++  model  <- lm(swd_ch ~ treatment, data = data.frame(swd_ch, treatment))
++  pval   <- summary(model)$coefficients["treatmentwin_mainstream", "Pr(>|t|)"]
++  pval < 0.05
++}
++
++power_results <- map_dfr(group_sizes, function(gs) {
++  hits <- replicate(n_simulations, simulate_power(gs))
++  ci   <- binom.confint(sum(hits, na.rm = TRUE), n_simulations,
++                        conf.level = 0.95, methods = "wilson")
++  tibble(group_size = gs,
++         power      = mean(hits, na.rm = TRUE),
++         lower_ci   = ci$lower,
++         upper_ci   = ci$upper)
++})
++
++min_size_80 <- min(power_results$group_size[power_results$power >= 0.80])
++
++plot_power <- ggplot(power_results, aes(x = group_size, y = power)) +
++  geom_ribbon(aes(ymin = lower_ci, ymax = upper_ci), alpha = 0.2) +
++  geom_line(color = "black") +
++  geom_hline(yintercept = 0.80, linetype = "dashed", color = "red") +
++  geom_vline(xintercept = min_size_80, linetype = "dashed", color = "grey50") +
++  annotate("text", x = min_size_80 - 35, y = 0.80,
++           label = paste("Min. group\nsize =", min_size_80),
++           vjust = -1, hjust = 0, size = 3.5) +
++  labs(title = "Power Analysis for Out-group Win Treatment",
++       x = "Group Size", y = "Estimated Power") +
++  theme_minimal() +
++  theme(plot.title = element_text(hjust = 0.5))
++
++# --- Simulated coefficient plot (n = 300) ------------------------------------
++
++sim_coefs <- simulate_data_coefs(60)   # group_size = 60 -> n = 300 total
++
++coef_names_sim <- c(
++  "treatmentdanger_contr"   = "Placebo \n Social Norm",
++  "treatmentwin_parl"       = "In-group \n Parliament",
++  "treatmentwin_govt"       = "In-group \n Government",
++  "treatmentwin_mainstream" = "Out-group \n Government"
++)
++
++plot_sim <- sim_coefs$coefs_df |>
++  filter(term != "(Intercept)") |>
++  mutate(
++    lower_ci_95 = estimate - 1.96  * std.error,
++    upper_ci_95 = estimate + 1.96  * std.error,
++    lower_ci_90 = estimate - 1.645 * std.error,
++    upper_ci_90 = estimate + 1.645 * std.error,
++    term        = recode(factor(term, levels = names(coef_names_sim)),
++                         !!!coef_names_sim),
++    term        = fct_inorder(term)
++  ) |>
++  ggplot(aes(x = term, y = estimate)) +
++  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
++  geom_segment(aes(xend = term, y = upper_ci_95, yend = lower_ci_95),
++               color = "black", linewidth = 1) +
++  geom_segment(aes(xend = term, y = upper_ci_90, yend = lower_ci_90),
++               color = "black", linewidth = 1.5) +
++  geom_point(size = 3) +
++  ylim(-4, 4) + coord_flip() +
++  labs(title = "ATE on Change in SWD\nSimulated data (n = 300)",
++       x = "", y = "Estimated Change in SWD") +
++  theme_coef
++
++# --- Real data coefficient plot (n = 123) ------------------------------------
++
++plot_real <- make_single_coef_plot(
++  combined_ez_df, "Non-Robust SE", coef_names_ez, c(-4, 4),
++  "Estimated Change in SWD",
++  "ATE on Change in SWD\nReal data (n = 123)"
++)
++
++# --- Combine and save --------------------------------------------------------
++
++figd6_top    <- plot_power
++figd6_bottom <- plot_real + plot_sim +
++  plot_layout(guides = "collect", ncol = 2)
++
++figd6 <- figd6_top / figd6_bottom +
++  plot_layout(heights = c(1, 1.2))
++
++ggsave(file.path(dir_out, "figD6_power_simulation.png"),
++       plot = figd6, width = 12, height = 10, dpi = fig_dpi)
++
++# =============================================================================
++# FIGURE D7
++# Simulated vs. real-data ATE on SWD change (n=300 simulated, n=123 real).
++# =============================================================================
++
++result         <- simulate_data_coefs(60)
++model_sim      <- result$model_sim
++sim_coefs_df   <- result$coefs_df |>
++  mutate(
++    lower_ci_95 = estimate - 1.96  * std.error,
++    upper_ci_95 = estimate + 1.96  * std.error,
++    lower_ci_90 = estimate - 1.645 * std.error,
++    upper_ci_90 = estimate + 1.645 * std.error
++  ) |>
++  filter(term != "(Intercept)") |>
++  mutate(
++    term = factor(term, levels = c("treatmentdanger_contr","treatmentwin_parl",
++                                   "treatmentwin_govt","treatmentwin_mainstream")),
++    term = recode(term, !!!c(
++      "treatmentdanger_contr"   = "Zemmour \n Placebo",
++      "treatmentwin_parl"       = "In-group \n Parliament",
++      "treatmentwin_govt"       = "In-group \n Government",
++      "treatmentwin_mainstream" = "Out-group \n Government"
++    ))
++  )
++
++plot_sim <- ggplot(sim_coefs_df, aes(x = term, y = estimate)) +
++  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
++  geom_segment(aes(xend = term, y = upper_ci_95, yend = lower_ci_95),
++               color = "black", linewidth = 1) +
++  geom_segment(aes(xend = term, y = upper_ci_90, yend = lower_ci_90),
++               color = "black", linewidth = 1.5) +
++  geom_point(size = 3) +
++  ylim(-4, 4) + coord_flip() +
++  labs(title = "ATE on Change in SWD \n Simulated data (n=300)",
++       x = "", y = "Estimated Change in SWD") +
++  theme_coef
++
++plot_real <- make_single_coef_plot(
++  combined_ez_df, "Non-Robust SE", coef_names_ez, c(-4, 4),
++  "Estimated Change in SWD",
++  "ATE on Change in SWD \n Real data (n=123)"
++)
++
++figd7 <- (plot_real + plot_sim) +
++  plot_layout(guides = "collect", ncol = 2, nrow = 1)
++
++ggsave(file.path(dir_out, "figD7_simulated_vs_real.png"),
++       plot = figd7, width = 16, height = 8, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D8
++# Pre-electoral expectations and perceptions of winners/losers.
++# Left: who will win 2nd round (wave 1). Right: who won 1st round (wave 2).
++# =============================================================================
++
++avg_exp <- tibble(
++  candidate = factor(c("Macron","Le Pen","Mélenchon","Zemmour"),
++                     levels = c("Macron","Le Pen","Mélenchon","Zemmour")),
++  average   = c(mean(fr_exp$macron_winner2ndr,    na.rm = TRUE),
++                mean(fr_exp$lepen_winner2ndr,      na.rm = TRUE),
++                mean(fr_exp$melenchon_winner2ndr,  na.rm = TRUE),
++                mean(fr_exp$zemmour_winner2ndr,    na.rm = TRUE)),
++  se        = c(sd(fr_exp$macron_winner2ndr,   na.rm=TRUE) /
++                  sqrt(sum(!is.na(fr_exp$macron_winner2ndr))),
++                sd(fr_exp$lepen_winner2ndr,    na.rm=TRUE) /
++                  sqrt(sum(!is.na(fr_exp$lepen_winner2ndr))),
++                sd(fr_exp$melenchon_winner2ndr,na.rm=TRUE) /
++                  sqrt(sum(!is.na(fr_exp$melenchon_winner2ndr))),
++                sd(fr_exp$zemmour_winner2ndr,  na.rm=TRUE) /
++                  sqrt(sum(!is.na(fr_exp$zemmour_winner2ndr))))
++)
++
++avg_wl <- tibble(
++  party   = factor(c("Macron","Le Pen"), levels = c("Macron","Le Pen")),
++  average = c(mean(fr_exp$winner_macron, na.rm = TRUE),
++              mean(fr_exp$winner_lepen,  na.rm = TRUE)),
++  se      = c(sd(fr_exp$winner_macron, na.rm=TRUE) /
++                sqrt(sum(!is.na(fr_exp$winner_macron))),
++              sd(fr_exp$winner_lepen,  na.rm=TRUE) /
++                sqrt(sum(!is.na(fr_exp$winner_lepen))))
++)
++
++plot_exp <- ggplot(avg_exp, aes(x = candidate, y = average, fill = candidate)) +
++  geom_bar(stat = "identity") +
++  geom_errorbar(aes(ymin = average - se, ymax = average + se), width = 0.2) +
++  scale_fill_viridis_d(option = "viridis", begin = 0, end = 0.9) +
++  labs(title    = "Who will win the 2nd round?",
++       subtitle = "Asked before the 1st round \n",
++       x = " \n Candidate", y = "Average Value \n ") +
++  theme_minimal() +
++  theme(legend.position = "none",
++        plot.title    = element_text(hjust = 0.5),
++        plot.subtitle = element_text(hjust = 0.5)) +
++  ylim(0, 0.5)
++
++plot_wl <- ggplot(avg_wl, aes(x = party, y = average, fill = party)) +
++  geom_bar(stat = "identity") +
++  geom_errorbar(aes(ymin = average - se, ymax = average + se), width = 0.2) +
++  scale_fill_viridis_d(option = "viridis", begin = 0, end = 0.3) +
++  labs(title    = "Who are the winners and losers of the 1st round?",
++       subtitle = "Asked between the 1st and 2nd round \n",
++       x = " \n Candidate", y = "Average Score \n ") +
++  theme_minimal() +
++  theme(legend.position = "none",
++        plot.title    = element_text(hjust = 0.5),
++        plot.subtitle = element_text(hjust = 0.5)) +
++  ylim(0, 5)
++
++figd8 <- grid.arrange(arrangeGrob(plot_exp, plot_wl, ncol = 2))
++
++ggsave(file.path(dir_out, "figD8_electoral_uncertainty.png"),
++       plot = figd8, width = 9, height = 6, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D9
++# ATE on SWD change: Le Pen block (left) and Others block (right).
++# Baseline non-robust SE + controls specification.
++# =============================================================================
++
++p_mlp_single <- make_single_coef_plot(
++  combined_mlp_df, "Non-Robust SE + Controls", coef_names_mlp,
++  c(-4, 4), "\nEstimated Change in SWD",
++  "ATE on change in SWD among Le Pen's supporters \n"
++)
++
++p_oth_single <- make_single_coef_plot(
++  combined_oth_df, "Non-Robust SE + Controls", coef_names_others,
++  c(-4, 4), "\nEstimated Change in SWD",
++  "ATE on change in SWD among 'others' \n"
++)
++
++figd9 <- (p_mlp_single + p_oth_single) +
++  plot_layout(guides = "collect", ncol = 2, nrow = 1)
++
++ggsave(file.path(dir_out, "figD9_lepen_others_coefplot.png"),
++       plot = figd9, width = 18, height = 9, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D10
++# Perceptions of electoral winners (Zemmour vs Macron) among Zemmour voters.
++# =============================================================================
++
++winner_labels <- c("1\nClearly\na loser", "2\nRather\na loser",
++                   "3\nNeither", "4\nRather\na winner", "5\nClearly\na winner")
++
++plot_winner_bars <- function(data, var, title) {
++  avg <- mean(pull(data, {{ var }}), na.rm = TRUE)
++  plot_data <- data |>
++    filter(!is.na({{ var }})) |>
++    mutate(response = factor({{ var }}, levels = 1:5, labels = winner_labels)) |>
++    count(response) |>
++    mutate(pct = n / sum(n))
++  ggplot(plot_data, aes(x = response, y = pct)) +
++    geom_vline(xintercept = avg, linetype = "dashed", color = "grey80") +
++    geom_col(fill = "grey40", color = "black") +
++    geom_text(aes(label = scales::percent(pct, accuracy = 1)),
++              vjust = -0.4, size = 3.5) +
++    annotate("text", x = avg + 0.1, y = 0.50,
++             label = paste0("Mean = ", round(avg, 2)),
++             hjust = 0, size = 3.5) +
++    scale_y_continuous(labels = scales::percent_format(accuracy = 1),
++                       limits = c(0, 0.55)) +
++    labs(title = title, x = "", y = "") +
++    theme_minimal() +
++    theme(text = element_text(color = "black"),
++          panel.grid.major.x = element_blank(),
++          panel.grid.minor   = element_blank())
++}
++
++p_zemmour_w <- plot_winner_bars(zemmour, winner_zemmour, "Is Zemmour a winner?")
++p_macron_w  <- plot_winner_bars(zemmour, winner_macron,  "Is Macron a winner?")
++
++figd10 <- (p_zemmour_w | p_macron_w) +
++  plot_annotation(
++    title = "Perceptions of electoral winners among Zemmour voters",
++    theme = theme(plot.title = element_text(color = "black"))
++  )
++
++ggsave(file.path(dir_out, "figD10_winner_perceptions_bars.png"),
++       plot = figd10, width = 9, height = 5, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE D11
++# Descriptive trajectories of SWD and LREM feelings by wave,
++# treatment condition, and voter block.
++# =============================================================================
++
++treatment_labels_d11 <- c(
++  "control"        = "Control",
++  "danger_contr"   = "Placebo\nSocial Norm",
++  "win_parl"       = "In-group\nParliament",
++  "win_govt"       = "In-group\nGovernment",
++  "win_mainstream" = "Out-group\nGovernment"
++)
++block_labels_d11 <- c("EZ" = "Zemmour voters",
++                      "MLP" = "Le Pen voters",
++                      "Others" = "Other voters")
++
++desc_data <- fr_exp |>
++  filter(!is.na(treatment)) |>
++  mutate(
++    treatment = recode(treatment, !!!treatment_labels_d11),
++    block     = recode(block, !!!block_labels_d11),
++    block     = factor(block, levels = c("Zemmour voters",
++                                         "Le Pen voters", "Other voters"))
++  ) |>
++  dplyr::select(treatment, block, swd_w1, swd_w2, affect_LREM_w1, affect_LREM_w2) |>
++  pivot_longer(cols      = c(swd_w1, swd_w2, affect_LREM_w1, affect_LREM_w2),
++               names_to  = "variable", values_to = "value") |>
++  mutate(
++    wave = if_else(str_ends(variable, "w1"),
++                   "Wave 1\n(pre-experiment)", "Wave 2\n(post-experiment)"),
++    dv   = if_else(str_starts(variable, "swd"), "SWD", "Feelings toward LREM")
++  ) |>
++  group_by(treatment, block, wave, dv) |>
++  summarise(mean = mean(value, na.rm = TRUE),
++            se   = sd(value, na.rm = TRUE) / sqrt(sum(!is.na(value))),
++            .groups = "drop") |>
++  mutate(wave = factor(wave, levels = c("Wave 1\n(pre-experiment)",
++                                        "Wave 2\n(post-experiment)")))
++
++desc_avg <- desc_data |>
++  group_by(block, wave, dv) |>
++  summarise(mean = mean(mean), se = mean(se), .groups = "drop") |>
++  mutate(treatment = "Average")
++
++make_desc_plot <- function(dv_label, y_label) {
++  ggplot() +
++    geom_point(data = filter(desc_data, dv == dv_label),
++               aes(x = wave, y = mean, color = treatment),
++               size = 2, position = position_dodge(width = 0.4)) +
++    geom_errorbar(data = filter(desc_data, dv == dv_label),
++                  aes(x = wave, y = mean,
++                      ymin = mean - 1.96 * se, ymax = mean + 1.96 * se,
++                      color = treatment),
++                  width = 0.15, position = position_dodge(width = 0.4)) +
++    geom_line(data = filter(desc_avg, dv == dv_label),
++              aes(x = wave, y = mean, group = treatment),
++              color = "black", linewidth = 1, linetype = "dashed", alpha = 0.6) +
++    geom_point(data = filter(desc_avg, dv == dv_label),
++               aes(x = wave, y = mean),
++               color = "black", size = 3, shape = 18, alpha = 0.6) +
++    facet_wrap(~block, nrow = 1) +
++    labs(title = dv_label, x = "", y = y_label, color = "Condition") +
++    theme_minimal() +
++    theme(text = element_text(color = "black"),
++          panel.grid.minor = element_blank(),
++          legend.position  = "bottom")
++}
++
++figd11 <- (make_desc_plot("SWD", "Mean SWD (original scale)") /
++           make_desc_plot("Feelings toward LREM",
++                          "Mean feelings toward LREM (original scale)")) +
++  plot_layout(guides = "collect") &
++  theme(legend.position = "bottom") &
++  plot_annotation(
++    caption = paste0(
++      "Note: Points and error bars show means with 95% CIs per treatment ",
++      "condition.\nThe dashed line and diamond show the average across all ",
++      "conditions."
++    ),
++    theme = theme(plot.caption = element_text(size = 8, hjust = 0,
++                                              color = "black", face = "italic"))
++  )
++
++ggsave(file.path(dir_out, "figD11_descriptive_trajectories.png"),
++       plot = figd11, width = 10, height = 8, dpi = fig_dpi)
++
++
++# =============================================================================
++# FIGURE E1
++# Pilot study: ATE on SWD among Zemmour supporters.
++# =============================================================================
++
++fige1 <- plot_summs(model_1_pilot, model_2_pilot,
++           legend.title   = "Models",
++           coefs          = c(
++             "In-group \n Parliament"             = "as.factor(treatment)2",
++             "Out-group \n Government"            = "as.factor(treatment)3",
++             "Final Placebo (Social Norm)"        = "as.factor(treatment)4",
++             "Discarded Placebo (Economy+COVID)"  = "as.factor(treatment)5"
++           ),
++           inner_ci_level = 0.9,
++           model.names    = c("Non-Robust SE", "Robust SE"),
++           colors         = c("grey65", "grey30")) +
++  theme_bw() +
++  labs(title = "ATE on SWD (Pilot Study)", x = "Effect on SWD", y = "") +
++  theme(text = element_text(size = 14))
++
++ggsave(file.path(dir_out, "figE1_pilot_coefplot.png"),
++       plot = fige1, width = 8, height = 5, dpi = fig_dpi)
++
++
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# # FIGURE F1
++#SKIP_MISSING_STUDY1# # FES panel: affect distribution by party and top 4 candidate voter groups.
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# facet_means <- panel_short |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(affect)) |>
++#SKIP_MISSING_STUDY1#   mutate(affect_num = as.numeric(as.character(affect))) |>
++#SKIP_MISSING_STUDY1#   group_by(choice_pres_1st, party) |>
++#SKIP_MISSING_STUDY1#   summarise(mean_affect = mean(affect_num, na.rm = TRUE), .groups = "drop") |>
++#SKIP_MISSING_STUDY1#   mutate(
++#SKIP_MISSING_STUDY1#     party = recode(party, "EM affect" = "LREM affect"),
++#SKIP_MISSING_STUDY1#     choice_pres_1st = recode(choice_pres_1st,
++#SKIP_MISSING_STUDY1#                              "Mélenchon voters" = "Mélenchon\nvoters",
++#SKIP_MISSING_STUDY1#                              "Zemmour voters"   = "Zemmour\nvoters")
++#SKIP_MISSING_STUDY1#   )
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# figf1 <- panel_short |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(affect)) |>
++#SKIP_MISSING_STUDY1#   mutate(
++#SKIP_MISSING_STUDY1#     party = recode(party, "EM affect" = "LREM affect"),
++#SKIP_MISSING_STUDY1#     choice_pres_1st = recode(choice_pres_1st,
++#SKIP_MISSING_STUDY1#                              "Mélenchon voters" = "Mélenchon\nvoters",
++#SKIP_MISSING_STUDY1#                              "Zemmour voters"   = "Zemmour\nvoters")
++#SKIP_MISSING_STUDY1#   ) |>
++#SKIP_MISSING_STUDY1#   ggplot(aes(x = as.factor(affect))) +
++#SKIP_MISSING_STUDY1#   geom_bar(aes(y = after_stat(prop) * 100, group = 1)) +
++#SKIP_MISSING_STUDY1#   geom_vline(data = facet_means,
++#SKIP_MISSING_STUDY1#              aes(xintercept = mean_affect + 1),
++#SKIP_MISSING_STUDY1#              linetype = "dashed", color = "grey40",
++#SKIP_MISSING_STUDY1#              linewidth = 0.5, alpha = 0.4) +
++#SKIP_MISSING_STUDY1#   geom_text(data = facet_means,
++#SKIP_MISSING_STUDY1#             aes(x = mean_affect + 1, y = 70,
++#SKIP_MISSING_STUDY1#                 label = round(mean_affect - 5, 1)),
++#SKIP_MISSING_STUDY1#             color = "grey50", size = 2.5, hjust = -0.2) +
++#SKIP_MISSING_STUDY1#   facet_grid(choice_pres_1st ~ party) +
++#SKIP_MISSING_STUDY1#   scale_y_continuous(labels = scales::label_number(suffix = "%")) +
++#SKIP_MISSING_STUDY1#   scale_x_discrete(labels = c("-5","-4","-3","-2","-1",
++#SKIP_MISSING_STUDY1#                                "0","1","2","3","4","5")) +
++#SKIP_MISSING_STUDY1#   labs(subtitle = "Dashed line indicates mean affect score (-5 to 5 scale)",
++#SKIP_MISSING_STUDY1#        y = "Percentage of Observations", x = NULL) +
++#SKIP_MISSING_STUDY1#   theme_light()
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# ggsave(file.path(dir_out, "figF1_fes_affect_distribution.png"),
++#SKIP_MISSING_STUDY1#        plot = figf1, width = 12, height = 10, dpi = fig_dpi)
++
++
++# =============================================================================
++# TABLE A1 — Summary of hypotheses
++# =============================================================================
++
++taba1 <- data.frame(
++  Hypothesis  = c("Hypothesis 1a", "Hypothesis 1b", "Hypothesis 3",
++                  "Hypothesis 2",  "Hypothesis 4"),
++  Treatment   = c("T1a", "T1b", "T2", "T1a < T1b", "T2"),
++  Expectation = c("+SWD", "+SWD", "-SWD", "$\\Delta SWD$", "-OutgroupAffects")
++) |>
++  kable(format = "latex", booktabs = TRUE, escape = FALSE,
++        caption = "Table A1: Summary of the hypotheses") |>
++  pack_rows("Pre-registered", 1, 3) |>
++  pack_rows("Exploratory",    4, 5) |>
++  kable_styling(latex_options = "HOLD_position")
++
++save_tex(taba1, "tableA1_hypotheses.tex")
++
++
++# =============================================================================
++# TABLE A2 — Micro-targeting strategy
++# =============================================================================
++
++taba2 <- data.frame(
++  Age     = c("18-39","40-65","+65","18-39","40-65","+65"),
++  Gender  = c("Female","Female","Female","Male","Male","Male"),
++  Ads     = c("Ad 1/Ad 2","Ad 2/Ad 3","Ad 3",
++              "Ad 4/Ad 5","Ad 5/Ad 6","Ad 6"),
++  Interests = c(
++    "M6 TV channel/RTL TV/Touche Pas à Mon Poste",
++    "M6 TV channel/TF1/Touche Pas à Mon Poste",
++    "M6 TV channel/TF1/Touche Pas à Mon Poste",
++    "M6 TV channel/RTL TV/Touche Pas à Mon Poste",
++    "M6 TV channel/TF1/Touche Pas à Mon Poste",
++    "M6 TV channel/TF1/Touche Pas à Mon Poste"
++  )
++) |>
++  kable(format = "latex", booktabs = TRUE, escape = FALSE,
++        caption = "Table A2: Summary of the micro-targeting strategy") |>
++  kable_styling(latex_options = "HOLD_position")
++
++save_tex(taba2, "tableA2_microtargeting.tex")
++
++
++# =============================================================================
++# TABLE A3 — Experimental sample descriptive statistics (vtable)
++# Printed directly to LaTeX via st(); captured with sink()
++# =============================================================================
++
++sink(file.path(dir_tables, "tableA3_exp_descriptives.tex"))
++fr_exp |>
++  dplyr::select(block, gender, age, educ, lr) |>
++  mutate(
++    gender = factor(gender, levels = c("2","1","0"),
++                    labels = c("male","female","other")),
++    block  = factor(block,
++                    labels = c("Zemmour's voters","Le Pen's voters","Others")),
++    educ   = factor(educ, labels = c(
++      "Primary school or none", "Middle School", "Professional certificate",
++      "High School", "University first-cycle", "University second-cycle"
++    ))
++  ) |>
++  st(group  = "block", out = "latex",
++     labels = c("Gender","Age","Education","Left-right"),
++     title  = "Table A3: Summary of descriptive statistics")
++sink()
++
++
++# =============================================================================
++# TABLE A4 — Vignettes all blocks (English)
++# =============================================================================
++
++condition_a4 <- c(
++  r"(\textbf{Control})",
++  r"(\makecell[tl]{\textbf{T1a} \\ In-group Government \\ \textit{(Zemmour version -} \\ \textit{Blocks I and III)}}})",
++  r"(\makecell[tl]{\textbf{T1a} \\ In-group Government \\ \textit{(Le Pen version -} \\ \textit{Block II)}}})",
++  r"(\makecell[tl]{\textbf{T1b} \\ In-group Parliament \\ \textit{(Zemmour version -} \\ \textit{Blocks I and III)}}})",
++  r"(\makecell[tl]{\textbf{T1b} \\ In-group Parliament \\ \textit{(Le Pen version -} \\ \textit{Block II)}}})",
++  r"(\makecell[tl]{\textbf{T2} \\ Out-group Government})",
++  r"(\makecell[tl]{\textbf{Placebo} \\ Social Norm})"
++)
++
++text_a4 <- c(
++  r"(The results of the first round of the presidential elections were known already the 10th of April. Among the competing candidates, Emmanuel Macron and Marine Le Pen passed to the second round. The candidate Jean-Luc Mélenchon and the candidate Éric Zemmour were the third and fourth most voted candidates, respectively.)",
++  r"(+ Some people highlight that the candidate \textbf{Éric Zemmour} obtained particularly \textbf{good} results, especially because \textbf{the winner of the second round may include him in the new government}.)",
++  r"(+ Some people highlight that the candidate Marine Le Pen obtained particularly \textbf{good} results, especially because \textbf{she has a great chance of becoming the winner of the second round}.)",
++  r"(+ Some people highlight that the candidate \textbf{Éric Zemmour} obtained particularly \textbf{good} results, especially because \textbf{with the confirmation of these results in the legislative elections, he could play a central role in the National Assembly}.)",
++  r"(+ Some people highlight that the candidate \textbf{Marine Le Pen} obtained particularly \textbf{good} results, especially because \textbf{with the confirmation of these results in the legislative elections, she could play a central role in the National Assembly}.)",
++  r"(+ Some people highlight that the candidate \textbf{Emmanuel Macron} obtained particularly \textbf{good} results, especially because \textbf{he has a great chance of becoming the winner of the second round}.)",
++  r"(+ Some people highlight that the candidate \textbf{Éric Zemmour} obtained particularly \textbf{worrying} results, \textbf{especially because of his controversial opinions during the campaign}.)"
++)
++
++taba4 <- data.frame(Condition = condition_a4, Text = text_a4) |>
++  kable(format = "latex", booktabs = TRUE, escape = FALSE,
++        caption = "Table A4: Description of the vignettes by treatment condition (all blocks, English)") |>
++  kable_styling(latex_options = c("HOLD_position", "scale_down")) |>
++  column_spec(2, width = "18cm")
++
++save_tex(taba4, "tableA4_vignettes_english.tex")
++
++
++# =============================================================================
++# TABLE A5 — Vignettes all blocks (French, original)
++# =============================================================================
++
++text_a5 <- c(
++  r"(Les résultats du premier tour de l'élection présidentielle sont connus depuis le 10 avril dernier. Parmi les candidats, Emmanuel Macron et Marine Le Pen ont été qualifiés pour le second tour. Les candidats suivants, Jean-Luc Mélenchon et Éric Zemmour sont respectivement les troisième et quatrième candidats à avoir obtenu le plus de voix.)",
++  r"(+ Certaines personnes soulignent que les résultats d'Éric Zemmour sont particulièrement bons, notamment parce que le gagnant du second tour des élections pourrait l'intégrer dans le nouveau gouvernement.)",
++  r"(+ Certaines personnes soulignent que les résultats de Marine Le Pen sont particulièrement bons, notamment parce qu'elle a de grandes chances de gagner le second tour des élections.)",
++  r"(+ Certaines personnes soulignent que les résultats d'Éric Zemmour sont particulièrement bons, notamment parce qu'avec la confirmation d'un tel résultat lors des élections législatives, il pourrait jouer un rôle indispensable dans l'Assemblée nationale.)",
++  r"(+ Certaines personnes soulignent que les résultats de Marine Le Pen sont particulièrement bons, notamment parce qu'avec la confirmation d'un tel résultat lors des élections législatives, elle pourrait jouer un rôle indispensable dans l'Assemblée nationale.)",
++  r"(+ Certaines personnes soulignent que les résultats d'Emmanuel Macron sont particulièrement bons, notamment parce qu'il a de grandes chances de gagner le second tour des élections.)",
++  r"(+ Certaines personnes soulignent que les résultats d'Éric Zemmour sont particulièrement inquiétants, notamment du fait de ses opinions controversées pendant la campagne.)"
++)
++
++taba5 <- data.frame(Condition = condition_a4, Text = text_a5) |>
++  kable(format = "latex", booktabs = TRUE, escape = FALSE,
++        caption = "Table A5: Description of the vignettes by treatment condition (all blocks, French original)") |>
++  kable_styling(latex_options = c("HOLD_position", "scale_down")) |>
++  column_spec(2, width = "18cm")
++
++save_tex(taba5, "tableA5_vignettes_french.tex")
++
++
++# =============================================================================
++# TABLE A6 — 2022 French presidential election results
++# =============================================================================
++
++candidate_a6 <- c(
++  r"(\textbf{Emmanuel Macron} \\ La République en Marche)",
++  r"(\textbf{Marine Le Pen} \\ Rassemblement National)",
++  r"(\textbf{Jean-Luc Mélenchon} \\ La France Insoumise)",
++  r"(\textbf{Éric Zemmour} \\ Reconquête)",
++  r"(\textbf{Valérie Pécresse} \\ Les Républicains)",
++  r"(\textbf{Yannick Jadot} \\ Europe Écologie les Verts)",
++  r"(\textbf{Jean Lassalle} \\ Résistons)",
++  r"(\textbf{Fabien Roussel} \\ Parti Communiste Français)",
++  r"(\textbf{Nicolas Dupont-Aignan} \\ Debout la France)",
++  r"(\textbf{Anne Hidalgo} \\ Parti Socialiste)",
++  r"(\textbf{Philippe Poutou} \\ Nouveau Parti Anticapitaliste)",
++  r"(\textbf{Nathalie Arthaud} \\ Lutte Ouvrière)"
++)
++
++round_one <- c("27.85 \\%","23.15 \\%","21.95 \\%","7.07 \\%","4.78 \\%",
++               "4.63 \\%","3.13 \\%","2.28 \\%","2.06 \\%","1.74 \\%",
++               "0.76 \\%","0.56 \\%")
++round_two <- c("58.55 \\%","41.45 \\%","-","-","-","-","-","-","-","-","-","-")
++
++taba6 <- data.frame(
++  "Candidate and party"  = candidate_a6,
++  "1st round results"    = round_one,
++  "2nd round results"    = round_two,
++  check.names = FALSE
++) |>
++  kable(format = "latex", booktabs = TRUE, escape = FALSE,
++        caption = "Table A6: Party and candidates results in the 2022 French presidential elections") |>
++  kable_styling(latex_options = c("HOLD_position", "scale_down"))
++
++save_tex(taba6, "tableA6_election_results.tex")
++
++
++# =============================================================================
++# TABLES B1 / B2 / B3 — Descriptive statistics per experimental block
++# Uses stargazer(); output captured with sink()
++# =============================================================================
++
++make_desc_table <- function(data, block_label, filename) {
++  desc <- data |>
++    dplyr::select(munic_size, gender, educ, occup_current, income, swd_ch) |>
++    mutate(across(where(is.factor), as.numeric))
++  colnames(desc) <- c("Municipality Size","Gender","Education",
++                       "Occupation","Income","SWD Change")
++  sink(file.path(dir_tables, filename))
++  stargazer(as.data.frame(desc), digits = 1,
++            title         = block_label,
++            table.placement = "H",
++            header        = FALSE,
++            type          = "latex")
++  sink()
++}
++
++make_desc_table(zemmour, "Table B1: Descriptive statistics - Zemmour block",
++                "tableB1_descriptives_zemmour.tex")
++make_desc_table(mlp,     "Table B2: Descriptive statistics - Le Pen block",
++                "tableB2_descriptives_lepen.tex")
++make_desc_table(others,  "Table B3: Descriptive statistics - Others block",
++                "tableB3_descriptives_others.tex")
++
++
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# # TABLE B4 — FES descriptive statistics: Zemmour supporters
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# sink(file.path(dir_tables, "tableB4_fes_zemmour_descriptives.tex"))
++#SKIP_MISSING_STUDY1# Z_voters |>
++#SKIP_MISSING_STUDY1#   dplyr::select(sex, age_n, education, lr) |>
++#SKIP_MISSING_STUDY1#   mutate(education = factor(education, labels = c(
++#SKIP_MISSING_STUDY1#     "Primary, middle school, or none", "Professional Certificate",
++#SKIP_MISSING_STUDY1#     "High School", "University first-cycle", "University second-cycle"
++#SKIP_MISSING_STUDY1#   ))) |>
++#SKIP_MISSING_STUDY1#   st(out    = "latex",
++#SKIP_MISSING_STUDY1#      labels = c("Gender","Age","Education","Left-right"),
++#SKIP_MISSING_STUDY1#      title  = "Table B4: Descriptive statistics: representative sample of Zemmour supporters in the FES 2022")
++#SKIP_MISSING_STUDY1# sink()
++
++
++# =============================================================================
++# TABLE C1 — Qualitative codebook schema and results
++# The data contain aggregated coding counts by block — no individual responses.
++# =============================================================================
++sink(file.path(dir_tables, "tableC1_qualitative_codebook.tex"))
++stargazer(qual_table, summary = FALSE,
++          title           = "Table C1: Qualitative codebook schema and results",
++          font.size       = "tiny",
++          rownames        = FALSE,
++          header          = FALSE,
++          column.sep.width = "0.01pt",
++          type            = "latex")
++sink()
++
++
++# =============================================================================
++# TABLE C2 — Inter-coder reliability
++# The data contain only summary statistics (Cohen's kappa,
++# Krippendorff's alpha, percent agreement per coding variable).
++# No individual responses are stored in this file.
++# =============================================================================
++
++icr_results  <- qual_icr$icr_results
++overall_alpha <- qual_icr$overall_alpha
++
++icr_table <- icr_results |>
++  dplyr::select(variable, n, pct_agree, kappa, alpha, note) |>
++  mutate(
++    label = case_when(
++      variable == "1.1_Disgust_Loathing"  ~ "Disgust / Loathing",
++      variable == "1.2_Disapointment"     ~ "Disappointment",
++      variable == "1.3_Fatalism"          ~ "Fatalism",
++      variable == "1.5_Fear_Anxiety"      ~ "Fear / Anxiety",
++      variable == "1.7_Satisfaction"      ~ "Satisfaction",
++      variable == "1.8_Hope"              ~ "Hope",
++      variable == "1.9_Pride_Enthusiasm"  ~ "Pride / Enthusiasm",
++      variable == "1.12_Other_Feelings"   ~ "Other Feelings",
++      variable == "2.1.1_R_Zemmour"       ~ "Zemmour",
++      variable == "2.1.2_Radical_Right"   ~ "Radical Right",
++      variable == "2.1.3_RN_LePen"        ~ "RN / Le Pen",
++      variable == "2.1.4_LREM_Macron"     ~ "LREM / Macron",
++      variable == "2.1.8_Positive_Other"  ~ "Other (positive)",
++      variable == "2.2.1_LREM_Macron"     ~ "LREM / Macron",
++      variable == "2.2.2_LFI_Mélenchon"  ~ "LFI / Mélenchon",
++      variable == "2.2.5_RN_LePen"        ~ "RN / Le Pen",
++      variable == "2.2.9_R_Zemmour"       ~ "Zemmour",
++      variable == "2.2.14_Media"          ~ "Media",
++      variable == "2.2.15_French_people"  ~ "French People",
++      variable == "2.2.16_Negative_Other" ~ "Other (negative)",
++      variable == "2.3_Descriptive"       ~ "Descriptive",
++      variable == "3_Demo_evaluation"     ~ "Democratic Evaluation"
++    ),
++    section = case_when(
++      str_starts(variable, "1\\.")  ~ "Emotions",
++      str_starts(variable, "2\\.1") ~ "Positive evaluations",
++      str_starts(variable, "2\\.2") ~ "Negative evaluations",
++      str_starts(variable, "2\\.3") ~ "Descriptive statements",
++      str_starts(variable, "3")     ~ "Democratic evaluation",
++      TRUE                          ~ "Other"
++    ),
++    section   = factor(section, levels = c(
++      "Emotions", "Positive evaluations", "Negative evaluations",
++      "Descriptive statements", "Democratic evaluation"
++    )),
++    pct_agree = sprintf("%.0f\\%%", pct_agree * 100),
++    kappa     = if_else(is.na(kappa), "---", sprintf("%.2f", kappa)),
++    alpha     = sprintf("%.2f", alpha)
++  ) |>
++  arrange(section, variable) |>
++  dplyr::select(section, label, n, pct_agree, kappa, alpha)
++
++section_counts <- icr_table |> count(section) |> arrange(section)
++
++tabc2 <- icr_table |>
++  dplyr::select(-section) |>
++  kbl(
++    format    = "latex",
++    booktabs  = TRUE,
++    longtable = TRUE,
++    col.names = c("Code", "$n$", "\\% Agree", "$\\kappa$", "$\\alpha$"),
++    escape    = FALSE,
++    align     = c("l", "c", "c", "c", "c"),
++    caption   = "Table C2: Intercoder reliability statistics",
++    label     = "tab:tabc2"
++  ) |>
++  kable_styling(latex_options = c("hold_position", "repeat_header"),
++                font_size     = 10) |>
++  pack_rows(
++    index           = deframe(section_counts[, c("section", "n")]),
++    bold            = TRUE,
++    italic          = FALSE,
++    latex_gap_space = "0.5em"
++  ) |>
++  footnote(
++    general = c(
++      paste0("$n$ = number of statements with complete ratings from both ",
++             "coders. \\\\% Agree = simple percent agreement. $\\\\kappa$ = ",
++             "Cohen's kappa (unweighted); dashes indicate kappa is undefined ",
++             "due to zero variance in one coder's ratings. $\\\\alpha$ = ",
++             "Krippendorff's alpha (nominal). Landis \\\\& Koch (1977) ",
++             "benchmarks: $\\\\kappa < 0.40$ poor, $0.40$--$0.60$ moderate, ",
++             "$0.60$--$0.80$ substantial, $\\\\geq 0.80$ almost perfect."),
++      paste0("Overall Krippendorff's $\\\\alpha$ (all variables combined) = ",
++             sprintf("%.2f", overall_alpha), ".")
++    ),
++    general_title  = "",
++    escape         = FALSE,
++    threeparttable = TRUE
++  )
++
++save_tex(tabc2, "tableC2_icr.tex")
++
++
++# =============================================================================
++# TABLES D1 / D2 — Manipulation check regression tables
++# =============================================================================
++
++manip_coef_names <- c(
++  "(Intercept)",
++  "Placebo Social Norm", "In-group Government", "Out-group Government",
++  "In-group Parliament",
++  "Age", "Gender (= Female)", "Gender (= Other)",
++  "Education (= Middle School)", "Education (= Professional certificate)",
++  "Education (= High School)", "Education (= University first-cycle)",
++  "Education (= University second-cycle)",
++  "Income (= 2nd Quintile)", "Income (= 3rd Quintile)",
++  "Income (= 4th Quintile)", "Income (= 5th Quintile)",
++  "Zemmour Likely Winner 1st Round", "Zemmour Likely Winner 2nd Round",
++  "Macron Likely Winner 2nd Round",  "Le Pen Likely Winner 2nd Round",
++  "Macron Likely Winner 1st Round",  "Le Pen Likely Winner 1st Round"
++)
++
++sink(file.path(dir_tables, "tableD1_manipulation_check_zemmour.tex"))
++texreg(list(winner_zemmour_model, winner_zemmour_model_r),
++       dcolumn            = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars              = c(0.001, 0.01, 0.05, 0.1),
++       include.ci         = FALSE,
++       custom.model.names = c("DV: Zemmour W", "DV: Zemmour W"),
++       custom.gof.rows    = list("Robust Std. Errors" = c("No","Yes")),
++       custom.coef.names  = manip_coef_names,
++       fontsize           = "scriptsize", float.pos = "h!",
++       caption = "Table D1: OLS Specifications. DV: Perceptions of Zemmour as a Winner")
++sink()
++
++sink(file.path(dir_tables, "tableD2_manipulation_check_macron_lepen.tex"))
++texreg(list(winner_macron_model, winner_macron_model_r,
++            winner_lepen_model,  winner_lepen_model_r),
++       dcolumn            = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars              = c(0.001, 0.01, 0.05, 0.1),
++       include.ci         = FALSE,
++       custom.model.names = c("DV: Macron W","DV: Macron W",
++                              "DV: Le Pen W","DV: Le Pen W"),
++       custom.gof.rows    = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
++       custom.coef.names  = manip_coef_names,
++       fontsize           = "scriptsize", float.pos = "h!",
++       caption = "Table D2: OLS Specifications. DV: Perceptions of Macron/Le Pen as a Winner")
++sink()
++
++
++# =============================================================================
++# TABLES D3–D7 — Experiment regression tables
++# =============================================================================
++
++swd_coef_names_full <- c(
++  "(Intercept)", "Placebo Social Norm", "In-group Government",
++  "Out-group Government", "In-group Parliament",
++  "Age", "Gender (= Female)",
++  "Education (= Middle School)", "Education (= Professional certificate)",
++  "Education (= High School)", "Education (= University first-cycle)",
++  "Education (= University second-cycle)",
++  "Income (= 2nd Quintile)", "Income (= 3rd Quintile)",
++  "Income (= 4th Quintile)", "Income (= 5th Quintile)"
++)
++
++sink(file.path(dir_tables, "tableD3_ez_swd.tex"))
++texreg(list(model_1_ez, model_2_ez, model_3_ez, model_4_ez),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
++       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
++       custom.coef.names = swd_coef_names_full,
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table D3: OLS specifications Block I (Zemmour). DV: Change in SWD")
++sink()
++
++sink(file.path(dir_tables, "tableD4_ez_swd_expectations.tex"))
++texreg(list(model_1_ez_exp, model_2_ez_exp, model_3_ez_exp, model_4_ez_exp),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
++       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
++       custom.coef.names = c("(Intercept)", "Placebo Social Norm",
++                             "In-group Government", "Out-group Government",
++                             "In-group Parliament",
++                             "Expectation: Zemmour wins 2nd round",
++                             "Age", "Gender (= Female)"),
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table D4: OLS specifications Block I + electoral expectations. DV: Change in SWD")
++sink()
++
++sink(file.path(dir_tables, "tableD5_ez_lrem.tex"))
++texreg(list(model_1_ez_lrem, model_2_ez_lrem, model_3_ez_lrem, model_4_ez_lrem),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
++       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
++       custom.coef.names = c("(Intercept)", "Placebo Social Norm",
++                             "In-group Government", "Out-group Government",
++                             "In-group Parliament",
++                             "Age", "Gender (= Female)",
++                             "Education (= Middle School)",
++                             "Education (= Professional certificate)",
++                             "Education (= High School)",
++                             "Education (= University first-cycle)",
++                             "Education (= University second-cycle)"),
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table D5: OLS specifications Block I (Zemmour). DV: Change in Affects toward LREM")
++sink()
++
++sink(file.path(dir_tables, "tableD6_mlp_swd.tex"))
++texreg(list(model_1_mlp, model_2_mlp, model_3_mlp, model_4_mlp),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
++       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
++       custom.coef.names = swd_coef_names_full,
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table D6: OLS Specifications Block II (Le Pen). DV: Change in SWD")
++sink()
++
++sink(file.path(dir_tables, "tableD7_others_swd.tex"))
++texreg(list(model_1_oth, model_2_oth, model_3_oth, model_4_oth),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Model 1","Model 2","Model 3","Model 4"),
++       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes","No","Yes")),
++       custom.coef.names = c("(Intercept)", "Placebo Social Norm",
++                             "In-group Government", "Out-group Government",
++                             "In-group Parliament",
++                             "Age", "Gender (= Female)", "Gender (= Other)",
++                             "Education (= Middle School)",
++                             "Education (= Professional certificate)",
++                             "Education (= High School)",
++                             "Education (= University first-cycle)",
++                             "Education (= University second-cycle)",
++                             "Income (= 2nd Quintile)", "Income (= 3rd Quintile)",
++                             "Income (= 4th Quintile)", "Income (= 5th Quintile)"),
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table D7: OLS Specifications Block III (Others). DV: Change in SWD")
++sink()
++
++
++# =============================================================================
++# TABLES D8 / D9 — Multiple hypotheses testing corrections
++# =============================================================================
++
++make_mht_table <- function(model, caption, filename) {
++  pvals      <- as.numeric(summary(model)$coefficients[, 4])
++  trt_group  <- c("Intercept", "In-group Government", "In-group Parliament",
++                  "Out-group Government", "Placebo")
++  df <- data.frame(
++    Coefficient          = trt_group,
++    "Original p-values"  = pvals,
++    "Bonferroni"         = p.adjust(pvals, method = "bonferroni"),
++    "Holm"               = p.adjust(pvals, method = "holm"),
++    check.names = FALSE
++  )
++  tbl <- kable(df, format = "latex", booktabs = TRUE, escape = FALSE,
++               digits = 2, caption = caption) |>
++    kable_styling(latex_options = "HOLD_position")
++  save_tex(tbl, filename)
++}
++
++make_mht_table(model_1_ez,
++  "Table D8: p-values before/after MHT correction - ATE on Change in SWD",
++  "tableD8_mht_swd.tex")
++
++make_mht_table(model_1_ez_lrem,
++  "Table D9: p-values before/after MHT correction - ATE on Change in Feelings toward LREM",
++  "tableD9_mht_lrem.tex")
++
++
++# =============================================================================
++# TABLE D10 — Simulated vs. real data regression table
++# =============================================================================
++
++sink(file.path(dir_tables, "tableD10_simulated_vs_real.tex"))
++texreg(list(model_sim, model_1_ez),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Simulated data", "Real data"),
++       custom.coef.names  = c("(Intercept)", "Placebo Social Norm",
++                              "In-group Government", "Out-group Government",
++                              "In-group Parliament"),
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table D10: OLS comparing simulated and real data. DV: Change in SWD")
++sink()
++
++
++# =============================================================================
++# TABLE E1 — Pilot study regression table
++# =============================================================================
++
++sink(file.path(dir_tables, "tableE1_pilot_swd.tex"))
++texreg(list(model_1_pilot, model_2_pilot),
++       dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++       stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++       custom.model.names = c("Model 1","Model 2"),
++       custom.gof.rows = list("Robust Std. Errors" = c("No","Yes")),
++       custom.coef.names  = c("(Intercept)", "In-group Parliament",
++                              "Out-group Government",
++                              "Final Placebo (Social Norm)",
++                              "Discarded Placebo (Economy + COVID)"),
++       fontsize = "footnotesize", float.pos = "h!",
++       caption = "Table E1: OLS Specifications Pilot Study. DV: SWD")
++sink()
++
++
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# # TABLE F1 — FES vote choice distribution
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# summary_t <- panel |>
++#SKIP_MISSING_STUDY1#   filter(!is.na(choice_pres_1st)) |>
++#SKIP_MISSING_STUDY1#   mutate(choice_pres_1st = factor(choice_pres_1st, levels = c(
++#SKIP_MISSING_STUDY1#     "Nathalie Arthaud LO", "Philippe Poutou NPA", "Fabien Roussel PCF",
++#SKIP_MISSING_STUDY1#     "Jean-Luc Mélenchon LFI", "Yannick Jadot EELV", "Anne Hidalgo PS",
++#SKIP_MISSING_STUDY1#     "Emmanuel Macron LREM", "Valérie Pécresse LR", "Jean Lassalle RES",
++#SKIP_MISSING_STUDY1#     "Nicolas Dupont-Aignan DLR", "Marine Le Pen RN", "Eric Zemmour REC",
++#SKIP_MISSING_STUDY1#     "Blank", "Null", "Abstention"
++#SKIP_MISSING_STUDY1#   ))) |>
++#SKIP_MISSING_STUDY1#   count(choice_pres_1st) |>
++#SKIP_MISSING_STUDY1#   mutate(percentage = round(n / sum(n) * 100, 1))
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# tabf1 <- bind_rows(
++#SKIP_MISSING_STUDY1#   summary_t,
++#SKIP_MISSING_STUDY1#   tibble(choice_pres_1st = "Total", n = sum(summary_t$n), percentage = 100.0)
++#SKIP_MISSING_STUDY1# ) |>
++#SKIP_MISSING_STUDY1#   kable(format = "latex", booktabs = TRUE, escape = FALSE,
++#SKIP_MISSING_STUDY1#         col.names = c("Vote Choice (1st Round)", "N", "Percentage"),
++#SKIP_MISSING_STUDY1#         caption   = "Table F1: Distribution of Presidential Vote Choice (1st Round) - FES 2022") |>
++#SKIP_MISSING_STUDY1#   kable_styling(latex_options = "HOLD_position") |>
++#SKIP_MISSING_STUDY1#   row_spec(nrow(summary_t) + 1, bold = TRUE)
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# save_tex(tabf1, "tableF1_fes_vote_choice.tex")
++
++
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# # TABLES F2 / F3 — FES panel regression tables
++#SKIP_MISSING_STUDY1# # =============================================================================
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# fes_coef_names <- c(
++#SKIP_MISSING_STUDY1#   "(Intercept)", "Pre-election SWD",
++#SKIP_MISSING_STUDY1#   "Abstention", "Blank/Null Vote",
++#SKIP_MISSING_STUDY1#   "Vote for Éric Zemmour", "Vote for Marine Le Pen",
++#SKIP_MISSING_STUDY1#   "Vote for Jean-Luc Mélenchon", "Vote for Emmanuel Macron",
++#SKIP_MISSING_STUDY1#   "Age (= 30-34)","Age (= 35-39)","Age (= 40-44)","Age (= 45-49)",
++#SKIP_MISSING_STUDY1#   "Age (= 50-54)","Age (= 55-59)","Age (= 60-64)","Age (= 65-69)",
++#SKIP_MISSING_STUDY1#   "Age (= 70+)","Age (= -25)", "Gender (= Male)",
++#SKIP_MISSING_STUDY1#   "Education (= High School)", "Education (= Middle School or Less)",
++#SKIP_MISSING_STUDY1#   "Education (= Undergraduate Studies)", "Education (= Vocational Training)",
++#SKIP_MISSING_STUDY1#   "Income (= From 1400 to 1650)", "Income (= From 1650 to 1900)",
++#SKIP_MISSING_STUDY1#   "Income (= From 1900 to 2200)", "Income (= From 2200 to 2500)",
++#SKIP_MISSING_STUDY1#   "Income (= From 2500 to 3200)", "Income (= From 650 to 950)",
++#SKIP_MISSING_STUDY1#   "Income (= From 950 to 1200)",  "Income (= Less than 650)",
++#SKIP_MISSING_STUDY1#   "Income (= More than 3200)",
++#SKIP_MISSING_STUDY1#   "Employment (= Retired)", "Employment (= Student)",
++#SKIP_MISSING_STUDY1#   "Employment (= Unemployed)",
++#SKIP_MISSING_STUDY1#   "Left-Right Ideology", "Left-Right Ideology Squared", "Political Interest"
++#SKIP_MISSING_STUDY1# )
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# sink(file.path(dir_tables, "tableF2_fes_swd.tex"))
++#SKIP_MISSING_STUDY1# texreg(list(baseline_model_panel, soc_model_panel, full_model_panel),
++#SKIP_MISSING_STUDY1#        custom.gof.rows    = list("Robust SE" = c("Yes","Yes","Yes")),
++#SKIP_MISSING_STUDY1#        dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++#SKIP_MISSING_STUDY1#        single.row = TRUE, stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++#SKIP_MISSING_STUDY1#        custom.model.names = c("Baseline","Soc. controls","Full spec."),
++#SKIP_MISSING_STUDY1#        custom.coef.names  = fes_coef_names,
++#SKIP_MISSING_STUDY1#        fontsize = "scriptsize", float.pos = "h!",
++#SKIP_MISSING_STUDY1#        caption = "Table F2: OLS Specifications. DV: Change in SWD")
++#SKIP_MISSING_STUDY1# sink()
++#SKIP_MISSING_STUDY1# 
++#SKIP_MISSING_STUDY1# sink(file.path(dir_tables, "tableF3_fes_lrem.tex"))
++#SKIP_MISSING_STUDY1# texreg(list(baseline_affect, soc_affect, full_affect),
++#SKIP_MISSING_STUDY1#        custom.gof.rows    = list("Robust SE" = c("Yes","Yes","Yes")),
++#SKIP_MISSING_STUDY1#        dcolumn = TRUE, booktabs = TRUE, use.packages = FALSE,
++#SKIP_MISSING_STUDY1#        single.row = TRUE, stars = c(0.001,0.01,0.05,0.1), include.ci = FALSE,
++#SKIP_MISSING_STUDY1#        custom.model.names = c("Baseline","Soc. controls","Full spec."),
++#SKIP_MISSING_STUDY1#        fontsize = "scriptsize", float.pos = "h!",
++#SKIP_MISSING_STUDY1#        caption = "Table F3: OLS Specifications. DV: Change in Affects toward LREM")
++#SKIP_MISSING_STUDY1# sink()

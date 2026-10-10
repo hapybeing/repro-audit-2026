@@ -1,0 +1,6 @@
+options(Ncpus=1)
+lib <- Sys.getenv("R_LIBS_USER")
+for (p in c("ebal","ggstance","cobalt","cjoint")) if (!requireNamespace(p, quietly=TRUE)) install.packages(p, repos="https://cloud.r-project.org", lib=lib)
+if (!requireNamespace("cregg", quietly=TRUE)) install.packages("https://cloud.r-project.org/src/contrib/Archive/cregg/cregg_0.4.0.tar.gz", repos=NULL, type="source", lib=lib)
+for (p in c("ebal","ggstance","cobalt","cjoint","cregg","cli","rlang")) cat(p, tryCatch(as.character(packageVersion(p)),error=function(e)"MISSING"), "\n")
+cat("INSTALL_DONE\n")

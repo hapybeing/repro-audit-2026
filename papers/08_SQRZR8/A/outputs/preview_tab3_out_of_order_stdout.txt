@@ -1,0 +1,47 @@
+
+> data$surveillance_fac <- factor(data$Surveillance, 
++     levels = c(0, 1, 2), labels = c("No Mention", "Personalized", 
++         "Public"))
+
+> data$censorship_fac <- factor(data$Censorship, levels = c(0, 
++     1, 2), labels = c("No Mention", "Personalized", "Public"))
+
+> outcomes <- c("positive_emo_rv", "negative_emo", "neutral_emo_rv", 
++     "general_attitude_fic", "general_attitude_real")
+
+> fit_models <- function(outcome) {
++     formula_main <- as.formula(paste0(outcome, " ~ surveillance_fac + censorship_fac + ", 
++         covariates_str))
++     formula_interact <- as.formula(paste0(outcome, " ~ surveillance_fac * censorship_fac + ", 
++         covariates_str))
++     list(mod2 = lm_robust(formula_main, data = data), mod4 = lm_robust(formula_interact, 
++         data = data))
++ }
+
+> models <- lapply(outcomes, fit_models)
+
+> names(models) <- outcomes
+
+> all_models <- unlist(models, recursive = FALSE)
+
+> tab_3 <- tab_model(all_models$positive_emo_rv.mod2, 
++     all_models$positive_emo_rv.mod4, all_models$negative_emo.mod2, 
++     all_models$negative_emo.mod4, all_models$neutral_emo_rv.mod2, 
++     all_models$neutral_emo_rv.mod4, all_models$general_attitude_fic.mod2, 
++     all_models$general_attitude_fic.mod4, all_models$general_attitude_real.mod2, 
++     all_models$general_attitude_real.mod4, dv.labels = c("Positive Emotion \n (main)", 
++         "Positive Emotion \n (main+interactions)", "Negative Emotion \n (main)", 
++         "Negative Emotion \n (main+interactions)", "Neutral Emotion \n (main)", 
++         "Neutral Emotion b\n (main+interactions)", "Attitude towards fictitious scenario \n (main)", 
++         "Attitude towards fictitious scenario \n (main+interactions)", 
++         "Attitude towards real-life scenario \n (main)", "Attitude towards real-life scenario \n (main+interactions)"), 
++     digits = 3, p.style = "stars", show.ci = FALSE, show.se = TRUE, 
++     collapse.se = TRUE, rm.terms = c("Age", "Gender", "Education", 
++         "Ethnicity", "MonthlyIncome", "CCPMembership", "rural", 
++         "OverseaExperience_yes", "nationalism_nor", "liberalism_nor", 
++         "vpnsavvy", "conservation_nor", "openness_nor", "conscientiousness_nor", 
++         "neuroticism_nor", "extraversion_nor", "agreeableness_nor", 
++         "LifeSat_1"))
+
+SEGMENT 332 389 ELAPSED_MIN 0.07073776 
+SEGMENT_DONE

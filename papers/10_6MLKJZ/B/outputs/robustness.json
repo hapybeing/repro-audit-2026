@@ -1,0 +1,70 @@
+{
+  "R_a": {
+    "estimate": 0.659697188175823,
+    "unweighted_mean_check": 0.659697188175919,
+    "ci_lower": 0.645554704756934,
+    "ci_upper": 0.673080903426863,
+    "boot_se": 0.00707209455822125,
+    "p_value": 0,
+    "B": 1000,
+    "seed": 20261009,
+    "n_resp": [1285, 333],
+    "same": true,
+    "fc1_count": 0,
+    "fc1_levels": [],
+    "other_levels_excl0": ["Since::1 Year", "Since::3 Years"]
+  },
+  "R_b": {
+    "estimate": 0.660130718954209,
+    "se": 0.00714868700371271,
+    "ci_lower": 0.646119549890183,
+    "ci_upper": 0.674141888018236,
+    "p_value": 3.93417609171628e-111,
+    "same": true,
+    "fc1_count": 0,
+    "fc1_levels": [],
+    "dropped_per_sample": {
+      "civic": {
+        "n_resp": 2482,
+        "n_no_duration": 0,
+        "p01": 189.81,
+        "p99": 6591.91000000001,
+        "dropped": 50
+      },
+      "hsvn": {
+        "n_resp": 528,
+        "n_no_duration": 0,
+        "p01": 384.72,
+        "p99": 13901.48,
+        "dropped": 12
+      },
+      "rh": {
+        "n_resp": 128,
+        "n_no_duration": 0,
+        "p01": 541.07,
+        "p99": 146948.230000001,
+        "dropped": 4
+      },
+      "uhh": {
+        "n_resp": 744,
+        "n_no_duration": 0,
+        "p01": 377.29,
+        "p99": 47709.5600000019,
+        "dropped": 16
+      }
+    },
+    "total_dropped": 82
+  },
+  "R_c": {
+    "estimate": 0.320660262795954,
+    "se": 0.0116517642783106,
+    "ci_lower": 0.297823224454115,
+    "ci_upper": 0.343497301137793,
+    "p_value": 1.00313611177894e-166,
+    "baseline": "1 Adult",
+    "same": true,
+    "anova_F": 2.06069704306571,
+    "anova_p": 0.00138488777881339,
+    "anova_same_as_paper": false
+  }
+}

@@ -1,0 +1,171 @@
+{
+ "ran": true,
+ "could_not_run_reason": "",
+ "bugs": [],
+ "code_review": "None found. Read all 449 lines of main_rep.R. append_rep.R (673 lines) was not reviewed line by line because no target uses it. Checked the Figure 3 label mapping (main_rep.R lines 194, 273-299): the labels 'Result 1' to 'Result 8' are recycled over the 32 mediate() results and mapped to arm names by the order of unique(data$condition); outputs/run_meta.json shows that order is control, PublicSurv, PublicBoth, PersonalSurvPublicCensor, PersonalCensorPublicSurv, Personalboth, PublicCensor, PersonalCensor, PersonalSurv, which matches the case_when mapping at lines 283-290, and the Category vector at line 296 matches the mediator-then-outcome loop order (positive_fic, positive_real, negative_fic, negative_real). Not a bug. Unverified observations (no output change demonstrated): main_rep.R line 371 comment says 'models without control ... Table D2' but the block fits models with covariates_str; main_rep.R sets no seed, so Figure 3 bootstrap CIs are not seed-fixed (no target depends on them).",
+ "env_fixes": [
+  "diffs/README.md: no authors' file changed; data_cleaned_rep.csv downloaded with ?format=original; ltm, coefplot, sjPlot, mediation (CRAN source, per-run library, Ncpus=1) installed because they were absent and had no Debian binary candidate; objects saved with save() after source() for extraction."
+ ],
+ "proposed_class": "D",
+ "class_reason": "T1 to T5 (all Table 3 coefficients) match the paper to 3 decimals with the same signs and significance buckets, but T6 fails its pre-registered criterion: every Table 3 model uses 4,507 rows (the data have no missing values in any model variable), while the Table 3 note prints N = 4,057; under the strict rules no target set that includes T6 qualifies for A or B. Alternative class on T1 to T5 alone: A. The reproduced N equals the 4,507 the paper itself reports in the abstract, methods, Table 1 and online Tables D1/D2, so this looks like a difference in the printed N only; it does not change any coefficient-based conclusion. Final D needs agent A to see the same.",
+ "confidence": "medium",
+ "confidence_reason": "Numbers are deterministic and matched by script, but the class turns on how a printed-N-only mismatch (T6) is weighed, which is a judgement for the batch decision.",
+ "uncertainties": [
+  "T6: reproduced N is 4,507 for all five column (1) models and the data have 0 missing values in all 38 model variables (outputs/run_meta.json), so the 4,057 in the Table 3 note cannot arise from listwise deletion in the deposited cleaned data. Whether 4,057 is a typo for 4,507 cannot be confirmed from the materials; the matching coefficients, SEs and R2 to 3 decimals on 4,507 rows are consistent with that reading (inference, not verified).",
+  "Class: PROTOCOL section 7 has no category for 'all estimates exact, only a printed N differs'. I proposed D because the pre-registered T6 criterion fails, with A as the alternative on T1 to T5; the batch decision may weigh this differently.",
+  "R_c (alternative positive-emotion outcome = standardized mean of Secured and Happiness): coefficient is negative but p is above 0.001, so it does not meet the pre-registered 'negative and p < 0.001' criterion; it is negative and p < 0.05. Robustness does not change the class.",
+  "R_b for T1 dropped 0 rows (no |z| > 3 on positive_emo_rv), so its estimate equals the original.",
+  "Environment: R 4.5.0 on aarch64 Debian 13 vs the authors' R 4.3.2 on macOS; estimatr 1.0.6 (HC2 default). PCA signs matched online Table C1, so no sign-aligned rerun was needed.",
+  "Data preparation script data_preparation_rep.R named in ReadMe.txt is not in the deposit (DATA_STATEMENT.md); the raw-to-cleaned step was not reproduced. Targets use only the deposited cleaned file.",
+  "The mediation block (Figure 3) ran to completion without a seed; its outputs were saved in outputs/session_models.RData (object results) but not compared to the paper, since no target depends on them.",
+  "PCA loadings vs online Table C1 (outputs/pca_loadings.csv): Comp.1 Sadness: 0.400 (Table C1 0.4); Comp.2 Happiness: -0.659 (Table C1 -0.659); Comp.2 Secured: -0.586 (Table C1 -0.586); Comp.3 Curiosity: -0.635 (Table C1 -0.635); Comp.3 Surprised: -0.558 (Table C1 -0.558). No sign flips, so no sign-aligned rerun was needed.",
+  "Context (not a target): Table 3 column (1) R2 from outputs/targets_extracted.csv: positive_emo_rv: reproduced 0.1000 vs paper 0.1; negative_emo: reproduced 0.1312 vs paper 0.131; general_attitude_fic: reproduced 0.2881 vs paper 0.288; general_attitude_real: reproduced 0.4002 vs paper 0.4. All four R2 values round to the paper's three decimals although the reproduced models use 4507 rows."
+ ],
+ "paper_id": "08_SQRZR8",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Table 3 column (1) OLS with controls (lm_robust, all_models$positive_emo_rv.mod2): coefficient of Surveillance [Personalized] (surveillance_facPersonalized) on positive emotions (positive_emo_rv)",
+   "paper_value": -0.201,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.201003376414518,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -3.3764e-06,
+   "rel_diff": -1.67981e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "HC2 SE 0.0577, p 0.000495, nobs 4507; criterion: neg sign and p < 0.001"
+  },
+  {
+   "id": "T2",
+   "description": "Table 3 column (1) OLS with controls (all_models$negative_emo.mod2): coefficient of Surveillance [Personalized] on negative emotions (negative_emo)",
+   "paper_value": 0.211,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.211350586723043,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003505867,
+   "rel_diff": 0.0016615485,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "HC2 SE 0.0793, p 0.00772, nobs 4507; criterion: pos sign and p < 0.01"
+  },
+  {
+   "id": "T3",
+   "description": "Table 3 column (1) OLS with controls (all_models$general_attitude_fic.mod2): coefficient of Surveillance [Personalized] on attitude toward the fictive scenario (general_attitude_fic)",
+   "paper_value": -0.532,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.531695070591335,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003049294,
+   "rel_diff": 0.0005731756,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "HC2 SE 0.0986, p 7.4e-08, nobs 4507; criterion: neg sign and p < 0.001"
+  },
+  {
+   "id": "T4",
+   "description": "Table 3 column (1) OLS with controls (all_models$general_attitude_real.mod2): coefficient of Surveillance [Personalized] on attitude toward the real-life situation (general_attitude_real)",
+   "paper_value": -0.237,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.237095951263413,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -9.59513e-05,
+   "rel_diff": -0.0004048577,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "HC2 SE 0.0790, p 0.0027, nobs 4507; criterion: neg sign and p < 0.01"
+  },
+  {
+   "id": "T5",
+   "description": "Table 3 column (1) OLS with controls (all_models$general_attitude_fic.mod2): coefficient of Censorship [Personalized] (censorship_facPersonalized) on attitude toward the fictive scenario (general_attitude_fic)",
+   "paper_value": -0.352,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.351633750378882,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003662496,
+   "rel_diff": 0.0010404819,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "HC2 SE 0.0959, p 0.000248, nobs 4507; criterion: neg sign and p < 0.001"
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in the Table 3 models (nobs of each column (1) lm_robust model)",
+   "paper_value": 4057,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 4507,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 450,
+   "rel_diff": 0.1109193986,
+   "match_to_rounding": false,
+   "within_5pct": false,
+   "same_conclusion": false,
+   "note": "nobs of all five mod2 models: [4507]. nrow(data) = 4507, complete cases on all model variables = 4507. Paper text and Table 1 / online Tables D1-D2 give 4,507; Table 3 note gives 4,057. Criterion: within 5 of 4057."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, 1000 resamples, set.seed(20261009), lm refit, percentile 95% CI; p = min(2 x share >= 0, 1) [primary (T1), outcome positive_emo_rv]",
+   "ran": true,
+   "estimate": -0.201003376414518,
+   "se_or_ci": "SE 0.0586; 95% CI [-0.3131, -0.0849] (bootstrap SE, percentile CI)",
+   "p_value": 0.002,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.csv",
+   "note": "n_used 4507, resamples with absent level or NA coef 0"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on the outcome in its estimation sample, refit lm_robust HC2 [primary (T1), outcome positive_emo_rv]",
+   "ran": true,
+   "estimate": -0.201003376414518,
+   "se_or_ci": "SE 0.0577; 95% CI [-0.3141, -0.0880] (HC2)",
+   "p_value": 0.000495438442391697,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.csv",
+   "note": "n_used 4507, n_dropped 0"
+  },
+  {
+   "id": "R_a_secondary_T3",
+   "description": "Case bootstrap, 1000 resamples, set.seed(20261009), lm refit, percentile 95% CI; p = min(2 x share >= 0, 1) [secondary (T3), outcome general_attitude_fic]",
+   "ran": true,
+   "estimate": -0.531695070591335,
+   "se_or_ci": "SE 0.0990; 95% CI [-0.7199, -0.3255] (bootstrap SE, percentile CI)",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.csv",
+   "note": "n_used 4507, resamples with absent level or NA coef 0"
+  },
+  {
+   "id": "R_b_secondary_T3",
+   "description": "Drop rows with |z| > 3 on the outcome in its estimation sample, refit lm_robust HC2 [secondary (T3), outcome general_attitude_fic]",
+   "ran": true,
+   "estimate": -0.488138845928043,
+   "se_or_ci": "SE 0.0969; 95% CI [-0.6780, -0.2982] (HC2)",
+   "p_value": 4.85023176742982e-07,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.csv",
+   "note": "n_used 4481, n_dropped 26"
+  },
+  {
+   "id": "R_c",
+   "description": "Outcome = (Secured + Happiness)/2 standardized over T1 estimation sample, refit lm_robust HC2 [primary (T1), outcome pos_mean_z]",
+   "ran": true,
+   "estimate": -0.0893660632022367,
+   "se_or_ci": "SE 0.0348; 95% CI [-0.1577, -0.0211] (HC2)",
+   "p_value": 0.0103601495045515,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "n_used 4507, n_dropped 0"
+  }
+ ],
+ "time_minutes": 52
+}

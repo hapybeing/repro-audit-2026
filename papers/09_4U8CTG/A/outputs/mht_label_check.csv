@@ -1,0 +1,11 @@
+"dv","row","label_in_02_table","actual_term","actual_term_label","p_value","label_matches"
+"swd_ch",1,"Intercept","(Intercept)","Intercept",0.00324855703495461,TRUE
+"swd_ch",2,"In-group Government","treatmentdanger_contr","Placebo",0.337296488159174,FALSE
+"swd_ch",3,"In-group Parliament","treatmentwin_govt","In-group Government",0.309620822542419,FALSE
+"swd_ch",4,"Out-group Government","treatmentwin_mainstream","Out-group Government",0.0461443755871707,TRUE
+"swd_ch",5,"Placebo","treatmentwin_parl","In-group Parliament",0.171823739441544,FALSE
+"affect_LREM_ch",1,"Intercept","(Intercept)","Intercept",0.61299404882136,TRUE
+"affect_LREM_ch",2,"In-group Government","treatmentdanger_contr","Placebo",0.92315229479193,FALSE
+"affect_LREM_ch",3,"In-group Parliament","treatmentwin_govt","In-group Government",0.823247658926829,FALSE
+"affect_LREM_ch",4,"Out-group Government","treatmentwin_mainstream","Out-group Government",0.137411823212295,TRUE
+"affect_LREM_ch",5,"Placebo","treatmentwin_parl","In-group Parliament",0.827652525976604,FALSE
