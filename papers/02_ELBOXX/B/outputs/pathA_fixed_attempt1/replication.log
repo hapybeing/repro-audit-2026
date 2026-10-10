@@ -1,0 +1,59 @@
+========================================================================= 
+Log Path: /workspace/audit_runs/02_ELBOXX/B/run_pathA_fixed/log/replication.log 
+Program Path: /workspace/audit_runs/02_ELBOXX/B/run_pathA_fixed/replication.R 
+Working Directory: /workspace/audit_runs/02_ELBOXX/B/run_pathA_fixed 
+User Name: sandbox 
+R Version: 4.5.0 (2025-04-11) 
+Machine: (none) aarch64 
+Operating System: Linux 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 
+Base Packages: stats graphics grDevices utils datasets methods base 
+Other Packages: peacesciencer_1.1.0 lubridate_1.9.4 forcats_1.0.0 stringr_1.5.1 dplyr_1.1.4 purrr_1.0.4 readr_2.1.5 tidyr_1.3.1 tibble_3.2.1 ggplot2_3.5.1 tidyverse_2.0.0 foreign_0.8-90 logr_1.3.8 common_1.1.3 
+Log Start Time: 2025-05-06 13:17:45.43399 
+========================================================================= 
+
+Test that appears on page 25 of the manuscript. 
+
+NOTE: Log Print Time:  2025-05-06 13:17:45.468693 
+NOTE: Elapsed Time: 0.0316331386566162 secs 
+
+
+	Pearson's product-moment correlation
+
+data:  d$secret_alliances and d$disputes
+t = 7.2096, df = 17509, p-value = 5.839e-13
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.03962549 0.06916076
+sample estimates:
+       cor 
+0.05440503 
+
+
+NOTE: Log Print Time:  2025-05-06 13:17:45.489536 
+NOTE: Elapsed Time: 0.0208430290222168 secs 
+
+Test that appears on page 26 of the manuscript. 
+
+NOTE: Log Print Time:  2025-05-06 13:17:45.512257 
+NOTE: Elapsed Time: 0.022721529006958 secs 
+
+
+	Pearson's product-moment correlation
+
+data:  pubdef$secret_alliances and pubdef$disputes
+t = 10.183, df = 3809, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1317231 0.1935433
+sample estimates:
+      cor 
+0.1627929 
+
+
+NOTE: Log Print Time:  2025-05-06 13:17:45.519092 
+NOTE: Elapsed Time: 0.00683498382568359 secs 
+
+========================================================================= 
+Log End Time: 2025-05-06 13:17:45.520905 
+Log Elapsed Time: 0 00:00:00 
+========================================================================= 

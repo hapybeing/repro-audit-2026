@@ -1,0 +1,14 @@
+f0b66d50501f11ee78caebe0e0591bb7  AJPS_analysis_data.RData
+c8d3f84a410f46d4d8b03a268e313e35  AJPS_rep_secretally.Rproj
+598d7b9ce6813ad614d9c8eacc116fe5  Dyadic MID Codebook V4.0.pdf
+03ab0855c1cb457f250df9b25abd4e68  LOG.pdf
+0d61e001cede7de178153bdd0923dd8e  README.txt
+08fe3b73b715402e4c2fecf0414840f3  analysis_data_creation.R
+905d804cba32717aa49520c29dc87c35  atop5_1a.csv
+ed909cfc4fdb1c4f7beb3fc1c303b8d4  atop5_1sy.csv
+5d7477efddd0237efffaf130e9e7fbbe  atop_5_1_codebook.pdf
+741ae2ea9637358bcf4c933083b1b564  dyadic_mid_4.02.csv
+9a3ce38e3110c589752e1c9b5a9ae6f8  replication.R
+bc44869a32c7acf12d9c8feca10a2e90  secret_time.pdf
+6839a3746bd034b78a3e06fc619b9a92  sha.txt
+5fcd16a69422bdf230dbaa33e6fd655c  visualization.R

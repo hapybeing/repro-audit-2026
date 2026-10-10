@@ -1,0 +1,197 @@
+{
+ "paper_id": "02_ELBOXX",
+ "agent": "B",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Main result (M2): Pearson correlation between total active secret alliances in the system-year and MIDs initiated against the country, country-years with a public defensive alliance (code: pub_def == 1). Paper DOI https://doi.org/10.1111/ajps.12997; produced by replication.R test2 (https://doi.org/10.7910/DVN/ELBOXX)",
+   "paper_value": 0.1628,
+   "paper_rounding_decimals": 4,
+   "reproduced_value": 0.162792932703875,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": -7.06729612501289e-06,
+   "rel_diff": -4.3410909858801534e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.1627929 (outputs/pathA_asis/targets_asis.csv, n=3811). Path B shortcut (shipped RData): 0.162792932703875 (n=3811). Route A n=3811, t=10.1829, df=3809, p=4.79e-24."
+  },
+  {
+   "id": "T2",
+   "description": "Lower bound of the 95% CI for the M2 correlation (replication.R test2, conf.int[1])",
+   "paper_value": 0.1317,
+   "paper_rounding_decimals": 4,
+   "reproduced_value": 0.13172305899803,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": 2.3058998029984457e-05,
+   "rel_diff": 0.0001750873047075509,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.1317231 (outputs/pathA_asis/targets_asis.csv, n=3811). Path B shortcut (shipped RData): 0.13172305899803 (n=3811). Route A n=3811, t=10.1829, df=3809, p=4.79e-24."
+  },
+  {
+   "id": "T3",
+   "description": "Upper bound of the 95% CI for the M2 correlation (replication.R test2, conf.int[2])",
+   "paper_value": 0.1935,
+   "paper_rounding_decimals": 4,
+   "reproduced_value": 0.193543270514135,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": 4.3270514134996496e-05,
+   "rel_diff": 0.0002236202280878372,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.1935433 (outputs/pathA_asis/targets_asis.csv, n=3811). Path B shortcut (shipped RData): 0.193543270514135 (n=3811). Route A n=3811, t=10.1829, df=3809, p=4.79e-24."
+  },
+  {
+   "id": "T4",
+   "description": "Secondary result (M1): Pearson correlation between yearly number of secret alliances and disputes, all country-years (replication.R test1)",
+   "paper_value": 0.05441,
+   "paper_rounding_decimals": 5,
+   "reproduced_value": 0.0544050278794657,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": -4.972120534296742e-06,
+   "rel_diff": -9.13824762781978e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.05588845 (outputs/pathA_asis/targets_asis.csv, n=17706). Path B shortcut (shipped RData): 0.0544050278794657 (n=17511). Route A n=17511, t=7.20964, df=17509, p=5.839e-13."
+  },
+  {
+   "id": "T5",
+   "description": "Lower bound of the confidence interval for the M1 correlation (replication.R test1, conf.int[1])",
+   "paper_value": 0.03963,
+   "paper_rounding_decimals": 5,
+   "reproduced_value": 0.0396254923258815,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": -4.507674118497951e-06,
+   "rel_diff": -0.00011374398482205276,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.04119268 (outputs/pathA_asis/targets_asis.csv, n=17706). Path B shortcut (shipped RData): 0.0396254923258815 (n=17511). Route A n=17511, t=7.20964, df=17509, p=5.839e-13."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Nonparametric bootstrap of Pearson r on pubdef (pub_def == 1), 1000 reps, seed 20261009, percentile 95% CI",
+   "ran": true,
+   "estimate": 0.162792932703875,
+   "se_or_ci": "SE 0.0492503; 95% CI [0.0726229, 0.259648]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "n=3811; full-sample r; bootstrap SE and percentile CI"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on disputes or secret_alliances within pubdef, rerun cor.test",
+   "ran": true,
+   "estimate": 0.0110990087096805,
+   "se_or_ci": "95% CI [-0.0211845, 0.0433594]",
+   "p_value": 0.500423902747658,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "n=3688, dropped=123; dropped |z|>3: on disputes 64, on secret_alliances 66"
+  },
+  {
+   "id": "R_c",
+   "description": "OLS disputes ~ secret_alliances on pubdef with year-clustered HC1 SE (sandwich::vcovCL)",
+   "ran": true,
+   "estimate": 0.056214772173192,
+   "se_or_ci": "SE 0.0201759; 95% CI [0.0166581, 0.0957714]",
+   "p_value": 0.00535891518384607,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "n=3811; OLS slope; clusters (years) = 192; conventional OLS SE 0.00552048 p 4.79e-24; t-based CI with df=3809"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "analysis_data_creation.R",
+   "line": 82,
+   "description": "`disputes` is meant to count MIDs initiated against the country (comment line 75: 'number of disputes initiated against'; paper: 'MIDs initiated against that country'), but lines 81-82 keep rows where the focal country is stateb and dyad_rolea == 3, i.e. state A (the partner) is the target, so the focal country is the dyadic initiator. The variable counts disputes the country initiated.",
+   "evidence": "Dyadic MID 4.02 is directed (every dyad in both orders: TRUE); codebook: DYAD_ROLEA 1=Initiator, 3=Target of dyadic MID. Of the 5168 rows counted, 5163 have a mirror row coding the focal state as dyadic initiator (dyad_rolea==1) and 5 as target. Country-years where disputes differs from the focal-as-initiator count: 14 of 17511 (cor 0.9977); from the focal-as-target count: 3541 (cor 0.2911). Example MID 2 (USA rolea=1 primary initiator vs UK, 1902-1903, outputs/code_review_example_mid2.csv): disputes USA 1902 = 8, UK 1902 = 2. Diagnostic (not pre-registered) M2 with focal-as-target counting: r = 0.1214 [0.0900, 0.1526], n=3811; first dyad-year only: r = 0.1111 [0.0797, 0.1424] (outputs/code_review_diagnostic_correlations.csv)."
+  },
+  {
+   "file": "analysis_data_creation.R",
+   "line": 81,
+   "description": "Disputes are matched on strtyr (MID start year) but the dyadic file has one row per dyad-year, so a dispute lasting k calendar years is counted k times in its start year.",
+   "evidence": "Of the 5168 rows with dyad_rolea == 3, 1620 have durindx > 1 (second or later dyad-year) and are still counted in strtyr. Example MID 2 (1902-1903): 2 rows counted for USA in 1902. Diagnostic M2 as coded but first dyad-year only: r = 0.1292 (outputs/code_review_diagnostic_correlations.csv)."
+  }
+ ],
+ "env_fixes": [
+  "diffs/run_pathA_faketime_date.diff: peacesciencer 1.1.0 create_stateyears(mry=TRUE) ends the frame at current year - 1; run unchanged code under libfaketime at 2025-05-06 (authors' LOG.pdf date) to get the authors' 1816-2024 frame (17511 rows). No authors' file edited."
+ ],
+ "proposed_class": "A",
+ "class_reason": "With the clock set to the authors' run date, the unchanged code reproduces all five targets to the paper's rounding (identical to LOG.pdf and to the shipped RData). Run as-is in 2026, T1-T3 still match exactly and T4/T5 drift (date-dependent state-year frame) but stay within 5% with the same conclusion.",
+ "confidence": "medium",
+ "confidence_reason": "Numbers matched by script and the shortcut and full routes agree, but one environment fix (system date) was needed, the CI digits (T2, T3, T5) could not be read directly from the paper by B, and code review found that the dispute variable does not measure what the text describes.",
+ "time_minutes": 18,
+ "uncertainties": [
+  "CI digits for T2, T3, T5 could not be read directly from the paper by Agent B: the Wiley HTML fetched via web_fetch drops the bracketed CI math, curl got HTTP 403 (Cloudflare), the PDF fetch failed, and the audit browser hit a full-page Cloudflare interstitial (2026-10-09). The paper_value for these targets is therefore as copied in PREREG.md (from indexed text, consistent with the authors' LOG.pdf), not independently verified by B. The coefficients .05441 and .1628 were seen by B in the Wiley HTML text.",
+  "Path A of record needed an environment fix: the system clock was set to 2025-05-06 with libfaketime because peacesciencer 1.1.0 create_stateyears() ends the frame at current year minus 1. Run as-is in 2026, M2 (T1-T3) is unchanged but M1 (T4, T5) differs (see targets notes). Choosing the authors' LOG.pdf date as the clock is a judgement; any date in 2025 gives the same frame.",
+  "stevemisc (peacesciencer dependency) was installed at the current CRAN version (see environment.txt); the authors' version is not recorded. It did not matter in practice: the rebuilt d is identical column by column to the shipped d.",
+  "The two code-review bugs (dispute direction, multi-year counting) are judged from the dyadic MID 4.02 codebook and the data; the authors' intended measure is taken from their own code comment (line 75 'number of disputes initiated against', line 84 'number of mids this state was target of') and the paper text ('MIDs initiated against that country'). Diagnostic correlations with the alternative counts are not pre-registered and are reported only as evidence of size.",
+  "R_b (outlier exclusion) loses significance; whether that reflects fragility or simply the heavy-tailed count outcome is a matter of interpretation and is not judged here.",
+  "During the run, the tool environment printed names of files being written by other agents (including Agent A's folder for this paper). Agent B did not open, list or read any of them; the overlap in approach (faketime, MID direction check) was arrived at independently from the code and data."
+ ],
+ "supplementary_notes": {
+  "S1": "pub_def >= 1: r=0.0972, 95% CI [0.0763, 0.1181], p=1.29e-19, n=8645",
+  "S2": "pub_def == 1 and year <= 2014: r=0.1621, 95% CI [0.1302, 0.1937], p=1.11e-22, n=3611",
+  "rebuilt_vs_shipped_d": "rebuilt 17511x9 vs shipped 17511x9; per-column identical: year=TRUE, state=TRUE, defense=TRUE, secret=TRUE, secret_def=TRUE, pub_def=TRUE, statenme=TRUE, disputes=TRUE, secret_alliances=TRUE",
+  "diagnostics_file": "outputs/code_review_diagnostic_correlations.csv (not pre-registered)"
+ },
+ "code_review_observations": [
+  {
+   "item": "PREREG S1 / code uses pub_def == 1 (replication.R line 24) while the text says 'member of a public defensive alliance'; pub_def is a count",
+   "decision": "undeterminable",
+   "reason": "Code and text disagree and no document states the choice. Using == 1 keeps only country-years with exactly one fully public defensive alliance. S1 (pub_def >= 1) result is in results.json supplementary_notes and outputs/robustness_results.csv."
+  },
+  {
+   "item": "PREREG: M1 text says 'defensive secret alliances' and 'sum the total number of MIDs in a given year'; code uses all secret alliances (pubsecr == 2) at country-year level",
+   "decision": "undeterminable (text-code mismatch, not a code bug)",
+   "reason": "The code produces exactly the reported number, so the number comes from the coded design. Diagnostics in outputs/code_review_diagnostic_correlations.csv: using defensive secret alliances changes little; aggregating to system-year level (the text's description) gives a negative, non-significant correlation."
+  },
+  {
+   "item": "PREREG: text says MIDs 5.0, code uses dyadic MID 4.02",
+   "decision": "documented choice",
+   "reason": "README and code comment (line 69) name dyadic MID 4.02; its codebook says it builds almost entirely on MID 5.01. Wording in the text is loose, not a bug."
+  },
+  {
+   "item": "PREREG: secret_alliances sums memberships (an alliance with k members counted k times), analysis_data_creation.R lines 32 and 109",
+   "decision": "undeterminable, minor",
+   "reason": "Not documented either way. Yearly membership counts and distinct secret alliance counts are highly correlated (outputs/code_review_facts.csv) and the diagnostic M2 with distinct counts is similar (outputs/code_review_diagnostic_correlations.csv)."
+  },
+  {
+   "item": "PREREG: replication.R comment for test 2 describes a different correlation",
+   "decision": "not a bug",
+   "reason": "Comment only; the code matches the paper's sentence."
+  },
+  {
+   "item": "PREREG: README names AJPS_rep.RData and codebook.pdf, Dataverse has AJPS_analysis_data.RData and no project codebook",
+   "decision": "documentation gap, not a bug",
+   "reason": "The RData shipped is the analysis data and is identical to the rebuilt d; the missing project codebook does not block reproduction."
+  },
+  {
+   "item": "PREREG S2: zero-filled disputes after 2014 (MID 4.02 ends 2014) and zero secret alliances after 2018",
+   "decision": "documented choice with a coverage limitation",
+   "reason": "Comment at lines 95-98 says missing values are true zeros; for 2015-2018 country-years this is a coverage gap rather than observed zeros. S2 (year <= 2014) leaves M2 essentially unchanged (results.json supplementary_notes)."
+  },
+  {
+   "item": "B finding: disputes counts MIDs the focal state initiated, not MIDs initiated against it (analysis_data_creation.R lines 81-82)",
+   "decision": "bug",
+   "reason": "See bugs[0]."
+  },
+  {
+   "item": "B finding: dispute rows matched on start year count every dyad-year of a multi-year MID in the start year (line 81)",
+   "decision": "bug",
+   "reason": "See bugs[1]."
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+
+	Pearson's product-moment correlation
+
+data:  d$secret_alliances and d$disputes
+t = 7.448, df = 17704, p-value = 9.915e-14
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.04119268 0.07056004
+sample estimates:
+       cor 
+0.05588845 
+
+[1] "Test that appears on page 25 of the manuscript."
+
+	Pearson's product-moment correlation
+
+data:  d$secret_alliances and d$disputes
+t = 7.448, df = 17704, p-value = 9.915e-14
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.04119268 0.07056004
+sample estimates:
+       cor 
+0.05588845 
+
+[1] "Test that appears on page 26 of the manuscript."
+
+	Pearson's product-moment correlation
+
+data:  pubdef$secret_alliances and pubdef$disputes
+t = 10.183, df = 3809, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1317231 0.1935433
+sample estimates:
+      cor 
+0.1627929 
+
+            route             test     n                  r             ci_low
+1 pathA_clock2026     M1_test1_all 17706 0.0558884471811041 0.0411926800511687
+2 pathA_clock2026 M2_test2_pubdef1  3811 0.1627929327038753 0.1317230589980304
+             ci_high                 t    df                    p
+1 0.0705600385489711  7.44795542212353 17704 9.91526555798942e-14
+2 0.1935432705141345 10.18294501484725  3809 4.78962099595052e-24
+progress lines: 29839

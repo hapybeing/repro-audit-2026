@@ -1,0 +1,35 @@
+Loading required package: zoo
+
+Attaching package: ‘zoo’
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+     id    estimate          se        ci_lo       ci_hi       p_value    n
+R_a R_a 0.162792933 0.049250322  0.072622908 0.259648050            NA 3811
+R_b R_b 0.011099009          NA -0.021184488 0.043359384 5.0042390e-01 3688
+R_c R_c 0.056214772 0.020175935  0.016658097 0.095771447 5.3589152e-03 3811
+S1   S1 0.097239741          NA  0.076315885 0.118077992 1.2881416e-19 8645
+S2   S2 0.162082347          NA  0.130152185 0.193676664 1.1115869e-22 3611
+    n_dropped
+R_a        NA
+R_b       123
+R_c        NA
+S1         NA
+S2         NA
+                                                                                                     note
+R_a                                                         full-sample r; bootstrap SE and percentile CI
+R_b                                                 dropped |z|>3: on disputes 64, on secret_alliances 66
+R_c OLS slope; clusters (years) = 192; conventional OLS SE 0.00552048 p 4.79e-24; t-based CI with df=3809
+S1                                                                                           pub_def >= 1
+S2                                                                          pub_def == 1 and year <= 2014
+
+t test of coefficients:
+
+                 Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)      0.166891   0.043769  3.8130 0.0001394 ***
+secret_alliances 0.056215   0.020176  2.7862 0.0053589 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

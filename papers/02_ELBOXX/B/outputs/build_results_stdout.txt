@@ -1,0 +1,118 @@
+{
+ "paper_id": "02_ELBOXX",
+ "agent": "B",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Main result (M2): Pearson correlation between total active secret alliances in the system-year and MIDs initiated against the country, country-years with a public defensive alliance (code: pub_def == 1). Paper DOI https://doi.org/10.1111/ajps.12997; produced by replication.R test2 (https://doi.org/10.7910/DVN/ELBOXX)",
+   "paper_value": 0.1628,
+   "paper_rounding_decimals": 4,
+   "reproduced_value": 0.162792932703875,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": -7.06729612501289e-06,
+   "rel_diff": -4.3410909858801534e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.1627929 (outputs/pathA_asis/targets_asis.csv, n=3811). Path B shortcut (shipped RData): 0.162792932703875 (n=3811). Route A n=3811, t=10.1829, df=3809, p=4.79e-24."
+  },
+  {
+   "id": "T2",
+   "description": "Lower bound of the 95% CI for the M2 correlation (replication.R test2, conf.int[1])",
+   "paper_value": 0.1317,
+   "paper_rounding_decimals": 4,
+   "reproduced_value": 0.13172305899803,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": 2.3058998029984457e-05,
+   "rel_diff": 0.0001750873047075509,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.1317231 (outputs/pathA_asis/targets_asis.csv, n=3811). Path B shortcut (shipped RData): 0.13172305899803 (n=3811). Route A n=3811, t=10.1829, df=3809, p=4.79e-24."
+  },
+  {
+   "id": "T3",
+   "description": "Upper bound of the 95% CI for the M2 correlation (replication.R test2, conf.int[2])",
+   "paper_value": 0.1935,
+   "paper_rounding_decimals": 4,
+   "reproduced_value": 0.193543270514135,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": 4.3270514134996496e-05,
+   "rel_diff": 0.0002236202280878372,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.1935433 (outputs/pathA_asis/targets_asis.csv, n=3811). Path B shortcut (shipped RData): 0.193543270514135 (n=3811). Route A n=3811, t=10.1829, df=3809, p=4.79e-24."
+  },
+  {
+   "id": "T4",
+   "description": "Secondary result (M1): Pearson correlation between yearly number of secret alliances and disputes, all country-years (replication.R test1)",
+   "paper_value": 0.05441,
+   "paper_rounding_decimals": 5,
+   "reproduced_value": 0.0544050278794657,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": -4.972120534296742e-06,
+   "rel_diff": -9.13824762781978e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.05588845 (outputs/pathA_asis/targets_asis.csv, n=17706). Path B shortcut (shipped RData): 0.0544050278794657 (n=17511). Route A n=17511, t=7.20964, df=17509, p=5.839e-13."
+  },
+  {
+   "id": "T5",
+   "description": "Lower bound of the confidence interval for the M1 correlation (replication.R test1, conf.int[1])",
+   "paper_value": 0.03963,
+   "paper_rounding_decimals": 5,
+   "reproduced_value": 0.0396254923258815,
+   "source_file": "outputs/targets_extracted.csv (route A_fixed_date2025; log in outputs/pathA_fixed/replication.log)",
+   "abs_diff": -4.507674118497951e-06,
+   "rel_diff": -0.00011374398482205276,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Path A of record = authors' code unchanged, clock set to 2025-05-06 (env fix). As-is run with 2026 clock: 0.04119268 (outputs/pathA_asis/targets_asis.csv, n=17706). Path B shortcut (shipped RData): 0.0396254923258815 (n=17511). Route A n=17511, t=7.20964, df=17509, p=5.839e-13."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Nonparametric bootstrap of Pearson r on pubdef (pub_def == 1), 1000 reps, seed 20261009, percentile 95% CI",
+   "ran": true,
+   "estimate": 0.162792932703875,
+   "se_or_ci": "SE 0.0492503; 95% CI [0.0726229, 0.259648]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "n=3811; full-sample r; bootstrap SE and percentile CI"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on disputes or secret_alliances within pubdef, rerun cor.test",
+   "ran": true,
+   "estimate": 0.0110990087096805,
+   "se_or_ci": "95% CI [-0.0211845, 0.0433594]",
+   "p_value": 0.500423902747658,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "n=3688, dropped=123; dropped |z|>3: on disputes 64, on secret_alliances 66"
+  },
+  {
+   "id": "R_c",
+   "description": "OLS disputes ~ secret_alliances on pubdef with year-clustered HC1 SE (sandwich::vcovCL)",
+   "ran": true,
+   "estimate": 0.056214772173192,
+   "se_or_ci": "SE 0.0201759; 95% CI [0.0166581, 0.0957714]",
+   "p_value": 0.00535891518384607,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "n=3811; OLS slope; clusters (years) = 192; conventional OLS SE 0.00552048 p 4.79e-24; t-based CI with df=3809"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "analysis_data_creation.R",
+   "line": 82,
+   "description": "`disputes` is meant to count MIDs initiated

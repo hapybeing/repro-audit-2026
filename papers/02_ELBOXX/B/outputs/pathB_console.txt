@@ -1,0 +1,36 @@
+objects in RData: .Random.seed d 
+'data.frame':	17511 obs. of  9 variables:
+ $ year            : int  1816 1816 1816 1816 1816 1816 1816 1816 1816 1816 ...
+ $ state           : num  2 275 271 337 390 325 640 255 365 235 ...
+ $ defense         : num  0 1 1 1 0 0 0 1 1 0 ...
+ $ secret          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ secret_def      : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ pub_def         : num  0 1 1 1 0 0 0 2 1 0 ...
+ $ statenme        : chr  "United States of America" "Hesse Grand Ducal" "Wuerttemburg" "Tuscany" ...
+ $ disputes        : int  1 0 0 0 0 0 0 0 0 0 ...
+ $ secret_alliances: num  0 0 0 0 0 0 0 0 0 0 ...
+
+	Pearson's product-moment correlation
+
+data:  d$secret_alliances and d$disputes
+t = 7.2096, df = 17509, p-value = 5.839e-13
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.03962549 0.06916076
+sample estimates:
+       cor 
+0.05440503 
+
+
+	Pearson's product-moment correlation
+
+data:  pubdef$secret_alliances and pubdef$disputes
+t = 10.183, df = 3809, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1317231 0.1935433
+sample estimates:
+      cor 
+0.1627929 
+
+range(year): 1816 2024  nrow: 17511  n pub_def==1: 3811  n pub_def>=1: 8645  max pub_def: 14 

@@ -1,0 +1,84 @@
+                                                                                 key
+                                                                         rebuilt_dim
+                                                                         shipped_dim
+                                                                  identical_col_year
+                                                                 identical_col_state
+                                                               identical_col_defense
+                                                                identical_col_secret
+                                                            identical_col_secret_def
+                                                               identical_col_pub_def
+                                                              identical_col_statenme
+                                                              identical_col_disputes
+                                                      identical_col_secret_alliances
+                                       disputes_equals_rows_stateb_focal_dyad_rolea3
+                                      disputes_equals_rows_focal_is_dyadic_initiator
+                                         disputes_equals_rows_focal_is_dyadic_target
+                                    n_countryyears_disputes_ne_focal_initiator_count
+                                       n_countryyears_disputes_ne_focal_target_count
+                                             cor_disputes_with_focal_initiator_count
+                                                cor_disputes_with_focal_target_count
+                 counted_rows_whose_mirror_row_has_focal_as_initiator(dyad_rolea==1)
+ counted_rows_whose_mirror_row_has_focal_as_target(dyad_rolea==3, unmirrored coding)
+                                             share_rows_dyadic_roles_are_1_or_3_only
+                                          dataset_is_directed_every_dyad_both_orders
+                                                                   disputes_USA_1902
+                                                                    disputes_UK_1902
+                                                                  rows_counted_total
+                                                       rows_counted_with_durindx_gt1
+                                                                        max_year_mid
+                                                                max_year_secret_in_d
+                                                         max_year_any_alliance_in_sy
+                                corr_yearly_memberships_vs_distinct_secret_alliances
+             value
+           17511x9
+           17511x9
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+              TRUE
+             FALSE
+             FALSE
+                14
+              3541
+ 0.997682566216856
+ 0.291114634877469
+              5163
+                 5
+                 1
+              TRUE
+                 8
+                 2
+              5168
+              1620
+              2014
+              2018
+              2018
+ 0.992265401545309
+                                                                                            label
+                                                                          M2 as coded (reference)
+                                M2 disputes = focal is dyadic target, rows per dyad-year as coded
+                                       M2 disputes = focal is dyadic target, first dyad-year only
+                                                             M2 as coded but first dyad-year only
+                                                        M2 x = distinct secret alliances per year
+                                                                          M1 as coded (reference)
+                                                             M1 disputes = focal is dyadic target
+                               M1 x = defensive secret alliance memberships per year (paper text)
+                                              M1 x = distinct defensive secret alliances per year
+ M1 at system-year level (yearly sums, paper text 'sum the total number of MIDs in a given year')
+     n          r      ci_lo     ci_hi           p
+  3811  0.1627929  0.1317231 0.1935433 4.78962e-24
+  3811  0.1214115  0.0900078 0.1525741 5.45626e-14
+  3811  0.1111498  0.0796803 0.1423980 5.95496e-12
+  3811  0.1291986  0.0978492 0.1602917 1.17718e-15
+  3811  0.1685615  0.1375470 0.1992459 1.09605e-25
+ 17511  0.0544050  0.0396255 0.0691608 5.83891e-13
+ 17511  0.0461526  0.0313626 0.0609224 9.95363e-10
+ 17511  0.0555473  0.0407694 0.0703010 1.89951e-13
+ 17511  0.0586087  0.0438353 0.0733565 8.37614e-15
+   209 -0.0952867 -0.2280522 0.0409576 1.69937e-01

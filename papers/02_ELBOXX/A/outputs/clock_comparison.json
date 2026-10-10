@@ -1,0 +1,144 @@
+{
+ "paper_id": "02_ELBOXX",
+ "description": "Path A (authors' replication.R unchanged) run twice: process clock set to the authors' run date vs real clock.",
+ "generated_by": "papers/02_ELBOXX/A/scripts/clock_comparison.py",
+ "generated_at_utc": "2026-10-10T06:24:43+00:00",
+ "sources": {
+  "authors_run_date": [
+   "outputs/targets_pathA_faketime20250506.csv",
+   "outputs/meta_pathA_faketime20250506.csv"
+  ],
+  "as_is": [
+   "outputs/targets_pathA_clock2026.csv",
+   "outputs/meta_pathA_clock2026.csv"
+  ],
+  "paper_values": "papers/02_ELBOXX/targets.json"
+ },
+ "runs": {
+  "authors_run_date": {
+   "sys_date": "2025-05-06",
+   "nrow_d": 17511,
+   "year_range": [
+    1816,
+    2024
+   ],
+   "how": "faketime '2025-05-06 13:14:00' Rscript scripts/run_pathA.R"
+  },
+  "as_is": {
+   "sys_date": "2026-10-09",
+   "nrow_d": 17706,
+   "year_range": [
+    1816,
+    2025
+   ],
+   "how": "Rscript scripts/run_pathA.R (real clock)"
+  }
+ },
+ "targets": [
+  {
+   "id": "T1",
+   "test": "M2_test2_pubdef1",
+   "statistic": "r",
+   "paper_value": 0.1628,
+   "paper_rounding_decimals": 4,
+   "value_authors_run_date_20250506": 0.162792932703875,
+   "value_as_is_clock_20261009": 0.162792932703875,
+   "rel_diff_authors_date_vs_paper": -4.3410909858801534e-05,
+   "rel_diff_as_is_vs_paper": -4.3410909858801534e-05,
+   "rel_diff_as_is_vs_authors_date": 0.0,
+   "match_to_rounding_authors_date": true,
+   "match_to_rounding_as_is": true,
+   "within_5pct_as_is": true,
+   "n_authors_date": 3811,
+   "n_as_is": 3811,
+   "p_authors_date": 4.78962099595052e-24,
+   "p_as_is": 4.78962099595052e-24
+  },
+  {
+   "id": "T2",
+   "test": "M2_test2_pubdef1",
+   "statistic": "ci_low",
+   "paper_value": 0.1317,
+   "paper_rounding_decimals": 4,
+   "value_authors_run_date_20250506": 0.13172305899803,
+   "value_as_is_clock_20261009": 0.13172305899803,
+   "rel_diff_authors_date_vs_paper": 0.0001750873047075509,
+   "rel_diff_as_is_vs_paper": 0.0001750873047075509,
+   "rel_diff_as_is_vs_authors_date": 0.0,
+   "match_to_rounding_authors_date": true,
+   "match_to_rounding_as_is": true,
+   "within_5pct_as_is": true,
+   "n_authors_date": 3811,
+   "n_as_is": 3811,
+   "p_authors_date": 4.78962099595052e-24,
+   "p_as_is": 4.78962099595052e-24
+  },
+  {
+   "id": "T3",
+   "test": "M2_test2_pubdef1",
+   "statistic": "ci_high",
+   "paper_value": 0.1935,
+   "paper_rounding_decimals": 4,
+   "value_authors_run_date_20250506": 0.193543270514135,
+   "value_as_is_clock_20261009": 0.193543270514135,
+   "rel_diff_authors_date_vs_paper": 0.0002236202280878372,
+   "rel_diff_as_is_vs_paper": 0.0002236202280878372,
+   "rel_diff_as_is_vs_authors_date": 0.0,
+   "match_to_rounding_authors_date": true,
+   "match_to_rounding_as_is": true,
+   "within_5pct_as_is": true,
+   "n_authors_date": 3811,
+   "n_as_is": 3811,
+   "p_authors_date": 4.78962099595052e-24,
+   "p_as_is": 4.78962099595052e-24
+  },
+  {
+   "id": "T4",
+   "test": "M1_test1_all",
+   "statistic": "r",
+   "paper_value": 0.05441,
+   "paper_rounding_decimals": 5,
+   "value_authors_run_date_20250506": 0.0544050278794657,
+   "value_as_is_clock_20261009": 0.0558884471811041,
+   "rel_diff_authors_date_vs_paper": -9.13824762781978e-05,
+   "rel_diff_as_is_vs_paper": 0.027172342971955483,
+   "rel_diff_as_is_vs_authors_date": 0.027266217102671263,
+   "match_to_rounding_authors_date": true,
+   "match_to_rounding_as_is": false,
+   "within_5pct_as_is": true,
+   "n_authors_date": 17511,
+   "n_as_is": 17706,
+   "p_authors_date": 5.8389077915719e-13,
+   "p_as_is": 9.91526555798942e-14
+  },
+  {
+   "id": "T5",
+   "test": "M1_test1_all",
+   "statistic": "ci_low",
+   "paper_value": 0.03963,
+   "paper_rounding_decimals": 5,
+   "value_authors_run_date_20250506": 0.0396254923258815,
+   "value_as_is_clock_20261009": 0.0411926800511687,
+   "rel_diff_authors_date_vs_paper": -0.00011374398482205276,
+   "rel_diff_as_is_vs_paper": 0.03943174491972491,
+   "rel_diff_as_is_vs_authors_date": 0.03954998747772234,
+   "match_to_rounding_authors_date": true,
+   "match_to_rounding_as_is": false,
+   "within_5pct_as_is": true,
+   "n_authors_date": 17511,
+   "n_as_is": 17706,
+   "p_authors_date": 5.8389077915719e-13,
+   "p_as_is": 9.91526555798942e-14
+  }
+ ],
+ "summary": {
+  "n_targets_match_to_rounding_authors_date": 5,
+  "n_targets_match_to_rounding_as_is": 3,
+  "targets_drifting_as_is": [
+   "T4",
+   "T5"
+  ],
+  "max_abs_rel_diff_as_is_vs_paper": 0.03943174491972491,
+  "all_within_5pct_as_is": true
+ }
+}

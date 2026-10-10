@@ -1,0 +1,11 @@
+# 02_ELBOXX
+- Paper: The logic of secret alliances
+- Journal: American Journal of Political Science (2025)
+- Paper DOI: https://doi.org/10.1111/ajps.12997
+- Dataset DOI: https://doi.org/10.7910/DVN/ELBOXX
+- Dataset title: Replication Data for: The Logic of Secret Alliances
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: custom terms: This dataset is made available with limited information on how it can be used. You may wish to communicate with the Cont
+- Dataset size (bytes): 4038909
+- Audit position 2, batch 1

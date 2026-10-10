@@ -1,0 +1,14 @@
+# sha256 of files downloaded 2026-10-09 (IST) from https://dataverse.harvard.edu/api/access/datafile/<id> (?format=original for the 3 ingested tables). md5 of every file matched the Dataverse file list. Raw data kept in scratch only (licence).
+4cec4ad954551714c01b51e153275ab00d14cfef3c95d6cc1b479be955d49390  AJPS_analysis_data.RData
+3a81ccc25a62f1a31c7d3404389935ced50831abea5e848408745ad1a1bf6126  AJPS_rep_secretally.Rproj
+559b5f17b333656630fc2d8216832a9e52642ac7fa3b6c4e138b3bf586dfaf82  analysis_data_creation.R
+eafd146fa5c5bc2737ae829288c87d01c990a55fbc82dcc2dc08b94c0d7b5b7d  atop5_1a.csv
+187ce932d5b77002f795d849b67b5b2dd6baa170304bed58663c4194e240f929  atop5_1sy.csv
+10143c69d152cc4a4360c9056faa869b401251dbc30d86c01e90619cfb47add7  atop_5_1_codebook.pdf
+bad6c6f81231f5ae32ec95a2d8bcbb4f5a356c596db9a4fc256c9a9ffdd8dcbf  dyadic_mid_4.02.csv
+f3963d8abec03d11417d653b2fddbd67b99891b1d28f55146b995be6dafd8c7e  Dyadic MID Codebook V4.0.pdf
+b80514416ca7df32554dd4e7a395133230cd8f95a751eb2692f4160cb11e6a68  LOG.pdf
+63f249236865c26e49cef699c34b053cdc1572147d1f679633ecd08e840ac82a  README.txt
+08865dff479a7589fc7f65237105d875eb559c64277c40094680ae12f06b7cdb  replication.R
+5de85b9cfa9e92a2182e4f64d458bf9273974c941d00b22ab665381ed0ab4416  secret_time.pdf
+e3321b51326170fed397b82756387fb86bd789f46e7971dd7da9614eeacca7db  visualization.R

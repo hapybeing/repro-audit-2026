@@ -1,0 +1,5 @@
+Source: https://onlinelibrary.wiley.com/doi/full/10.1111/ajps.12997 (read 2026-10-10 via web_fetch fallback; direct curl/PDF blocked by Cloudflare)
+Verbatim, from the article front matter:
+"Verification Materials : The materials required to verify the computational reproducibility of the results, procedures, and analyses in this article are available on the American Journal of Political Science Dataverse within the Harvard AJPS Dataverse Network, at: <https://doi.org/10.7910/DVN/ELBOXX> ."
+"The Cornell Center for Social Sciences verified that the data and replication code submitted to the AJPS Dataverse replicates the numerical results reported in the main text of this article."
+Other repository mentions in the HTML text (OSF, GitHub, Zenodo, ICPSR, "on request"): none found.

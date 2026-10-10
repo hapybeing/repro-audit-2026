@@ -1,0 +1,177 @@
+{
+  "label": "EXPLORATORY, NOT PRE-REGISTERED",
+  "paper_id": "02_ELBOXX",
+  "purpose": "Reviewer check: is the M2 correlation (T1) robust or driven by the upper tail of skewed count variables?",
+  "added": "2026-10-10 (IST), after pre-registered results were known; does not change R_a/R_b/R_c or the class",
+  "generated_by": "papers/02_ELBOXX/A/exploratory/exploratory_outlier.R",
+  "input": {
+    "file": "d_pathA_faketime20250506.rds",
+    "description": "run-of-record d (Path A, faketime 2025-05-06), identical to shipped d",
+    "sample": "pub_def == 1",
+    "x": "secret_alliances",
+    "y": "disputes"
+  },
+  "r_version": "R version 4.5.0 (2025-04-11)",
+  "run_time": "2026-10-10 06:25:30 UTC",
+  "reference_pearson_full": {
+    "n": 3811,
+    "estimate": 0.162792932703875,
+    "p": 4.78962099595052e-24,
+    "ci_low": 0.13172305899803,
+    "ci_high": 0.193543270514135,
+    "ci_method": "Fisher z (cor.test)"
+  },
+  "skewness": {
+    "secret_alliances": {
+      "n": 3811,
+      "mean": 2.26843348202571,
+      "sd": 3.57662257097302,
+      "min": 0,
+      "max": 40,
+      "quantiles": {
+        "p01": 0,
+        "p25": 0,
+        "p50": 2,
+        "p75": 2,
+        "p95": 5,
+        "p99": 21
+      },
+      "share_zero": 0.261873524009446,
+      "n_distinct": 23,
+      "skewness_g1": 6.21318026560097,
+      "skewness_G1_adjusted": 6.21562698825276
+    },
+    "disputes": {
+      "n": 3811,
+      "mean": 0.294410915770139,
+      "sd": 1.23505989871489,
+      "min": 0,
+      "max": 28,
+      "quantiles": {
+        "p01": 0,
+        "p25": 0,
+        "p50": 0,
+        "p75": 0,
+        "p95": 2,
+        "p99": 4.90000000000009
+      },
+      "share_zero": 0.865127263185516,
+      "n_distinct": 19,
+      "skewness_g1": 10.4923475636627,
+      "skewness_G1_adjusted": 10.4964794032935
+    },
+    "skewness_definition": "g1 = m3 / m2^1.5 (population moments); G1 = g1 * sqrt(n(n-1))/(n-2)"
+  },
+  "checks": {
+    "spearman_full": {
+      "n": 3811,
+      "estimate": 0.0489665778439274,
+      "p": 0.00249711783600502,
+      "ci_low": 0.0163039640171041,
+      "ci_high": 0.0815247956658736,
+      "ci_method": "Fisher z with Fieller-Hartley-Pearson SE sqrt(1.06/(n-3))",
+      "p_method": "cor.test(method='spearman', exact=FALSE): t approximation, ties present",
+      "bootstrap": {
+        "B": 2000,
+        "seed": 20261010,
+        "ci_low": 0.0156962402613072,
+        "ci_high": 0.0823688732990104,
+        "se": 0.0165461303952114
+      },
+      "n_ties_note": "x has 23 distinct values, y has 19 distinct values"
+    },
+    "pearson_winsor_1_99": {
+      "n": 3811,
+      "estimate": 0.12373950597947,
+      "p": 1.77694583207677e-14,
+      "ci_low": 0.0923516157697013,
+      "ci_high": 0.154881726715352,
+      "ci_method": "Fisher z (cor.test)",
+      "cutoffs": {
+        "secret_alliances": {
+          "p01": 0,
+          "p99": 21
+        },
+        "disputes": {
+          "p01": 0,
+          "p99": 4.90000000000009
+        }
+      },
+      "n_values_changed": {
+        "secret_alliances": 34,
+        "disputes": 39
+      },
+      "skewness_g1_after": {
+        "secret_alliances": 4.35413049953461,
+        "disputes": 3.93545565618377
+      }
+    },
+    "pearson_log1p_both": {
+      "n": 3811,
+      "estimate": 0.088259485841378,
+      "p": 4.8311864480852e-08,
+      "ci_low": 0.0566675625209177,
+      "ci_high": 0.11967484370124,
+      "ci_method": "Fisher z (cor.test)",
+      "transform": "log(x+1) on both variables",
+      "skewness_g1_after": {
+        "secret_alliances": 0.370522662762932,
+        "disputes": 3.33353418805654
+      }
+    },
+    "pearson_log1p_disputes_only": {
+      "n": 3811,
+      "estimate": 0.160956182802454,
+      "p": 1.54956573496897e-23,
+      "ci_low": 0.12986915291215,
+      "ci_high": 0.191727089245016,
+      "ci_method": "Fisher z (cor.test)",
+      "transform": "log(disputes+1) only"
+    },
+    "pearson_log1p_secret_only": {
+      "n": 3811,
+      "estimate": 0.0796502985374618,
+      "p": 8.51030475441686e-07,
+      "ci_low": 0.0480210185397332,
+      "ci_high": 0.111120004067788,
+      "ci_method": "Fisher z (cor.test)",
+      "transform": "log(secret_alliances+1) only"
+    },
+    "Rb_decomposition": {
+      "x_only": {
+        "n": 3745,
+        "estimate": 0.00399578603623503,
+        "p": 0.806884578072787,
+        "ci_low": -0.0280371151402257,
+        "ci_high": 0.0360204889743849,
+        "ci_method": "Fisher z (cor.test)",
+        "rule": "drop |z|>3 on secret_alliances only",
+        "n_dropped": 66,
+        "min_secret_alliances_dropped": 13,
+        "n_distinct_years_dropped": 26,
+        "years_dropped": [1882, 1883, 1884, 1886, 1888, 1889, 1890, 1894, 1895, 1902, 1903, 1904, 1905, 1906, 1907, 1908, 1909, 1910, 1911, 1912, 1913, 1914, 1915, 1916, 1917, 1918],
+        "share_of_all_disputes_in_dropped_rows": 0.0935828877005348
+      },
+      "y_only": {
+        "n": 3747,
+        "estimate": 0.118147282965801,
+        "p": 4.01279319828585e-13,
+        "ci_low": 0.0864535884605076,
+        "ci_high": 0.149602076251403,
+        "ci_method": "Fisher z (cor.test)",
+        "rule": "drop |z|>3 on disputes only",
+        "n_dropped": 64
+      },
+      "either": {
+        "n": 3688,
+        "estimate": 0.0110990087096805,
+        "p": 0.500423902747658,
+        "ci_low": -0.0211844883298213,
+        "ci_high": 0.043359384159969,
+        "ci_method": "Fisher z (cor.test)",
+        "rule": "drop |z|>3 on either (same as pre-registered R_b, recomputed here for reference)",
+        "n_dropped": 123
+      }
+    }
+  }
+}

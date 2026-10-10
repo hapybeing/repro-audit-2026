@@ -1,0 +1,6 @@
+29839
+[1] "1  out of  11923  country-years completed."
+[1] "210  out of  210  country-years completed."
+  11923 out of  11923
+  17706 out of  17706
+    210 out of  210
