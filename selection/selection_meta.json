@@ -1,0 +1,12 @@
+{
+ "seed": 20261009,
+ "run_utc": "2026-10-09T15:28:16.652667+00:00Z",
+ "n_screened": 88,
+ "n_selected": 25,
+ "primary_subjects": [
+  "Chemistry",
+  "Computer and Information Science",
+  "Earth and Environmental Sciences",
+  "Social Sciences"
+ ]
+}

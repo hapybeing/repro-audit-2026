@@ -1,0 +1,13 @@
+{
+ "built_utc": "2026-10-09T15:16:33.292940Z",
+ "n_datasets": 8593,
+ "query_date_filter": "dateSort:[2023-01-01T00:00:00Z TO 2026-12-31T23:59:59Z]",
+ "content_types": {
+  "type/x-r-syntax": "R",
+  "text/x-r-notebook": "R",
+  "text/x-r-markdown": "R",
+  "text/x-python": "Python",
+  "text/x-python-script": "Python",
+  "application/x-ipynb+json": "Python"
+ }
+}
