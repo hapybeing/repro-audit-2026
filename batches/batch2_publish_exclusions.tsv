@@ -8,3 +8,4 @@ papers/09_4U8CTG/data_statement_raw/paper_pdftotext.txt	third-party article or s
 papers/09_4U8CTG/data_statement_raw/supplement_pdftotext.txt	third-party article or supplement copy (page image or full text); sha256 in batches/batch2_prereg_hashes.txt
 papers/08_SQRZR8/A/outputs/session_models.RData	R session image over 5 MB (55432522 bytes; holds model objects and the deposit data); regenerable from the deposit with the agent's scripts
 papers/08_SQRZR8/B/outputs/session_models.RData	R session image over 5 MB (55431165 bytes; holds model objects and the deposit data); regenerable from the deposit with the agent's scripts
+papers/10_6MLKJZ/data_statement_raw/supplement_pdf_transcript_2026-10-10.md	near-verbatim transcription of the third-party online appendix; removed from the tree after the freeze commit d3663e7, sha256 in batches/batch2_prereg_hashes.txt
