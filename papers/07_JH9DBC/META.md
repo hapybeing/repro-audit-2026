@@ -1,0 +1,11 @@
+# 07_JH9DBC
+- Paper: Guilty by association: Party effects of corruption-related prosecutions
+- Journal: Party Politics (2025)
+- Paper DOI: https://doi.org/10.1177/13540688251366827
+- Dataset DOI: https://doi.org/10.7910/DVN/JH9DBC
+- Dataset title: Replication Data for: "Guilty by association: Party effects of corruption-related prosecutions
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 222706
+- Audit position 7, batch 2

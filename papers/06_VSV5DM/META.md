@@ -1,0 +1,11 @@
+# 06_VSV5DM
+- Paper: Leadership in a Pandemic: State Legislator Constituent Outreach in Response to COVID-19
+- Journal: Political Research Quarterly (2024)
+- Paper DOI: https://doi.org/10.1177/10659129241301785
+- Dataset DOI: https://doi.org/10.7910/DVN/VSV5DM
+- Dataset title: Replication Data for: Leadership in a Pandemic: State Legislator Constituent Outreach in Response to COVID-19
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 728630
+- Audit position 6, batch 2

@@ -1,0 +1,11 @@
+            Supplementary material. The supplementary material for this article can be found at https://doi.org/10.1017/
+            S1755773926100575
+
+            Data availability statement. Data for Study 1 are drawn from the 2022 French Election Study (FES), available upon registration
+            at the Sciences Po ELIPSS repository: https://data.sciencespo.fr/dataverse/elipss.
+                The quantitative data and replication files for Study 2 are publicly available at the Harvard Dataverse: https://doi.org/10.
+            7910/DVN/4U8CTG. The replication files include a preprocessing script for waves 3 and 4 of the 2022 FES, required to
+            replicate the analyses for Study 1.
+                The qualitative data for Study 2 are not publicly available in order to protect respondents’ privacy and anonymity, but may
+            be obtained from the corresponding author upon reasonable request.
+

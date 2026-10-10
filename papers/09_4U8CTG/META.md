@@ -1,0 +1,11 @@
+# 09_4U8CTG
+- Paper: Blinded by out-group hatred: why does radical party entry fail to boost its voters’ satisfaction with democracy?
+- Journal: European Political Science Review (2026)
+- Paper DOI: https://doi.org/10.1017/s1755773926100575
+- Dataset DOI: https://doi.org/10.7910/DVN/4U8CTG
+- Dataset title: Replication Data for: Blinded by Out-group Hatred: Why Does Radical Party Entry Fail to Boost Its Voters’ Satisfaction with Democracy?
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 24029312
+- Audit position 9, batch 2

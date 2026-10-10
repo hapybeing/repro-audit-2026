@@ -1,0 +1,1026 @@
+[
+ {
+  "utc": "2026-10-10T11:55:00Z",
+  "url": "https://data.sciencespo.fr/api/search?q=elipss_fes2022_v3&type=file&per_page=50",
+  "status": 200,
+  "count": 0,
+  "items": []
+ },
+ {
+  "utc": "2026-10-10T11:55:00Z",
+  "url": "https://data.sciencespo.fr/api/search?q=elipss_fes2022_cses_v4&type=file&per_page=50",
+  "status": 200,
+  "count": 0,
+  "items": []
+ },
+ {
+  "utc": "2026-10-10T11:55:01Z",
+  "url": "https://data.sciencespo.fr/api/search?q=French+Election+Study+2022&type=dataset&per_page=50",
+  "status": 200,
+  "count": 559,
+  "items": [
+   {
+    "name": "French Election Study 2022, Vague 5 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/DJRAYB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DJRAYB",
+    "published_at": "2026-07-03T13:27:31Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 4 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/W76IMT",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/W76IMT",
+    "published_at": "2026-07-03T13:27:30Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 3 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/DST7ZY",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DST7ZY",
+    "published_at": "2026-07-03T13:27:28Z"
+   },
+   {
+    "name": "French Election Study 2022 - Vague 2 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/3DSTMR",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/3DSTMR",
+    "published_at": "2026-07-03T13:27:10Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 1 (ELIPSS 2021)",
+    "global_id": "doi:10.21410/7E4/UQ55HB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/UQ55HB",
+    "published_at": "2026-07-03T13:27:08Z"
+   },
+   {
+    "name": "Candidatures - Élections législatives des 12 et 19 juin 2022",
+    "global_id": "doi:10.21410/7E4/ORAJI1",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/ORAJI1",
+    "published_at": "2025-03-18T15:06:07Z"
+   },
+   {
+    "name": "Résultats par circonscriptions - Élections législatives des 12 et 19 juin 2022",
+    "global_id": "doi:10.21410/7E4/0ANKCV",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/0ANKCV",
+    "published_at": "2025-03-18T15:02:21Z"
+   },
+   {
+    "name": "Candidatures - Élection présidentielle des 10 et 24 avril 2022",
+    "global_id": "doi:10.21410/7E4/FFNDJ5",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/FFNDJ5",
+    "published_at": "2025-03-18T14:56:04Z"
+   },
+   {
+    "name": "Résultats par cantons - Élection présidentielle des 10 et 24 avril 2022",
+    "global_id": "doi:10.21410/7E4/HAXGI0",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/HAXGI0",
+    "published_at": "2025-03-18T14:54:13Z"
+   },
+   {
+    "name": "Résultats par circonscriptions - Élection présidentielle des 10 et 24 avril 2022",
+    "global_id": "doi:10.21410/7E4/MBJIBW",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/MBJIBW",
+    "published_at": "2025-03-18T14:52:43Z"
+   },
+   {
+    "name": "Résultats par communes - Élection présidentielle des 10 et 24 avril 2022",
+    "global_id": "doi:10.21410/7E4/PPSOWN",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/PPSOWN",
+    "published_at": "2025-03-18T10:54:29Z"
+   },
+   {
+    "name": "Résultats par départements - Élection présidentielle des 10 et 24 avril 2022",
+    "global_id": "doi:10.21410/7E4/RADRL1",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/RADRL1",
+    "published_at": "2025-03-18T10:48:49Z"
+   },
+   {
+    "name": "Candidatures - Élections européennes du 9 juin 2024",
+    "global_id": "doi:10.21410/7E4/PCSLP8",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/PCSLP8",
+    "published_at": "2025-03-18T15:19:09Z"
+   },
+   {
+    "name": "Candidatures - Élections législatives des 10 et 17 juin 2012",
+    "global_id": "doi:10.21410/7E4/VULGNC",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/VULGNC",
+    "published_at": "2025-03-18T15:11:47Z"
+   },
+   {
+    "name": "Candidatures - Élections législatives des 11 et 18 juin 2017",
+    "global_id": "doi:10.21410/7E4/KLCLCP",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/KLCLCP",
+    "published_at": "2025-03-18T15:08:42Z"
+   },
+   {
+    "name": "Résultats par circonscriptions - Élections européennes du 9 juin 2024",
+    "global_id": "doi:10.21410/7E4/VIDXFM",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/VIDXFM",
+    "published_at": "2025-03-18T15:16:24Z"
+   },
+   {
+    "name": "Résultats par cantons - Élections européennes du 9 juin 2024",
+    "global_id": "doi:10.21410/7E4/HRYCWJ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/HRYCWJ",
+    "published_at": "2025-03-18T15:17:22Z"
+   },
+   {
+    "name": "Résultats par communes - Élections européennes du 9 juin 2024",
+    "global_id": "doi:10.21410/7E4/IXF9E1",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/IXF9E1",
+    "published_at": "2025-03-18T15:15:21Z"
+   },
+   {
+    "name": "Résultats par départements - Élections européennes du 9 juin 2024",
+    "global_id": "doi:10.21410/7E4/1CMUKQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/1CMUKQ",
+    "published_at": "2025-03-18T15:14:04Z"
+   },
+   {
+    "name": "Candidatures - Élections législatives des 30 juin et 7 juillet 2024",
+    "global_id": "doi:10.21410/7E4/K5CO76",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/K5CO76",
+    "published_at": "2025-03-18T15:00:27Z"
+   },
+   {
+    "name": "Résultats par circonscriptions - Élections législatives des 11 et 18 juin 2017",
+    "global_id": "doi:10.21410/7E4/PQQ5FO",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/PQQ5FO",
+    "published_at": "2025-03-18T15:05:08Z"
+   },
+   {
+    "name": "Résultats par circonscriptions - Élections législatives des 10 et 17 juin 2012",
+    "global_id": "doi:10.21410/7E4/BUFDH6",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/BUFDH6",
+    "published_at": "2025-03-18T15:10:22Z"
+   },
+   {
+    "name": "Résultats par circonscriptions - Élections législatives des 30 juin et 7 juillet 2024",
+    "global_id": "doi:10.21410/7E4/UQNNE4",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/UQNNE4",
+    "published_at": "2025-03-18T14:57:56Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 2",
+    "global_id": "doi:10.21410/7E4/HKCDQK",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/HKCDQK",
+    "published_at": "2026-07-20T08:31:20Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 1",
+    "global_id": "doi:10.21410/7E4/LQ2PZC",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/LQ2PZC",
+    "published_at": "2026-07-20T08:30:08Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 6 bis",
+    "global_id": "doi:10.21410/7E4/AMDFFQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/AMDFFQ",
+    "published_at": "2026-08-25T09:29:43Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 5",
+    "global_id": "doi:10.21410/7E4/8UHXKG",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/8UHXKG",
+    "published_at": "2026-07-21T08:17:02Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 4",
+    "global_id": "doi:10.21410/7E4/BHSJEI",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/BHSJEI",
+    "published_at": "2026-07-21T08:16:20Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 7",
+    "global_id": "doi:10.21410/7E4/XFRBMJ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XFRBMJ",
+    "published_at": "2026-08-25T09:48:24Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 6",
+    "global_id": "doi:10.21410/7E4/XF3VX3",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XF3VX3",
+    "published_at": "2026-07-21T08:17:30Z"
+   },
+   {
+    "name": "French Electoral Study 2017",
+    "global_id": "doi:10.21410/7E4/2XE05I",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/2XE05I",
+    "published_at": "2025-04-08T13:18:29Z"
+   },
+   {
+    "name": "French Electoral Study 2012",
+    "global_id": "doi:10.21410/7E4/B3SXDT",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/B3SXDT",
+    "published_at": "2026-07-03T13:26:14Z"
+   },
+   {
+    "name": "French Electoral Study 2007",
+    "global_id": "doi:10.21410/7E4/XKHCPM",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XKHCPM",
+    "published_at": "2026-07-03T13:26:11Z"
+   },
+   {
+    "name": "General Election Study Belgium 2003",
+    "global_id": "doi:10.21410/7E4/VXDEV3",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/VXDEV3",
+    "published_at": "2026-07-03T13:25:57Z"
+   },
+   {
+    "name": "French Citizens’ Attitudes Under Covid19 Pandemic (2020-2022)",
+    "global_id": "doi:10.21410/7E4/MAW6LC",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/MAW6LC",
+    "published_at": "2024-11-07T08:53:26Z"
+   },
+   {
+    "name": "Pratiques électorales et opinions lors des élections de 2022 (PEOPLE)",
+    "global_id": "doi:10.21410/7E4/6FMMTC",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/6FMMTC",
+    "published_at": "2024-08-05T10:50:41Z"
+   },
+   {
+    "name": "Démocratie 2000",
+    "global_id": "doi:10.21410/7E4/6TEQWU",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/6TEQWU",
+    "published_at": "2026-07-03T13:25:39Z"
+   },
+   {
+    "name": "French Media Ecosystem Map",
+    "global_id": "doi:10.21410/7E4/VMMY7L",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/VMMY7L",
+    "published_at": "2025-10-01T10:30:08Z"
+   },
+   {
+    "name": "Sociocultural Integration: Dataset on French and British-Born Chinese",
+    "global_id": "doi:10.21410/7E4/XZXRY1",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XZXRY1",
+    "published_at": "2024-11-05T22:23:05Z"
+   },
+   {
+    "name": "Enquête à la sortie des urnes Roubaix - Pratiques et opinions lors des élections présidentielles de 2022 (PEOPLE2022 Roubaix)",
+    "global_id": "doi:10.21410/7E4/ZPUZIG",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/ZPUZIG",
+    "published_at": "2025-12-18T11:10:57Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 2 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/C6BC8L",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/C6BC8L",
+    "published_at": "2023-07-19T12:27:02Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 3 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/SK0DZK",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/SK0DZK",
+    "published_at": "2023-07-20T09:37:35Z"
+   },
+   {
+    "name": "L’Enquête sur la Santé et les Consommations lors de l'Appel de Préparation À la Défense (2022)",
+    "global_id": "doi:10.21410/7E4/UX2L1O",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/UX2L1O",
+    "published_at": "2025-06-10T13:14:53Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 1 (ELIPSS 2021)",
+    "global_id": "doi:10.21410/7E4/VD9RGA",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/VD9RGA",
+    "published_at": "2023-04-04T09:07:08Z"
+   },
+   {
+    "name": "Participation électorale dans la métropole lilloise (PELMEL)",
+    "global_id": "doi:10.21410/7E4/4YQFGE",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/4YQFGE",
+    "published_at": "2024-10-02T09:06:38Z"
+   },
+   {
+    "name": "The European Union Legislative Output (1996-2014)",
+    "global_id": "doi:10.21410/7E4/O1MDXG",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/O1MDXG",
+    "published_at": "2024-03-19T09:24:41Z"
+   },
+   {
+    "name": "Après les élections législatives 2024 (ELIPSS 2024)",
+    "global_id": "doi:10.21410/7E4/O58GJQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/O58GJQ",
+    "published_at": "2025-04-08T12:36:06Z"
+   },
+   {
+    "name": "Seeing the Sangh",
+    "global_id": "doi:10.21410/7E4/XWKLEZ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XWKLEZ",
+    "published_at": "2025-12-10T08:57:02Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 4 (ELIPSS 2024)",
+    "global_id": "doi:10.21410/7E4/Z01RV9",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/Z01RV9",
+    "published_at": "2025-03-20T08:52:34Z"
+   },
+   {
+    "name": "LEGIS-2022",
+    "global_id": "doi:10.21410/7E4/RBX3RE",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/RBX3RE",
+    "published_at": "2023-02-23T12:13:56Z"
+   }
+  ]
+ },
+ {
+  "utc": "2026-10-10T11:55:04Z",
+  "url": "https://data.sciencespo.fr/api/search?q=FES+2022+ELIPSS&type=dataset&per_page=50",
+  "status": 200,
+  "count": 203,
+  "items": [
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 7",
+    "global_id": "doi:10.21410/7E4/XFRBMJ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XFRBMJ",
+    "published_at": "2026-08-25T09:48:24Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 5",
+    "global_id": "doi:10.21410/7E4/8UHXKG",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/8UHXKG",
+    "published_at": "2026-07-21T08:17:02Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 4",
+    "global_id": "doi:10.21410/7E4/BHSJEI",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/BHSJEI",
+    "published_at": "2026-07-21T08:16:20Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 2",
+    "global_id": "doi:10.21410/7E4/HKCDQK",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/HKCDQK",
+    "published_at": "2026-07-20T08:31:20Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 6 bis",
+    "global_id": "doi:10.21410/7E4/AMDFFQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/AMDFFQ",
+    "published_at": "2026-08-25T09:29:43Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 6",
+    "global_id": "doi:10.21410/7E4/XF3VX3",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/XF3VX3",
+    "published_at": "2026-07-21T08:17:30Z"
+   },
+   {
+    "name": "Enquête électorale française 2022 (ENEF 2022), Vague 1",
+    "global_id": "doi:10.21410/7E4/LQ2PZC",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/LQ2PZC",
+    "published_at": "2026-07-20T08:30:08Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 4 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/W76IMT",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/W76IMT",
+    "published_at": "2026-07-03T13:27:30Z"
+   },
+   {
+    "name": "French Election Study 2022 - Vague 2 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/3DSTMR",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/3DSTMR",
+    "published_at": "2026-07-03T13:27:10Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 3 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/DST7ZY",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DST7ZY",
+    "published_at": "2026-07-03T13:27:28Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 1 (ELIPSS 2021)",
+    "global_id": "doi:10.21410/7E4/UQ55HB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/UQ55HB",
+    "published_at": "2026-07-03T13:27:08Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 5 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/DJRAYB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DJRAYB",
+    "published_at": "2026-07-03T13:27:31Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 2 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/C6BC8L",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/C6BC8L",
+    "published_at": "2023-07-19T12:27:02Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 3 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/SK0DZK",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/SK0DZK",
+    "published_at": "2023-07-20T09:37:35Z"
+   },
+   {
+    "name": "Monde d’Avant, Monde d’Après « Loisirs, culture et relations sociales », (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/QBHPKP",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/QBHPKP",
+    "published_at": "2026-07-03T13:27:25Z"
+   },
+   {
+    "name": "Sociologie Politique de l'Insécurité durant les élections Présidentielles de 2022 - vague 1 (ELIPSS 2021)",
+    "global_id": "doi:10.21410/7E4/VD9RGA",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/VD9RGA",
+    "published_at": "2023-04-04T09:07:08Z"
+   },
+   {
+    "name": "Après les élections législatives 2024 (ELIPSS 2024)",
+    "global_id": "doi:10.21410/7E4/O58GJQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/O58GJQ",
+    "published_at": "2025-04-08T12:36:06Z"
+   },
+   {
+    "name": "Expériences et perception des forces de l'ordre - vague 1 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/KAKAD7",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/KAKAD7",
+    "published_at": "2026-07-03T13:27:22Z"
+   },
+   {
+    "name": "Quelques questions sur l'Europe (ELIPSS 2015)",
+    "global_id": "doi:10.21410/7E4/W6SLTS",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/W6SLTS",
+    "published_at": "2022-04-25T13:00:46Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 4 (ELIPSS 2016)",
+    "global_id": "doi:10.21410/7E4/HFCGBZ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/HFCGBZ",
+    "published_at": "2022-04-26T14:49:46Z"
+   },
+   {
+    "name": "Quelques questions sur l'Europe (ELIPSS 2017)",
+    "global_id": "doi:10.21410/7E4/KJNY8X",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/KJNY8X",
+    "published_at": "2022-05-03T08:06:59Z"
+   },
+   {
+    "name": "Quelques questions sur l'Europe (ELIPSS 2014)",
+    "global_id": "doi:10.21410/7E4/NN2SCQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/NN2SCQ",
+    "published_at": "2022-04-25T12:31:04Z"
+   },
+   {
+    "name": "Modes de vie et société (ELIPSS 2014)",
+    "global_id": "doi:10.21410/7E4/Y0FHKB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/Y0FHKB",
+    "published_at": "2022-04-27T07:10:24Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 7 (ELIPSS 2019)",
+    "global_id": "doi:10.21410/7E4/T0OSGW",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/T0OSGW",
+    "published_at": "2026-07-03T13:26:38Z"
+   },
+   {
+    "name": "Pratiques numériques - vague 4 (ELIPSS 2016)",
+    "global_id": "doi:10.21410/7E4/KENAGV",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/KENAGV",
+    "published_at": "2022-07-22T15:08:27Z"
+   },
+   {
+    "name": "Pratiques numériques - vague 2 (ELIPSS 2014)",
+    "global_id": "doi:10.21410/7E4/FHCPJR",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/FHCPJR",
+    "published_at": "2022-05-03T08:42:27Z"
+   },
+   {
+    "name": "Pratiques numériques - vague 3 (ELIPSS 2015)",
+    "global_id": "doi:10.21410/7E4/RCJ5RW",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/RCJ5RW",
+    "published_at": "2022-05-03T08:45:40Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 3 (ELIPSS 2015)",
+    "global_id": "doi:10.21410/7E4/IY8IM6",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/IY8IM6",
+    "published_at": "2022-04-26T12:28:48Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 5 (ELIPSS 2017)",
+    "global_id": "doi:10.21410/7E4/QTKKAR",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/QTKKAR",
+    "published_at": "2022-04-26T15:14:25Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 6 (ELIPSS 2018)",
+    "global_id": "doi:10.21410/7E4/5V1GOW",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/5V1GOW",
+    "published_at": "2026-07-03T13:26:29Z"
+   },
+   {
+    "name": "Socialisations et changement climatique (ELIPSS 2024)",
+    "global_id": "doi:10.21410/7E4/FOBE9W",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/FOBE9W",
+    "published_at": "2024-12-10T14:58:42Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 2 (ELIPSS 2014)",
+    "global_id": "doi:10.21410/7E4/43O7ME",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/43O7ME",
+    "published_at": "2022-05-05T12:25:43Z"
+   },
+   {
+    "name": "Capital social, réseaux sociaux et ressources sociales (ELIPSS 2019)",
+    "global_id": "doi:10.21410/7E4/ENHZ2T",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/ENHZ2T",
+    "published_at": "2026-07-03T13:26:40Z"
+   },
+   {
+    "name": "Enquête sur les valeurs, l’environnement et l’énergie - vague 1 (ELIPSS 2013)",
+    "global_id": "doi:10.21410/7E4/W2RKZ4",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/W2RKZ4",
+    "published_at": "2022-04-26T12:21:09Z"
+   },
+   {
+    "name": "Santé Habitation Alimentation Médecine Architecture (ELIPSS 2016)",
+    "global_id": "doi:10.21410/7E4/MWCZCP",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/MWCZCP",
+    "published_at": "2022-05-10T16:27:34Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 10 (ELIPSS 2023)",
+    "global_id": "doi:10.21410/7E4/LRTVWJ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/LRTVWJ",
+    "published_at": "2024-01-25T16:31:57Z"
+   },
+   {
+    "name": "Pratiques numériques - vague 1 (ELIPSS 2013)",
+    "global_id": "doi:10.21410/7E4/DWHY6T",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DWHY6T",
+    "published_at": "2022-03-25T08:03:04Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 1 (ELIPSS 2013)",
+    "global_id": "doi:10.21410/7E4/UCKS5A",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/UCKS5A",
+    "published_at": "2022-04-26T09:21:14Z"
+   },
+   {
+    "name": "Enquête annuelle - vague 8 (ELIPSS 2021)",
+    "global_id": "doi:10.21410/7E4/JGZ6EE",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/JGZ6EE",
+    "published_at": "2026-07-03T13:27:04Z"
+   },
+   {
+    "name": "Pratiques culturelles, Médias et Technologies de l’information - vague 1 (ELIPSS 2013)",
+    "global_id": "doi:10.21410/7E4/IQNXFM",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/IQNXFM",
+    "published_at": "2022-05-03T08:10:35Z"
+   },
+   {
+    "name": "Travail décent, sentiment d’exploitation, comportements et attitudes politiques - vague 2 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/EFBRWH",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/EFBRWH",
+    "published_at": "2026-07-03T13:27:15Z"
+   },
+   {
+    "name": "Travail décent, sentiment d’exploitation, comportements et attitudes politiques - vague 3 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/C27UUE",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/C27UUE",
+    "published_at": "2026-07-03T13:27:17Z"
+   },
+   {
+    "name": "Comportements alimentaires et traits psychologiques (ELIPSS 2018)",
+    "global_id": "doi:10.21410/7E4/ZAJ6MT",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/ZAJ6MT",
+    "published_at": "2026-07-03T13:26:34Z"
+   },
+   {
+    "name": "Faire face au Covid-19 - vague 1 (ELIPSS 2020)",
+    "global_id": "doi:10.21410/7E4/PZT8SO",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/PZT8SO",
+    "published_at": "2026-07-03T13:26:46Z"
+   },
+   {
+    "name": "Faire face au Covid-19 - vague 3 (ELIPSS 2020)",
+    "global_id": "doi:10.21410/7E4/Y98OBD",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/Y98OBD",
+    "published_at": "2026-07-03T13:26:50Z"
+   },
+   {
+    "name": "Faire face au Covid-19 - vague 4 (ELIPSS 2020)",
+    "global_id": "doi:10.21410/7E4/TSRUHC",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/TSRUHC",
+    "published_at": "2026-07-03T13:26:53Z"
+   },
+   {
+    "name": "Faire face au Covid-19 - vague 2 (ELIPSS 2020)",
+    "global_id": "doi:10.21410/7E4/3KWQ4V",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/3KWQ4V",
+    "published_at": "2026-07-03T13:26:48Z"
+   },
+   {
+    "name": "Pratiques et représentations face à l’État - vague 2 (ELIPSS 2017)",
+    "global_id": "doi:10.21410/7E4/SBS9S5",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/SBS9S5",
+    "published_at": "2022-05-03T09:03:12Z"
+   },
+   {
+    "name": "Faire face au Covid-19 - vague 5 (ELIPSS 2020)",
+    "global_id": "doi:10.21410/7E4/GJMNGV",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/GJMNGV",
+    "published_at": "2026-07-03T13:26:55Z"
+   },
+   {
+    "name": "Longitudinal Analysis of Crime and Insecurity - wave 1 (ELIPSS 2025)",
+    "global_id": "doi:10.21410/7E4/HKO0J5",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/HKO0J5",
+    "published_at": "2025-09-09T13:31:28Z"
+   }
+  ]
+ },
+ {
+  "utc": "2026-10-10T11:55:07Z",
+  "url": "https://data.sciencespo.fr/api/search?q=Persico&type=dataset&per_page=50",
+  "status": 200,
+  "count": 8,
+  "items": [
+   {
+    "name": "Les élections européennes 2024 en France (ELIPSS 2024)",
+    "global_id": "doi:10.21410/7E4/TTMWTD",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/TTMWTD",
+    "published_at": "2024-12-10T15:19:35Z"
+   },
+   {
+    "name": "Après les élections législatives 2024 (ELIPSS 2024)",
+    "global_id": "doi:10.21410/7E4/O58GJQ",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/O58GJQ",
+    "published_at": "2025-04-08T12:36:06Z"
+   },
+   {
+    "name": "French Election Study 2022 - Vague 2 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/3DSTMR",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/3DSTMR",
+    "published_at": "2026-07-03T13:27:10Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 4 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/W76IMT",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/W76IMT",
+    "published_at": "2026-07-03T13:27:30Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 5 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/DJRAYB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DJRAYB",
+    "published_at": "2026-07-03T13:27:31Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 1 (ELIPSS 2021)",
+    "global_id": "doi:10.21410/7E4/UQ55HB",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/UQ55HB",
+    "published_at": "2026-07-03T13:27:08Z"
+   },
+   {
+    "name": "French Election Study 2022, Vague 3 (ELIPSS 2022)",
+    "global_id": "doi:10.21410/7E4/DST7ZY",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/DST7ZY",
+    "published_at": "2026-07-03T13:27:28Z"
+   },
+   {
+    "name": "LEGIS-2022",
+    "global_id": "doi:10.21410/7E4/RBX3RE",
+    "dataset_persistent_id": null,
+    "file_id": null,
+    "dataset_name": null,
+    "url": "https://doi.org/10.21410/7E4/RBX3RE",
+    "published_at": "2023-02-23T12:13:56Z"
+   }
+  ]
+ },
+ {
+  "utc": "2026-10-10T11:55:08Z",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22study1_fes_panel%22&type=file&per_page=50",
+  "status": 200,
+  "count": 0,
+  "items": []
+ },
+ {
+  "utc": "2026-10-10T11:55:08Z",
+  "url": "https://dataverse.harvard.edu/api/search?q=elipss_fes2022&type=file&per_page=50",
+  "status": 200,
+  "count": 0,
+  "items": []
+ }
+]

@@ -1,0 +1,11 @@
+# 10_6MLKJZ
+- Paper: Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees’ and citizens’ discretionary behavior
+- Journal: Public Policy and Administration (2023)
+- Paper DOI: https://doi.org/10.1177/09520767231210025
+- Dataset DOI: https://doi.org/10.7910/DVN/6MLKJZ
+- Dataset title: Replication Data for: Prioritizing Exceptional Social Needs. Experimental Evidence on the Role of Discrimination and Client Deservingness in Public Employees’ and Citizens’ Discretionary Behavior
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 107940166
+- Audit position 10, batch 2

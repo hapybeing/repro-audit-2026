@@ -1,0 +1,12 @@
+{
+ "note": "Unauthenticated GET requests, User-Agent repro-audit-2026, 2026-10-10 between about 11:56 and 11:58 UTC. No account, no login.",
+ "checks": [
+  {"url": "https://data.sciencespo.fr/api/datasets/:persistentId/?persistentId=doi:10.21410/7E4/DST7ZY", "what": "FES 2022 wave 3 dataset metadata", "status": 200, "saved_as": "elipss_DST7ZY.json"},
+  {"url": "https://data.sciencespo.fr/api/datasets/:persistentId/?persistentId=doi:10.21410/7E4/W76IMT", "what": "FES 2022 wave 4 (CSES) dataset metadata", "status": 200, "saved_as": "elipss_W76IMT.json"},
+  {"url": "https://data.sciencespo.fr/api/access/datafile/5296", "what": "wave 3 fr.cdsp.ddi.elipss.fes3_2022_V3.csv.zip (restricted=true)", "status": 403, "bytes": 283, "body": "Not authorized to access this object via this API endpoint."},
+  {"url": "https://data.sciencespo.fr/api/access/datafile/5346", "what": "wave 4 fr_cdsp_ddi_elipss_202204fes4_cses-1.tab (restricted=true)", "status": 403, "bytes": 283, "body": "Not authorized to access this object via this API endpoint."},
+  {"url": "https://data.sciencespo.fr/api/access/datafile/5297", "what": "wave 3 fr.cdsp.ddi.elipss.fes3_2022_V3.sas.zip (restricted=false in metadata)", "status": 200, "bytes": 312170, "sha256": "aba2ca630200887c03944ade6a495cd3afefa91eaf9f6661cc4c8351899ccd56", "contents": "fr.cdsp.ddi.elipss.fes3_202203.sas (75046 bytes) and fr.cdsp.ddi.elipss.fes3_202203.sas7bdat (3359744 bytes)", "action": "listed with unzip -l only, file deleted, not opened or used"},
+  {"url": "https://data.sciencespo.fr/api/access/datafile/11115", "what": "wave 3 DDI XML codebook (public)", "status": 200, "bytes": 635217, "sha256": "b7083010948d78c76e55385dc006f6f25eec52f190651b9569f5619edc4247cc", "grep": {"UID_fes3": 2, "fes3_QA04_C": 1}},
+  {"url": "https://data.sciencespo.fr/api/access/datafile/11116", "what": "wave 4 DDI XML codebook (public)", "status": 200, "bytes": 996099, "sha256": "7dbf07df8e00257164d81edad0e5d9cb41d15451158e7fca023bef4a448c95d7", "grep_found": ["UID_fes4", "POIDS_fes4", "fes4_Q22", "fes4_Q04a", "fes4_Q07a", "fes4_Q07b", "fes4_Q07d", "fes4_Q07e", "fes4_Q07f", "fes4_Q07g", "fes4_Q10p1", "fes4_Q10p2", "fes4_Q16b", "fes4_Q16c", "fes4_Q16g", "fes4_Q16h"], "grep_not_checked": "the .a/.b suffixed names read by 00 lines 79-82"}
+ ]
+}

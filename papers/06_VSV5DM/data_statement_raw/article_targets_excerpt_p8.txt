@@ -1,0 +1,21 @@
+from that of Democratic white men and legislators of color.       count of Facebook posts for a given partisan–race–gender
+White Republicans, regardless of gender, posted the least         identity of a legislator compared to Republican white
+about COVID-related events (p < .05). Turning to the              men. In a separate analysis, we also run this model with
+middle right panel of Figure 3, white Republicans discussed       Democratic white women as the comparison group since
+the pandemic as a partisan or politicized issue more than any     this is the group that posts at one of the higher rates. We
+other group (p < .05). Finally, Democratic white women and        present the marginal change rates when white women are
+women of color made reference to women in their COVID             the comparison group in Figure A1 in the Appendix.
+posts at a higher rate than all other groups (p <. 05).               The multivariate analysis conﬁrms that when controlling
+Legislators of color similarly posted about communities of        for important factors, we ﬁnd important differences in
+color in their COVID posts at signiﬁcantly higher rates than      overall COVID posting activity across the partisan–race–
+other groups (p <. 05).                                           gender identity of the legislator. First, looking at the overall
+    To establish whether these differences across the             COVID variable, we ﬁnd that Democratic white women
+partisan–race–gender identity of the legislator hold even         made, on average, 10.21 more posts about COVID in our
+when considering other relevant factors, we turn to               period of interest compared to Republican white men;
+multivariate analysis. The dependent variable for this            however, this ﬁnding is only signiﬁcant at p = .054.
+analysis is the total number of COVID posts for the entire        Similarly, Democratic men of color and women of color
+nine-month period. Then, we ran separate models for the           averaged 17.28 and 15.05 more posts about COVID rel-
+six COVID subcategory variables to see if there was               ative to Republican white men. In comparison, when
+variation depending on the content of the COVID post. We          Democratic white women are the comparison group, we
+used quasi-Poisson regression models for the analysis to          ﬁnd no signiﬁcant difference in COVID posting rate be-
+account for overdispersion (Ver Hoef and Boveng 2007).            tween Democratic white women and men of color or be-

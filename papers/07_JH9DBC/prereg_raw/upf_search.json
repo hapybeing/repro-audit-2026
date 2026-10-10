@@ -1,0 +1,97 @@
+{
+  "id" : null,
+  "scope" : null,
+  "query" : "\"Guilty by association\" Ang",
+  "appliedFilters" : null,
+  "sort" : null,
+  "configuration" : null,
+  "type" : "discover",
+  "_links" : {
+    "self" : {
+      "href" : "https://repositori.upf.edu/server/api/discover/search/objects?query=%2522Guilty%2520by%2520association%2522%2520Ang"
+    }
+  },
+  "_embedded" : {
+    "searchResult" : {
+      "_embedded" : {
+        "objects" : [ ]
+      },
+      "page" : {
+        "number" : 0,
+        "size" : 20,
+        "totalPages" : 0,
+        "totalElements" : 0
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://repositori.upf.edu/server/api/discover/search/objects?query=%22Guilty%20by%20association%22%20Ang"
+        }
+      }
+    },
+    "facets" : [ {
+      "name" : "author",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "minValue" : "1/20, ExLibris",
+      "maxValue" : "β-AARC Study collaborators",
+      "_links" : {
+        "self" : {
+          "href" : "https://repositori.upf.edu/server/api/discover/facets/author?query=%22Guilty%20by%20association%22%20Ang"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "subject",
+      "facetType" : "hierarchical",
+      "facetLimit" : 5,
+      "_links" : {
+        "self" : {
+          "href" : "https://repositori.upf.edu/server/api/discover/facets/subject?query=%22Guilty%20by%20association%22%20Ang"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "dateIssued",
+      "facetType" : "date",
+      "facetLimit" : 5,
+      "minValue" : "1970",
+      "maxValue" : "2027",
+      "_links" : {
+        "self" : {
+          "href" : "https://repositori.upf.edu/server/api/discover/facets/dateIssued?query=%22Guilty%20by%20association%22%20Ang"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "has_content_in_original_bundle",
+      "facetType" : "standard",
+      "facetLimit" : 2,
+      "_links" : {
+        "self" : {
+          "href" : "https://repositori.upf.edu/server/api/discover/facets/has_content_in_original_bundle?query=%22Guilty%20by%20association%22%20Ang"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "itemtype",
+      "facetType" : "text",
+      "facetLimit" : 10,
+      "_links" : {
+        "self" : {
+          "href" : "https://repositori.upf.edu/server/api/discover/facets/itemtype?query=%22Guilty%20by%20association%22%20Ang"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    } ]
+  }
+}

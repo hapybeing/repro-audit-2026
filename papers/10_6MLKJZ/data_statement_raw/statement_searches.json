@@ -1,0 +1,499 @@
+{
+ "script": "papers/10_6MLKJZ/data_statement_raw/statement_searches.py",
+ "searches": [
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "data availab",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "availability",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "replication",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "dataverse",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "osf",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "github",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "zenodo",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "repository",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "code",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "syntax",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript sage_html_structure_and_end_matter.md",
+   "query": "request",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     52,
+     "For non-Open Access articles published, all supplemental material carries a non-exclusive license, and permission requests for re-use of supplemental material or any part of supplemental material shal"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "data availab",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 3,
+   "relevant_hits": [
+    [
+     23,
+     "No \"Data availability\", \"Data availability statement\", \"Replication\" heading found via search (searches for \"Data\", \"Data avail\", \"Replication\", \"Robustness\", \"Empirical results\" returned no heading m"
+    ],
+    [
+     46,
+     "- No \"Data availability\" / \"Data availability statement\" / \"Replication\" heading found."
+    ],
+    [
+     181,
+     "- Data/Replication statement: NONE found in the article. The only adjacent statement is \"Supplemental Material: Supplemental material for this article is available online.\" (PDF page 20 / journal p. 5"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "availability",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 3,
+   "relevant_hits": [
+    [
+     23,
+     "No \"Data availability\", \"Data availability statement\", \"Replication\" heading found via search (searches for \"Data\", \"Data avail\", \"Replication\", \"Robustness\", \"Empirical results\" returned no heading m"
+    ],
+    [
+     46,
+     "- No \"Data availability\" / \"Data availability statement\" / \"Replication\" heading found."
+    ],
+    [
+     181,
+     "- Data/Replication statement: NONE found in the article. The only adjacent statement is \"Supplemental Material: Supplemental material for this article is available online.\" (PDF page 20 / journal p. 5"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "replication",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 4,
+   "relevant_hits": [
+    [
+     23,
+     "No \"Data availability\", \"Data availability statement\", \"Replication\" heading found via search (searches for \"Data\", \"Data avail\", \"Replication\", \"Robustness\", \"Empirical results\" returned no heading m"
+    ],
+    [
+     46,
+     "- No \"Data availability\" / \"Data availability statement\" / \"Replication\" heading found."
+    ],
+    [
+     47,
+     "- \"Declaration of conflicting interests\", \"Funding\", \"ORCID iD\" present on page 19, but no data/code/replication statement."
+    ],
+    [
+     181,
+     "- Data/Replication statement: NONE found in the article. The only adjacent statement is \"Supplemental Material: Supplemental material for this article is available online.\" (PDF page 20 / journal p. 5"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "dataverse",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     181,
+     "- Data/Replication statement: NONE found in the article. The only adjacent statement is \"Supplemental Material: Supplemental material for this article is available online.\" (PDF page 20 / journal p. 5"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "osf",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     181,
+     "- Data/Replication statement: NONE found in the article. The only adjacent statement is \"Supplemental Material: Supplemental material for this article is available online.\" (PDF page 20 / journal p. 5"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "github",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     181,
+     "- Data/Replication statement: NONE found in the article. The only adjacent statement is \"Supplemental Material: Supplemental material for this article is available online.\" (PDF page 20 / journal p. 5"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "zenodo",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "repository",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "code",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 2,
+   "relevant_hits": [
+    [
+     47,
+     "- \"Declaration of conflicting interests\", \"Funding\", \"ORCID iD\" present on page 19, but no data/code/replication statement."
+    ],
+    [
+     167,
+     "- Two series visible: General Student Sample (red/pink) and Social Work (teal). Note: Figure 4's caption says reference category = Public administration students; the figure likely encodes multiple st"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "syntax",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript article_pdf_read_notes_2026-10-10.md",
+   "query": "request",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "data availab",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "availability",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 2,
+   "relevant_hits": [
+    [
+     131,
+     "## Data/Code availability mention in PDF 2"
+    ],
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "replication",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "dataverse",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "osf",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "github",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "zenodo",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "repository",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "code",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 3,
+   "relevant_hits": [
+    [
+     45,
+     "> The empirical analysis draws on a general population and a student sample. Field access for the German general population sample was provided by *DALIA Research*. The globally operating provider for"
+    ],
+    [
+     131,
+     "## Data/Code availability mention in PDF 2"
+    ],
+    [
+     132,
+     "The supplement text contains **no data availability statement**, and **no mention of Dataverse, OSF, or GitHub**. The only external entities named are DALIA Research (field-access provider), the ESOMA"
+    ]
+   ]
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "syntax",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "local transcript supplement_pdf_transcript_2026-10-10.md",
+   "query": "request",
+   "url": null,
+   "utc": "2026-10-10T12:17:22Z",
+   "http": null,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     17,
+     "> Two recipients of unemployment benefit II have each applied for a loan pursuant based on §42a SGB II. The formal requirements are equally fulfilled in both cases. The claimants ask for a loan to pur"
+    ]
+   ]
+  },
+  {
+   "source": "Harvard Dataverse search API",
+   "query": "\"10.1177/09520767231210025\"",
+   "url": "https://dataverse.harvard.edu/api/search?q=%2210.1177%2F09520767231210025%22&type=dataset&per_page=100",
+   "utc": "2026-10-10T12:17:22Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "Zenodo records API",
+   "query": "\"10.1177/09520767231210025\"",
+   "url": "https://zenodo.org/api/records?q=%2210.1177%2F09520767231210025%22&size=100",
+   "utc": "2026-10-10T12:17:23Z",
+   "http": 400,
+   "total_results": null,
+   "relevant_hits": []
+  },
+  {
+   "source": "Harvard Dataverse search API",
+   "query": "\"Prioritizing Exceptional Social Needs\"",
+   "url": "https://dataverse.harvard.edu/api/search?q=%22Prioritizing+Exceptional+Social+Needs%22&type=dataset&per_page=100",
+   "utc": "2026-10-10T12:17:24Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    [
+     "doi:10.7910/DVN/6MLKJZ",
+     "Replication Data for: Prioritizing Exceptional Social Needs. Experimental Evidence on the Role of Discrimination and Client Deservingness in Public Employees’ and Citizens’ Discretionary Behavior"
+    ]
+   ]
+  },
+  {
+   "source": "Zenodo records API",
+   "query": "\"Prioritizing Exceptional Social Needs\"",
+   "url": "https://zenodo.org/api/records?q=%22Prioritizing+Exceptional+Social+Needs%22&size=100",
+   "utc": "2026-10-10T12:17:24Z",
+   "http": 400,
+   "total_results": null,
+   "relevant_hits": []
+  },
+  {
+   "source": "OSF API v2 public nodes, title filter",
+   "query": "Prioritizing exceptional social needs",
+   "url": "https://api.osf.io/v2/nodes/?filter%5Btitle%5D=Prioritizing+exceptional+social+needs",
+   "utc": "2026-10-10T12:17:25Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "GitHub repository search API",
+   "query": "Prioritizing exceptional social needs",
+   "url": "https://api.github.com/search/repositories?q=Prioritizing+exceptional+social+needs",
+   "utc": "2026-10-10T12:17:26Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": []
+  },
+  {
+   "source": "Crossref work metadata, 'relation' field",
+   "query": "10.1177/09520767231210025",
+   "url": "https://api.crossref.org/works/10.1177/09520767231210025",
+   "utc": "2026-10-10T12:17:26Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": {}
+  }
+ ]
+}

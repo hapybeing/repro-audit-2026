@@ -1,0 +1,595 @@
+[
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"data_preparation_rep.R\"",
+  "params": [
+   [
+    "type",
+    "file"
+   ]
+  ],
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22data_preparation_rep.R%22&per_page=100&type=file",
+  "utc": "2026-10-10T11:54:22Z",
+  "http": 200,
+  "total_results": 0,
+  "items": [],
+  "label": "exact file name, all of Harvard Dataverse"
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "data_preparation_rep",
+  "params": [
+   [
+    "type",
+    "file"
+   ]
+  ],
+  "url": "https://dataverse.harvard.edu/api/search?q=data_preparation_rep&per_page=100&type=file",
+  "utc": "2026-10-10T11:54:22Z",
+  "http": 200,
+  "total_results": 0,
+  "items": [],
+  "label": "free text, files"
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "\"Knowing is Disturbing\"",
+  "params": [
+   [
+    "type",
+    "dataset"
+   ]
+  ],
+  "url": "https://dataverse.harvard.edu/api/search?q=%22Knowing+is+Disturbing%22&per_page=100&type=dataset",
+  "utc": "2026-10-10T11:54:23Z",
+  "http": 200,
+  "total_results": 1,
+  "items": [
+   {
+    "name": "Replication Data for: Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/SQRZR8"
+   }
+  ],
+  "label": "datasets with the article title"
+ },
+ {
+  "source": "Harvard Dataverse Search API",
+  "query": "Guo Kostka digital control",
+  "params": [
+   [
+    "type",
+    "dataset"
+   ]
+  ],
+  "url": "https://dataverse.harvard.edu/api/search?q=Guo+Kostka+digital+control&per_page=100&type=dataset",
+  "utc": "2026-10-10T11:54:23Z",
+  "http": 200,
+  "total_results": 55112,
+  "items": [
+   {
+    "name": "Alternariasin A, new pentacyclic cytochalasin from the fungus Alternaria alternate",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ITV3GO"
+   },
+   {
+    "name": "Replication Data for Digital annexation: How geodata, training corpora, academic metadata, and chatbot search normalize Russia\u2019s Crimea framing",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/0IWOFY"
+   },
+   {
+    "name": "Replication Data for: Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/SQRZR8"
+   },
+   {
+    "name": "UAV based survey on portions of the Crocodile, Sabie, and Olifants Rivers at Kruger National Park, Limpopo, South Africa to obtain LiDAR, RGB and multispectral imagery",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/GVR2BA"
+   },
+   {
+    "name": "Enviro-Champs Formshare Data Cleaning Tool",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/EA5MOI"
+   },
+   {
+    "name": "Aquatic macroinvertebrate image dataset",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/1QQPJ5"
+   },
+   {
+    "name": "Digital Sovereignty Index (DSI): Country Evidence Dataset",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/QOIA6F"
+   },
+   {
+    "name": "Digital Sovereignty Index (DSI): BRICS+ Country Evidence Dataset",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/WJTY60"
+   },
+   {
+    "name": "Two-element Relational Expression-number Lookup Table for Propositional Logic",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/HWRWSR"
+   },
+   {
+    "name": "Basic Expressions Listed in Sixteen Number Groups",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/D8XHSP"
+   },
+   {
+    "name": "Expression-number Lookup Table - A * (A * B)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TQENDJ"
+   },
+   {
+    "name": "Expression-number Lookup Table - (A * B) * A",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/K2LQKZ"
+   },
+   {
+    "name": "Expression-number Lookup Table - (A * B) * C",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/HZNBFG"
+   },
+   {
+    "name": "Expression-number Lookup Table - (A * B) * (A * B)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/LUQGKS"
+   },
+   {
+    "name": "Expression-number Lookup Table - A * (B * C)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/XRLYGE"
+   },
+   {
+    "name": "Three-element Relational Expression-number Lookup Table for Propositional Logic",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/UGRP3U"
+   },
+   {
+    "name": "Expression-number Lookup Table - (A * B) \u2192 ((A * C) * (B * C))",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/LXEI1R"
+   },
+   {
+    "name": "A-A, A-1, A-0 and 1-0 Relational Expression-number Lookup Table for Propositional Logic",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/OCN14M"
+   },
+   {
+    "name": "Expression-number Lookup Table - (A * B) \u2194 ((A * C) * (B * C))",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/6KBPLM"
+   },
+   {
+    "name": "Historic precast concrete structures: 3D models of three prestressed systems by Aldo Favini and Angelo Mangiarotti",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/8Q9Q66"
+   },
+   {
+    "name": "Extracted Data From: Lake Level Viewer",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/PNWDRB"
+   },
+   {
+    "name": "Extracted Data From: Sea Level Rise Viewer",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/HW7HLM"
+   },
+   {
+    "name": "SimJEB: Simulated Jet Engine Bracket Dataset",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/XFUWJG"
+   },
+   {
+    "name": "Congressional Tweet Archive",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/BOK1CF"
+   },
+   {
+    "name": "Survey and Response Data for \"Digital Rights and Freedoms\" Project",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/27510"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Hashtag: believewomen",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ADYOBE"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Hashtag: whyididntreport",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/UJWKC0"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Hashtag: believesurvivors",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZNHPEA"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Hashtag: timesup",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/RXHOQ8"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Hashtag: metoo",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TUACJO"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Second quarter 2018",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/YVTINS"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Third quarter 2018",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZEU1TD"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Fourth quarter 2017",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/1PDFB1"
+   },
+   {
+    "name": "#metoo Digital Media Collection - First quarter 2018",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/QCZC4E"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Fourth quarter 2018",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/WOAM8O"
+   },
+   {
+    "name": "#metoo Digital Media Collection - First quarter 2020",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/Z8HJAA"
+   },
+   {
+    "name": "#metoo Digital Media Collection - First quarter 2019",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/8LJGJE"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Second quarter 2019",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/QR7DLO"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Third quarter 2019",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/VQE9MN"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Fourth quarter 2019",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/QCY27G"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Third quarter 2020",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/DIPJLZ"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Fourth quarter 2020",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/87Q0QN"
+   },
+   {
+    "name": "#metoo Digital Media Collection - First quarter 2021",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/RMFLL4"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Second quarter 2021",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/CXHHGB"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Third quarter 2021",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TTATA9"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Fourth quarter 2021",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/KZ9Q4F"
+   },
+   {
+    "name": "#metoo Digital Media Collection - First quarter 2022",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/OTKZT5"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Second quarter 2022",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/RCTWM0"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Third quarter 2022",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZY8VLW"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Fourth quarter 2022",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/KUPFYT"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Second quarter 2020",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/KQTVAX"
+   },
+   {
+    "name": "#metoo Digital Media Collection - Twitter Dataset",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/2SRSKJ"
+   },
+   {
+    "name": "A review of crop phenology in pearl millet [Pennisetum glaucum (L.) R. Br.]: integration of field, synthesis analysis, and in-silico approach",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/KWEDJ2"
+   },
+   {
+    "name": "The urgency for investment on local data for advancing food assessments in Africa: a review for APSIM crop modeling",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/WJT63G"
+   },
+   {
+    "name": "Detection of Fallow period duration in the Coastal Region of Bangladesh",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ADUOGG"
+   },
+   {
+    "name": "Integrated modeling framework for sustainable agricultural intensification",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/GRDQ9L"
+   },
+   {
+    "name": "Data Integration Dashboard for Assessing and Planning Agricultural Interventions: a case in Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TP7ID1"
+   },
+   {
+    "name": "A dataset for soil organic carbon in agricultural systems for the Southeast Asia region",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/DRS5NH"
+   },
+   {
+    "name": "LandPKS data Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/WUVMGN"
+   },
+   {
+    "name": "Management Adaptations for Water-Limited Pearl Millet Systems in Senegal - Dataset",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/RCP29V"
+   },
+   {
+    "name": "Senegal Fields 2021",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/7ER1UG"
+   },
+   {
+    "name": "Crops response to nutrient application in Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/KFSUKQ"
+   },
+   {
+    "name": "A dataset for soil organic carbon in agricultural systems for the Southeast Asia region",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/XY72SO"
+   },
+   {
+    "name": "Unveiling the resilience of smallholder farmers in Senegal amidst extreme climate conditions.",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/H0SSP1"
+   },
+   {
+    "name": "Sengal Soil Raw Data",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/Q2WDG0"
+   },
+   {
+    "name": "Millet yield estimations in Senegal: Unveiling the power of regional water stress analysis and advanced predictive modeling",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/5OE8X7"
+   },
+   {
+    "name": "Developing climate-adaptative crop decision-making frameworks for smallholders in Senegal: an in-silico approach",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/K9MWTT"
+   },
+   {
+    "name": "Senegal Land Capability Classification",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/1RVTAK"
+   },
+   {
+    "name": "Soil Maps Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TKGUNI"
+   },
+   {
+    "name": "Soil and climate characterization to define environments for summer crops in Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZSZXDK"
+   },
+   {
+    "name": "Mapping indicators of food security, human well-being, ecosystem services, and climate solutions in Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/YYJJHN"
+   },
+   {
+    "name": "Senegal Crop Labels",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/SDSCIK"
+   },
+   {
+    "name": "Vegetation Analysis",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/WY67EL"
+   },
+   {
+    "name": "Detection of Traditional and Modern Rice Varieties in the Coastal Region of Bangladesh",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/JJLXVL"
+   },
+   {
+    "name": "Water Demand Index for Senegal",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZDCZCW"
+   },
+   {
+    "name": "Global Visual Novels & Interactive Fiction Metadata Index (2020-2026)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/MKB1K2"
+   },
+   {
+    "name": "Replication data for: Staffing for Effective Digital Preservation: An NDSA Report",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/27562"
+   },
+   {
+    "name": "Replication Data for: Staffing for Effective Digital Preservation 2017: An NDSA Report",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/XBMAXP"
+   },
+   {
+    "name": "NDSA Web Archiving Surveys",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/27593"
+   },
+   {
+    "name": "aec_pipeline: fsQCA and NCA analysis pipeline for digital-workflow adoption among Indian AEC practitioners",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/NVORJA"
+   },
+   {
+    "name": "Survey data, analysis code and redacted free-text responses for a configurational study of digital-workflow adoption among Indian AEC practitioners",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZVVWTZ"
+   },
+   {
+    "name": "Replication Data for: Credit Scoring of Thin File Consumers",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/EGAIKO"
+   },
+   {
+    "name": "Unified Dataset for Rural Credit and Carbon Scoring",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/YGEJSE"
+   },
+   {
+    "name": "Replication Data for: NDSA Storage Report 2017",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/8NYC97"
+   },
+   {
+    "name": "Historical Indian Sugarcane Ecosystem Dataset (2010\u20132025)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/MSEJ4D"
+   },
+   {
+    "name": "How Can an Organization Evolve to an Agile Organizational Culture through Digital Transformation?",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/U04QEY"
+   },
+   {
+    "name": "Roman Road Network (version 2008)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TI0KAU"
+   },
+   {
+    "name": "Geodatabase of Carolingian Coin Hoards: AD 751-987 (Version 1.1)",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/23984"
+   },
+   {
+    "name": "Geodatabase of Historical Evidence on Precipitation in Central Europe AD 1013-1504",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ARUMGE"
+   },
+   {
+    "name": "Geodatabase of Rural Anglo-Saxon Settlements",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/24697"
+   },
+   {
+    "name": "Summary Geodatabase of Shipwrecks AD 1-1500, Status 2008",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/ZIQPDG"
+   },
+   {
+    "name": "Archaeological Finds of Rats: AD 1-1500",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/NARKTE"
+   },
+   {
+    "name": "Geodatabase of Historical Evidence on Roman and Post-Roman Climate",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TVXATE"
+   },
+   {
+    "name": "PERFORMANCE OF ADVERTISEMENT NETWORKS FOR PUBLISHERS",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/TNCHHT"
+   },
+   {
+    "name": "BigTech versus Swiss banks in mortgage lending services",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/MZD9Y4"
+   },
+   {
+    "name": "Geodatabase of Ancient Ports and Harbours",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/3KQFUT"
+   },
+   {
+    "name": "NFTs and their impact on business models of the video game industry",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/EGQ8UI"
+   },
+   {
+    "name": "Gamified learning module \u2013 the experiment on motivation, retention, and willingness to learn",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/OLKE5F"
+   },
+   {
+    "name": "Smart Logistic \u2013 How to reduce CO2 emissions with new technological solutions",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/2W35QQ"
+   },
+   {
+    "name": "Paradoxes in Blockchain-Technology Implementation and Use: Creation and Validation of a Tension Framework",
+    "dataset": null,
+    "doi": "doi:10.7910/DVN/INBXDU"
+   }
+  ],
+  "label": "datasets by authors/topic"
+ },
+ {
+  "source": "Harvard Dataverse dataset versions API",
+  "query": "all versions of doi:10.7910/DVN/SQRZR8",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/SQRZR8",
+  "utc": "2026-10-10T11:54:27Z",
+  "http": 200,
+  "total_results": 1,
+  "items": [
+   {
+    "version": "1.0",
+    "state": "RELEASED",
+    "files": [
+     "append_rep.R",
+     "data_cleaned_rep.tab",
+     "data_raw_rep.csv",
+     "main_rep.R",
+     "ReadMe.txt"
+    ]
+   }
+  ],
+  "label": "does any version list data_preparation_rep.R"
+ }
+]

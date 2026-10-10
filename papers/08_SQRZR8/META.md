@@ -1,0 +1,11 @@
+# 08_SQRZR8
+- Paper: Knowing Is Disturbing: Emotions and Public Attitudes toward Digital Control under Autocracy
+- Journal: Perspectives on Politics (2025)
+- Paper DOI: https://doi.org/10.1017/s1537592725103551
+- Dataset DOI: https://doi.org/10.7910/DVN/SQRZR8
+- Dataset title: Replication Data for: Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 2099230
+- Audit position 8, batch 2

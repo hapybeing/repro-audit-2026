@@ -1,0 +1,18 @@
+ORCID iDs                                                                identiﬁed these 6 subcategories and the key words associ-
+                                                                         ated with these topics.
+Michael Strawbridge  https://orcid.org/0000-0003-0869-6295
+                                                                      8. For each of these variables, we counted how many posts
+Natalie Masuoka  https://orcid.org/0000-0001-9189-7340
+                                                                         included use of a keyword at least once in the post. By using
+                                                                         total posts, we eliminated a concern that multiple key words
+Supplemental Material
+                                                                         measuring the same concept were used within one post.
+Supplemental material for this article is available online. The       9. Our theory focuses on constituency outreach, and our
+dataset used for this paper along with replication ﬁles is made          analysis focuses on posts that share information about re-
+available at: https://doi.org/10.7910/DVN/VSV5DM.                        sources or offer aid to constituents. We acknowledge that
+                                                                         legislators could have also posted about other topics such as
+Notes                                                                    conspiracy theories which could be of study in future
+ 1. To our knowledge, there are no existing empirical studies on         research.
+    constituency services provided by Asian American elected         10. For examples of each category of posts, see Appendix 1.
+    ofﬁcials.                                                        11. Due to sample size constraints, we coded all non-white
+ 2. For context, the Center for Disease Control conﬁrms the ﬁrst         men as “men of color” and all non-white women as

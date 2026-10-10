@@ -1,0 +1,83 @@
+[
+ {
+  "route": "Sage article full text",
+  "url": "https://journals.sagepub.com/doi/full/10.1177/09520767231210025",
+  "utc": "2026-10-10T11:54:29Z",
+  "http": 403,
+  "bytes": 5748,
+  "sha256": "55eeaafa31c5681eca1a497c059cbceede6649416d72aea20a25120f6bcc2227",
+  "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+ },
+ {
+  "route": "Sage PDF",
+  "url": "https://journals.sagepub.com/doi/pdf/10.1177/09520767231210025",
+  "utc": "2026-10-10T11:54:29Z",
+  "http": 403,
+  "bytes": 5745,
+  "sha256": "0944be75eb473eae17e9249c4490afdce0f406be9ccfc894e3b0afe77c56e78b",
+  "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+ },
+ {
+  "route": "Sage full-text XML",
+  "url": "https://journals.sagepub.com/doi/full-xml/10.1177/09520767231210025",
+  "utc": "2026-10-10T11:54:29Z",
+  "http": 403,
+  "bytes": 5760,
+  "sha256": "f69f06ab4552ed002b34739bd3e77b001904c4e14d7c6ea5f76555c7f49e076c",
+  "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+ },
+ {
+  "route": "Sage Version1 PDF (history link)",
+  "url": "https://journals.sagepub.com/history/e3e92517-00f2-48e3-8ad6-5fd7c5fb1a46/09520767231210025.17922236.pdf",
+  "utc": "2026-10-10T11:54:30Z",
+  "http": 403,
+  "bytes": 5935,
+  "sha256": "ebe528f3122d119ce0ad7257a7d4c266b6af38d5a1619b7c8144628898211017",
+  "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+ },
+ {
+  "route": "Sage supplementary PDF",
+  "url": "https://journals.sagepub.com/doi/suppl/10.1177/09520767231210025/suppl_file/sj-pdf-1-ppa-10.1177_09520767231210025.pdf",
+  "utc": "2026-10-10T11:54:30Z",
+  "http": 403,
+  "bytes": 5977,
+  "sha256": "8daa9f937a474738f5dbdc3b8acc97c11c7123b51290e615a3de374c2f8e5fe3",
+  "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+ },
+ {
+  "route": "Crossref metadata",
+  "url": "https://api.crossref.org/works/10.1177/09520767231210025",
+  "utc": "2026-10-10T11:54:30Z",
+  "http": 200,
+  "bytes": 10841,
+  "sha256": "29300951fbe975b38e74d1a76e7261b3fd83eb44b05971fc78e1c4d226c02bcf",
+  "what_came_back": "{\"status\":\"ok\",\"message-type\":\"work\",\"message-version\":\"1.0.0\",\"message\":{\"indexed\":{\"date-parts\":[[2026,5,4]],\"date-time\":\"2026-05-04T19:26:21Z\",\"timestamp\":1777922781841,\"version\":\"3.51.4\"},\"reference-count\":49,\"publisher\":\"SAGE Publications\",\"issue\":\"1\",\"license\":[{\"start\":{\"date-parts\":[[2023,11"
+ },
+ {
+  "route": "Europe PMC search",
+  "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1177/09520767231210025&format=json",
+  "utc": "2026-10-10T11:54:30Z",
+  "http": 200,
+  "bytes": 192,
+  "sha256": "4599fd8063ed00348218ae251997196f4691793651a1c567d6ae689abea3e8a0",
+  "what_came_back": "{\"version\":\"6.9\",\"hitCount\":0,\"request\":{\"queryString\":\"DOI:10.1177/09520767231210025\",\"resultType\":\"lite\",\"cursorMark\":\"*\",\"pageSize\":25,\"sort\":\"\",\"synonym\":false},\"resultList\":{\"result\":[]}}"
+ },
+ {
+  "route": "Semantic Scholar",
+  "url": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1177/09520767231210025?fields=title,openAccessPdf,externalIds",
+  "utc": "2026-10-10T11:54:31Z",
+  "http": 200,
+  "bytes": 461,
+  "sha256": "b482a4b483f4522f2c587882b64eee20f05f2ef7628a5dfd5a14122ab880356d",
+  "what_came_back": "{\"paperId\": \"1e604e06d7814a6d58d0d62c39d4bac35dd2587e\", \"externalIds\": {\"DOI\": \"10.1177/09520767231210025\", \"CorpusId\": 265112732}, \"title\": \"Prioritizing exceptional social needs. Experimental evidence on the role of discrimination and client deservingness in public employees\\u2019 and citizens\\u20"
+ },
+ {
+  "route": "Wayback availability, Sage PDF",
+  "url": "http://archive.org/wayback/available?url=journals.sagepub.com/doi/pdf/10.1177/09520767231210025",
+  "utc": "2026-10-10T11:54:31Z",
+  "http": 404,
+  "bytes": 10,
+  "sha256": "709009e02c8e364113b28205aadde30cce270d709073f28153c85fdc5036c96d",
+  "what_came_back": "not found "
+ }
+]
