@@ -1,0 +1,11 @@
+--- step2.R	2026-10-09 15:46:43.328505801 +0000
++++ patched_primary.R	2026-10-09 15:52:12.380423751 +0000
+@@ -3,7 +3,7 @@
+ library(semTools)
+ library(semPlot)
+ library(xtable)
+-library(gt)
++# AUDIT ENV FIX 3 (gt not installable: needs system libv8, unavailable; gt not used): library(gt)
+ 
+ # Load data
+ rural <- read_csv(file = "/workspace/audit_runs/04_PSHE5L/A/raw/Rural_Populism_Dataset.csv") # AUDIT ENV FIX 1: path to public OSF extract

@@ -1,0 +1,11 @@
+# 04_PSHE5L
+- Paper: Rural Populism and Tolerance for Political Violence
+- Journal: Socius Sociological Research for a Dynamic World (2025)
+- Paper DOI: https://doi.org/10.1177/23780231251317227
+- Dataset DOI: https://doi.org/10.7910/DVN/PSHE5L
+- Dataset title: Replication Code for: Rural Populism and Tolerance for Political Violence
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 14238
+- Audit position 4, batch 1

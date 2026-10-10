@@ -1,0 +1,23 @@
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+R_b rows meeting |z|>3: 17 
+
+6.333 6.667     7 
+    5     5     7 
+  check               param   est_std     se_std ci_lower_std ci_upper_std
+1   R_b                  b1 -0.205425 0.08031720   -0.3628438  -0.04800617
+2   R_b indirect1_econgriev -0.145564 0.06620567   -0.2753247  -0.01580327
+       p_std  est_unstd    p_unstd nobs converged rows_dropped note
+1 0.01053757 -0.3644240 0.01023596 1186      TRUE           17     
+2 0.02790185 -0.1908941 0.04015997 1186      TRUE           17     
+  check               param     est_std     se_std ci_lower_std ci_upper_std
+1   R_c                  b1 -0.11817310 0.05850801   -0.2328467 -0.003499509
+2   R_c indirect1_econgriev -0.06384042 0.03439280   -0.1312491  0.003568231
+       p_std   est_unstd    p_unstd nobs converged rows_dropped
+1 0.04340658 -0.22033041 0.04064262 1203      TRUE            0
+2 0.06342297 -0.07940561 0.07035626 1203      TRUE            0
+                                             note
+1 unweighted, all 1203 rows incl. 11 with WTS = 0
+2 unweighted, all 1203 rows incl. 11 with WTS = 0

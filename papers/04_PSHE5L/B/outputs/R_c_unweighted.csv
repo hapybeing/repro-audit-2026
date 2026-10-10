@@ -1,0 +1,3 @@
+"check","param","est_std","se_std","ci_lower_std","ci_upper_std","p_std","est_unstd","p_unstd","nobs","converged","rows_dropped","note"
+"R_c","b1",-0.118173098826089,0.0585080088156792,-0.232846688911972,-0.00349950874020606,0.0434065801185028,-0.220330408174306,0.0406426228710535,1203,TRUE,0,"unweighted, all 1203 rows incl. 11 with WTS = 0"
+"R_c","indirect1_econgriev",-0.0638404157587499,0.0343927986644036,-0.131249062468518,0.00356823095101844,0.0634229728031279,-0.0794056086336259,0.0703562601718,1203,TRUE,0,"unweighted, all 1203 rows incl. 11 with WTS = 0"

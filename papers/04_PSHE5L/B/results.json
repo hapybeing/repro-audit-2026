@@ -1,0 +1,136 @@
+{
+ "paper_id": "04_PSHE5L",
+ "agent": "B",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Populism -> tolerance for political violence, standardized coefficient (b1, violence ~ polgriev), main structural model n=1139; paper p = .006",
+   "paper_value": -0.202,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.202417406916307,
+   "source_file": "outputs/primary_structural_stdsol.csv",
+   "abs_diff": -0.0004174069163069838,
+   "rel_diff": -0.0020663708728068503,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "est.std (std.all) from standardizedSolution(structural), primary as-deposited run, lavaan nobs 1203 (paper n 1,139). p from summary()/parameterEstimates (unstandardized z test) = 0.0055; p from standardizedSolution (delta method) = 0.0060; paper p = 0.006. DIAGNOSTIC run (line 188 Q15==8 -> NA) est.std = -0.2032 (outputs/diag_q15na_structural_stdsol.csv)."
+  },
+  {
+   "id": "T2",
+   "description": "Economic grievance -> violence, direct standardized coefficient (c, violence ~ econgriev); paper p = .005",
+   "paper_value": 0.354,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.353730901449794,
+   "source_file": "outputs/primary_structural_stdsol.csv",
+   "abs_diff": -0.0002690985502059595,
+   "rel_diff": -0.0007601653960620326,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "est.std (std.all) from standardizedSolution(structural), primary as-deposited run, lavaan nobs 1203 (paper n 1,139). p from summary()/parameterEstimates (unstandardized z test) = 0.0054; p from standardizedSolution (delta method) = 0.0020; paper p = 0.005. DIAGNOSTIC run (line 188 Q15==8 -> NA) est.std = 0.3630 (outputs/diag_q15na_structural_stdsol.csv)."
+  },
+  {
+   "id": "T3",
+   "description": "Economic grievance -> populism, standardized coefficient (a1, polgriev ~ econgriev); paper p = .000",
+   "paper_value": 0.718,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.717745796658996,
+   "source_file": "outputs/primary_structural_stdsol.csv",
+   "abs_diff": -0.0002542033410040112,
+   "rel_diff": -0.000354043650423414,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "est.std (std.all) from standardizedSolution(structural), primary as-deposited run, lavaan nobs 1203 (paper n 1,139). p from summary()/parameterEstimates (unstandardized z test) = 0.0000; p from standardizedSolution (delta method) = 0.0000; paper p = 0.000. DIAGNOSTIC run (line 188 Q15==8 -> NA) est.std = 0.7611 (outputs/diag_q15na_structural_stdsol.csv)."
+  },
+  {
+   "id": "T4",
+   "description": "Indirect effect of economic grievance on violence through populism, standardized (indirect1_econgriev = a1*b1); paper p = .028",
+   "paper_value": -0.145,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.145284242984793,
+   "source_file": "outputs/primary_structural_stdsol.csv",
+   "abs_diff": -0.000284242984793015,
+   "rel_diff": -0.0019602964468483797,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "est.std (std.all) from standardizedSolution(structural), primary as-deposited run, lavaan nobs 1203 (paper n 1,139). p from summary()/parameterEstimates (unstandardized z test) = 0.0279; p from standardizedSolution (delta method) = 0.0184; paper p = 0.028. DIAGNOSTIC run (line 188 Q15==8 -> NA) est.std = -0.1547 (outputs/diag_q15na_structural_stdsol.csv)."
+  },
+  {
+   "id": "T5",
+   "description": "Total effect of economic grievance on violence, standardized (total_effect_econgriev = c + a1*b1); paper p = .020",
+   "paper_value": 0.208,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.208446658465002,
+   "source_file": "outputs/primary_structural_stdsol.csv",
+   "abs_diff": 0.0004466584650019978,
+   "rel_diff": 0.002147396466355759,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "est.std (std.all) from standardizedSolution(structural), primary as-deposited run, lavaan nobs 1203 (paper n 1,139). p from summary()/parameterEstimates (unstandardized z test) = 0.0200; p from standardizedSolution (delta method) = 0.0129; paper p = 0.020. DIAGNOSTIC run (line 188 Q15==8 -> NA) est.std = 0.2084 (outputs/diag_q15na_structural_stdsol.csv)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, 1000 replicates, set.seed(20261009) once; resample rows with replacement keeping WTS, refit identical cfa(..., sampling.weights='WTS', missing='ML', estimator='MLR'); est.std of b1 and indirect1_econgriev; median and percentile 95% CI.",
+   "ran": true,
+   "estimate": -0.198029005536615,
+   "se_or_ci": "bootstrap median; percentile 95% CI [-0.3576, -0.0661]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_a_summary.json",
+   "note": "Replicates run 1000, usable 1000, failed/non-converged excluded 0. Share of b1 < 0: 0.998. indirect1_econgriev: median -0.1405, 95% CI [-0.3054, -0.0435], share < 0 0.998; T4 CI excludes 0: True. Raw replicates: outputs/R_a_boot.csv."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on unweighted z of rowMeans(Q25B, Q25C, Q25D); refit identical model.",
+   "ran": true,
+   "estimate": -0.205424985340163,
+   "se_or_ci": "SE 0.0803; 95% CI [-0.3628, -0.0480] (standardizedSolution)",
+   "p_value": 0.0105375667742715,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_b_outliers.csv",
+   "note": "estimate = est.std of violence ~ polgriev (T1). p_value from standardizedSolution; unstandardized p = 0.0102. indirect1_econgriev (T4) est.std = -0.1456, p_std = 0.0279, p_unstd = 0.0402, 95% CI [-0.2753, -0.0158]; T4 same direction and p<.05: True. nobs 1186. Rows dropped: 17."
+  },
+  {
+   "id": "R_c",
+   "description": "Unweighted: identical call without sampling.weights = 'WTS' (all 1203 rows incl. 11 with WTS 0).",
+   "ran": true,
+   "estimate": -0.118173098826089,
+   "se_or_ci": "SE 0.0585; 95% CI [-0.2328, -0.0035] (standardizedSolution)",
+   "p_value": 0.0434065801185028,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_c_unweighted.csv",
+   "note": "estimate = est.std of violence ~ polgriev (T1). p_value from standardizedSolution; unstandardized p = 0.0406. indirect1_econgriev (T4) est.std = -0.0638, p_std = 0.0634, p_unstd = 0.0704, 95% CI [-0.1312, 0.0036]; T4 same direction and p<.05: False. nobs 1203. "
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/01_data_path.diff: line 9 data path changed to the public OSF extract Rural_Populism_Dataset.csv (the named file is not in the Dataverse deposit)",
+  "diffs/02_comment_out_RAW_Q24_mutate.diff: lines 19-20 error because RAW_Q24A-I are absent from the public extract; created variables unused"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All five standardized targets from the as-deposited code (two PREREG-allowed environment fixes) match the paper to 3 decimals, and the paper's p values match the unstandardized z-test p values. The data had to come from the authors' OSF component, not the Dataverse deposit (code only); see uncertainties for why class C was considered.",
+ "confidence": "medium",
+ "confidence_reason": "Targets match exactly, but data came from OSF not the deposit, lavaan n is 1203 not 1,139, and the paper's main-model fit statistics (chi2 516.954) match only the Q15-code-8-as-NA diagnostic run (chi2 516.954), not the primary run (chi2 519.886).",
+ "time_minutes": 33,
+ "uncertainties": [
+  "Data source: the Dataverse deposit contains only the R script; the CSV was downloaded from the authors' OSF component https://osf.io/mtd4z/ (not cited in the paper). It is a 30-column extract with a different file name from the 117-column file the script reads. If the audit requires the Dataverse deposit alone to be sufficient, the deposit is incomplete (no data, no README), which would point to class C under PROTOCOL section 7; I propose A because the targets reproduce exactly from the authors' own public data and code, but the batch report should note this judgement.",
+  "Primary (as deposited, Q15 code 8 kept): main-model fit scaled chi2 519.886, df 141, robust CFI 0.909, robust TLI 0.890, SRMR 0.058, robust RMSEA 0.062, nobs 1203. Paper: 516.954, 141, .911, .892, .058, .062, n 1,139.",
+  "Diagnostic (line 188 active, Q15 == 8 -> NA): fit scaled chi2 516.954, df 141, CFI 0.911, TLI 0.892, SRMR 0.058, RMSEA 0.062, nobs 1203 (FIML keeps the 64 rows). These equal the paper's fit numbers, but the diagnostic's coefficients do not equal the paper's tables (see target notes). So the paper's coefficients and its main-model fit statistics correspond to two different Q15 codings; I cannot determine why.",
+  "Paper n = 1,139 equals 1203 - 64 (rows with Q15 = 8) but lavaan reports nobs 1203 in both runs. Controls model: nobs 998, scaled chi2 779.793, df 201 in the primary run (paper: 998, 779.793, 201).",
+  "Q15 code 8: no public codebook for the 2021 survey labels it. The same team's OSF GND experiment code (https://osf.io/download/6aghr/, lines 73-77, on data with identical Q15 frequencies) maps Q15 == 8 to 'Missing', and the script's own comment says 'Liberal 1 - 7 Conservative'. Whether code 8 should be missing in this paper's model is undeterminable from the public materials; not listed as a bug.",
+  "Paper p values match the unstandardized z-test p values from summary() (e.g. T2 .0054 vs paper .005), not the standardizedSolution delta-method p values (T2 .0020). Standardized values assumed std.all (lavaan default est.std).",
+  "Table 1 reliability values (not a target) were not reproduced by the script's rel()/reliability() output; see outputs/code_review.md item 4.",
+  "Environment: R 4.5.0 (system) used instead of the PREREG's R 4.4.3 path, which does not exist on this machine (brief instructed system Rscript). lavaan 0.6-19 and semTools 0.5-6 pinned versions were installed and used from the fresh library.",
+  "R_b and R_c significance judged with standardizedSolution p values; unstandardized p values are in the notes and lead to the same conclusions.",
+  "Process note: a ps listing displayed file names of Agent A's running scripts for this paper; no Agent A file was opened or read."
+ ]
+}

@@ -1,0 +1,11 @@
+--- orig/Rural Populism - Socius - Public Code.R
++++ patched/Rural Populism - Socius - Public Code.R
+@@ -6,7 +6,7 @@
+ library(gt)
+ 
+ # Load data
+-rural <- read_csv(file = "Downloads/320-942_Rural_West_COVID-19_Survey_4.5.21.csv")
++rural <- read_csv(file = "/workspace/audit_runs/04_PSHE5L/B/raw/Rural_Populism_Dataset.csv")
+ # Change all the "." to NAs
+ rural[] <- lapply(rural, function(x) if(is.character(x)) ifelse(x == ".", NA, x) else x)
+ # See how many classes of columns there are

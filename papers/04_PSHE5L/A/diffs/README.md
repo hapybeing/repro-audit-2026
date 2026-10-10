@@ -1,0 +1,9 @@
+# Environment fixes (04_PSHE5L, Agent A)
+
+Original file: `Rural Populism - Socius - Public Code.R` (Dataverse file 10695152, sha256 955871dc...e7a5). Fixes applied in order; each diff is against the previous step. The final patched script is `scripts/patched_primary.R`.
+
+1. `01_data_path.diff` (line 9): the script reads `Downloads/320-942_Rural_West_COVID-19_Survey_4.5.21.csv`, which is not in the Dataverse deposit and not public. Changed the path to the public OSF extract `Rural_Populism_Dataset.csv` (https://osf.io/download/wr3ve/, 1203 rows x 30 columns, a reduced extract with a different name). PREREG allowed fix 1.
+2. `02_raw_q24_absent.diff` (lines 17, 19, 20, 22): `mutate(across(all_of(paste0("RAW_Q24", LETTERS[1:9]))))` errors because the RAW_Q24* columns are absent from the public extract (error text in `outputs/envfix2_error_before_fix.txt`). Commented out. The created variables are not used anywhere later in the script (grep: RAW_Q24 appears only on lines 17, 22 and in commented lines 28-36). PREREG allowed fix 2.
+3. `03_gt_library.diff` (line 6): `library(gt)` cannot be loaded because gt could not be installed: its dependency V8 needs the system library libv8 / libnode-dev; `libv8-dev` has no apt candidate on this Debian 13 arm64 image and `sudo apt-get install libnode-dev` failed with unresolvable dependencies (logs: `outputs/install_extra_gt_semplot.log`, `outputs/apt_libnode_attempt.log`). No gt function is called in the script. PREREG allowed fix 3. semPlot and xtable installed and load normally, so their library() lines were left unchanged.
+
+Not an environment fix (labelled DIAGNOSTIC run only, pre-registered): `DIAGNOSTIC_only_q15_recode_reenabled.diff` re-enables the authors' own commented line 188 `rural$Q15[rural$Q15 == 8] <- NA`. Used only for `outputs/diag_q15na_*`; never for targets or robustness checks.

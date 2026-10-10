@@ -1,0 +1,16 @@
+R_b rows dropped: 17  max |z|: 3.732551 
+  check                quantity   est_std     se_std ci_lower_std ci_upper_std
+1   R_b b1_violence_on_polgriev -0.205425 0.08031720   -0.3628438  -0.04800617
+2   R_b     indirect1_econgriev -0.145564 0.06620567   -0.2753247  -0.01580327
+       p_std  est_unstd    p_unstd nobs converged rows_dropped max_abs_z
+1 0.01053757 -0.3644240 0.01023596 1186      TRUE           17  3.732551
+2 0.02790185 -0.1908941 0.04015997 1186      TRUE           17  3.732551
+  check                quantity     est_std     se_std ci_lower_std
+1   R_c b1_violence_on_polgriev -0.11817310 0.05850801   -0.2328467
+2   R_c     indirect1_econgriev -0.06384042 0.03439280   -0.1312491
+  ci_upper_std      p_std   est_unstd    p_unstd nobs converged rows_dropped
+1 -0.003499509 0.04340658 -0.22033041 0.04064262 1203      TRUE            0
+2  0.003568231 0.06342297 -0.07940561 0.07035626 1203      TRUE            0
+  max_abs_z
+1        NA
+2        NA

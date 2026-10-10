@@ -1,0 +1,18 @@
+{
+ "replicates_total": 1000,
+ "replicates_ok": 1000,
+ "replicates_failed_or_nonconverged": 0,
+ "failed_errors": [],
+ "b1_std": {
+  "median": -0.198029005536615,
+  "ci2.5": -0.35760807090845936,
+  "ci97.5": -0.06610586533414678,
+  "share_below_0": 0.998
+ },
+ "indirect1_std": {
+  "median": -0.1404536579342775,
+  "ci2.5": -0.30543350546021053,
+  "ci97.5": -0.043492896182110614,
+  "share_below_0": 0.998
+ }
+}

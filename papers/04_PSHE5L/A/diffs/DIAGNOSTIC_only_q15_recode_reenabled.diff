@@ -1,0 +1,11 @@
+--- patched_primary.R	2026-10-09 15:52:12.380423751 +0000
++++ patched_diag_q15na.R	2026-10-09 15:53:03.986651698 +0000
+@@ -185,7 +185,7 @@
+ #   )
+ 
+ # # Clean CONSERVATIVE score.
+-# rural$Q15[rural$Q15 == 8] <- NA # Liberal 1 - 7 Conservative
++rural$Q15[rural$Q15 == 8] <- NA # Liberal 1 - 7 Conservative  # DIAGNOSTIC ONLY: authors' commented line re-enabled
+ # 
+ # # Make Democract, Republican and Independent Columns
+ # rural$is_republican <- ifelse(rural$XQ14 == 1, 1, 0)

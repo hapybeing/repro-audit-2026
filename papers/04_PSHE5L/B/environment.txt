@@ -1,0 +1,108 @@
+# Environment, 04_PSHE5L Agent B
+Date (IST): 2026-10-09 21:42 IST
+
+## uname -a
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+
+## /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+## R
+Rscript (R) version 4.5.0 (2025-04-11)
+Rscript path: /usr/bin/Rscript
+R_LIBS_USER=/workspace/audit_runs/04_PSHE5L/B/rlib (fresh, created 2026-10-09)
+
+## Packages installed into the fresh library (source builds)
+V8
+bigD
+corpcor
+fdrtool
+glasso
+gt
+juicyjuice
+lavaan
+qgraph
+reactR
+reactable
+semPlot
+semTools
+
+## Seeds
+R_a: set.seed(20261009) once, before drawing all 1000 bootstrap index vectors (sample.int). No other randomness in the primary, diagnostic, R_b, R_c runs.
+Threads: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 for R_a, R_b, R_c.
+
+## sessionInfo() at the end of the PRIMARY run (authors' script sourced)
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] psych_2.4.12    gt_1.3.0        xtable_1.8-4    semPlot_1.2.0  
+ [5] semTools_0.5-6  lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1  
+ [9] dplyr_1.1.4     purrr_1.0.4     readr_2.1.5     tidyr_1.3.1    
+[13] tibble_3.2.1    ggplot2_3.5.1   tidyverse_2.0.0 lavaan_0.6-19  
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1   fastmap_1.2.0      TH.data_1.1-3      digest_0.6.37     
+ [5] rpart_4.1.24       timechange_0.3.0   estimability_1.5.1 lifecycle_1.0.4   
+ [9] cluster_2.1.8.1    survival_3.8-3     magrittr_2.0.3     compiler_4.5.0    
+[13] rlang_1.1.5        Hmisc_5.2-3        tools_4.5.0        igraph_2.1.4      
+[17] data.table_1.17.0  knitr_1.50         htmlwidgets_1.6.4  bit_4.6.0         
+[21] mnormt_2.1.1       xml2_1.3.8         plyr_1.8.9         abind_1.4-8       
+[25] multcomp_1.4-28    withr_3.0.2        foreign_0.8-90     nnet_7.3-20       
+[29] grid_4.5.0         stats4_4.5.0       colorspace_2.1-1   gtools_3.9.5      
+[33] emmeans_1.10.7     scales_1.3.0       MASS_7.3-65        cli_3.6.4         
+[37] mvtnorm_1.3-3      crayon_1.5.3       rmarkdown_2.29     generics_0.1.3    
+[41] rstudioapi_0.17.1  reshape2_1.4.4     tzdb_0.5.0         pbapply_1.7-2     
+[45] splines_4.5.0      parallel_4.5.0     base64enc_0.1-3    vctrs_0.6.5       
+[49] Matrix_1.7-3       sandwich_3.1-1     hms_1.1.3          glasso_1.11       
+[53] bit64_4.6.0-1      Formula_1.2-5      htmlTable_2.4.3    jpeg_0.1-10       
+[57] qgraph_1.10.1      glue_1.8.0         codetools_0.2-20   stringi_1.8.4     
+[61] gtable_0.3.6       quadprog_1.5-8     munsell_0.5.1      pillar_1.10.1     
+[65] htmltools_0.5.8.1  R6_2.6.1           vroom_1.6.5        evaluate_1.0.3    
+[69] pbivnorm_0.6.0     lattice_0.22-7     png_0.1-8          backports_1.5.0   
+[73] corpcor_1.6.10     Rcpp_1.0.14        fdrtool_1.2.18     coda_0.19-4.1     
+[77] gridExtra_2.3      nlme_3.1-168       checkmate_2.3.2    xfun_0.51         
+[81] fs_1.6.5           zoo_1.8-14         pkgconfig_2.0.3   
+
+## Versions of key packages actually loaded
+lavaan 0.6.19 /workspace/audit_runs/04_PSHE5L/B/rlib 
+semTools 0.5.6 /workspace/audit_runs/04_PSHE5L/B/rlib 
+semPlot 1.2.0 /workspace/audit_runs/04_PSHE5L/B/rlib 
+gt 1.3.0 /workspace/audit_runs/04_PSHE5L/B/rlib 
+xtable 1.8.4 /usr/lib/R/site-library 
+psych 2.4.12 /usr/lib/R/site-library 
+tidyverse 2.0.0 /usr/lib/R/site-library 
+readr 2.1.5 /usr/lib/R/site-library 
+dplyr 1.1.4 /usr/lib/R/site-library 
+V8 8.2.0 /workspace/audit_runs/04_PSHE5L/B/rlib 
+qgraph 1.10.1 /workspace/audit_runs/04_PSHE5L/B/rlib 
+OpenMx 2.21.13 /usr/lib/R/site-library 
+
+## Deviation from PREREG
+PREREG names R 4.4.3 at /workspace/mamba/envs/r/bin/Rscript; that path does not exist here. The assignment brief says to use system Rscript, so R 4.5.0 (Debian) was used.

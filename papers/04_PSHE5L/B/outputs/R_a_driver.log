@@ -1,0 +1,36 @@
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 150 
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 150 
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 150 
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 150 
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 150 
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 150 
+Warning messages:
+1: In readLines(patched) :
+  incomplete final line found on '/workspace/audit_runs/04_PSHE5L/B/work/patched_primary.R'
+2: Unknown or uninitialised column: `RAW_Q24C`. 
+done reps this call: 100 
+ALLDONE Fri Oct 9 16:25:32 UTC 2026

@@ -1,0 +1,20 @@
+{
+ "replicates_attempted": 1000,
+ "replicates_ok": 1000,
+ "replicates_failed_or_nonconverged": 0,
+ "seed": 20261009,
+ "b1_std": {
+  "median": -0.198029005536615,
+  "ci95_lower": -0.35760807090845936,
+  "ci95_upper": -0.06610586533414678,
+  "share_below_0": 0.998,
+  "ci_excludes_0": true
+ },
+ "indirect_std": {
+  "median": -0.1404536579342775,
+  "ci95_lower": -0.30543350546021053,
+  "ci95_upper": -0.043492896182110614,
+  "share_below_0": 0.998,
+  "ci_excludes_0": true
+ }
+}

@@ -1,0 +1,23 @@
+trying URL 'https://cloud.r-project.org/src/contrib/semPlot_1.2.0.tar.gz'
+Content type 'application/x-gzip' length 104194 bytes (101 KB)
+==================================================
+downloaded 101 KB
+
+* installing *source* package ‘semPlot’ ...
+** this is package ‘semPlot’ version ‘1.2.0’
+** package ‘semPlot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (semPlot)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp6X42Lw/downloaded_packages’
+PKG semPlot installed: TRUE elapsed_min: 0.2 

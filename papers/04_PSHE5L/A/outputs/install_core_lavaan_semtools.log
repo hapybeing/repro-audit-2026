@@ -1,0 +1,36 @@
+Downloading package from url: https://cloud.r-project.org/src/contrib/Archive/lavaan/lavaan_0.6-19.tar.gz
+* installing *source* package ‘lavaan’ ...
+** this is package ‘lavaan’ version ‘0.6-19’
+** package ‘lavaan’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lavaan)
+Downloading package from url: https://cloud.r-project.org/src/contrib/Archive/semTools/semTools_0.5-6.tar.gz
+* installing *source* package ‘semTools’ ...
+** this is package ‘semTools’ version ‘0.5-6’
+** package ‘semTools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (semTools)
+DONE

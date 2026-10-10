@@ -1,0 +1,181 @@
+also installing the dependencies ‘V8’, ‘reactR’, ‘bigD’, ‘juicyjuice’, ‘reactable’
+
+trying URL 'https://cloud.r-project.org/src/contrib/V8_8.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/reactR_0.6.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/bigD_0.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/juicyjuice_0.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/reactable_0.4.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/gt_1.3.0.tar.gz'
+* installing *source* package ‘V8’ ...
+** this is package ‘V8’ version ‘8.2.0’
+** package ‘V8’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found C++20 compiler: g++
+Using CXXCPP=g++ -std=gnu++20 -E
+Using PKG_CFLAGS=-I/usr/include/v8
+Using PKG_LIBS=-lv8 -lv8_libplatform
+-----------------------------[ ANTICONF ]-------------------------------
+Configuration failed to find the libv8 engine library. Try installing:
+ * deb: libv8-dev or libnode-dev (Debian / Ubuntu)
+ * rpm: v8-devel (Fedora, EPEL)
+ * brew: v8 (OSX)
+Alternatively, on Linux or MacOS you can set environment variable:
+    DOWNLOAD_STATIC_LIBV8=1
+to automatically download a static build of libv8 (recommended).
+To use a custom libv8, set V8_PKG_CFLAGS and V8_PKG_LIBS manually.
+---------------------------[ ERROR MESSAGE ]----------------------------
+<stdin>:1:10: fatal error: v8.h: No such file or directory
+compilation terminated.
+------------------------------------------------------------------------
+ERROR: configuration failed for package ‘V8’
+* removing ‘/workspace/audit_runs/04_PSHE5L/A/rlib/V8’
+* installing *source* package ‘reactR’ ...
+** this is package ‘reactR’ version ‘0.6.1’
+** package ‘reactR’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (reactR)
+* installing *source* package ‘bigD’ ...
+** this is package ‘bigD’ version ‘0.3.1’
+** package ‘bigD’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bigD)
+ERROR: dependency ‘V8’ is not available for package ‘juicyjuice’
+Perhaps try a variation of:
+install.packages('V8')
+* removing ‘/workspace/audit_runs/04_PSHE5L/A/rlib/juicyjuice’
+* installing *source* package ‘reactable’ ...
+** this is package ‘reactable’ version ‘0.4.5’
+** package ‘reactable’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (reactable)
+ERROR: dependency ‘juicyjuice’ is not available for package ‘gt’
+Perhaps try a variation of:
+install.packages('juicyjuice')
+* removing ‘/workspace/audit_runs/04_PSHE5L/A/rlib/gt’
+
+The downloaded source packages are in
+	‘/tmp/Rtmp6G06bZ/downloaded_packages’
+PKG gt installed: FALSE elapsed_min: 0.6 
+also installing the dependencies ‘glasso’, ‘fdrtool’, ‘qgraph’, ‘corpcor’
+
+trying URL 'https://cloud.r-project.org/src/contrib/glasso_1.11.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fdrtool_1.2.18.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/qgraph_1.10.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/corpcor_1.6.10.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/semPlot_1.2.0.tar.gz'
+* installing *source* package ‘glasso’ ...
+** this is package ‘glasso’ version ‘1.11’
+** package ‘glasso’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+using Fortran compiler: ‘GNU Fortran (Debian 14.2.0-19) 14.2.0’
+gfortran  -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -mbranch-protection=standard  -c glasso.f -o glasso.o
+gcc -std=gnu23 -I"/usr/share/R/include" -DNDEBUG       -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2  -c glasso_init.c -o glasso_init.o
+gcc -std=gnu23 -shared -L/usr/lib/R/lib -Wl,-z,relro -o glasso.so glasso.o glasso_init.o -lgfortran -lm -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/04_PSHE5L/A/rlib/00LOCK-glasso/00new/glasso/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (glasso)
+* installing *source* package ‘fdrtool’ ...
+** this is package ‘fdrtool’ version ‘1.2.18’
+** package ‘fdrtool’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+gcc -std=gnu23 -I"/usr/share/R/include" -DNDEBUG       -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2  -c fdrtool_init.c -o fdrtool_init.o
+gcc -std=gnu23 -I"/usr/share/R/include" -DNDEBUG       -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2  -c isomean.c -o isomean.o
+gcc -std=gnu23 -shared -L/usr/lib/R/lib -Wl,-z,relro -o fdrtool.so fdrtool_init.o isomean.o -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/04_PSHE5L/A/rlib/00LOCK-fdrtool/00new/fdrtool/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fdrtool)
+* installing *source* package ‘corpcor’ ...
+** this is package ‘corpcor’ version ‘1.6.10’
+** package ‘corpcor’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (corpcor)
+* installing *source* package ‘qgraph’ ...
+** this is package ‘qgraph’ version ‘1.10.1’
+** package ‘qgraph’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DARMA_DONT_USE_OPENMP -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp  -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG -DARMA_DONT_USE_OPENMP -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp  -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c layout_rcpp.cpp -o layout_rcpp.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o qgraph.so RcppExports.o layout_rcpp.o -fopenmp -llapack -lblas -lgfortran -lm -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/04_PSHE5L/A/rlib/00LOCK-qgraph/00new/qgraph/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (qgraph)
+* installing *source* package ‘semPlot’ ...
+** this is package ‘semPlot’ version ‘1.2.0’
+** package ‘semPlot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location

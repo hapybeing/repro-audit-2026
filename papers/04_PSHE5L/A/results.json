@@ -1,0 +1,143 @@
+{
+ "paper_id": "04_PSHE5L",
+ "agent": "A",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Populism -> tolerance for political violence, standardized coefficient (b1, violence ~ polgriev), main structural model n=1139; paper p = .006",
+   "paper_value": -0.202,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.202417406916307,
+   "source_file": "outputs/structural_stdsol.csv",
+   "abs_diff": -0.0004174069163069838,
+   "rel_diff": -0.0020663708728068503,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Primary run (as deposited, Q15 code 8 kept), est.std from standardizedSolution(structural). p (summary()/parameterEstimates, unstandardized z test) = 0.0055; p (standardizedSolution, delta method) = 0.0060; paper p = 0.006; the paper's p values match the unstandardized ones to 3 decimals. DIAGNOSTIC run (authors' line 188 re-enabled, Q15 code 8 = NA): est.std = -0.2032 (outputs/diag_q15na_stdsol.csv). lavaan nobs = 1203 (paper n = 1139)."
+  },
+  {
+   "id": "T2",
+   "description": "Economic grievance -> violence, direct standardized coefficient (c, violence ~ econgriev); paper p = .005",
+   "paper_value": 0.354,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.353730901449794,
+   "source_file": "outputs/structural_stdsol.csv",
+   "abs_diff": -0.0002690985502059595,
+   "rel_diff": -0.0007601653960620326,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Primary run (as deposited, Q15 code 8 kept), est.std from standardizedSolution(structural). p (summary()/parameterEstimates, unstandardized z test) = 0.0054; p (standardizedSolution, delta method) = 0.0020; paper p = 0.005; the paper's p values match the unstandardized ones to 3 decimals. DIAGNOSTIC run (authors' line 188 re-enabled, Q15 code 8 = NA): est.std = 0.3630 (outputs/diag_q15na_stdsol.csv). lavaan nobs = 1203 (paper n = 1139)."
+  },
+  {
+   "id": "T3",
+   "description": "Economic grievance -> populism, standardized coefficient (a1, polgriev ~ econgriev); paper p = .000",
+   "paper_value": 0.718,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.717745796658996,
+   "source_file": "outputs/structural_stdsol.csv",
+   "abs_diff": -0.0002542033410040112,
+   "rel_diff": -0.000354043650423414,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Primary run (as deposited, Q15 code 8 kept), est.std from standardizedSolution(structural). p (summary()/parameterEstimates, unstandardized z test) = 0.0000; p (standardizedSolution, delta method) = 0.0000; paper p = 0.000; the paper's p values match the unstandardized ones to 3 decimals. DIAGNOSTIC run (authors' line 188 re-enabled, Q15 code 8 = NA): est.std = 0.7611 (outputs/diag_q15na_stdsol.csv). lavaan nobs = 1203 (paper n = 1139)."
+  },
+  {
+   "id": "T4",
+   "description": "Indirect effect of economic grievance on violence through populism, standardized (indirect1_econgriev = a1*b1); paper p = .028",
+   "paper_value": -0.145,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.145284242984793,
+   "source_file": "outputs/structural_stdsol.csv",
+   "abs_diff": -0.000284242984793015,
+   "rel_diff": -0.0019602964468483797,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Primary run (as deposited, Q15 code 8 kept), est.std from standardizedSolution(structural). p (summary()/parameterEstimates, unstandardized z test) = 0.0279; p (standardizedSolution, delta method) = 0.0184; paper p = 0.028; the paper's p values match the unstandardized ones to 3 decimals. DIAGNOSTIC run (authors' line 188 re-enabled, Q15 code 8 = NA): est.std = -0.1547 (outputs/diag_q15na_stdsol.csv). lavaan nobs = 1203 (paper n = 1139)."
+  },
+  {
+   "id": "T5",
+   "description": "Total effect of economic grievance on violence, standardized (total_effect_econgriev = c + a1*b1); paper p = .020",
+   "paper_value": 0.208,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.208446658465002,
+   "source_file": "outputs/structural_stdsol.csv",
+   "abs_diff": 0.0004466584650019978,
+   "rel_diff": 0.002147396466355759,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Primary run (as deposited, Q15 code 8 kept), est.std from standardizedSolution(structural). p (summary()/parameterEstimates, unstandardized z test) = 0.0200; p (standardizedSolution, delta method) = 0.0129; paper p = 0.020; the paper's p values match the unstandardized ones to 3 decimals. DIAGNOSTIC run (authors' line 188 re-enabled, Q15 code 8 = NA): est.std = 0.2084 (outputs/diag_q15na_stdsol.csv). lavaan nobs = 1203 (paper n = 1139)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Nonparametric case bootstrap, 1000 replicates, set.seed(20261009) once; rows resampled with their WTS weights; same cfa() call; est.std of b1 and indirect1_econgriev; percentile 95% CI",
+   "ran": true,
+   "estimate": -0.198029005536615,
+   "se_or_ci": "b1 percentile 95% CI [-0.3576, -0.0661]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_a_summary.json (from outputs/R_a_boot.csv)",
+   "note": "estimate = bootstrap median of b1 est.std. Replicates attempted 1000, usable 1000, failed or non-converged 0 (excluded). Share of replicates with b1 < 0: 0.998. Indirect effect (T4): median -0.1405, 95% CI [-0.3054, -0.0435], CI excludes 0: True. Resample indices for all 1000 replicates were drawn in order right after the single set.seed call and stored, to make the run resumable."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on unweighted z of viol_mean = rowMeans(Q25B, Q25C, Q25D); refit same model",
+   "ran": true,
+   "estimate": -0.205424985340163,
+   "se_or_ci": "SE(std) 0.0803; 95% CI [-0.3628, -0.0480]",
+   "p_value": 0.0102359569690256,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_b_outliers.csv",
+   "note": "Rows dropped: 17 (max |z| 3.733); nobs 1186. p_value = unstandardized z test (as in paper); p of est.std = 0.0105. Indirect (T4) est.std -0.1456, p unstd 0.0402, p std 0.0279."
+  },
+  {
+   "id": "R_c",
+   "description": "Unweighted: identical cfa() call without sampling.weights, all 1203 rows",
+   "ran": true,
+   "estimate": -0.118173098826089,
+   "se_or_ci": "SE(std) 0.0585; 95% CI [-0.2328, -0.0035]",
+   "p_value": 0.0406426228710535,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_c_unweighted.csv",
+   "note": "nobs 1203. p_value = unstandardized z test; p of est.std = 0.0434. b1 keeps sign and p < .05 but is smaller in size. Indirect (T4) est.std -0.0638, p unstd 0.0704, p std 0.0634: not significant at .05 unweighted."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Rural Populism - Socius - Public Code.R",
+   "line": 188,
+   "description": "Q15 (conservatism) code 8 is left in the data and used as a numeric value above 7 in every model, because the recode to NA is commented out. The script's own comment on that line gives the scale as 'Liberal 1 - 7 Conservative'. What code 8 means could not be determined: no public codebook or questionnaire for this 2021 survey was found (the OSF parent project only documents the 2020 wave, where Q15 is a different question). The authors' commented recodes elsewhere set analogous extra codes to NA (QF 6 'No answer', line 43-44; XQ14 4 and 5, lines 134-135, active).",
+   "evidence": "outputs/data_facts.txt: Q15 takes values 1-8, with 64 rows = 8; 1203 - 64 = 1139 = paper's n. Published coefficients T1-T5 match only the run with code 8 kept; the published structural fit (chi2 516.954, robust CFI .911, TLI .892) matches only the run with code 8 set to NA (primary chi2.scaled 519.886, diagnostic 516.954; outputs/primary_vs_diagnostic.csv)."
+  }
+ ],
+ "env_fixes": [
+  "diffs/01_data_path.diff: script reads a non-public 117-column file (line 9); path changed to the public OSF extract Rural_Populism_Dataset.csv",
+  "diffs/02_raw_q24_absent.diff: RAW_Q24A-I columns absent from the public extract, mutate(across(all_of())) errored; lines 17, 19, 20, 22 commented out (variables never used later)",
+  "diffs/03_gt_library.diff: gt not installable (V8 needs system libv8, unavailable on Debian 13 arm64); library(gt) commented out (no gt function is called)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All five headline standardized coefficients reproduce exactly to the paper's 3 decimals (and the paper's p values match the unstandardized z tests) from the deposited code with three environment fixes. Caveat on PROTOCOL section 7: the Dataverse deposit contains code only; the data come from the authors' OSF component (osf.io/mtd4z), which the paper does not cite, in a reduced 30-column extract under a different file name, so judged on the Dataverse deposit alone the materials are incomplete (class C); I propose A because the authors' own public materials reproduce the targets exactly, but flag this for the batch decision. The paper's structural-model fit statistics and n = 1,139 correspond to a different data state (Q15 code 8 as missing) than its coefficients.",
+ "confidence": "medium",
+ "confidence_reason": "Targets matched by script with the pinned lavaan 0.6-19, but the data are an unlinked OSF extract and the paper's fit statistics and n come from a different data state than its coefficients; B not yet compared.",
+ "time_minutes": 40,
+ "uncertainties": [
+  "Data provenance: the CSV is linked to this paper only by the OSF component title, the byte-identical code file and matching variables; the paper does not cite it.",
+  "Meaning of Q15 code 8 (64 rows) could not be determined from any public codebook.",
+  "n: lavaan reports nobs = 1203 in both the primary and diagnostic runs (FIML keeps rows with missing Q15); the paper reports 1,139 = rows with Q15 != 8. How the authors obtained 1,139 is not determined.",
+  "Structural fit: primary run chi2.scaled 519.886, robust CFI 0.909, robust TLI 0.890 vs paper 516.954/.911/.892; the diagnostic run gives 516.954/0.911/0.892. SRMR and robust RMSEA agree in both. The paper's fit and coefficients thus come from two different data states.",
+  "Controls model (context): primary run gives chi2.scaled 779.793, df 201, n 998, equal to the paper's 779.793 / 201 / 998; the diagnostic run does not (794.407).",
+  "Table 1 reliability values (not targets) printed by the script (alpha, CR, AVE in outputs/full_script_output.txt) do not equal the paper's Table 1 values recorded in PREREG.md (e.g. paper alpha .856 and .891 for the last two factors); not investigated further because Table 1 is not a target.",
+  "Authors pinned no package versions; lavaan 0.6-19 / semTools 0.5-6 were chosen by the PREREG as contemporaneous with the 2024-11 deposit. Whether the authors used them is unknown.",
+  "Robustness R_a: the 1000 resample index vectors were drawn up front after set.seed(20261009) (same sequence as drawing inside the loop, given only sample() uses the RNG); a strict in-loop implementation would give the same draws unless lavaan consumes RNG, which was not checked.",
+  "Controls-model dummies code non-substantive answers as 0 (QF 6 'No answer' as not college, QB 12 as not over 65, QC 3/4 as not male); the script's comment at lines 118-119 states this choice. Affects the controls model only, not the targets; recorded as an observation, not a bug."
+ ]
+}

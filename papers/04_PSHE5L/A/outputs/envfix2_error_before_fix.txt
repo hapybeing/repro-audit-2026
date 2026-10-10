@@ -1,0 +1,9 @@
+numeric 
+     30 
+Error in `mutate()`:
+ℹ In argument: `across(all_of(cols_to_convert), ~as.numeric(.))`.
+Caused by error in `across()`:
+ℹ In argument: `all_of(cols_to_convert)`.
+Caused by error in `all_of()`:
+! Can't subset elements that don't exist.
+✖ Elements `RAW_Q24A`, `RAW_Q24B`, `RAW_Q24C`, `RAW_Q24D`, `RAW_Q24E`, etc. don't exist.

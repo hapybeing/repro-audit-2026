@@ -1,0 +1,22 @@
+--- orig.R	2026-10-09 15:58:10.924438487 +0000
++++ patched_primary.R	2026-10-09 16:04:31.599853044 +0000
+@@ -6,7 +6,7 @@
+ library(gt)
+ 
+ # Load data
+-rural <- read_csv(file = "Downloads/320-942_Rural_West_COVID-19_Survey_4.5.21.csv")
++rural <- read_csv(file = "/workspace/audit_runs/04_PSHE5L/B/raw/Rural_Populism_Dataset.csv")
+ # Change all the "." to NAs
+ rural[] <- lapply(rural, function(x) if(is.character(x)) ifelse(x == ".", NA, x) else x)
+ # See how many classes of columns there are
+@@ -16,8 +16,8 @@
+ # Rescale 100 scale (RAW) column to out of 7 to align with other data scales.
+ cols_to_convert <- paste0("RAW_Q24", LETTERS[1:9])
+ # Apply the transformation
+-rural <- rural %>%
+-  mutate(across(all_of(cols_to_convert), ~ as.numeric(.)))
++# [AUDIT B env fix] rural <- rural %>%
++# [AUDIT B env fix]   mutate(across(all_of(cols_to_convert), ~ as.numeric(.)))
+ # Check Class
+ class(rural$RAW_Q24C)
+ # Never Heard Of ("NHO") values in RAW columns are NAs

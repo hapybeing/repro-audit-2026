@@ -1,0 +1,12 @@
+"measure","value"
+"chisq",903.413841019929
+"df",141
+"chisq.scaled",519.885501463134
+"df.scaled",141
+"cfi.robust",0.909399199474143
+"tli.robust",0.890122433404812
+"srmr",0.0583381659506336
+"rmsea.robust",0.06220878621905
+"nobs",1203
+"ntotal_rows_in_data",1203
+"converged",1

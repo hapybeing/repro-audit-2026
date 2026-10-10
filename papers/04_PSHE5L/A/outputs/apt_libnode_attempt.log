@@ -1,0 +1,14 @@
+sudo: unable to resolve host (none): Name or service not known
+E: Unable to correct problems, you have held broken packages.
+E: The following information from --solver 3.0 may provide additional context:
+   Unable to satisfy dependencies. Reached two conflicting decisions:
+   1. libnode115:arm64 Depends node-acorn (>= 6.2.1~)
+      but none of the choices are installable:
+      - node-acorn:arm64 Depends nodejs:any | nodejs (< 12.22.5~dfsg-4~)
+        but none of the choices are installable:
+        - nodejs:arm64=20.19.2+dfsg-1+deb13u3 is not selected for install
+        - nodejs:arm64=20.19.2+dfsg-1+deb13u2 is not selected for install
+   2. libnode115:arm64=20.19.2+dfsg-1+deb13u3 is selected for install because:
+      1. libnode-dev:arm64=20.19.2+dfsg-1+deb13u3 is selected for install
+      2. libnode-dev:arm64=20.19.2+dfsg-1+deb13u3 Depends libnode115 (= 20.19.2+dfsg-1+deb13u3)
+APT_EXIT 100

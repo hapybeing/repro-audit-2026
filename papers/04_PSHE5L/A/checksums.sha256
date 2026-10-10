@@ -1,0 +1,7 @@
+955871dc22416db62aa81173fbf7e81ba152f00c8546a7042f52782d7422e7a5  dataverse_code.R
+955871dc22416db62aa81173fbf7e81ba152f00c8546a7042f52782d7422e7a5  osf_code.R
+f839986a49ef5e107480803efd234789078d7a9a9b60efd50d21e74adb31b2ec  Rural_Populism_Dataset.csv
+29c515f53230b7e94c2128c435a5a4ed05bc9704d99cc08ed9f87d2aeef962bc  dataverse_meta.json
+1c0cc149a8083a6b646511a46a7961d704c0cc055fa761622ad5fa90f639d480  context/covid_data_cleaning.do
+cd6a9526e60ce696ab1c9262d05615aa4953919500e91390d192e96cff3ed3d7  context/README_covid_rural_us.docx
+# context/ files: OSF project 64ezg (2020 wave), https://osf.io/download/5f99ba39b1ea170379c93cdc/ and https://osf.io/download/5f99ba39101721032ba42761/, fetched only to look for a Q15 codebook

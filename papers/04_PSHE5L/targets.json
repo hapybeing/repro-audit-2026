@@ -1,0 +1,7 @@
+[
+  {"id": "T1", "description": "Populism -> tolerance for political violence, standardized coefficient (b1, violence ~ polgriev), main structural model n=1139; paper p = .006", "paper_value": -0.202, "paper_rounding_decimals": 3, "location": "Table 2, row 'Populism -> violence'"},
+  {"id": "T2", "description": "Economic grievance -> violence, direct standardized coefficient (c, violence ~ econgriev); paper p = .005", "paper_value": 0.354, "paper_rounding_decimals": 3, "location": "Table 2, row 'Economic grievance -> violence'"},
+  {"id": "T3", "description": "Economic grievance -> populism, standardized coefficient (a1, polgriev ~ econgriev); paper p = .000", "paper_value": 0.718, "paper_rounding_decimals": 3, "location": "Table 2, row 'Economic grievance -> populism'"},
+  {"id": "T4", "description": "Indirect effect of economic grievance on violence through populism, standardized (indirect1_econgriev = a1*b1); paper p = .028", "paper_value": -0.145, "paper_rounding_decimals": 3, "location": "Table 3, row 'Economic grievance -> -> violence'"},
+  {"id": "T5", "description": "Total effect of economic grievance on violence, standardized (total_effect_econgriev = c + a1*b1); paper p = .020", "paper_value": 0.208, "paper_rounding_decimals": 3, "location": "Table 4, row 'Economic grievance'"}
+]

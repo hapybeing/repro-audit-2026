@@ -1,0 +1,1334 @@
+lavaan 0.6.19 from /workspace/audit_runs/04_PSHE5L/A/rlib/lavaan 
+semTools 0.5.6 from /workspace/audit_runs/04_PSHE5L/A/rlib/semTools 
+> library(lavaan)
+This is lavaan 0.6-19
+lavaan is FREE software! Please report any bugs.
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(semTools)
+ 
+###############################################################################
+This is semTools 0.5-6
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+###############################################################################
+
+Attaching package: ‘semTools’
+
+The following object is masked from ‘package:readr’:
+
+    clipboard
+
+> library(semPlot)
+> library(xtable)
+> rural <- read_csv(file = "/workspace/audit_runs/04_PSHE5L/A/raw/Rural_Populism_Dataset.csv")
+Rows: 1203 Columns: 30
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (30): WTS, Q23A, Q23B, Q23C, Q23D, Q23E, Q23F, Q23H, Q23I, Q23J, Q23K, Q...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> rural[] <- lapply(rural, function(x) if (is.character(x)) ifelse(x == 
++     ".", NA, x) else x)
+> table(sapply(rural, class))
+
+numeric 
+     30 
+> rural <- rural %>% mutate(is_college = if_else(QF %in% 
++     c(4, 5), 1, 0))
+> table(rural$is_college)
+
+  0   1 
+519 684 
+> rural$is_male = ifelse(rural$QC == "1", 1, 0)
+> table(rural$is_male)
+
+  0   1 
+579 624 
+> rural$XQ14[rural$XQ14 == 4] <- NA
+> rural$XQ14[rural$XQ14 == 5] <- NA
+> rural$is_republican = ifelse(rural$XQ14 == "1", 1, 
++     0)
+> table(rural$is_republican)
+
+  0   1 
+689 309 
+> table(rural$QB)
+
+  1   2   3   4   5   6   7   8   9  10  11  12 
+ 60  46  70  73  94 101  70 118 153 289 115  14 
+> rural <- rural %>% mutate(is_over65 = if_else(QB %in% 
++     c(10, 11), 1, 0))
+> table(rural$is_over65)
+
+  0   1 
+799 404 
+> mediation_model_violence_ctrls1 <- "\n  # Measurement part\n  polgriev =~ Q23A + Q23B + Q23C + Q23D + Q23E + Q23F\n  econgriev =~ Q23I + Q23J + Q23K + Q23H + Q23L\n  cultgriev =~ Q23O + Q23G + Q23N + Q23M\n  violence =~ Q25B + Q25C + Q25D\n  \n  # MI Changes\n  Q23H ~~ Q23I\n  Q23A ~~ Q23B\n\n"
+> mediation_model_violence_ctrls2 <- "\n  # Measurement part\n  polgriev =~ Q23A + Q23B + Q23C + Q23D + Q23E + Q23F\n  econgriev =~ Q23I + Q23J + Q23K + Q23H + Q23L\n  cultgriev =~ Q23O + Q23G + Q23N + Q23M\n  violence =~ Q25B + Q25C + Q25D\n  \n  # Correlated Errors (from MI in Measurement Model)\n  Q23H ~~ Q23I\n  Q23A ~~ Q23B\n  \n  # Correlated Errors (from MI in Structural Model)\n  Q15 ~~ cultgriev\n  Q15 ~~ econgriev\n  cultgriev ~~ econgriev\n\n  # Structural part\n  violence ~ c*econgriev + d*cultgriev + e*Q15 + b1*polgriev\n\n  polgriev ~ a1*econgriev + a2*cultgriev + a3*Q15 \n\n  # Indirect effects for econgriev\n  indirect1_econgriev := a1*b1\n  total_indirect_econgriev := indirect1_econgriev\n  total_effect_econgriev := c + total_indirect_econgriev\n\n  # Indirect effects for cultgriev\n  indirect1_cultgriev := a2*b1\n  total_indirect_cultgriev := indirect1_cultgriev\n  total_effect_cultgriev := d + total_indirect_cultgriev\n\n  # Indirect effects for Q15\n  indirect1_Q15 := a3*b1\n  total_indirect_Q15 := indirect1_Q15\n  total_effect_Q15 := e + total_indirect_Q15\n\n  # Overall total indirect effect\n  overall_total_indirect := total_indirect_econgriev + total_indirect_cultgriev + total_indirect_Q15\n  \n  # Overall total effect\n  overall_total_effect := total_effect_econgriev + total_effect_cultgriev + total_effect_Q15\n"
+> mediation_model_violence_ctrls4 <- "\n  # Measurement part\n  polgriev =~ Q23A + Q23B + Q23C + Q23D + Q23E + Q23F\n  econgriev =~ Q23I + Q23J + Q23K + Q23H + Q23L\n  cultgriev =~ Q23O + Q23G + Q23N + Q23M\n  violence =~ Q25B + Q25C + Q25D\n  \n  # Correlated Errors (from MI in Measurement Model)\n  Q23H ~~ Q23I\n  Q23A ~~ Q23B\n  \n  # Correlated Errors (from MI in Structural Model)\n  Q15 ~~ cultgriev\n  Q15 ~~ econgriev\n  cultgriev ~~ econgriev\n\n  # Structural part\n  violence ~ c*econgriev + d*cultgriev + e*Q15 + b1*polgriev + is_college + is_over65 + is_male + is_republican\n\n  polgriev ~ a1*econgriev + a2*cultgriev + a3*Q15 + is_college + is_over65 + is_male + is_republican\n  \n  econgriev ~ is_college + is_over65 + is_male + is_republican\n  \n  cultgriev ~ is_college + is_over65 + is_male + is_republican\n\n  # Indirect effects for econgriev\n  indirect1_econgriev := a1*b1\n  total_indirect_econgriev := indirect1_econgriev\n  total_effect_econgriev := c + total_indirect_econgriev\n\n  # Indirect effects for cultgriev\n  indirect1_cultgriev := a2*b1\n  total_indirect_cultgriev := indirect1_cultgriev\n  total_effect_cultgriev := d + total_indirect_cultgriev\n\n  # Indirect effects for Q15\n  indirect1_Q15 := a3*b1\n  total_indirect_Q15 := indirect1_Q15\n  total_effect_Q15 := e + total_indirect_Q15\n\n  # Overall total indirect effect\n  overall_total_indirect := total_indirect_econgriev + total_indirect_cultgriev + total_indirect_Q15\n  \n  # Overall total effect\n  overall_total_effect := total_effect_econgriev + total_effect_cultgriev + total_effect_Q15\n"
+> measurement <- cfa(mediation_model_violence_ctrls1, 
++     data = rural, sampling.weights = "WTS", missing = "ML", estimator = "MLR")
+> summary(measurement, fit.measures = TRUE, standardized = TRUE)
+lavaan 0.6-19 ended normally after 81 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        62
+
+  Number of observations                          1203
+  Number of missing patterns                         1
+  Sampling weights variable                        WTS
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                               785.519     451.944
+  Degrees of freedom                               127         127
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.738
+    Yuan-Bentler correction (Mplus variant)                       
+
+Model Test Baseline Model:
+
+  Test statistic                              6980.173    3724.746
+  Degrees of freedom                               153         153
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.874
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.904       0.909
+  Tucker-Lewis Index (TLI)                       0.884       0.890
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.916
+  Robust Tucker-Lewis Index (TLI)                            0.899
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -40155.795  -40155.795
+  Scaling correction factor                                  1.974
+      for the MLR correction                                      
+  Loglikelihood unrestricted model (H1)     -39763.036  -39763.036
+  Scaling correction factor                                  1.816
+      for the MLR correction                                      
+                                                                  
+  Akaike (AIC)                               80435.591   80435.591
+  Bayesian (BIC)                             80751.331   80751.331
+  Sample-size adjusted Bayesian (SABIC)      80554.394   80554.394
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.066       0.046
+  90 Percent confidence interval - lower         0.061       0.043
+  90 Percent confidence interval - upper         0.070       0.050
+  P-value H_0: RMSEA <= 0.050                    0.000       0.966
+  P-value H_0: RMSEA >= 0.080                    0.000       0.000
+                                                                  
+  Robust RMSEA                                               0.061
+  90 Percent confidence interval - lower                     0.055
+  90 Percent confidence interval - upper                     0.067
+  P-value H_0: Robust RMSEA <= 0.050                         0.002
+  P-value H_0: Robust RMSEA >= 0.080                         0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.057       0.057
+
+Parameter Estimates:
+
+  Standard errors                             Sandwich
+  Information bread                           Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  polgriev =~                                                           
+    Q23A              1.000                               0.740    0.560
+    Q23B              1.331    0.110   12.124    0.000    0.985    0.603
+    Q23C              1.100    0.101   10.859    0.000    0.814    0.502
+    Q23D              1.703    0.152   11.205    0.000    1.260    0.735
+    Q23E              1.236    0.109   11.333    0.000    0.914    0.634
+    Q23F              1.425    0.190    7.504    0.000    1.054    0.540
+  econgriev =~                                                          
+    Q23I              1.000                               0.995    0.501
+    Q23J              1.368    0.109   12.497    0.000    1.361    0.690
+    Q23K              1.287    0.132    9.761    0.000    1.280    0.662
+    Q23H              0.953    0.076   12.593    0.000    0.948    0.482
+    Q23L              0.557    0.080    6.931    0.000    0.554    0.319
+  cultgriev =~                                                          
+    Q23O              1.000                               1.521    0.723
+    Q23G              1.202    0.065   18.460    0.000    1.829    0.781
+    Q23N              1.006    0.046   21.776    0.000    1.530    0.741
+    Q23M              0.678    0.055   12.249    0.000    1.031    0.558
+  violence =~                                                           
+    Q25B              1.000                               1.403    0.778
+    Q25C              0.955    0.060   16.025    0.000    1.339    0.811
+    Q25D              0.666    0.053   12.458    0.000    0.934    0.683
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+ .Q23I ~~                                                               
+   .Q23H              1.176    0.166    7.070    0.000    1.176    0.398
+ .Q23A ~~                                                               
+   .Q23B              0.452    0.100    4.502    0.000    0.452    0.317
+  polgriev ~~                                                           
+    econgriev         0.514    0.065    7.926    0.000    0.699    0.699
+    cultgriev         0.574    0.061    9.477    0.000    0.510    0.510
+    violence          0.127    0.046    2.754    0.006    0.122    0.122
+  econgriev ~~                                                          
+    cultgriev         1.073    0.107    9.998    0.000    0.709    0.709
+    violence          0.462    0.078    5.935    0.000    0.331    0.331
+  cultgriev ~~                                                          
+    violence          0.636    0.103    6.151    0.000    0.298    0.298
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .Q23A              6.186    0.047  132.439    0.000    6.186    4.687
+   .Q23B              5.700    0.059   96.193    0.000    5.700    3.489
+   .Q23C              5.575    0.057   97.018    0.000    5.575    3.439
+   .Q23D              5.573    0.064   87.325    0.000    5.573    3.253
+   .Q23E              5.909    0.050  117.431    0.000    5.909    4.096
+   .Q23F              4.755    0.069   68.469    0.000    4.755    2.437
+   .Q23I              4.380    0.074   59.407    0.000    4.380    2.207
+   .Q23J              4.529    0.070   64.426    0.000    4.529    2.297
+   .Q23K              4.495    0.070   63.833    0.000    4.495    2.323
+   .Q23H              4.671    0.073   64.211    0.000    4.671    2.376
+   .Q23L              5.353    0.064   83.204    0.000    5.353    3.085
+   .Q23O              3.263    0.080   40.900    0.000    3.263    1.551
+   .Q23G              4.186    0.088   47.638    0.000    4.186    1.787
+   .Q23N              3.050    0.077   39.425    0.000    3.050    1.477
+   .Q23M              5.082    0.067   76.389    0.000    5.082    2.753
+   .Q25B              2.357    0.066   35.586    0.000    2.357    1.307
+   .Q25C              2.338    0.061   38.039    0.000    2.338    1.416
+   .Q25D              1.662    0.052   32.240    0.000    1.662    1.216
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .Q23A              1.195    0.107   11.163    0.000    1.195    0.686
+   .Q23B              1.699    0.157   10.819    0.000    1.699    0.637
+   .Q23C              1.967    0.147   13.377    0.000    1.967    0.748
+   .Q23D              1.347    0.154    8.753    0.000    1.347    0.459
+   .Q23E              1.245    0.118   10.545    0.000    1.245    0.598
+   .Q23F              2.696    0.207   13.025    0.000    2.696    0.708
+   .Q23I              2.950    0.179   16.472    0.000    2.950    0.749
+   .Q23J              2.034    0.191   10.632    0.000    2.034    0.523
+   .Q23K              2.103    0.143   14.718    0.000    2.103    0.562
+   .Q23H              2.965    0.183   16.186    0.000    2.965    0.767
+   .Q23L              2.705    0.168   16.074    0.000    2.705    0.898
+   .Q23O              2.112    0.168   12.548    0.000    2.112    0.477
+   .Q23G              2.143    0.182   11.804    0.000    2.143    0.391
+   .Q23N              1.925    0.136   14.121    0.000    1.925    0.451
+   .Q23M              2.345    0.131   17.961    0.000    2.345    0.688
+   .Q25B              1.286    0.148    8.677    0.000    1.286    0.395
+   .Q25C              0.933    0.150    6.236    0.000    0.933    0.342
+   .Q25D              0.996    0.097   10.316    0.000    0.996    0.533
+    polgriev          0.547    0.091    5.996    0.000    1.000    1.000
+    econgriev         0.990    0.169    5.851    0.000    1.000    1.000
+    cultgriev         2.314    0.198   11.663    0.000    1.000    1.000
+    violence          1.968    0.173   11.389    0.000    1.000    1.000
+
+> modindices(measurement, sort = TRUE, minimum.value = 10)
+          lhs op  rhs     mi    epc sepc.lv sepc.all sepc.nox
+79   polgriev =~ Q23M 78.588  0.796   0.589    0.319    0.319
+269      Q23N ~~ Q25D 48.052  0.340   0.340    0.245    0.245
+88  econgriev =~ Q23F 46.191  0.683   0.680    0.348    0.348
+101 cultgriev =~ Q23F 45.677  0.314   0.478    0.245    0.245
+78   polgriev =~ Q23N 37.820 -0.573  -0.424   -0.205   -0.205
+115  violence =~ Q23F 35.752  0.242   0.339    0.174    0.174
+76   polgriev =~ Q23O 35.106 -0.565  -0.418   -0.199   -0.199
+128      Q23A ~~ Q23F 31.995 -0.309  -0.309   -0.172   -0.172
+77   polgriev =~ Q23G 29.213  0.570   0.422    0.180    0.180
+105 cultgriev =~ Q23H 29.165 -0.327  -0.497   -0.253   -0.253
+127      Q23A ~~ Q23E 28.604  0.210   0.210    0.172    0.172
+143      Q23B ~~ Q23E 27.922 -0.253  -0.253   -0.174   -0.174
+104 cultgriev =~ Q23K 27.591  0.377   0.574    0.297    0.297
+82   polgriev =~ Q25D 27.027 -0.257  -0.190   -0.139   -0.139
+224      Q23J ~~ Q23O 26.584  0.390   0.390    0.188    0.188
+256      Q23O ~~ Q23N 25.081  0.470   0.470    0.233    0.233
+92  econgriev =~ Q23M 23.520  0.459   0.456    0.247    0.247
+180      Q23D ~~ Q23G 23.413  0.320   0.320    0.188    0.188
+222      Q23J ~~ Q23H 22.721  0.381   0.381    0.155    0.155
+221      Q23J ~~ Q23K 19.396 -0.449  -0.449   -0.217   -0.217
+164      Q23C ~~ Q23L 19.047  0.305   0.305    0.132    0.132
+125      Q23A ~~ Q23C 18.963  0.200   0.200    0.130    0.130
+75   polgriev =~ Q23L 18.814  0.550   0.407    0.235    0.235
+96  cultgriev =~ Q23A 18.143 -0.121  -0.184   -0.140   -0.140
+110  violence =~ Q23A 17.566 -0.103  -0.145   -0.110   -0.110
+251      Q23L ~~ Q23M 17.430  0.320   0.320    0.127    0.127
+81   polgriev =~ Q25C 16.198  0.233   0.172    0.104    0.104
+106 cultgriev =~ Q23L 16.186 -0.249  -0.379   -0.219   -0.219
+165      Q23C ~~ Q23O 15.838 -0.269  -0.269   -0.132   -0.132
+107 cultgriev =~ Q25B 15.578 -0.127  -0.194   -0.107   -0.107
+83  econgriev =~ Q23A 15.071 -0.239  -0.238   -0.180   -0.180
+114  violence =~ Q23E 15.061 -0.112  -0.157   -0.109   -0.109
+144      Q23B ~~ Q23F 14.866  0.256   0.256    0.120    0.120
+133      Q23A ~~ Q23L 14.697  0.195   0.195    0.109    0.109
+137      Q23A ~~ Q23M 14.622  0.186   0.186    0.111    0.111
+191      Q23E ~~ Q23L 14.354  0.219   0.219    0.119    0.119
+185      Q23D ~~ Q25D 14.136 -0.158  -0.158   -0.136   -0.136
+134      Q23A ~~ Q23O 13.117 -0.178  -0.178   -0.112   -0.112
+94  econgriev =~ Q25C 12.435  0.168   0.167    0.101    0.101
+117  violence =~ Q23J 11.439 -0.156  -0.219   -0.111   -0.111
+253      Q23L ~~ Q25C 11.364  0.195   0.195    0.123    0.123
+254      Q23L ~~ Q25D 10.889 -0.173  -0.173   -0.105   -0.105
+108 cultgriev =~ Q25C 10.795  0.098   0.149    0.090    0.090
+98  cultgriev =~ Q23C 10.131 -0.125  -0.189   -0.117   -0.117
+> residuals(measurement)$cov
+       Q23A   Q23B   Q23C   Q23D   Q23E   Q23F   Q23I   Q23J   Q23K   Q23H
+Q23A  0.000                                                               
+Q23B  0.000  0.000                                                        
+Q23C  0.171  0.016  0.000                                                 
+Q23D  0.000  0.086 -0.047  0.000                                          
+Q23E  0.117 -0.130  0.026  0.019  0.000                                   
+Q23F -0.219  0.116 -0.147 -0.104  0.034  0.000                            
+Q23I -0.021 -0.087  0.107 -0.107 -0.085  0.271  0.000                     
+Q23J -0.185 -0.079 -0.025 -0.006 -0.186  0.198  0.290  0.000              
+Q23K -0.077  0.023  0.070 -0.023 -0.017  0.294 -0.165 -0.154  0.000       
+Q23H -0.081  0.006  0.053 -0.102 -0.097  0.193  0.000  0.367 -0.103  0.000
+Q23L  0.251  0.190  0.363  0.022  0.256  0.007  0.130 -0.111 -0.017  0.210
+Q23O -0.420 -0.290 -0.457 -0.116 -0.281  0.265 -0.188  0.239 -0.017 -0.338
+Q23G -0.134 -0.032 -0.165  0.437  0.121  0.660 -0.272  0.037  0.313 -0.483
+Q23N -0.344 -0.349 -0.268 -0.165 -0.231  0.141 -0.162  0.032  0.151 -0.293
+Q23M  0.264  0.248  0.277  0.453  0.336  0.581 -0.097  0.029  0.329 -0.232
+Q25B -0.121  0.027  0.076  0.065 -0.151  0.328  0.176 -0.237  0.155  0.105
+Q25C -0.122  0.113  0.054  0.177 -0.085  0.469 -0.021 -0.045  0.219  0.041
+Q25D -0.233 -0.094 -0.176 -0.227 -0.252  0.177 -0.012 -0.187 -0.013 -0.001
+       Q23L   Q23O   Q23G   Q23N   Q23M   Q25B   Q25C   Q25D
+Q23A                                                        
+Q23B                                                        
+Q23C                                                        
+Q23D                                                        
+Q23E                                                        
+Q23F                                                        
+Q23I                                                        
+Q23J                                                        
+Q23K                                                        
+Q23H                                                        
+Q23L  0.000                                                 
+Q23O -0.354  0.000                                          
+Q23G -0.292 -0.042  0.000                                   
+Q23N -0.273  0.180 -0.019  0.000                            
+Q23M  0.244 -0.105  0.036 -0.129  0.000                     
+Q25B -0.097 -0.154 -0.318 -0.067 -0.184  0.000              
+Q25C  0.110  0.242  0.041  0.096 -0.024  0.003  0.000       
+Q25D -0.206  0.121 -0.134  0.310 -0.089  0.023 -0.020  0.000
+> reliability(measurement)
+        polgriev econgriev cultgriev  violence
+alpha  0.7692036 0.7063416 0.7918458 0.7966407
+omega  0.7505135 0.6360547 0.8038558 0.8078003
+omega2 0.7505135 0.6360547 0.8038558 0.8078003
+omega3 0.7525523 0.6226208 0.8067672 0.8073103
+avevar 0.3601872 0.3083667 0.5152745 0.5903594
+> structural <- cfa(mediation_model_violence_ctrls2, 
++     data = rural, sampling.weights = "WTS", missing = "ML", estimator = "MLR")
+> summary(structural, fit.measures = TRUE, standardized = TRUE)
+lavaan 0.6-19 ended normally after 90 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        68
+
+  Number of observations                          1203
+  Number of missing patterns                         1
+  Sampling weights variable                        WTS
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                               903.414     519.886
+  Degrees of freedom                               141         141
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.738
+    Yuan-Bentler correction (Mplus variant)                       
+
+Model Test Baseline Model:
+
+  Test statistic                              7545.918    4047.641
+  Degrees of freedom                               171         171
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.864
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.897       0.902
+  Tucker-Lewis Index (TLI)                       0.875       0.881
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.909
+  Robust Tucker-Lewis Index (TLI)                            0.890
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -42522.497  -42522.497
+  Scaling correction factor                                  1.952
+      for the MLR correction                                      
+  Loglikelihood unrestricted model (H1)     -42070.791  -42070.791
+  Scaling correction factor                                  1.808
+      for the MLR correction                                      
+                                                                  
+  Akaike (AIC)                               85180.995   85180.995
+  Bayesian (BIC)                             85527.290   85527.290
+  Sample-size adjusted Bayesian (SABIC)      85311.295   85311.295
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.067       0.047
+  90 Percent confidence interval - lower         0.063       0.044
+  90 Percent confidence interval - upper         0.071       0.051
+  P-value H_0: RMSEA <= 0.050                    0.000       0.912
+  P-value H_0: RMSEA >= 0.080                    0.000       0.000
+                                                                  
+  Robust RMSEA                                               0.062
+  90 Percent confidence interval - lower                     0.056
+  90 Percent confidence interval - upper                     0.068
+  P-value H_0: Robust RMSEA <= 0.050                         0.000
+  P-value H_0: Robust RMSEA >= 0.080                         0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.058       0.058
+
+Parameter Estimates:
+
+  Standard errors                             Sandwich
+  Information bread                           Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  polgriev =~                                                           
+    Q23A              1.000                               0.732    0.555
+    Q23B              1.342    0.110   12.163    0.000    0.983    0.602
+    Q23C              1.101    0.102   10.800    0.000    0.807    0.498
+    Q23D              1.728    0.154   11.184    0.000    1.266    0.739
+    Q23E              1.247    0.109   11.461    0.000    0.914    0.633
+    Q23F              1.447    0.191    7.591    0.000    1.060    0.543
+  econgriev =~                                                          
+    Q23I              1.000                               1.016    0.512
+    Q23J              1.326    0.108   12.254    0.000    1.347    0.683
+    Q23K              1.252    0.128    9.771    0.000    1.272    0.657
+    Q23H              0.959    0.075   12.743    0.000    0.974    0.495
+    Q23L              0.556    0.079    7.051    0.000    0.565    0.325
+  cultgriev =~                                                          
+    Q23O              1.000                               1.503    0.715
+    Q23G              1.262    0.064   19.745    0.000    1.897    0.810
+    Q23N              0.977    0.043   22.548    0.000    1.469    0.711
+    Q23M              0.685    0.053   12.936    0.000    1.030    0.558
+  violence =~                                                           
+    Q25B              1.000                               1.402    0.777
+    Q25C              0.953    0.058   16.292    0.000    1.336    0.809
+    Q25D              0.669    0.054   12.298    0.000    0.938    0.686
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  violence ~                                                            
+    econgriev  (c)    0.488    0.175    2.783    0.005    0.354    0.354
+    cultgriev  (d)    0.191    0.099    1.927    0.054    0.205    0.205
+    Q15        (e)   -0.063    0.043   -1.454    0.146   -0.045   -0.094
+    polgriev  (b1)   -0.388    0.140   -2.776    0.006   -0.202   -0.202
+  polgriev ~                                                            
+    econgriev (a1)    0.518    0.104    4.998    0.000    0.718    0.718
+    cultgriev (a2)   -0.046    0.059   -0.777    0.437   -0.095   -0.095
+    Q15       (a3)    0.065    0.022    2.897    0.004    0.089    0.185
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+ .Q23I ~~                                                               
+   .Q23H              1.130    0.166    6.806    0.000    1.130    0.388
+ .Q23A ~~                                                               
+   .Q23B              0.460    0.101    4.577    0.000    0.460    0.321
+  cultgriev ~~                                                          
+    Q15               1.886    0.140   13.463    0.000    1.254    0.602
+  econgriev ~~                                                          
+    Q15               0.556    0.100    5.582    0.000    0.548    0.263
+    cultgriev         1.075    0.106   10.118    0.000    0.704    0.704
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .Q23A              5.898    0.113   52.038    0.000    5.898    4.469
+   .Q23B              5.313    0.149   35.763    0.000    5.313    3.252
+   .Q23C              5.257    0.129   40.871    0.000    5.257    3.242
+   .Q23D              5.075    0.182   27.861    0.000    5.075    2.962
+   .Q23E              5.549    0.131   42.389    0.000    5.549    3.847
+   .Q23F              4.338    0.160   27.107    0.000    4.338    2.223
+   .Q23I              4.380    0.074   59.407    0.000    4.380    2.207
+   .Q23J              4.529    0.070   64.426    0.000    4.529    2.297
+   .Q23K              4.495    0.070   63.833    0.000    4.495    2.323
+   .Q23H              4.671    0.073   64.211    0.000    4.671    2.376
+   .Q23L              5.353    0.064   83.204    0.000    5.353    3.085
+   .Q23O              3.263    0.080   40.900    0.000    3.263    1.551
+   .Q23G              4.186    0.088   47.639    0.000    4.186    1.787
+   .Q23N              3.050    0.077   39.425    0.000    3.050    1.477
+   .Q23M              5.082    0.067   76.389    0.000    5.082    2.753
+   .Q25B              2.749    0.202   13.585    0.000    2.749    1.524
+   .Q25C              2.712    0.198   13.730    0.000    2.712    1.642
+   .Q25D              1.924    0.161   11.981    0.000    1.924    1.408
+    Q15               4.438    0.080   55.650    0.000    4.438    2.129
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .Q23A              1.205    0.108   11.206    0.000    1.205    0.692
+   .Q23B              1.702    0.156   10.941    0.000    1.702    0.638
+   .Q23C              1.978    0.147   13.431    0.000    1.978    0.752
+   .Q23D              1.333    0.153    8.714    0.000    1.333    0.454
+   .Q23E              1.246    0.118   10.581    0.000    1.246    0.599
+   .Q23F              2.685    0.206   13.035    0.000    2.685    0.705
+   .Q23I              2.909    0.181   16.109    0.000    2.909    0.738
+   .Q23J              2.071    0.188   11.014    0.000    2.071    0.533
+   .Q23K              2.125    0.144   14.731    0.000    2.125    0.568
+   .Q23H              2.916    0.183   15.923    0.000    2.916    0.755
+   .Q23L              2.693    0.168   16.024    0.000    2.693    0.894
+   .Q23O              2.166    0.156   13.869    0.000    2.166    0.489
+   .Q23G              1.889    0.169   11.182    0.000    1.889    0.344
+   .Q23N              2.107    0.133   15.882    0.000    2.107    0.494
+   .Q23M              2.346    0.126   18.677    0.000    2.346    0.688
+   .Q25B              1.288    0.147    8.758    0.000    1.288    0.396
+   .Q25C              0.941    0.149    6.332    0.000    0.941    0.345
+   .Q25D              0.989    0.097   10.198    0.000    0.989    0.529
+    Q15               4.345    0.158   27.487    0.000    4.345    1.000
+   .polgriev          0.262    0.055    4.794    0.000    0.489    0.489
+    econgriev         1.032    0.174    5.919    0.000    1.000    1.000
+    cultgriev         2.260    0.189   11.959    0.000    1.000    1.000
+   .violence          1.678    0.152   11.066    0.000    0.853    0.853
+
+Defined Parameters:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+    indirct1_cngrv   -0.201    0.091   -2.199    0.028   -0.145   -0.145
+    ttl_ndrct_cngr   -0.201    0.091   -2.199    0.028   -0.145   -0.145
+    ttl_ffct_cngrv    0.288    0.124    2.327    0.020    0.208    0.208
+    indrct1_cltgrv    0.018    0.025    0.707    0.479    0.019    0.019
+    ttl_ndrct_cltg    0.018    0.025    0.707    0.479    0.019    0.019
+    ttl_ffct_cltgr    0.209    0.095    2.191    0.028    0.224    0.224
+    indirect1_Q15    -0.025    0.013   -1.873    0.061   -0.018   -0.037
+    totl_ndrct_Q15   -0.025    0.013   -1.873    0.061   -0.018   -0.037
+    total_ffct_Q15   -0.088    0.042   -2.114    0.035   -0.063   -0.131
+    ovrll_ttl_ndrc   -0.208    0.085   -2.432    0.015   -0.144   -0.164
+    ovrll_ttl_ffct    0.408    0.080    5.088    0.000    0.369    0.301
+
+> standardizedsolution(structural)
+                        lhs op
+1                  polgriev =~
+2                  polgriev =~
+3                  polgriev =~
+4                  polgriev =~
+5                  polgriev =~
+6                  polgriev =~
+7                 econgriev =~
+8                 econgriev =~
+9                 econgriev =~
+10                econgriev =~
+11                econgriev =~
+12                cultgriev =~
+13                cultgriev =~
+14                cultgriev =~
+15                cultgriev =~
+16                 violence =~
+17                 violence =~
+18                 violence =~
+19                     Q23I ~~
+20                     Q23A ~~
+21                cultgriev ~~
+22                econgriev ~~
+23                econgriev ~~
+24                 violence  ~
+25                 violence  ~
+26                 violence  ~
+27                 violence  ~
+28                 polgriev  ~
+29                 polgriev  ~
+30                 polgriev  ~
+31                     Q23A ~~
+32                     Q23B ~~
+33                     Q23C ~~
+34                     Q23D ~~
+35                     Q23E ~~
+36                     Q23F ~~
+37                     Q23I ~~
+38                     Q23J ~~
+39                     Q23K ~~
+40                     Q23H ~~
+41                     Q23L ~~
+42                     Q23O ~~
+43                     Q23G ~~
+44                     Q23N ~~
+45                     Q23M ~~
+46                     Q25B ~~
+47                     Q25C ~~
+48                     Q25D ~~
+49                      Q15 ~~
+50                 polgriev ~~
+51                econgriev ~~
+52                cultgriev ~~
+53                 violence ~~
+54                     Q23A ~1
+55                     Q23B ~1
+56                     Q23C ~1
+57                     Q23D ~1
+58                     Q23E ~1
+59                     Q23F ~1
+60                     Q23I ~1
+61                     Q23J ~1
+62                     Q23K ~1
+63                     Q23H ~1
+64                     Q23L ~1
+65                     Q23O ~1
+66                     Q23G ~1
+67                     Q23N ~1
+68                     Q23M ~1
+69                     Q25B ~1
+70                     Q25C ~1
+71                     Q25D ~1
+72                      Q15 ~1
+73                 polgriev ~1
+74                econgriev ~1
+75                cultgriev ~1
+76                 violence ~1
+77      indirect1_econgriev :=
+78 total_indirect_econgriev :=
+79   total_effect_econgriev :=
+80      indirect1_cultgriev :=
+81 total_indirect_cultgriev :=
+82   total_effect_cultgriev :=
+83            indirect1_Q15 :=
+84       total_indirect_Q15 :=
+85         total_effect_Q15 :=
+86   overall_total_indirect :=
+87     overall_total_effect :=
+                                                                    rhs
+1                                                                  Q23A
+2                                                                  Q23B
+3                                                                  Q23C
+4                                                                  Q23D
+5                                                                  Q23E
+6                                                                  Q23F
+7                                                                  Q23I
+8                                                                  Q23J
+9                                                                  Q23K
+10                                                                 Q23H
+11                                                                 Q23L
+12                                                                 Q23O
+13                                                                 Q23G
+14                                                                 Q23N
+15                                                                 Q23M
+16                                                                 Q25B
+17                                                                 Q25C
+18                                                                 Q25D
+19                                                                 Q23H
+20                                                                 Q23B
+21                                                                  Q15
+22                                                                  Q15
+23                                                            cultgriev
+24                                                            econgriev
+25                                                            cultgriev
+26                                                                  Q15
+27                                                             polgriev
+28                                                            econgriev
+29                                                            cultgriev
+30                                                                  Q15
+31                                                                 Q23A
+32                                                                 Q23B
+33                                                                 Q23C
+34                                                                 Q23D
+35                                                                 Q23E
+36                                                                 Q23F
+37                                                                 Q23I
+38                                                                 Q23J
+39                                                                 Q23K
+40                                                                 Q23H
+41                                                                 Q23L
+42                                                                 Q23O
+43                                                                 Q23G
+44                                                                 Q23N
+45                                                                 Q23M
+46                                                                 Q25B
+47                                                                 Q25C
+48                                                                 Q25D
+49                                                                  Q15
+50                                                             polgriev
+51                                                            econgriev
+52                                                            cultgriev
+53                                                             violence
+54                                                                     
+55                                                                     
+56                                                                     
+57                                                                     
+58                                                                     
+59                                                                     
+60                                                                     
+61                                                                     
+62                                                                     
+63                                                                     
+64                                                                     
+65                                                                     
+66                                                                     
+67                                                                     
+68                                                                     
+69                                                                     
+70                                                                     
+71                                                                     
+72                                                                     
+73                                                                     
+74                                                                     
+75                                                                     
+76                                                                     
+77                                                                a1*b1
+78                                                  indirect1_econgriev
+79                                           c+total_indirect_econgriev
+80                                                                a2*b1
+81                                                  indirect1_cultgriev
+82                                           d+total_indirect_cultgriev
+83                                                                a3*b1
+84                                                        indirect1_Q15
+85                                                 e+total_indirect_Q15
+86 total_indirect_econgriev+total_indirect_cultgriev+total_indirect_Q15
+87       total_effect_econgriev+total_effect_cultgriev+total_effect_Q15
+                      label est.std    se      z pvalue ci.lower ci.upper
+1                             0.555 0.040 13.946  0.000    0.477    0.633
+2                             0.602 0.036 16.820  0.000    0.532    0.672
+3                             0.498 0.039 12.704  0.000    0.421    0.574
+4                             0.739 0.030 24.668  0.000    0.680    0.797
+5                             0.633 0.035 18.184  0.000    0.565    0.702
+6                             0.543 0.042 12.896  0.000    0.461    0.626
+7                             0.512 0.041 12.563  0.000    0.432    0.592
+8                             0.683 0.035 19.584  0.000    0.615    0.752
+9                             0.657 0.029 22.595  0.000    0.600    0.714
+10                            0.495 0.042 11.706  0.000    0.412    0.578
+11                            0.325 0.041  7.959  0.000    0.245    0.406
+12                            0.715 0.024 29.254  0.000    0.667    0.763
+13                            0.810 0.020 41.434  0.000    0.772    0.848
+14                            0.711 0.022 31.882  0.000    0.668    0.755
+15                            0.558 0.031 17.983  0.000    0.497    0.619
+16                            0.777 0.027 29.088  0.000    0.725    0.830
+17                            0.809 0.033 24.255  0.000    0.744    0.875
+18                            0.686 0.036 19.082  0.000    0.615    0.756
+19                            0.388 0.046  8.396  0.000    0.298    0.479
+20                            0.321 0.059  5.455  0.000    0.206    0.437
+21                            0.602 0.032 18.897  0.000    0.539    0.664
+22                            0.263 0.050  5.266  0.000    0.165    0.361
+23                            0.704 0.038 18.400  0.000    0.629    0.779
+24                        c   0.354 0.114  3.093  0.002    0.130    0.578
+25                        d   0.205 0.107  1.920  0.055   -0.004    0.414
+26                        e  -0.094 0.065 -1.449  0.147   -0.221    0.033
+27                       b1  -0.202 0.074 -2.748  0.006   -0.347   -0.058
+28                       a1   0.718 0.098  7.355  0.000    0.526    0.909
+29                       a2  -0.095 0.121 -0.780  0.435   -0.332    0.143
+30                       a3   0.185 0.063  2.926  0.003    0.061    0.309
+31                            0.692 0.044 15.665  0.000    0.605    0.779
+32                            0.638 0.043 14.803  0.000    0.553    0.722
+33                            0.752 0.039 19.303  0.000    0.676    0.829
+34                            0.454 0.044 10.268  0.000    0.368    0.541
+35                            0.599 0.044 13.573  0.000    0.512    0.685
+36                            0.705 0.046 15.412  0.000    0.615    0.795
+37                            0.738 0.042 17.710  0.000    0.656    0.820
+38                            0.533 0.048 11.177  0.000    0.440    0.626
+39                            0.568 0.038 14.842  0.000    0.493    0.643
+40                            0.755 0.042 18.000  0.000    0.672    0.837
+41                            0.894 0.027 33.587  0.000    0.842    0.946
+42                            0.489 0.035 14.014  0.000    0.421    0.558
+43                            0.344 0.032 10.874  0.000    0.282    0.406
+44                            0.494 0.032 15.562  0.000    0.432    0.556
+45                            0.688 0.035 19.866  0.000    0.621    0.756
+46                            0.396 0.042  9.523  0.000    0.314    0.477
+47                            0.345 0.054  6.389  0.000    0.239    0.451
+48                            0.529 0.049 10.737  0.000    0.433    0.626
+49                            1.000 0.000     NA     NA    1.000    1.000
+50                            0.489 0.055  8.908  0.000    0.381    0.596
+51                            1.000 0.000     NA     NA    1.000    1.000
+52                            1.000 0.000     NA     NA    1.000    1.000
+53                            0.853 0.036 23.986  0.000    0.783    0.923
+54                            4.469 0.206 21.650  0.000    4.064    4.873
+55                            3.252 0.143 22.667  0.000    2.971    3.533
+56                            3.242 0.129 25.144  0.000    2.990    3.495
+57                            2.962 0.157 18.917  0.000    2.655    3.269
+58                            3.847 0.159 24.201  0.000    3.535    4.158
+59                            2.223 0.098 22.747  0.000    2.031    2.414
+60                            2.207 0.058 38.004  0.000    2.093    2.320
+61                            2.297 0.064 36.139  0.000    2.173    2.422
+62                            2.323 0.066 35.025  0.000    2.193    2.453
+63                            2.376 0.069 34.532  0.000    2.241    2.511
+64                            3.085 0.107 28.946  0.000    2.876    3.293
+65                            1.551 0.036 42.793  0.000    1.480    1.622
+66                            1.787 0.050 36.070  0.000    1.690    1.884
+67                            1.477 0.032 45.482  0.000    1.413    1.541
+68                            2.753 0.081 33.985  0.000    2.594    2.912
+69                            1.524 0.106 14.326  0.000    1.315    1.732
+70                            1.642 0.107 15.301  0.000    1.432    1.853
+71                            1.408 0.094 14.940  0.000    1.223    1.592
+72                            2.129 0.058 36.672  0.000    2.015    2.243
+73                            0.000 0.000     NA     NA    0.000    0.000
+74                            0.000 0.000     NA     NA    0.000    0.000
+75                            0.000 0.000     NA     NA    0.000    0.000
+76                            0.000 0.000     NA     NA    0.000    0.000
+77      indirect1_econgriev  -0.145 0.062 -2.357  0.018   -0.266   -0.024
+78 total_indirect_econgriev  -0.145 0.062 -2.357  0.018   -0.266   -0.024
+79   total_effect_econgriev   0.208 0.084  2.488  0.013    0.044    0.373
+80      indirect1_cultgriev   0.019 0.027  0.707  0.479   -0.034    0.072
+81 total_indirect_cultgriev   0.019 0.027  0.707  0.479   -0.034    0.072
+82   total_effect_cultgriev   0.224 0.103  2.182  0.029    0.023    0.425
+83            indirect1_Q15  -0.037 0.020 -1.894  0.058   -0.076    0.001
+84       total_indirect_Q15  -0.037 0.020 -1.894  0.058   -0.076    0.001
+85         total_effect_Q15  -0.131 0.062 -2.113  0.035   -0.253   -0.010
+86   overall_total_indirect  -0.164 0.062 -2.656  0.008   -0.284   -0.043
+87     overall_total_effect   0.301 0.053  5.637  0.000    0.196    0.406
+> modindices(structural, sort = TRUE, minimum.value = 10)
+          lhs op  rhs     mi    epc sepc.lv sepc.all sepc.nox
+96   polgriev =~ Q23M 73.970  0.784   0.575    0.311    0.311
+299      Q23N ~~ Q25D 53.897  0.363   0.363    0.251    0.251
+118 cultgriev =~ Q23F 47.723  0.324   0.487    0.250    0.250
+122 cultgriev =~ Q23H 44.096 -0.375  -0.564   -0.287   -0.287
+284      Q23O ~~ Q23N 42.125  0.534   0.534    0.250    0.250
+105 econgriev =~ Q23F 41.236  0.626   0.636    0.326    0.326
+300      Q23N ~~  Q15 37.369 -0.547  -0.547   -0.181   -0.181
+121 cultgriev =~ Q23K 35.903  0.392   0.589    0.304    0.304
+132  violence =~ Q23F 35.224  0.240   0.336    0.172    0.172
+295      Q23G ~~  Q15 34.939  0.610   0.610    0.213    0.213
+93   polgriev =~ Q23O 34.366 -0.565  -0.414   -0.197   -0.197
+144      Q23A ~~ Q23E 30.772  0.217   0.217    0.177    0.177
+145      Q23A ~~ Q23F 30.727 -0.302  -0.302   -0.168   -0.168
+99   polgriev =~ Q25D 29.016 -0.269  -0.197   -0.144   -0.144
+161      Q23B ~~ Q23E 28.055 -0.253  -0.253   -0.174   -0.174
+95   polgriev =~ Q23N 26.703 -0.490  -0.359   -0.174   -0.174
+310      Q25D ~~  Q15 26.479 -0.290  -0.290   -0.140   -0.140
+248      Q23J ~~ Q23O 22.328  0.358   0.358    0.169    0.169
+113 cultgriev =~ Q23A 22.088 -0.135  -0.203   -0.154   -0.154
+123 cultgriev =~ Q23L 20.791 -0.265  -0.398   -0.229   -0.229
+109 econgriev =~ Q23M 20.619  0.390   0.396    0.215    0.215
+142      Q23A ~~ Q23C 20.546  0.208   0.208    0.135    0.135
+246      Q23J ~~ Q23H 20.095  0.359   0.359    0.146    0.146
+183      Q23C ~~ Q23L 19.291  0.307   0.307    0.133    0.133
+278      Q23L ~~ Q23M 19.178  0.333   0.333    0.133    0.133
+94   polgriev =~ Q23G 17.262  0.440   0.322    0.138    0.138
+98   polgriev =~ Q25C 17.142  0.241   0.177    0.107    0.107
+274      Q23H ~~  Q15 17.101 -0.337  -0.337   -0.095   -0.095
+154      Q23A ~~ Q23M 16.900  0.199   0.199    0.119    0.119
+127  violence =~ Q23A 16.737 -0.101  -0.142   -0.107   -0.107
+200      Q23D ~~ Q23G 16.251  0.253   0.253    0.159    0.159
+255      Q23J ~~  Q15 15.293  0.363   0.363    0.121    0.121
+131  violence =~ Q23E 15.191 -0.112  -0.157   -0.109   -0.109
+212      Q23E ~~ Q23L 15.190  0.225   0.225    0.123    0.123
+150      Q23A ~~ Q23L 14.709  0.195   0.195    0.108    0.108
+92   polgriev =~ Q23L 14.318  0.480   0.352    0.203    0.203
+120 cultgriev =~ Q23J 14.240  0.255   0.384    0.195    0.195
+162      Q23B ~~ Q23F 14.224  0.249   0.249    0.117    0.117
+125 cultgriev =~ Q25C 13.805  0.109   0.164    0.099    0.099
+115 cultgriev =~ Q23C 13.172 -0.143  -0.216   -0.133   -0.133
+205      Q23D ~~ Q25D 12.685 -0.148  -0.148   -0.129   -0.129
+139  violence =~ Q23G 12.554 -0.157  -0.220   -0.094   -0.094
+184      Q23C ~~ Q23O 12.356 -0.236  -0.236   -0.114   -0.114
+124 cultgriev =~ Q25B 12.351 -0.112  -0.168   -0.093   -0.093
+111 econgriev =~ Q25C 11.782  0.160   0.163    0.099    0.099
+281      Q23L ~~ Q25D 11.637 -0.178  -0.178   -0.109   -0.109
+116 cultgriev =~ Q23D 11.513  0.136   0.204    0.119    0.119
+245      Q23J ~~ Q23K 11.452 -0.337  -0.337   -0.161   -0.161
+280      Q23L ~~ Q25C 10.921  0.191   0.191    0.120    0.120
+134  violence =~ Q23J 10.719 -0.151  -0.212   -0.107   -0.107
+308      Q25C ~~ Q25D 10.436 -0.360  -0.360   -0.373   -0.373
+283      Q23O ~~ Q23G 10.113 -0.308  -0.308   -0.152   -0.152
+100 econgriev =~ Q23A 10.066 -0.189  -0.192   -0.146   -0.146
+> residuals(structural)$cov
+       Q23A   Q23B   Q23C   Q23D   Q23E   Q23F   Q23I   Q23J   Q23K   Q23H
+Q23A  0.000                                                               
+Q23B  0.000  0.000                                                        
+Q23C  0.182  0.024  0.000                                                 
+Q23D  0.005  0.083 -0.043  0.000                                          
+Q23E  0.124 -0.128  0.033  0.015  0.000                                   
+Q23F -0.215  0.112 -0.145 -0.117  0.030  0.000                            
+Q23I -0.027 -0.101  0.099 -0.130 -0.098  0.251  0.000                     
+Q23J -0.172 -0.069 -0.012  0.000 -0.177  0.202  0.276  0.000              
+Q23K -0.067  0.029  0.080 -0.021 -0.012  0.294 -0.183 -0.124  0.000       
+Q23H -0.090 -0.011  0.042 -0.129 -0.114  0.169  0.000  0.346 -0.127  0.000
+Q23L  0.247  0.182  0.359  0.010  0.249 -0.004  0.108 -0.118 -0.027  0.186
+Q23O -0.421 -0.297 -0.458 -0.131 -0.288  0.252 -0.190  0.281  0.018 -0.345
+Q23G -0.169 -0.087 -0.204  0.359  0.070  0.595 -0.339  0.003  0.274 -0.554
+Q23N -0.328 -0.335 -0.252 -0.152 -0.218  0.152 -0.133  0.115  0.224 -0.271
+Q23M  0.259  0.237  0.271  0.435  0.326  0.565 -0.107  0.047  0.342 -0.245
+Q25B -0.120  0.027  0.077  0.063 -0.151  0.327  0.166 -0.232  0.159  0.093
+Q25C -0.121  0.113  0.055  0.177 -0.085  0.468 -0.030 -0.039  0.223  0.030
+Q25D -0.233 -0.094 -0.176 -0.229 -0.253  0.176 -0.020 -0.185 -0.013 -0.011
+Q15  -0.264 -0.088 -0.301  0.171 -0.006  0.302 -0.510  0.295  0.299 -0.741
+       Q23L   Q23O   Q23G   Q23N   Q23M   Q25B   Q25C   Q25D    Q15
+Q23A                                                               
+Q23B                                                               
+Q23C                                                               
+Q23D                                                               
+Q23E                                                               
+Q23F                                                               
+Q23I                                                               
+Q23J                                                               
+Q23K                                                               
+Q23H                                                               
+Q23L  0.000                                                        
+Q23O -0.355  0.000                                                 
+Q23G -0.329 -0.112  0.000                                          
+Q23N -0.257  0.299 -0.008  0.000                                   
+Q23M  0.239 -0.087 -0.033 -0.066  0.000                            
+Q25B -0.102 -0.133 -0.330 -0.028 -0.175  0.000                     
+Q25C  0.105  0.263  0.032  0.134 -0.014  0.007  0.000              
+Q25D -0.211  0.134 -0.143  0.334 -0.084  0.018 -0.022  0.000       
+Q15  -0.314 -0.041  0.243 -0.306 -0.005 -0.049  0.149 -0.167  0.000
+> param_estimates <- parameterEstimates(structural)
+> head(param_estimates)
+       lhs op  rhs label   est    se      z pvalue ci.lower ci.upper
+1 polgriev =~ Q23A       1.000 0.000     NA     NA    1.000    1.000
+2 polgriev =~ Q23B       1.342 0.110 12.163      0    1.126    1.559
+3 polgriev =~ Q23C       1.101 0.102 10.800      0    0.902    1.301
+4 polgriev =~ Q23D       1.728 0.154 11.184      0    1.425    2.030
+5 polgriev =~ Q23E       1.247 0.109 11.461      0    1.034    1.461
+6 polgriev =~ Q23F       1.447 0.191  7.591      0    1.073    1.820
+> standard_errors <- param_estimates$se
+> print(standard_errors)
+ [1] 0.00000000 0.11035919 0.10198931 0.15448299 0.10883140 0.19061122
+ [7] 0.00000000 0.10823087 0.12814713 0.07523538 0.07887080 0.00000000
+[13] 0.06391020 0.04333581 0.05298207 0.00000000 0.05848674 0.05437370
+[19] 0.16609439 0.10059723 0.14005380 0.09966225 0.10629026 0.17549567
+[25] 0.09909631 0.04341266 0.13959269 0.10355998 0.05932789 0.02244973
+[31] 0.10755709 0.15553117 0.14728646 0.15299715 0.11777512 0.20596385
+[37] 0.18056167 0.18806749 0.14424251 0.18314685 0.16804211 0.15614866
+[43] 0.16894769 0.13266129 0.12560608 0.14700960 0.14854956 0.09702254
+[49] 0.15808135 0.05467618 0.17429187 0.18901091 0.15162124 0.11333604
+[55] 0.14854823 0.12863506 0.18213753 0.13091214 0.16002646 0.07373050
+[61] 0.07029584 0.07041309 0.07274597 0.06433580 0.07978223 0.08787768
+[67] 0.07737106 0.06653211 0.20235418 0.19751278 0.16062144 0.07975398
+[73] 0.00000000 0.00000000 0.00000000 0.00000000 0.09120438 0.09120438
+[79] 0.12368259 0.02526033 0.02526033 0.09529645 0.01345624 0.01345624
+[85] 0.04177573 0.08548560 0.08024856
+> structural_ctrl <- cfa(mediation_model_violence_ctrls4, 
++     data = rural, sampling.weights = "WTS", missing = "ML", estimator = "MLR")
+> summary(structural_ctrl, fit.measures = TRUE, standardized = TRUE)
+lavaan 0.6-19 ended normally after 80 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        84
+
+                                                  Used       Total
+  Number of observations                           998        1203
+  Number of missing patterns                         1            
+  Sampling weights variable                        WTS            
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                              1267.862     779.793
+  Degrees of freedom                               201         201
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.626
+    Yuan-Bentler correction (Mplus variant)                       
+
+Model Test Baseline Model:
+
+  Test statistic                              7242.642    4207.515
+  Degrees of freedom                               247         247
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.721
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.847       0.854
+  Tucker-Lewis Index (TLI)                       0.813       0.820
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.863
+  Robust Tucker-Lewis Index (TLI)                            0.832
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -35008.447  -35008.447
+  Scaling correction factor                                  1.878
+      for the MLR correction                                      
+  Loglikelihood unrestricted model (H1)     -34374.516  -34374.516
+  Scaling correction factor                                  1.700
+      for the MLR correction                                      
+                                                                  
+  Akaike (AIC)                               70184.895   70184.895
+  Bayesian (BIC)                             70596.978   70596.978
+  Sample-size adjusted Bayesian (SABIC)      70330.190   70330.190
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.073       0.054
+  90 Percent confidence interval - lower         0.069       0.051
+  90 Percent confidence interval - upper         0.077       0.057
+  P-value H_0: RMSEA <= 0.050                    0.000       0.025
+  P-value H_0: RMSEA >= 0.080                    0.001       0.000
+                                                                  
+  Robust RMSEA                                               0.068
+  90 Percent confidence interval - lower                     0.063
+  90 Percent confidence interval - upper                     0.073
+  P-value H_0: Robust RMSEA <= 0.050                         0.000
+  P-value H_0: Robust RMSEA >= 0.080                         0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.073       0.073
+
+Parameter Estimates:
+
+  Standard errors                             Sandwich
+  Information bread                           Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  polgriev =~                                                           
+    Q23A              1.000                               0.710    0.553
+    Q23B              1.393    0.124   11.219    0.000    0.990    0.607
+    Q23C              1.062    0.114    9.311    0.000    0.754    0.464
+    Q23D              1.745    0.171   10.198    0.000    1.239    0.713
+    Q23E              1.311    0.115   11.430    0.000    0.931    0.665
+    Q23F              1.557    0.211    7.374    0.000    1.106    0.561
+  econgriev =~                                                          
+    Q23I              1.000                               0.989    0.504
+    Q23J              1.365    0.118   11.546    0.000    1.349    0.692
+    Q23K              1.342    0.145    9.232    0.000    1.327    0.679
+    Q23H              1.002    0.085   11.728    0.000    0.991    0.507
+    Q23L              0.553    0.087    6.332    0.000    0.546    0.315
+  cultgriev =~                                                          
+    Q23O              1.000                               1.387    0.695
+    Q23G              1.309    0.066   19.774    0.000    1.815    0.806
+    Q23N              0.974    0.049   20.073    0.000    1.350    0.694
+    Q23M              0.671    0.058   11.650    0.000    0.931    0.510
+  violence =~                                                           
+    Q25B              1.000                               1.374    0.767
+    Q25C              0.963    0.064   14.951    0.000    1.323    0.815
+    Q25D              0.756    0.063   12.092    0.000    1.039    0.735
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  violence ~                                                            
+    econgriev  (c)    0.491    0.189    2.592    0.010    0.353    0.353
+    cultgriev  (d)    0.235    0.122    1.926    0.054    0.238    0.238
+    Q15        (e)   -0.112    0.049   -2.277    0.023   -0.081   -0.163
+    polgriev  (b1)   -0.483    0.149   -3.253    0.001   -0.250   -0.250
+    is_colleg        -0.372    0.102   -3.634    0.000   -0.271   -0.130
+    is_over65         0.074    0.131    0.563    0.574    0.054    0.022
+    is_male           0.230    0.134    1.723    0.085    0.168    0.084
+    is_rpblcn         0.219    0.185    1.186    0.236    0.159    0.075
+  polgriev ~                                                            
+    econgriev (a1)    0.518    0.113    4.583    0.000    0.721    0.721
+    cultgriev (a2)   -0.111    0.067   -1.662    0.096   -0.218   -0.218
+    Q15       (a3)    0.102    0.027    3.729    0.000    0.144    0.289
+    is_colleg        -0.183    0.060   -3.075    0.002   -0.258   -0.124
+    is_over65         0.066    0.063    1.053    0.292    0.093    0.039
+    is_male           0.069    0.062    1.106    0.269    0.097    0.048
+    is_rpblcn         0.082    0.083    0.989    0.322    0.115    0.054
+  econgriev ~                                                           
+    is_colleg        -0.358    0.099   -3.631    0.000   -0.362   -0.174
+    is_over65        -0.259    0.096   -2.708    0.007   -0.262   -0.109
+    is_male          -0.105    0.092   -1.133    0.257   -0.106   -0.053
+    is_rpblcn         0.138    0.123    1.126    0.260    0.140    0.065
+  cultgriev ~                                                           
+    is_colleg        -0.355    0.101   -3.520    0.000   -0.256   -0.123
+    is_over65         0.065    0.104    0.625    0.532    0.047    0.019
+    is_male           0.210    0.109    1.922    0.055    0.152    0.076
+    is_rpblcn         0.794    0.148    5.381    0.000    0.573    0.268
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+ .Q23I ~~                                                               
+   .Q23H              1.066    0.180    5.934    0.000    1.066    0.373
+ .Q23A ~~                                                               
+   .Q23B              0.401    0.112    3.566    0.000    0.401    0.289
+ .cultgriev ~~                                                          
+    Q15               1.503    0.161    9.334    0.000    1.143    0.569
+ .econgriev ~~                                                          
+    Q15               0.497    0.116    4.297    0.000    0.516    0.257
+   .cultgriev         0.875    0.106    8.272    0.000    0.692    0.692
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .Q23A              5.867    0.126   46.537    0.000    5.867    4.565
+   .Q23B              5.196    0.164   31.648    0.000    5.196    3.187
+   .Q23C              5.203    0.136   38.212    0.000    5.203    3.201
+   .Q23D              4.943    0.198   24.911    0.000    4.943    2.846
+   .Q23E              5.503    0.153   35.926    0.000    5.503    3.931
+   .Q23F              4.175    0.185   22.541    0.000    4.175    2.118
+   .Q23I              4.505    0.106   42.603    0.000    4.505    2.294
+   .Q23J              4.698    0.129   36.491    0.000    4.698    2.410
+   .Q23K              4.726    0.125   37.664    0.000    4.726    2.419
+   .Q23H              4.815    0.114   42.225    0.000    4.815    2.465
+   .Q23L              5.427    0.086   63.334    0.000    5.427    3.131
+   .Q23O              2.936    0.141   20.870    0.000    2.936    1.472
+   .Q23G              3.751    0.177   21.214    0.000    3.751    1.666
+   .Q23N              2.747    0.136   20.135    0.000    2.747    1.412
+   .Q23M              4.854    0.108   44.750    0.000    4.854    2.662
+   .Q25B              2.915    0.244   11.967    0.000    2.915    1.627
+   .Q25C              2.853    0.245   11.626    0.000    2.853    1.757
+   .Q25D              2.161    0.214   10.106    0.000    2.161    1.528
+    Q15               4.246    0.084   50.320    0.000    4.246    2.114
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .Q23A              1.147    0.115    9.990    0.000    1.147    0.695
+   .Q23B              1.678    0.172    9.774    0.000    1.678    0.631
+   .Q23C              2.074    0.167   12.408    0.000    2.074    0.785
+   .Q23D              1.481    0.183    8.095    0.000    1.481    0.491
+   .Q23E              1.093    0.110    9.893    0.000    1.093    0.558
+   .Q23F              2.665    0.234   11.397    0.000    2.665    0.685
+   .Q23I              2.877    0.197   14.621    0.000    2.877    0.746
+   .Q23J              1.980    0.185   10.720    0.000    1.980    0.521
+   .Q23K              2.056    0.167   12.281    0.000    2.056    0.539
+   .Q23H              2.834    0.191   14.855    0.000    2.834    0.743
+   .Q23L              2.705    0.182   14.841    0.000    2.705    0.901
+   .Q23O              2.053    0.156   13.133    0.000    2.053    0.516
+   .Q23G              1.772    0.179    9.880    0.000    1.772    0.350
+   .Q23N              1.962    0.140   14.065    0.000    1.962    0.518
+   .Q23M              2.460    0.140   17.598    0.000    2.460    0.740
+   .Q25B              1.322    0.149    8.887    0.000    1.322    0.412
+   .Q25C              0.885    0.161    5.493    0.000    0.885    0.336
+   .Q25D              0.920    0.109    8.433    0.000    0.920    0.460
+    Q15               4.034    0.150   26.829    0.000    4.034    1.000
+   .polgriev          0.247    0.058    4.220    0.000    0.489    0.489
+   .econgriev         0.926    0.176    5.268    0.000    0.947    0.947
+   .cultgriev         1.730    0.183    9.455    0.000    0.900    0.900
+   .violence          1.466    0.150    9.777    0.000    0.777    0.777
+
+Defined Parameters:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+    indirct1_cngrv   -0.250    0.102   -2.447    0.014   -0.180   -0.180
+    ttl_ndrct_cngr   -0.250    0.102   -2.447    0.014   -0.180   -0.180
+    ttl_ffct_cngrv    0.240    0.130    1.853    0.064    0.173    0.173
+    indrct1_cltgrv    0.054    0.039    1.398    0.162    0.054    0.054
+    ttl_ndrct_cltg    0.054    0.039    1.398    0.162    0.054    0.054
+    ttl_ffct_cltgr    0.289    0.116    2.503    0.012    0.292    0.292
+    indirect1_Q15    -0.049    0.020   -2.496    0.013   -0.036   -0.072
+    totl_ndrct_Q15   -0.049    0.020   -2.496    0.013   -0.036   -0.072
+    total_ffct_Q15   -0.161    0.047   -3.448    0.001   -0.117   -0.235
+    ovrll_ttl_ndrc   -0.246    0.089   -2.761    0.006   -0.162   -0.198
+    ovrll_ttl_ffct    0.368    0.084    4.396    0.000    0.348    0.229
+
+> modindices(structural_ctrl, sort = TRUE, minimum.value = 10)
+              lhs op           rhs      mi    epc sepc.lv sepc.all sepc.nox
+362           Q15  ~ is_republican 275.863  2.253   2.253    0.526    1.122
+358           Q15  ~     cultgriev 271.319  2.384   3.306    1.646    1.646
+388 is_republican  ~      polgriev 263.714  0.958   0.681    1.452    1.452
+391 is_republican  ~           Q15 263.712  0.119   0.119    0.511    0.511
+390 is_republican  ~     cultgriev 263.711  0.320   0.444    0.948    0.948
+387 is_republican  ~      violence 263.708 -5.032  -6.913  -14.748  -14.748
+389 is_republican  ~     econgriev 263.707  0.969   0.958    2.044    2.044
+355           Q15  ~      violence 187.762  2.535   3.482    1.734    1.734
+126      polgriev =~          Q23M  68.999  0.823   0.584    0.320    0.320
+148     cultgriev =~          Q23F  57.160  0.402   0.558    0.283    0.283
+152     cultgriev =~          Q23H  50.997 -0.447  -0.620   -0.317   -0.317
+329          Q23N ~~          Q25D  47.000  0.354   0.354    0.263    0.263
+135     econgriev =~          Q23F  43.416  0.662   0.655    0.332    0.332
+356           Q15  ~      polgriev  43.354  2.499   1.775    0.884    0.884
+357           Q15  ~     econgriev  40.874  1.792   1.772    0.882    0.882
+330          Q23N ~~           Q15  37.490 -0.571  -0.571   -0.203   -0.203
+151     cultgriev =~          Q23K  37.084  0.438   0.608    0.311    0.311
+325          Q23G ~~           Q15  35.443  0.656   0.656    0.245    0.245
+162      violence =~          Q23F  34.968  0.265   0.363    0.184    0.184
+174          Q23A ~~          Q23E  33.052  0.235   0.235    0.210    0.210
+125      polgriev =~          Q23N  31.886 -0.551  -0.391   -0.201   -0.201
+129      polgriev =~          Q25D  25.486 -0.281  -0.200   -0.141   -0.141
+143     cultgriev =~          Q23A  24.988 -0.160  -0.222   -0.173   -0.173
+304          Q23H ~~           Q15  24.385 -0.437  -0.437   -0.129   -0.129
+169      violence =~          Q23G  23.867 -0.242  -0.333   -0.148   -0.148
+123      polgriev =~          Q23O  23.811 -0.488  -0.346   -0.174   -0.174
+314          Q23O ~~          Q23N  22.361  0.394   0.394    0.196    0.196
+191          Q23B ~~          Q23E  22.171 -0.241  -0.241   -0.178   -0.178
+308          Q23L ~~          Q23M  21.497  0.394   0.394    0.153    0.153
+139     econgriev =~          Q23M  20.819  0.417   0.412    0.226    0.226
+130     econgriev =~          Q23A  18.512 -0.261  -0.258   -0.201   -0.201
+175          Q23A ~~          Q23F  18.496 -0.255  -0.255   -0.146   -0.146
+359           Q15  ~    is_college  18.333 -0.568  -0.568   -0.136   -0.283
+157      violence =~          Q23A  18.299 -0.115  -0.159   -0.123   -0.123
+153     cultgriev =~          Q23L  17.943 -0.273  -0.379   -0.219   -0.219
+124      polgriev =~          Q23G  17.558  0.470   0.334    0.148    0.148
+275          Q23J ~~          Q23K  16.325 -0.444  -0.444   -0.220   -0.220
+161      violence =~          Q23E  15.806 -0.121  -0.166   -0.119   -0.119
+128      polgriev =~          Q25C  15.294  0.245   0.174    0.107    0.107
+172          Q23A ~~          Q23C  15.007  0.196   0.196    0.127    0.127
+192          Q23B ~~          Q23F  14.797  0.284   0.284    0.134    0.134
+213          Q23C ~~          Q23L  14.319  0.296   0.296    0.125    0.125
+311          Q23L ~~          Q25D  14.069 -0.213  -0.213   -0.135   -0.135
+285          Q23J ~~           Q15  13.894  0.366   0.366    0.130    0.130
+264          Q23I ~~          Q23J  12.763  0.309   0.309    0.130    0.130
+150     cultgriev =~          Q23J  12.587  0.256   0.356    0.182    0.182
+141     econgriev =~          Q25C  12.520  0.177   0.175    0.108    0.108
+217          Q23C ~~          Q23M  12.438  0.267   0.267    0.118    0.118
+180          Q23A ~~          Q23L  12.215  0.193   0.193    0.110    0.110
+168      violence =~          Q23O  12.146  0.156   0.214    0.107    0.107
+134     econgriev =~          Q23E  11.555 -0.237  -0.234   -0.167   -0.167
+170      violence =~          Q23N  11.543  0.148   0.204    0.105    0.105
+181          Q23A ~~          Q23O  11.140 -0.171  -0.171   -0.112   -0.112
+313          Q23O ~~          Q23G  11.055 -0.335  -0.335   -0.176   -0.176
+278          Q23J ~~          Q23O  10.957  0.262   0.262    0.130    0.130
+223          Q23D ~~          Q23F  10.927 -0.279  -0.279   -0.140   -0.140
+340          Q25D ~~           Q15  10.885 -0.206  -0.206   -0.107   -0.107
+154     cultgriev =~          Q25B  10.476 -0.122  -0.169   -0.094   -0.094
+338          Q25C ~~          Q25D  10.461 -0.330  -0.330   -0.365   -0.365
+184          Q23A ~~          Q23M  10.225  0.171   0.171    0.102    0.102
+> residuals(structural_ctrl)$cov
+                Q23A   Q23B   Q23C   Q23D   Q23E   Q23F   Q23I   Q23J   Q23K
+Q23A           0.017                                                        
+Q23B           0.024  0.034                                                 
+Q23C           0.184  0.016  0.020                                          
+Q23D           0.023  0.130  0.018  0.053                                   
+Q23E           0.159 -0.076  0.023  0.070  0.030                            
+Q23F          -0.139  0.194 -0.128 -0.108  0.021  0.042                     
+Q23I          -0.069 -0.091  0.087 -0.140 -0.114  0.250  0.023              
+Q23J          -0.183 -0.067  0.052  0.086 -0.093  0.347  0.339  0.042       
+Q23K          -0.066  0.093  0.186  0.077 -0.027  0.397 -0.097 -0.108  0.041
+Q23H          -0.148 -0.005  0.033 -0.099 -0.138  0.175  0.023  0.310 -0.061
+Q23L           0.236  0.211  0.368  0.006  0.198 -0.032  0.110 -0.046 -0.017
+Q23O          -0.369 -0.219 -0.309  0.026 -0.152  0.464 -0.082  0.369  0.187
+Q23G          -0.084  0.025 -0.014  0.525  0.246  0.842 -0.341  0.139  0.422
+Q23N          -0.311 -0.257 -0.135 -0.010 -0.210  0.364 -0.064  0.273  0.400
+Q23M           0.295  0.313  0.433  0.635  0.409  0.716 -0.008  0.164  0.432
+Q25B          -0.084  0.126  0.102  0.166 -0.079  0.396  0.248 -0.091  0.107
+Q25C          -0.090  0.210  0.086  0.230 -0.032  0.515  0.041  0.067  0.242
+Q25D          -0.209  0.004 -0.177 -0.168 -0.261  0.292  0.030 -0.161  0.017
+Q15           -0.079 -0.006 -0.185  0.284  0.096  0.284 -0.369  0.401  0.408
+is_college     0.003 -0.044 -0.032  0.008 -0.026 -0.072 -0.060 -0.002 -0.020
+is_over65      0.005  0.003 -0.020  0.031  0.010  0.006  0.023  0.005  0.046
+is_male        0.006 -0.056  0.004  0.020  0.054  0.020  0.023  0.028 -0.018
+is_republican  0.032  0.076 -0.018  0.141  0.062  0.185 -0.018  0.122  0.133
+                Q23H   Q23L   Q23O   Q23G   Q23N   Q23M   Q25B   Q25C   Q25D
+Q23A                                                                        
+Q23B                                                                        
+Q23C                                                                        
+Q23D                                                                        
+Q23E                                                                        
+Q23F                                                                        
+Q23I                                                                        
+Q23J                                                                        
+Q23K                                                                        
+Q23H           0.023                                                        
+Q23L           0.183  0.007                                                 
+Q23O          -0.222 -0.230  0.343                                          
+Q23G          -0.516 -0.281  0.328  0.587                                   
+Q23N          -0.238 -0.208  0.563  0.463  0.325                            
+Q23M          -0.160  0.346  0.183  0.263  0.168  0.154                     
+Q25B           0.119 -0.174  0.081 -0.260  0.061 -0.097 -0.014              
+Q25C           0.126  0.038  0.396  0.043  0.239  0.015  0.001 -0.013       
+Q25D           0.005 -0.277  0.266 -0.039  0.444 -0.052  0.007 -0.036 -0.008
+Q15           -0.645 -0.281  0.410  0.829  0.157  0.314  0.233  0.391  0.151
+is_college     0.003 -0.052 -0.052 -0.085  0.015 -0.084  0.035 -0.017 -0.001
+is_over65     -0.058 -0.036 -0.009  0.019  0.058  0.017 -0.011 -0.026  0.041
+is_male        0.011  0.042  0.058  0.024  0.046 -0.017  0.016 -0.007 -0.011
+is_republican -0.066 -0.002  0.161  0.294  0.124  0.124 -0.016 -0.002 -0.018
+                 Q15 is_cll is_v65 is_mal is_rpb
+Q23A                                            
+Q23B                                            
+Q23C                                            
+Q23D                                            
+Q23E                                            
+Q23F                                            
+Q23I                                            
+Q23J                                            
+Q23K                                            
+Q23H                                            
+Q23L                                            
+Q23O                                            
+Q23G                                            
+Q23N                                            
+Q23M                                            
+Q25B                                            
+Q25C                                            
+Q25D                                            
+Q15            0.000                            
+is_college    -0.131  0.000                     
+is_over65      0.055  0.000  0.000              
+is_male        0.082  0.000  0.000  0.000       
+is_republican  0.495  0.000  0.000  0.000  0.000
+> library(psych)
+
+Attaching package: ‘psych’
+
+The following objects are masked from ‘package:semTools’:
+
+    reliability, skew
+
+The following objects are masked from ‘package:ggplot2’:
+
+    %+%, alpha
+
+The following object is masked from ‘package:lavaan’:
+
+    cor2cov
+
+> rel <- function(object, CR = TRUE, AVE = TRUE, MSV = TRUE, 
++     HTMT = TRUE, digits) {
++     cor.lv <- data.frame(lavaan::lavInspect(object, "cor.lv"))
++     pt <- lavaan::parTable(object)[lavaan::parTable(object)$op == 
++         "=~", ]
++     mtrx <- round(cor.lv, digits)
++     diag(mtrx) <- ""
++     if (HTMT) {
++         htmt <- round(semTools::htmt(paste(pt[, "lhs"], pt[, 
++             "op"], pt[, "rhs"], sep = ""), data.frame(lavaan::lavInspect(object, 
++             "data"))), digits)
++         upper <- htmt[upper.tri(htmt)]
++     }
++     else upper <- ""
++     mtrx[upper.tri(mtrx)] <- upper
++     if (MSV) 
++         mtrx <- cbind(MSV = round(sapply(abs(cor.lv), function(x) max(x[x != 
++             max(x)])^2), digits), mtrx)
++     if (AVE) 
++         mtrx <- cbind(AVE = round(semTools::AVE(object), digits), 
++             mtrx)
++     if (CR) 
++         mtrx <- cbind(CR = round(semTools::compRelSEM(object), 
++             digits), mtrx)
++     return(mtrx)
++ }
+> rel(structural, CR = TRUE, AVE = TRUE, MSV = TRUE, 
++     HTMT = TRUE, digits = 3)
+             CR   AVE   MSV polgriev econgriev cultgriev violence
+polgriev  0.751 0.360 0.490              0.684     0.545    0.117
+econgriev 0.631 0.311 0.496      0.7               0.596    0.208
+cultgriev 0.804 0.516 0.496    0.522     0.704              0.294
+violence  0.807 0.590 0.110    0.122     0.332     0.292         
+> rel <- function(object, CR = TRUE, AVE = TRUE, MSV = TRUE, 
++     HTMT = TRUE, alpha = TRUE, digits) {
++     cor.lv <- data.frame(lavaan::lavInspect(object, "cor.lv"))
++     pt <- lavaan::parTable(object)[lavaan::parTable(object)$op == 
++         "=~", ]
++     mtrx <- round(cor.lv, digits)
++     diag(mtrx) <- ""
++     if (HTMT) {
++         htmt <- round(semTools::htmt(paste(pt[, "lhs"], pt[, 
++             "op"], pt[, "rhs"], sep = ""), data.frame(lavaan::lavInspect(object, 
++             "data"))), digits)
++         upper <- htmt[upper.tri(htmt)]
++     }
++     else upper <- ""
++     mtrx[upper.tri(mtrx)] <- upper
++     if (MSV) 
++         mtrx <- cbind(MSV = round(sapply(abs(cor.lv), function(x) max(x[x != 
++             max(x)])^2), digits), mtrx)
++     if (AVE) 
++         mtrx <- cbind(AVE = round(semTools::AVE(object), digits), 
++             mtrx)
++     if (CR) 
++         mtrx <- cbind(CR = round(semTools::compRelSEM(object), 
++             digits), mtrx)
++     if (alpha) {
++         data <- data.frame(lavaan::lavInspect(object, "data"))
++         alpha_values <- sapply(unique(pt$lhs), function(factor) {
++             items <- pt$rhs[pt$lhs == factor]
++             alpha_score <- psych::alpha(data[, items])$total[["raw_alpha"]]
++             return(round(alpha_score, digits))
++         })
++         mtrx <- cbind(Alpha = alpha_values, mtrx)
++     }
++     return(mtrx)
++ }
+> rel(measurement, CR = TRUE, AVE = TRUE, MSV = TRUE, 
++     HTMT = TRUE, alpha = TRUE, digits = 3)
+          Alpha    CR   AVE   MSV polgriev econgriev cultgriev violence
+polgriev  0.784 0.753 0.360 0.488              0.684     0.545    0.117
+econgriev 0.703 0.623 0.308 0.503    0.699               0.596    0.208
+cultgriev 0.787 0.807 0.515 0.503     0.51     0.709              0.294
+violence  0.799 0.807 0.590 0.110    0.122     0.331     0.298         
+Warning message:
+lavaan->lav_data_full():  
+   205 cases were deleted due to missing values in exogenous variable(s), 
+   while fixed.x = TRUE. 
+EXTRACTION_DONE

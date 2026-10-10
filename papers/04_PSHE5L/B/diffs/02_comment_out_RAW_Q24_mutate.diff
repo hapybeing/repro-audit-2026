@@ -1,0 +1,13 @@
+--- orig/Rural Populism - Socius - Public Code.R
++++ patched/Rural Populism - Socius - Public Code.R
+@@ -16,8 +16,8 @@
+ # Rescale 100 scale (RAW) column to out of 7 to align with other data scales.
+ cols_to_convert <- paste0("RAW_Q24", LETTERS[1:9])
+ # Apply the transformation
+-rural <- rural %>%
+-  mutate(across(all_of(cols_to_convert), ~ as.numeric(.)))
++# [AUDIT B env fix] rural <- rural %>%
++# [AUDIT B env fix]   mutate(across(all_of(cols_to_convert), ~ as.numeric(.)))
+ # Check Class
+ class(rural$RAW_Q24C)
+ # Never Heard Of ("NHO") values in RAW columns are NAs
