@@ -1,0 +1,10 @@
+{"note": "Attempts to read the Supplementary Information named in the data availability statement. All public, no sign-in.",
+ "attempts": [
+  {"utc": "2026-10-10T20:39:28Z", "url": "https://iopscience.iop.org/article/10.1088/1748-9326/ae436c/data", "method": "curl", "http_status": 200, "result": "Radware Bot Manager captcha page (14371 bytes), no file links"},
+  {"utc": "2026-10-10T20:39Z (approx., between the curl calls)", "url": "https://iopscience.iop.org/article/10.1088/1748-9326/ae436c/data", "method": "web_fetch tool", "http_status": 200, "result": "Radware captcha page ('confirm you are a human')"},
+  {"utc": "2026-10-10T20:39:42Z", "url": "https://content.cld.iop.org/journals/1748-9326/21/4/044020/revision1/erlae436csupp1.pdf", "method": "curl (guessed CDN path)", "http_status": 403, "result": "XML error, 146 bytes"},
+  {"utc": "2026-10-10T20:39:42Z", "url": "https://content.cld.iop.org/journals/1748-9326/21/4/044020/revision2/erlae436csupp1.pdf", "method": "curl (guessed CDN path)", "http_status": 403, "result": "XML error, 146 bytes"},
+  {"utc": "2026-10-10T20:39:43Z", "url": "https://content.cld.iop.org/journals/1748-9326/21/4/044020/revision1/erlae436csupp1.docx", "method": "curl (guessed CDN path)", "http_status": 403, "result": "XML error, 146 bytes"},
+  {"utc": "2026-10-10T20:39:45Z", "url": "https://doi.org/10.1088/1748-9326/ae436c/data1", "method": "curl -I -L", "http_status": "302 -> iopscience /data -> 302 to validate.perfdrive.com", "result": "captcha redirect"}
+ ],
+ "outcome": "SI not read. The publisher PDF itself (9 pages incl. IOP cover) downloaded without a captcha."}

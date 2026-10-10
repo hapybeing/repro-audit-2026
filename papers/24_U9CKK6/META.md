@@ -1,0 +1,11 @@
+# 24_U9CKK6
+- Paper: The challenger advantage – how challenger parties disrupt mainstream party dominance in the European Parliament
+- Journal: Journal of European Public Policy (2024)
+- Paper DOI: https://doi.org/10.1080/13501763.2024.2391510
+- Dataset DOI: https://doi.org/10.7910/DVN/U9CKK6
+- Dataset title: Replication Data for: The Challenger Advantage – How Challenger Parties disrupt Mainstream Party Dominance in the European Parliament
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 832680633
+- Audit position 24, batch 5

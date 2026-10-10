@@ -1,0 +1,11 @@
+# 23_FXRNBA
+- Paper: Wildfire smoke increases assaults: evidence from Seattle
+- Journal: Environmental Research Letters (2026)
+- Paper DOI: https://doi.org/10.1088/1748-9326/ae436c
+- Dataset DOI: https://doi.org/10.7910/DVN/FXRNBA
+- Dataset title: Replication Data for: Wildfire Smoke Increases Assaults: Evidence from Seattle
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC BY-NC 4.0
+- Dataset size (bytes): 60682946
+- Audit position 23, batch 5

@@ -1,0 +1,1025 @@
+[
+ {
+  "source": "Dataverse deposit file list, all versions",
+  "query": "view_party.csv",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/U9CKK6",
+  "utc": "2026-10-10T20:48:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "files in all versions: 28"
+ },
+ {
+  "source": "Dataverse deposit file list, all versions",
+  "query": "view_cabinet.csv",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/U9CKK6",
+  "utc": "2026-10-10T20:48:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "files in all versions: 28"
+ },
+ {
+  "source": "Dataverse deposit file list, all versions",
+  "query": "eurobarmeter_challengers_2023.dta",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/U9CKK6",
+  "utc": "2026-10-10T20:48:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "files in all versions: 28"
+ },
+ {
+  "source": "Dataverse deposit file list, all versions",
+  "query": ".dta",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/U9CKK6",
+  "utc": "2026-10-10T20:48:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "files in all versions: 28"
+ },
+ {
+  "source": "Dataverse deposit file list, all versions",
+  "query": "parlgov",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/U9CKK6",
+  "utc": "2026-10-10T20:48:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "files in all versions: 28"
+ },
+ {
+  "source": "Dataverse deposit file list, all versions",
+  "query": "eurobar",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/U9CKK6",
+  "utc": "2026-10-10T20:48:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "files in all versions: 28"
+ },
+ {
+  "source": "Harvard Dataverse search API (files)",
+  "query": "\"eurobarmeter_challengers_2023\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22eurobarmeter_challengers_2023%22&type=file&per_page=100",
+  "utc": "2026-10-10T20:48:06Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse search API (files)",
+  "query": "eurobarmeter_challengers_2023.dta",
+  "url": "https://dataverse.harvard.edu/api/search?q=eurobarmeter_challengers_2023.dta&type=file&per_page=100",
+  "utc": "2026-10-10T20:48:06Z",
+  "http": 200,
+  "total_results": 14791,
+  "relevant_hits": [
+   {
+    "name": "census_data.7z",
+    "dataset": "doi:10.7910/DVN/LK5Z6Z",
+    "in_named_location": false
+   },
+   {
+    "name": "base12_6b.do",
+    "dataset": "doi:10.7910/DVN/A35WXZ",
+    "in_named_location": false
+   },
+   {
+    "name": "PEI election-level data (PEI_5.5) 13-10-2017.dta",
+    "dataset": "doi:10.7910/DVN/EWYTZ7",
+    "in_named_location": false
+   },
+   {
+    "name": "PEI expert-level data (PEI_5.5) 13-10-2017.dta",
+    "dataset": "doi:10.7910/DVN/EWYTZ7",
+    "in_named_location": false
+   },
+   {
+    "name": "PEI country-level data (PEI-5.5) 13-10-2017.dta",
+    "dataset": "doi:10.7910/DVN/EWYTZ7",
+    "in_named_location": false
+   },
+   {
+    "name": "Dataset_Dec2008.dta",
+    "dataset": "doi:10.7910/DVN/PX85ZN",
+    "in_named_location": false
+   },
+   {
+    "name": "FSPP_Mon_State_Rural_Comm_2015_comsec_o2_av1-1.tab",
+    "dataset": "doi:10.7910/DVN/B1KGWQ",
+    "in_named_location": false
+   },
+   {
+    "name": "FSSP_Aqua_Ag_Household_2016_sec_s2v1-1.tab",
+    "dataset": "doi:10.7910/DVN/JKXZXA",
+    "in_named_location": false
+   },
+   {
+    "name": "Presidential Power and Democratization by Elections 102517.dta",
+    "dataset": "doi:10.7910/DVN/ESOFEN",
+    "in_named_location": false
+   },
+   {
+    "name": "0. Reshape.do",
+    "dataset": "doi:10.7910/DVN/WAYIQJ",
+    "in_named_location": false
+   },
+   {
+    "name": "treatmenteffect32_May162012.tab",
+    "dataset": "doi:10.7910/DVN/IUG2C4",
+    "in_named_location": false
+   },
+   {
+    "name": "FISTSv3.0 dta.tab",
+    "dataset": "doi:10.7910/DVN/OBE9YJ",
+    "in_named_location": false
+   },
+   {
+    "name": "dataset DTA.tab",
+    "dataset": "doi:10.7910/DVN/UGPBLQ",
+    "in_named_location": false
+   },
+   {
+    "name": "Data.tar.gz",
+    "dataset": "doi:10.7910/DVN/7FYH0T",
+    "in_named_location": false
+   },
+   {
+    "name": "Processed Data.zip",
+    "dataset": "doi:10.7910/DVN/F26FNK",
+    "in_named_location": false
+   },
+   {
+    "name": "Time.tab",
+    "dataset": "doi:10.7910/DVN/Z3EESV",
+    "in_named_location": false
+   },
+   {
+    "name": "GARP & FOSD.tab",
+    "dataset": "doi:10.7910/DVN/Z3EESV",
+    "in_named_location": false
+   },
+   {
+    "name": "democracy-v3.0.tab",
+    "dataset": "doi:10.7910/DVN/FJLMKT",
+    "in_named_location": false
+   },
+   {
+    "name": "Alliance_formation.tab",
+    "dataset": "doi:10.7910/DVN/DNH9XV",
+    "in_named_location": false
+   },
+   {
+    "name": "Threat_MI.tab",
+    "dataset": "doi:10.7910/DVN/DNH9XV",
+    "in_named_location": false
+   },
+   {
+    "name": "dataset emanuele lost in translation 2021.tab",
+    "dataset": "doi:10.7910/DVN/YRLGNR",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_Time_Distance_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/AP9XGL",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_Time_Distance_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/KADZGA",
+    "in_named_location": false
+   },
+   {
+    "name": "Voting Experience in a New Era Dataset.tab",
+    "dataset": "doi:10.7910/DVN/EHWYBR",
+    "in_named_location": false
+   },
+   {
+    "name": "RR_EJPR_2024.tab",
+    "dataset": "doi:10.7910/DVN/G2NKLO",
+    "in_named_location": false
+   },
+   {
+    "name": "accidentes.tab",
+    "dataset": "doi:10.7910/DVN/XXS2P2",
+    "in_named_location": false
+   },
+   {
+    "name": "NiemanGibler_demdiff_trade.tab",
+    "dataset": "doi:10.7910/DVN/DNH9XV",
+    "in_named_location": false
+   },
+   {
+    "name": "COVID_APPS_Sonora.tab",
+    "dataset": "doi:10.7910/DVN/Y85AEK",
+    "in_named_location": false
+   },
+   {
+    "name": "BJPIR_ranking_dataset.tab",
+    "dataset": "doi:10.7910/DVN/H2NNJX",
+    "in_named_location": false
+   },
+   {
+    "name": "COVID_APPS_Mexico.tab",
+    "dataset": "doi:10.7910/DVN/Y85AEK",
+    "in_named_location": false
+   },
+   {
+    "name": "CT_Etrust_dataset.tab",
+    "dataset": "doi:10.7910/DVN/IHP3UW",
+    "in_named_location": false
+   },
+   {
+    "name": "famben_1Apr2020-1.tab",
+    "dataset": "doi:10.7910/DVN/GN3PBE",
+    "in_named_location": false
+   },
+   {
+    "name": "JoPe2_crowds.tab",
+    "dataset": "doi:10.7910/DVN/ZE3ITV",
+    "in_named_location": false
+   },
+   {
+    "name": "NiemanGibler_demdiff_ally.tab",
+    "dataset": "doi:10.7910/DVN/DNH9XV",
+    "in_named_location": false
+   },
+   {
+    "name": "JoPe2_crowds_timing.tab",
+    "dataset": "doi:10.7910/DVN/ZE3ITV",
+    "in_named_location": false
+   },
+   {
+    "name": "NGO_dataset.tab",
+    "dataset": "doi:10.7910/DVN/PGWEXB",
+    "in_named_location": false
+   },
+   {
+    "name": "Maghbouleh_Schachter_Flores_2022_Public.tab",
+    "dataset": "doi:10.7910/DVN/BTFTQE",
+    "in_named_location": false
+   },
+   {
+    "name": "NAVCO2-1_ForPublication.tab",
+    "dataset": "doi:10.7910/DVN/MHOXDV",
+    "in_named_location": false
+   },
+   {
+    "name": "Final_dataset_Mexico_Earthquake.tab",
+    "dataset": "doi:10.7910/DVN/JGYZ7T",
+    "in_named_location": false
+   },
+   {
+    "name": "CleanData.tab",
+    "dataset": "doi:10.7910/DVN/Z3EESV",
+    "in_named_location": false
+   },
+   {
+    "name": "data_pension_aug_2018.tab",
+    "dataset": "doi:10.7910/DVN/LXF9SR",
+    "in_named_location": false
+   },
+   {
+    "name": "UI_6Apr2020-1.tab",
+    "dataset": "doi:10.7910/DVN/6POJBI",
+    "in_named_location": false
+   },
+   {
+    "name": "GiblerTir2014.tab",
+    "dataset": "doi:10.7910/DVN/DNH9XV",
+    "in_named_location": false
+   },
+   {
+    "name": "PLSW2024_EN_v1.0.tab",
+    "dataset": "doi:10.7910/DVN/LKY4WZ",
+    "in_named_location": false
+   },
+   {
+    "name": "RawData.tab",
+    "dataset": "doi:10.7910/DVN/Z3EESV",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_HH_R1_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/TQ1MSE",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_HH_R2_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/TQ1MSE",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_HH_R1_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/IPXDML",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_HH_R2_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/IPXDML",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_HH_R1_rural_v2-1.tab",
+    "dataset": "doi:10.7910/DVN/ZOJYO6",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_HH_R2_urban_v2.tab",
+    "dataset": "doi:10.7910/DVN/ZOJYO6",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_HH_R3_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/TQ1MSE",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_HH_R3_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/IPXDML",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_OS_R1_long_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/DJXKVA",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_OS_R2_long_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/DJXKVA",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_OS_R3_long_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/DJXKVA",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_OS_R1_long_v2.tab",
+    "dataset": "doi:10.7910/DVN/G31FHL",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_OS_R2_long_v2.tab",
+    "dataset": "doi:10.7910/DVN/G31FHL",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_OS_R3_long_v2.tab",
+    "dataset": "doi:10.7910/DVN/G31FHL",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_OS_R2_long_v2.tab",
+    "dataset": "doi:10.7910/DVN/1NRFSD",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_OS_R1_long_rural_v2-1.tab",
+    "dataset": "doi:10.7910/DVN/1NRFSD",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_OS_R1_long_urban_v2-1.tab",
+    "dataset": "doi:10.7910/DVN/1NRFSD",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_OS_R1_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/DJXKVA",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_OS_R2_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/DJXKVA",
+    "in_named_location": false
+   },
+   {
+    "name": "KN_OS_R3_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/DJXKVA",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_OS_R1_wide_rural_v2-1.tab",
+    "dataset": "doi:10.7910/DVN/1NRFSD",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_OS_R1_wide_urban_v2.tab",
+    "dataset": "doi:10.7910/DVN/1NRFSD",
+    "in_named_location": false
+   },
+   {
+    "name": "UG_OS_R2_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/1NRFSD",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_OS_R1_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/G31FHL",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_OS_R2_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/G31FHL",
+    "in_named_location": false
+   },
+   {
+    "name": "NG_OS_R3_wide_v1-1.tab",
+    "dataset": "doi:10.7910/DVN/G31FHL",
+    "in_named_location": false
+   },
+   {
+    "name": "DTA900.file4924.EXPEND98.DTA",
+    "dataset": "doi:10.7910/DVN/SKAIMZ",
+    "in_named_location": false
+   },
+   {
+    "name": "statarep_2013_07_29.dta",
+    "dataset": "doi:10.7910/DVN/RBZDQ4",
+    "in_named_location": false
+   },
+   {
+    "name": "setup_migration2002.do",
+    "dataset": "doi:10.7910/DVN/29557",
+    "in_named_location": false
+   },
+   {
+    "name": "EL_JOP_AppendixFile.R",
+    "dataset": "doi:10.7910/DVN/QV7AJH",
+    "in_named_location": false
+   },
+   {
+    "name": "Rohde_RollCallVotes_83_108.dta",
+    "dataset": "doi:10.7910/DVN/24647",
+    "in_named_location": false
+   },
+   {
+    "name": "gss7221_r3a-2.dta",
+    "dataset": "doi:10.7910/DVN/FUSY37",
+    "in_named_location": false
+   },
+   {
+    "name": "How_Do_interest_Groups_Seek_Access_to_Committees.dta",
+    "dataset": "doi:10.7910/DVN/PGCVDP",
+    "in_named_location": false
+   },
+   {
+    "name": "nomrules_cbk.pdf",
+    "dataset": "doi:10.7910/DVN/5IXGXF",
+    "in_named_location": false
+   },
+   {
+    "name": "nomrules_cbk.pdf",
+    "dataset": "doi:10.7910/DVN/XMN3US",
+    "in_named_location": false
+   },
+   {
+    "name": "dyadic_data.dta",
+    "dataset": "doi:10.7910/DVN/74EI9T",
+    "in_named_location": false
+   },
+   {
+    "name": "Codebook_RasmussenReher_EJPR_2024.pdf",
+    "dataset": "doi:10.7910/DVN/G2NKLO",
+    "in_named_location": false
+   },
+   {
+    "name": "covidusmort.tab",
+    "dataset": "doi:10.7910/DVN/NTJHMY",
+    "in_named_location": false
+   },
+   {
+    "name": "02. BaseTotalHogar_final.dta",
+    "dataset": "doi:10.7910/DVN/DX3F4T",
+    "in_named_location": false
+   },
+   {
+    "name": "Refugee Work Rights Dataset.dta",
+    "dataset": "doi:10.7910/DVN/CKNNVT",
+    "in_named_location": false
+   },
+   {
+    "name": "ae_hrg.tab",
+    "dataset": "doi:10.7910/DVN/VSAQQI",
+    "in_named_location": false
+   },
+   {
+    "name": "diag_predmort.tab",
+    "dataset": "doi:10.7910/DVN/VSAQQI",
+    "in_named_location": false
+   },
+   {
+    "name": "merged_bl_fu_fu2 Codebook.xls",
+    "dataset": "doi:10.7910/DVN/TXSKKA",
+    "in_named_location": false
+   },
+   {
+    "name": "factor_analysis.tab",
+    "dataset": "doi:10.7910/DVN/74EI9T",
+    "in_named_location": false
+   },
+   {
+    "name": "decdegcords.tab",
+    "dataset": "doi:10.7910/DVN/74EI9T",
+    "in_named_location": false
+   },
+   {
+    "name": "ae_hrg2013.tab",
+    "dataset": "doi:10.7910/DVN/VSAQQI",
+    "in_named_location": false
+   },
+   {
+    "name": "table3forR.tab",
+    "dataset": "doi:10.7910/DVN/AZTWDW",
+    "in_named_location": false
+   },
+   {
+    "name": "mff_0714.tab",
+    "dataset": "doi:10.7910/DVN/VSAQQI",
+    "in_named_location": false
+   },
+   {
+    "name": "church_indv_membership.tab",
+    "dataset": "doi:10.7910/DVN/74EI9T",
+    "in_named_location": false
+   },
+   {
+    "name": "LOV3_data_for_analysis.tab",
+    "dataset": "doi:10.7910/DVN/K1PEUE",
+    "in_named_location": false
+   },
+   {
+    "name": "Pilet et al_BJPS_replication.tab",
+    "dataset": "doi:10.7910/DVN/GU62FJ",
+    "in_named_location": false
+   },
+   {
+    "name": "problem_with_crim_records_criminology.tab",
+    "dataset": "doi:10.7910/DVN/BDMWJN",
+    "in_named_location": false
+   },
+   {
+    "name": "macdonald_diplomats_MATCHED.tab",
+    "dataset": "doi:10.7910/DVN/6BVYC0",
+    "in_named_location": false
+   },
+   {
+    "name": "churchindvstatistics.tab",
+    "dataset": "doi:10.7910/DVN/74EI9T",
+    "in_named_location": false
+   },
+   {
+    "name": "LALD.tab",
+    "dataset": "doi:10.7910/DVN/AS34ME",
+    "in_named_location": false
+   }
+  ],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse search API (files)",
+  "query": "name:\"view_party.csv\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=name%3A%22view_party.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T20:48:08Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse search API (files)",
+  "query": "name:\"view_cabinet.csv\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=name%3A%22view_cabinet.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T20:48:09Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse search API (datasets)",
+  "query": "Wratil challengers eurobarometer",
+  "url": "https://dataverse.harvard.edu/api/search?q=Wratil+challengers+eurobarometer&type=dataset&per_page=50",
+  "utc": "2026-10-10T20:48:09Z",
+  "http": 200,
+  "total_results": 7593,
+  "relevant_hits": [
+   {
+    "name": "What should be the priorities when it comes to science and technological innovation?",
+    "global_id": "doi:10.7910/DVN/BEU288"
+   },
+   {
+    "name": "slide_block_to_target",
+    "global_id": "doi:10.7910/DVN/XEAYPQ"
+   },
+   {
+    "name": "close_box",
+    "global_id": "doi:10.7910/DVN/QPUOJH"
+   },
+   {
+    "name": "eval_dataset",
+    "global_id": "doi:10.7910/DVN/DOZY6N"
+   },
+   {
+    "name": "test_dataset",
+    "global_id": "doi:10.7910/DVN/OVVN2E"
+   },
+   {
+    "name": "scoop_with_spatula",
+    "global_id": "doi:10.7910/DVN/EPU7UW"
+   },
+   {
+    "name": "insert_onto_square_peg",
+    "global_id": "doi:10.7910/DVN/PSPXJK"
+   },
+   {
+    "name": "Blue Economy Challenge - Malaysia",
+    "global_id": "doi:10.7910/DVN/QQHE0E"
+   },
+   {
+    "name": "Blue Economy Challenge - Bangladesh",
+    "global_id": "doi:10.7910/DVN/GA3MVL"
+   },
+   {
+    "name": "Exploration of Process-Structure Linkages in Simulated Additive Manufacturing Microstructures",
+    "global_id": "doi:10.7910/DVN/KJMK9Z"
+   },
+   {
+    "name": "\"Replication Data for Challenge or Consent? Understanding Losers' Reactions in Mass Elections",
+    "global_id": "doi:10.7910/DVN/9UVAKE"
+   },
+   {
+    "name": "Replication Data for: Territorial Representation and the Opinion-Policy Linkage: Evidence from the European Union",
+    "global_id": "doi:10.7910/DVN/SBOMZD"
+   },
+   {
+    "name": "Replication data for: Multidimensional Representation",
+    "global_id": "doi:10.7910/DVN/79RI4R"
+   },
+   {
+    "name": "Replication Data for: Political Representation as Communicative Practice",
+    "global_id": "doi:10.7910/DVN/RFU8IX"
+   },
+   {
+    "name": "Replication Data for: The Populist Marketplace: Unpacking the Role of \u201cThin\u201d and \u201cThick\u201d Ideology",
+    "global_id": "doi:10.7910/DVN/Z66XXP"
+   },
+   {
+    "name": "Replication Data for: Do Parties' Representation Failures Affect Populist Attitudes? Evidence from a Multinational Survey Experiment",
+    "global_id": "doi:10.7910/DVN/WYACIJ"
+   },
+   {
+    "name": "Replication Data for: Government Rhetoric and the Representation of Public Opinion in International Negotiations",
+    "global_id": "doi:10.7910/DVN/JCT3F7"
+   },
+   {
+    "name": "Replication Data for: Citizens' Preferences for Multidimensional Representation",
+    "global_id": "doi:10.7910/DVN/EZDPNP"
+   },
+   {
+    "name": "Replication Data for: \"Testing the Validity of Automatic Speech Recognition for Political Text Analysis\" by Sven-Oliver Proksch, Christopher Wratil and Jens W\u00e4ckerle",
+    "global_id": "doi:10.7910/DVN/PGQY2F"
+   },
+   {
+    "name": "Replication Data for: Populism and Candidate Support in the US: The Effects of \u201cThin\u201d and \u201cHost\u201d Ideology",
+    "global_id": "doi:10.7910/DVN/5AEGPM"
+   },
+   {
+    "name": "Replication Data for Voices of the Party Base: How Supporters Want Established Parties to Respond to New Parties",
+    "global_id": "doi:10.7910/DVN/SNEYXG"
+   },
+   {
+    "name": "Replication Data for: \"Winning Votes and Changing Minds:  Do Populist Arguments Affect Candidate Evaluations and Issue Preferences?\"",
+    "global_id": "doi:10.7910/DVN/M7AFDM"
+   },
+   {
+    "name": "Replication Data for: Comparing Revealed and Expressed Populism: The Case of Voting for the \"Alternative f\u00fcr Deutschland\" and \"Die Linke\"",
+    "global_id": "doi:10.7910/DVN/IQNJ5M"
+   },
+   {
+    "name": "Eurobarometer 91.5",
+    "global_id": "doi:10.7910/DVN/7PGZIS"
+   },
+   {
+    "name": "Replication Data for Estimating subnational preferences across the European Union",
+    "global_id": "doi:10.7910/DVN/RHAXDD"
+   },
+   {
+    "name": "Replication data for: Exploring the performance of multilevel modeling and poststratification with Eurobarometer data",
+    "global_id": "doi:10.7910/DVN/29488"
+   },
+   {
+    "name": "Replication Data for: Challenging the Challengers? Quasi-Experimental Evidence on the Impact of the B\u00fcndnis Sahra Wagenknecht on German Party Competition",
+    "global_id": "doi:10.7910/DVN/PYOHGA"
+   },
+   {
+    "name": "\"Replication Data for: Choosing Challengers: Opposition Party Success in Hard Times\"",
+    "global_id": "doi:10.7910/DVN/BLASMU"
+   },
+   {
+    "name": "STORM-AI: AI Challenge for Satellite Tracking and Orbit Resilience Modeling dataset",
+    "global_id": "doi:10.7910/DVN/U6K6MJ"
+   },
+   {
+    "name": "Antibody challenge dataset",
+    "global_id": "doi:10.7910/DVN/5PNPKJ"
+   },
+   {
+    "name": "Replication Data for: Benchmarking pandemic response: How the UK's COVID-19 vaccine rollout impacted diffuse and specific support for the EU",
+    "global_id": "doi:10.7910/DVN/D6JI4M"
+   },
+   {
+    "name": "ICBHI 2017 challenge",
+    "global_id": "doi:10.7910/DVN/HT6PKI"
+   },
+   {
+    "name": "Replication Data for: Democracy\u2019s Challengers: Need for Chaos and Desire for Greatness in German Political Culture",
+    "global_id": "doi:10.7910/DVN/NLEA8C"
+   },
+   {
+    "name": "STORM-AI Development Kit",
+    "global_id": "doi:10.7910/DVN/NH5D3J"
+   },
+   {
+    "name": "Replication Data for: When Does Audience Matter? Challengers\u2019 Stability and Audience Costs",
+    "global_id": "doi:10.7910/DVN/AYZ23E"
+   },
+   {
+    "name": "Team Millenial-IUP Code Implementation",
+    "global_id": "doi:10.7910/DVN/LYARQM"
+   },
+   {
+    "name": "Team Digantara Code Implementation",
+    "global_id": "doi:10.7910/DVN/Y7TR4O"
+   },
+   {
+    "name": "Challenges Of Cargo Shipping in 2022",
+    "global_id": "doi:10.7910/DVN/9OQEPK"
+   },
+   {
+    "name": "Replication Data for: The Challenger Advantage \u2013 How Challenger Parties disrupt Mainstream Party Dominance in the European Parliament",
+    "global_id": "doi:10.7910/DVN/U9CKK6"
+   },
+   {
+    "name": "Replication data for: The Fates of Challengers in US House Elections: The Role of Extended Party Networks in Supporting Candidates and Shaping Electoral Outcomes",
+    "global_id": "doi:10.7910/DVN/24220"
+   },
+   {
+    "name": "Biomarkers of Aging Challenge Proteomics",
+    "global_id": "doi:10.7910/DVN/PMRPUZ"
+   },
+   {
+    "name": "Replication Data for: \"Same Money, Different Impact? The conditional effectiveness of European Structural  and Investment Funds on EU Support in Spain (1990 - 2018)\"",
+    "global_id": "doi:10.7910/DVN/JGUNIG"
+   },
+   {
+    "name": "Replication Data for: Challenger Entry and Electoral Accountability",
+    "global_id": "doi:10.7910/DVN/AK9LT6"
+   },
+   {
+    "name": "Challenges Faced by Teenage Programmers in Software Development",
+    "global_id": "doi:10.7910/DVN/97PY1K"
+   },
+   {
+    "name": "Replication data for: Challenges for reproducibility in species delimitation",
+    "global_id": "doi:10.7910/DVN/HLHYF9"
+   },
+   {
+    "name": "Output Tracking Survey, The Challenge Initiative, India",
+    "global_id": "doi:10.7910/DVN/T1BCRO"
+   },
+   {
+    "name": "Housing System, Challenges and Perspectives - The case of Georgia",
+    "global_id": "doi:10.7910/DVN/TUFXMF"
+   },
+   {
+    "name": "Divertor heat flux challenge and mitigation in SPARC",
+    "global_id": "doi:10.7910/DVN/AAAZN3"
+   },
+   {
+    "name": "Replication Data for: Negotiating with your mouth full:  Intergovernmental negotiations between transparency and confidentiality",
+    "global_id": "doi:10.7910/DVN/9QZFDH"
+   },
+   {
+    "name": "Replication Data for: Public Support for State Challenges to National Laws",
+    "global_id": "doi:10.7910/DVN/O1GQFU"
+   }
+  ],
+  "note": "outside named location; does not count for rule #4"
+ },
+ {
+  "source": "Harvard Dataverse search API (datasets)",
+  "query": "eurobarometer challengers Wratil 2023",
+  "url": "https://dataverse.harvard.edu/api/search?q=eurobarometer+challengers+Wratil+2023&type=dataset&per_page=50",
+  "utc": "2026-10-10T20:48:11Z",
+  "http": 200,
+  "total_results": 25601,
+  "relevant_hits": [
+   {
+    "name": "What should be the priorities when it comes to science and technological innovation?",
+    "global_id": "doi:10.7910/DVN/BEU288"
+   },
+   {
+    "name": "slide_block_to_target",
+    "global_id": "doi:10.7910/DVN/XEAYPQ"
+   },
+   {
+    "name": "close_box",
+    "global_id": "doi:10.7910/DVN/QPUOJH"
+   },
+   {
+    "name": "eval_dataset",
+    "global_id": "doi:10.7910/DVN/DOZY6N"
+   },
+   {
+    "name": "test_dataset",
+    "global_id": "doi:10.7910/DVN/OVVN2E"
+   },
+   {
+    "name": "scoop_with_spatula",
+    "global_id": "doi:10.7910/DVN/EPU7UW"
+   },
+   {
+    "name": "insert_onto_square_peg",
+    "global_id": "doi:10.7910/DVN/PSPXJK"
+   },
+   {
+    "name": "Blue Economy Challenge - Malaysia",
+    "global_id": "doi:10.7910/DVN/QQHE0E"
+   },
+   {
+    "name": "Blue Economy Challenge - Bangladesh",
+    "global_id": "doi:10.7910/DVN/GA3MVL"
+   },
+   {
+    "name": "Smart CVR 2023",
+    "global_id": "doi:10.7910/DVN/5MFD0Y"
+   },
+   {
+    "name": "Replication Data for Thanks For Your Service and Technical Appendix",
+    "global_id": "doi:10.7910/DVN/A67MWK"
+   },
+   {
+    "name": "MLKL variant call files- place holder",
+    "global_id": "doi:10.7910/DVN/MOE2UW"
+   },
+   {
+    "name": "Exploration of Process-Structure Linkages in Simulated Additive Manufacturing Microstructures",
+    "global_id": "doi:10.7910/DVN/KJMK9Z"
+   },
+   {
+    "name": "Supplementary Appendix for \"Partisan Change with Generational Turnover: Latino Party Identification from 1989-2023\"",
+    "global_id": "doi:10.7910/DVN/IJTCH9"
+   },
+   {
+    "name": "Replication Code for \"Partisan Change with Generational Turnover: Latino Party Identification from 1989-2023\"",
+    "global_id": "doi:10.7910/DVN/ASTT1I"
+   },
+   {
+    "name": "Replication Data for \"Partisan Change with Generational Turnover: Latino Party Identification from 1989-2023\"",
+    "global_id": "doi:10.7910/DVN/T8HBOE"
+   },
+   {
+    "name": "\"Replication Data for Challenge or Consent? Understanding Losers' Reactions in Mass Elections",
+    "global_id": "doi:10.7910/DVN/9UVAKE"
+   },
+   {
+    "name": "Replication Data for: Matteo Salvini\u2019s Twitter Rhetoric (2015\u20132023)",
+    "global_id": "doi:10.7910/DVN/PGLWSH"
+   },
+   {
+    "name": "National Health and Nutrition Examination Survey (NHANES), 1999-2023",
+    "global_id": "doi:10.7910/DVN/FDAFNZ"
+   },
+   {
+    "name": "Replication Data for: Territorial Representation and the Opinion-Policy Linkage: Evidence from the European Union",
+    "global_id": "doi:10.7910/DVN/SBOMZD"
+   },
+   {
+    "name": "Mining Indicators",
+    "global_id": "doi:10.7910/DVN/1VWQWN"
+   },
+   {
+    "name": "US State-Level Socio-Political and Environmental Contextual Indicators",
+    "global_id": "doi:10.7910/DVN/QXDGKP"
+   },
+   {
+    "name": "Replication data for: Multidimensional Representation",
+    "global_id": "doi:10.7910/DVN/79RI4R"
+   },
+   {
+    "name": "Replication Data for: Slow Disaster, Immediate Accountability: Evidence from Uruguay's 2023 Water Crisis",
+    "global_id": "doi:10.7910/DVN/XFI82P"
+   },
+   {
+    "name": "Replication Data for: Political Representation as Communicative Practice",
+    "global_id": "doi:10.7910/DVN/RFU8IX"
+   },
+   {
+    "name": "Replication Data for: Justifying European Border Policies",
+    "global_id": "doi:10.7910/DVN/FV1MOX"
+   },
+   {
+    "name": "Documentos Estaduais sobre a Vacina\u00e7\u00e3o contra a Covid-19",
+    "global_id": "doi:10.7910/DVN/HSOXEO"
+   },
+   {
+    "name": "Planos Nacionais de Operacionaliza\u00e7\u00e3o da Vacina\u00e7\u00e3o Contra a Covid-19 no Brasil COVID-19",
+    "global_id": "doi:10.7910/DVN/3LHAO2"
+   },
+   {
+    "name": "Sistematiza\u00e7\u00e3o dos Planos Estaduais e Grupos Priorit\u00e1rios",
+    "global_id": "doi:10.7910/DVN/TALKJT"
+   },
+   {
+    "name": "Replication Data for: The Populist Marketplace: Unpacking the Role of \u201cThin\u201d and \u201cThick\u201d Ideology",
+    "global_id": "doi:10.7910/DVN/Z66XXP"
+   },
+   {
+    "name": "Replication Data for: Do Parties' Representation Failures Affect Populist Attitudes? Evidence from a Multinational Survey Experiment",
+    "global_id": "doi:10.7910/DVN/WYACIJ"
+   },
+   {
+    "name": "Replication Data for: Government Rhetoric and the Representation of Public Opinion in International Negotiations",
+    "global_id": "doi:10.7910/DVN/JCT3F7"
+   },
+   {
+    "name": "Replication Data for: Citizens' Preferences for Multidimensional Representation",
+    "global_id": "doi:10.7910/DVN/EZDPNP"
+   },
+   {
+    "name": "Replication Data for: \"Testing the Validity of Automatic Speech Recognition for Political Text Analysis\" by Sven-Oliver Proksch, Christopher Wratil and Jens W\u00e4ckerle",
+    "global_id": "doi:10.7910/DVN/PGQY2F"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Kobo 2018",
+    "global_id": "doi:10.7910/DVN/8NCQWH"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Kobo 2019",
+    "global_id": "doi:10.7910/DVN/GSVGZ7"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Kobo 2020",
+    "global_id": "doi:10.7910/DVN/GPLAJQ"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Melkassa 2020",
+    "global_id": "doi:10.7910/DVN/HNKTAE"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Mieso 2019",
+    "global_id": "doi:10.7910/DVN/BPOZKZ"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Mieso 2020",
+    "global_id": "doi:10.7910/DVN/XE1YPM"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Shiraro 2018",
+    "global_id": "doi:10.7910/DVN/6HKRN4"
+   },
+   {
+    "name": "Advanced drought tolerant sorghum hybrids at Shiraro 2019",
+    "global_id": "doi:10.7910/DVN/HIJIHU"
+   },
+   {
+    "name": "B lines observation nursery at Mieso 2014",
+    "global_id": "doi:10.7910/DVN/SMGA6L"
+   },
+   {
+    "name": "Drought genetics at Kobo 2014",
+    "global_id": "doi:10.7910/DVN/PBJEZT"
+   },
+   {
+    "name": "Drought genetics at Mieso 2014",
+    "global_id": "doi:10.7910/DVN/WX0S2N"
+   },
+   {
+    "name": "Drought hybrids observation at Shiraro 2014",
+    "global_id": "doi:10.7910/DVN/XAM15W"
+   },
+   {
+    "name": "High yield potential hybrids at Mieso 2014",
+    "global_id": "doi:10.7910/DVN/PICJCW"
+   },
+   {
+    "name": "Test cross hybrids Mieso 2015",
+    "global_id": "doi:10.7910/DVN/ZCDT5U"
+   },
+   {
+    "name": "Drought hybrids Kobo 2017",
+    "global_id": "doi:10.7910/DVN/NPZJ0L"
+   },
+   {
+    "name": "Drought hybrids Mieso 2017",
+    "global_id": "doi:10.7910/DVN/GOFWVK"
+   }
+  ],
+  "note": "outside named location; does not count for rule #4"
+ }
+]

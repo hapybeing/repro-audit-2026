@@ -1,0 +1,11 @@
+# 21_LEFTNE
+- Paper: Gendered Political Contexts, Emotions, and Engagement: A Case Study of the 2016 US Presidential Election
+- Journal: British Journal of Political Science (2025)
+- Paper DOI: https://doi.org/10.1017/s0007123425101166
+- Dataset DOI: https://doi.org/10.7910/DVN/LEFTNE
+- Dataset title: Replication Data for: Gendered Political Contexts, Emotions, and Engagement: A Case Study of the 2016 U.S. Presidential Election
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 184434
+- Audit position 21, batch 5

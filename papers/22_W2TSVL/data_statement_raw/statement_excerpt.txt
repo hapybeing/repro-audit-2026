@@ -1,0 +1,7 @@
+Source: publisher PDF, Perspectives on Politics 24(3), p. 1267, left column, section "Data replication".
+"Data replication sets are available in Harvard Dataverse at:
+https://doi.org/10.7910/DVN/W2TSVL"
+
+Related lines elsewhere in the article (not data locations):
+p. 1267, Acknowledgments: "This survey was preregistered with the Open Science Framework as "The Moral Economy of Education Reform in Mexico" on October 25, 2023 (https://osf.io/azut2)."
+p. 1267, "Supplementary material": "To view supplementary material for this article, please visit http://doi.org/10.1017/S1537592725000660."

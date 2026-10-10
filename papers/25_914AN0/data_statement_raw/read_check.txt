@@ -1,0 +1,13 @@
+[2026-10-10T20:42:26Z] GET https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/914AN0 -> HTTP 200, 10 files: ['data/data_battlelevel.RDS', 'data/data_divisionlevel.RDS', 'data/data_warlevel.RDS', 'data/fronts_ref.RDS', 'code/functions.R', 'code/master.R', 'README.md', 'Replication_IO.tar.xz', 'code/run1_setup.R', 'code/run2_main.R']
+[2026-10-10T20:42:27Z] tar -tJf Replication_IO.tar.xz -> 70 entries
+  query 'LICENSE': dataverse hits=0, tar hits=0
+  query 'front_ref.RDS': dataverse hits=0, tar hits=0
+  query 'fronts_ref.RDS': dataverse hits=1, tar hits=1
+Files read by code (readRDS/source calls):
+  code/functions.R: in Dataverse (same dir/name)=True; in tar=True
+  code/run1_setup.R: in Dataverse (same dir/name)=True; in tar=True
+  code/run2_main.R: in Dataverse (same dir/name)=True; in tar=True
+  data/data_battlelevel.RDS: in Dataverse (same dir/name)=True; in tar=True
+  data/data_divisionlevel.RDS: in Dataverse (same dir/name)=True; in tar=True
+  data/data_warlevel.RDS: in Dataverse (same dir/name)=True; in tar=True
+  data/fronts_ref.RDS: in Dataverse (same dir/name)=True; in tar=True

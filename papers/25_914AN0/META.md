@@ -1,0 +1,11 @@
+# 25_914AN0
+- Paper: Fratricidal Coercion in Modern War
+- Journal: International Organization (2025)
+- Paper DOI: https://doi.org/10.1017/s002081832400033x
+- Dataset DOI: https://doi.org/10.7910/DVN/914AN0
+- Dataset title: Replication Data for: "Fratricidal Coercion in Modern War"
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 65043773
+- Audit position 25, batch 5

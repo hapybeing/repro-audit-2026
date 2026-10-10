@@ -1,0 +1,11 @@
+# 22_W2TSVL
+- Paper: Framing Labor Action: Experimental Evidence from Teachers in Mexico
+- Journal: Perspectives on Politics (2025)
+- Paper DOI: https://doi.org/10.1017/s1537592725000660
+- Dataset DOI: https://doi.org/10.7910/DVN/W2TSVL
+- Dataset title: Replication Data for: Framing Labor Action: Experimental Evidence from Teachers in Mexico
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 452375
+- Audit position 22, batch 5

@@ -1,0 +1,726 @@
+{
+ "EP_debates": {
+  "type": "list",
+  "n": 117,
+  "attributes": [
+   "names",
+   "row.names",
+   "class"
+  ],
+  "class": "VEC",
+  "columns": [
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [
+     "class"
+    ],
+    "na": null
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 203909
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 203909
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 36621
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [
+     "class"
+    ],
+    "na": null
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [
+     "levels",
+     "class"
+    ],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [
+     "levels",
+     "class"
+    ],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 0
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 32984
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "character",
+    "n": 299660,
+    "attr": [],
+    "na": 32984
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "integer",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   },
+   {
+    "type": "double",
+    "n": 299660,
+    "attr": [],
+    "na": null
+   }
+  ]
+ }
+}

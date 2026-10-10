@@ -1,0 +1,4 @@
+Source: publisher PDF https://iopscience.iop.org/article/10.1088/1748-9326/ae436c/pdf (sha256 88218ab352b3caa0a5ce24505c9724d13a9cf5ac6869e4539703adbab6844e06), journal p. 8 (PDF page 9), section "Data availability statement". Same text on the IOPscience HTML article page.
+
+The data that support the findings of this study are openly available at the following URL/DOI: https://doi.org/10.7910/DVN/FXRNBA [83].
+Supplementary Information available at http://doi.org/10.1088/1748-9326/ae436c/data1.

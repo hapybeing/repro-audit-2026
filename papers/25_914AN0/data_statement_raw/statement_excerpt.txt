@@ -1,0 +1,7 @@
+Source: Lyall and Zhukov (2025), International Organization 79(1), publisher PDF (sha256 926451f9c4bc04a176458d301e739de8bb659acd7e65116a0321e6f517c457d8)
+
+p. 190, heading "Data Availability Statement":
+"Replication files for this research note may be found at <https://doi.org/10.7910/DVN/914AN0>."
+
+p. 191, heading "Supplementary Material":
+"Supplementary material for this research note is available at <https://doi.org/10.1017/S002081832400033X>."
