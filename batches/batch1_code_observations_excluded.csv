@@ -1,0 +1,12 @@
+paper,agents,item,reason_excluded,source_file
+01_5BIH0P,A and B,400 ns RMSD series starts near 4.48 nm and has a duplicated 200 ns time point,"data-value anomaly in deposited outputs, not a code observation",papers/01_5BIH0P/B/LOG.md
+01_5BIH0P,A and B,Deposited MMPBSA SDs are population (ddof=0) values while PREREG named ddof=1,convention note; means unaffected; not a code observation,papers/01_5BIH0P/A/results.json
+02_ELBOXX,A,ATOP state-years without a COW match are dropped by the merge,checked by the agent and recorded as consistent with the design,papers/02_ELBOXX/A/outputs/code_review.md
+02_ELBOXX,A,visualization.R line 38 backtick name with trailing space,tested by the agent and found to work,papers/02_ELBOXX/A/outputs/code_review.md
+03_3IOGQ8,B,"parse_position_mass comment says 37, code keeps 36",judged intended by the agent,papers/03_3IOGQ8/B/LOG.md
+04_PSHE5L,A and B,Table 1 reliability values printed by the script differ from the paper's Table 1,"non-target output discrepancy, not a code observation (no file/line identified)",papers/04_PSHE5L/B/outputs/code_review.md
+04_PSHE5L,A,gt library cannot be installed on this platform (library line commented out),environment fix only,papers/04_PSHE5L/A/diffs/README.md
+05_FNTC1J,A,Significance stars differ from the paper in 6 table rows; y-standardized and some Table A2 cells differ,"output discrepancies on non-target cells, not code observations",papers/05_FNTC1J/A/results.json
+05_FNTC1J,A,utils::View() stubbed for non-interactive Rscript,environment fix only,papers/05_FNTC1J/A/results.json
+05_FNTC1J,A and B,Bare dash line at 827 only negates a printed value and does not stop the run,checked by both agents and found to have no effect,papers/05_FNTC1J/B/outputs/code_review.md
+05_FNTC1J,B,"CA05 factor coding, SDO reversal (12 - item), outcome dummies, mice receiving id",checked by the agent and recorded as not code issues,papers/05_FNTC1J/B/outputs/code_review.md

@@ -1,0 +1,20 @@
+papers/01_5BIH0P/A/outputs/authors_xvg2csv/2xwt-rs3-310k-200ns-rmsd.csv	429056	converted copy of the deposit's trajectory data (third-party dataset)
+papers/01_5BIH0P/A/outputs/authors_xvg2csv/2xwt-rs3-400ns-310k-rmsd.csv	869078	converted copy of the deposit's trajectory data (third-party dataset)
+papers/01_5BIH0P/A/outputs/authors_xvg2csv/2xwt-rs3-400ns-310k-rmsf.csv	7306	converted copy of the deposit's trajectory data (third-party dataset)
+papers/01_5BIH0P/data_statement_raw/europepmc_fulltext_PMC10950042.xml	81424	third-party article full text (copyright/licence varies)
+papers/01_5BIH0P/data_statement_raw/site_home.html	230626	third-party web page copy
+papers/01_5BIH0P/data_statement_raw/site_tshr-2x.html	327081	third-party web page copy
+papers/03_3IOGQ8/data_statement_raw/acs_page_webfetch.md	299759	third-party article full text (copyright/licence varies)
+papers/03_3IOGQ8/data_statement_raw/europepmc_fulltext_PMC11638967.xml	151247	third-party article full text (copyright/licence varies)
+papers/04_PSHE5L/A/scripts/patched_diag_q15na.R	14716	full (patched) copy of the authors' script (licence varies); the change is in diffs/
+papers/04_PSHE5L/A/scripts/patched_primary.R	14663	full (patched) copy of the authors' script (licence varies); the change is in diffs/
+papers/04_PSHE5L/B/scripts/authors_original_script.R	14238	full (patched) copy of the authors' script (licence varies); the change is in diffs/
+papers/04_PSHE5L/B/scripts/patched_diag_q15na.R	14285	full (patched) copy of the authors' script (licence varies); the change is in diffs/
+papers/04_PSHE5L/B/scripts/patched_primary.R	14287	full (patched) copy of the authors' script (licence varies); the change is in diffs/
+papers/04_PSHE5L/data_statement_raw/sage_fulltext_webfetch.md	143672	third-party article full text (copyright/licence varies)
+papers/05_FNTC1J/A/outputs/paper_pdftotext.txt	95306	third-party article full text (copyright/licence varies)
+papers/05_FNTC1J/A/scripts/MisinfoCT_HSK_Rc.r	162539	full modified copy of the authors' script (licence varies); the change is in diffs/
+papers/05_FNTC1J/B/scripts/MisinfoCT_HSK_Rc.r	162134	full modified copy of the authors' script (licence varies); the change is in diffs/
+papers/05_FNTC1J/data_statement_raw/hks_pdf_pdftotext.txt	95306	third-party article full text (copyright/licence varies)
+selection/.api_cache*/	0	raw Dataverse API cache; not in the requested list (reproducible from scripts/01_build_frame.py)
+papers/06_* to 25_*	0	batch 2+ not yet pre-registered; not part of batch 1

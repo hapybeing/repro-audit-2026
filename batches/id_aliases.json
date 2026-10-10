@@ -1,0 +1,2 @@
+{"_note": "A and B named the same internal checks differently; this maps A ids to B ids. Values are still read from each agent's results.json.",
+ "01_5BIH0P": {"I1":"I1","I2":"I2","I3a":"I3_VDWAALS","I3b":"I3_EEL","I3c":"I3_EGB","I3d":"I3_ESURF","I1_amber":"I1_amber_rerun"}}

@@ -1,0 +1,6 @@
+paper_id,paper_doi,dataset_doi,class_agents_A,class_agents_B,class_rule4,alternative,evidence,robustness_A
+01_5BIH0P,https://doi.org/10.1093/database/baae015,https://doi.org/10.7910/DVN/5BIH0P,C,C,C,excluded: no computational target in paper for this deposit,papers/01_5BIH0P/DATA_STATEMENT.md,R_a:n/a; R_b:n/a; R_c:n/a; R_c2:n/a
+02_ELBOXX,https://doi.org/10.1111/ajps.12997,https://doi.org/10.7910/DVN/ELBOXX,A,A,A,"B if run as-is with a 2026 clock (T4, T5 drift within 5%)",papers/02_ELBOXX/diffs/DEVIATION_clock.md; papers/02_ELBOXX/A/outputs/clock_comparison.json,R_a:same; R_b:differs; R_c:same
+03_3IOGQ8,https://doi.org/10.1021/jacs.4c12585,https://doi.org/10.7910/DVN/3IOGQ8,C,C,C,no external location exists,papers/03_3IOGQ8/DATA_STATEMENT.md,R_a:not run; R_b:not run; R_c:not run
+04_PSHE5L,https://doi.org/10.1177/23780231251317227,https://doi.org/10.7910/DVN/PSHE5L,A,A,C,A if the authors' uncited OSF copy (osf.io/mtd4z) is counted,papers/04_PSHE5L/DATA_STATEMENT.md,R_a:same; R_b:same; R_c:same
+05_FNTC1J,https://doi.org/10.37016/mr-2020-188,https://doi.org/10.7910/DVN/FNTC1J,A,A,A,same,papers/05_FNTC1J/DATA_STATEMENT.md,R_a:same; R_b:same; R_c:same
