@@ -1,0 +1,1430 @@
+{
+ "script": "scripts/absence_searches.py",
+ "paper": "03_3IOGQ8",
+ "run_started_utc": "2026-10-10T10:19:39Z",
+ "records": [
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "sortase",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=sortase&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:19:39Z",
+   "http": 200,
+   "total_results": 6,
+   "relevant_hits": [
+    {
+     "id": "PXD082607",
+     "title": "Structural and Functional Interrogation of Active Streptococcus pneumoniae Sortase A",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD034366",
+     "title": "SortaseA cleavable CD1d and H2Kb",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD034495",
+     "title": "Sortase A-cleavable CD1d identifies sphingomyelins as major class of CD1d-associated lipids",
+     "repository": "PanoramaPublic"
+    },
+    {
+     "id": "PXD011050",
+     "title": "Mass spectrometric analysis of proteolytic cleavage related to ArtA and PssA from Haloferax volcanii",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD010824",
+     "title": "Characterizing of Haloferax volcanii Hvo_0405 as a Tat substrate",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD010634",
+     "title": "Profiling N-myristoyltransferase activity and inhibition in breast cancer cells (MD-MB-231) using Sortase-A labelling",
+     "repository": "PRIDE"
+    }
+   ],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "Whedon",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=Whedon&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:19:47Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "jacs.4c12585",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=jacs.4c12585&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:19:52Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "39585806",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=39585806&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:19:57Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "EBZ_Cole",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=EBZ_Cole&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:05Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "MS275",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=MS275&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:08Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "id": "PXD014827",
+     "title": "Class I HDAC inhibitors enhance YB-1 acetylation and oxidative stress to block sarcoma metastasis",
+     "repository": "PRIDE"
+    }
+   ],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "Corin",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=Corin&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:12Z",
+   "http": 200,
+   "total_results": 42,
+   "relevant_hits": [
+    {
+     "id": "PXD044995",
+     "title": "Metabolism-based scoring of cutaneous squamous cell carcinoma to predict tumor features and responses to treatment by DHODH inhibitors",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD075199",
+     "title": "Rescoring approaches improve consensus in peptide identification across diverse search engines and datasets - Cancer Array reanalysis",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD075206",
+     "title": "Rescoring approaches improve consensus in peptide identification across diverse search engines and datasets - timsTOF benchmark reanalysis",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD075209",
+     "title": "Rescoring approaches improve consensus in peptide identification across diverse search engines and datasets - Orbitrap benchmark reanalysis",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD075141",
+     "title": "Rescoring approaches improve consensus in peptide identification across diverse search engines and datasets - CAMPI reanalysis",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD072999",
+     "title": "DDA-BERT: end-to-end training for data-dependent acquisition mass spectrometry-based proteomics",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD076477",
+     "title": "ProjDIA: Fragment-Bin Projection Scoring and Calibrated Confidence for Direct Infusion DIA Proteomics",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD070190",
+     "title": "Integrative proteomic layers from extracellular vesicles (EVs) identify candidate  biomarkers, candidate drug target and guide subtype-specific drug prioritization from  cholangiocarcinoma cell lines ",
+     "repository": "jPOST"
+    },
+    {
+     "id": "PXD048145",
+     "title": "Intensity and retention time prediction improves the rescoring of protein-nucleic acid cross-links",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD057360",
+     "title": "Proteomic Profiling of Kidney Organoids in Extended Culture Conditions",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD067897",
+     "title": "Li et al., Xylosyltransferase Bump-and-hole Engineering to Chemically Manipulate Proteoglycans in Mammalian Cells: Decorin glycosylated in vitro with 6AzGlc and clicked with ITag",
+     "repository": "MassIVE"
+    },
+    {
+     "id": "PXD067896",
+     "title": "Li et al., Xylosyltransferase Bump-and-hole Engineering to Chemically Manipulate Proteoglycans in Mammalian Cells: Decorin glycosylated in-cell with 6AzGlc and clicked with ITag",
+     "repository": "MassIVE"
+    },
+    {
+     "id": "PXD058754",
+     "title": "Dietary secoisolariciresinol diglucoside metabolites enhance immunity and suppress colorectal cancer through inhibiting the SYK/NF-ÎºB/MMP3/Decorin axis",
+     "repository": "iProX"
+    },
+    {
+     "id": "PXD062826",
+     "title": "Germline encoded residues dominate the interaction of a human monoclonal antibody with Decorin binding protein A (DbpA) of  Borrelia burgdorferi",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD057211",
+     "title": "Data-driven rescoring meets identification transfer in multi-batch isobaric labeling experiments: the best of both worlds (ProSIMSIt)",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD052875",
+     "title": "Evaluation of different data-driven rescoring platforms to increase peptide identifications in HeLa digest samples",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD053748",
+     "title": "TIMS²Rescore: A DDA-PASEF optimized data-driven rescoring pipeline based on MS²Rescore - Plasma proteomics",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD055547",
+     "title": "Maximizing immunopeptidomics-based bacterial epitope discovery by rescoring and integrating the results of multiple search engines",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD038367",
+     "title": "Training data for generalized peakgroup scoring models",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD010152",
+     "title": "A Novel Two-Stage Tandem Mass Spectrometry Approach and Scoring Scheme for the Identification of O-GlcNAc Modified Peptides",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD030435",
+     "title": "RNA oligomers training set for the Pytheas scoring function",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD035340",
+     "title": "Spatially variant immune infiltration scoring in human cancer tissues",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD044852",
+     "title": "Machine Learning-based Peptide ID Rescoring",
+     "repository": "jPOST"
+    },
+    {
+     "id": "PXD051895",
+     "title": "Comparative exo-proteomic analysis of Trichoderma antagonists induced by oomycete mycelium highlights diverse antagonism strategies",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD045913",
+     "title": "Biopsy proteome scoring to determine mucosal remodeling in celiac disease",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD049004",
+     "title": "PSM rescoring boosts identification of trypsin, AspN, and GluC peptides on timsTOF",
+     "repository": "MassIVE"
+    },
+    {
+     "id": "PXD033868",
+     "title": "MS²Rescore: Data-driven rescoring dramatically boosts immunopeptide identification rates",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD038377",
+     "title": "Spike-in samples DDA/DIA for generalized peakgroup scoring models",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD038394",
+     "title": "AKI DIA samples for generalized peakgroup scoring model application",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "RPXD034682",
+     "title": "JPST000234-1 Identifications of protein kinase A substrates with quantitative phosphoproteomics and primary-sequence based scoring.(H-89) [Reanalysis: JPST000234]",
+     "repository": "jPOST"
+    },
+    {
+     "id": "PXD034056",
+     "title": "inSPIRE Spectral Rescoring Tool",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD031293",
+     "title": "Suppression of cytochrome c oxidase subunit 4 isoform 1 expression inhibits replication of highly pathogenic H5N1 influenza virus",
+     "repository": "iProX"
+    },
+    {
+     "id": "PXD021398",
+     "title": "Deep learning boosts immunopeptidomics one mass spectrum at a time",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD005922",
+     "title": "Identifications of protein kinase A substrates with quantitative phosphoproteomics and primary-sequence based scoring.(forskolin)",
+     "repository": "jPOST"
+    },
+    {
+     "id": "PXD005925",
+     "title": "Identifications of protein kinase A substrates with quantitative phosphoproteomics and primary-sequence based scoring.(H-89)",
+     "repository": "jPOST"
+    },
+    {
+     "id": "PXD011166",
+     "title": "Interspecies and intersubstrate comparison of the biomass-degrading capacity of five filamentous fungi",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD012936",
+     "title": "TMT-based quantitative Proteomics Analysis of lycorine treatment in highly pathogenic avian inï¬‚uenza H5N1 virus infection",
+     "repository": "iProX"
+    },
+    {
+     "id": "PXD008463",
+     "title": "Evaluation of scoring functions and peptide exposure by fractionation",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD008855",
+     "title": "Proteoglycan sequencing -  Deep sequencing of complex proteoglycans: a novel strategy for high coverage and site-specific identification of glycosaminoglycan-linked peptides",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD004465",
+     "title": "Glycoproteomics reveals the presence of decorin peptides with anti-myostatin activity in human atrial fibrillation",
+     "repository": "PRIDE"
+    },
+    {
+     "id": "PXD005967",
+     "title": "MudPIT analysis of proteins interacting with Saccharomyces cerevisiae RNA Polymerase II HA-Rpb1 C-Terminal Domain",
+     "repository": "MassIVE"
+    },
+    {
+     "id": "PXD001897",
+     "title": "Proteomics method for secretome analysis of filamentous fungi",
+     "repository": "PRIDE"
+    }
+   ],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "middle-down histone",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=middle-down+histone&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:16Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "circular engineered sortase",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=circular+engineered+sortase&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:20Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "cW11",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=cW11&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:25Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "ProteomeXchange PROXI (ProteomeCentral)",
+   "query": "histone H3 chromatin",
+   "url": "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/datasets?search=histone+H3+chromatin&resultType=compact&pageSize=500",
+   "utc": "2026-10-10T10:20:30Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "proxi"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "sortase",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=sortase&pageSize=100",
+   "utc": "2026-10-10T10:20:38Z",
+   "http": 200,
+   "total_results": 6,
+   "relevant_hits": [
+    {
+     "id": "PXD082607",
+     "title": "Structural and Functional Interrogation of Active Streptococcus pneumoniae Sortase A"
+    },
+    {
+     "id": "PXD064299",
+     "title": "Untargeted NoPro-clipping from untramsformed and Hoil-1L over-expressing Huh7 cell lines"
+    },
+    {
+     "id": "PXD034366",
+     "title": "SortaseA cleavable CD1d and H2Kb"
+    },
+    {
+     "id": "PXD020875",
+     "title": "An improved protocol to purify bacterial pili from Lactobacillus rhamnosus GG based on multimodal chromatography"
+    },
+    {
+     "id": "PXD019825",
+     "title": "Biophysical, proteomic, and lipidomic characterization of Streptococcus mutans extracellular membrane vesicles from wild-type, ΔsrtA, and Δsfp strains provides novel information regarding vesiculogenesis and its function"
+    },
+    {
+     "id": "PXD010634",
+     "title": "Profiling N-myristoyltransferase activity and inhibition in breast cancer cells (MD-MB-231) using Sortase-A labelling"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "sortase",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=sortase&pageSize=100",
+   "utc": "2026-10-10T10:20:40Z",
+   "http": 200,
+   "total_results": 6,
+   "relevant_hits": [
+    {
+     "id": "PXD082607",
+     "title": "Structural and Functional Interrogation of Active Streptococcus pneumoniae Sortase A"
+    },
+    {
+     "id": "PXD064299",
+     "title": "Untargeted NoPro-clipping from untramsformed and Hoil-1L over-expressing Huh7 cell lines"
+    },
+    {
+     "id": "PXD034366",
+     "title": "SortaseA cleavable CD1d and H2Kb"
+    },
+    {
+     "id": "PXD020875",
+     "title": "An improved protocol to purify bacterial pili from Lactobacillus rhamnosus GG based on multimodal chromatography"
+    },
+    {
+     "id": "PXD019825",
+     "title": "Biophysical, proteomic, and lipidomic characterization of Streptococcus mutans extracellular membrane vesicles from wild-type, ΔsrtA, and Δsfp strains provides novel information regarding vesiculogenesis and its function"
+    },
+    {
+     "id": "PXD010634",
+     "title": "Profiling N-myristoyltransferase activity and inhibition in breast cancer cells (MD-MB-231) using Sortase-A labelling"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "Whedon",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=Whedon&pageSize=100",
+   "utc": "2026-10-10T10:20:42Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "Whedon",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=Whedon&pageSize=100",
+   "utc": "2026-10-10T10:20:43Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "jacs.4c12585",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=jacs.4c12585&pageSize=100",
+   "utc": "2026-10-10T10:20:44Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "jacs.4c12585",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=jacs.4c12585&pageSize=100",
+   "utc": "2026-10-10T10:20:45Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "39585806",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=39585806&pageSize=100",
+   "utc": "2026-10-10T10:20:46Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "39585806",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=39585806&pageSize=100",
+   "utc": "2026-10-10T10:20:48Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "EBZ_Cole",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=EBZ_Cole&pageSize=100",
+   "utc": "2026-10-10T10:20:49Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "EBZ_Cole",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=EBZ_Cole&pageSize=100",
+   "utc": "2026-10-10T10:20:50Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "MS275",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=MS275&pageSize=100",
+   "utc": "2026-10-10T10:20:51Z",
+   "http": 200,
+   "total_results": 3,
+   "relevant_hits": [
+    {
+     "id": "PXD051824",
+     "title": "Cytotoxic mechanisms of pemetrexed and HDAC inhibition in non-small cell lung cancer cells involving ribonucleotides in DNA"
+    },
+    {
+     "id": "PXD014827",
+     "title": "Class I HDAC inhibitors enhance YB-1 acetylation and oxidative stress to block sarcoma metastasis"
+    },
+    {
+     "id": "PXD008293",
+     "title": "Histone deacetylase inhibitors mediate selective degradation of nuclear uracil-DNA glycosylase 2 and increased genomic uracil"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "MS275",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=MS275&pageSize=100",
+   "utc": "2026-10-10T10:20:52Z",
+   "http": 200,
+   "total_results": 3,
+   "relevant_hits": [
+    {
+     "id": "PXD051824",
+     "title": "Cytotoxic mechanisms of pemetrexed and HDAC inhibition in non-small cell lung cancer cells involving ribonucleotides in DNA"
+    },
+    {
+     "id": "PXD014827",
+     "title": "Class I HDAC inhibitors enhance YB-1 acetylation and oxidative stress to block sarcoma metastasis"
+    },
+    {
+     "id": "PXD008293",
+     "title": "Histone deacetylase inhibitors mediate selective degradation of nuclear uracil-DNA glycosylase 2 and increased genomic uracil"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "Corin",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=Corin&pageSize=100",
+   "utc": "2026-10-10T10:20:54Z",
+   "http": 200,
+   "total_results": 17,
+   "relevant_hits": [
+    {
+     "id": "PXD074741",
+     "title": "Trypanosoma brucei MICOS IPs BSF"
+    },
+    {
+     "id": "PXD073932",
+     "title": "Phosphorylation of the transcriptional-corepressor SPEN in naïve mouse embryonic stem cells and under artificial induction of X chromosome inactivation"
+    },
+    {
+     "id": "PXD064630",
+     "title": "Elongator is required for pattern recognition receptor and type I interferon signaling in macrophages."
+    },
+    {
+     "id": "PXD064265",
+     "title": "Ubiquitin-Proteasome System Dyeregulation in Alzheimer's Disease Impacts Protein Abundance."
+    },
+    {
+     "id": "PXD063590",
+     "title": "Single cell proteomic analysis of human prefrontal cortex in Alzheimer's Disease"
+    },
+    {
+     "id": "PXD059459",
+     "title": "Trypanosoma brucei Mic40 depletome"
+    },
+    {
+     "id": "PXD058335",
+     "title": "CEPD/ROXY6-9 proteins activate N starvation response genes by interfering with the repressive activity of transcription factors TGA1 and TGA4"
+    },
+    {
+     "id": "PXD057360",
+     "title": "Proteomic Profiling of Kidney Organoids in Extended Culture Conditions"
+    },
+    {
+     "id": "PXD056700",
+     "title": "CoREST Inhibition Alters RNA Splicing to Promote Neoantigen Expression and Enhance Tumor Immunity"
+    },
+    {
+     "id": "PXD054535",
+     "title": "Paradiplonema papillatum CENPA-V5 IP"
+    },
+    {
+     "id": "PXD039510",
+     "title": "Identifying secreted biomarkers of dopaminergic ventral midbrain progenitor cells"
+    },
+    {
+     "id": "PXD037122",
+     "title": "Interactome of Sec13 paralogs in Paradiplonema papillatum"
+    },
+    {
+     "id": "PXD035043",
+     "title": "Paradiplonema papillatum E3 interactome"
+    },
+    {
+     "id": "PXD033717",
+     "title": "TbPH1/TbKifX2 depletion proteome"
+    },
+    {
+     "id": "PXD033012",
+     "title": "Regionally defined proteomic profiles of human cerebral tissue and organoids reveal conserved molecular modules of neurodevelopment"
+    },
+    {
+     "id": "PXD025802",
+     "title": "Trypanosoma brucei PH1-BioID proxisome"
+    },
+    {
+     "id": "PXD024800",
+     "title": "Comprehensive micro-scaled proteome and phosphoproteome characterization of archived retrospective cancer repositories"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "Corin",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=Corin&pageSize=100",
+   "utc": "2026-10-10T10:20:58Z",
+   "http": 200,
+   "total_results": 17,
+   "relevant_hits": [
+    {
+     "id": "PXD074741",
+     "title": "Trypanosoma brucei MICOS IPs BSF"
+    },
+    {
+     "id": "PXD073932",
+     "title": "Phosphorylation of the transcriptional-corepressor SPEN in naïve mouse embryonic stem cells and under artificial induction of X chromosome inactivation"
+    },
+    {
+     "id": "PXD064630",
+     "title": "Elongator is required for pattern recognition receptor and type I interferon signaling in macrophages."
+    },
+    {
+     "id": "PXD064265",
+     "title": "Ubiquitin-Proteasome System Dyeregulation in Alzheimer's Disease Impacts Protein Abundance."
+    },
+    {
+     "id": "PXD063590",
+     "title": "Single cell proteomic analysis of human prefrontal cortex in Alzheimer's Disease"
+    },
+    {
+     "id": "PXD059459",
+     "title": "Trypanosoma brucei Mic40 depletome"
+    },
+    {
+     "id": "PXD058335",
+     "title": "CEPD/ROXY6-9 proteins activate N starvation response genes by interfering with the repressive activity of transcription factors TGA1 and TGA4"
+    },
+    {
+     "id": "PXD057360",
+     "title": "Proteomic Profiling of Kidney Organoids in Extended Culture Conditions"
+    },
+    {
+     "id": "PXD056700",
+     "title": "CoREST Inhibition Alters RNA Splicing to Promote Neoantigen Expression and Enhance Tumor Immunity"
+    },
+    {
+     "id": "PXD054535",
+     "title": "Paradiplonema papillatum CENPA-V5 IP"
+    },
+    {
+     "id": "PXD039510",
+     "title": "Identifying secreted biomarkers of dopaminergic ventral midbrain progenitor cells"
+    },
+    {
+     "id": "PXD037122",
+     "title": "Interactome of Sec13 paralogs in Paradiplonema papillatum"
+    },
+    {
+     "id": "PXD035043",
+     "title": "Paradiplonema papillatum E3 interactome"
+    },
+    {
+     "id": "PXD033717",
+     "title": "TbPH1/TbKifX2 depletion proteome"
+    },
+    {
+     "id": "PXD033012",
+     "title": "Regionally defined proteomic profiles of human cerebral tissue and organoids reveal conserved molecular modules of neurodevelopment"
+    },
+    {
+     "id": "PXD025802",
+     "title": "Trypanosoma brucei PH1-BioID proxisome"
+    },
+    {
+     "id": "PXD024800",
+     "title": "Comprehensive micro-scaled proteome and phosphoproteome characterization of archived retrospective cancer repositories"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "middle-down histone",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=middle-down+histone&pageSize=100",
+   "utc": "2026-10-10T10:21:00Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "middle-down histone",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=middle-down+histone&pageSize=100",
+   "utc": "2026-10-10T10:21:01Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "circular engineered sortase",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=circular+engineered+sortase&pageSize=100",
+   "utc": "2026-10-10T10:21:02Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "circular engineered sortase",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=circular+engineered+sortase&pageSize=100",
+   "utc": "2026-10-10T10:21:03Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "cW11",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=cW11&pageSize=100",
+   "utc": "2026-10-10T10:21:04Z",
+   "http": 200,
+   "total_results": 2,
+   "relevant_hits": [
+    {
+     "id": "PXD010124",
+     "title": "Human BAF complex (HA-DPF2 pulldown and SS18-Flag pulldown)"
+    },
+    {
+     "id": "PXD000008",
+     "title": "Carbon source-induced reprogramming of the cell wall proteome  and secretome modulates the adherence and drug resistance  of the fungal pathogen Candida albicans"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "cW11",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=cW11&pageSize=100",
+   "utc": "2026-10-10T10:21:06Z",
+   "http": 200,
+   "total_results": 2,
+   "relevant_hits": [
+    {
+     "id": "PXD010124",
+     "title": "Human BAF complex (HA-DPF2 pulldown and SS18-Flag pulldown)"
+    },
+    {
+     "id": "PXD000008",
+     "title": "Carbon source-induced reprogramming of the cell wall proteome  and secretome modulates the adherence and drug resistance  of the fungal pathogen Candida albicans"
+    }
+   ],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v2",
+   "query": "histone H3 chromatin",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=histone+H3+chromatin&pageSize=100",
+   "utc": "2026-10-10T10:21:07Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "PRIDE Archive API v3",
+   "query": "histone H3 chromatin",
+   "url": "https://www.ebi.ac.uk/pride/ws/archive/v3/search/projects?keyword=histone+H3+chromatin&pageSize=100",
+   "utc": "2026-10-10T10:21:08Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "pride"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "sortase",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "id": "MSV000077780",
+     "title": "MS-Raw data for\"\"Partially overlapping substrate specificities of staphylococcal group A sortases\""
+    }
+   ],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "Whedon",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "jacs.4c12585",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "39585806",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "EBZ_Cole",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "MS275",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "Corin",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 57,
+   "relevant_hits": [
+    {
+     "id": "MSV000103098",
+     "title": "Proteomic analysis of Stony Coral Tissue Loss Disease demonstrates coral-algal dysbiosis during disease progression "
+    },
+    {
+     "id": "MSV000100841",
+     "title": "Soil microbiome pH perturbation metabolomics - GC"
+    },
+    {
+     "id": "MSV000100689",
+     "title": "Protein list in Bacopa nanovesicles"
+    },
+    {
+     "id": "MSV000100329",
+     "title": "TMTpro_16plex_labeling of RAW264_7 cells"
+    },
+    {
+     "id": "MSV000099486",
+     "title": "Ultra-High-Throughput LC-MS Method for Targeted Protein Degradation Compound Screening Using the Orbitrap Astral Mass Spectrometer"
+    },
+    {
+     "id": "MSV000099266",
+     "title": "Proteomic analysis of PHACTR1 overexpressing and knockdown HT1080 stable cell lines "
+    },
+    {
+     "id": "MSV000099119",
+     "title": "NIST_SRM1950_Annotation_Confidence_Scoring_2025"
+    },
+    {
+     "id": "MSV000099007",
+     "title": "Surface proteomics reveals arginine metabolism as a vulnerability in high grade serous ovarian cancer"
+    },
+    {
+     "id": "MSV000098982",
+     "title": "Li et al., Xylosyltransferase Bump-and-hole Engineering to Chemically Manipulate Proteoglycans in Mammalian Cells: Decorin glycosylated in vitro with 6AzGlc and clicked with ITag"
+    },
+    {
+     "id": "MSV000098981",
+     "title": "Li et al., Xylosyltransferase Bump-and-hole Engineering to Chemically Manipulate Proteoglycans in Mammalian Cells: Decorin glycosylated in-cell with 6AzGlc and clicked with ITag"
+    },
+    {
+     "id": "MSV000097910",
+     "title": "LC-MS Dataset of Fumarate Levels and Parkin Post Translational Modifications"
+    },
+    {
+     "id": "MSV000097355",
+     "title": "Pilocarpine inhibits Candida albicans biofilm maturation by altering lipid, sphingolipid, and protein content"
+    },
+    {
+     "id": "MSV000096965",
+     "title": "A role for the autophagy receptor NBR1 in the degradation of Tau aggregates"
+    },
+    {
+     "id": "MSV000096941",
+     "title": "MB135 iDUX4ca EU labeled RICK Mass Spec"
+    },
+    {
+     "id": "MSV000096938",
+     "title": "MB135-iDUX4ca HSATII RNP ChIRP LC/MS"
+    },
+    {
+     "id": "MSV000096693",
+     "title": "RNA-Coupled CRISPR Screens Reveal ZNF207 as a Regulator of LMNA Aberrant Splicing in Progeria"
+    },
+    {
+     "id": "MSV000096403",
+     "title": "Characterization of site-specific O- and N-glycopeptides from recombinant spike and ACE2 glycoproteins using LC-MS/MS analysis"
+    },
+    {
+     "id": "MSV000096304",
+     "title": "Affinity purification mass spectrometry on the Orbitrap-Astral mass spectrometer enables high-throughput protein-protein interaction mapping "
+    },
+    {
+     "id": "MSV000096242",
+     "title": "GNPS - MSnLib LC-MS/MS RT Tandem MS Data for chemical compound libraries"
+    },
+    {
+     "id": "MSV000096182",
+     "title": "De novo peptide sequencing tools benchmark"
+    },
+    {
+     "id": "MSV000095946",
+     "title": "Benchmarking Peptide Spectral Library Search Dataset"
+    },
+    {
+     "id": "MSV000095859",
+     "title": "GNPS - Myxococcus xanthus DZ2 metabolome"
+    },
+    {
+     "id": "MSV000095386",
+     "title": "Enhancing anti-EGFRvIII CAR T cell therapy against glioblastoma with a paracrine SIRPgamma-derived CD47 blocker"
+    },
+    {
+     "id": "MSV000095211",
+     "title": "Proteomics to decipher subcellular protein features of mouse heart"
+    },
+    {
+     "id": "MSV000094528",
+     "title": "GNPS - MSnLib - Multi-stage fragmentation mass spectral library"
+    },
+    {
+     "id": "MSV000093954",
+     "title": "PSM rescoring boosts identification of trypsin, AspN, and GluC peptides on timsTOF"
+    },
+    {
+     "id": "MSV000092654",
+     "title": "EndoGenius: Optimized neuropeptide identification from mass spectrometry datasets"
+    },
+    {
+     "id": "MSV000092632",
+     "title": "Assembly and function of the amyloid-like translational repressor Rim4 is coupled with nutrient conditions"
+    },
+    {
+     "id": "MSV000092461",
+     "title": "PSM rescoring boosts immunopeptide identification on timsTOF compared to Orbitrap"
+    },
+    {
+     "id": "MSV000092456",
+     "title": "Fragment ion intensity prediction improves the identification rate of non-tryptic peptides in TimsTOF"
+    },
+    {
+     "id": "MSV000092039",
+     "title": "A phosphorylation-deficient isoform of the ribosomal protein eS6 is largely functional in laboratory-grown Arabidopsis thaliana"
+    },
+    {
+     "id": "MSV000091928",
+     "title": "Distinct dephosphorylation site signatures of PP1 and PP2A-B55 coordinate mitotic exit."
+    },
+    {
+     "id": "MSV000090982",
+     "title": "De novo nine-species benchmark"
+    },
+    {
+     "id": "MSV000090537",
+     "title": "An actionable annotation scoring framework for gas chromatography-high-resolution mass spectrometry - Natural Gas Transfer Station GC-HRMS Data"
+    },
+    {
+     "id": "MSV000087674",
+     "title": "5593 ABL HER2 RNA Binding Protein Gel Bands"
+    },
+    {
+     "id": "MSV000087424",
+     "title": "Alerasool_Transcription_Factors_P77_VS18_BioID"
+    },
+    {
+     "id": "MSV000087413",
+     "title": "Alerasool_Transcription_Activators_P77_VS17_APMS"
+    },
+    {
+     "id": "MSV000087391",
+     "title": "SARS-CoV-2 Nucleocapsid protein Native Top-down"
+    },
+    {
+     "id": "MSV000086738",
+     "title": "Piette_Hsp70-JPD_P77_VS9_VS14_BioID_DDA"
+    },
+    {
+     "id": "MSV000086725",
+     "title": "Piette_Hsp70-JPD_P77_VS7_VS16_APMS_DDA"
+    },
+    {
+     "id": "MSV000086045",
+     "title": "Thiele HSF1 C HS HSR Interactome "
+    },
+    {
+     "id": "MSV000085540",
+     "title": "Avant-garde: An automated data-driven DIA data curation tool"
+    },
+    {
+     "id": "MSV000085375",
+     "title": "Enabling Routine MHC-II Associated Peptide ProteomicS (MAPPs) for Risk Assessment of Drug-Induced Immunogenicity"
+    },
+    {
+     "id": "MSV000083166",
+     "title": "Proteomics analysis of nuclear envelope, cytoplasmic membrane and nuclear contents fractions isolated from mesenchymal stem cells, adipocytes and myocytes"
+    },
+    {
+     "id": "MSV000082986",
+     "title": "GNPS - Incorporating in-source fragment information improves metabolite identification accuracy in untargeted LC-MS datasets"
+    },
+    {
+     "id": "MSV000082833",
+     "title": "SWATH analysis of 1433B_HUMAN affinity purifications from HEK293 cells after time course treatment with IGF1"
+    },
+    {
+     "id": "MSV000081024",
+     "title": "LFQbench enables a multi-centered benchmark study demonstrating robust proteomic label-free quantification"
+    },
+    {
+     "id": "MSV000080758",
+     "title": "Xilmass: a new approach towards the identification of cross-linked peptides"
+    },
+    {
+     "id": "MSV000080124",
+     "title": "Quantitative proteomic profiling of the extracellular matrix of pancreatic islets during the angiogenic switch and insulinoma progression"
+    },
+    {
+     "id": "MSV000078552",
+     "title": "GNPS - MS/MS networking guided analysis of molecule and gene cluster families - Figure 1"
+    },
+    {
+     "id": "MSV000078551",
+     "title": "GNPS - MS/MS networking guided analysis of molecule and gene cluster families - Figure 4"
+    },
+    {
+     "id": "MSV000078549",
+     "title": "GnPS - MS/MS networking guided analysis of molecule and gene cluster families - Figure 3"
+    },
+    {
+     "id": "MSV000078436",
+     "title": "Upload for CID/HCD/ETD MetaSPS paper (JPR, 2013)"
+    },
+    {
+     "id": "MSV000071113",
+     "title": "Jasper .0001-.001: High scoring GPMDB MSMS peak lists"
+    },
+    {
+     "id": "MSV000067906",
+     "title": "Jasper .00001-.0001: GPMDB high-scoring MSMS peak lists"
+    },
+    {
+     "id": "MSV000066825",
+     "title": "Jasper .00001-.0001: GPMDB high-scoring MSMS peak lists"
+    },
+    {
+     "id": "MSV000066810",
+     "title": "Jasper .0001-.001: High scoring GPMDB MSMS peak lists"
+    }
+   ],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "middle-down histone",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "circular engineered sortase",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "cW11",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "MassIVE public dataset listing (full JSON, searched locally)",
+   "query": "histone H3 chromatin",
+   "url": "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp",
+   "utc": "2026-10-10T10:21:13Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "20359 MassIVE datasets in the listing",
+   "chunk": "massive"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "sortase",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "Whedon",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "jacs.4c12585",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "39585806",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "EBZ_Cole",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "MS275",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "Corin",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "middle-down histone",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "circular engineered sortase",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "cW11",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "jPOST repository PROXI listing (searched locally)",
+   "query": "histone H3 chromatin",
+   "url": "https://repository.jpostdb.org/proxi/datasets?resultType=compact",
+   "utc": "2026-10-10T10:21:24Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": "100 jPOST datasets in the listing",
+   "chunk": "jpost"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "Europe PMC supplementaryFiles (article SI: PDF and XLSX)",
+   "query": "regex PXD######|MSV#########|JPST######|IPX#######|PRIDE|MassIVE|ProteomeXchange|jPOST|iProX|PeptideAtlas",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11638967/supplementaryFiles",
+   "utc": "2026-10-10T10:29:05Z",
+   "http": "local copy of SI members (live zip download >110 s, see note)",
+   "total_results": 2,
+   "relevant_hits": {
+    "matches_per_file": {
+     "ja4c12585_si_001.xlsx": [],
+     "ja4c12585_si_002.pdf": []
+    },
+    "sha256": {
+     "ja4c12585_si_001.xlsx": "f5d47bb73aa02d04a6153e16ba6acb02206580b213e35b722092d2bd509386c8",
+     "ja4c12585_si_002.pdf": "bf87a894e403945d3510c24f24b0538a09904098330b4a7c2a0f5c26bfb2f4e1"
+    }
+   },
+   "note": "total_results = SI files searched (PDF text via pdftotext, XLSX via its XML parts); empty list = no match. When SI_DIR is used, the files are the SI members downloaded from this URL on 2026-10-09 by Agent A; their sha256 equal those recorded in PREREG.md",
+   "chunk": "si"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "Europe PMC full text XML (article text)",
+   "query": "same regex as SI",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11638967/fullTextXML",
+   "utc": "2026-10-10T10:29:05Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": [],
+   "note": "",
+   "chunk": "si"
+  },
+  {
+   "paper": "03_3IOGQ8",
+   "source": "Europe PMC Annotations API (text-mined accession numbers)",
+   "query": "type=Accession Numbers",
+   "url": "https://www.ebi.ac.uk/europepmc/annotations_api/annotationsByArticleIds?articleIds=PMC%3APMC11638967&type=Accession+Numbers&format=JSON",
+   "utc": "2026-10-10T10:29:07Z",
+   "http": 200,
+   "total_results": 3,
+   "relevant_hits": [
+    "1UBQ",
+    "10.7910/DVN/3IOGQ8",
+    "10.7910/DVN/3IOGQ8"
+   ],
+   "note": "",
+   "chunk": "si"
+  }
+ ]
+}

@@ -1,0 +1,137 @@
+{
+ "script": "scripts/absence_searches.py",
+ "paper": "01_5BIH0P",
+ "run_started_utc": "2026-10-10T10:18:35Z",
+ "records": [
+  {
+   "paper": "01_5BIH0P",
+   "source": "Harvard Dataverse Search API (collection ThermoPCD)",
+   "query": "fileName:*.xtc, type=file, subtree=ThermoPCD",
+   "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%2A.xtc&per_page=1000&start=0&type=file&subtree=ThermoPCD",
+   "utc": "2026-10-10T10:18:35Z",
+   "http": 200,
+   "total_results": 333,
+   "relevant_hits": [],
+   "note": "26 of the returned xtc files belong to datasets whose title contains 2XWT; relevant = title also contains 310K and seed #3"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Harvard Dataverse Search API (all of Harvard Dataverse)",
+   "query": "fileName:\"dynamic-nopbc.xtc\", type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22dynamic-nopbc.xtc%22&per_page=1000&start=0&type=file",
+   "utc": "2026-10-10T10:18:41Z",
+   "http": 200,
+   "total_results": 311,
+   "relevant_hits": [],
+   "note": "relevant = file in a dataset whose title contains 2XWT, 310K and seed #3"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Harvard Dataverse Search API (all of Harvard Dataverse)",
+   "query": "fileName:\"dynamic-nopbc-2.xtc\", type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22dynamic-nopbc-2.xtc%22&per_page=1000&start=0&type=file",
+   "utc": "2026-10-10T10:18:48Z",
+   "http": 200,
+   "total_results": 9,
+   "relevant_hits": [],
+   "note": "relevant = file in a dataset whose title contains 2XWT, 310K and seed #3"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Harvard Dataverse Search API (all of Harvard Dataverse)",
+   "query": "fileName:\"system_reduced.xtc\", type=file",
+   "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22system_reduced.xtc%22&per_page=1000&start=0&type=file",
+   "utc": "2026-10-10T10:18:50Z",
+   "http": 200,
+   "total_results": 46,
+   "relevant_hits": [],
+   "note": "relevant = file in a dataset whose title contains 2XWT, 310K and seed #3"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Harvard Dataverse Search API (all of Harvard Dataverse)",
+   "query": "title:2XWT, type=dataset",
+   "url": "https://dataverse.harvard.edu/api/search?q=title%3A2XWT&per_page=1000&start=0&type=dataset",
+   "utc": "2026-10-10T10:18:52Z",
+   "http": 200,
+   "total_results": 46,
+   "relevant_hits": [
+    {
+     "dataset": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (310K, 37°C, 400 ns): random seed #3",
+     "doi": "doi:10.7910/DVN/5BIH0P"
+    },
+    {
+     "dataset": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (310K, 37°C, 400 ns): random seed #3 - RMSD, SASA, RMSF, Rg, H-bonds",
+     "doi": "doi:10.7910/DVN/TZAPSH"
+    }
+   ],
+   "note": "relevant = title contains 310K and seed #3 (expected: 5BIH0P and TZAPSH, the audited deposit and its analysis record)"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Zenodo REST API",
+   "query": "\"2XWT\" AND (trajectory OR xtc)",
+   "url": "https://zenodo.org/api/records?q=%222XWT%22+AND+%28trajectory+OR+xtc%29&size=25",
+   "utc": "2026-10-10T10:18:54Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": ""
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Zenodo REST API",
+   "query": "\"ThermoPCD\"",
+   "url": "https://zenodo.org/api/records?q=%22ThermoPCD%22&size=25",
+   "utc": "2026-10-10T10:18:58Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": ""
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "ThermoPCD",
+   "url": "https://api.datacite.org/dois?query=ThermoPCD&page%5Bsize%5D=100",
+   "utc": "2026-10-10T10:19:19Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [],
+   "note": "relevant = any DOI outside Harvard Dataverse (prefix 10.7910); first 100 results inspected"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "DataCite REST API (all DataCite repositories)",
+   "query": "2XWT",
+   "url": "https://api.datacite.org/dois?query=2XWT&page%5Bsize%5D=100",
+   "utc": "2026-10-10T10:19:20Z",
+   "http": 200,
+   "total_results": 46,
+   "relevant_hits": [],
+   "note": "relevant = any DOI outside Harvard Dataverse (prefix 10.7910); first 100 results inspected"
+  },
+  {
+   "paper": "01_5BIH0P",
+   "source": "Europe PMC full text XML (article text)",
+   "query": "case-insensitive term counts",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10950042/fullTextXML",
+   "utc": "2026-10-10T10:19:22Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": {
+    "zenodo": 0,
+    "figshare": 0,
+    "github": 0,
+    "osf.io": 0,
+    "mendeley data": 0,
+    "dryad": 0,
+    "upon request": 0,
+    "on request": 0,
+    "xtc": 0,
+    "dataverse": 8
+   },
+   "note": "only Harvard Dataverse is named as a data location; see DATA_STATEMENT.md"
+  }
+ ]
+}

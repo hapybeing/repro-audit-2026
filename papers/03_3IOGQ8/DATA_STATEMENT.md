@@ -33,3 +33,6 @@ Written 2026-10-10 (IST). Checks run 2026-10-10 between 06:30 and 06:50 UTC (12:
 
 ## Finding
 Needs external location that does not exist: the paper points only to the audited Dataverse deposit, which lacks the Byonic PSM export the code reads; no PRIDE/ProteomeXchange/MassIVE accession exists, so the missing input is not available at any pointed-to or discoverable location.
+
+## Exact searches behind the absence claim (repeatable)
+Every query, URL, time (UTC), HTTP status and result count, with the rule for what would count as a hit: `ABSENCE_SEARCHES.md`, generated from `data_statement_raw/absence_searches.json` by `scripts/absence_searches.py 03` and `scripts/make_absence_md.py` (run 2026-10-10). The searches listed above from the first pass are kept as written; the re-run reaches the same finding. The re-run covers ProteomeXchange PROXI (central index of PRIDE, MassIVE, jPOST, iProX, PeptideAtlas, Panorama), PRIDE Archive API v2 and v3, the full MassIVE dataset listing, the jPOST PROXI listing, the article's Supporting Information (PDF and XLSX, sha256 equal to PREREG.md) and the article full text, with 11 search terms including the raw-file prefix EBZ_Cole. The live SI zip from Europe PMC took longer than 110 s to stream, so the SI step read the members Agent A downloaded from the same URL on 2026-10-09 (sha256 recorded in the JSON).

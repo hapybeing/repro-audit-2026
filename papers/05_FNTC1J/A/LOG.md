@@ -1,3 +1,7 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10, after this run; not part of the agent's record.** This file keeps the agent's run-time wording, which may call an item a "bug". Under CHANGELOG_METHOD.md #4d, the status in `batches/batch1_code_observations.csv` applies. For 05_FNTC1J: unverified agent observation: 05-2; verified finding: 05-1, 05-3, 05-4. Only "verified finding" items are findings; "unverified agent observation" items are unverified and are not claims about the paper. Nothing here says the paper is wrong.
+<!-- status-note:end -->
+
 # LOG: 05_FNTC1J, Agent A
 
 All times IST (machine clock is UTC; IST = UTC + 5:30).

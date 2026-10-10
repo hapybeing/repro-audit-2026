@@ -1,3 +1,7 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10, after this run; not part of the agent's record.** This file keeps the agent's run-time wording, which may call an item a "bug". Under CHANGELOG_METHOD.md #4d, the status in `batches/batch1_code_observations.csv` applies. For 02_ELBOXX: out of scope: not reproducibility: 02-1, 02-2, 02-4, 02-5, 02-6, 02-7, 02-8; unverified agent observation: 02-9, 02-10; verified finding: 02-3. Only "verified finding" items are findings; "unverified agent observation" items are unverified and are not claims about the paper. Nothing here says the paper is wrong.
+<!-- status-note:end -->
+
 # LOG: 02_ELBOXX, Agent B (independent second pass), 2026-10-09
 
 Scratch: /workspace/audit_runs/02_ELBOXX/B/ (data/, rlib/, run_pathA/, run_pathA_fixed/, objs/). Raw data and any object holding data stay in scratch (custom licence). Times are IST, taken from the shell clock and file modification times.

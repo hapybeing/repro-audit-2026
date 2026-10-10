@@ -1,3 +1,7 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10, after this run; not part of the agent's record.** This file keeps the agent's run-time wording, which may call an item a "bug". Under CHANGELOG_METHOD.md #4d, the status in `batches/batch1_code_observations.csv` applies. For 01_5BIH0P: unverified agent observation: 01-3, 01-4; verified finding: 01-1, 01-2. Only "verified finding" items are findings; "unverified agent observation" items are unverified and are not claims about the paper. Nothing here says the paper is wrong.
+<!-- status-note:end -->
+
 # LOG, 01_5BIH0P, agent A
 
 Paper: Singh PK, Stan RC, ThermoPCD, Database 2024 baae015 (doi:10.1093/database/baae015).

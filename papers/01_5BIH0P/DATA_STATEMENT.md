@@ -35,3 +35,6 @@ Yes, but none for 2XWT. The computed numbers are (a) pembrolizumab, PDB 5DK3: RM
 
 ## Finding
 External location unavailable: the paper points to Harvard Dataverse (via the website index), the website and Dataverse are reachable without sign-in, but the 2XWT 310 K seed 3 production trajectory is not deposited at any pointed-to location (estimated 0.4 to 1.6 GB if it existed), and the paper reports no computed number for 2XWT in any case.
+
+## Exact searches behind the absence claim (repeatable)
+Every query, URL, time (UTC), HTTP status and result count, with the rule for what would count as a hit: `ABSENCE_SEARCHES.md`, generated from `data_statement_raw/absence_searches.json` by `scripts/absence_searches.py 01` and `scripts/make_absence_md.py` (run 2026-10-10). The searches listed above from the first pass are kept as written; the re-run reaches the same finding.

@@ -1,3 +1,7 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10, after this run; not part of the agent's record.** This file keeps the agent's run-time wording, which may call an item a "bug". Under CHANGELOG_METHOD.md #4d, the status in `batches/batch1_code_observations.csv` applies. For 04_PSHE5L: out of scope: not reproducibility: 04-3; unverified agent observation: 04-1, 04-2, 04-4. Only "verified finding" items are findings; "unverified agent observation" items are unverified and are not claims about the paper. Nothing here says the paper is wrong.
+<!-- status-note:end -->
+
 # Code review, 04_PSHE5L, Agent B
 
 Scope: I read the whole deposited script `Rural Populism - Socius - Public Code.R` (409 lines, sha256 955871dc...), every active and commented line, and checked each active recode against the value frequencies of the public OSF CSV (`Rural_Populism_Dataset.csv`, 1203 rows x 30 columns).

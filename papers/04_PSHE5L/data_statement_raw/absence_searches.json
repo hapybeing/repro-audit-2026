@@ -1,0 +1,135 @@
+{
+ "script": "scripts/absence_searches.py",
+ "paper": "04_PSHE5L",
+ "run_started_utc": "2026-10-10T10:30:02Z",
+ "records": [
+  {
+   "paper": "04_PSHE5L",
+   "source": "Article full text (Sage HTML, saved copy; sha256 in DATA_STATEMENT.md)",
+   "query": "case-insensitive term counts",
+   "url": "papers/04_PSHE5L/data_statement_raw/sage_fulltext_webfetch.md",
+   "utc": "2026-10-10T10:30:02Z",
+   "http": "local file",
+   "total_results": null,
+   "relevant_hits": {
+    "osf": 0,
+    "10.7910": 0,
+    "dataverse": 0,
+    "github": 0,
+    "zenodo": 0,
+    "icpsr": 0,
+    "figshare": 0,
+    "openicpsr": 0,
+    "replication data": 0,
+    "replication code": 0,
+    "replication material": 0,
+    "on request": 1,
+    "upon request": 0,
+    "data availability": 0,
+    "available from": 0
+   },
+   "note": "nonzero counts were each read in context: see DATA_STATEMENT.md (only Sage boilerplate and reference-list entries)"
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "Crossref REST API (publisher-registered metadata)",
+   "query": "relation and link fields",
+   "url": "https://api.crossref.org/works/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:30:02Z",
+   "http": 200,
+   "total_results": null,
+   "relevant_hits": {
+    "relation": {},
+    "link_urls": [
+     "https://journals.sagepub.com/doi/pdf/10.1177/23780231251317227",
+     "https://journals.sagepub.com/doi/full-xml/10.1177/23780231251317227",
+     "https://journals.sagepub.com/doi/pdf/10.1177/23780231251317227",
+     "https://journals.sagepub.com/doi/pdf/10.1177/23780231251317227"
+    ]
+   },
+   "note": ""
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "DataCite REST API",
+   "query": "relatedIdentifiers.relatedIdentifier:\"10.1177/23780231251317227\"",
+   "url": "https://api.datacite.org/dois?query=relatedIdentifiers.relatedIdentifier%3A%2210.1177%2F23780231251317227%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T10:30:03Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": ""
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "DataCite REST API",
+   "query": "\"Rural Populism and Tolerance for Political Violence\"",
+   "url": "https://api.datacite.org/dois?query=%22Rural+Populism+and+Tolerance+for+Political+Violence%22&page%5Bsize%5D=100",
+   "utc": "2026-10-10T10:30:03Z",
+   "http": 200,
+   "total_results": 1,
+   "relevant_hits": [
+    {
+     "doi": "10.7910/dvn/pshe5l",
+     "title": "Replication Code for: Rural Populism and Tolerance for Political Violence"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "Zenodo REST API",
+   "query": "\"Rural Populism\"",
+   "url": "https://zenodo.org/api/records?q=%22Rural+Populism%22&size=25",
+   "utc": "2026-10-10T10:30:04Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": ""
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "figshare API v2 (POST /articles/search)",
+   "query": "\"Rural Populism and Tolerance for Political Violence\"",
+   "url": "https://api.figshare.com/v2/articles/search",
+   "utc": "2026-10-10T10:30:23Z",
+   "http": 200,
+   "total_results": 0,
+   "relevant_hits": [],
+   "note": ""
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "Harvard Dataverse Search API",
+   "query": "\"Rural Populism\", type=dataset",
+   "url": "https://dataverse.harvard.edu/api/search?q=%22Rural+Populism%22&type=dataset&per_page=100",
+   "utc": "2026-10-10T10:30:23Z",
+   "http": 200,
+   "total_results": 271,
+   "relevant_hits": [
+    {
+     "name": "Replication Code for: Rural Populism and Tolerance for Political Violence",
+     "doi": "doi:10.7910/DVN/PSHE5L"
+    }
+   ],
+   "note": "Dataverse search matches words, not the exact phrase; relevant = dataset title contains 'rural populism' (first 100 results inspected)"
+  },
+  {
+   "paper": "04_PSHE5L",
+   "source": "OSF / SHARE search API",
+   "query": "\"Rural Populism\"",
+   "url": "https://share.osf.io/api/v3/index-card-search?cardSearchText=%22Rural+Populism%22&page%5Bsize%5D=50",
+   "utc": "2026-10-10T10:30:29Z",
+   "http": 200,
+   "total_results": 2,
+   "relevant_hits": [
+    "Rural Populism",
+    "Political Neglect and Support for the Radical Right: The Case of Rural Portugal",
+    {
+     "mtd4z_in_response": true
+    }
+   ],
+   "note": "OSF component mtd4z holds data and code but is not cited by the article; this search shows whether it is indexed"
+  }
+ ]
+}

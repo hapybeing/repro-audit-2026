@@ -1,0 +1,106 @@
+{
+ "script": "scripts/p04_supplement_attempts.py",
+ "attempts": [
+  {
+   "route": "Sage supplementary file (direct)",
+   "url": "https://journals.sagepub.com/doi/suppl/10.1177/23780231251317227/suppl_file/sj-docx-1-srd-10.1177_23780231251317227.docx",
+   "utc": "2026-10-10T10:40:43Z",
+   "http": 403,
+   "bytes": 6004,
+   "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+  },
+  {
+   "route": "Sage supplementary listing",
+   "url": "https://journals.sagepub.com/doi/suppl/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:43Z",
+   "http": 403,
+   "bytes": 5751,
+   "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+  },
+  {
+   "route": "Sage article landing page",
+   "url": "https://journals.sagepub.com/doi/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:43Z",
+   "http": 403,
+   "bytes": 5733,
+   "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+  },
+  {
+   "route": "DOI resolver",
+   "url": "https://doi.org/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:43Z",
+   "http": 403,
+   "bytes": 5733,
+   "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+  },
+  {
+   "route": "Sage full-text XML (Crossref text-mining link)",
+   "url": "https://journals.sagepub.com/doi/full-xml/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:44Z",
+   "http": 403,
+   "bytes": 5760,
+   "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+  },
+  {
+   "route": "Sage PDF (Crossref text-mining link)",
+   "url": "https://journals.sagepub.com/doi/pdf/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:44Z",
+   "http": 403,
+   "bytes": 5745,
+   "what_came_back": "Cloudflare interstitial ('Just a moment...')"
+  },
+  {
+   "route": "Crossref metadata",
+   "url": "https://api.crossref.org/works/10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:44Z",
+   "http": 200,
+   "bytes": 17746,
+   "what_came_back": "response body: {\"status\":\"ok\",\"message-type\":\"work\",\"message-version\":\"1.0.0\",\"message\":{\"indexed\":{\"date-parts\":[[2026,8,18]],\"date-time\":\"2026-08-18T02:17:44Z\",\"timestamp\":1787019464869,\"version\":\"build-2736575974"
+  },
+  {
+   "route": "Unpaywall",
+   "url": "https://api.unpaywall.org/v2/10.1177/23780231251317227?email=repro-audit-2026@users.noreply.github.com",
+   "utc": "2026-10-10T10:40:44Z",
+   "http": 200,
+   "bytes": 2258,
+   "what_came_back": "response body: {\"best_oa_location\":{\"endpoint_id\":null,\"evidence\":\"deprecated\",\"host_type\":\"publisher\",\"is_best\":true,\"license\":\"cc-by-nc\",\"oa_date\":\"2025-01-01\",\"pmh_id\":null,\"repository_institution\":null,\"updated\""
+  },
+  {
+   "route": "OpenAlex",
+   "url": "https://api.openalex.org/works/doi:10.1177/23780231251317227",
+   "utc": "2026-10-10T10:40:44Z",
+   "http": 200,
+   "bytes": 16681,
+   "what_came_back": "response body: {\"id\":\"https://openalex.org/W4407921811\",\"doi\":\"https://doi.org/10.1177/23780231251317227\",\"title\":\"Rural Populism and Tolerance for Political Violence\",\"display_name\":\"Rural Populism and Tolerance fo"
+  },
+  {
+   "route": "Semantic Scholar",
+   "url": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1177/23780231251317227?fields=title,openAccessPdf,externalIds",
+   "utc": "2026-10-10T10:40:45Z",
+   "http": 200,
+   "bytes": 306,
+   "what_came_back": "response body: {\"paperId\": \"555ffab6413fe396ac2b7e4dcc27eab27da84118\", \"externalIds\": {\"DOI\": \"10.1177/23780231251317227\", \"CorpusId\": 276623985}, \"title\": \"Rural Populism and Tolerance for Political Violence\", \"ope"
+  },
+  {
+   "route": "Wayback availability of the supplementary file",
+   "url": "http://archive.org/wayback/available?url=journals.sagepub.com/doi/suppl/10.1177/23780231251317227/suppl_file/sj-docx-1-srd-10.1177_23780231251317227.docx",
+   "utc": "2026-10-10T10:40:45Z",
+   "http": 404,
+   "bytes": 10,
+   "what_came_back": "not found "
+  },
+  {
+   "route": "Wayback CDX for the supplementary path",
+   "url": "https://web.archive.org/cdx/search/cdx?url=journals.sagepub.com/doi/suppl/10.1177/23780231251317227*&output=json",
+   "utc": "2026-10-10T10:40:45Z",
+   "http": 200,
+   "bytes": 3,
+   "what_came_back": "response body: [] "
+  }
+ ],
+ "not_scripted": [
+  "web_fetch tool (Hark fetch service) on the supplementary URL and the suppl listing: 'page extraction failed' (2026-10-10, about 10:10 UTC)",
+  "figshare API v2 POST /articles/search with resource_doi=10.1177/23780231251317227 and with the article title: 0 results (2026-10-10, about 10:10 UTC)",
+  "Headless browser (Hark browser agent), 2026-10-10 about 10:12 UTC: direct Sage URL showed the Cloudflare interstitial on first load and two reloads (Ray IDs a484d823fd8af4e3, a484d8617b28f4e3); Office Online viewer (view.officeapps.live.com) returned an error; Google Docs viewer (docs.google.com/viewer?url=<supplementary URL>) rendered the full 26-page document, which was read. Notes: supplement_read_2026-10-10.md"
+ ]
+}

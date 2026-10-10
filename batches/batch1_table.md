@@ -1,3 +1,7 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10: superseded.** This is an earlier version kept for the record. Current results: `batches/batch1_report.md`. Items this file calls "bugs" are now "code observations" with a status in `batches/batch1_code_observations.csv` (CHANGELOG_METHOD.md #4d); 16 of them are unverified agent observations, not findings, including the 03 isotope-correction item. Nothing here says any paper is wrong.
+<!-- status-note:end -->
+
 > SUPERSEDED: revision 1 table. Current classes: batch1_results_rule4.csv.
 
 | Paper | Field | Class A | Class B | Final | Confidence | Robustness (A) | Bugs A/B |

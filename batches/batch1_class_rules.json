@@ -2,7 +2,7 @@
  "_rule": "CHANGELOG_METHOD #4: materials = the deposit plus every location the article's own data/code statement points to. Locations we found ourselves do not count toward the class; they are reported as an alternative.",
  "01_5BIH0P": {"class_rule4": "C", "alt_class": "no computational target", "alt_label": "excluded: no computational target in paper for this deposit", "evidence": "papers/01_5BIH0P/DATA_STATEMENT.md"},
  "02_ELBOXX": {"class_rule4": "A", "alt_class": "B", "alt_label": "B if run as-is with a 2026 clock (T4, T5 drift within 5%)", "evidence": "papers/02_ELBOXX/diffs/DEVIATION_clock.md; papers/02_ELBOXX/A/outputs/clock_comparison.json"},
- "03_3IOGQ8": {"class_rule4": "C", "alt_class": "C", "alt_label": "no external location exists", "evidence": "papers/03_3IOGQ8/DATA_STATEMENT.md"},
+ "03_3IOGQ8": {"class_rule4": "C", "alt_class": "C", "alt_label": "no external data location found (papers/03_3IOGQ8/ABSENCE_SEARCHES.md)", "evidence": "papers/03_3IOGQ8/DATA_STATEMENT.md"},
  "04_PSHE5L": {"class_rule4": "C", "alt_class": "A", "alt_label": "A if the authors' uncited OSF copy (osf.io/mtd4z) is counted", "evidence": "papers/04_PSHE5L/DATA_STATEMENT.md"},
  "05_FNTC1J": {"class_rule4": "A", "alt_class": "A", "alt_label": "same", "evidence": "papers/05_FNTC1J/DATA_STATEMENT.md"}
 }

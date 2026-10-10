@@ -1,3 +1,7 @@
+<!-- status-note:start -->
+> **Status note added 2026-10-10, after this run; not part of the agent's record.** This file keeps the agent's run-time wording, which may call an item a "bug". Under CHANGELOG_METHOD.md #4d, the status in `batches/batch1_code_observations.csv` applies. For 03_3IOGQ8: unverified agent observation: 03-1, 03-2, 03-3, 03-4, 03-5, 03-6, 03-7, 03-8. Only "verified finding" items are findings; "unverified agent observation" items are unverified and are not claims about the paper. Nothing here says the paper is wrong.
+<!-- status-note:end -->
+
 # LOG, paper 03_3IOGQ8, Agent A
 
 Scratch: /workspace/audit_runs/03_3IOGQ8/A/ (dl/, run/, rlib/, venv/). Saved results: this folder.
