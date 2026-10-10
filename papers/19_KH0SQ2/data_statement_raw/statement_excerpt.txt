@@ -1,0 +1,10 @@
+19_KH0SQ2 short excerpts (publisher HTML, read 2026-10-10; PDF checked in a browser the same day)
+
+Section list of the full-text HTML: ABSTRACT; Introduction; Support for positive action measures ...; Positive action measures and backlash ...; Experimental design; Experimental results; Conclusion; Supplemental material; Acknowledgements; Disclosure statement; Additional information; Footnotes; References.
+No "Data availability statement" section.
+
+"Supplemental data for this article can be accessed online at https://doi.org/10.1080/13501763.2024.2402864 ." (Supplemental Material section; PDF p. 2409 front matter has a "Supplemental data" line)
+
+Footnote 5 (PDF journal p. 2432): "We registered hypotheses related to this manuscript in the following pre-analysis plan: https://osf.io/6hfnt/?view_only=30a3981430324807a3eeddf5eb5686ce ."
+
+Footnote 10: "... (to save space, results available from authors)."

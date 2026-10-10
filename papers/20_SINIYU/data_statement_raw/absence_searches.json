@@ -1,0 +1,236 @@
+[
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "fileName:interp_radar*",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3Ainterp_radar%2A&type=file&per_page=100",
+  "utc": "2026-10-10T18:32:55Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "\"interp_radar_ppi\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22interp_radar_ppi%22&type=file&per_page=100",
+  "utc": "2026-10-10T18:32:56Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "\"interp_radar_shift\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22interp_radar_shift%22&type=file&per_page=100",
+  "utc": "2026-10-10T18:32:57Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "fileName:VAR_COLOR*",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3AVAR_COLOR%2A&type=file&per_page=100",
+  "utc": "2026-10-10T18:32:59Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "fileName:temp_inno*",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3Atemp_inno%2A&type=file&per_page=100",
+  "utc": "2026-10-10T18:33:00Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (type=file)",
+  "query": "fileName:*o_b_thin*",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%2Ao_b_thin%2A&type=file&per_page=100",
+  "utc": "2026-10-10T18:33:01Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Dataverse file list doi:10.7910/DVN/SINIYU",
+  "query": "all files (latest version)",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions/:latest/files?persistentId=doi:10.7910/DVN/SINIYU",
+  "utc": "2026-10-10T18:33:03Z",
+  "http": 200,
+  "total_results": 18,
+  "relevant_hits": [],
+  "note": "files: 1DVAR_output.nc, 1DVAR.py, 2023072808.006, 57328.tab, 57516.tab, acc01h.tar.gz, codes.tar.gz, FY3G_PMR.part1.rar, FY3G_PMR.part2.rar, FY3G_PMR.part3.rar, FY3G_PMR.part4.rar, FY3G_PMR.part5.rar, FY3G_PMR.part6.rar, FY3G_PMR.part7.rar, postvar.nc, swath_spaceborn_mu3.nc, Z9092.tar.gz, Z9230.tar.gz"
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "\"interp_radar_ppi\"",
+  "url": "https://zenodo.org/api/records?q=%22interp_radar_ppi%22&size=25",
+  "utc": "2026-10-10T18:33:04Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "\"interp_radar_shift\"",
+  "url": "https://zenodo.org/api/records?q=%22interp_radar_shift%22&size=25",
+  "utc": "2026-10-10T18:33:06Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "interp_radar",
+  "url": "https://zenodo.org/api/records?q=interp_radar&size=25",
+  "utc": "2026-10-10T18:33:08Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "FY-3G Ku-band volume matching",
+  "url": "https://zenodo.org/api/records?q=FY-3G+Ku-band+volume+matching&size=25",
+  "utc": "2026-10-10T18:33:09Z",
+  "http": 200,
+  "total_results": 263698,
+  "relevant_hits": [
+   {
+    "title": "Data for \"Enhancing Typhoon Precipitation Forecasts via Vertical Moisture Refinement: Insights from FY-3G Ku/Ka Dual-Frequency Radar Assimilation\"",
+    "doi": "10.5281/zenodo.19562313",
+    "files": [
+     "data.zip"
+    ]
+   },
+   {
+    "title": "FY-3G PMR sample data",
+    "doi": "10.5281/zenodo.12200147",
+    "files": [
+     "FY3G_PMR--_ORBA_L1_20230808_0901_5000M_V0.HDF"
+    ]
+   },
+   {
+    "title": "Cloud phase detection based on  short-wave infrared polarized multi-angle imager onboard FY-3G",
+    "doi": "10.5281/zenodo.10699613",
+    "files": [
+     "FY3G_PMAI-_ORBD_1B_20230818_1350_3000M_V0.HDF",
+     "FY3G_PMAI-_ORBD_1B_20230819_0954_3000M_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_0730_0500M_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_1035_0500M_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_1035_GEOHK_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_0730_GEOHK_V0.HDF"
+    ]
+   }
+  ],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "FY-3G 1D Bayesian retrieval CMA-MESO",
+  "url": "https://zenodo.org/api/records?q=FY-3G+1D+Bayesian+retrieval+CMA-MESO&size=25",
+  "utc": "2026-10-10T18:33:12Z",
+  "http": 200,
+  "total_results": 84354,
+  "relevant_hits": [
+   {
+    "title": "Data for \"Enhancing Typhoon Precipitation Forecasts via Vertical Moisture Refinement: Insights from FY-3G Ku/Ka Dual-Frequency Radar Assimilation\"",
+    "doi": "10.5281/zenodo.19562313",
+    "files": [
+     "data.zip"
+    ]
+   },
+   {
+    "title": "FY-3G PMR sample data",
+    "doi": "10.5281/zenodo.12200147",
+    "files": [
+     "FY3G_PMR--_ORBA_L1_20230808_0901_5000M_V0.HDF"
+    ]
+   },
+   {
+    "title": "Cloud phase detection based on  short-wave infrared polarized multi-angle imager onboard FY-3G",
+    "doi": "10.5281/zenodo.10699613",
+    "files": [
+     "FY3G_PMAI-_ORBD_1B_20230818_1350_3000M_V0.HDF",
+     "FY3G_PMAI-_ORBD_1B_20230819_0954_3000M_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_0730_0500M_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_1035_0500M_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_1035_GEOHK_V0.HDF",
+     "FY3G_MERSI_GRAN_L1_20230819_0730_GEOHK_V0.HDF"
+    ]
+   }
+  ],
+  "note": ""
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "interp_radar",
+  "url": "https://api.github.com/search/repositories?q=interp_radar&per_page=100",
+  "utc": "2026-10-10T18:33:15Z",
+  "http": 200,
+  "total_results": 15,
+  "relevant_hits": [],
+  "note": "returned: rennerph/RadarBreathInterpretation, paistis/Radar_interpolation, azertida/radar-interpretation, LGOICOUR/arxiv-interpretability-radar, ChenyuZhaoTHU/ColoRadar_Interpreter, vlsantos-bit/Exemplos_radar_livro-3.Interpolation, kunyan54/Three-dimensional-Reconstruction-for-Ground-penetrating-Radar-Data-Using-Interpolation-Methods, GusSand/research-radar, Ashujais/Weather-Radar-Data-Visualization-Using-WMS-Web-Map-Service-with-Frame-Interpolation-Video-Generation, Zioplex/Autoexec-by-Zioplex-CSGO, FlamR1/CONFIG, tandung2001/abcas, raulfekz/fekz.cfg, raulfekz/config, dvn1233/312"
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "interp_radar_ppi",
+  "url": "https://api.github.com/search/repositories?q=interp_radar_ppi&per_page=100",
+  "utc": "2026-10-10T18:33:19Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "returned: "
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "FY3G PMR",
+  "url": "https://api.github.com/search/repositories?q=FY3G+PMR&per_page=100",
+  "utc": "2026-10-10T18:33:22Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "returned: "
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "FY-3G radar assimilation",
+  "url": "https://api.github.com/search/repositories?q=FY-3G+radar+assimilation&per_page=100",
+  "utc": "2026-10-10T18:33:26Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "returned: "
+ },
+ {
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "Ku-band 1D Bayesian retrieval",
+  "url": "https://api.github.com/search/repositories?q=Ku-band+1D+Bayesian+retrieval&per_page=100",
+  "utc": "2026-10-10T18:33:29Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "returned: "
+ },
+ {
+  "source": "Zenodo record 10.5281/zenodo.11307123 (ZJU-AERO software, Xie, Bi, Han 2024; NOT cited by the article's data statement)",
+  "query": "file names and file contents matching 'interp_radar' (case-insensitive) in ZJU_AERO-0.6.1.tar.gz",
+  "url": "https://zenodo.org/api/records/11307123/files/ZJU_AERO-0.6.1.tar.gz/content",
+  "utc": "2026-10-10T18:42:59Z",
+  "http": 200,
+  "total_results": 239,
+  "relevant_hits": [],
+  "note": "Downloaded 352447090 bytes (md5 f109a202c51637e34f14c4d999c0bc96 matches Zenodo; sha256 dbb3702d2c404480b0d0e35c9b5bd49fc8b918d2cb3afec8a9fc3eee68be272e). tar listing has 239 entries (zenodo_11307123_ZJU_AERO-0.6.1_filelist.txt); none is named interp_radar*; grep -rli interp_radar over all extracted .py/.pyx/.c/.f/.f90 files: 0 files. The package has its own ZJU_AERO/interp/ module (Cython/SWIG), which is not the f2py module 'interp_radar' with interp_radar_ppi/interp_radar_shift imported by the deposited scripts. Version 0.4.1 named in a deposited path (figure7 script) was not checked: zju_aero_env.tar.gz (573 MB) and older Zenodo versions were not downloaded."
+ }
+]

@@ -1,0 +1,20 @@
+Source: https://doi.org/10.1002/qj.4964 (Wiley Online Library HTML full text, read with web_fetch 2026-10-10 about 18:25 UTC). Short excerpts only.
+
+DATA AVAILABILITY STATEMENT (section heading "DATA AVAILABILITY STATEMENT", after ACKNOWLEDGEMENTS):
+"The ERA5 reanalysis data were downloaded from the website of ECMWF ( <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels> ), and Feng Yun 3G (FY-3G) spaceborne Ku-band radar observations were downloaded from the website of the National Center for Space Weather ( <https://satellite.nsmc.org.cn/FY3G/html/IOTDATASET.html> ). Other data used or produced in this study have been archived at the Harvard data server ( <https://doi.org/10.7910/DVN/SINIYU> )."
+
+TABLE 1 (Section 2.2), "Statistics of ground-based radars-Ku-band radar (GRs-KR) comparisons for different elevation angles."
+Site | Elevation (deg) | Sample size | Mean difference (dB) | Standard deviation (dB) | Correlation coefficient
+Z9230 | 2.4 | 573 | 0.17 | 2.53 | 0.90
+      | 3.4 | 497 | 0.89 | 2.62 | 0.88
+      | 4.3 | 427 | 0.89 | 2.56 | 0.92
+      | 6.0 | 302 | 0.56 | 1.92 | 0.96
+      | 9.9 | 110 | -0.68 | 2.05 | 0.94
+Z9092 | 2.4 | 424 | 0.01 | 3.71 | 0.82
+      | 3.4 | 323 | -0.27 | 3.76 | 0.84
+      | 4.3 | 254 | -0.96 | 2.89 | 0.88
+      | 6.0 | 108 | -1.44 | 2.28 | 0.92
+
+Section 2.2 text: "The correlation coefficients were greater than 0.82, and the standard deviations were less than 3.8 dB."
+Section 4.1 text: "The O - B distribution for Ku-band radar reflectivity approximates a Gaussian distribution, with a mean value of 1.23" ... "The O - B histogram for RH pseudo-observations indicates a wet bias with a mean value of 2.58%".
+Figure 6 caption: "(a) observation-minus-background (O - B) for Ku-band radar reflectivity (31,161 data points) and (b) pseudo-observation-minus-background for relative humidity (RH) (7463 data points) after thinning."

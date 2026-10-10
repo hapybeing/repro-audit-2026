@@ -1,0 +1,11 @@
+# 16_QZNVZ0
+- Paper: Multidimensional Diversity and Research Impact in Political Science: What 50 Years of Bibliometric Data Tell Us
+- Journal: Perspectives on Politics (2024)
+- Paper DOI: https://doi.org/10.1017/s1537592724000641
+- Dataset DOI: https://doi.org/10.7910/DVN/QZNVZ0
+- Dataset title: Multidimensional Diversity and Research Impact in Political Science: What 50 Years of Bibliometric Data Tells Us
+- Code language (Dataverse file types): Python
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 136064078
+- Audit position 16, batch 4

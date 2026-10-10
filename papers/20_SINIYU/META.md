@@ -1,0 +1,11 @@
+# 20_SINIYU
+- Paper: Assimilation of FY ‐ 3G Ku‐band radar observations with 1D Bayesian retrieval and 3DVAR in CMA ‐ MESO
+- Journal: Quarterly Journal of the Royal Meteorological Society (2025)
+- Paper DOI: https://doi.org/10.1002/qj.4964
+- Dataset DOI: https://doi.org/10.7910/DVN/SINIYU
+- Dataset title: Replication Data for: Assimilation of FY-3G Ku-band radar observations with 1D Bayesian retrieval and 3DVAR in CMA-MESO
+- Code language (Dataverse file types): Python
+- Subject: Earth and Environmental Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 1264311863
+- Audit position 20, batch 4

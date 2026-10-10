@@ -1,0 +1,8 @@
+[
+  {"id": "T1", "description": "PSPM coefficient of Ethnic boundary_t (cuteth) in the pooled baseline model (pool_xsec), point estimate from penalized maximum composite likelihood", "paper_value": 1.22, "paper_rounding_decimals": 2, "location": "Table 1, p. 9, column 'Baseline', row 'Ethnic boundary_t' (95% CI [1.06, 1.40])"},
+  {"id": "T2", "description": "PSPM coefficient of Ethnic boundary_t-1 (cuteth_lag) in the pooled lagged dependent variable model (pool_ldv)", "paper_value": 1.02, "paper_rounding_decimals": 2, "location": "Table 1, p. 9, column 'Lagged dependent variable', row 'Ethnic boundary_t-1' (95% CI [0.79, 1.24])"},
+  {"id": "T3", "description": "PSPM coefficient of State border_t-1 (cshp_lag) in the pooled LDV model (pool_ldv)", "paper_value": 1.65, "paper_rounding_decimals": 2, "location": "Table 1, p. 9, column 'Lagged dependent variable', row 'State border_t-1' (95% CI [1.46, 1.96])"},
+  {"id": "T4", "description": "PSPM coefficient of Deep lag (abram_sum) in the pooled LDV model (pool_ldv)", "paper_value": 0.74, "paper_rounding_decimals": 2, "location": "Table 1, p. 9, column 'Lagged dependent variable', row 'Deep lag' (95% CI [0.36, 1.15])"},
+  {"id": "T5", "description": "Number of vertices in the baseline model, summed over the 6 periods (sum(pool_xsec$N))", "paper_value": 6769, "paper_rounding_decimals": 0, "location": "Table 1, p. 9, row 'Number of vertices', column 'Baseline'"},
+  {"id": "T6", "description": "Number of vertices in the LDV model, summed over the 5 periods (sum(pool_ldv$N))", "paper_value": 5412, "paper_rounding_decimals": 0, "location": "Table 1, p. 9, row 'Number of vertices', column 'Lagged dependent variable'"}
+]

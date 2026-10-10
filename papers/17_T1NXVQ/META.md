@@ -1,0 +1,11 @@
+# 17_T1NXVQ
+- Paper: Shaping states into nations: The effects of ethnic geography on state borders
+- Journal: American Journal of Political Science (2024)
+- Paper DOI: https://doi.org/10.1111/ajps.12838
+- Dataset DOI: https://doi.org/10.7910/DVN/T1NXVQ
+- Dataset title: Replication Data for: Shaping States into Nations: The Effects of Ethnic Geography on State Borders
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: custom terms: This dataset is made available with limited information on how it can be used. You may wish to communicate with the Cont
+- Dataset size (bytes): 1988578335
+- Audit position 17, batch 4

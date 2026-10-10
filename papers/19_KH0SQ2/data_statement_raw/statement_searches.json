@@ -1,0 +1,84 @@
+[
+ {
+  "source": "T&F full-text HTML (direct curl)",
+  "url": "https://www.tandfonline.com/doi/full/10.1080/13501763.2024.2402864",
+  "utc": "2026-10-10T17:33:21Z",
+  "http": 403,
+  "bytes": 0,
+  "pattern_hits": [],
+  "contexts": [],
+  "note": "Cloudflare may return 403; see the web_fetch copy below"
+ },
+ {
+  "source": "T&F full-text HTML (web_fetch copy, scratch tandf_page.txt)",
+  "url": "https://www.tandfonline.com/doi/full/10.1080/13501763.2024.2402864",
+  "utc": "2026-10-10 (fetch time of copy)",
+  "http": 200,
+  "bytes": 168710,
+  "pattern_hits": [],
+  "contexts": [],
+  "note": "sections listed: Abstract, Introduction, ..., Conclusion, Supplemental material, Acknowledgements, Disclosure statement, Additional information, Footnotes, References"
+ },
+ {
+  "source": "T&F article PDF",
+  "url": "https://www.tandfonline.com/doi/pdf/10.1080/13501763.2024.2402864",
+  "utc": "2026-10-10T17:33:21Z",
+  "http": 403,
+  "bytes": 0,
+  "pattern_hits": [],
+  "contexts": [],
+  "note": "non-PDF/403 means not readable here"
+ },
+ {
+  "source": "Crossref works API",
+  "url": "https://api.crossref.org/works/10.1080/13501763.2024.2402864",
+  "utc": "2026-10-10T17:33:21Z",
+  "http": 200,
+  "bytes": 17729,
+  "pattern_hits": [],
+  "contexts": [],
+  "note": ""
+ },
+ {
+  "source": "Online appendix PDF (figshare 27036622, file 49219486)",
+  "url": "https://ndownloader.figshare.com/files/49219486",
+  "utc": "2026-10-10T17:33:21Z",
+  "http": 200,
+  "bytes": 18622,
+  "pattern_hits": [],
+  "contexts": [],
+  "note": "tables in this PDF are images; text layer covers prose only"
+ },
+ {
+  "source": "Dataverse dataset JSON",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/KH0SQ2",
+  "utc": "2026-10-10T17:33:23Z",
+  "http": 200,
+  "bytes": 8460,
+  "pattern_hits": [
+   "10.7910/DVN/KH0SQ2",
+   "Dataverse",
+   "Replication Data",
+   "Replication Files"
+  ],
+  "contexts": [
+   "{\"status\":\"OK\",\"data\":{\"id\":8544945,\"identifier\":\"DVN/KH0SQ2\",\"persistentUrl\":\"https://doi.org/10.7910/DVN/KH0SQ2\",\"protocol\":\"doi\",\"authority\":\"10.7910\",\"separator\":\"/\",\"publisher\":\"Harvard Dataverse\",\"publicationDate\":\"2024-02-14\",",
+   "ntUrl\":\"https://doi.org/10.7910/DVN/KH0SQ2\",\"protocol\":\"doi\",\"authority\":\"10.7910\",\"separator\":\"/\",\"publisher\":\"Harvard Dataverse\",\"publicationDate\":\"2024-02-14\",\"storageIdentifier\":\"s3://10.7910/DVN/KH0SQ2\",\"effectiveDatasetFileCountLimit\":1000,\"da",
+   "ity\":\"10.7910\",\"separator\":\"/\",\"publisher\":\"Harvard Dataverse\",\"publicationDate\":\"2024-02-14\",\"storageIdentifier\":\"s3://10.7910/DVN/KH0SQ2\",\"effectiveDatasetFileCountLimit\":1000,\"datasetFileUploadsAvailable\":988,\"datasetType\":\"dataset\",\"locks\":[],\"latestVers",
+   "ble\":988,\"datasetType\":\"dataset\",\"locks\":[],\"latestVersion\":{\"id\":424163,\"datasetId\":8544945,\"datasetPersistentId\":\"doi:10.7910/DVN/KH0SQ2\",\"datasetType\":\"dataset\",\"storageIdentifier\":\"s3://10.7910/DVN/KH0SQ2\",\"versionNumber\":2,\"internalVersionNumber\":5,\"ver",
+   "63,\"datasetId\":8544945,\"datasetPersistentId\":\"doi:10.7910/DVN/KH0SQ2\",\"datasetType\":\"dataset\",\"storageIdentifier\":\"s3://10.7910/DVN/KH0SQ2\",\"versionNumber\":2,\"internalVersionNumber\":5,\"versionMinorNumber\":0,\"versionState\":\"RELEASED\",\"latestVersionPublishingS"
+  ],
+  "note": "reverse link only; not an article statement"
+ },
+ {
+  "source": "OSF node 6hfnt osfstorage listing (footnote 5 link)",
+  "url": "https://api.osf.io/v2/nodes/6hfnt/files/osfstorage/?view_only=30a3981430324807a3eeddf5eb5686ce",
+  "utc": "2026-10-10T17:33:24Z",
+  "http": 200,
+  "bytes": 2730,
+  "file_names": [
+   "OSF_blind_2022.pdf"
+  ],
+  "note": "pre-analysis plan location; checked only for whether data or code files are listed"
+ }
+]

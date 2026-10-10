@@ -1,0 +1,7 @@
+Source: paper_lse.pdf (sha256 67e1f23d...3516), pdftotext -layout, lines 81-85 (article p. 1, first-page footnote area, left column) and 154-155 (p. 2, footnote 4).
+Verification Materials: The materials required to verify the computational
+reproducibility of the results, procedures, and analyses in this article are avail-
+able on the American Journal of Political Science Dataverse within the Harvard
+Dataverse Network, at: http://doi.org/10.7910/DVN/T1NXVQ.
+  Available at https://github.com/carl-mc/pspmand https://github.com/
+carl-mc/SpatialLattice.

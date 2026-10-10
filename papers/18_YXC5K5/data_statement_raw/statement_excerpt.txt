@@ -1,0 +1,4 @@
+Source: https://journals.sagepub.com/doi/full/10.1177/20531680251332353 (Sage HTML full text, read via the web_fetch tool on 2026-10-10 about 22:53 IST; direct curl got a Cloudflare 403, so no file and no sha256).
+Section "Data availability statement" (end of main text, after Footnotes):
+"My data will be made available on the Research & Politics Harvard Dataverse repository. *"
+Article info panel on the same page: "Data availability statement / Data is available for this article. View more information"

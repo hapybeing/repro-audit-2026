@@ -1,0 +1,11 @@
+# 19_KH0SQ2
+- Paper: Quotas or parity? How the framing of positive action measures impacts public support and backlash
+- Journal: Journal of European Public Policy (2024)
+- Paper DOI: https://doi.org/10.1080/13501763.2024.2402864
+- Dataset DOI: https://doi.org/10.7910/DVN/KH0SQ2
+- Dataset title: Replication Data for: QUOTAS OR PARITY? HOW THE FRAMING OF POSITIVE ACTION MEASURES IMPACTS PUBLIC SUPPORT AND BACKLASH
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 445212
+- Audit position 19, batch 4

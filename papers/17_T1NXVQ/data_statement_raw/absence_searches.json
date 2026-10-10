@@ -1,0 +1,145 @@
+[
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"res_optim.rds\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22res_optim.rds%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:29:03Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "hits = exact file name; dataset names listed for inspection: "
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"gsdm.rds\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22gsdm.rds%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:29:03Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "hits = exact file name; dataset names listed for inspection: "
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"sdm_claims.csv\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22sdm_claims.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:29:03Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "hits = exact file name; dataset names listed for inspection: "
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"epr_sec.geojson\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22epr_sec.geojson%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:29:04Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "hits = exact file name; dataset names listed for inspection: "
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"epr_sec.csv\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22epr_sec.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:29:04Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "hits = exact file name; dataset names listed for inspection: "
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "fileName:\"Final_df_complete.shp\" type=file",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22Final_df_complete.shp%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:29:05Z",
+  "http": 200,
+  "total_results": 0,
+  "relevant_hits": [],
+  "note": "hits = exact file name; dataset names listed for inspection: "
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "authorName:\"Müller-Crepon\" type=dataset",
+  "url": "https://dataverse.harvard.edu/api/search?q=authorName%3A%22M%C3%BCller-Crepon%22&type=dataset&per_page=100",
+  "utc": "2026-10-10T17:29:05Z",
+  "http": 200,
+  "total_results": 13,
+  "relevant_hits": [],
+  "note": "datasets returned (inspect for a second deposit of this article): doi:10.7910/DVN/JW5B3P Replication Data for: Building Tribes: How Administrative Units Shaped Ethnic Groups in Africa | doi:10.7910/DVN/5DX7DP Continuity or Change? (In)direct Rule in British and French Colonial Africa | doi:10.7910/DVN/9JI06R Replication Data for: Ethnic Geography and the Colonial Design of Administrative Units in Sub-Saharan Africa | doi:10.7910/DVN/BM4WW0 Replication Data for: State Reach and Development in Africa since the 1960s: New Data and Analysis | doi:10.7910/DVN/IJ2MII Replication Data for: Traditional Institutions in Africa, Past and Present | doi:10.7910/DVN/B6ZNAI Replication Data for: At Any Cost: How Ukrainians Think about Self-Defense Against Russia | doi:10.7910/DVN/C3SKON Replication Data for: The Ethnic Politics of Nature Protection in Africa | doi:10.7910/DVN/DJR0YC Replication Data for: Who Benefits? How Local Ethnic Demography Shapes Political Favoritism in Africa | doi:10.7910/DVN/T1NXVQ Replication Data for: Shaping States into Nations: The Effects of Ethnic Geography on State Borders | doi:10.7910/DVN/XRMDJR Replication Data for: Nationalism and the Puzzle of Reversing State Size | doi:10.7910/DVN/1F74D0 Replication Data for: Coethnics Covote in Africa: Studying Electoral Cleavages with a Covoting Regression Model | doi:10.7910/DVN/EVF0DN Replication Data for: The Train Wrecks of Modernization: Railway Construction and Separatist Mobilization in Europe | doi:10.7910/DVN/PZ2VKQ Replication Data for: Rulers on the Road"
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "authorName:\"Muller-Crepon\" type=dataset",
+  "url": "https://dataverse.harvard.edu/api/search?q=authorName%3A%22Muller-Crepon%22&type=dataset&per_page=100",
+  "utc": "2026-10-10T17:29:06Z",
+  "http": 200,
+  "total_results": 13,
+  "relevant_hits": [],
+  "note": "datasets returned (inspect for a second deposit of this article): doi:10.7910/DVN/JW5B3P Replication Data for: Building Tribes: How Administrative Units Shaped Ethnic Groups in Africa | doi:10.7910/DVN/5DX7DP Continuity or Change? (In)direct Rule in British and French Colonial Africa | doi:10.7910/DVN/9JI06R Replication Data for: Ethnic Geography and the Colonial Design of Administrative Units in Sub-Saharan Africa | doi:10.7910/DVN/BM4WW0 Replication Data for: State Reach and Development in Africa since the 1960s: New Data and Analysis | doi:10.7910/DVN/IJ2MII Replication Data for: Traditional Institutions in Africa, Past and Present | doi:10.7910/DVN/B6ZNAI Replication Data for: At Any Cost: How Ukrainians Think about Self-Defense Against Russia | doi:10.7910/DVN/C3SKON Replication Data for: The Ethnic Politics of Nature Protection in Africa | doi:10.7910/DVN/DJR0YC Replication Data for: Who Benefits? How Local Ethnic Demography Shapes Political Favoritism in Africa | doi:10.7910/DVN/T1NXVQ Replication Data for: Shaping States into Nations: The Effects of Ethnic Geography on State Borders | doi:10.7910/DVN/XRMDJR Replication Data for: Nationalism and the Puzzle of Reversing State Size | doi:10.7910/DVN/1F74D0 Replication Data for: Coethnics Covote in Africa: Studying Electoral Cleavages with a Covoting Regression Model | doi:10.7910/DVN/EVF0DN Replication Data for: The Train Wrecks of Modernization: Railway Construction and Separatist Mobilization in Europe | doi:10.7910/DVN/PZ2VKQ Replication Data for: Rulers on the Road"
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "Harvard Dataverse Search API",
+  "query": "authorName:\"Schvitz\" type=dataset",
+  "url": "https://dataverse.harvard.edu/api/search?q=authorName%3A%22Schvitz%22&type=dataset&per_page=100",
+  "utc": "2026-10-10T17:29:07Z",
+  "http": 200,
+  "total_results": 3,
+  "relevant_hits": [],
+  "note": "datasets returned (inspect for a second deposit of this article): doi:10.7910/DVN/SLWCLZ Replication Data for: Redemption through Rebellion: Border Change, Lost Unity and Nationalist Conflict | doi:10.7910/DVN/T1NXVQ Replication Data for: Shaping States into Nations: The Effects of Ethnic Geography on State Borders | doi:10.7910/DVN/04QUNY Replication Data for: War Did Make States: Revisiting the Bellicist Paradigm in Early Modern Europe"
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "GitHub REST API (unauthenticated)",
+  "query": "repositories of user carl-mc (named in article footnote 4)",
+  "url": "https://api.github.com/users/carl-mc/repos?per_page=100",
+  "utc": "2026-10-10T17:29:07Z",
+  "http": 200,
+  "total_results": 13,
+  "relevant_hits": [],
+  "note": "repos: academic-kickstart, BoostLines, carl-mc.github.io, cjRank, CVReg, hegdata, LEDA, pspm, rtree, sidedata, SpatialLattice, state_reach_africa, voronoi"
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "GitHub REST API (unauthenticated)",
+  "query": "full file tree of carl-mc/pspm (main)",
+  "url": "https://api.github.com/repos/carl-mc/pspm/git/trees/main?recursive=1",
+  "utc": "2026-10-10T17:29:08Z",
+  "http": 200,
+  "total_results": 46,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "GitHub REST API (unauthenticated)",
+  "query": "full file tree of carl-mc/SpatialLattice (main)",
+  "url": "https://api.github.com/repos/carl-mc/SpatialLattice/git/trees/main?recursive=1",
+  "utc": "2026-10-10T17:29:08Z",
+  "http": 200,
+  "total_results": 46,
+  "relevant_hits": [],
+  "note": ""
+ },
+ {
+  "paper": "17_T1NXVQ",
+  "source": "GitHub repository search API (unauthenticated)",
+  "query": "Shaping states into nations",
+  "url": "https://api.github.com/search/repositories?q=Shaping+states+into+nations",
+  "utc": "2026-10-10T17:29:09Z",
+  "http": 200,
+  "total_results": 5,
+  "relevant_hits": [],
+  "note": "repos returned: TheReturnOfGriffin/american-political-landscape, Aarthi2627/US-population-Report, RiversCommandingFleet/Dr.-Hari-Seldon-Jr.-Gen-USAF, HemendraBalaji/jubilant-doodle, adiganblogs/Desalination-is-the-way-to-go-"
+ }
+]

@@ -1,0 +1,11 @@
+# 18_YXC5K5
+- Paper: Benchmarking AI and human text classifications in the context of newspaper frames: A multi-label LLM classification approach
+- Journal: Research & Politics (2025)
+- Paper DOI: https://doi.org/10.1177/20531680251332353
+- Dataset DOI: https://doi.org/10.7910/DVN/YXC5K5
+- Dataset title: Replication Data for: Benchmarking AI and Human Text Classifications in the Context of Newspaper Frames: A Multi-Label LLM Classification Approach
+- Code language (Dataverse file types): R
+- Subject: Social Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 3848289
+- Audit position 18, batch 4

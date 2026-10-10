@@ -1,0 +1,122 @@
+[
+ {
+  "source": "Harvard Dataverse Search API (files, all collections)",
+  "query": "fileName:\"full_df_for_classification_ten.csv\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22full_df_for_classification_ten.csv%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:32:08Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "filename:full_df_for_classification_ten.csv",
+  "url": "https://zenodo.org/api/records?q=filename%3Afull_df_for_classification_ten.csv&size=25",
+  "utc": "2026-10-10T17:32:09Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (files, all collections)",
+  "query": "fileName:\"batch_part1_output_v2.jsonl\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22batch_part1_output_v2.jsonl%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:32:10Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "filename:batch_part1_output_v2.jsonl",
+  "url": "https://zenodo.org/api/records?q=filename%3Abatch_part1_output_v2.jsonl&size=25",
+  "utc": "2026-10-10T17:32:10Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse Search API (files, all collections)",
+  "query": "fileName:\"batch_part2_output_v2.jsonl\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=fileName%3A%22batch_part2_output_v2.jsonl%22&type=file&per_page=100",
+  "utc": "2026-10-10T17:32:11Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": ""
+ },
+ {
+  "source": "Zenodo records API",
+  "query": "filename:batch_part2_output_v2.jsonl",
+  "url": "https://zenodo.org/api/records?q=filename%3Abatch_part2_output_v2.jsonl&size=25",
+  "utc": "2026-10-10T17:32:12Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": ""
+ },
+ {
+  "source": "Harvard Dataverse dataset versions (YXC5K5)",
+  "query": "all versions, file lists",
+  "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/versions?persistentId=doi:10.7910/DVN/YXC5K5",
+  "utc": "2026-10-10T17:32:12Z",
+  "http": 200,
+  "total_results": 1,
+  "hits": [],
+  "note": "total_results = number of versions"
+ },
+ {
+  "source": "Harvard Dataverse Search API (datasets)",
+  "query": "\"Benchmarking AI and Human Text Classifications\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=%22Benchmarking+AI+and+Human+Text+Classifications%22&type=dataset&per_page=100",
+  "utc": "2026-10-10T17:32:13Z",
+  "http": 200,
+  "total_results": 1,
+  "hits": [],
+  "note": "hit = a dataset other than the audited deposit whose title contains 'benchmark'; all titles returned: [\"Replication Data for: Benchmarking AI and Human Text Classifications in the Context of Newspaper Frames: A Multi-Label LLM Classification Approach\"]"
+ },
+ {
+  "source": "Harvard Dataverse Search API (datasets)",
+  "query": "authorName:\"Tripp, Alexander\"",
+  "url": "https://dataverse.harvard.edu/api/search?q=authorName%3A%22Tripp%2C+Alexander%22&type=dataset&per_page=100",
+  "utc": "2026-10-10T17:32:13Z",
+  "http": 200,
+  "total_results": 3,
+  "hits": [],
+  "note": "hit = a dataset other than the audited deposit whose title contains 'benchmark'; all titles returned: [\"Replication Data for: Benchmarking AI and Human Text Classifications in the Context of Newspaper Frames: A Multi-Label LLM Classification Approach\", \"Replication Data for: Distinction Without a Difference: American Public Opinion on Immigrants and Refugees\", \"Replication Data for: Pipeline Diversity via Career Diversity: Lessons from a Research Experience for Undergraduates Program\"]"
+ },
+ {
+  "source": "GitHub repository search API",
+  "query": "Benchmarking AI human text classifications newspaper frames",
+  "url": "https://api.github.com/search/repositories?q=Benchmarking+AI+human+text+classifications+newspaper+frames",
+  "utc": "2026-10-10T17:32:14Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": "hits listed for hand inspection"
+ },
+ {
+  "source": "GitHub repository search API",
+  "query": "Tripp LLM newspaper frames Spanish immigration",
+  "url": "https://api.github.com/search/repositories?q=Tripp+LLM+newspaper+frames+Spanish+immigration",
+  "utc": "2026-10-10T17:32:14Z",
+  "http": 200,
+  "total_results": 0,
+  "hits": [],
+  "note": "hits listed for hand inspection"
+ },
+ {
+  "source": "OSF nodes API",
+  "query": "filter[title]=\"Benchmarking AI\"",
+  "url": "https://api.osf.io/v2/nodes/?filter%5Btitle%5D=Benchmarking+AI",
+  "utc": "2026-10-10T17:32:14Z",
+  "http": 200,
+  "total_results": 2,
+  "hits": [],
+  "note": "hits = titles mentioning newspaper or LLM"
+ }
+]

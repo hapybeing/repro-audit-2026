@@ -1,0 +1,9 @@
+Short excerpt of the printed numbers used as targets (copied from the browser agent's reading of the supplement, 2026-10-10 about 22:56 IST,
+Google Docs viewer of https://journals.sagepub.com/doi/suppl/10.1177/20531680251332353/suppl_file/sj-pdf-1-rap-10.1177_20531680251332353.pdf , 36 pages; not downloaded, no sha256).
+Supplement Table A1 "Model Metrics (Author Benchmark)", p. 4. Columns: Model | No. Labels | Prompt Type | AUC | Recall | F1 | Hamming Loss | % 1s
+  Undergraduate Coders | 8 |           | 0.48 | 0.78 | 0.84 | 0.15 | 9.68
+  Undergraduate Coders | 4 |           | 0.50 | 0.71 | 0.77 | 0.25 | 17.10
+  GPT 4o               | 8 | Few Shot  | 0.50 | 0.87 | 0.89 | 0.18 | 12.75
+  GPT 4o               | 4 | Few Shot  | 0.50 | 0.78 | 0.81 | 0.29 | 22.20
+Supplement p. 12, footnote 2 under Tables A5/A6: "Note that there were 589 observations in the final dataset" ; Table A7 (p. 13) row Observations: 589 in every column.
+Main text (Sage HTML), Introduction and "How do LLMs compare": Few Shot ChatGPT 4o with 8 labels average hamming loss 0.18; undergraduate coders 0.15; "worse than the undergraduate coders (hamming loss = 0.15) by 0.03 points on average".

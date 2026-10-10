@@ -1,0 +1,8 @@
+Source: publisher PDF, Zhu & Cheng, Perspectives on Politics 23(2), p. 700, right column, section "Data Replication".
+"Data replication sets are available in Harvard Dataverse at: https://doi.org/10.7910/DVN/QZNVZ0."
+
+Same page, left column, section "Supplementary Material":
+"The supplementary material for this article can be found at https://doi.org/10.1017/S1537592724000641."
+
+Deposit readme.txt (Dataverse datafile 8940075), third paragraph:
+"As per journal requirements, we have attached the original data used in this paper (regression_table_anonymous_final.csv, journal_scatter.csv, and timelines.csv) as well as the log files from our analysis using Python (Regression.ipynb and Visualizations.ipynb)."
