@@ -83,7 +83,7 @@ sel_lang = Counter(r["code_language"] for r in sel)
 scr_cols = list(scr[0].keys())
 data_cols = [c for c in scr_cols if re.search(r"data", c, re.I) and c not in ("dataset_doi", "dataset_link")]
 rep = open(R("batches/batch1_report.md"), encoding="utf-8").read()
-osf_line = next(l.strip("- ").strip() for l in rep.splitlines() if l.strip().startswith("- 04: data came"))
+osf_line = next(l.strip("- ").strip() for l in rep.splitlines() if l.strip().startswith("- 04: the article has no data statement"))
 p04 = next(r for r in sel if r["dataset_doi"].endswith("PSHE5L"))
 pre03 = open(R("papers/03_3IOGQ8/PREREG.md"), encoding="utf-8").read()
 byonic = "NOT DEPOSITED" in pre03 and "Byonic_results.csv" in pre03
@@ -192,7 +192,7 @@ A(f"- Eligibility criteria E1 to E6 (`selection/screening.csv` columns: {', '.jo
 A("- So the presence of the data needed to reproduce the paper was **not** an eligibility criterion. It was assessed only during the audit, "
   "where it can lead to class C.")
 A(f"- Batch 1 shows the consequence: 04_PSHE5L's deposit is {int(p04['total_bytes'])} bytes titled \"{p04['title'][:22]}...\" and the batch report "
-  f"records: \"{osf_line}\". 03_3IOGQ8's notebook input `Byonic_results.csv` is recorded as not deposited in its PREREG.md: {'yes' if byonic else 'no'}. "
+  f"(revision 3) records: \"{osf_line}\". 03_3IOGQ8's notebook input `Byonic_results.csv` is recorded as not deposited in its PREREG.md: {'yes' if byonic else 'no'}. "
   f"01_5BIH0P's production trajectory is recorded as not in the dataset in its PREREG.md: {'yes' if traj else 'no'}.")
 A("- Any description of the sample as \"papers with open data and code\" should read \"papers whose Dataverse deposit contains R or Python code\".")
 A("")
