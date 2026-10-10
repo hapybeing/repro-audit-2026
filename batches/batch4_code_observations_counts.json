@@ -1,0 +1,50 @@
+{
+ "n_observations": 8,
+ "n_issue_list_entries_mapped": 5,
+ "issue_list_entries_per_paper": {
+  "16_QZNVZ0": {
+   "A": 0,
+   "B": 0
+  },
+  "17_T1NXVQ": {
+   "A": 0,
+   "B": 0
+  },
+  "18_YXC5K5": {
+   "A": 2,
+   "B": 2
+  },
+  "19_KH0SQ2": {
+   "A": 1,
+   "B": 0
+  },
+  "20_SINIYU": {
+   "A": 0,
+   "B": 0
+  }
+ },
+ "by_status": {
+  "unverified agent observation": 4,
+  "verified finding": 3,
+  "out of scope: not reproducibility": 1
+ },
+ "by_paper_and_status": {
+  "16_QZNVZ0": {
+   "unverified agent observation": 2
+  },
+  "18_YXC5K5": {
+   "verified finding": 2
+  },
+  "19_KH0SQ2": {
+   "verified finding": 1,
+   "out of scope: not reproducibility": 1
+  },
+  "20_SINIYU": {
+   "unverified agent observation": 2
+  }
+ },
+ "logged_by_both": 7,
+ "independently_found_by_both": 3,
+ "with_demonstrated_output_change": 3,
+ "n_excluded_items": 24
+}

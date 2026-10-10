@@ -1,0 +1,238 @@
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: sp
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:plyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following objects are masked from ‘package:raster’:
+
+    intersect, select, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tidyr’
+
+The following object is masked from ‘package:raster’:
+
+    extract
+
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:tidyr’:
+
+    crossing
+
+The following objects are masked from ‘package:dplyr’:
+
+    as_data_frame, groups, union
+
+The following object is masked from ‘package:raster’:
+
+    union
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Loading required package: miscTools
+
+Please cite the 'maxLik' package as:
+Henningsen, Arne and Toomet, Ott (2011). maxLik: A package for maximum likelihood estimation in R. Computational Statistics 26(3), 443-458. DOI 10.1007/s00180-010-0217-1.
+
+If you have questions, suggestions, or comments regarding the 'maxLik' package, please use a forum or 'tracker' at maxLik's R-Forge site:
+https://r-forge.r-project.org/projects/maxlik/
+
+Attaching package: ‘maxLik’
+
+The following object is masked from ‘package:raster’:
+
+    maxValue
+
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+The following objects are masked from ‘package:raster’:
+
+    area, select
+
+
+Attaching package: ‘fasterize’
+
+The following object is masked from ‘package:graphics’:
+
+    plot
+
+The following object is masked from ‘package:base’:
+
+    plot
+
+Linking to GEOS 3.13.1, GDAL 3.10.3, PROJ 9.6.0; sf_use_s2() is TRUE
+Loading required package: viridisLite
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.5
+✔ lubridate 1.9.4     ✔ stringr   1.5.1
+✔ purrr     1.0.4     ✔ tibble    3.2.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ lubridate::%--%()       masks igraph::%--%()
+✖ purrr::accumulate()     masks foreach::accumulate()
+✖ dplyr::arrange()        masks plyr::arrange()
+✖ tibble::as_data_frame() masks igraph::as_data_frame(), dplyr::as_data_frame()
+✖ gridExtra::combine()    masks dplyr::combine()
+✖ purrr::compact()        masks plyr::compact()
+✖ purrr::compose()        masks igraph::compose()
+✖ dplyr::count()          masks plyr::count()
+✖ igraph::crossing()      masks tidyr::crossing()
+✖ dplyr::desc()           masks plyr::desc()
+✖ tidyr::extract()        masks raster::extract()
+✖ dplyr::failwith()       masks plyr::failwith()
+✖ dplyr::filter()         masks stats::filter()
+✖ dplyr::id()             masks plyr::id()
+✖ dplyr::lag()            masks stats::lag()
+✖ dplyr::mutate()         masks plyr::mutate()
+✖ dplyr::rename()         masks plyr::rename()
+✖ MASS::select()          masks dplyr::select(), raster::select()
+✖ purrr::simplify()       masks igraph::simplify()
+✖ dplyr::summarise()      masks plyr::summarise()
+✖ dplyr::summarize()      masks plyr::summarize()
+✖ purrr::when()           masks foreach::when()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘smoothr’
+
+The following object is masked from ‘package:stats’:
+
+    smooth
+
+
+Please cite as: 
+
+ Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+ R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
+
+[1] "Loaded data"
+[1] "2026-10-10 21:30:09 UTC"
+[1] "MODEL ESTIMATION"
+[1] "Estimate"
+[1] "2026-10-10 21:30:09 UTC"
+This graph was created by an old(er) igraph version.
+ℹ Call `igraph::upgrade_graph()` on it to use with the current igraph version.
+For now we convert it on the fly...
+--------------------------------------------
+Maximum Likelihood estimation
+BFGS maximization, 70 iterations
+Return code 0: successful convergence 
+Log-Likelihood: -209.6687 
+8  free parameters
+Estimates:
+                    Estimate Std. error t value  Pr(> t)    
+Constant             -3.0076     0.4292  -7.007 2.43e-12 ***
+length.norm          -0.3407     0.9218  -0.370 0.711700    
+river.norm            0.2556     0.2226   1.148 0.250838    
+watershed_diff.norm   0.7587     0.2280   3.328 0.000873 ***
+elevmean.norm         0.1472     0.5188   0.284 0.776631    
+abram_sum             0.7377     0.1965   3.755 0.000173 ***
+cshp_lag              1.6542     0.1185  13.966  < 2e-16 ***
+cuteth_lag            1.0151     0.1326   7.655 1.93e-14 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+--------------------------------------------
+[1] "2026-10-10 21:34:47 UTC"
+Warning messages:
+1: In model_graphframe(g = g, formula = formula, network_stat = network_stat,  :
+  Deleting  142 edges
+2: In model_graphframe(g = g, formula = formula, network_stat = network_stat,  :
+  Deleting  142 edges
+3: In model_graphframe(g = g, formula = formula, network_stat = network_stat,  :
+  Deleting  393 edges
+4: In model_graphframe(g = g, formula = formula, network_stat = network_stat,  :
+  Deleting  173 edges
+5: In model_graphframe(g = g, formula = formula, network_stat = network_stat,  :
+  Deleting  142 edges
+RESULT pool_ldv minutes 4.79 VmHWM:	 1362804 kB 
+                 term   estimate stdEr_maxLik
+1            Constant -3.0076239           NA
+2         length.norm -0.3406618           NA
+3          river.norm  0.2556483           NA
+4 watershed_diff.norm  0.7587309           NA
+5       elevmean.norm  0.1472018           NA
+6           abram_sum  0.7377165           NA
+7            cshp_lag  1.6542361           NA
+8          cuteth_lag  1.0151421           NA
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] grid      parallel  stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] stargazer_5.2.3     smoothr_1.3.0       xtable_1.8-4       
+ [4] lubridate_1.9.4     forcats_1.0.0       stringr_1.5.1      
+ [7] purrr_1.0.4         readr_2.1.5         tibble_3.2.1       
+[10] tidyverse_2.0.0     viridis_0.6.5       viridisLite_0.4.2  
+[13] sf_1.0-19           fasterize_1.1.0     MASS_7.3-65        
+[16] survival_3.8-3      ggridges_0.5.6      cshapes_2.0        
+[19] gridExtra_2.3       abind_1.4-8         maxLik_1.5-2       
+[22] miscTools_0.6-26    scico_1.5.0         ggplot2_3.5.1      
+[25] igraph_2.1.4        tidyr_1.3.1         dplyr_1.1.4        
+[28] plyr_1.8.9          raster_3.6-31       sp_2.2-3           
+[31] reticulate_1.41.0.1 pspm_1.0            doParallel_1.0.17  
+[34] iterators_1.0.14    foreach_1.5.2      
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6       lattice_0.22-7     tzdb_0.5.0         vctrs_0.6.5       
+ [5] tools_4.5.0        generics_0.1.3     curl_6.2.1         sandwich_3.1-1    
+ [9] proxy_0.4-27       pkgconfig_2.0.3    Matrix_1.7-3       KernSmooth_2.23-26
+[13] lifecycle_1.0.4    compiler_4.5.0     munsell_0.5.1      terra_1.8-29      
+[17] codetools_0.2-20   class_7.3-23       pillar_1.10.1      classInt_0.4-11   
+[21] tidyselect_1.2.1   digest_0.6.37      stringi_1.8.4      splines_4.5.0     
+[25] colorspace_2.1-1   cli_3.6.4          magrittr_2.0.3     e1071_1.7-16      
+[29] withr_3.0.2        scales_1.3.0       timechange_0.3.0   httr_1.4.7        
+[33] infotheo_1.2.0.1   hms_1.1.3          zoo_1.8-14         png_0.1-8         
+[37] rmapshaper_0.6.1   V8_8.2.0           rlang_1.1.5        Rcpp_1.1.2        
+[41] glue_1.8.0         DBI_1.2.3          jsonlite_1.9.1     R6_2.6.1          
+[45] texreg_1.38.6      units_0.8-7       
+Error: unexpected string constant in "utes", round(as.numeric(difftime(Sys.time(), t0, units = ""
+Execution halted

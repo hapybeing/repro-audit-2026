@@ -1,0 +1,27 @@
+--- scripts/regression_verbatim_orig.py	2026-10-10 18:52:29.032168057 +0000
++++ scripts/regression_verbatim.py	2026-10-10 18:52:29.040301229 +0000
+@@ -88,3 +88,24 @@
+ 
+ # ---- cell 12 ----
+ 
++
++# ==== Appended by audit agent A (extraction only; no author line above changed) ====
++import os, sys
++OUT = os.environ.get("AUDIT_OUT", "outputs")
++os.makedirs(OUT, exist_ok=True)
++_rows = []
++_summ = open(os.path.join(OUT, "regression_summaries.txt"), "w")
++for _name in ["results_1","results_2","results_3","results_4","results_S1","results_S2","results_S3","results_S4"]:
++    _r = globals()[_name]
++    _summ.write("==== %s ====\n" % _name); _summ.write(str(_r.summary())); _summ.write("\n\n")
++    for _v in _r.params.index:
++        _rows.append({"model": _name, "variable": _v, "B": repr(float(_r.params[_v])), "SE": repr(float(_r.bse[_v])),
++                      "t": repr(float(_r.tvalues[_v])), "p": repr(float(_r.pvalues[_v])),
++                      "nobs": int(_r.nobs), "rsquared_adj": repr(float(_r.rsquared_adj))})
++_summ.close()
++pd.DataFrame(_rows).to_csv(os.path.join(OUT, "regression_estimates.csv"), index=False)
++# estimation-sample row labels for the pre-registered robustness checks
++pd.Series(results_1.model.data.row_labels).to_csv(os.path.join(OUT, "model1_row_labels.csv"), index=False, header=["row_label"])
++pd.Series(results_4.model.data.row_labels).to_csv(os.path.join(OUT, "model4_row_labels.csv"), index=False, header=["row_label"])
++print("dtypes Top10_Inst/Top50_Inst:", regression_table["Top10_Inst"].dtype, regression_table["Top50_Inst"].dtype)
++print("extraction done")

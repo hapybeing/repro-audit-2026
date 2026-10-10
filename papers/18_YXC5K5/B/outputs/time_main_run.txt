@@ -1,0 +1,540 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Loading required package: lpSolve
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+
+Please cite as: 
+
+ Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+ R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
+
+
+Attaching package: ‘cowplot’
+
+The following object is masked from ‘package:patchwork’:
+
+    align_plots
+
+The following object is masked from ‘package:lubridate’:
+
+    stamp
+
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Tema1, Tema2, Tema3, Tema4, Tema5, Tema6, Tema7, Tema8
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (10): ...1, docid, Theme1, Theme2, Theme3, Theme4, Theme5, Theme6, Theme...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (6): ...1, docid, Theme1, Theme2, Theme3, Theme4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 11
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): code_agreement
+dbl (10): ...1, docid, MAIN_HUM_HUMAN, MAIN_HUM_REFUGE, MAIN_THREAT_DIS, MAI...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...1`
+Rows: 590 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): code_agreement
+dbl (6): ...1, docid, human, threat, benefit, pi
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -> `...10`
+Rows: 589 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (9): DOCID, HUMAN, REFUGEE, DISEASE, ECON THREAT, VIOLENCE, INSTABILITY,...
+lgl (1): ...10
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'model'. You can override using the
+`.groups` argument.
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+
+Attaching package: ‘reshape2’
+
+The following object is masked from ‘package:tidyr’:
+
+    smiths
+
+	Command being timed: "Rscript -e source('analysis.R', echo=TRUE, max.deparse.length=Inf); save.image('/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/18_YXC5K5/B/outputs/session.RData')"
+	User time (seconds): 15.12
+	System time (seconds): 0.63
+	Percent of CPU this job got: 52%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:30.26
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 398668
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 108582
+	Voluntary context switches: 4747
+	Involuntary context switches: 59170
+	Swaps: 0
+	File system inputs: 16
+	File system outputs: 3663
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

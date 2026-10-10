@@ -1,0 +1,44 @@
+--- analysis_globals.R.orig	2026-10-10 18:55:42.833454506 +0000
++++ replication/scripts/analysis/analysis_globals.R	2026-10-10 19:07:42.888438542 +0000
+@@ -43,7 +43,7 @@
+   # Max segment size for analysis
+   
+   # Number of cores
+-  ncore <- 40
++  ncore <- 1
+   
+   # Burnin rate
+   burnin = 100
+@@ -55,7 +55,7 @@
+   if(!dir.exists(tem_res.path)){
+     dir.create(tem_res.path)
+   }
+-  Sys.setenv(RETICULATE_PYTHON = '/usr/bin/python3')
++  Sys.setenv(RETICULATE_PYTHON = '/workspace/audit_runs/17_T1NXVQ/A/venv/bin/python')
+   library(foreach)
+   library(doParallel)
+   library(pspm)
+@@ -66,8 +66,6 @@
+   library(tidyr)
+   library(igraph)
+   library(ggplot2)
+-  library(rgeos)
+-  library(rgdal)
+   library(scico) 
+   library(maxLik)
+   library(abind)
+@@ -117,13 +115,11 @@
+     init.ls <- clusterEvalQ(cl = cl, expr = {
+       # Packages 
+       library(reticulate)
+-      Sys.setenv(RETICULATE_PYTHON = '/usr/bin/python3')
++      Sys.setenv(RETICULATE_PYTHON = '/workspace/audit_runs/17_T1NXVQ/A/venv/bin/python')
+       library(pspm)
+       library(raster)
+       library(plyr)
+       library(sp)
+-      library(rgdal)
+-      library(rgeos)
+       library(igraph)
+       library(dplyr)
+       library(survival)

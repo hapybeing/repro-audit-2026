@@ -1,0 +1,133 @@
+{
+ "FY3G_PMR.HDF:/Geolocation/Ku/height": [
+  [
+   3884,
+   59,
+   500
+  ],
+  "float32"
+ ],
+ "FY3G_PMR.HDF:/Geolocation/Ku/Latitude": [
+  [
+   3884,
+   59,
+   2
+  ],
+  "float32"
+ ],
+ "FY3G_PMR.HDF:/Geolocation/Ku/Longitude": [
+  [
+   3884,
+   59,
+   2
+  ],
+  "float32"
+ ],
+ "FY3G_PMR.HDF:/PRE/Ku/zFactorMeasured": [
+  [
+   3884,
+   59,
+   500
+  ],
+  "float32"
+ ],
+ "FY3G_PMR.HDF:/PRE/Ku/flagPrecip": [
+  [
+   3884,
+   59
+  ],
+  "int8"
+ ],
+ "FY3G_PMR.HDF:/PRE/Ku/binClutterFreeBottom": [
+  [
+   3884,
+   59
+  ],
+  "int16"
+ ],
+ "FY3G_PMR.HDF:/Geolocation/Ku/dayCount": [
+  [
+   3884
+  ],
+  "int16"
+ ],
+ "FY3G_PMR.HDF:/Geolocation/Ku/msCount": [
+  [
+   3884
+  ],
+  "int32"
+ ],
+ "gep00/postvar.nc:Qv": [
+  [
+   1,
+   27,
+   301,
+   601
+  ],
+  "float32"
+ ],
+ "gep00/postvar.nc:t": [
+  [
+   1,
+   27,
+   301,
+   601
+  ],
+  "float32"
+ ],
+ "gep00/postvar.nc:Qr": [
+  [
+   1,
+   27,
+   301,
+   601
+  ],
+  "float32"
+ ],
+ "gep00/postvar.nc:levels": [
+  [
+   27
+  ],
+  "float32"
+ ],
+ "gep00/postvar.nc:latitudes": [
+  [
+   301
+  ],
+  "float32"
+ ],
+ "gep00/postvar.nc:longitudes": [
+  [
+   601
+  ],
+  "float32"
+ ],
+ "gep00/swath_spaceborn.nc:heights": [
+  [
+   "nscan",
+   "nray",
+   "nbin"
+  ],
+  [
+   150,
+   220,
+   239
+  ],
+  "float32"
+ ],
+ "gep00/swath_spaceborn.nc:ZH": [
+  [
+   "nscan",
+   "nray",
+   "nbin"
+  ],
+  [
+   150,
+   220,
+   239
+  ],
+  "float32"
+ ],
+ "import interp_radar": "ModuleNotFoundError: No module named 'interp_radar'",
+ "scienceplots style": "OSError: 'science' is not a valid package style, path of style file, URL of style file, or library style name (library styles are listed in `style.available`)"
+}

@@ -1,0 +1,160 @@
+{
+ "paper_id": "20_SINIYU",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": false,
+ "could_not_run_reason": "codes/figure6/O_B_Ku.py (the only deposited script that computes a target, T1/T2) stops at line 17: ModuleNotFoundError: No module named 'interp_radar' (exit=1). The f2py module interp_radar is not in the deposit (56 files scanned, outputs/deposit_module_search.json) nor in the locations the data statement names (../DATA_STATEMENT.md). No deposited code computes Table 1 (T3-T6). No replacement code written, per batch 4 brief and class decision 5.",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Mean of the Ku-band reflectivity observation-minus-background (O-B, dBZ) values: np.mean(data) in codes/figure6/O_B_Ku.py line 500, where data = flattened obs_mesh_meso - B_KuRH with NaNs removed (also the mean of the column in o_b_pvp.csv written at line 494)",
+   "paper_value": 1.23,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "not produced: O_B_Ku.py did not produce o_b_pvp.csv: ModuleNotFoundError: No module named 'interp_radar' (detail in outputs/O_B_Ku.log)"
+  },
+  {
+   "id": "T2",
+   "description": "Number of Ku-band O-B data points: len(data) in codes/figure6/O_B_Ku.py (number of rows of o_b_pvp.csv)",
+   "paper_value": 31161,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "not produced: O_B_Ku.py did not produce o_b_pvp.csv: ModuleNotFoundError: No module named 'interp_radar' (detail in outputs/O_B_Ku.log)"
+  },
+  {
+   "id": "T3",
+   "description": "Table 1, Z9230 (Chongqing) ground radar, 2.4 deg elevation: sample size of volume-matched GR-KR pairs. No deposited script computes Table 1; see PREREG.md section 1",
+   "paper_value": 573,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "not produced: no deposited code computes Table 1 (detail in outputs/deposit_module_search.json)"
+  },
+  {
+   "id": "T4",
+   "description": "Table 1, Z9230 (Chongqing), 2.4 deg elevation: correlation coefficient between volume-matched GR and KR reflectivity. No deposited script computes Table 1",
+   "paper_value": 0.9,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "not produced: no deposited code computes Table 1 (detail in outputs/deposit_module_search.json)"
+  },
+  {
+   "id": "T5",
+   "description": "Table 1, Z9092 (Yongchuan), 2.4 deg elevation: correlation coefficient (the lowest in Table 1). No deposited script computes Table 1",
+   "paper_value": 0.82,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "not produced: no deposited code computes Table 1 (detail in outputs/deposit_module_search.json)"
+  },
+  {
+   "id": "T6",
+   "description": "Table 1, Z9092 (Yongchuan), 3.4 deg elevation: standard deviation of GR minus KR differences, dB (the largest in Table 1). No deposited script computes Table 1",
+   "paper_value": 3.76,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "not produced: no deposited code computes Table 1 (detail in outputs/deposit_module_search.json)"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Bootstrap of the Ku O-B mean, 2000 resamples, rng default_rng(20261010)",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/O_B_Ku.log",
+   "note": "not run: starts from the O-B data vector that O_B_Ku.py never builds (ModuleNotFoundError: No module named 'interp_radar', outputs/O_B_Ku.log)"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z|>3 O-B values (np.std ddof=0), mean, 95% t-interval, one-sample t-test vs 0",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/O_B_Ku.log",
+   "note": "not run: starts from the O-B data vector that O_B_Ku.py never builds (ModuleNotFoundError: No module named 'interp_radar', outputs/O_B_Ku.log)"
+  },
+  {
+   "id": "R_c",
+   "description": "Copy of O_B_Ku.py without lines 419-420 (6000 m height cap), mean, n, 95% t-interval, p",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/O_B_Ku.log",
+   "note": "not run: starts from the O-B data vector that O_B_Ku.py never builds (ModuleNotFoundError: No module named 'interp_radar', outputs/O_B_Ku.log)"
+  }
+ ],
+ "bugs": [],
+ "code_observations_unverified": [
+  {
+   "file": "codes/figure6/O_B_Ku.py",
+   "line": 420,
+   "description": "Line 419 sets radar_Z_out to NaN where >6000; line 420 then tests radar_Z_out>6000. to mask obs_mesh_meso, which is False for NaN, so line 420 masks nothing. Whether the 6000 m cut still acts depends on the undeposited interp_radar_ppi.",
+   "evidence": "outputs/code_observation_checks.json obs1_obs_cells_masked_on_toy_array = 0; effect on T1/T2 not measurable"
+  },
+  {
+   "file": "codes/figure6/O_B_Ku.py",
+   "line": 345,
+   "description": "Line 344 sets B_value to 0 where ZH<0; line 345 overwrites B_value with raw ZH/Rvar, so the clip has no effect.",
+   "evidence": "outputs/code_observation_checks.json: 7489094 of 7887000 swath ZH values are below 0; lines 479-480 later drop interpolated values <18, so any effect is only through the interpolation, which cannot be run"
+  }
+ ],
+ "env_fixes": [
+  "diffs/README.md: symlink FY3G_PMR.HDF -> FY3G_PMR.HDF4 (rar member, unrar-free -x), path-only",
+  "diffs/README.md: symlink gep00/postvar.nc -> postvar.nc, path-only",
+  "diffs/README.md: symlink gep00/swath_spaceborn.nc -> swath_spaceborn_mu3.nc, path-only",
+  "environment.txt: Debian package time 1.9-0.2+b1 installed to provide /usr/bin/time -v (PREREG step 6); no authors' file edited"
+ ],
+ "proposed_class": "C",
+ "class_reason": "Materials incomplete: the only script that computes a pre-registered target (Figure 6a Ku O-B mean and count) imports interp_radar, which is not deposited or in any location the data statement names, and no deposited code computes Table 1; 0 of 6 targets produced (CHANGELOG #4, batch 4 class decision 5).",
+ "confidence": "high",
+ "confidence_reason": "Failure is a deterministic ModuleNotFoundError at the import line, independent of environment; absence backed by a scripted deposit scan and the pre-registered search log.",
+ "time_minutes": 11,
+ "uncertainties": [
+  "The absence searches for interp_radar outside the deposit were done at pre-registration (../DATA_STATEMENT.md) and not repeated by agent A; an uncited copy (e.g. ZJU-AERO 0.4.1, zju_aero_env.tar.gz, Zenodo 10.5281/zenodo.19562313 data.zip) was not checked there and would not change the main class under CHANGELOG #4 in any case.",
+  "Whether the deposited swath_spaceborn_mu3.nc is the exact file the authors read as gep00/swath_spaceborn.nc is inferred (figure7 names the _mu3 file); it could not be tested because the run stops first.",
+  "Out of scope by design (PREREG): Figure 6b RH O-B, Figures 7 and 9 to 13 and the forecast-improvement claims (need CMA-MESO and 3D-Var, not public, and undeposited forecast/MET files).",
+  "time_minutes is agent A's wall time from LOG.md (00:18 to 00:29 IST) plus writing; the runbook asks for it from LOG.md timestamps."
+ ]
+}

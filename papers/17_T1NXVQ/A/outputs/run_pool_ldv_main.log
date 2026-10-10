@@ -1,0 +1,34 @@
+START pool_ldv main K 2026-10-10 19:54:15 UTC
+[1] "Loaded data"
+[1] "2026-10-10 19:54:20 UTC"
+[1] "MODEL ESTIMATION"
+[1] "Estimate"
+[1] "2026-10-10 19:54:20 UTC"
+--------------------------------------------
+Maximum Likelihood estimation
+BFGS maximization, 70 iterations
+Return code 0: successful convergence 
+Log-Likelihood: -209.6687 
+8  free parameters
+Estimates:
+                    Estimate Std. error t value  Pr(> t)    
+Constant             -3.0076     0.4292  -7.007 2.43e-12 ***
+length.norm          -0.3407     0.9218  -0.370 0.711700    
+river.norm            0.2556     0.2226   1.148 0.250838    
+watershed_diff.norm   0.7587     0.2280   3.328 0.000873 ***
+elevmean.norm         0.1472     0.5188   0.284 0.776631    
+abram_sum             0.7377     0.1965   3.755 0.000173 ***
+cshp_lag              1.6542     0.1185  13.966  < 2e-16 ***
+cuteth_lag            1.0151     0.1326   7.655 1.93e-14 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+--------------------------------------------
+[1] "2026-10-10 19:58:42 UTC"
+FIT DONE minutes: 4.64 
+DRAW seed 1 seconds 325.3 failed FALSE 
+DRAW seed 2 seconds 320.8 failed FALSE 
+DRAW seed 3 seconds 325.9 failed FALSE 
+DRAW seed 4 seconds 330.3 failed FALSE 
+VmHWM:	 1435820 kB
+VmRSS:	 1417080 kB
+END 2026-10-10 20:20:36 UTC

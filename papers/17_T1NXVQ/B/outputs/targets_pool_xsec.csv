@@ -1,0 +1,7 @@
+"model","check","term","estimate","stdEr_maxLik","sum_N","sum_N_edges","sum_N_groups","N_instances","maxLik_code","maxLik_message"
+"pool_xsec","main","Constant",-2.49576539168013,NA,6769,17923,189,6,0,"successful convergence "
+"pool_xsec","main","length.norm",0.162640628796702,NA,6769,17923,189,6,0,"successful convergence "
+"pool_xsec","main","river.norm",0.27799363708762,NA,6769,17923,189,6,0,"successful convergence "
+"pool_xsec","main","watershed_diff.norm",0.623118845007852,NA,6769,17923,189,6,0,"successful convergence "
+"pool_xsec","main","elevmean.norm",0.239869698724688,NA,6769,17923,189,6,0,"successful convergence "
+"pool_xsec","main","cuteth",1.2181741775329,NA,6769,17923,189,6,0,"successful convergence "

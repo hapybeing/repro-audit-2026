@@ -1,0 +1,5 @@
+"model","variant","term","ran","estimate","maxlik_se","sd_boot_step6","ci_lo_1.96sd","ci_hi_1.96sd","same_dir_and_sig"
+"pool_xsec","rb","cuteth",TRUE,1.29116300401011,0.0874703835076111,0.0967438291180729,1.10154509893869,1.48078090908153,TRUE
+"pool_xsec","rc","cuteth",TRUE,1.21909871084216,0.0814114270968362,0.0967438291180729,1.02948080577074,1.40871661591358,TRUE
+"pool_ldv","rb","cuteth_lag",FALSE,NA,NA,0.120326911230714,NA,NA,NA
+"pool_ldv","rc","cuteth_lag",FALSE,NA,NA,0.120326911230714,NA,NA,NA

@@ -1,0 +1,32 @@
+START pool_xsec ra K 2026-10-10 20:38:32 UTC
+[1] "Loaded data"
+[1] "2026-10-10 20:38:37 UTC"
+[1] "MODEL ESTIMATION"
+[1] "Estimate"
+[1] "2026-10-10 20:38:37 UTC"
+--------------------------------------------
+Maximum Likelihood estimation
+BFGS maximization, 71 iterations
+Return code 0: successful convergence 
+Log-Likelihood: -508.4931 
+6  free parameters
+Estimates:
+                    Estimate Std. error t value  Pr(> t)    
+Constant            -2.49577    0.26386  -9.459  < 2e-16 ***
+length.norm          0.16264    0.54030   0.301   0.7634    
+river.norm           0.27799    0.12256   2.268   0.0233 *  
+watershed_diff.norm  0.62312    0.11766   5.296 1.18e-07 ***
+elevmean.norm        0.23987    0.31943   0.751   0.4527    
+cuteth               1.21817    0.08115  15.012  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+--------------------------------------------
+[1] "2026-10-10 20:42:20 UTC"
+FIT DONE minutes: 4.01 
+DRAW seed 1001 seconds 323.5 failed FALSE 
+DRAW seed 1002 seconds 310.1 failed FALSE 
+DRAW seed 1003 seconds 320.2 failed FALSE 
+DRAW seed 1004 seconds 322.5 failed FALSE 
+VmHWM:	 1473880 kB
+VmRSS:	 1461112 kB
+END 2026-10-10 21:03:48 UTC

@@ -1,0 +1,221 @@
+also installing the dependencies ‘effectsize’, ‘jtools’, ‘bayestestR’, ‘datawizard’, ‘insight’, ‘parameters’, ‘performance’, ‘sjstats’
+
+trying URL 'https://cloud.r-project.org/src/contrib/effectsize_1.0.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/jtools_2.3.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/bayestestR_0.19.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/datawizard_1.4.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/insight_1.5.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/parameters_0.29.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/performance_0.18.2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sjstats_0.19.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stargazer_5.2.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/interactions_1.2.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/cjoint_2.1.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sjPlot_2.9.0.tar.gz'
+* installing *source* package ‘jtools’ ...
+** this is package ‘jtools’ version ‘2.3.1’
+** package ‘jtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (jtools)
+* installing *source* package ‘insight’ ...
+** this is package ‘insight’ version ‘1.5.4’
+** package ‘insight’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (insight)
+* installing *source* package ‘stargazer’ ...
+** this is package ‘stargazer’ version ‘5.2.3’
+** package ‘stargazer’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stargazer)
+* installing *source* package ‘cjoint’ ...
+** this is package ‘cjoint’ version ‘2.1.3’
+** package ‘cjoint’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cjoint)
+* installing *source* package ‘datawizard’ ...
+** this is package ‘datawizard’ version ‘1.4.0’
+** package ‘datawizard’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (datawizard)
+* installing *source* package ‘interactions’ ...
+** this is package ‘interactions’ version ‘1.2.0’
+** package ‘interactions’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (interactions)
+* installing *source* package ‘bayestestR’ ...
+** this is package ‘bayestestR’ version ‘0.19.0’
+** package ‘bayestestR’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bayestestR)
+* installing *source* package ‘parameters’ ...
+** this is package ‘parameters’ version ‘0.29.3’
+** package ‘parameters’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (parameters)
+* installing *source* package ‘performance’ ...
+** this is package ‘performance’ version ‘0.18.2’
+** package ‘performance’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (performance)
+* installing *source* package ‘effectsize’ ...
+** this is package ‘effectsize’ version ‘1.0.3’
+** package ‘effectsize’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (effectsize)
+* installing *source* package ‘sjstats’ ...
+** this is package ‘sjstats’ version ‘0.19.1’
+** package ‘sjstats’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sjstats)
+* installing *source* package ‘sjPlot’ ...
+** this is package ‘sjPlot’ version ‘2.9.0’
+** package ‘sjPlot’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sjPlot)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpj365Xu/downloaded_packages’
+Loading required namespace: stargazer
+Loading required namespace: interactions
+Loading required namespace: cjoint
+Loading required namespace: sjPlot
+   stargazer interactions       cjoint       sjPlot 
+        TRUE         TRUE         TRUE         TRUE 

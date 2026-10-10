@@ -1,0 +1,15 @@
+"model","term","estimate","maxlik_se","N_sum","N_edges_sum","N_groups_sum","N_instances","maxlik_code","maxlik_message","iterations"
+"pool_xsec","Constant",-2.49576539168013,0.263859767874483,6769,17923,189,6,0,"successful convergence ",71
+"pool_xsec","length.norm",0.162640628796702,0.540297172822438,6769,17923,189,6,0,"successful convergence ",71
+"pool_xsec","river.norm",0.27799363708762,0.122560012878769,6769,17923,189,6,0,"successful convergence ",71
+"pool_xsec","watershed_diff.norm",0.623118845007852,0.117659267366295,6769,17923,189,6,0,"successful convergence ",71
+"pool_xsec","elevmean.norm",0.239869698724688,0.319434405792385,6769,17923,189,6,0,"successful convergence ",71
+"pool_xsec","cuteth",1.2181741775329,0.081148997100883,6769,17923,189,6,0,"successful convergence ",71
+"pool_ldv","Constant",-3.00762388048591,0.429230647951862,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","length.norm",-0.34066180216193,0.921770387379561,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","river.norm",0.255648290904417,0.222628750472206,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","watershed_diff.norm",0.758730850430575,0.227955244561866,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","elevmean.norm",0.147201802759714,0.518843029573535,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","abram_sum",0.737716467383604,0.1964501771496,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","cshp_lag",1.65423612287981,0.118450219172981,5412,14243,177,5,0,"successful convergence ",70
+"pool_ldv","cuteth_lag",1.0151420706214,0.132609765097911,5412,14243,177,5,0,"successful convergence ",70

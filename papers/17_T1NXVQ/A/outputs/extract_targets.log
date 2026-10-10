@@ -1,0 +1,53 @@
+                model                term  estimate maxlik_se N_sum N_edges_sum
+pool_xsec.1 pool_xsec            Constant -2.495765  0.263860  6769       17923
+pool_xsec.2 pool_xsec         length.norm  0.162641  0.540297  6769       17923
+pool_xsec.3 pool_xsec          river.norm  0.277994  0.122560  6769       17923
+pool_xsec.4 pool_xsec watershed_diff.norm  0.623119  0.117659  6769       17923
+pool_xsec.5 pool_xsec       elevmean.norm  0.239870  0.319434  6769       17923
+pool_xsec.6 pool_xsec              cuteth  1.218174  0.081149  6769       17923
+pool_ldv.1   pool_ldv            Constant -3.007624  0.429231  5412       14243
+pool_ldv.2   pool_ldv         length.norm -0.340662  0.921770  5412       14243
+pool_ldv.3   pool_ldv          river.norm  0.255648  0.222629  5412       14243
+pool_ldv.4   pool_ldv watershed_diff.norm  0.758731  0.227955  5412       14243
+pool_ldv.5   pool_ldv       elevmean.norm  0.147202  0.518843  5412       14243
+pool_ldv.6   pool_ldv           abram_sum  0.737716  0.196450  5412       14243
+pool_ldv.7   pool_ldv            cshp_lag  1.654236  0.118450  5412       14243
+pool_ldv.8   pool_ldv          cuteth_lag  1.015142  0.132610  5412       14243
+            N_groups_sum N_instances
+pool_xsec.1          189           6
+pool_xsec.2          189           6
+pool_xsec.3          189           6
+pool_xsec.4          189           6
+pool_xsec.5          189           6
+pool_xsec.6          189           6
+pool_ldv.1           177           5
+pool_ldv.2           177           5
+pool_ldv.3           177           5
+pool_ldv.4           177           5
+pool_ldv.5           177           5
+pool_ldv.6           177           5
+pool_ldv.7           177           5
+pool_ldv.8           177           5
+	Command being timed: "Rscript scripts/extract_targets.R"
+	User time (seconds): 5.48
+	System time (seconds): 0.77
+	Percent of CPU this job got: 72%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 710116
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 296086
+	Voluntary context switches: 3952
+	Involuntary context switches: 10510
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 6
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

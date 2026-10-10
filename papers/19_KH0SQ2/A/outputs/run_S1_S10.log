@@ -1,0 +1,243 @@
+Lines 892-958 first/last:
+# using merged all data 
+ summary(resg2) 
+
+Call:
+lm(formula = Support ~ Treatment + resp_gender, data = fr2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1104 -0.6134  0.2310  0.7245  3.3429 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      3.78260    0.07584  49.876  < 2e-16 ***
+TreatmentQuota  -0.18015    0.08844  -2.037  0.04209 *  
+resp_genderMale -0.27994    0.08844  -3.165  0.00163 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.114 on 620 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.02291,	Adjusted R-squared:  0.01976 
+F-statistic: 7.268 on 2 and 620 DF,  p-value: 0.0007586
+
+
+===== res1 
+
+Call:
+lm(formula = Support ~ Treatment, data = uk2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1893 -0.9458  0.0179  0.9349  3.4882 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     2.97723    0.05456  54.566   <2e-16 ***
+TreatmentQuota  0.04732    0.07647   0.619    0.536    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.259 on 1097 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.000349,	Adjusted R-squared:  -0.0005622 
+F-statistic: 0.383 on 1 and 1097 DF,  p-value: 0.5361
+
+
+===== res2 
+
+Call:
+lm(formula = Support ~ Treatment * resp_gender, data = uk2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1900 -0.9856  0.0902  0.9371  3.8297 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     3.15997    0.07513  42.063  < 2e-16 ***
+TreatmentQuota                 -0.01150    0.10664  -0.108 0.914126    
+resp_genderMale                -0.38075    0.10844  -3.511 0.000464 ***
+TreatmentQuota:resp_genderMale  0.13587    0.15193   0.894 0.371365    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.25 on 1095 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.01618,	Adjusted R-squared:  0.01349 
+F-statistic: 6.004 on 3 and 1095 DF,  p-value: 0.0004669
+
+
+===== res3 
+
+Call:
+lm(formula = Support ~ Treatment * resp_gender * Masculine, data = uk2, 
+    weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.2572 -0.9710  0.0718  0.9380  3.6218 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(>|t|)
+(Intercept)                               3.11504    0.14610  21.321   <2e-16
+TreatmentQuota                           -0.37695    0.21576  -1.747   0.0809
+resp_genderMale                           0.19282    0.29387   0.656   0.5119
+Masculine                                 0.01137    0.03178   0.358   0.7206
+TreatmentQuota:resp_genderMale            0.59459    0.44070   1.349   0.1775
+TreatmentQuota:Masculine                  0.08879    0.04664   1.904   0.0572
+resp_genderMale:Masculine                -0.07939    0.04457  -1.781   0.0752
+TreatmentQuota:resp_genderMale:Masculine -0.09520    0.06524  -1.459   0.1448
+                                            
+(Intercept)                              ***
+TreatmentQuota                           .  
+resp_genderMale                             
+Masculine                                   
+TreatmentQuota:resp_genderMale              
+TreatmentQuota:Masculine                 .  
+resp_genderMale:Masculine                .  
+TreatmentQuota:resp_genderMale:Masculine    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.242 on 1091 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.03258,	Adjusted R-squared:  0.02638 
+F-statistic: 5.249 on 7 and 1091 DF,  p-value: 6.58e-06
+
+
+===== resg1 
+
+Call:
+lm(formula = Support ~ Treatment + resp_gender, data = uk2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1255 -0.9770  0.1187  0.9373  3.7676 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      3.12675    0.06529  47.889  < 2e-16 ***
+TreatmentQuota   0.05544    0.07595   0.730    0.466    
+resp_genderMale -0.31153    0.07594  -4.102  4.4e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.25 on 1096 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.01547,	Adjusted R-squared:  0.01367 
+F-statistic: 8.608 on 2 and 1096 DF,  p-value: 0.0001953
+
+
+===== res4 
+
+Call:
+lm(formula = Support ~ Treatment, data = fr2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.3452 -0.5890  0.3292  0.6274  3.0786 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     3.64303    0.06215   58.62   <2e-16 ***
+TreatmentQuota -0.18789    0.08905   -2.11   0.0353 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.122 on 621 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.007118,	Adjusted R-squared:  0.005519 
+F-statistic: 4.452 on 1 and 621 DF,  p-value: 0.03526
+
+
+===== res5 
+
+Call:
+lm(formula = Support ~ Treatment * resp_gender, data = fr2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.0990 -0.6123  0.2378  0.7314  3.3558 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     3.77619    0.08721  43.301   <2e-16 ***
+TreatmentQuota                 -0.16657    0.12681  -1.314    0.189    
+resp_genderMale                -0.26707    0.12350  -2.162    0.031 *  
+TreatmentQuota:resp_genderMale -0.02647    0.17708  -0.149    0.881    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.115 on 619 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.02294,	Adjusted R-squared:  0.01821 
+F-statistic: 4.845 on 3 and 619 DF,  p-value: 0.002432
+
+
+===== res6 
+
+Call:
+lm(formula = Support ~ Treatment * resp_gender * Masculine, data = fr2, 
+    weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.0196 -0.6487  0.2375  0.7820  3.1594 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(>|t|)
+(Intercept)                               4.03887    0.17107  23.610   <2e-16
+TreatmentQuota                           -0.48208    0.26356  -1.829   0.0679
+resp_genderMale                           0.10364    0.33082   0.313   0.7542
+Masculine                                -0.05810    0.03277  -1.773   0.0767
+TreatmentQuota:resp_genderMale            1.29692    0.54262   2.390   0.0171
+TreatmentQuota:Masculine                  0.06869    0.04859   1.414   0.1580
+resp_genderMale:Masculine                -0.02481    0.04818  -0.515   0.6068
+TreatmentQuota:resp_genderMale:Masculine -0.18492    0.07505  -2.464   0.0140
+                                            
+(Intercept)                              ***
+TreatmentQuota                           .  
+resp_genderMale                             
+Masculine                                .  
+TreatmentQuota:resp_genderMale           *  
+TreatmentQuota:Masculine                    
+resp_genderMale:Masculine                   
+TreatmentQuota:resp_genderMale:Masculine *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.093 on 615 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.06598,	Adjusted R-squared:  0.05535 
+F-statistic: 6.206 on 7 and 615 DF,  p-value: 4.87e-07
+
+
+===== resg2 
+
+Call:
+lm(formula = Support ~ Treatment + resp_gender, data = fr2, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1104 -0.6134  0.2310  0.7245  3.3429 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      3.78260    0.07584  49.876  < 2e-16 ***
+TreatmentQuota  -0.18015    0.08844  -2.037  0.04209 *  
+resp_genderMale -0.27994    0.08844  -3.165  0.00163 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.114 on 620 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.02291,	Adjusted R-squared:  0.01976 
+F-statistic: 7.268 on 2 and 620 DF,  p-value: 0.0007586
+
+
+table(all$country):
+
+  FR   UK 
+1038 1734 

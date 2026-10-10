@@ -1,0 +1,145 @@
+{
+ "paper_id": "16_QZNVZ0",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "OLS coefficient B for first author female (FA_Female) in Model 1 (FA-based, all institutions), outcome log10(citations+1); results_1.params['FA_Female']",
+   "paper_value": 0.04,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0393079747,
+   "source_file": "outputs/regression_estimates.csv",
+   "abs_diff": -0.0006920253000000029,
+   "rel_diff": -0.017300632500000072,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "t = 10.993, nonrobust SE = 0.0036, p = 4.36e-28"
+  },
+  {
+   "id": "T2",
+   "description": "OLS coefficient B for first author Hispanic/Latino vs Anglo-Saxon (FA_Hispanic/Latino) in Model 1; results_1.params['FA_Hispanic/Latino']",
+   "paper_value": -0.07,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -0.0746297007,
+   "source_file": "outputs/regression_estimates.csv",
+   "abs_diff": -0.004629700699999989,
+   "rel_diff": -0.06613858142857126,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "t = -10.809, nonrobust SE = 0.0069, p = 3.27e-27"
+  },
+  {
+   "id": "T3",
+   "description": "OLS coefficient B for first author Global South affiliation (FA_South) in Model 1; results_1.params['FA_South']",
+   "paper_value": -0.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -0.02402528768,
+   "source_file": "outputs/regression_estimates.csv",
+   "abs_diff": -0.00402528768,
+   "rel_diff": -0.201264384,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "t = -4.002, nonrobust SE = 0.0060, p = 6.28e-05"
+  },
+  {
+   "id": "T4",
+   "description": "OLS coefficient B for cross-national team (International) in Model 1; results_1.params['International']",
+   "paper_value": 0.09,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.08753350291,
+   "source_file": "outputs/regression_estimates.csv",
+   "abs_diff": -0.0024664970899999916,
+   "rel_diff": -0.02740552322222213,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "t = 14.771, nonrobust SE = 0.0059, p = 2.69e-49"
+  },
+  {
+   "id": "T5",
+   "description": "OLS coefficient B for first author African/African American vs Anglo-Saxon (FA_African) in Model 4 (FA-based, top 50 institutions); results_4.params['FA_African']",
+   "paper_value": -0.09,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -0.09056638348,
+   "source_file": "outputs/regression_estimates.csv",
+   "abs_diff": -0.0005663834800000017,
+   "rel_diff": -0.006293149777777797,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "t = -4.928, nonrobust SE = 0.0184, p = 8.37e-07"
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in Model 1; results_1.nobs",
+   "paper_value": 68558,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 68558,
+   "source_file": "outputs/regression_estimates.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "statsmodels nobs of results_1"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap of Model 1 estimation rows, 1,000 resamples, numpy default_rng(20261010), primary FA_Hispanic/Latino",
+   "ran": true,
+   "estimate": -0.0746297007,
+   "se_or_ci": "bootstrap SE 0.00703; percentile 95% CI [-0.08875, -0.06088]",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_a_bootstrap_summary.csv",
+   "note": "0 of 1000 bootstrap B >= 0, so p reported as < 0.001 (p_value field = 2 x share = 0); rank-deficient resamples 0. Secondaries: FA_Female: B 0.0393, CI [0.0328, 0.0460], crossings 0; FA_South: B -0.0240, CI [-0.0353, -0.0127], crossings 0; International: B 0.0875, CI [0.0751, 0.0989], crossings 0. Draws in outputs/R_a_bootstrap_draws.csv."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z| > 3 on log10(citations+1) within Model 1 estimation rows, refit Model 1; secondary same within Model 4 for T5",
+   "ran": true,
+   "estimate": -0.07495672437,
+   "se_or_ci": "nonrobust SE 0.00688",
+   "p_value": 1.231470352e-27,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_b_outliers.csv",
+   "note": "Model 1: 129 of 68558 rows dropped (all z > 3; z range -1.583 to 4.487). Secondaries: FA_Female: B 0.0393, p 2.82e-28; FA_South: B -0.0243, p 4.97e-05; International: B 0.0868, p 8.71e-49. Model 4 FA_African: B -0.0884, SE 0.0183, p 1.38e-06, 25 of 16025 rows dropped."
+  },
+  {
+   "id": "R_c",
+   "description": "Poisson PML (sm.GLM Poisson, HC1) of raw Citations_Received on Model 1 regressors, Model 1 estimation rows",
+   "ran": true,
+   "estimate": -0.1108143966,
+   "se_or_ci": "HC1 SE 0.04186",
+   "p_value": 0.008113681818,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_c_poisson.csv",
+   "note": "Converged with statsmodels defaults (9 iterations), n 68558. Primary is negative but p is above the pre-registered .001 threshold (p < .01). Secondaries (log scale): FA_Female: 0.0680, p 2.17e-05; FA_South: -0.1501, p 6.79e-08; International: 0.2358, p 2.71e-16. Scale not comparable with Table 2."
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/regression_verbatim_extraction_block.diff: the 13 notebook cells were run verbatim as a script (PREREG section 2 step 3, alternative to nbconvert) with an appended block that only writes params, SE, t, p, nobs, adj R2 and summaries to outputs/; no authors line changed. No package version change, no path change (CSV in working directory under its deposited name)."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six pre-registered Table 2 targets (five coefficients and Model 1 N) are reproduced to the printed rounding by the deposited notebook code run unchanged on deposit version 2.0, with the same sign and p < .001 for every coefficient.",
+ "confidence": "high",
+ "confidence_reason": "Deterministic OLS with no seed; every coefficient, t and N in the authors' saved notebook output matches this run (567 of 567 coefficient rows at 4 decimals, t at 3), so version drift has no effect; A's agreement not seen by B.",
+ "time_minutes": 25,
+ "uncertainties": [
+  "Packages are current releases (pandas 3.0.6, numpy 2.5.3, statsmodels 0.15.0, Python 3.12) rather than the authors 2024 environment (Python 3.11.9, versions not recorded); outputs still match the saved notebook outputs exactly (outputs/saved_notebook_vs_run.csv), so no version effect was seen.",
+  "R_c (Poisson PML) gives the primary FA_Hispanic/Latino coefficient negative but with p = 0.0081, above the pre-registered .001 threshold, so R_c is recorded as not the same significance; robustness does not change the class.",
+  "Pre-registered inconsistencies confirmed by this run (not targets): Model 2 N is 39,690 in this run (outputs/summary_results_2.txt) against 68,558 printed in Table 2 for Model 2; Model 3 regressor list has no FA_South (Regression.ipynb cell 6). Other printed-vs-saved star and SE differences listed in PREREG were not re-checked against the PDF by B (B did not re-read the paper table; PREREG copy used).",
+  "The regression CSV itself cannot be rebuilt from raw Web of Science records (construction code not deposited, as PREREG and DATA_STATEMENT state); the reproduction is of the analysis step only.",
+  "The first full run (scripts/regression_verbatim.py) was killed (exit 137) after all outputs and the final print had been written; peak RSS reported 608 MB, machine had about 0.5 to 2.5 GB available at the time (shared). The outputs were checked complete (568 lines of estimates for 8 models, all summaries).",
+  "Visualizations.ipynb (figures) was not run; it produces no pre-registered target."
+ ]
+}

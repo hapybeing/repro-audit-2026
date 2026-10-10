@@ -1,0 +1,3 @@
+"object","term","estimate","se","nobs","equal_to_appendix"
+"res1 (UK, l.325)","TreatmentQuota",0.0473249626369344,0.0764687108523985,1099,TRUE
+"res1b (FR, l.363)","TreatmentQuota",-0.187887616768527,0.0890495220558409,623,TRUE

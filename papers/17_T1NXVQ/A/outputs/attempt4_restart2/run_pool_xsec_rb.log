@@ -1,0 +1,7 @@
+START pool_xsec rb none 2026-10-10 20:20:36 UTC
+[1] "Loaded data"
+R_b flagged edges: length.norm 73 elevmean.norm 56 union 129 of 3047 
+[1] "2026-10-10 20:20:42 UTC"
+[1] "MODEL ESTIMATION"
+[1] "Estimate"
+[1] "2026-10-10 20:20:42 UTC"

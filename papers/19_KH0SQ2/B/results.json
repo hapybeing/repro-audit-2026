@@ -1,0 +1,152 @@
+{
+ "paper_id": "19_KH0SQ2",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "France: OLS coefficient on Quota (reference Parity) in the survey-weighted regression of Support (1-5) on Treatment, treated respondents only (Appendix_plus.R line 948, coef(res4)['TreatmentQuota'])",
+   "paper_value": -0.188,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.187887616768527,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0001123832,
+   "rel_diff": 0.0005977831,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0890, summary.lm p 0.03526 (paper **: 0.01<=p<0.05)"
+  },
+  {
+   "id": "T2",
+   "description": "UK: OLS coefficient on Quota (reference Parity) in the survey-weighted regression of Support on Treatment, treated respondents only (Appendix_plus.R line 906, coef(res1)['TreatmentQuota'])",
+   "paper_value": 0.047,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.0473249626369344,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003249626,
+   "rel_diff": 0.0069140987,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0765, p 0.5361 (paper: no star)"
+  },
+  {
+   "id": "T3",
+   "description": "UK: OLS coefficient on Male (reference Female) in the additive survey-weighted model Support ~ Treatment + resp_gender, treated respondents (Appendix_plus.R line 915, coef(resg1)['resp_genderMale'])",
+   "paper_value": -0.312,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.311531148082502,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0004688519,
+   "rel_diff": 0.0015027305,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0759, p 4.396e-05 (paper ***)"
+  },
+  {
+   "id": "T4",
+   "description": "France: OLS coefficient on Male (reference Female) in the additive survey-weighted model Support ~ Treatment + resp_gender, treated respondents (Appendix_plus.R line 957, coef(resg2)['resp_genderMale'])",
+   "paper_value": -0.28,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.279941001913928,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 5.89981e-05,
+   "rel_diff": 0.0002107075,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0884, p 0.001625 (paper ***)"
+  },
+  {
+   "id": "T5",
+   "description": "UK: number of observations in the Support models on treated respondents (nobs(res1); also res2, res3, resg1)",
+   "paper_value": 1099,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1099,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(res1); other models with same N: res1,res2,res3,resg1"
+  },
+  {
+   "id": "T6",
+   "description": "France: number of observations in the Support models on treated respondents (nobs(res4); also res5, res6, resg2)",
+   "paper_value": 623,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 623,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(res4); other models with same N: res4,res5,res6,resg2"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, set.seed(20261010), 2000 resamples per model in order res4,res1,resg1,resg2, weighted lm refit; percentile CIs; p = 2*min tail share",
+   "ran": true,
+   "estimate": -0.187887616768527,
+   "se_or_ci": "bootstrap SE 0.1025; 95% percentile CI [-0.3789, 0.0209]; NA draws 0",
+   "p_value": 0.089,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "Primary T1 (res4). Secondary: T2(res1): est 0.0473, SE 0.0843, p 0.576, 90% CI [-0.0890,0.1863], 99% CI [-0.1557,0.2725], same as paper: True; T3(resg1): est -0.3115, SE 0.0841, p 0, 90% CI [-0.4482,-0.1734], 99% CI [-0.5229,-0.0976], same as paper: True; T4(resg2): est -0.2799, SE 0.1022, p 0.004, 90% CI [-0.4458,-0.1127], 99% CI [-0.5482,-0.0247], same as paper: True"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z|>3 on survey Weight within each country's estimation sample (unweighted mean, sd n-1), refit weighted lm",
+   "ran": true,
+   "estimate": -0.136297729159533,
+   "se_or_ci": "SE 0.0884",
+   "p_value": 0.123792713428051,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv, outputs/R_b_support_z_check.csv",
+   "note": "Primary T1 (res4). Secondary: T2(res1): est 0.0256, SE 0.0782, p 0.7429, n dropped 29, same as paper: True; T3(resg1): est -0.3210, SE 0.0776, p 3.82e-05, n dropped 29, same as paper: True; T4(resg2): est -0.2537, SE 0.0880, p 0.004094, n dropped 16, same as paper: True; n dropped T1 sample: 16; confirmation |z|>3 on Support drops: res4=0,res1=0,resg1=0,resg2=0"
+  },
+  {
+   "id": "R_c",
+   "description": "Unweighted OLS on the same estimation samples",
+   "ran": true,
+   "estimate": -0.145355191256833,
+   "se_or_ci": "SE 0.0877",
+   "p_value": 0.0977594861666224,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "Primary T1 (res4). Secondary: T2(res1): est 0.0541, SE 0.0766, p 0.4806, same as paper: True; T3(resg1): est -0.3816, SE 0.0758, p 5.658e-07, same as paper: True; T4(resg2): est -0.2527, SE 0.0872, p 0.003902, same as paper: True"
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/Appendix_plus_driver_load.diff: Appendix_plus.R cannot run top to bottom (its load() of all_merged.RData at l.18 is commented out); the pre-registered driver adds setwd + load('all_merged.RData') before lines 892-958, no analysis line changed"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets (four coefficients and two Ns) match the printed Online Appendix values to the printed rounding with the same significance buckets, using the authors' lines 892-958 run through the pre-registered load() driver. Alternative class C if that driver is not accepted as an environment fix.",
+ "confidence": "high",
+ "confidence_reason": "Deterministic weighted OLS, checksums match the Dataverse record, numbers parsed by script; final confidence depends on agreement with agent A.",
+ "time_minutes": 18,
+ "uncertainties": [
+  "Step B cross-check (res1 (UK, l.325), main_text_figs_JEPP_FINAL.R): TreatmentQuota = 0.047325, n = 1099; equals Appendix object: TRUE (source outputs/main_text_crosscheck.csv)",
+  "Step B cross-check (res1b (FR, l.363), main_text_figs_JEPP_FINAL.R): TreatmentQuota = -0.187888, n = 623; equals Appendix object: TRUE (source outputs/main_text_crosscheck.csv)",
+  "Step B run status (outputs/main_text_status.txt): main_text_figs_JEPP_FINAL.R run whole with Rscript (no edits; all 14 packages pre-installed so install.packages() at l.18 was a no-op). It ran lines 1 to 834 (Figures 1 to 6 and the conjoint sections, including the loads of yougov_uk_conjoint.RData and FRCONJdataset.RData) and stopped at l.835 `subset_uk$Treatment2<-as.factor(subset_uk$Treatment2)` with \"replacement has 0 rows, data has 1734\": column Treatment2 is not in all_merged.RData and is created only in Appendix_plus.R l.1278/1286. The list-experiment section (Figure 7, l.835-910) was therefore not produced. No pre-registered fix covers this, so no change was made. Not needed for any target.\nNote: in a whole run res1 is reassigned at l.639 (conjoint model, n 1708), so the T2 cross-check uses res1 captured by scripts/save_main_objs.R, which evaluates deposited lines 1-364 unchanged.",
+  "Descriptive N in deposit (outputs/descriptive_counts.csv): FR=1038, UK=1734, total=2772; article text gives UK 1,708, France 969, combined 2677 (PREREG). No line in the Table S1/S10 block or in table(all$country) produces those; see the conjoint-model N observation below.",
+  "Secondary context (Table S1 interaction-model Male, Parity only): res2 -0.3808 (SE 0.1084, p 0.0004644); res5 -0.2671 (SE 0.1235, p 0.03097) vs paper -0.381 (0.108) and -0.267 (0.124) (source outputs/targets_extracted.csv)",
+  "Secondary context: FR Quota:Male:Masculine -0.1849 (SE 0.0750, p 0.01401) vs paper -0.185 (0.075) **; constants UK 2.9772, FR 3.6430 vs paper 2.977, 3.643",
+  "Table S10 prints the Male SE equal to the Quota SE; reproduced SEs: UK Quota 0.07595 vs Male 0.07594, FR Quota 0.08844 vs Male 0.08844, so the printed equality is consistent with the fitted models to 3 decimals.",
+  "Unverified observation: the first conjoint models in main_text_figs_JEPP_FINAL.R have n UK conjoint res1 l.639 = 1708, FR conjoint res2 l.670 = 969 (outputs/conjoint_model_n.csv, parsed from outputs/main_text.log), equal to the article's descriptive UK 1,708 and France 969 (sum 2677). This may be where the article's Ns come from (respondents with a conjoint rating), but the article does not say so.",
+  "Completeness: main_text_figs_JEPP_FINAL.R stops at l.835 because column Treatment2 is created only in Appendix_plus.R (l.1278, 1286); Figure 7 (list experiment) is not produced by the main-text script run alone. Not a target. Also res1 (l.325) is reassigned at l.639; the cross-check used deposited lines 1-364 evaluated unchanged (scripts/save_main_objs.R).",
+  "Robustness: the France framing coefficient (T1) keeps its negative sign in all three checks but is not significant at 0.05 in any of them (bootstrap 95% CI includes 0; weight-outlier exclusion and unweighted OLS give p between 0.05 and 0.13). The UK and gender results hold in all three checks.",
+  "Class rests on accepting the session driver (adds load('all_merged.RData') before Appendix_plus.R lines 892-958) as an environment fix (batch4_class_decisions.md #2). Alternative class if not accepted: C.",
+  "No package versions pinned by the authors; Step A uses base R stats only, so versions should not affect the targets.",
+  "Tool-generated workspace change notices displayed filenames from the A/ folder of this paper; none were opened or read."
+ ]
+}

@@ -1,0 +1,167 @@
+{
+ "paper_id": "17_T1NXVQ",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "PSPM coefficient of Ethnic boundary_t (cuteth) in the pooled baseline model (pool_xsec), point estimate from penalized maximum composite likelihood",
+   "paper_value": 1.22,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.2181741775329,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0018258224670999468,
+   "rel_diff": -0.0014965757927048744,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Reduced bootstrap, authors' seeds 1;2;3;4 (K draws ok = 4, failed = 0): estimate +/- 1.96 x SD = [1.0286, 1.4078], SD = 0.0967 (outputs/boot_summary.csv). Printed 120-draw percentile brackets are out of scope (PREREG section 2)."
+  },
+  {
+   "id": "T2",
+   "description": "PSPM coefficient of Ethnic boundary_t-1 (cuteth_lag) in the pooled lagged dependent variable model (pool_ldv)",
+   "paper_value": 1.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.0151420706214,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.004857929378599968,
+   "rel_diff": -0.004762675861372518,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Reduced bootstrap, authors' seeds 1;2;3;4 (K draws ok = 4, failed = 0): estimate +/- 1.96 x SD = [0.7793, 1.2510], SD = 0.1203 (outputs/boot_summary.csv). Printed 120-draw percentile brackets are out of scope (PREREG section 2)."
+  },
+  {
+   "id": "T3",
+   "description": "PSPM coefficient of State border_t-1 (cshp_lag) in the pooled LDV model (pool_ldv)",
+   "paper_value": 1.65,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.65423612287981,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0042361228798100115,
+   "rel_diff": 0.0025673471998848554,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Reduced bootstrap, authors' seeds 1;2;3;4 (K draws ok = 4, failed = 0): estimate +/- 1.96 x SD = [1.4580, 1.8505], SD = 0.1001 (outputs/boot_summary.csv). Printed 120-draw percentile brackets are out of scope (PREREG section 2)."
+  },
+  {
+   "id": "T4",
+   "description": "PSPM coefficient of Deep lag (abram_sum) in the pooled LDV model (pool_ldv)",
+   "paper_value": 0.74,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.737716467383604,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0022835326163960223,
+   "rel_diff": -0.0030858548870216517,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Reduced bootstrap, authors' seeds 1;2;3;4 (K draws ok = 4, failed = 0): estimate +/- 1.96 x SD = [0.4361, 1.0394], SD = 0.1539 (outputs/boot_summary.csv). Printed 120-draw percentile brackets are out of scope (PREREG section 2)."
+  },
+  {
+   "id": "T5",
+   "description": "Number of vertices in the baseline model, summed over the 6 periods (sum(pool_xsec$N))",
+   "paper_value": 6769,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 6769.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: reproduced count within 1% of the printed count (PREREG)."
+  },
+  {
+   "id": "T6",
+   "description": "Number of vertices in the LDV model, summed over the 5 periods (sum(pool_ldv$N))",
+   "paper_value": 5412,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 5412.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: reproduced count within 1% of the printed count (PREREG)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Different bootstrap seeds: parametric bootstrap draws with seeds 1001..1000+K (K as in step 6), primary T1 cuteth (pool_xsec)",
+   "ran": true,
+   "estimate": 1.2181741775329,
+   "se_or_ci": "estimate +/- 1.96 x SD of draws: [1.0592, 1.3771]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/boot_summary.csv",
+   "note": "Seeds 1001;1002;1003;1004; draws ok 4, failed 0; mean of draws 1.2357, SD 0.0811; percentile 2.5/97.5 of the draws (descriptive, small K) 1.1343 / 1.3157. SD ratio R_a/step-6 = 0.838; differs by more than a factor 1.5: FALSE. Secondary T2 (pool_ldv) R_a draws (seeds 1001-1004) not run: stopped to stay near the about-2-hour wall-time limit after two sandbox restarts (LOG.md 01:57, 02:29)."
+  },
+  {
+   "id": "R_b",
+   "description": "Outlier exclusion: edges with |z| > 3 on length.norm or elevmean.norm (static lattice) set to NA, both Table 1 models refitted",
+   "ran": true,
+   "estimate": 1.29116300401011,
+   "se_or_ci": "estimate +/- 1.96 x SD_boot(step 6) = [1.1015, 1.4808]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/fit_pool_xsec_rb.csv; outputs/robustness_significance.csv; outputs/boot_summary.csv",
+   "note": "maxLik stdEr (descriptive) 0.0875. pool_xsec vertices summed over periods: main 6769, rb 6739; edges main 17923, rb 17193. Flagged lattice edges: length.norm 73, elevmean.norm 56, union 129 of 3047. Secondary pool_ldv (T2 cuteth_lag) refit not run: stopped to stay near the about-2-hour wall-time limit after two sandbox restarts (LOG.md 02:29). p_value null: the pre-registered rule is estimate - 1.96 x SD_boot(step 6, K = 4) > 0; no p-value is defined."
+  },
+  {
+   "id": "R_c",
+   "description": "Alternative analysis choice: penalty sigma2 = 1000 instead of 10, both Table 1 models refitted",
+   "ran": true,
+   "estimate": 1.21909871084216,
+   "se_or_ci": "estimate +/- 1.96 x SD_boot(step 6) = [1.0295, 1.4087]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/fit_pool_xsec_rc.csv; outputs/robustness_significance.csv; outputs/boot_summary.csv",
+   "note": "maxLik stdEr (descriptive) 0.0814. pool_xsec vertices summed over periods: main 6769, rc 6769; edges main 17923, rc 17923. Secondary pool_ldv (T2 cuteth_lag) refit not run: stopped to stay near the about-2-hour wall-time limit after two sandbox restarts (LOG.md 02:29). p_value null: the pre-registered rule is estimate - 1.96 x SD_boot(step 6, K = 4) > 0; no p-value is defined."
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/analysis_globals_E1_E2_E3.diff: E1 RETICULATE_PYTHON to the run venv python (lines 58, 120); E2 ncore 40 -> 1 (line 46); E3 library(rgeos)/library(rgdal) removed (lines 69-70, 125-126) because rgeos 0.6-4 and rgdal 1.6-7 fail to build (sp.h missing; sp 2.x ships no headers). All pre-registered.",
+  "diffs/analysis_pool_A.diff: pre-registered run structure F1 (one model per process), F2 (lapply instead of parLapply, no cluster), F3 (save to outputs/, 120-draw bootstrap replaced by pre-registered step 6). Estimation code unchanged.",
+  "Package versions (no diff): pinned miscTools 0.6-26, maxLik 1.5-2, texreg 1.38.6, infotheo 1.2.0.1 used; pinned reticulate 1.28 built but cannot start Python >= 3.12 (config.py imports the removed 'imp' module), replaced by Debian reticulate 1.41.0.1; pinned igraph 1.4.1 fails to compile (-Werror=format-security), Debian igraph 2.1.4 used; cshapes 2.0 needed V8 built from CRAN source with DOWNLOAD_STATIC_LIBV8=1 (Debian r-cran-v8 conflicts with the preinstalled nodejs)."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six Table 1 targets (four PSPM coefficients and two vertex counts) reproduce to the printed rounding from the deposited code and data, and the pre-registered reduced bootstrap (authors' seeds 1..K, K = 4) keeps every T1-T4 coefficient positive with estimate - 1.96 x SD > 0 (batch4_class_decisions.md #3). Alternative class if only the full 120-draw bootstrap counts: E (about 19 CPU-hours, out of scope on this machine).",
+ "confidence": "medium",
+ "confidence_reason": "Point estimates and counts match to the printed rounding and the four seed-1..4 draws per model equal the deposited bootstrap rows (max abs diff in outputs/boot_vs_deposited.csv, see other_checks), but significance rests on K = 4 draws instead of the paper's 120, several packages are newer than the authors' (igraph 2.1.4, reticulate 1.41.0.1, rgeos/rgdal removed), and B has not been compared yet.",
+ "time_minutes": 145,
+ "uncertainties": [
+  "The printed 95% percentile brackets (120 draws) were not reproduced; significance for T1-T4 uses K = 4 draws with the authors' seeds 1-4 (estimate +/- 1.96 x SD), a much less precise interval than the paper's. With K = 4 the SD itself is very uncertain.",
+  "The machine restarted twice during the run (00:53 and 01:55 IST); every reported number comes from processes that completed after the first restart, with the same package versions before and after (checked). The second restart interrupted the robustness queue.",
+  "Memory: the brief's 3.5 GB MemAvailable threshold could not be met before the first restart (in-RAM root filesystem used about 4.8 GB); the first two (discarded or repeat) fits started at 2.3-2.4 GB. All reported runs after the first restart started with at least 3.5 GB available. Peak RSS per process was 1.43-1.47 GB.",
+  "Package versions differ from the authors' (R 4.5.0 aarch64 vs R 4.2.2 x86_64; igraph 2.1.4, reticulate 1.41.0.1, numpy 2.5.3, networkx 3.7, scipy 1.18.1). The exact agreement of the bootstrap draws with the deposited ones suggests this did not matter for these numbers.",
+  "Code review covered analysis_globals.R, analysis_pool.R, main_plots_tables.R lines 1-80, and in the pspm package R/fit_pspm.R (model_graphframe, fit_pspm_model) and R/pspm_R6.R (composite likelihood, fit, bootstrap, reset); the Python lattice code (sl3.py) was not reviewed line by line. No bug found. Unverified observation (design, not a bug): the Gaussian penalty sum(beta^2)/(2*sigma2) also applies to the Constant.",
+  "Not run (wall-time limit, about 2 hours, after the two restarts): R_b and R_c refits of the secondary pool_ldv model (T2 cuteth_lag), and R_a draws (seeds 1001-1004) for pool_ldv. R_a, R_b and R_c were run for the primary quantity T1 (pool_xsec) only. The pool_xsec R_a draws ran in a process that also refitted pool_xsec (outputs/fit_pool_xsec_ra.csv, identical to the main fit).",
+  "Reduced bootstrap: K = 4 draws per seed set (pre-registered rule K = min(10, floor(25/t)) with t = 5.19 min for the first draw; outputs/boot_K.json), not the paper's 120. R_b and R_c significance reuse the step-6 SD of the main model (PREREG section 3), they were not bootstrapped themselves.",
+  "R_a SD ratio (seeds 1001-1004 vs 1-4) is within a factor 1.5 for cuteth but exceeds it for length.norm and watershed_diff.norm (outputs/boot_sd_ratio.csv); with K = 4 the SD itself is very imprecise.",
+  "R_b changed the counts (pool_xsec vertices 6769 to 6739, edges 17923 to 17193, states 189 to 220, outputs/counts_pool_xsec_rb.csv) and several control coefficients moved substantially (for example elevmean.norm, outputs/fit_pool_xsec_rb.csv); cuteth stayed positive and significant under the pre-registered rule.",
+  "The final scripts (extract_targets.R, boot_summary.R, environment.sh, build_results.py) were run at 02:35-02:43 IST by a continuation of agent A after the first agent A instance hit its iteration limit; no model was refitted in that step."
+ ],
+ "other_checks": [
+  {
+   "id": "boot_vs_deposited",
+   "description": "Reproduced step-6 bootstrap draws (authors' seeds 1..K) vs rows 1..K of the deposited pool_se.ls.rds beta_boot (informative, PREREG step 6)",
+   "n_compared": 56,
+   "max_abs_diff": 3.54862435991699e-07,
+   "source_file": "outputs/boot_vs_deposited.csv"
+  },
+  {
+   "id": "bootstrap_K",
+   "description": "Reduced bootstrap size K chosen by the pre-registered rule K = min(10, floor(25/t)), t = first draw minutes",
+   "first_draw_minutes": 5.18912798563639,
+   "K": 4,
+   "source_file": "outputs/boot_K.json"
+  }
+ ]
+}

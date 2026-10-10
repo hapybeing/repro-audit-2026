@@ -1,0 +1,186 @@
+{
+ "paper_id": "17_T1NXVQ",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "PSPM coefficient of Ethnic boundary_t (cuteth) in the pooled baseline model (pool_xsec), point estimate from penalized maximum composite likelihood",
+   "paper_value": 1.22,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.2181741775329,
+   "source_file": "outputs/targets_pool_xsec.csv",
+   "abs_diff": -0.0018258224670999468,
+   "rel_diff": -0.0014965757927048744,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "reduced bootstrap, authors' seeds, K=3 draws: SD=0.1172, est +/- 1.96 SD = [0.989, 1.448]"
+  },
+  {
+   "id": "T2",
+   "description": "PSPM coefficient of Ethnic boundary_t-1 (cuteth_lag) in the pooled lagged dependent variable model (pool_ldv)",
+   "paper_value": 1.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.0151420706214,
+   "source_file": "outputs/targets_pool_ldv.csv",
+   "abs_diff": -0.004857929378599968,
+   "rel_diff": -0.004762675861372518,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "reduced bootstrap, authors' seeds, K=3 draws: SD=0.1453, est +/- 1.96 SD = [0.730, 1.300]"
+  },
+  {
+   "id": "T3",
+   "description": "PSPM coefficient of State border_t-1 (cshp_lag) in the pooled LDV model (pool_ldv)",
+   "paper_value": 1.65,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 1.65423612287981,
+   "source_file": "outputs/targets_pool_ldv.csv",
+   "abs_diff": 0.0042361228798100115,
+   "rel_diff": 0.0025673471998848554,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "reduced bootstrap, authors' seeds, K=3 draws: SD=0.1151, est +/- 1.96 SD = [1.429, 1.880]"
+  },
+  {
+   "id": "T4",
+   "description": "PSPM coefficient of Deep lag (abram_sum) in the pooled LDV model (pool_ldv)",
+   "paper_value": 0.74,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.737716467383604,
+   "source_file": "outputs/targets_pool_ldv.csv",
+   "abs_diff": -0.0022835326163960223,
+   "rel_diff": -0.0030858548870216517,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "reduced bootstrap, authors' seeds, K=3 draws: SD=0.1861, est +/- 1.96 SD = [0.373, 1.102]"
+  },
+  {
+   "id": "T5",
+   "description": "Number of vertices in the baseline model, summed over the 6 periods (sum(pool_xsec$N))",
+   "paper_value": 6769,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 6769,
+   "source_file": "outputs/targets_pool_xsec.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  },
+  {
+   "id": "T6",
+   "description": "Number of vertices in the LDV model, summed over the 5 periods (sum(pool_ldv$N))",
+   "paper_value": 5412,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 5412,
+   "source_file": "outputs/targets_pool_ldv.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Reduced parametric bootstrap with seeds 1001.. instead of 1..K, pool_xsec cuteth",
+   "ran": true,
+   "estimate": 1.2181741775329,
+   "se_or_ci": "SD=0.0977; est +/- 1.96 SD [1.027, 1.410]; percentile [1.131, 1.316] (K=3, descriptive)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/boot_seeds1001_pool_xsec.csv",
+   "note": "draw mean 1.2284; SD ratio seeds1001/seeds1..K = 0.834; differs by >1.5x: False"
+  },
+  {
+   "id": "R_a",
+   "description": "Reduced parametric bootstrap with seeds 1001.. instead of 1..K, pool_ldv cuteth_lag",
+   "ran": true,
+   "estimate": 1.0151420706214,
+   "se_or_ci": "SD=0.1707; est +/- 1.96 SD [0.681, 1.350]; percentile [0.887, 1.202] (K=3, descriptive)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/boot_seeds1001_pool_ldv.csv",
+   "note": "draw mean 1.0649; SD ratio seeds1001/seeds1..K = 1.175; differs by >1.5x: False"
+  },
+  {
+   "id": "R_b",
+   "description": "Edges with |z|>3 on length.norm or elevmean.norm set to NA, refit; pool_xsec cuteth",
+   "ran": true,
+   "estimate": 1.29116300401011,
+   "se_or_ci": "maxLik stdEr 0.0875 (descriptive); est +/- 1.96 SD_boot(authors' seeds) [1.062, 1.521]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/targets_Rb_pool_xsec.csv",
+   "note": "lattice edges flagged: length 73, elev 56, union 129 of 3047; summed over periods: edges 730 and vertices 30 fewer than main fit;"
+  },
+  {
+   "id": "R_b",
+   "description": "Edges with |z|>3 on length.norm or elevmean.norm set to NA, refit; pool_ldv cuteth_lag",
+   "ran": true,
+   "estimate": 0.984934621431115,
+   "se_or_ci": "maxLik stdEr 0.1383 (descriptive); est +/- 1.96 SD_boot(authors' seeds) [0.700, 1.270]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/targets_Rb_pool_ldv.csv",
+   "note": "lattice edges flagged: length 73, elev 56, union 129 of 3047; summed over periods: edges 519 and vertices 32 fewer than main fit;"
+  },
+  {
+   "id": "R_c",
+   "description": "Penalty sigma2 = 1000 instead of 10, refit; pool_xsec cuteth",
+   "ran": true,
+   "estimate": 1.21909871084216,
+   "se_or_ci": "maxLik stdEr 0.0814 (descriptive); est +/- 1.96 SD_boot(authors' seeds) [0.989, 1.449]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/targets_Rc_pool_xsec.csv",
+   "note": ""
+  },
+  {
+   "id": "R_c",
+   "description": "Penalty sigma2 = 1000 instead of 10, refit; pool_ldv cuteth_lag",
+   "ran": true,
+   "estimate": 1.0176638590804,
+   "se_or_ci": "maxLik stdEr 0.1335 (descriptive); est +/- 1.96 SD_boot(authors' seeds) [0.733, 1.302]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/targets_Rc_pool_ldv.csv",
+   "note": ""
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/analysis_globals.R.diff: E1 RETICULATE_PYTHON to the run venv (system python lacks numpy); E2 ncore 40 -> 1; E3 library(rgeos)/library(rgdal) removed because archived rgeos 0.6-4 / rgdal 1.6-7 failed to compile twice (sp.h missing)",
+  "diffs/analysis_pool.R.diff: pre-registered F1-F3 (one model per process, lapply instead of parLapply, save to audit folder, 120-draw bootstrap replaced by the pre-registered reduced bootstrap); run as a copy analysis_pool_B.R",
+  "package versions: pinned maxLik 1.5-2, miscTools 0.6-26, texreg 1.38.6, infotheo 1.2.0.1 used; pinned igraph 1.4.1 failed to compile (-Werror=format-security), Debian igraph 2.1.4 used; pinned reticulate 1.28 fails to load under Python 3.12 (import imp), Debian reticulate 1.41.0.1 used; cshapes 2.0 needed V8 built with DOWNLOAD_STATIC_LIBV8=1"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six Table 1 targets (four PSPM coefficients and two vertex counts) reproduce to the paper's rounding, and each coefficient's interval from the pre-registered reduced bootstrap (authors' seeds 1..3, estimate +/- 1.96 SD) excludes 0 (batch4 class decision 3 gives A; alternative class if only the full 120-draw bootstrap counts: E).",
+ "confidence": "high",
+ "confidence_reason": "Point estimates and counts match by script; all 6 reproduced bootstrap draws equal the deposited draws for the same seeds within 3.6e-7; environment drift (igraph 2.1.4, reticulate 1.41, Python 3.12, aarch64) did not change any value at 2 decimals.",
+ "time_minutes": 123,
+ "uncertainties": [
+  "Significance rests on K = 3 bootstrap draws per model (pre-registered rule K = min(10, floor(25/t)), t = 6.6 min for the first draw); the printed 120-draw percentile intervals were not recomputed. The reproduced draws equal the deposited draws for seeds 1-3 (outputs/compare_boot_vs_deposited.csv), so the deposited 120-draw intervals are consistent with this run, but draws 4-120 were not re-run.",
+  "Pinned igraph 1.4.1 failed to compile and pinned reticulate 1.28 cannot load under Python 3.12; current Debian builds (igraph 2.1.4, reticulate 1.41.0.1) were used. numpy/scipy/networkx are unpinned in the deposit (numpy 2.5.4, scipy 1.18.1, networkx 3.7 used).",
+  "rgeos and rgdal were not installed (E3); PREREG checked they are not called on the Table 1 path, and the run completed without them.",
+  "maxLik::stdEr returned NA in the extraction for the two main fits (stdEr_maxLik column NA in outputs/targets_pool_xsec.csv and targets_pool_ldv.csv); the authors' summary() printout in the run logs shows the analytic SEs. Not used for any target.",
+  "R_b removes 129 of 3047 lattice edges in every period; with force_contiguous the number of states summed over periods rises (pool_xsec 189 to 220), so R_b changes the outcome coding as well as the sample.",
+  "The sandbox restarted twice during the run (about 02:43 and 03:56 IST); every saved step was checked and resumed; the R_a pool_xsec draws 1001 and 1002-1003 came from two different processes.",
+  "Process note: the workspace tool echoed names of some files in papers/17_T1NXVQ/A/ in change notifications and one glob listing (/workspace/audit_runs/*/*/setup_env*) printed two file names under 17_T1NXVQ/A/. No A file was opened or read."
+ ],
+ "computed_flags": {
+  "all_targets_match_to_rounding": true,
+  "any_target_missing": false,
+  "all_same_conclusion_true": true
+ }
+}

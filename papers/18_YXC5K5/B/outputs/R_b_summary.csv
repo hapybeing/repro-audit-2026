@@ -1,0 +1,2 @@
+"label","rule","n_rows","n_dropped","T1","U8","D","T3_minus_T1","rank_T1_among_18","T1_lowest_of_18","T1_ci_lo","T1_ci_hi","D_ci_lo","D_ci_hi","D_boot_se","p_value","share_resamples_T1_lowest","crit_i","crit_ii","crit_iii","same_direction_and_significance"
+"R_b","z3","584","5","0.17893835616438356","0.15111301369863014","0.027825342465753411","0.10659246575342465","1","TRUE","0.16651862157534247","0.19199486301369861","0.017337328767123295","0.038313356164383555","0.0055340069736401574","0","1","TRUE","TRUE","TRUE","TRUE"

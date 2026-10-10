@@ -1,0 +1,22 @@
+       model    seed_set       term point_estimate n_draws_ok n_draws_failed
+6  pool_xsec authorseeds     cuteth         1.2182          4              0
+12 pool_xsec    ra_seeds     cuteth         1.2182          4              0
+20  pool_ldv authorseeds cuteth_lag         1.0151          4              0
+                 seeds boot_mean  boot_sd ci_lo_1.96sd ci_hi_1.96sd perc_2.5
+6              1;2;3;4   1.23370 0.096744       1.0286       1.4078  1.10492
+12 1001;1002;1003;1004   1.23568 0.081097       1.0592       1.3771  1.13431
+20             1;2;3;4   0.97453 0.120327       0.7793       1.2510  0.81242
+   perc_97.5 excludes_zero mean_draw_seconds
+6     1.3083          TRUE            302.67
+12    1.3157          TRUE            319.08
+20    1.0530          TRUE            325.56
+      model variant       term   ran estimate maxlik_se sd_boot_step6
+1 pool_xsec      rb     cuteth  TRUE   1.2912  0.087470      0.096744
+2 pool_xsec      rc     cuteth  TRUE   1.2191  0.081411      0.096744
+3  pool_ldv      rb cuteth_lag FALSE       NA        NA      0.120327
+4  pool_ldv      rc cuteth_lag FALSE       NA        NA      0.120327
+  ci_lo_1.96sd ci_hi_1.96sd same_dir_and_sig
+1       1.1015       1.4808             TRUE
+2       1.0295       1.4087             TRUE
+3           NA           NA               NA
+4           NA           NA               NA

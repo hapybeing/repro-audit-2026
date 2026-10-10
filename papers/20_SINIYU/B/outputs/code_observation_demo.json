@@ -1,0 +1,30 @@
+{
+ "lines_419_420": {
+  "radar_Z_out_after_419": [
+   1000.0,
+   5000.0,
+   null,
+   null
+  ],
+  "cells_masked_by_420": 0,
+  "obs_after_420": [
+   20.0,
+   30.0,
+   40.0,
+   50.0
+  ]
+ },
+ "lines_343_345": {
+  "input_ZH": [
+   -5.0,
+   10.0,
+   25.0
+  ],
+  "B_value_after_345": [
+   -5.0,
+   10.0,
+   25.0
+  ],
+  "negative_values_kept": true
+ }
+}

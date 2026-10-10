@@ -1,5 +1,7 @@
 """Generate compare tables, master_results.csv and batch tables ONLY from saved results.json files.
-Usage: python3 scripts/make_tables.py [batch_number]"""
+Usage: python3 scripts/make_tables.py [batch_number]
+From batch 4 on, when an agent lists the same robustness id more than once (primary quantity first, then a secondary
+quantity, as 17_T1NXVQ B does), the A/B robustness comparison uses the first (primary) entry. Batches 1 to 3 are unchanged."""
 import json, csv, os, sys, glob
 REPO=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sel=list(csv.DictReader(open(f"{REPO}/selection/selected.csv")))
@@ -38,6 +40,9 @@ for r in sel:
                 if not same: fl.append(f"{t['id']}: A={ra} B={rb} differ beyond paper rounding")
         if len(A.get("bugs",[]))!=len(B.get("bugs",[])): fl.append(f"code review differs: A reported {len(A.get('bugs',[]))} bug(s), B reported {len(B.get('bugs',[]))}")
         rbB={x["id"]:x for x in B.get("robustness",[])}
+        if batch and batch>=4:  # batch 4 on: B may list a check twice (primary, then secondary quantity); compare the first (primary) entry
+            rbB={}
+            for x in B.get("robustness",[]): rbB.setdefault(x["id"],x)
         for x in A.get("robustness",[]):
             y=rbB.get(x["id"])
             if y and x.get("same_direction_and_significance_as_paper")!=y.get("same_direction_and_significance_as_paper"):

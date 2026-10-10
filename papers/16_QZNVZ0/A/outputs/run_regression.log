@@ -1,0 +1,6 @@
+/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/16_QZNVZ0/A/scripts/regression_verbatim.py:7: DtypeWarning: Columns (5: Journal_Rank) have mixed types. Specify dtype option on import or set low_memory=False.
+  regression_table=pd.read_csv('regression_table_anonymous_final.csv',index_col=0)
+dtypes Top10_Inst/Top50_Inst: bool bool
+extraction done
+peak_rss_MB 621.9296875 secs 74.4
+exit 0

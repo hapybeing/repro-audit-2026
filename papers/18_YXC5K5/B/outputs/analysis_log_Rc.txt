@@ -1,0 +1,2173 @@
+
+> rm(list = ls())
+
+> library(tidyverse)
+
+> library(caret)
+
+> library(irr)
+
+> library(gridExtra)
+
+> library(forcats)
+
+> library(patchwork)
+
+> library(pROC)
+
+> library(stargazer)
+
+> library(cowplot)
+
+> read_and_process <- function(file, date, coder, num_labels, 
++     drop_ids = c(0, 451)) {
++     read_csv(file) %>% mutate(date_coded = date, coder = coder, 
++         num_labels = num_labels) %>% select(-...1) %>% filter(!docid %in% 
++         drop_ids)
++ }
+
+> gpt_files <- list(gpt590_10lab = c("5-24-24gpt10lab.csv", 
++     "05-24-2024", "gpt-4-turbo", "10"), gpt590_4lab = c("5-24-24gpt4lab.csv", 
++     "05-24-2024", "gpt-4-turbo", "4"), gpt_10_oneshot = c("5-24-24gpt10lab_oneshot.csv", 
++     "05-24-2024", "gpt-4-turbo", "10"), gpt_4_oneshot = c("5-24-24gpt4lab_oneshot.csv", 
++     "05-24-2024", "gpt-4-turbo", "4"), gpt_10_fewshot = c("5-24-24gpt10lab_fewshot.csv", 
++     "05-24-2024", "gpt-4-turbo", "10"), gpt_4_fewshot = c("5-24-24gpt4lab_fewshot.csv", 
++     "05-24-2024", "gpt-4-turbo", "4"), gpt4o_10lab = c("5-24-24gpt10lab_4o.csv", 
++     "05-24-2024", "gpt-4o", "10"), gpt4o_4lab = c("5-24-24gpt4lab_4o.csv", 
++     "05-24-2024", "gpt-4o", "4"), gpt4o_10lab_oneshot = c("5-24-24gpt10lab_4o_oneshot.csv", 
++     "05-24-2024", "gpt-4o", "10"), gpt4o_4lab_oneshot = c("5-24-24gpt4lab_4o_oneshot.csv", 
++     "05-24-2024", "gpt-4o", "4"), gpt4o_10lab_fewshot = c("5-24-24gpt10lab_4o_fewshot.csv", 
++     "05-24-2024", "gpt-4o", "10"), gpt4o_4lab_fewshot = c("5-24-24gpt4lab_4o_fewshot.csv", 
++     "05-24-2024", "gpt-4o", "4"))
+
+> gpt40_10lab_fewshot_spanish = read_and_process("6-12-24gpt10lab_fewshot_spanish.csv", 
++     "06-12-2024", "gpt-4o", "4")
+
+> claude_files <- list(claude590_10lab = c("8-8-24claude3.510labn590_zeroshot.csv", 
++     "8-8-2024", "claude-sonnet-3.5", "10"), claude590_4lab = c("8-9-24claude3.54labn590_zeroshot.csv", 
++     "8-9-2024", "claude-sonnet-3.5", "4"), claude_10_oneshot = c("8-8-24claude3.510labn590_oneshot.csv", 
++     "8-8-2024", "claude-sonnet-3.5", "10"), claude_4_oneshot = c("8-8-24claude3.54labn590_oneshot.csv", 
++     "8-8-2024", "claude-sonnet-3.5", "4"), claude_10_fewshot = c("6-24-24claude3.510labn590_fewshot.csv", 
++     "06-24-2024", "claude-sonnet-3.5", "10"), claude_4_fewshot = c("6-24-24claude3.54labn590_fewshot.csv", 
++     "06-24-2024", "claude-sonnet-3.5", "4"))
+
+> human_files <- list(human_10lab = c("human10_agree.csv", 
++     "10"), human_4lab = c("human4_agree.csv", "4"))
+
+> gpt_data <- lapply(gpt_files, function(f) read_and_process(f[1], 
++     f[2], f[3], f[4]))
+
+> names(gpt_data) <- names(gpt_files)
+
+> claude_data <- lapply(claude_files, function(f) read_and_process(f[1], 
++     f[2], f[3], f[4]))
+
+> names(claude_data) <- names(claude_files)
+
+> read_and_process_human <- function(file, num_labels, 
++     drop_ids) {
++     read_csv(file) %>% select(-c(...1)) %>% mutate(date_coded = "NA", 
++         coder = "human", num_labels = num_labels) %>% filter(docid %in% 
++         drop_ids)
++ }
+
+> ids <- gpt_data$gpt590_10lab$docid
+
+> human_data <- lapply(human_files, function(f) read_and_process_human(f[1], 
++     f[2], ids))
+
+> names(human_data) <- names(human_files)
+
+> names(human_data$human_10lab)[2:9] = paste0("Theme", 
++     1:8)
+
+> names(human_data$human_4lab)[2:5] = paste0("Theme", 
++     1:4)
+
+> pi = read_csv("pi_codings_2ndhalf.csv")
+
+> names(pi) = tolower(names(pi))
+
+> names(pi)[2:9] = paste0("Theme", 1:8)
+
+> pi = pi %>% mutate(across(Theme1:Theme8, ~replace_na(., 
++     0))) %>% distinct(docid, .keep_all = T)
+
+> pi = pi %>% arrange(docid)
+
+> lapply(pi %>% select(Theme1:Theme8), mean)
+$Theme1
+[1] 0.1850594
+
+$Theme2
+[1] 0.05942275
+
+$Theme3
+[1] 0.05432937
+
+$Theme4
+[1] 0.03395586
+
+$Theme5
+[1] 0.04414261
+
+$Theme6
+[1] 0.08319185
+
+$Theme7
+[1] 0.03225806
+
+$Theme8
+[1] 0.1561969
+
+
+> ids2 = pi$docid
+
+> pi10 = pi %>% select(Theme1:Theme8)
+
+> pi10mat = as.matrix(pi10)
+
+> pi4 = pi %>% mutate(hum = if_else(Theme1 == 1 | Theme2 == 
++     1, 1, 0), threat = if_else(Theme3 == 1 | Theme4 == 1 | Theme5 == 
++     1 | Theme6 == 1, 1, 0), ben = if_else(Theme7 == 1, 1, 0), 
++     pi = Theme8) %>% select(-c(Theme1:Theme8, ...10, docid)) %>% 
++     rename(Theme1 = hum, Theme2 = threat, Theme3 = ben, Theme4 = pi)
+
+> pi4mat = as.matrix(pi4)
+
+> actual_list_10 <- as.list(pi10 %>% select(Theme1:Theme8))
+
+> actual_list_4 <- as.list(pi4 %>% select(Theme1:Theme4))
+
+> actual_list_10mat = pi10 %>% select(Theme1:Theme8)
+
+> actual_list_4mat = pi4 %>% select(Theme1:Theme4)
+
+> actual_list_10matx = as.matrix(actual_list_10mat)
+
+> actual_list_4matx = as.matrix(actual_list_4mat)
+
+> calculate_accuracy <- function(actual, predicted) {
++     sapply(seq_along(actual), function(i) {
++         sum(predicted[[i]] == actual[[i]])/length(actual[[i]])
++     })
++ }
+
+> models <- list(claude_long = claude_data$claude590_10lab, 
++     claude_oneshot = claude_data$claude_10_oneshot, claude_fewshot = claude_data$claude_10_fewshot, 
++     gpt_long = gpt_data$gpt590_10lab, gpt_oneshot = gpt_data$gpt_10_oneshot, 
++     gpt_fewshot = gpt_data$gpt_10_fewshot, gpt4o_long = gpt_data$gpt4o_10lab, 
++     gpt4o_oneshot = gpt_data$gpt4o_10lab_oneshot, gpt4o_fewshot = gpt_data$gpt4o_10lab_fewshot)
+
+> models = lapply(models, function(x) {
++     newnames = gsub("label_", "", names(x))
++     names(x) = newnames
++     x
++ })
+
+> accuracy_results <- lapply(models, function(model) {
++     predicted_list <- as.list(model %>% select(starts_with("Theme")))
++     accuracy_list <- calculate_accuracy(actual_list_10, predicted_list)
++     mean_accuracy <- mean(accuracy_list)
++     list(accuracy_list = accuracy_list, mean_accuracy = mean_accuracy)
++ })
+
+> for (model_name in names(accuracy_results)) {
++     cat(paste("Model:", model_name, "\n"))
++     print(accuracy_results[[model_name]]$accuracy_list)
++     cat(paste("Mean Accuracy:", accuracy_results[[model_name]]$mean_accuracy, 
++         "\n\n"))
++ }
+Model: claude_long 
+[1] 0.7826825 0.7317487 0.9100170 0.9422750 0.7538200 0.8285229 0.9490662
+[8] 0.7351443
+Mean Accuracy: 0.829159592529711 
+
+Model: claude_oneshot 
+[1] 0.7962649 0.7266553 0.9252971 0.8947368 0.7266553 0.8166384 0.9541596
+[8] 0.7691002
+Mean Accuracy: 0.826188455008489 
+
+Model: claude_fewshot 
+[1] 0.7962649 0.7300509 0.9337861 0.9151104 0.7809847 0.7945671 0.9524618
+[8] 0.8047538
+Mean Accuracy: 0.838497453310696 
+
+Model: gpt_long 
+[1] 0.7894737 0.7181664 0.9422750 0.9100170 0.7062818 0.8726655 0.9202037
+[8] 0.6977929
+Mean Accuracy: 0.819609507640068 
+
+Model: gpt_oneshot 
+[1] 0.8370119 0.8556876 0.9507640 0.9269949 0.7741935 0.8539898 0.9473684
+[8] 0.7928693
+Mean Accuracy: 0.867359932088285 
+
+Model: gpt_fewshot 
+[1] 0.8471986 0.8455008 0.9439728 0.9422750 0.8013582 0.8336163 0.9558574
+[8] 0.8098472
+Mean Accuracy: 0.872453310696095 
+
+Model: gpt4o_long 
+[1] 0.8013582 0.7351443 0.9354839 0.9422750 0.7775891 0.8522920 0.9677419
+[8] 0.7453311
+Mean Accuracy: 0.8446519524618 
+
+Model: gpt4o_oneshot 
+[1] 0.8522920 0.8234295 0.9490662 0.9422750 0.8166384 0.8319185 0.9609508
+[8] 0.7775891
+Mean Accuracy: 0.869269949066214 
+
+Model: gpt4o_fewshot 
+[1] 0.8539898 0.8539898 0.9626486 0.9524618 0.8455008 0.8777589 0.9660441
+[8] 0.8064516
+Mean Accuracy: 0.889855687606112 
+
+
+> models_4 <- list(claude_long = claude_data$claude590_4lab, 
++     claude_oneshot = claude_data$claude_4_oneshot, claude_fewshot = claude_data$claude_4_fewshot, 
++     gpt_long = gpt_data$gpt590_4lab, gpt_oneshot = gpt_data$gpt_4_oneshot, 
++     gpt_fewshot = gpt_data$gpt_4_fewshot, gpt4o_long = gpt_data$gpt4o_4lab, 
++     gpt4o_oneshot = gpt_data$gpt4o_4lab_oneshot, gpt4o_fewshot = gpt_data$gpt4o_4lab_fewshot)
+
+> models_4 = lapply(models_4, function(x) {
++     newnames = gsub("label_", "", names(x))
++     names(x) = newnames
++     x
++ })
+
+> accuracy_results_4 <- lapply(models_4, function(model) {
++     predicted_list <- as.list(model %>% select(starts_with("Theme")))
++     accuracy_list <- calculate_accuracy(actual_list_4, predicted_list)
++     mean_accuracy <- mean(accuracy_list)
++     list(accuracy_list = accuracy_list, mean_accuracy = mean_accuracy)
++ })
+
+> calculate_precision <- function(actual, predicted) {
++     actual <- factor(actual, levels = c("0", "1"))
++     predicted <- factor(predicted, levels = c("0", "1"))
++     cm <- confusionMatrix(predicted, actual)
++     cm$byClass["Precision"]
++ }
+
+> calculate_and_print_precision <- function(models, 
++     actual_list) {
++     precision_results <- lapply(models, function(model) {
++         predicted_list <- as.list(model %>% select(starts_with("Theme")))
++         precision_list <- Map(calculate_precision, actual_list, 
++             predicted_list)
++         mean_precision <- mean(unlist(precision_list), na.rm = TRUE)
++         list(precision_list = precision_list, mean_precision = mean_precision)
++     })
++     for (model_name in names(precision_results)) {
++         cat(paste("Model:", model_name, "\n"))
++         print(precision_results[[model_name]]$precision_list)
++         cat(paste("Mean Precision:", precision_results[[model_name]]$mean_precision, 
++             "\n\n"))
++     }
++ }
+
+> models_10 <- list(claude_long = claude_data$claude590_10lab, 
++     claude_oneshot = claude_data$claude_10_oneshot, claude_fewshot = claude_data$claude_10_fewshot, 
++     gpt_long = gpt_data$gpt590_10lab, gpt_oneshot = gpt_data$gpt_10_oneshot, 
++     gpt_fewshot = gpt_data$gpt_10_fewshot, gpt4o_long = gpt_data$gpt4o_10lab, 
++     gpt4o_oneshot = gpt_data$gpt4o_10lab_oneshot, gpt4o_fewshot = gpt_data$gpt4o_10lab_fewshot)
+
+> models_10 <- lapply(models_10, function(x) {
++     newnames <- gsub("label_", "", names(x))
++     names(x) <- newnames
++     x
++ })
+
+> calculate_and_print_precision(models_10, actual_list_10)
+Model: claude_long 
+$Theme1
+Precision 
+0.9656085 
+
+$Theme2
+Precision 
+0.9829268 
+
+$Theme3
+Precision 
+ 0.996063 
+
+$Theme4
+Precision 
+0.9837251 
+
+$Theme5
+Precision 
+0.9952607 
+
+$Theme6
+Precision 
+0.9740821 
+
+$Theme7
+Precision 
+0.9891304 
+
+$Theme8
+Precision 
+0.9722992 
+
+Mean Precision: 0.982386970415691 
+
+Model: claude_oneshot 
+$Theme1
+Precision 
+0.9663212 
+
+$Theme2
+Precision 
+0.9851852 
+
+$Theme3
+Precision 
+0.9961315 
+
+$Theme4
+Precision 
+0.9865643 
+
+$Theme5
+Precision 
+0.9926471 
+
+$Theme6
+Precision 
+     0.98 
+
+$Theme7
+Precision 
+0.9909584 
+
+$Theme8
+Precision 
+ 0.952381 
+
+Mean Precision: 0.98127358450794 
+
+Model: claude_fewshot 
+$Theme1
+Precision 
+0.9455446 
+
+$Theme2
+Precision 
+0.9876543 
+
+$Theme3
+Precision 
+0.9942748 
+
+$Theme4
+Precision 
+0.9850467 
+
+$Theme5
+Precision 
+0.9954338 
+
+$Theme6
+Precision 
+ 0.979405 
+
+$Theme7
+Precision 
+0.9874101 
+
+$Theme8
+Precision 
+0.9380734 
+
+Mean Precision: 0.976605338036563 
+
+Model: gpt_long 
+$Theme1
+Precision 
+0.9635417 
+
+$Theme2
+Precision 
+    0.985 
+
+$Theme3
+Precision 
+0.9869646 
+
+$Theme4
+Precision 
+0.9777778 
+
+$Theme5
+Precision 
+0.9949239 
+
+$Theme6
+Precision 
+0.9395085 
+
+$Theme7
+Precision 
+0.9869646 
+
+$Theme8
+Precision 
+0.9518414 
+
+Mean Precision: 0.973315300650145 
+
+Model: gpt_oneshot 
+$Theme1
+Precision 
+0.9247788 
+
+$Theme2
+Precision 
+0.9737374 
+
+$Theme3
+Precision 
+0.9835165 
+
+$Theme4
+Precision 
+0.9764493 
+
+$Theme5
+Precision 
+0.9976852 
+
+$Theme6
+Precision 
+ 0.945098 
+
+$Theme7
+Precision 
+ 0.983842 
+
+$Theme8
+Precision 
+ 0.947494 
+
+Mean Precision: 0.966575145282984 
+
+Model: gpt_fewshot 
+$Theme1
+Precision 
+0.9166667 
+
+$Theme2
+Precision 
+0.9714868 
+
+$Theme3
+Precision 
+0.9833948 
+
+$Theme4
+Precision 
+0.9751332 
+
+$Theme5
+Precision 
+0.9977679 
+
+$Theme6
+Precision 
+ 0.949187 
+
+$Theme7
+Precision 
+0.9822695 
+
+$Theme8
+Precision 
+0.9306488 
+
+Mean Precision: 0.963319324922461 
+
+Model: gpt4o_long 
+$Theme1
+Precision 
+0.9481481 
+
+$Theme2
+Precision 
+0.9806763 
+
+$Theme3
+Precision 
+0.9868668 
+
+$Theme4
+Precision 
+0.9768271 
+
+$Theme5
+Precision 
+        1 
+
+$Theme6
+Precision 
+0.9613035 
+
+$Theme7
+Precision 
+0.9858907 
+
+$Theme8
+Precision 
+ 0.943734 
+
+Mean Precision: 0.972930811636742 
+
+Model: gpt4o_oneshot 
+$Theme1
+Precision 
+0.9207709 
+
+$Theme2
+Precision 
+0.9766949 
+
+$Theme3
+Precision 
+ 0.985267 
+
+$Theme4
+Precision 
+0.9751332 
+
+$Theme5
+Precision 
+        1 
+
+$Theme6
+Precision 
+ 0.960334 
+
+$Theme7
+Precision 
+0.9840708 
+
+$Theme8
+Precision 
+0.9399038 
+
+Mean Precision: 0.967771839368876 
+
+Model: gpt4o_fewshot 
+$Theme1
+Precision 
+0.9156118 
+
+$Theme2
+Precision 
+0.9717742 
+
+$Theme3
+Precision 
+ 0.981982 
+
+$Theme4
+Precision 
+0.9737303 
+
+$Theme5
+Precision 
+0.9957983 
+
+$Theme6
+Precision 
+0.9465649 
+
+$Theme7
+Precision 
+0.9824561 
+
+$Theme8
+Precision 
+0.9303371 
+
+Mean Precision: 0.962281838928266 
+
+
+> models_4 <- list(claude_long = claude_data$claude590_4lab, 
++     claude_oneshot = claude_data$claude_4_oneshot, claude_fewshot = claude_data$claude_4_fewshot, 
++     gpt_long = gpt_data$gpt590_4lab, gpt_oneshot = gpt_data$gpt_4_oneshot, 
++     gpt_fewshot = gpt_data$gpt_4_fewshot, gpt4o_long = gpt_data$gpt4o_4lab, 
++     gpt4o_oneshot = gpt_data$gpt4o_4lab_oneshot, gpt4o_fewshot = gpt_data$gpt4o_4lab_fewshot)
+
+> models_4 <- lapply(models_4, function(x) {
++     newnames <- gsub("label_", "", names(x))
++     names(x) <- newnames
++     x
++ })
+
+> get_means <- function(data, labels, model) {
++     values <- apply(data, 2, mean, na.rm = TRUE)
++     tibble(mean_prop_1s = values, names = gsub("label_", "", 
++         names(values)), labels = labels, model = model)
++ }
+
+> hum10mat <- human_data$human_10lab %>% select(Theme1:Theme8)
+
+> gpt10mat <- gpt_data$gpt590_10lab %>% select(Theme1:Theme8)
+
+> claude10mat <- claude_data$claude590_10lab %>% select(Theme1:Theme8)
+
+> gpt4o10mat <- gpt_data$gpt4o_10lab %>% select(Theme1:Theme8)
+
+> gpt10mat_one <- gpt_data$gpt_10_oneshot %>% select(Theme1:Theme8)
+
+> claude10mat_one <- claude_data$claude_10_oneshot %>% 
++     select(Theme1:Theme8)
+
+> gpt4o10mat_one <- gpt_data$gpt4o_10lab_oneshot %>% 
++     select(Theme1:Theme8)
+
+> gpt10mat_few <- gpt_data$gpt_10_fewshot %>% select(Theme1:Theme8)
+
+> claude10mat_few <- claude_data$claude_10_fewshot %>% 
++     select(Theme1:Theme8)
+
+> gpt4o10mat_few <- gpt_data$gpt4o_10lab_fewshot %>% 
++     select(Theme1:Theme8)
+
+> hum4mat <- human_data$human_4lab %>% select(Theme1:Theme4)
+
+> gpt4mat <- gpt_data$gpt590_4lab %>% select(Theme1:Theme4)
+
+> claude4mat <- claude_data$claude590_4lab %>% select(Theme1:Theme4)
+
+> gpt4o4mat <- gpt_data$gpt4o_4lab %>% select(Theme1:Theme4)
+
+> gpt4mat_one <- gpt_data$gpt_4_oneshot %>% select(Theme1:Theme4)
+
+> claude4mat_one <- claude_data$claude_4_oneshot %>% 
++     select(Theme1:Theme4)
+
+> gpt4o4mat_one <- gpt_data$gpt4o_4lab_oneshot %>% select(Theme1:Theme4)
+
+> gpt4mat_few <- gpt_data$gpt_4_fewshot %>% select(Theme1:Theme4)
+
+> claude4mat_few <- claude_data$claude_4_fewshot %>% 
++     select(Theme1:Theme4)
+
+> gpt4o4mat_few <- gpt_data$gpt4o_4lab_fewshot %>% select(Theme1:Theme4)
+
+> claude10matx <- as.matrix(claude10mat)
+
+> gpt10matx <- as.matrix(gpt10mat)
+
+> gpt4o10matx <- as.matrix(gpt4o10mat)
+
+> gpt10mat_onex <- as.matrix(gpt10mat_one)
+
+> claude10mat_onex <- as.matrix(claude10mat_one)
+
+> gpt4o10mat_onex <- as.matrix(gpt4o10mat_one)
+
+> gpt10mat_fewx <- as.matrix(gpt10mat_few)
+
+> claude10mat_fewx <- as.matrix(claude10mat_few)
+
+> gpt4o10mat_fewx <- as.matrix(gpt4o10mat_few)
+
+> claude4matx <- as.matrix(claude4mat)
+
+> gpt4matx <- as.matrix(gpt4mat)
+
+> gpt4o4matx <- as.matrix(gpt4o4mat)
+
+> gpt4mat_onex <- as.matrix(gpt4mat_one)
+
+> claude4mat_onex <- as.matrix(claude4mat_one)
+
+> gpt4o4mat_onex <- as.matrix(gpt4o4mat_one)
+
+> gpt4mat_fewx <- as.matrix(gpt4mat_few)
+
+> claude4mat_fewx <- as.matrix(claude4mat_few)
+
+> gpt4o4mat_fewx <- as.matrix(gpt4o4mat_few)
+
+> hum10matx = as.matrix(hum10mat)
+
+> hum4matx = as.matrix(hum4mat)
+
+> gpt4o10mat_few_spanish = gpt40_10lab_fewshot_spanish %>% 
++     select(Tema1:Tema8)
+
+> gpt10_span = get_means(gpt4o10mat_few_spanish, 10, 
++     "gpt spanish")
+
+> mean(gpt10_span$mean_prop_1s)
+[1] 0.1167233
+
+> hum10_values <- get_means(hum10mat, 10, "human")
+
+> gpt10_values <- get_means(gpt10mat, 10, "GPT 4 Turbo (Zero Shot)")
+
+> claude10_values <- get_means(claude10mat, 10, "Claude Sonnet 3.5 (Zero Shot)")
+
+> gpt4o10_values <- get_means(gpt4o10mat, 10, "GPT 4o (Zero Shot)")
+
+> gpt10_one_values <- get_means(gpt10mat_one, 10, "GPT 4 Turbo (One Shot)")
+
+> claude10_one_values <- get_means(claude10mat_one, 
++     10, "Claude Sonnet 3.5 (One Shot)")
+
+> gpt4o10_one_values <- get_means(gpt4o10mat_one, 10, 
++     "GPT 4o (One Shot)")
+
+> gpt10_few_values <- get_means(gpt10mat_few, 10, "GPT 4 Turbo (Few Shot)")
+
+> claude10_few_values <- get_means(claude10mat_few, 
++     10, "Claude Sonnet 3.5 (Few Shot)")
+
+> gpt4o10_few_values <- get_means(gpt4o10mat_few, 10, 
++     "GPT 4o (Few Shot)")
+
+> hum4_values <- get_means(hum4mat, 4, "human")
+
+> gpt4_values <- get_means(gpt4mat, 4, "GPT 4 Turbo (Zero Shot)")
+
+> claude4_values <- get_means(claude4mat, 4, "Claude Sonnet 3.5 (Zero Shot)")
+
+> gpt4o4_values <- get_means(gpt4o4mat, 4, "GPT 4o (Zero Shot)")
+
+> gpt4_one_values <- get_means(gpt4mat_one, 4, "GPT 4 Turbo (One Shot)")
+
+> claude4_one_values <- get_means(claude4mat_one, 4, 
++     "Claude Sonnet 3.5 (One Shot)")
+
+> gpt4o4_one_values <- get_means(gpt4o4mat_one, 4, "GPT 4o (One Shot)")
+
+> gpt4_few_values <- get_means(gpt4mat_few, 4, "GPT 4 Turbo (Few Shot)")
+
+> claude4_few_values <- get_means(claude4mat_few, 4, 
++     "Claude Sonnet 3.5 (Few Shot)")
+
+> gpt4o4_few_values <- get_means(gpt4o4mat_few, 4, "GPT 4o (Few Shot)")
+
+> all_values <- bind_rows(hum10_values, gpt10_values, 
++     claude10_values, gpt10_few_values, claude10_few_values, hum4_values, 
++     gpt4_values, claude4_values, gpt4_few_values, claude4_few_values, 
++     gpt4o10_values, gpt4o10_few_values, gpt4o4_values, gpt4o4_few_values, 
++     gpt4_one_values, claude4_one_values, gpt4o4_one_values, gpt10_one_values, 
++     claude10_one_values, gpt4o10_one_values)
+
+> all_values %>% group_by(model, labels) %>% summarize(mean = mean(mean_prop_1s))
+# A tibble: 20 × 3
+# Groups:   model [10]
+   model                         labels   mean
+   <chr>                          <dbl>  <dbl>
+ 1 Claude Sonnet 3.5 (Few Shot)       4 0.234 
+ 2 Claude Sonnet 3.5 (Few Shot)      10 0.207 
+ 3 Claude Sonnet 3.5 (One Shot)       4 0.223 
+ 4 Claude Sonnet 3.5 (One Shot)      10 0.228 
+ 5 Claude Sonnet 3.5 (Zero Shot)      4 0.259 
+ 6 Claude Sonnet 3.5 (Zero Shot)     10 0.226 
+ 7 GPT 4 Turbo (Few Shot)             4 0.210 
+ 8 GPT 4 Turbo (Few Shot)            10 0.148 
+ 9 GPT 4 Turbo (One Shot)             4 0.213 
+10 GPT 4 Turbo (One Shot)            10 0.159 
+11 GPT 4 Turbo (Zero Shot)            4 0.289 
+12 GPT 4 Turbo (Zero Shot)           10 0.220 
+13 GPT 4o (Few Shot)                  4 0.222 
+14 GPT 4o (Few Shot)                 10 0.128 
+15 GPT 4o (One Shot)                  4 0.228 
+16 GPT 4o (One Shot)                 10 0.160 
+17 GPT 4o (Zero Shot)                 4 0.272 
+18 GPT 4o (Zero Shot)                10 0.195 
+19 human                              4 0.172 
+20 human                             10 0.0972
+
+> all_values10 <- all_values %>% filter(labels == 10)
+
+> all_values4 <- all_values %>% filter(labels == 4)
+
+> human_values10 <- all_values10 %>% filter(model == 
++     "human") %>% select(labels, names, human_value = mean_prop_1s)
+
+> all_values10 <- all_values10 %>% left_join(human_values10, 
++     by = c("names", "labels")) %>% mutate(diff_from_human = mean_prop_1s - 
++     human_value) %>% mutate(names = factor(names, levels = rev(c("Theme1", 
++     "Theme2", "Theme3", "Theme4", "Theme5", "Theme6", "Theme7", 
++     "Theme8")), labels = rev(c("Vulnerable", "Refugee", "Disease Threat", 
++     "Econ Threat", "Instability", "Crime Threat", "Econ Benefit", 
++     "P & I"))))
+
+> all_values10$model <- factor(all_values10$model, levels = c("Claude Sonnet 3.5 (Zero Shot)", 
++     "Claude Sonnet 3.5 (One Shot)", "Claude Sonnet 3.5 (Few Shot)", 
++     "GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", 
++     "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> human_values4 <- all_values4 %>% filter(model == "human") %>% 
++     select(labels, names, human_value = mean_prop_1s)
+
+> all_values4 <- all_values4 %>% left_join(human_values4, 
++     by = c("names", "labels")) %>% mutate(diff_from_human = mean_prop_1s - 
++     human_value) %>% mutate(names = factor(names, levels = rev(c("Theme1", 
++     "Theme2", "Theme3", "Theme4")), labels = rev(c("Human", "Threat", 
++     "Benefit", "P & I"))))
+
+> all_values4$model <- factor(all_values4$model, levels = c("Claude Sonnet 3.5 (Zero Shot)", 
++     "Claude Sonnet 3.5 (One Shot)", "Claude Sonnet 3.5 (Few Shot)", 
++     "GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", 
++     "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> models = c(`Claude Sonnet 3.5 (Zero Shot)` = "#FF9999", 
++     `Claude Sonnet 3.5 (One Shot)` = "#FF6666", `Claude Sonnet 3.5 (Few Shot)` = "#CC0000", 
++     `GPT 4o (Zero Shot)` = "#D8BFD8", `GPT 4o (One Shot)` = "#9370DB", 
++     `GPT 4o (Few Shot)` = "#4B0082", `GPT 4 Turbo (Zero Shot)` = "#CCFFCC", 
++     `GPT 4 Turbo (One Shot)` = "#66CC66", `GPT 4 Turbo (Few Shot)` = "darkgreen")
+
+> shapes = c(`Claude Sonnet 3.5 (Zero Shot)` = 16, `Claude Sonnet 3.5 (One Shot)` = 16, 
++     `Claude Sonnet 3.5 (Few Shot)` = 16, `GPT 4o (Zero Shot)` = 15, 
++     `GPT 4o (One Shot)` = 15, `GPT 4o (Few Shot)` = 15, `GPT 4 Turbo (Zero Shot)` = 17, 
++     `GPT 4 Turbo (One Shot)` = 17, `GPT 4 Turbo (Few Shot)` = 17)
+
+> av10 = all_values10 %>% filter(model != "human") %>% 
++     ggplot(aes(x = mean_prop_1s, y = names, color = model, shape = model)) + 
++     geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, 
++     hjust = 1, size = 12), legend.title = element_text(size = 14), 
++     axis.title.x = element_text(size = 15, margin = margin(t = 5)), 
++     legend.text = element_text(size = 12), axis.text.y = element_text(size = 12)) + 
++     labs(title = "8 Label Specification", y = "", x = "% of Articles Classified as 1s by LLMs - % of Articles Classified as 1s by Humans", 
++         color = "Model", shape = "Model") + scale_shape_manual(values = shapes) + 
++     geom_vline(xintercept = 0, linetype = "dashed") + scale_color_manual(values = models) + 
++     scale_x_continuous(limits = c(-0.01, 0.65), breaks = c(0, 
++         0.1, 0.2, 0.3, 0.4, 0.5, 0.6))
+
+> av10
+
+> av4 = all_values4 %>% filter(model != "human") %>% 
++     ggplot(aes(x = mean_prop_1s, y = names, color = model, shape = model)) + 
++     geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, 
++     hjust = 1, size = 12), legend.title = element_text(size = 14), 
++     axis.title.x = element_text(size = 15, margin = margin(t = 5)), 
++     legend.text = element_text(size = 12), axis.text.y = element_text(size = 12)) + 
++     labs(title = "4 Label Specification", x = "% of Articles Classified as 1s by LLMs - % of Articles Classified as 1s by Humans", 
++         y = "", color = "Model", shape = "Model") + scale_shape_manual(values = shapes) + 
++     geom_vline(xintercept = 0, linetype = "dashed") + scale_color_manual(values = models) + 
++     scale_x_continuous(limits = c(-0.01, 0.65), breaks = c(0, 
++         0.1, 0.2, 0.3, 0.4, 0.5, 0.6))
+
+> av4
+
+> cav <- (av10 + av4) + plot_layout(ncol = 2, guides = "collect", 
++     axes = "collect") & theme(legend.position = "right")
+
+> print(cav)
+
+> author10 = pi10 %>% summarize(across(everything(), 
++     ~mean(.))) %>% rename(Vulnerable = Theme1, Refugee = Theme2, 
++     `Disease Threat` = Theme3, `Econ Threat` = Theme4, Instability = Theme5, 
++     `Crime Threat` = Theme6, `Econ Benefit` = Theme7, `P & I` = Theme8) %>% 
++     pivot_longer(cols = Vulnerable:`P & I`, names_to = "names", 
++         values_to = "author_value")
+
+> author4 = pi4 %>% summarize(across(everything(), ~mean(.))) %>% 
++     rename(Human = Theme1, Threat = Theme2, Benefit = Theme3, 
++         `P & I` = Theme4) %>% pivot_longer(cols = Human:`P & I`, 
++     names_to = "names", values_to = "author_value")
+
+> m10 = all_values10 %>% left_join(author10, by = c("names")) %>% 
++     mutate(names = factor(names, levels = c("Vulnerable", "Refugee", 
++         "Disease Threat", "Econ Threat", "Instability", "Crime Threat", 
++         "Econ Benefit", "P & I"), labels = c("Vulnerable", "Refugee", 
++         "Disease Threat", "Econ Threat", "Instability", "Crime Threat", 
++         "Econ Benefit", "P & I")), model = gsub("Claude ", "", 
++         model), mean_prop_1s = mean_prop_1s * 100, model = if_else(is.na(model) == 
++         T, "Undergraduate Coders", model), author_value = author_value * 
++         100, diff_from_author = mean_prop_1s - author_value)
+
+> m4 = all_values4 %>% left_join(author4, by = c("names")) %>% 
++     mutate(names = factor(names, levels = c("Human", "Threat", 
++         "Benefit", "P & I"), labels = c("Human", "Threat", "Econ Benefit", 
++         "P & I")), model = gsub("Claude ", "", model), mean_prop_1s = mean_prop_1s * 
++         100, model = if_else(is.na(model) == T, "Undergraduate Coders", 
++         model), author_value = author_value * 100, diff_from_author = mean_prop_1s - 
++         author_value)
+
+> models2 = c(`Sonnet 3.5 (Zero Shot)` = "#FF9999", 
++     `Sonnet 3.5 (One Shot)` = "#FF6666", `Sonnet 3.5 (Few Shot)` = "#CC0000", 
++     `GPT 4o (Zero Shot)` = "#D8BFD8", `GPT 4o (One Shot)` = "#9370DB", 
++     `GPT 4o (Few Shot)` = "#4B0082", `GPT 4 Turbo (Zero Shot)` = "#CCFFCC", 
++     `GPT 4 Turbo (One Shot)` = "#66CC66", `GPT 4 Turbo (Few Shot)` = "darkgreen", 
++     `Undergraduate Coders` = "black")
+
+> shapes = c(`Sonnet 3.5 (Zero Shot)` = 16, `Sonnet 3.5 (One Shot)` = 16, 
++     `Sonnet 3.5 (Few Shot)` = 16, `GPT 4o (Zero Shot)` = 15, 
++     `GPT 4o (One Shot)` = 15, `GPT 4o (Few Shot)` = 15, `GPT 4 Turbo (Zero Shot)` = 17, 
++     `GPT 4 Turbo (One Shot)` = 17, `GPT 4 Turbo (Few Shot)` = 17, 
++     `Undergraduate Coders` = 8)
+
+> shapes2 = c(`Sonnet 3.5 (Zero Shot)` = 16, `Sonnet 3.5 (One Shot)` = 16, 
++     `Sonnet 3.5 (Few Shot)` = 16, `GPT 4o (Zero Shot)` = 16, 
++     `GPT 4o (One Shot)` = 16, `GPT 4o (Few Shot)` = 16, `GPT 4 Turbo (Zero Shot)` = 16, 
++     `GPT 4 Turbo (One Shot)` = 16, `GPT 4 Turbo (Few Shot)` = 16, 
++     `Undergraduate Coders` = 17)
+
+> theme_plots <- m10 %>% filter(model != "Undergraduate Coders") %>% 
++     group_by(names) %>% arrange(diff_from_author) %>% group_split() %>% 
++     purrr::map(~{
++         plot_data <- .x
++         vline_data <- m10 %>% filter(names == unique(plot_data$names), 
++             model == "Undergraduate Coders") %>% select(diff_from_author) %>% 
++             distinct()
++         ggplot(plot_data, aes(x = diff_from_author, y = reorder(model, 
++             -diff_from_author))) + theme_minimal() + geom_point(aes(shape = model, 
++             color = model)) + geom_vline(data = vline_data, aes(xintercept = diff_from_author), 
++             linetype = "dashed", color = "black") + scale_color_manual(values = models2) + 
++             scale_shape_manual(values = shapes, drop = F) + labs(x = NULL, 
++             y = NULL, title = unique(plot_data$names), color = "Model:", 
++             shape = "Model:") + scale_x_continuous(limits = c(-1, 
++             50), breaks = seq(0, 50, 10)) + theme(axis.text.y = element_blank(), 
++             axis.ticks.y = element_blank(), legend.text = element_text(size = 8), 
++             panel.grid.minor = element_blank(), axis.text.x = element_text(size = 7), 
++             plot.title = element_text(hjust = 0.5, size = 10), 
++             legend.title = element_text(size = 10))
++     })
+
+> final_plot <- wrap_plots(theme_plots, ncol = 2) + 
++     plot_layout(guides = "collect") & theme(legend.position = "right")
+
+> final_plot
+
+> theme_plots4 <- m4 %>% filter(model != "Undergraduate Coders") %>% 
++     group_by(names) %>% arrange(diff_from_author) %>% group_split() %>% 
++     purrr::map(~{
++         plot_data <- .x
++         vline_data <- m4 %>% filter(names == unique(plot_data$names), 
++             model == "Undergraduate Coders") %>% select(diff_from_author) %>% 
++             distinct()
++         ggplot(plot_data, aes(x = diff_from_author, y = reorder(model, 
++             -diff_from_author))) + theme_minimal() + geom_point(aes(shape = model, 
++             color = model)) + geom_vline(data = vline_data, aes(xintercept = diff_from_author), 
++             linetype = "dashed", color = "black") + scale_color_manual(values = models2) + 
++             scale_shape_manual(values = shapes) + labs(x = NULL, 
++             y = NULL, title = unique(plot_data$names), color = "Model:", 
++             shape = "Model:") + scale_x_continuous(limits = c(-1, 
++             50), breaks = seq(0, 50, 10)) + theme(axis.text.y = element_blank(), 
++             axis.ticks.y = element_blank(), panel.grid.minor = element_blank(), 
++             legend.position = "none", plot.title = element_text(hjust = 0.5, 
++                 size = 10), axis.text.x = element_text(size = 7))
++     })
+
+> final_plot4 <- wrap_plots(theme_plots4, ncol = 2)
+
+> final_plot4
+
+> title_plot_left <- ggplot() + annotate("text", x = 0.25, 
++     y = 0.85, label = "Error Rate (% False Positives)", size = 3.5) + 
++     theme_void() + theme(plot.margin = margin(t = -100)) + scale_y_continuous(limits = c(0, 
++     1))
+
+> title_plot_right <- ggplot() + annotate("text", x = 0.25, 
++     y = 0.85, label = "Error Rate (% False Positives)", size = 3.5) + 
++     theme_void() + theme(plot.margin = margin(t = -100)) + scale_y_continuous(limits = c(0, 
++     1))
+
+> left_side <- (final_plot + theme(legend.position = "right"))/title_plot_left + 
++     plot_layout(heights = c(1, 0.1))
+
+> right_side <- final_plot4/title_plot_right + plot_layout(heights = c(1, 
++     0.1))
+
+> combined_mean_plots_facet <- left_side | right_side
+
+> print(combined_mean_plots_facet)
+
+> calculate_f1 <- function(actual, predicted) {
++     actual <- factor(actual, levels = c("0", "1"))
++     predicted <- factor(predicted, levels = c("0", "1"))
++     cm <- confusionMatrix(predicted, actual)
++     cm$byClass["F1"]
++ }
+
+> calculate_f1_scores <- function(actual_list, model_mat) {
++     f1_values <- sapply(1:ncol(model_mat), function(i) {
++         calculate_f1(actual_list[[i]], model_mat[[i]])
++     })
++     f1_values
++ }
+
+> f1_results <- list(gpt10_long = calculate_f1_scores(actual_list_10, 
++     gpt10mat), gpt10_one = calculate_f1_scores(actual_list_10, 
++     gpt10mat_one), gpt10_few = calculate_f1_scores(actual_list_10, 
++     gpt10mat_few), gpt4_long = calculate_f1_scores(actual_list_4, 
++     gpt4mat), gpt4_one = calculate_f1_scores(actual_list_4, gpt4mat_one), 
++     gpt4_few = calculate_f1_scores(actual_list_4, gpt4mat_few), 
++     gpt4o10_long = calculate_f1_scores(actual_list_10, gpt4o10mat), 
++     gpt4o10_one = calculate_f1_scores(actual_list_10, gpt4o10mat_one), 
++     gpt4o10_few = calculate_f1_scores(actual_list_10, gpt4o10mat_few), 
++     gpt4o4_long = calculate_f1_scores(actual_list_4, gpt4o4mat), 
++     gpt4o4_one = calculate_f1_scores(actual_list_4, gpt4o4mat_one), 
++     gpt4o4_few = calculate_f1_scores(actual_list_4, gpt4o4mat_few), 
++     claude10_long = calculate_f1_scores(actual_list_10, claude10mat), 
++     claude10_one = calculate_f1_scores(actual_list_10, claude10mat_one), 
++     claude10_few = calculate_f1_scores(actual_list_10, claude10mat_few), 
++     claude4_long = calculate_f1_scores(actual_list_4, claude4mat), 
++     claude4_one = calculate_f1_scores(actual_list_4, claude4mat_one), 
++     claude4_few = calculate_f1_scores(actual_list_4, claude4mat_few))
+
+> f1_means <- sapply(f1_results, mean, na.rm = TRUE)
+
+> print(f1_means)
+   gpt10_long     gpt10_one     gpt10_few     gpt4_long      gpt4_one 
+    0.8876008     0.9218810     0.9257074     0.8581026     0.8968462 
+     gpt4_few  gpt4o10_long   gpt4o10_one   gpt4o10_few   gpt4o4_long 
+    0.9030099     0.9050021     0.9228083     0.9362233     0.8749857 
+   gpt4o4_one    gpt4o4_few claude10_long  claude10_one  claude10_few 
+    0.8962224     0.9028074     0.8937981     0.8931215     0.9020304 
+ claude4_long   claude4_one   claude4_few 
+    0.8841784     0.8970267     0.8936484 
+
+> f1_vectors <- f1_results
+
+> vec_length_4 <- list()
+
+> vec_length_10 <- list()
+
+> for (vec_name in names(f1_vectors)) {
++     vec <- f1_vectors[[vec_name]]
++     if (length(vec) == 4) {
++         vec_length_4[[vec_name]] <- vec
++     }
++     else if (length(vec) == 8) {
++         vec_length_10[[vec_name]] <- vec
++     }
++ }
+
+> df4 <- do.call(rbind, lapply(vec_length_4, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df4) = c("Theme1", "Theme2", "Theme3", "Theme4")
+
+> df10 <- do.call(rbind, lapply(vec_length_10, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df10) = c("Theme1", "Theme2", "Theme3", "Theme4", 
++     "Theme5", "Theme6", "Theme7", "Theme8")
+
+> df4 <- df4 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Four")
+
+> df4$model <- factor(df4$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df10 <- df10 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Eight")
+
+> df10$model <- factor(df10$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df4_tall <- df4 %>% group_by(model, labels) %>% summarize(mean = mean(Theme1:Theme4))
+
+> df10_tall <- df10 %>% group_by(model, labels) %>% 
++     summarize(mean = mean(Theme1:Theme8))
+
+> df_tall <- rbind(df4_tall, df10_tall)
+
+> df_tall$model <- fct_reorder(as.factor(df_tall$model), 
++     df_tall$mean)
+
+> g_f1 <- df_tall %>% ggplot(aes(mean, model, color = labels)) + 
++     geom_point(size = 3) + scale_x_continuous(limits = c(0.65, 
++     0.85), breaks = c(0.65, 0.75, 0.85)) + labs(y = "", x = "F1 Score", 
++     title = "", color = "Labels:") + theme(legend.position = "top") + 
++     scale_color_manual(values = c("#505050", "#B0B0B0"))
+
+> g_f1
+
+> df10long <- df10 %>% pivot_longer(cols = Theme1:Theme8, 
++     values_to = "f1", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> g_f1_all10 <- df10long %>% ggplot(aes(f1, theme, color = model, 
++     shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(0.6, 
++     1), breaks = c(0.6, 0.7, 0.8, 0.9, 1)) + labs(y = "", x = "F1 Score", 
++     title = "8 Label Specification", color = "Model", shape = "Model") + 
++     scale_shape_manual(values = shapes) + scale_color_manual(values = models2)
+
+> g_f1_all10
+
+> df4long <- df4 %>% pivot_longer(cols = Theme1:Theme4, 
++     values_to = "f1", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4")), 
++     labels = rev(c("Human", "Threat", "Benefit", "P & I"))))
+
+> g_f1_all4 <- df4long %>% ggplot(aes(f1, theme, color = model, 
++     shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(0.6, 
++     1), breaks = c(0.6, 0.7, 0.8, 0.9, 1)) + labs(y = "", x = "F1 Score", 
++     title = "4 Label Specification", color = "Model", shape = "Model") + 
++     scale_shape_manual(values = shapes) + scale_color_manual(values = models2)
+
+> g_f1_all4
+
+> combined_plots <- (g_f1_all10 + g_f1_all4) + plot_layout(ncol = 2, 
++     guides = "collect", axes = "collect") & theme(legend.position = "right")
+
+> print(combined_plots)
+
+> diffs <- tibble(model = unique(df10$model), Theme1 = df10$Theme1 - 
++     df4$Theme1, Theme2 = df10$Theme2 - df4$Theme1, Theme3 = df10$Theme3 - 
++     df4$Theme2, Theme4 = df10$Theme4 - df4$Theme2, Theme5 = df10$Theme5 - 
++     df4$Theme2, Theme6 = df10$Theme6 - df4$Theme2, Theme7 = df10$Theme7 - 
++     df4$Theme3, Theme8 = df10$Theme8 - df4$Theme4) %>% pivot_longer(cols = Theme1:Theme8, 
++     names_to = "theme", values_to = "diffs") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> diffs_graph <- diffs %>% ggplot(aes(diffs, theme, 
++     color = model, shape = model)) + geom_vline(xintercept = 0, 
++     linetype = "dashed") + scale_shape_manual(values = shapes) + 
++     geom_point(size = 3) + labs(x = "", y = "", title = "", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_x_continuous(limits = c(-0.2, 0.2), breaks = c(-0.2, 
++         -0.1, 0, 0.1, 0.2))
+
+> diffs_graph
+
+> calculate_recall <- function(actual, predicted) {
++     actual <- factor(actual, levels = c("0", "1"))
++     predicted <- factor(predicted, levels = c("0", "1"))
++     cm <- confusionMatrix(predicted, actual)
++     cm$byClass["Sensitivity"]
++ }
+
+> calculate_recall_scores <- function(actual_list, model_mat) {
++     recall_values <- sapply(1:ncol(model_mat), function(i) {
++         calculate_recall(actual_list[[i]], model_mat[[i]])
++     })
++     recall_values
++ }
+
+> recall_results <- list(gpt10_long = calculate_recall_scores(actual_list_10, 
++     gpt10mat), gpt10_one = calculate_recall_scores(actual_list_10, 
++     gpt10mat_one), gpt10_few = calculate_recall_scores(actual_list_10, 
++     gpt10mat_few), gpt4_long = calculate_recall_scores(actual_list_4, 
++     gpt4mat), gpt4_one = calculate_recall_scores(actual_list_4, 
++     gpt4mat_one), gpt4_few = calculate_recall_scores(actual_list_4, 
++     gpt4mat_few), gpt4o10_long = calculate_recall_scores(actual_list_10, 
++     gpt4o10mat), gpt4o10_one = calculate_recall_scores(actual_list_10, 
++     gpt4o10mat_one), gpt4o10_few = calculate_recall_scores(actual_list_10, 
++     gpt4o10mat_few), gpt4o4_long = calculate_recall_scores(actual_list_4, 
++     gpt4o4mat), gpt4o4_one = calculate_recall_scores(actual_list_4, 
++     gpt4o4mat_one), gpt4o4_few = calculate_recall_scores(actual_list_4, 
++     gpt4o4mat_few), claude10_long = calculate_recall_scores(actual_list_10, 
++     claude10mat), claude10_one = calculate_recall_scores(actual_list_10, 
++     claude10mat_one), claude10_few = calculate_recall_scores(actual_list_10, 
++     claude10mat_few), claude4_long = calculate_recall_scores(actual_list_4, 
++     claude4mat), claude4_one = calculate_recall_scores(actual_list_4, 
++     claude4mat_one), claude4_few = calculate_recall_scores(actual_list_4, 
++     claude4mat_few))
+
+> recall_means <- sapply(recall_results, mean, na.rm = TRUE)
+
+> print(recall_means)
+   gpt10_long     gpt10_one     gpt10_few     gpt4_long      gpt4_one 
+    0.8230020     0.8838212     0.8930314     0.7862548     0.8605445 
+     gpt4_few  gpt4o10_long   gpt4o10_one   gpt4o10_few   gpt4o4_long 
+    0.8679006     0.8506048     0.8844372     0.9132128     0.8093977 
+   gpt4o4_one    gpt4o4_few claude10_long  claude10_one  claude10_few 
+    0.8521388     0.8609997     0.8247095     0.8234067     0.8415650 
+ claude4_long   claude4_one   claude4_few 
+    0.8239965     0.8549964     0.8458731 
+
+> recall_vectors <- recall_results
+
+> vec_length_4 <- list()
+
+> vec_length_10 <- list()
+
+> for (vec_name in names(recall_vectors)) {
++     vec <- recall_vectors[[vec_name]]
++     if (length(vec) == 4) {
++         vec_length_4[[vec_name]] <- vec
++     }
++     else if (length(vec) == 8) {
++         vec_length_10[[vec_name]] <- vec
++     }
++ }
+
+> df4 <- do.call(rbind, lapply(vec_length_4, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df4) = c("Theme1", "Theme2", "Theme3", "Theme4")
+
+> df10 <- do.call(rbind, lapply(vec_length_10, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df10) = c("Theme1", "Theme2", "Theme3", "Theme4", 
++     "Theme5", "Theme6", "Theme7", "Theme8")
+
+> df4 <- df4 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Four")
+
+> df4$model <- factor(df4$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df10 <- df10 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Eight")
+
+> df10$model <- factor(df10$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df4_tall <- df4 %>% group_by(model, labels) %>% summarize(mean = mean(Theme1:Theme4))
+
+> df10_tall <- df10 %>% group_by(model, labels) %>% 
++     summarize(mean = mean(Theme1:Theme8))
+
+> df_tall <- rbind(df4_tall, df10_tall)
+
+> df_tall$model <- fct_reorder(as.factor(df_tall$model), 
++     df_tall$mean)
+
+> g_recall <- df_tall %>% ggplot(aes(mean, model, color = labels)) + 
++     geom_point(size = 3) + scale_x_continuous(limits = c(0.5, 
++     0.85), breaks = c(0.5, 0.6, 0.7, 0.8)) + labs(y = "", x = "Recall", 
++     title = "", color = "Labels:") + theme(legend.position = "top") + 
++     scale_color_manual(values = c("#505050", "#B0B0B0"))
+
+> g_recall
+
+> df10long <- df10 %>% pivot_longer(cols = Theme1:Theme8, 
++     values_to = "recall", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> g_recall_all10 <- df10long %>% ggplot(aes(recall, 
++     theme, color = model, shape = model)) + geom_point(size = 3) + 
++     scale_x_continuous(limits = c(0.5, 1), breaks = c(0.5, 0.6, 
++         0.7, 0.8, 0.9, 1)) + labs(y = "", x = "Recall", title = "8 Label Specification", 
++     color = "Model", shape = "Model") + scale_color_manual(values = models2) + 
++     scale_shape_manual(values = shapes)
+
+> g_recall_all10
+
+> df4long <- df4 %>% pivot_longer(cols = Theme1:Theme4, 
++     values_to = "recall", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4")), 
++     labels = rev(c("Human", "Threat", "Benefit", "P & I"))))
+
+> g_recall_all4 <- df4long %>% ggplot(aes(recall, theme, 
++     color = model, shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(0.5, 
++     1), breaks = c(0.5, 0.6, 0.7, 0.8, 0.9, 1)) + labs(y = "", 
++     x = "Recall", title = "4 Label Specification", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_shape_manual(values = shapes)
+
+> g_recall_all4
+
+> combined_plots <- (g_recall_all10 + g_recall_all4) + 
++     plot_layout(ncol = 2, guides = "collect", axes = "collect") & 
++     theme(legend.position = "right")
+
+> print(combined_plots)
+
+> diffs <- tibble(model = unique(df10$model), Theme1 = df10$Theme1 - 
++     df4$Theme1, Theme2 = df10$Theme2 - df4$Theme1, Theme3 = df10$Theme3 - 
++     df4$Theme2, Theme4 = df10$Theme4 - df4$Theme2, Theme5 = df10$Theme5 - 
++     df4$Theme2, Theme6 = df10$Theme6 - df4$Theme2, Theme7 = df10$Theme7 - 
++     df4$Theme3, Theme8 = df10$Theme8 - df4$Theme4) %>% pivot_longer(cols = Theme1:Theme8, 
++     names_to = "theme", values_to = "diffs") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> diffs_graph <- diffs %>% ggplot(aes(diffs, theme, 
++     color = model, shape = model)) + geom_vline(xintercept = 0, 
++     linetype = "dashed") + scale_shape_manual(values = shapes) + 
++     geom_point(size = 3) + labs(x = "", y = "", title = "", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_x_continuous(limits = c(-0.2, 0.3), breaks = c(-0.2, 
++         -0.1, 0, 0.1, 0.2, 0.3))
+
+> diffs_graph
+
+> compute_icc <- function(hum_col, ai_col) {
++     icc_result <- icc(cbind(hum_col, ai_col))
++     return(icc_result$value)
++ }
+
+> calculate_icc_scores <- function(human_data, model_data) {
++     icc_values <- sapply(1:ncol(human_data), function(i) {
++         compute_icc(human_data[, i], model_data[, i])
++     })
++     icc_values
++ }
+
+> icc_results <- list(gpt10_long = calculate_icc_scores(actual_list_10mat, 
++     gpt10mat), gpt10_one = calculate_icc_scores(actual_list_10mat, 
++     gpt10mat_one), gpt10_few = calculate_icc_scores(actual_list_10mat, 
++     gpt10mat_few), gpt4_long = calculate_icc_scores(actual_list_4mat, 
++     gpt4mat), gpt4_one = calculate_icc_scores(actual_list_4mat, 
++     gpt4mat_one), gpt4_few = calculate_icc_scores(actual_list_4mat, 
++     gpt4mat_few), gpt4o10_long = calculate_icc_scores(actual_list_10mat, 
++     gpt4o10mat), gpt4o10_one = calculate_icc_scores(actual_list_10mat, 
++     gpt4o10mat_one), gpt4o10_few = calculate_icc_scores(actual_list_10mat, 
++     gpt4o10mat_few), gpt4o4_long = calculate_icc_scores(actual_list_4mat, 
++     gpt4o4mat), gpt4o4_one = calculate_icc_scores(actual_list_4mat, 
++     gpt4o4mat_one), gpt4o4_few = calculate_icc_scores(actual_list_4mat, 
++     gpt4o4mat_few), claude10_long = calculate_icc_scores(actual_list_10mat, 
++     claude10mat), claude10_one = calculate_icc_scores(actual_list_10mat, 
++     claude10mat_one), claude10_few = calculate_icc_scores(actual_list_10mat, 
++     claude10mat_few), claude4_long = calculate_icc_scores(actual_list_4mat, 
++     claude4mat), claude4_one = calculate_icc_scores(actual_list_4mat, 
++     claude4mat_one), claude4_few = calculate_icc_scores(actual_list_4mat, 
++     claude4mat_few))
+
+> icc_means <- sapply(icc_results, mean, na.rm = TRUE)
+
+> print(icc_means)
+   gpt10_long     gpt10_one     gpt10_few     gpt4_long      gpt4_one 
+    0.2653189     0.3398208     0.3422252     0.3294604     0.4012175 
+     gpt4_few  gpt4o10_long   gpt4o10_one   gpt4o10_few   gpt4o4_long 
+    0.4323610     0.3344038     0.3596015     0.3842309     0.4102443 
+   gpt4o4_one    gpt4o4_few claude10_long  claude10_one  claude10_few 
+    0.4364053     0.4625782     0.3237749     0.3222563     0.3339441 
+ claude4_long   claude4_one   claude4_few 
+    0.4270490     0.4463614     0.4326878 
+
+> icc_vectors <- icc_results
+
+> vec_length_4 <- list()
+
+> vec_length_10 <- list()
+
+> for (vec_name in names(icc_vectors)) {
++     vec <- icc_vectors[[vec_name]]
++     if (length(vec) == 4) {
++         vec_length_4[[vec_name]] <- vec
++     }
++     else if (length(vec) == 8) {
++         vec_length_10[[vec_name]] <- vec
++     }
++ }
+
+> df4 <- do.call(rbind, lapply(vec_length_4, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df4) = c("Theme1", "Theme2", "Theme3", "Theme4")
+
+> df10 <- do.call(rbind, lapply(vec_length_10, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df10) = c("Theme1", "Theme2", "Theme3", "Theme4", 
++     "Theme5", "Theme6", "Theme7", "Theme8")
+
+> df4 <- df4 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Four")
+
+> df4$model <- factor(df4$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df10 <- df10 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Eight")
+
+> df10$model <- factor(df10$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df4_tall <- df4 %>% group_by(model, labels) %>% summarize(mean = mean(Theme1:Theme4))
+
+> df10_tall <- df10 %>% group_by(model, labels) %>% 
++     summarize(mean = mean(Theme1:Theme8))
+
+> df_tall <- rbind(df4_tall, df10_tall)
+
+> df_tall$model <- fct_reorder(as.factor(df_tall$model), 
++     df_tall$mean)
+
+> g_icc <- df_tall %>% ggplot(aes(mean, model, color = labels)) + 
++     geom_point(size = 3) + scale_x_continuous(limits = c(-0.1, 
++     0.2), breaks = c(-0.1, -0.05, 0, 0.05, 0.1, 0.15, 0.2)) + 
++     labs(y = "", x = "ICC", title = "", color = "Labels:") + 
++     theme(legend.position = "top") + scale_color_manual(values = c("#505050", 
++     "#B0B0B0"))
+
+> g_icc
+
+> df10long <- df10 %>% pivot_longer(cols = Theme1:Theme8, 
++     values_to = "icc", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> g_icc_all10 <- df10long %>% ggplot(aes(icc, theme, 
++     color = model, shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(-0.18, 
++     0.1), breaks = c(-0.15, -0.1, -0.05, 0, 0.05, 0.1)) + labs(y = "", 
++     x = "ICC", title = "8 Label Specification", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_shape_manual(values = shapes)
+
+> g_icc_all10
+
+> df4long <- df4 %>% pivot_longer(cols = Theme1:Theme4, 
++     values_to = "icc", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4")), 
++     labels = rev(c("Human", "Threat", "Benefit", "P & I"))))
+
+> g_icc_all4 <- df4long %>% ggplot(aes(icc, theme, color = model, 
++     shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(-0.18, 
++     0.1), breaks = c(-0.15, -0.1, -0.05, 0, 0.05, 0.1)) + labs(y = "", 
++     x = "ICC", title = "4 Label Specification", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_shape_manual(values = shapes)
+
+> g_icc_all4
+
+> combined_plots <- (g_icc_all10 + g_icc_all4) + plot_layout(ncol = 2, 
++     guides = "collect", axes = "collect") & theme(legend.position = "right")
+
+> print(combined_plots)
+
+> diffs <- tibble(model = unique(df10$model), Theme1 = df10$Theme1 - 
++     df4$Theme1, Theme2 = df10$Theme2 - df4$Theme1, Theme3 = df10$Theme3 - 
++     df4$Theme2, Theme4 = df10$Theme4 - df4$Theme2, Theme5 = df10$Theme5 - 
++     df4$Theme2, Theme6 = df10$Theme6 - df4$Theme2, Theme7 = df10$Theme7 - 
++     df4$Theme3, Theme8 = df10$Theme8 - df4$Theme4) %>% pivot_longer(cols = Theme1:Theme8, 
++     names_to = "theme", values_to = "diffs") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> diffs_graph <- diffs %>% ggplot(aes(diffs, theme, 
++     color = model, shape = model)) + geom_vline(xintercept = 0, 
++     linetype = "dashed") + scale_shape_manual(values = shapes) + 
++     geom_point(size = 3) + labs(x = "", y = "", title = "", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_x_continuous(limits = c(-0.2, 0.2), breaks = c(-0.2, 
++         -0.1, 0, 0.1, 0.2))
+
+> diffs_graph
+
+> calculate_auc <- function(human_mat, model_mat) {
++     auc_values <- sapply(1:ncol(model_mat), function(i) {
++         auc_result <- roc(human_mat[[i]], model_mat[[i]])
++         auc(auc_result)
++     })
++     auc_values
++ }
+
+> auc_results <- list(gpt10_long = calculate_auc(actual_list_10mat, 
++     gpt10mat), gpt10_one = calculate_auc(actual_list_10mat, gpt10mat_one), 
++     gpt10_few = calculate_auc(actual_list_10mat, gpt10mat_few), 
++     gpt4_long = calculate_auc(actual_list_4mat, gpt4mat), gpt4_one = calculate_auc(actual_list_4mat, 
++         gpt4mat_one), gpt4_few = calculate_auc(actual_list_4mat, 
++         gpt4mat_few), gpt4o10_long = calculate_auc(actual_list_10mat, 
++         gpt4o10mat), gpt4o10_one = calculate_auc(actual_list_10mat, 
++         gpt4o10mat_one), gpt4o10_few = calculate_auc(actual_list_10mat, 
++         gpt4o10mat_few), gpt4o4_long = calculate_auc(actual_list_4mat, 
++         gpt4o4mat), gpt4o4_one = calculate_auc(actual_list_4mat, 
++         gpt4o4mat_one), gpt4o4_few = calculate_auc(actual_list_4mat, 
++         gpt4o4mat_few), claude10_long = calculate_auc(actual_list_10mat, 
++         claude10mat), claude10_one = calculate_auc(actual_list_10mat, 
++         claude10mat_one), claude10_few = calculate_auc(actual_list_10mat, 
++         claude10mat_few), claude4_long = calculate_auc(actual_list_4mat, 
++         claude4mat), claude4_one = calculate_auc(actual_list_4mat, 
++         claude4mat_one), claude4_few = calculate_auc(actual_list_4mat, 
++         claude4mat_few))
+
+> auc_means <- sapply(auc_results, mean, na.rm = TRUE)
+
+> print(auc_means)
+   gpt10_long     gpt10_one     gpt10_few     gpt4_long      gpt4_one 
+    0.7613881     0.7583287     0.7495791     0.7620868     0.7408998 
+     gpt4_few  gpt4o10_long   gpt4o10_one   gpt4o10_few   gpt4o4_long 
+    0.7627231     0.7791824     0.7711615     0.7477879     0.7742052 
+   gpt4o4_one    gpt4o4_few claude10_long  claude10_one  claude10_few 
+    0.7638046     0.7743010     0.8137252     0.8197076     0.8107239 
+ claude4_long   claude4_one   claude4_few 
+    0.7886905     0.7695816     0.7760065 
+
+> auc_vectors <- auc_results
+
+> vec_length_4 <- list()
+
+> vec_length_10 <- list()
+
+> for (vec_name in names(auc_vectors)) {
++     vec <- auc_vectors[[vec_name]]
++     if (length(vec) == 4) {
++         vec_length_4[[vec_name]] <- vec
++     }
++     else if (length(vec) == 8) {
++         vec_length_10[[vec_name]] <- vec
++     }
++ }
+
+> df4 <- do.call(rbind, lapply(vec_length_4, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df4) = c("Theme1", "Theme2", "Theme3", "Theme4")
+
+> df10 <- do.call(rbind, lapply(vec_length_10, function(x) as.data.frame(t(x), 
++     stringsAsFactors = FALSE)))
+
+> names(df10) = c("Theme1", "Theme2", "Theme3", "Theme4", 
++     "Theme5", "Theme6", "Theme7", "Theme8")
+
+> df4 <- df4 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Four")
+
+> df4$model <- factor(df4$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df10 <- df10 %>% rownames_to_column(var = "model") %>% 
++     mutate(model = c("GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)", "Sonnet 3.5 (Zero Shot)", "Sonnet 3.5 (One Shot)", 
++         "Sonnet 3.5 (Few Shot)"), labels = "Eight")
+
+> df10$model <- factor(df10$model, levels = c("Sonnet 3.5 (Zero Shot)", 
++     "Sonnet 3.5 (One Shot)", "Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++     "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++     "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> df4_tall <- df4 %>% group_by(model, labels) %>% summarize(mean = mean(Theme1:Theme4))
+
+> df10_tall <- df10 %>% group_by(model, labels) %>% 
++     summarize(mean = mean(Theme1:Theme8))
+
+> df_tall <- rbind(df4_tall, df10_tall)
+
+> df_tall$model <- fct_reorder(as.factor(df_tall$model), 
++     df_tall$mean)
+
+> g_auc <- df_tall %>% ggplot(aes(mean, model, color = labels)) + 
++     geom_point(size = 3) + scale_x_continuous(limits = c(0.45, 
++     0.55), breaks = c(0.45, 0.5, 0.55)) + labs(y = "", x = "AUC", 
++     title = "", color = "Labels:") + theme(legend.position = "top") + 
++     scale_color_manual(values = c("#505050", "#B0B0B0"))
+
+> g_auc
+
+> df10long <- df10 %>% pivot_longer(cols = Theme1:Theme8, 
++     values_to = "auc", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> g_auc_all10 <- df10long %>% ggplot(aes(auc, theme, 
++     color = model, shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(0.4, 
++     0.6), breaks = c(0.4, 0.5, 0.6)) + labs(y = "", x = "AUC", 
++     title = "8 Label Specification", color = "Model", shape = "Model") + 
++     scale_color_manual(values = models2) + scale_shape_manual(values = shapes)
+
+> g_auc_all10
+
+> df4long <- df4 %>% pivot_longer(cols = Theme1:Theme4, 
++     values_to = "auc", names_to = "theme") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4")), 
++     labels = rev(c("Human", "Threat", "Benefit", "P & I"))))
+
+> g_auc_all4 <- df4long %>% ggplot(aes(auc, theme, color = model, 
++     shape = model)) + geom_point(size = 3) + scale_x_continuous(limits = c(0.4, 
++     0.6), breaks = c(0.4, 0.5, 0.6)) + labs(y = "", x = "AUC", 
++     title = "4 Label Specification", color = "Model", shape = "Model") + 
++     scale_color_manual(values = models2) + scale_shape_manual(values = shapes)
+
+> g_auc_all4
+
+> combined_plots <- (g_auc_all10 + g_auc_all4) + plot_layout(ncol = 2, 
++     guides = "collect", axes = "collect") & theme(legend.position = "right")
+
+> print(combined_plots)
+
+> diffs <- tibble(model = unique(df10$model), Theme1 = df10$Theme1 - 
++     df4$Theme1, Theme2 = df10$Theme2 - df4$Theme1, Theme3 = df10$Theme3 - 
++     df4$Theme2, Theme4 = df10$Theme4 - df4$Theme2, Theme5 = df10$Theme5 - 
++     df4$Theme2, Theme6 = df10$Theme6 - df4$Theme2, Theme7 = df10$Theme7 - 
++     df4$Theme3, Theme8 = df10$Theme8 - df4$Theme4) %>% pivot_longer(cols = Theme1:Theme8, 
++     names_to = "theme", values_to = "diffs") %>% mutate(theme = factor(theme, 
++     levels = rev(c("Theme1", "Theme2", "Theme3", "Theme4", "Theme5", 
++         "Theme6", "Theme7", "Theme8")), labels = rev(c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I"))))
+
+> diffs_graph <- diffs %>% ggplot(aes(diffs, theme, 
++     color = model, shape = model)) + geom_vline(xintercept = 0, 
++     linetype = "dashed") + scale_shape_manual(values = shapes) + 
++     geom_point(size = 3) + labs(x = "", y = "", title = "", color = "Model", 
++     shape = "Model") + scale_color_manual(values = models2) + 
++     scale_x_continuous(limits = c(-0.1, 0.1), breaks = c(-0.1, 
++         -0.05, 0, 0.05, 0.1))
+
+> diffs_graph
+
+> calculate_hamming_loss <- function(human_mat, model_mat) {
++     if (!is.matrix(human_mat) || !is.matrix(model_mat)) {
++         stop("Both objects should be matrices.")
++     }
++     if (nrow(human_mat) != nrow(model_mat) || ncol(human_mat) != 
++         ncol(model_mat)) {
++         stop("Dimensions don't match.")
++     }
++     sapply(1:ncol(human_mat), function(i) mean(human_mat[, i] != 
++         model_mat[, i]))
++ }
+
+> hamming_loss_results_10 <- list(`Claude Sonnet 3.5 (Zero Shot)` = calculate_hamming_loss(pi10mat, 
++     claude10matx), `Claude Sonnet 3.5 (One Shot)` = calculate_hamming_loss(pi10mat, 
++     claude10mat_onex), `Claude Sonnet 3.5 (Few Shot)` = calculate_hamming_loss(pi10mat, 
++     claude10mat_fewx), `GPT 4 Turbo (Zero Shot)` = calculate_hamming_loss(pi10mat, 
++     gpt10matx), `GPT 4 Turbo (One Shot)` = calculate_hamming_loss(pi10mat, 
++     gpt10mat_onex), `GPT 4 Turbo (Few Shot)` = calculate_hamming_loss(pi10mat, 
++     gpt10mat_fewx), `GPT 4o (Zero Shot)` = calculate_hamming_loss(pi10mat, 
++     gpt4o10matx), `GPT 4o (One Shot)` = calculate_hamming_loss(pi10mat, 
++     gpt4o10mat_onex), `GPT 4o (Few Shot)` = calculate_hamming_loss(pi10mat, 
++     gpt4o10mat_fewx), `Undergraduate Coders` = calculate_hamming_loss(pi10mat, 
++     hum10matx))
+
+> hamming_loss_df_10 <- as.data.frame(hamming_loss_results_10)
+
+> hamming_loss_df_10$theme <- c("Label1", "Label2", 
++     "Label3", "Label4", "Label5", "Label6", "Label7", "Label8")
+
+> hamming_loss_df_10 <- hamming_loss_df_10 %>% pivot_longer(cols = -theme, 
++     names_to = "model", values_to = "ham")
+
+> hamming_loss_df_10$model = gsub(".", " ", hamming_loss_df_10$model, 
++     fixed = T)
+
+> hamming_loss_df_10$model = gsub("Zero Shot ", "(Zero Shot)", 
++     hamming_loss_df_10$model, fixed = T)
+
+> hamming_loss_df_10$model = gsub("One Shot ", "(One Shot)", 
++     hamming_loss_df_10$model, fixed = T)
+
+> hamming_loss_df_10$model = gsub("Few Shot ", "(Few Shot)", 
++     hamming_loss_df_10$model, fixed = T)
+
+> hamming_loss_df_10$model = gsub("  ", " ", hamming_loss_df_10$model, 
++     fixed = T)
+
+> hamming_loss_df_10$model = gsub("3 5", "3.5", hamming_loss_df_10$model, 
++     fixed = T)
+
+> hamming_loss_df_10$model <- factor(hamming_loss_df_10$model, 
++     levels = c("Undergraduate Coders", "Claude Sonnet 3.5 (Zero Shot)", 
++         "Claude Sonnet 3.5 (One Shot)", "Claude Sonnet 3.5 (Few Shot)", 
++         "GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)"), labels = c("Undergraduate Coders", 
++         "Claude Sonnet 3.5 (Zero Shot)", "Claude Sonnet 3.5 (One Shot)", 
++         "Claude Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++         "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++         "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> hamming_loss_df_10 %>% group_by(model) %>% summarize(mean = mean(ham))
+# A tibble: 10 × 2
+   model                           mean
+   <fct>                          <dbl>
+ 1 Undergraduate Coders          0.0925
+ 2 Claude Sonnet 3.5 (Zero Shot) 0.171 
+ 3 Claude Sonnet 3.5 (One Shot)  0.174 
+ 4 Claude Sonnet 3.5 (Few Shot)  0.162 
+ 5 GPT 4 Turbo (Zero Shot)       0.180 
+ 6 GPT 4 Turbo (One Shot)        0.133 
+ 7 GPT 4 Turbo (Few Shot)        0.128 
+ 8 GPT 4o (Zero Shot)            0.155 
+ 9 GPT 4o (One Shot)             0.131 
+10 GPT 4o (Few Shot)             0.110 
+
+> hamming_loss_results_4 <- list(`Claude Sonnet 3.5 (Zero Shot)` = calculate_hamming_loss(pi4mat, 
++     claude4matx), `Claude Sonnet 3.5 (One Shot)` = calculate_hamming_loss(pi4mat, 
++     claude4mat_onex), `Claude Sonnet 3.5 (Few Shot)` = calculate_hamming_loss(pi4mat, 
++     claude4mat_fewx), `GPT 4 Turbo (Zero Shot)` = calculate_hamming_loss(pi4mat, 
++     gpt4matx), `GPT 4 Turbo (One Shot)` = calculate_hamming_loss(pi4mat, 
++     gpt4mat_onex), `GPT 4 Turbo (Few Shot)` = calculate_hamming_loss(pi4mat, 
++     gpt4mat_fewx), `GPT 4o (Zero Shot)` = calculate_hamming_loss(pi4mat, 
++     gpt4o4matx), `GPT 4o (One Shot)` = calculate_hamming_loss(pi4mat, 
++     gpt4o4mat_onex), `GPT 4o (Few Shot)` = calculate_hamming_loss(pi4mat, 
++     gpt4o4mat_fewx), `Undergraduate Coders` = calculate_hamming_loss(pi4mat, 
++     hum4matx))
+
+> hamming_loss_df_4 <- as.data.frame(hamming_loss_results_4)
+
+> hamming_loss_df_4$theme <- c("Label1", "Label2", "Label3", 
++     "Label4")
+
+> hamming_loss_df_4 <- hamming_loss_df_4 %>% pivot_longer(cols = -theme, 
++     names_to = "model", values_to = "ham")
+
+> hamming_loss_df_4$model = gsub(".", " ", hamming_loss_df_4$model, 
++     fixed = T)
+
+> hamming_loss_df_4$model = gsub("Zero Shot ", "(Zero Shot)", 
++     hamming_loss_df_4$model, fixed = T)
+
+> hamming_loss_df_4$model = gsub("One Shot ", "(One Shot)", 
++     hamming_loss_df_4$model, fixed = T)
+
+> hamming_loss_df_4$model = gsub("Few Shot ", "(Few Shot)", 
++     hamming_loss_df_4$model, fixed = T)
+
+> hamming_loss_df_4$model = gsub("  ", " ", hamming_loss_df_4$model, 
++     fixed = T)
+
+> hamming_loss_df_4$model = gsub("3 5", "3.5", hamming_loss_df_4$model, 
++     fixed = T)
+
+> hamming_loss_df_4$model <- factor(hamming_loss_df_4$model, 
++     levels = c("Undergraduate Coders", "Claude Sonnet 3.5 (Zero Shot)", 
++         "Claude Sonnet 3.5 (One Shot)", "Claude Sonnet 3.5 (Few Shot)", 
++         "GPT 4 Turbo (Zero Shot)", "GPT 4 Turbo (One Shot)", 
++         "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", "GPT 4o (One Shot)", 
++         "GPT 4o (Few Shot)"), labels = c("Undergraduate Coders", 
++         "Claude Sonnet 3.5 (Zero Shot)", "Claude Sonnet 3.5 (One Shot)", 
++         "Claude Sonnet 3.5 (Few Shot)", "GPT 4 Turbo (Zero Shot)", 
++         "GPT 4 Turbo (One Shot)", "GPT 4 Turbo (Few Shot)", "GPT 4o (Zero Shot)", 
++         "GPT 4o (One Shot)", "GPT 4o (Few Shot)"))
+
+> hamming_loss_df_4 %>% group_by(model) %>% summarize(mean = mean(ham))
+# A tibble: 10 × 2
+   model                          mean
+   <fct>                         <dbl>
+ 1 Undergraduate Coders          0.144
+ 2 Claude Sonnet 3.5 (Zero Shot) 0.174
+ 3 Claude Sonnet 3.5 (One Shot)  0.159
+ 4 Claude Sonnet 3.5 (Few Shot)  0.164
+ 5 GPT 4 Turbo (Zero Shot)       0.210
+ 6 GPT 4 Turbo (One Shot)        0.161
+ 7 GPT 4 Turbo (Few Shot)        0.153
+ 8 GPT 4o (Zero Shot)            0.185
+ 9 GPT 4o (One Shot)             0.160
+10 GPT 4o (Few Shot)             0.151
+
+> df4_tall <- hamming_loss_df_4 %>% group_by(model) %>% 
++     summarize(mean = mean(ham)) %>% mutate(labels = "Four")
+
+> df10_tall <- hamming_loss_df_10 %>% group_by(model) %>% 
++     summarize(mean = mean(ham)) %>% mutate(labels = "Eight")
+
+> df_tall <- rbind(df4_tall, df10_tall)
+
+> df_tall$model <- fct_reorder(as.factor(df_tall$model), 
++     df_tall$mean, .desc = T)
+
+> df_tall2 <- df_tall %>% mutate(model_type = ifelse(model == 
++     "Undergraduate Coders", "Undergraduate Coders", "LLMs"), 
++     model = gsub("Claude ", "", model)) %>% mutate(model = fct_reorder(model, 
++     mean))
+
+> df_tall2$model_type <- factor(df_tall2$model_type, 
++     levels = c("Undergraduate Coders", "LLMs"))
+
+> eight_order <- df_tall2 %>% filter(labels == "Eight") %>% 
++     arrange(desc(mean)) %>% pull(model)
+
+> df_tall2 <- df_tall2 %>% mutate(model = factor(model, 
++     levels = eight_order))
+
+> g_ham_facet <- df_tall2 %>% ggplot(aes(x = mean, y = model, 
++     color = labels)) + theme_minimal() + geom_point(size = 3) + 
++     scale_x_continuous(limits = c(0, 0.35), breaks = seq(0, 0.35, 
++         by = 0.05)) + labs(y = NULL, x = "Hamming Loss", title = NULL, 
++     color = "Label Spec:", shape = "Label Spec:") + theme(legend.position = "top", 
++     strip.text.y = element_blank(), panel.grid.minor = element_blank()) + 
++     scale_color_manual(values = c("#B0B0B0", "#505050")) + facet_grid(rows = vars(model_type), 
++     scales = "free_y", space = "free")
+
+> g_ham_facet
+
+> hamming_loss_df_10b = hamming_loss_df_10 %>% mutate(model = gsub("Claude ", 
++     "", model)) %>% mutate(theme = factor(theme, levels = rev(c("Label1", 
++     "Label2", "Label3", "Label4", "Label5", "Label6", "Label7", 
++     "Label8")), labels = rev(c("Vulnerable", "Refugee", "Disease Threat", 
++     "Econ Threat", "Instability", "Crime Threat", "Econ Benefit", 
++     "P & I"))))
+
+> g_hamming_loss_10 <- hamming_loss_df_10b %>% ggplot(aes(x = ham, 
++     y = factor(theme, levels = rev(unique(theme))), color = model, 
++     shape = model)) + geom_point(size = 3) + scale_shape_manual(values = shapes) + 
++     scale_x_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 
++         by = 0.1)) + labs(y = "", x = "Hamming Loss", title = "8 Label Specification", 
++     color = "Model:", shape = "Model:") + scale_color_manual(values = models2) + 
++     theme(axis.text.x = element_text(size = 12), legend.title = element_text(size = 14), 
++         legend.position = "right", axis.title.x = element_text(size = 15, 
++             margin = margin(t = 5)), legend.text = element_text(size = 12), 
++         axis.text.y = element_text(size = 12))
+
+> g_hamming_loss_10
+
+> hamming_loss_df_4b = hamming_loss_df_4 %>% mutate(model = gsub("Claude ", 
++     "", model)) %>% mutate(theme = factor(theme, levels = rev(c("Label1", 
++     "Label2", "Label3", "Label4")), labels = rev(c("Human", "Threat", 
++     "Econ Benefit", "P & I"))))
+
+> g_hamming_loss_4 <- hamming_loss_df_4b %>% filter(model != 
++     "Undergraduate Coders") %>% ggplot(aes(x = ham, y = factor(theme, 
++     levels = rev(unique(theme))), color = model, shape = model)) + 
++     geom_point(size = 3) + scale_shape_manual(values = shapes) + 
++     scale_x_continuous(limits = c(0, 0.5), breaks = seq(0, 0.5, 
++         by = 0.1)) + labs(y = "", x = "Hamming Loss", title = "4 Label Specification", 
++     color = "Model:", shape = "Model:") + scale_color_manual(values = models2) + 
++     theme(axis.text.x = element_text(size = 12), legend.title = element_text(size = 14), 
++         legend.position = "right", axis.title.x = element_text(size = 15, 
++             margin = margin(t = 5)), legend.text = element_text(size = 12), 
++         axis.text.y = element_text(size = 12))
+
+> g_hamming_loss_4
+
+> combined_hamming_loss_plots <- (g_hamming_loss_10 | 
++     g_hamming_loss_4 + guides(color = "none", shape = "none")) + 
++     plot_layout(guides = "collect") & theme(legend.position = "right")
+
+> print(combined_hamming_loss_plots)
+
+> undergrad_order <- hamming_loss_df_10b %>% filter(model == 
++     "Undergraduate Coders") %>% arrange(desc(ham)) %>% pull(theme)
+
+> hamming_loss_df_10b <- hamming_loss_df_10b %>% mutate(theme = factor(theme, 
++     levels = undergrad_order))
+
+> g_ham <- hamming_loss_df_10b %>% filter(model %in% 
++     c("Undergraduate Coders", "GPT 4o (Few Shot)")) %>% ggplot(aes(x = ham, 
++     y = theme, shape = model, color = model)) + theme_minimal() + 
++     geom_point(size = 3) + scale_x_continuous(limits = c(0, 0.35), 
++     breaks = seq(0, 0.35, by = 0.05)) + labs(y = NULL, x = "Hamming Loss", 
++     title = NULL, color = "Model:", shape = "Model:") + theme(legend.position = "top", 
++     panel.grid.minor = element_blank()) + scale_color_manual(values = c("#B0B0B0", 
++     "#505050")) + scale_shape_manual(values = c(16, 17))
+
+> g_ham
+
+> hamming_loss_df_10c = hamming_loss_df_10 %>% mutate(theme = factor(theme, 
++     levels = c("Label1", "Label2", "Label3", "Label4", "Label5", 
++         "Label6", "Label7", "Label8"), labels = c("Vulnerable", 
++         "Refugee", "Disease Threat", "Econ Threat", "Instability", 
++         "Crime Threat", "Econ Benefit", "P & I")), model = gsub("Claude ", 
++     "", model))
+
+> hamming_loss_df_4c = hamming_loss_df_4 %>% mutate(theme = factor(theme, 
++     levels = c("Label1", "Label2", "Label3", "Label4"), labels = c("Human", 
++         "Threat", "Econ Benefit", "P & I")), model = gsub("Claude ", 
++     "", model))
+
+> theme_plots <- hamming_loss_df_10c %>% filter(model != 
++     "Undergraduate Coders") %>% group_by(theme) %>% arrange(ham) %>% 
++     group_split() %>% purrr::map(~{
++     plot_data <- .x
++     vline_data <- hamming_loss_df_10c %>% filter(theme == unique(plot_data$theme), 
++         model == "Undergraduate Coders") %>% select(ham) %>% 
++         distinct()
++     ggplot(plot_data, aes(x = ham, y = reorder(model, -ham))) + 
++         theme_minimal() + geom_point(aes(shape = model, color = model)) + 
++         geom_vline(data = vline_data, aes(xintercept = ham), 
++             linetype = "dashed", color = "black") + scale_color_manual(values = models2) + 
++         scale_shape_manual(values = shapes) + labs(x = NULL, 
++         y = NULL, title = unique(plot_data$theme), color = "Model:", 
++         shape = "Model:") + scale_x_continuous(limits = c(0, 
++         0.5), breaks = seq(0, 0.5, 0.1)) + theme(axis.text.y = element_blank(), 
++         axis.ticks.y = element_blank(), legend.text = element_text(size = 8), 
++         panel.grid.minor = element_blank(), axis.text.x = element_text(size = 7), 
++         plot.title = element_text(hjust = 0.5, size = 10), legend.title = element_text(size = 10))
++ })
+
+> final_plot <- wrap_plots(theme_plots, ncol = 2) + 
++     plot_layout(guides = "collect") & theme(legend.position = "right")
+
+> final_plot
+
+> theme_plots4 <- hamming_loss_df_4c %>% filter(model != 
++     "Undergraduate Coders") %>% group_by(theme) %>% arrange(ham) %>% 
++     group_split() %>% purrr::map(~{
++     plot_data <- .x
++     vline_data <- hamming_loss_df_4c %>% filter(theme == unique(plot_data$theme), 
++         model == "Undergraduate Coders") %>% select(ham) %>% 
++         distinct()
++     ggplot(plot_data, aes(x = ham, y = reorder(model, -ham))) + 
++         theme_minimal() + geom_point(aes(shape = model, color = model)) + 
++         geom_vline(data = vline_data, aes(xintercept = ham), 
++             linetype = "dashed", color = "black") + scale_color_manual(values = models2) + 
++         scale_shape_manual(values = shapes) + labs(x = NULL, 
++         y = NULL, title = unique(plot_data$theme), color = "Model:", 
++         shape = "Model:") + scale_x_continuous(limits = c(0, 
++         0.5), breaks = seq(0, 0.5, 0.1)) + theme(axis.text.y = element_blank(), 
++         axis.ticks.y = element_blank(), panel.grid.minor = element_blank(), 
++         legend.position = "none", plot.title = element_text(hjust = 0.5, 
++             size = 10), axis.text.x = element_text(size = 7))
++ })
+
+> final_plot4 <- wrap_plots(theme_plots4, ncol = 2)
+
+> final_plot4
+
+> title_plot_left <- ggplot() + annotate("text", x = 0.25, 
++     y = 0.85, label = "Hamming Loss", size = 3.5) + theme_void() + 
++     theme(plot.margin = margin(t = -100)) + scale_y_continuous(limits = c(0, 
++     1))
+
+> title_plot_right <- ggplot() + annotate("text", x = 0.25, 
++     y = 0.85, label = "Hamming Loss", size = 3.5) + theme_void() + 
++     theme(plot.margin = margin(t = -100)) + scale_y_continuous(limits = c(0, 
++     1))
+
+> left_side <- (final_plot + theme(legend.position = "right"))/title_plot_left + 
++     plot_layout(heights = c(1, 0.1))
+
+> right_side <- final_plot4/title_plot_right + plot_layout(heights = c(1, 
++     0.1))
+
+> combined_hamming_loss_plots_facet <- left_side | right_side
+
+> print(combined_hamming_loss_plots_facet)
+
+> prepare_metrics_for_stargazer <- function() {
++     metrics_4 <- data.frame(Model = rep(c("GPT 4 Turbo", "GPT 4o", 
++         "Claude Sonnet 3.5"), each = 3), Prompt = rep(c("Zero Shot", 
++         "One Shot", "Few Shot"), 3), Labels = 4, AUC = c(auc_means["gpt4_long"], 
++         auc_means["gpt4_one"], auc_means["gpt4_few"], auc_means["gpt4o4_long"], 
++         auc_means["gpt4o4_one"], auc_means["gpt4o4_few"], auc_means["claude4_long"], 
++         auc_means["claude4_one"], auc_means["claude4_few"]), 
++         Recall = c(recall_means["gpt4_long"], recall_means["gpt4_one"], 
++             recall_means["gpt4_few"], recall_means["gpt4o4_long"], 
++             recall_means["gpt4o4_one"], recall_means["gpt4o4_few"], 
++             recall_means["claude4_long"], recall_means["claude4_one"], 
++             recall_means["claude4_few"]), F1 = c(f1_means["gpt4_long"], 
++             f1_means["gpt4_one"], f1_means["gpt4_few"], f1_means["gpt4o4_long"], 
++             f1_means["gpt4o4_one"], f1_means["gpt4o4_few"], f1_means["claude4_long"], 
++             f1_means["claude4_one"], f1_means["claude4_few"]), 
++         ICC = c(icc_means["gpt4_long"], icc_means["gpt4_one"], 
++             icc_means["gpt4_few"], icc_means["gpt4o4_long"], 
++             icc_means["gpt4o4_one"], icc_means["gpt4o4_few"], 
++             icc_means["claude4_long"], icc_means["claude4_one"], 
++             icc_means["claude4_few"]), Mean = c(mean(get_means(gpt4mat, 
++             4, "gpt4")$mean_prop_1s), mean(get_means(gpt4mat_one, 
++             4, "gpt4")$mean_prop_1s), mean(get_means(gpt4mat_few, 
++             4, "gpt4")$mean_prop_1s), mean(get_means(gpt4o4mat, 
++             4, "gpt4o")$mean_prop_1s), mean(get_means(gpt4o4mat_one, 
++             4, "gpt4o")$mean_prop_1s), mean(get_means(gpt4o4mat_few, 
++             4, "gpt4o")$mean_prop_1s), mean(get_means(claude4mat, 
++             4, "claude")$mean_prop_1s), mean(get_means(claude4mat_one, 
++             4, "claude")$mean_prop_1s), mean(get_means(claude4mat_few, 
++             4, "claude")$mean_prop_1s)) * 100)
++     metrics_8 <- data.frame(Model = rep(c("GPT 4 Turbo", "GPT 4o", 
++         "Claude Sonnet 3.5"), each = 3), Prompt = rep(c("Zero Shot", 
++         "One Shot", "Few Shot"), 3), Labels = 8, AUC = c(auc_means["gpt10_long"], 
++         auc_means["gpt10_one"], auc_means["gpt10_few"], auc_means["gpt4o10_long"], 
++         auc_means["gpt4o10_one"], auc_means["gpt4o10_few"], auc_means["claude10_long"], 
++         auc_means["claude10_one"], auc_means["claude10_few"]), 
++         Recall = c(recall_means["gpt10_long"], recall_means["gpt10_one"], 
++             recall_means["gpt10_few"], recall_means["gpt4o10_long"], 
++             recall_means["gpt4o10_one"], recall_means["gpt4o10_few"], 
++             recall_means["claude10_long"], recall_means["claude10_one"], 
++             recall_means["claude10_few"]), F1 = c(f1_means["gpt10_long"], 
++             f1_means["gpt10_one"], f1_means["gpt10_few"], f1_means["gpt4o10_long"], 
++             f1_means["gpt4o10_one"], f1_means["gpt4o10_few"], 
++             f1_means["claude10_long"], f1_means["claude10_one"], 
++             f1_means["claude10_few"]), ICC = c(icc_means["gpt10_long"], 
++             icc_means["gpt10_one"], icc_means["gpt10_few"], icc_means["gpt4o10_long"], 
++             icc_means["gpt4o10_one"], icc_means["gpt4o10_few"], 
++             icc_means["claude10_long"], icc_means["claude10_one"], 
++             icc_means["claude10_few"]), Mean = c(mean(get_means(gpt10mat, 
++             10, "gpt4")$mean_prop_1s), mean(get_means(gpt10mat_one, 
++             10, "gpt4")$mean_prop_1s), mean(get_means(gpt10mat_few, 
++             10, "gpt4")$mean_prop_1s), mean(get_means(gpt4o10mat, 
++             10, "gpt4o")$mean_prop_1s), mean(get_means(gpt4o10mat_one, 
++             10, "gpt4o")$mean_prop_1s), mean(get_means(gpt4o10mat_few, 
++             10, "gpt4o")$mean_prop_1s), mean(get_means(claude10mat, 
++             10, "claude")$mean_prop_1s), mean(get_means(claude10mat_one, 
++             10, "claude")$mean_prop_1s), mean(get_means(claude10mat_few, 
++             10, "claude")$mean_prop_1s)) * 100)
++     metrics_4$HammingLoss <- df_tall %>% filter(labels == "Four") %>% 
++         filter(model != "Undergraduate Coders") %>% arrange(match(model, 
++         paste0(metrics_4$Model, " (", metrics_4$Prompt, ")"))) %>% 
++         pull(mean)
++     metrics_8$HammingLoss <- df_tall %>% filter(labels == "Eight") %>% 
++         filter(model != "Undergraduate Coders") %>% arrange(match(model, 
++         paste0(metrics_8$Model, " (", metrics_8$Prompt, ")"))) %>% 
++         pull(mean)
++     models <- c("GPT 4 Turbo", "GPT 4o", "Claude Sonnet 3.5")
++     prompts <- c("Zero Shot", "One Shot", "Few Shot")
++     ordered_rows <- list()
++     for (model in models) {
++         for (prompt in prompts) {
++             row_8 <- metrics_8[metrics_8$Model == model & metrics_8$Prompt == 
++                 prompt, ]
++             row_4 <- metrics_4[metrics_4$Model == model & metrics_4$Prompt == 
++                 prompt, ]
++             ordered_rows[[length(ordered_rows) + 1]] <- row_8
++             ordered_rows[[length(ordered_rows) + 1]] <- row_4
++         }
++     }
++     metrics_combined <- do.call(rbind, ordered_rows)
++     metrics_combined$Model_Label_Prompt <- paste(metrics_combined$Model, 
++         metrics_combined$Labels, metrics_combined$Prompt)
++     metrics_final <- metrics_combined %>% select(Model_Label_Prompt, 
++         AUC, Recall, F1, ICC, HammingLoss, Mean)
++     metrics_matrix <- as.matrix(metrics_final[, -1])
++     rownames(metrics_matrix) <- metrics_final$Model_Label_Prompt
++     stargazer(metrics_matrix, type = "latex", digits = 2, summary = FALSE, 
++         rownames = TRUE, header = FALSE, column.labels = c("AUC", 
++             "Recall", "F1", "ICC", "Hamming Loss", "% 1s"))
++     return(metrics_matrix)
++ }
+
+> metrics_matrix <- prepare_metrics_for_stargazer()
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & AUC & Recall & F1 & ICC & HammingLoss & Mean \\ 
+\hline \\[-1.8ex] 
+GPT 4 Turbo 8 Zero Shot & $0.76$ & $0.82$ & $0.89$ & $0.27$ & $0.18$ & $22.03$ \\ 
+GPT 4 Turbo 4 Zero Shot & $0.76$ & $0.79$ & $0.86$ & $0.33$ & $0.21$ & $28.95$ \\ 
+GPT 4 Turbo 8 One Shot & $0.76$ & $0.88$ & $0.92$ & $0.34$ & $0.13$ & $15.90$ \\ 
+GPT 4 Turbo 4 One Shot & $0.74$ & $0.86$ & $0.90$ & $0.40$ & $0.16$ & $21.35$ \\ 
+GPT 4 Turbo 8 Few Shot & $0.75$ & $0.89$ & $0.93$ & $0.34$ & $0.13$ & $14.79$ \\ 
+GPT 4 Turbo 4 Few Shot & $0.76$ & $0.87$ & $0.90$ & $0.43$ & $0.15$ & $20.97$ \\ 
+GPT 4o 8 Zero Shot & $0.78$ & $0.85$ & $0.91$ & $0.33$ & $0.16$ & $19.48$ \\ 
+GPT 4o 4 Zero Shot & $0.77$ & $0.81$ & $0.87$ & $0.41$ & $0.19$ & $27.21$ \\ 
+GPT 4o 8 One Shot & $0.77$ & $0.88$ & $0.92$ & $0.36$ & $0.13$ & $15.96$ \\ 
+GPT 4o 4 One Shot & $0.76$ & $0.85$ & $0.90$ & $0.44$ & $0.16$ & $22.75$ \\ 
+GPT 4o 8 Few Shot & $0.75$ & $0.91$ & $0.94$ & $0.38$ & $0.11$ & $12.75$ \\ 
+GPT 4o 4 Few Shot & $0.77$ & $0.86$ & $0.90$ & $0.46$ & $0.15$ & $22.20$ \\ 
+Claude Sonnet 3.5 8 Zero Shot & $0.81$ & $0.82$ & $0.89$ & $0.32$ & $0.17$ & $22.60$ \\ 
+Claude Sonnet 3.5 4 Zero Shot & $0.79$ & $0.82$ & $0.88$ & $0.43$ & $0.17$ & $25.89$ \\ 
+Claude Sonnet 3.5 8 One Shot & $0.82$ & $0.82$ & $0.89$ & $0.32$ & $0.17$ & $22.77$ \\ 
+Claude Sonnet 3.5 4 One Shot & $0.77$ & $0.85$ & $0.90$ & $0.45$ & $0.16$ & $22.28$ \\ 
+Claude Sonnet 3.5 8 Few Shot & $0.81$ & $0.84$ & $0.90$ & $0.33$ & $0.16$ & $20.73$ \\ 
+Claude Sonnet 3.5 4 Few Shot & $0.78$ & $0.85$ & $0.89$ & $0.43$ & $0.16$ & $23.43$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+> undergrads8 = list(AUC = mean(calculate_auc(actual_list_10mat, 
++     gpt10mat)), Recall = mean(calculate_recall_scores(actual_list_10, 
++     gpt10mat)), F1 = mean(calculate_f1_scores(actual_list_10, 
++     gpt10mat)), `Hamming Loss` = mean(calculate_hamming_loss(actual_list_10matx, 
++     hum10matx)), `% 1s` = mean(get_means(hum10mat, 10, "undergrads")$mean_prop_1s))
+
+> undergrads4 = list(AUC = mean(calculate_auc(actual_list_4mat, 
++     gpt4mat)), Recall = mean(calculate_recall_scores(actual_list_4, 
++     gpt4mat)), F1 = mean(calculate_f1_scores(actual_list_4, gpt4mat)), 
++     `Hamming Loss` = mean(calculate_hamming_loss(actual_list_4matx, 
++         hum4matx)), `% 1s` = mean(get_means(hum4mat, 4, "undergrads")$mean_prop_1s))
+
+> mean(get_means(pi10, 10, "author")$mean_prop_1s)
+[1] 0.08106961
+
+> mean(get_means(pi4, 4, "author")$mean_prop_1s)
+[1] 0.1434635
+
+> library(reshape2)
+
+> hums <- cor(hum10mat)
+
+> gpt4ofews <- cor(gpt4o10mat_few)
+
+> cor_diff <- hums - gpt4ofews
+
+> sign_hums <- sign(hums)
+
+> sign_gpt4ofews <- sign(gpt4ofews)
+
+> symbols <- ifelse(sign_hums == 1 & sign_gpt4ofews == 
++     1, "+", ifelse(sign_hums == -1 & sign_gpt4ofews == -1, "-", 
++     ifelse(sign_hums != sign_gpt4ofews, "~", "")))
+
+> melted_cor_human <- melt(hums)
+
+> melted_cor_gpt <- melt(gpt4ofews)
+
+> melted_cor_diff <- melt(cor_diff)
+
+> melted_symbols <- melt(symbols)
+
+> theme_levels <- c("Vulnerable", "Refugee", "Disease Threat", 
++     "Econ Threat", "Instability", "Crime Threat", "Econ Benefit", 
++     "P & I")
+
+> melted_cor_diff <- melted_cor_diff %>% mutate(Var1 = factor(Var1, 
++     levels = paste0("Theme", 1:8), labels = theme_levels), Var2 = factor(Var2, 
++     levels = paste0("Theme", 1:8), labels = theme_levels))
+
+> melted_symbols <- melted_symbols %>% mutate(Var1 = factor(Var1, 
++     levels = paste0("Theme", 1:8), labels = theme_levels), Var2 = factor(Var2, 
++     levels = paste0("Theme", 1:8), labels = theme_levels))
+
+> melted_cor_diff <- melted_cor_diff %>% mutate(symbols = melted_symbols$value)
+
+> cordiffs <- ggplot(melted_cor_diff, aes(Var1, Var2, 
++     fill = value)) + geom_tile() + geom_text(aes(label = symbols), 
++     color = "black", size = 5) + scale_fill_gradient2(low = "blue", 
++     high = "red", mid = "white", midpoint = 0, limit = c(-1, 
++         1), space = "Lab", name = "Correlation\nDifference") + 
++     theme_minimal() + labs(title = "", x = "Undergraduates", 
++     y = "GPT 4o (Few Shot)") + theme(axis.text.x = element_text(angle = 45, 
++     vjust = 1, size = 10, hjust = 1))
+
+> cordiffs
+
+> ggplot(melted_cor_human, aes(Var1, Var2, fill = value)) + 
++     geom_tile() + scale_fill_gradient2(low = "blue", high = "red", 
++     mid = "white", midpoint = 0, limit = c(-1, 1), space = "Lab", 
++     name = "Correlation") + theme_minimal() + ggtitle("Human-Coded Variables Correlation Matrix") + 
++     theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, 
++         hjust = 1))
+
+> ggplot(melted_cor_gpt, aes(Var1, Var2, fill = value)) + 
++     geom_tile() + scale_fill_gradient2(low = "blue", high = "red", 
++     mid = "white", midpoint = 0, limit = c(-1, 1), space = "Lab", 
++     name = "Correlation") + theme_minimal() + ggtitle("AI-Coded Variables Correlation Matrix") + 
++     theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, 
++         hjust = 1))

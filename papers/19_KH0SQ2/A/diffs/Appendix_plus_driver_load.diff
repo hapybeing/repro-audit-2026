@@ -1,0 +1,7 @@
+--- Appendix_plus_L892-958.R	2026-10-10 18:49:50.204770784 +0000
++++ Appendix_plus_L892-958_driver.R	2026-10-10 18:49:50.227451589 +0000
+@@ -1,3 +1,4 @@
++setwd("/workspace/audit_runs/19_KH0SQ2/A/deposit"); load("all_merged.RData")  # added by driver scripts/run_S1_S10.R
+ # using merged all data
+ 
+ # creating main table 1 ::: dv = support for uk and france first

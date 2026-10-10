@@ -1,0 +1,158 @@
+{
+ "paper_id": "18_YXC5K5",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Mean hamming loss (mean over the 8 labels of the share of mismatched article-label cells) of the GPT 4o Few Shot 8-label model against the author's codings: metrics_matrix['GPT 4o 8 Few Shot','HammingLoss'] = mean(calculate_hamming_loss(pi10mat, gpt4o10mat_fewx))",
+   "paper_value": 0.18,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.18230050933786077,
+   "source_file": "outputs/targets_extracted.csv (metrics_matrix|GPT 4o 8 Few Shot|HammingLoss)",
+   "abs_diff": 0.0023005093378607733,
+   "rel_diff": 0.012780607432559852,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Lowest of 18 LLM rows: True; above T2: True."
+  },
+  {
+   "id": "T2",
+   "description": "Mean hamming loss of the undergraduate coders (8 labels) against the author's codings: undergrads8[['Hamming Loss']] = mean(calculate_hamming_loss(actual_list_10matx, hum10matx))",
+   "paper_value": 0.15,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.1540747028862479,
+   "source_file": "outputs/targets_extracted.csv (undergrads8|Hamming Loss)",
+   "abs_diff": 0.004074702886247894,
+   "rel_diff": 0.027164685908319296,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Undergraduate 8-label hamming loss below every one of the 18 LLM rows: True."
+  },
+  {
+   "id": "T3",
+   "description": "Mean hamming loss of the GPT 4o Few Shot 4-label model against the author's codings aggregated to 4 labels: metrics_matrix['GPT 4o 4 Few Shot','HammingLoss'] = mean(calculate_hamming_loss(pi4mat, gpt4o4mat_fewx))",
+   "paper_value": 0.29,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.2882003395585739,
+   "source_file": "outputs/targets_extracted.csv (metrics_matrix|GPT 4o 4 Few Shot|HammingLoss)",
+   "abs_diff": 0.0017996604414260986,
+   "rel_diff": -0.006205725660089995,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "T3 > T1: True."
+  },
+  {
+   "id": "T4",
+   "description": "F1 (mean over the 8 labels, caret::confusionMatrix default positive class = first level '0', as the script computes it) of the GPT 4o Few Shot 8-label model against the author's codings: metrics_matrix['GPT 4o 8 Few Shot','F1'] = f1_means['gpt4o10_few']",
+   "paper_value": 0.89,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.8940806469180751,
+   "source_file": "outputs/targets_extracted.csv (metrics_matrix|GPT 4o 8 Few Shot|F1)",
+   "abs_diff": 0.0040806469180750815,
+   "rel_diff": 0.004584996537163013,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Pre-registered candidate (caret default positive class '0'). Highest F1 of the 18 LLM rows: True. Secondary context only, positive class '1': 0.1060 (outputs/checks.csv)."
+  },
+  {
+   "id": "T5",
+   "description": "Percentage of article-label cells coded 1 by the GPT 4o Few Shot 8-label model: metrics_matrix['GPT 4o 8 Few Shot','Mean']",
+   "paper_value": 12.75,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 12.754668930390492,
+   "source_file": "outputs/targets_extracted.csv (metrics_matrix|GPT 4o 8 Few Shot|Mean)",
+   "abs_diff": 0.004668930390492321,
+   "rel_diff": 0.0003661906188621428,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Author 8-label share of 1s by script (line 2067 expression): 8.1070; T5 above it: True."
+  },
+  {
+   "id": "T6",
+   "description": "Number of articles (rows) in the author-benchmark comparison: nrow(pi10mat), which must equal nrow(gpt4o10mat_fewx) and nrow(hum10matx)",
+   "paper_value": 589,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 589.0,
+   "source_file": "outputs/targets_extracted.csv (nrow_pi10mat)",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nrow(pi10mat)=589, nrow(gpt4o10mat_fewx)=589, nrow(hum10matx)=589."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Bootstrap resample of articles (rows), seed 20261010, 1000 resamples, authors' row pairing kept",
+   "ran": true,
+   "estimate": 0.18230050933786077,
+   "se_or_ci": "T1 95% percentile CI [0.1687, 0.1957]; D = T1 - undergrad8 = 0.0282, 95% percentile CI [0.0187, 0.0378], bootstrap SE of D 0.0051; seed 20261010, 1000 resamples",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_a_summary.csv",
+   "note": "n_rows 589, dropped 0; undergrad8 hamming 0.1541; rank of GPT 4o Few Shot 8 among 18 LLM specs 1; T3 - T1 0.1059; share of resamples where it is lowest 1.000; criteria (i) TRUE (ii) TRUE (iii) TRUE. p-value = min(1, 2*share D<=0), the audit's own reading; the paper reports no test. "
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z|>3 on k = rowSums(pi10mat) (author's labels per article), same rows dropped from every matrix, then R_a bootstrap on the reduced rows",
+   "ran": true,
+   "estimate": 0.17893835616438356,
+   "se_or_ci": "T1 95% percentile CI [0.1665, 0.1920]; D = T1 - undergrad8 = 0.0278, 95% percentile CI [0.0173, 0.0383], bootstrap SE of D 0.0055; seed 20261010, 1000 resamples",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_b_summary.csv",
+   "note": "n_rows 584, dropped 5; undergrad8 hamming 0.1511; rank of GPT 4o Few Shot 8 among 18 LLM specs 1; T3 - T1 0.1066; share of resamples where it is lowest 1.000; criteria (i) TRUE (ii) TRUE (iii) TRUE. p-value = min(1, 2*share D<=0), the audit's own reading; the paper reports no test. k distribution: outputs/R_b_k_distribution.csv."
+  },
+  {
+   "id": "R_c",
+   "description": "Pair benchmark and model rows by docid: copy of the Rmd with one line 'pi = pi %>% arrange(docid)' after line 108 (diffs/R_c_Benchmarking_DataAnalysis_docid_sort.diff), full rerun, then R_a bootstrap",
+   "ran": true,
+   "estimate": 0.11014431239388794,
+   "se_or_ci": "T1 95% percentile CI [0.0989, 0.1210]; D = T1 - undergrad8 = 0.0176, 95% percentile CI [0.0079, 0.0267], bootstrap SE of D 0.0048; seed 20261010, 1000 resamples",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_c_summary.csv",
+   "note": "n_rows 589, dropped 0; undergrad8 hamming 0.0925; rank of GPT 4o Few Shot 8 among 18 LLM specs 1; T3 - T1 0.0405; share of resamples where it is lowest 1.000; criteria (i) TRUE (ii) TRUE (iii) TRUE. p-value = min(1, 2*share D<=0), the audit's own reading; the paper reports no test. Diagnostics: identical(pi$docid, gpt4o 8 few docid) original=FALSE, R_c copy=TRUE; identical(pi$docid, human10 docid) original=FALSE, R_c copy=TRUE. R_c full rerun values (outputs/R_c_targets_extracted.csv): T1 0.1101, T2 0.0925, T3 0.1507, T4 0.9362, T5 12.75, T6 589. Docid-paired FP/FN cells (outputs/checks.csv): GPT 4o Few Shot 8 FP 369 FN 150 of 4712; undergrad 8 FP 256 FN 180."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Benchmarking_DataAnalysis.Rmd",
+   "line": 108,
+   "description": "Author benchmark is compared with model and undergraduate codings by row position, but the rows are in different docid orders. pi (pi_codings_2ndhalf.csv, read line 102, de-duplicated line 108) keeps the file's unsorted docid order, while all model files and human10_agree.csv are sorted by docid; calculate_hamming_loss (line 1552), the F1/recall/precision/AUC functions and get_means comparisons pair rows by index. So, in the run, each article's author codes are compared with a different article's model codes. The '% 1s' column is unaffected (it uses only the model matrix).",
+   "evidence": "Run outputs: identical(pi$docid, gpt4o 8-label few-shot docid) = FALSE although the sets are equal (setequal TRUE); only 1 of 589 rows share the same docid at the same position; first pi docids '578 656 37 446 321 382 655 670 353 287' vs model '1 2 3 4 5 6 7 8 9 10' (outputs/checks.csv, outputs/targets_extracted.csv). With docid pairing (R_c), GPT 4o Few Shot 8-label mismatches are FP 369 / FN 150 of 4712 cells, the counts printed in supplement Table A5 (369 / 150), while the as-deposited positional pairing gives FP 539 / FN 320; hamming loss 0.1101 vs 0.1823."
+  },
+  {
+   "file": "Benchmarking_DataAnalysis.Rmd",
+   "line": 2050,
+   "description": "undergrads8 (lines 2050-2056) and undergrads4 (lines 2058-2064) compute AUC, Recall and F1 from gpt10mat / gpt4mat (GPT 4 Turbo Zero Shot output) instead of the undergraduate matrices; only their Hamming Loss and % 1s use hum10matx / hum4mat. Table A1's undergraduate AUC/Recall/F1 therefore repeat the GPT 4 Turbo Zero Shot values. Does not affect T2 (Hamming Loss).",
+   "evidence": "outputs/checks.csv: undergrads8 AUC/Recall/F1 equal GPT 4 Turbo 8 Zero Shot = TRUE/TRUE/TRUE; undergrads4 equal GPT 4 Turbo 4 Zero Shot = TRUE/TRUE/TRUE."
+  }
+ ],
+ "env_fixes": [
+  "none to the authors' code: no file of the deposit was edited. Environment only: packages installed (Debian r-cran-* binaries plus irr and stargazer from CRAN into the per-run library), working directory set to the data folder, Rmd converted with knitr::purl(documentation=1). diffs/R_c_Benchmarking_DataAnalysis_docid_sort.diff is the pre-registered R_c robustness change, not an environment fix."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets match Supplement Table A1 / the printed N to the paper's rounding with Benchmarking_DataAnalysis.Rmd run exactly as deposited (batch 4 decision 4). Separately, the docid-paired rerun (R_c) gives much lower hamming losses (T1 0.110, T2 0.093) with the same ranking and direction; it does not change the class.",
+ "confidence": "medium",
+ "confidence_reason": "Exact script match, but target paper values come from a viewer reading of the supplement and the as-deposited pairing of rows by position was confirmed by run; A/B agreement not known to B.",
+ "time_minutes": 15,
+ "uncertainties": [
+  "Paper values T3 to T5 come from a browser agent's Google Docs viewer reading of the supplement (PREREG); B did not re-open the supplement.",
+  "The row-position pairing (bug 1) means the as-deposited Table A1 hamming loss, F1, recall, AUC and ICC compare different articles in 588 of 589 rows; the reproduced numbers match the printed table, which is consistent with (not proof of) the table having been produced with the same positional pairing. The docid-paired numbers reproduce the cell counts printed in Tables A5 (exactly) and A6 (undergrad FP 256 vs printed 254; FN 180 vs 180). Under docid pairing (R_c rerun) the pre-registered conclusion criteria evaluate to: T1 lowest of 18 and above T2: True; T2 below all 18 LLMs: True; T3 > T1: True; T4 highest F1 of 18: True; T5 above author share: True.",
+  "Undergraduate '% 1s' returned by the script is a proportion (0.097198641765704585), Table A1 prints 9.68; 100x the script value is 9.72, which does not equal 9.68 to 2 decimals. Not a target.",
+  "Package versions differ from the author's (R 4.5.0 on aarch64 Linux vs R 4.3.3 on Windows; no pins exist). T4 depends on caret's default positive class; caret 7.0.1 gave the printed value.",
+  "The main run was killed twice by the shared machine's memory pressure (SIGKILL, rc 137) while rendering a plot; the third identical attempt finished (peak RSS about 399 MB). No code was changed between attempts.",
+  "Label naming of Theme5/Theme6 (PREREG inconsistency 3) only affects per-label plots, not the pooled targets; not checked further."
+ ]
+}

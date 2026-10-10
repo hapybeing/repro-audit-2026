@@ -1,0 +1,47 @@
+{
+ "n_rows_csv": 154415,
+ "n_nonmissing_FA_Ethnicity": 153470,
+ "Const_unique_values": [
+  1.0
+ ],
+ "Top_Inst_dtypes": {
+  "Top10_Inst": "bool",
+  "Top20_Inst": "bool",
+  "Top30_Inst": "bool",
+  "Top40_Inst": "bool",
+  "Top50_Inst": "bool",
+  "Top100_Inst": "bool"
+ },
+ "model3_rows_before_drop": 8805,
+ "FA_South_value_counts_in_Top10_FA_rows": {
+  "0.0": 8805
+ },
+ "FA_South_value_counts_in_Top50_FA_rows": {
+  "0.0": 26641,
+  "1.0": 565
+ },
+ "missing_counts_team_cols_in_FA_rows": {
+  "Team_Female": 71422,
+  "Team_European": 0,
+  "Team_Asian": 0,
+  "Team_Slavic": 0,
+  "Team_Hispanic/Latino": 0,
+  "Team_African": 0,
+  "Team_Jewish": 0,
+  "Team_Other": 0,
+  "Team_South": 48365,
+  "Team_Author_Reputation": 70951,
+  "Team_Author_Publication": 0,
+  "Team_Affliation_Weight": 40044
+ },
+ "missing_counts_FA_cols_in_FA_rows": {
+  "FA_Female": 71804,
+  "FA_European": 0,
+  "FA_South": 43427,
+  "FA_Author_Reputation": 0,
+  "FA_Author_Publication": 0,
+  "FA_Affliation_Weight": 43427,
+  "Cited_Outgroup": 1140,
+  "Journal_Prestige": 5579
+ }
+}

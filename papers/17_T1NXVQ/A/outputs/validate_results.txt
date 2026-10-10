@@ -1,0 +1,12 @@
+T1: 1.2181741775329 found in outputs/targets_extracted.csv
+T2: 1.0151420706214 found in outputs/targets_extracted.csv
+T3: 1.65423612287981 found in outputs/targets_extracted.csv
+T4: 0.737716467383604 found in outputs/targets_extracted.csv
+T5: 6769.0 found in outputs/targets_extracted.csv
+T6: 5412.0 found in outputs/targets_extracted.csv
+R_a: 1.2181741775329 found in outputs/boot_summary.csv
+R_b: 1.29116300401011 found in outputs/fit_pool_xsec_rb.csv
+R_c: 1.21909871084216 found in outputs/fit_pool_xsec_rc.csv
+boot_vs_deposited: 3.54862435991699e-07 found in outputs/boot_vs_deposited.csv
+em dash present: False
+ALL TRACED: True

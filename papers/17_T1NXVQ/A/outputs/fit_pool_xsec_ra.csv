@@ -1,0 +1,7 @@
+"model","variant","term","estimate","maxlik_se"
+"pool_xsec","ra","Constant",-2.49576539168013,0.263859767874483
+"pool_xsec","ra","length.norm",0.162640628796702,0.540297172822438
+"pool_xsec","ra","river.norm",0.27799363708762,0.122560012878769
+"pool_xsec","ra","watershed_diff.norm",0.623118845007852,0.117659267366295
+"pool_xsec","ra","elevmean.norm",0.239869698724688,0.319434405792385
+"pool_xsec","ra","cuteth",1.2181741775329,0.081148997100883

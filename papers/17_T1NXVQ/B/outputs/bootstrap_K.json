@@ -1,0 +1,5 @@
+{
+ "t_first_draw_minutes": 6.5988468726476,
+ "rule": "K = min(10, floor(25 / t)), at least 3; not run if below 3",
+ "K": 3
+}

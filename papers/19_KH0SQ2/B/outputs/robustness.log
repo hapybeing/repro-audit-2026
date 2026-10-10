@@ -1,0 +1,44 @@
+       check model target            term    n n_dropped  estimate       se
+res4     R_a  res4     T1  TreatmentQuota  623        NA -0.187888 0.102514
+res1     R_a  res1     T2  TreatmentQuota 1099        NA  0.047325 0.084344
+resg1    R_a resg1     T3 resp_genderMale 1099        NA -0.311531 0.084091
+resg2    R_a resg2     T4 resp_genderMale  623        NA -0.279941 0.102237
+res41    R_b  res4     T1  TreatmentQuota  607        16 -0.136298 0.088437
+res11    R_b  res1     T2  TreatmentQuota 1070        29  0.025643 0.078152
+resg11   R_b resg1     T3 resp_genderMale 1070        29 -0.321044 0.077632
+resg21   R_b resg2     T4 resp_genderMale  607        16 -0.253669 0.088023
+res42    R_c  res4     T1  TreatmentQuota  623         0 -0.145355 0.087652
+res12    R_c  res1     T2  TreatmentQuota 1099         0  0.054054 0.076601
+resg12   R_c resg1     T3 resp_genderMale 1099         0 -0.381646 0.075838
+resg22   R_c resg2     T4 resp_genderMale  623         0 -0.252676 0.087225
+                p  ci90_lo    ci90_hi  ci95_lo   ci95_hi  ci99_lo   ci99_hi
+res4   8.9000e-02 -0.34927 -0.0080064 -0.37886  0.020874 -0.44055  0.065452
+res1   5.7600e-01 -0.08895  0.1863083 -0.10995  0.213577 -0.15575  0.272507
+resg1  0.0000e+00 -0.44823 -0.1734412 -0.47040 -0.141840 -0.52286 -0.097551
+resg2  4.0000e-03 -0.44584 -0.1127314 -0.48024 -0.082211 -0.54822 -0.024687
+res41  1.2379e-01       NA         NA       NA        NA       NA        NA
+res11  7.4289e-01       NA         NA       NA        NA       NA        NA
+resg11 3.8203e-05       NA         NA       NA        NA       NA        NA
+resg21 4.0941e-03       NA         NA       NA        NA       NA        NA
+res42  9.7759e-02       NA         NA       NA        NA       NA        NA
+res12  4.8055e-01       NA         NA       NA        NA       NA        NA
+resg12 5.6576e-07       NA         NA       NA        NA       NA        NA
+resg22 3.9023e-03       NA         NA       NA        NA       NA        NA
+       n_na_draws
+res4            0
+res1            0
+resg1           0
+resg2           0
+res41          NA
+res11          NA
+resg11         NA
+resg21         NA
+res42          NA
+res12          NA
+resg12         NA
+resg22         NA
+      model n_dropped_support_absz_gt3      zmin     zmax
+res4   res4                          0 -2.369890 1.282408
+res1   res1                          0 -1.597102 1.554092
+resg1 resg1                          0 -1.597102 1.554092
+resg2 resg2                          0 -2.369890 1.282408

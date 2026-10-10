@@ -1,0 +1,4 @@
+# Diffs, 19_KH0SQ2 agent B
+
+- `Appendix_plus_driver_load.diff`: Appendix_plus.R lines 892-958 (the Table S1 / S10 block) as deposited vs as run by `scripts/run_S1_S10.R`. The only addition is `setwd(<deposit copy>); load("all_merged.RData")` before the block, because the script's own `load("all_merged.RData")` (l. 18) is commented out and the script cannot run top to bottom. No analysis line changed. Pre-registered in PREREG section 2 Step A; accepted as an environment fix in batch4_class_decisions.md #2.
+- No diff for main_text_figs_JEPP_FINAL.R: it was run unchanged (packages pre-installed in the per-run library, so its install.packages() call was a no-op). It stops at l. 835 (see outputs/main_text_status.txt); no pre-registered fix covers that, so it was left as is. `scripts/save_main_objs.R` evaluates deposited lines 1-364 unchanged to capture res1 and res1b for the cross-check.

@@ -1,0 +1,2 @@
+"check","n_rows_used","n_dropped","T1","U8","D","T3minusT1","rank_T1_of_18","T1_lowest_of_18","T1_ci_lo","T1_ci_hi","D_ci_lo","D_ci_hi","D_boot_se","p_value","share_resamples_T1_lowest","n_resamples","seed","same_direction_and_significance"
+"R_c",589,0,0.110144312393888,0.0925297113752122,0.0176146010186757,0.04053480475382,1,TRUE,0.0988911290322581,0.1209730475382,0.00785229202037352,0.0267455432937182,0.0047857275950294,0,1,1000,20261010,TRUE

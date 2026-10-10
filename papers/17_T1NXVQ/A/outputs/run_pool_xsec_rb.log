@@ -1,0 +1,29 @@
+START pool_xsec rb none 2026-10-10 20:30:22 UTC
+[1] "Loaded data"
+R_b flagged edges: length.norm 73 elevmean.norm 56 union 129 of 3047 
+[1] "2026-10-10 20:30:57 UTC"
+[1] "MODEL ESTIMATION"
+[1] "Estimate"
+[1] "2026-10-10 20:30:57 UTC"
+--------------------------------------------
+Maximum Likelihood estimation
+BFGS maximization, 58 iterations
+Return code 0: successful convergence 
+Log-Likelihood: -520.3355 
+6  free parameters
+Estimates:
+                    Estimate Std. error t value  Pr(> t)    
+Constant            -3.07496    0.31842  -9.657  < 2e-16 ***
+length.norm         -0.30248    0.74532  -0.406    0.685    
+river.norm           0.85410    0.13099   6.520 7.01e-11 ***
+watershed_diff.norm  0.63690    0.12962   4.914 8.95e-07 ***
+elevmean.norm        2.44313    0.43401   5.629 1.81e-08 ***
+cuteth               1.29116    0.08747  14.761  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+--------------------------------------------
+[1] "2026-10-10 20:34:29 UTC"
+FIT DONE minutes: 4.31 
+VmHWM:	 1435916 kB
+VmRSS:	 1432364 kB
+END 2026-10-10 20:34:41 UTC

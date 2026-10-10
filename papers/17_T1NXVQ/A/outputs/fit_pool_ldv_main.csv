@@ -1,0 +1,9 @@
+"model","variant","term","estimate","maxlik_se"
+"pool_ldv","main","Constant",-3.00762388048591,0.429230647951862
+"pool_ldv","main","length.norm",-0.34066180216193,0.921770387379561
+"pool_ldv","main","river.norm",0.255648290904417,0.222628750472206
+"pool_ldv","main","watershed_diff.norm",0.758730850430575,0.227955244561866
+"pool_ldv","main","elevmean.norm",0.147201802759714,0.518843029573535
+"pool_ldv","main","abram_sum",0.737716467383604,0.1964501771496
+"pool_ldv","main","cshp_lag",1.65423612287981,0.118450219172981
+"pool_ldv","main","cuteth_lag",1.0151420706214,0.132609765097911

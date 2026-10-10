@@ -1,0 +1,115 @@
+# environment, agent B, 17_T1NXVQ; written 2026-10-11 04:36 IST
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+2
+               total        used        free      shared  buff/cache   available
+Mem:            7945        3656        4179        3055        3365        4289
+
+## R
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+R_LIBS_USER=/workspace/audit_runs/17_T1NXVQ/B/rlib (per-run library), then system site-library
+
+## R packages used (version, library)
+pspm 1.0 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+igraph 2.1.4 /usr/lib/R/site-library 
+maxLik 1.5.2 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+miscTools 0.6.26 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+reticulate 1.41.0.1 /usr/lib/R/site-library 
+texreg 1.38.6 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+infotheo 1.2.0.1 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+R6 2.6.1 /usr/lib/R/site-library 
+sp 2.2.3 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+foreach 1.5.2 /usr/lib/R/site-library 
+doParallel 1.0.17 /usr/lib/R/site-library 
+raster 3.6.31 /usr/lib/R/site-library 
+plyr 1.8.9 /usr/lib/R/site-library 
+dplyr 1.1.4 /usr/lib/R/site-library 
+tidyr 1.3.1 /usr/lib/R/site-library 
+ggplot2 3.5.1 /usr/lib/R/site-library 
+scico 1.5.0 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+abind 1.4.8 /usr/lib/R/site-library 
+gridExtra 2.3 /usr/lib/R/site-library 
+cshapes 2.0 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+ggridges 0.5.6 /usr/lib/R/site-library 
+survival 3.8.3 /usr/lib/R/library 
+MASS 7.3.65 /usr/lib/R/library 
+fasterize 1.1.0 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+sf 1.0.19 /usr/lib/R/site-library 
+viridis 0.6.5 /usr/lib/R/site-library 
+tidyverse 2.0.0 /usr/lib/R/site-library 
+xtable 1.8.4 /usr/lib/R/site-library 
+smoothr 1.3.0 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+stargazer 5.2.3 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+lfe 3.1.1 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+V8 8.2.0 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+rmapshaper 0.6.1 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+Rcpp 1.1.2 /workspace/audit_runs/17_T1NXVQ/B/rlib 
+rgeos, rgdal: NOT INSTALLED (archived 0.6-4 / 1.6-7 failed to compile: sp.h missing); library() calls removed (E3)
+igraph 1.4.1 (pinned) failed to compile (-Werror=format-security, rinterface.c:210); Debian r-cran-igraph 2.1.4 used
+reticulate 1.28 (pinned) built but fails at load on Python 3.12 (config.py: import imp); Debian r-cran-reticulate 1.41.0.1 used
+
+## Python venv (/workspace/audit_runs/17_T1NXVQ/B/venv)
+Python 3.12.15
+networkx==3.7
+numpy==2.5.4
+scipy==1.18.1
+
+## system packages installed by agent B with apt
+libgdal-dev 3.10.3+dfsg-1, libgeos-dev 3.13.1-1, libproj-dev (for the rgeos/rgdal attempts)
+V8 R package from CRAN source with DOWNLOAD_STATIC_LIBV8=1 (Debian r-cran-v8 conflicts with nodesource nodejs)
+
+## Seeds
+fit: set.seed(1) inside the authors' estimation function; bootstrap: set.seed(i) and reticulate::py_set_seed(i, disable_hash_randomization=TRUE), i = authors' seeds 1..K and R_a seeds 1001..1000+K
+
+## sessionInfo of the baseline fit
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] grid      parallel  stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] stargazer_5.2.3     smoothr_1.3.0       xtable_1.8-4       
+ [4] lubridate_1.9.4     forcats_1.0.0       stringr_1.5.1      
+ [7] purrr_1.0.4         readr_2.1.5         tibble_3.2.1       
+[10] tidyverse_2.0.0     viridis_0.6.5       viridisLite_0.4.2  
+[13] sf_1.0-19           fasterize_1.1.0     MASS_7.3-65        
+[16] survival_3.8-3      ggridges_0.5.6      cshapes_2.0        
+[19] gridExtra_2.3       abind_1.4-8         maxLik_1.5-2       
+[22] miscTools_0.6-26    scico_1.5.0         ggplot2_3.5.1      
+[25] igraph_2.1.4        tidyr_1.3.1         dplyr_1.1.4        
+[28] plyr_1.8.9          raster_3.6-31       sp_2.2-3           
+[31] reticulate_1.41.0.1 pspm_1.0            doParallel_1.0.17  
+[34] iterators_1.0.14    foreach_1.5.2      
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6       lattice_0.22-7     tzdb_0.5.0         vctrs_0.6.5       
+ [5] tools_4.5.0        generics_0.1.3     curl_6.2.1         sandwich_3.1-1    
+ [9] proxy_0.4-27       pkgconfig_2.0.3    Matrix_1.7-3       KernSmooth_2.23-26
+[13] lifecycle_1.0.4    compiler_4.5.0     munsell_0.5.1      terra_1.8-29      
+[17] codetools_0.2-20   class_7.3-23       pillar_1.10.1      classInt_0.4-11   
+[21] tidyselect_1.2.1   digest_0.6.37      stringi_1.8.4      splines_4.5.0     
+[25] colorspace_2.1-1   cli_3.6.4          magrittr_2.0.3     e1071_1.7-16      
+[29] withr_3.0.2        scales_1.3.0       timechange_0.3.0   httr_1.4.7        
+[33] infotheo_1.2.0.1   hms_1.1.3          zoo_1.8-14         png_0.1-8         
+[37] rmapshaper_0.6.1   V8_8.2.0           rlang_1.1.5        Rcpp_1.1.2        
+[41] glue_1.8.0         DBI_1.2.3          jsonlite_1.9.1     R6_2.6.1          
+[45] texreg_1.38.6      units_0.8-7       

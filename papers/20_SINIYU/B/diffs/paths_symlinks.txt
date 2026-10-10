@@ -1,0 +1,7 @@
+# symlinks used (path-only fixes)
+rundir/FY3G_PMR.HDF -> ../rarx/FY3G_PMR.HDF4
+rundir/gep00/postvar.nc -> ../../dl/postvar.nc
+rundir/gep00/swath_spaceborn.nc -> ../../dl/swath_spaceborn_mu3.nc
+# sha256 of authors' file and run copy
+8f98a5072b1d5e1fb087ecabe3d87a35c7ff754bc4a0e7baefa2fa0744153713  run/figure6/O_B_Ku.py
+8f98a5072b1d5e1fb087ecabe3d87a35c7ff754bc4a0e7baefa2fa0744153713  rundir/O_B_Ku.py

@@ -1,0 +1,5 @@
+# Diffs (agent B, 16_QZNVZ0)
+
+- `regression_verbatim_extraction_block.diff`: `scripts/regression_verbatim_orig.py` is the 13 code cells of the deposited Regression.ipynb (version 2.0, datafile 10577538) copied verbatim in cell order. `scripts/regression_verbatim.py` is the same file with an extraction block appended after the last authors' line. The block only writes params, bse, tvalues, pvalues, nobs, rsquared_adj of results_1 to results_S4 to `outputs/regression_estimates.csv`, each model's `.summary()` to `outputs/summary_*.txt`, and the Model 1 and Model 4 estimation row labels. Needed because the bare `.summary()` expressions print nothing when run as a script; PREREG section 2 step 3 names this route. No authors' line was changed: no row filter, regressor list, outcome transform, `missing='drop'` or `fit(maxiter=100)` call was touched.
+
+No package-version fix and no path fix were needed: current pandas/statsmodels accept `fit(maxiter=100)`, and the CSV sits in the working directory under its deposited name.

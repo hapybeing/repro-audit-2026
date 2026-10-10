@@ -1,0 +1,11 @@
+--- analysis_pool_A.R	2026-10-10 18:54:57.985931646 +0000
++++ analysis_pool_A.R (R_c variant, applied in memory)	2026-10-10 19:14:04.180000000 +0000
+@@ -77,7 +77,7 @@
+   m <- fit_pspm_model(form = f, 
+                          g_ls = graph.ls,
+                          model_type = "composite_log_likelihood",
+-                         sigma2 = 10, 
++                         sigma2 = 1000, 
+                          force_contiguous = TRUE,
+                          na.rm = T,
+                          min_component_size = 2,

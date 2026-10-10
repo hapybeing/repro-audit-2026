@@ -1,0 +1,23 @@
+--- regression_verbatim_orig.py	2026-10-10 18:52:31.257347563 +0000
++++ regression_verbatim.py	2026-10-10 18:52:31.270695387 +0000
+@@ -88,3 +88,20 @@
+ 
+ # ---- notebook cell 12 ----
+ 
++
++# ==== AUDIT EXTRACTION BLOCK (agent B, appended; no authors' line changed) ====
++import os, sys
++_out = os.environ.get('AUDIT_OUT', 'outputs')
++_rows = []
++for _name in ['results_1','results_2','results_3','results_4','results_S1','results_S2','results_S3','results_S4']:
++    _r = globals()[_name]
++    for _v in _r.params.index:
++        _rows.append(dict(model=_name, variable=_v, params=_r.params[_v], bse=_r.bse[_v], tvalues=_r.tvalues[_v],
++                          pvalues=_r.pvalues[_v], nobs=_r.nobs, rsquared_adj=_r.rsquared_adj))
++    with open(os.path.join(_out, 'summary_%s.txt' % _name), 'w') as _f:
++        _f.write(str(_r.summary()))
++pd.DataFrame(_rows).to_csv(os.path.join(_out, 'regression_estimates.csv'), index=False, float_format='%.10g')
++pd.Series(results_1.model.data.row_labels).to_csv(os.path.join(_out, 'model1_row_labels.csv'), index=False, header=['row_label'])
++pd.Series(results_4.model.data.row_labels).to_csv(os.path.join(_out, 'model4_row_labels.csv'), index=False, header=['row_label'])
++print('dtype Top10_Inst:', regression_table['Top10_Inst'].dtype, ' Top50_Inst:', regression_table['Top50_Inst'].dtype)
++print('nobs:', {n: globals()[n].nobs for n in ['results_1','results_2','results_3','results_4','results_S1','results_S2','results_S3','results_S4']})

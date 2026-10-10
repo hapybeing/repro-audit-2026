@@ -1,0 +1,7 @@
+/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/16_QZNVZ0/A/scripts/robustness.py:29: DtypeWarning: Columns (5: Journal_Rank) have mixed types. Specify dtype option on import or set low_memory=False.
+  rt = pd.read_csv('regression_table_anonymous_final.csv', index_col=0,
+                 check            variable         B        SE    t_or_z             p   nobs  converged  iterations             note
+0  R_c_poisson_pml_HC1  FA_Hispanic/Latino -0.110814  0.041859 -2.647302  8.113682e-03  68558       True           9  default maxiter
+1  R_c_poisson_pml_HC1           FA_Female  0.068019  0.016018  4.246375  2.172569e-05  68558       True           9  default maxiter
+2  R_c_poisson_pml_HC1            FA_South -0.150055  0.027805 -5.396713  6.787269e-08  68558       True           9  default maxiter
+3  R_c_poisson_pml_HC1       International  0.235810  0.028808  8.185490  2.711976e-16  68558       True           9  default maxiter

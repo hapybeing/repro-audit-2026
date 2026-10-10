@@ -1,0 +1,47 @@
+{
+ "rule": "PROTOCOL.md section 7 with CHANGELOG_METHOD #4 to #6 and the pre-run batch4_class_decisions.md. Classes were set by the lead after both blind agents reported; A and B proposed the same class for every paper. No class in batch 4 needed a reading made after results. Alternatives are shown for transparency where a pre-run decision could reasonably be read the other way.",
+ "counts_main": {
+  "A": 4,
+  "B": 0,
+  "C": 1,
+  "D": 0,
+  "E": 0
+ },
+ "n_main": 5,
+ "alternatives": {
+  "17_T1NXVQ": {
+   "class_rule4": "A",
+   "alt_class": "E",
+   "alt_label": "E if only the authors' full 120-draw bootstrap counts (about 19 CPU-hours, out of scope on the audit machine). Point estimates and vertex counts match; significance uses the pre-registered reduced bootstrap with the authors' seeds (A: K=4, B: K=3), and those draws equal the same-seed rows of the deposited bootstrap file (pre-run decision #3)"
+  },
+  "19_KH0SQ2": {
+   "class_rule4": "A",
+   "alt_class": "C",
+   "alt_label": "C if the pre-registered session driver that only adds load() of the deposited .RData is not accepted as an environment fix (pre-run decision #2)"
+  }
+ },
+ "counts_if_17_T1NXVQ_alt": {
+  "A": 3,
+  "B": 0,
+  "C": 1,
+  "D": 0,
+  "E": 1
+ },
+ "n_if_17_T1NXVQ_alt": 5,
+ "counts_if_19_KH0SQ2_alt": {
+  "A": 3,
+  "B": 0,
+  "C": 2,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_19_KH0SQ2_alt": 5,
+ "counts_all_alternatives": {
+  "A": 2,
+  "B": 0,
+  "C": 2,
+  "D": 0,
+  "E": 1
+ },
+ "n_all_alternatives": 5
+}

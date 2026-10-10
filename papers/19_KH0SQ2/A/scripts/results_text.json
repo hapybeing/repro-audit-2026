@@ -1,0 +1,26 @@
+{
+ "bugs": [
+  {
+   "file": "main_text_figs_JEPP_FINAL.R",
+   "line": 835,
+   "description": "Code observation (not an estimate bug; no target affected): l. 835 `subset_uk$Treatment2<-as.factor(subset_uk$Treatment2)` (and l. 865 for France) refers to a column `Treatment2` that is not in all_merged.RData and is not created anywhere in main_text_figs_JEPP_FINAL.R; it is created only in Appendix_plus.R l. 1278 / 1286. Run as deposited, the script stops here, so the Figure 7 (list experiment) section, l. 835 to the end, does not run.",
+   "evidence": "outputs/main_text_status.txt: 'error at line 835: replacement has 0 rows, data has 1734'; names(all) in all_merged.RData has no Treatment2 (27 columns); grep of the script finds Treatment2 only at l. 835 and 865."
+  }
+ ],
+ "env_fixes": [
+  "diffs/Appendix_plus_driver_load.diff: pre-registered driver adds load(\"all_merged.RData\") and setwd() before Appendix_plus.R l. 892-958 (the script's own load at l. 18 is commented out); no analysis line changed (batch4_class_decisions.md item 2)",
+  "no diff: packages for main_text_figs_JEPP_FINAL.R pre-installed (Debian r-cran-* binaries and CRAN source into the per-run library), so its install.packages() call at l. 18 was not triggered"
+ ],
+ "fallback_class": "C",
+ "class_reason": "All six targets (T1 to T4 coefficients, T5 and T6 Ns) reproduce exactly to the printed rounding, with the same significance buckets, from the deposited Appendix_plus.R lines 892-958 run through the pre-registered load() driver. Alternative class if the driver is not accepted as an environment fix: C (batch4_class_decisions.md item 2).",
+ "alternative_class": "C (if the session driver that adds load(\"all_merged.RData\") is not accepted as an environment fix)",
+ "confidence": "high",
+ "confidence_reason": "Closed-form weighted OLS with no randomness; all estimates and SEs match to 3 decimals and the main-text script's own fits (l. 325, l. 363) give identical Quota coefficients; pending agreement with agent B.",
+ "uncertainties": [
+  "No author R or package versions are given; current R 4.5.0 and current CRAN/Debian packages were used. Target models use only base stats::lm, so version drift is not expected to matter.",
+  "Reproduced SEs (outputs/targets_extracted.csv) also match the printed Table S1/S10 SEs at 3 decimals, including the Table S10 pattern where the Male SE equals the Quota SE in each full-sample column.",
+  "main_text_figs_JEPP_FINAL.R ran unchanged until l. 835 (expression counts in outputs/main_text_status.txt), then stopped on a missing column Treatment2 (see bugs). The Figure 7 list-experiment section from l. 835 on was not run and was not repaired, since creating the column would be adding analysis code. No target depends on it.",
+  "Robustness (not class-changing): the France framing effect (T1) keeps its negative sign in all three checks but its two-sided p is above 0.05 in each (bootstrap 95% percentile CI includes 0; weight-outlier exclusion and unweighted OLS p above 0.05). T2 stays non-significant and T3/T4 stay negative with p < 0.01 in all three checks. Exact values in results.json robustness entries.",
+  "Exploratory, not pre-registered and not scripted into a table: the weighted response shares hard-coded for Figure 2 (main_text_figs_JEPP_FINAL.R around l. 100-134 and the France block) equal the svymean output printed in outputs/main_text.log (lines 239-256 and 316-334 of the log), checked by eye only."
+ ]
+}

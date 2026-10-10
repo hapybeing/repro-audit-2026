@@ -1,0 +1,25 @@
+paper,agents,item,reason_excluded,source_file
+16_QZNVZ0,A and B,Notebook cells run verbatim as a script with an appended output-only extraction block,environment fix (pre-registered route); no author line changed,papers/16_QZNVZ0/B/results.json
+16_QZNVZ0,A and B,"Current pandas 3.0.6, numpy 2.5.3 and statsmodels 0.15.0 used; the authors recorded no versions",package-version environment note; B shows every coefficient equals the authors' saved notebook output,papers/16_QZNVZ0/B/results.json
+16_QZNVZ0,A and B,"Table 2 prints 68,558 as the Model 2 N; the run and the authors' saved notebook output give 39,690 (PREREG inconsistency 1)","printed non-target number; reported in the per-paper section of the batch report, not a code observation",papers/16_QZNVZ0/A/results.json
+16_QZNVZ0,A,Model 2 Team_Other and Team_South t values versus the single printed t -2.7 (PREREG inconsistency 2),"printed non-target number, not a code observation",papers/16_QZNVZ0/A/results.json
+16_QZNVZ0,A,Significance stars on five non-target cells differ from the run's p-values (PREREG inconsistency 3),"difference in significance marks only on non-target cells, not a code observation",papers/16_QZNVZ0/A/results.json
+16_QZNVZ0,A and B,Code that builds the regression table from the raw Web of Science records is not deposited,materials scope note recorded in DATA_STATEMENT.md; the targets depend only on the deposited table,papers/16_QZNVZ0/A/results.json
+16_QZNVZ0,A and B,Runs killed for memory (exit 137) on the shared machine before a run completed,process note; no reported number comes from a killed run,papers/16_QZNVZ0/A/results.json
+17_T1NXVQ,A and B,library(rgeos) and library(rgdal) removed; archived versions fail to build,pre-registered environment fix (E3); not on the Table 1 path,papers/17_T1NXVQ/A/results.json
+17_T1NXVQ,A and B,Pinned igraph 1.4.1 and reticulate 1.28 unusable; Debian igraph 2.1.4 and reticulate 1.41.0.1 used,package-version environment note; reproduced bootstrap draws equal the deposited draws for the same seeds,papers/17_T1NXVQ/B/results.json
+17_T1NXVQ,A and B,"Reduced bootstrap (A: K = 4, B: K = 3) instead of 120 draws",pre-registered timing rule and pre-run decision #3; alternative class E shown in batches/batch4_class_rules.json,papers/17_T1NXVQ/A/results.json
+17_T1NXVQ,A and B,Sandbox restarted twice during each run,process note; every reported number comes from a process that completed,papers/17_T1NXVQ/B/results.json
+17_T1NXVQ,B,maxLik::stdEr returned NA in B's extraction of the two main fits,extraction note on the audit's script; not used for any target,papers/17_T1NXVQ/B/results.json
+17_T1NXVQ,A,The Gaussian penalty also applies to the constant,"design remark on the estimator (the agent wrote 'design'), not a reproducibility or code observation",papers/17_T1NXVQ/A/results.json
+17_T1NXVQ,B,Workspace change notices showed some A file names to B,process note on blinding; no A file was opened,papers/17_T1NXVQ/B/results.json
+18_YXC5K5,A and B,Script's undergraduate '% 1s' is 9.72 (as a share 0.0972) where Table A1 prints 9.68,"printed non-target number, not a code observation",papers/18_YXC5K5/A/results.json
+18_YXC5K5,A and B,Docid-paired undergraduate false positives 256 versus 254 printed in Table A6,"Table A6 comes from Benchmarking_Supplementary.Rmd, which was not run; not a target",papers/18_YXC5K5/A/results.json
+18_YXC5K5,B,Main run killed twice for memory while rendering a plot; the third identical attempt finished,process note; no code changed between attempts,papers/18_YXC5K5/B/results.json
+18_YXC5K5,B,Theme5 and Theme6 label naming (PREREG inconsistency 3),"affects per-label plots only, not the pooled targets; not checked further",papers/18_YXC5K5/B/results.json
+19_KH0SQ2,A and B,Session driver adds load() of the deposited .RData before Appendix_plus.R lines 892 to 958,pre-registered environment fix (pre-run decision #2); alternative class C shown in batches/batch4_class_rules.json,papers/19_KH0SQ2/A/results.json
+19_KH0SQ2,B,"res1 is reassigned at line 639 of the main-text script, so the cross-check used lines 1 to 364","note on the audit's cross-check, not a code observation",papers/19_KH0SQ2/B/results.json
+19_KH0SQ2,B,Workspace change notices showed some A file names to B,process note on blinding; no A file was opened,papers/19_KH0SQ2/B/results.json
+20_SINIYU,A and B,Module interp_radar imported by O_B_Ku.py line 17 is not deposited; no deposited code computes Table 1,"missing material, the basis of class C (pre-run decision #5), recorded in DATA_STATEMENT.md and ABSENCE_SEARCHES.md; not a code observation",papers/20_SINIYU/B/results.json
+20_SINIYU,B,"plt.style.use(['science','no-latex']) raises OSError with SciencePlots 2.2.2 unless scienceplots is imported first",environment observation (the agent's own label); not reached because line 17 fails first,papers/20_SINIYU/B/results.json
+20_SINIYU,A and B,"Path-only symlinks for FY3G_PMR.HDF, gep00/postvar.nc and gep00/swath_spaceborn.nc",pre-registered path-only environment fix (pre-run decision #1),papers/20_SINIYU/B/results.json

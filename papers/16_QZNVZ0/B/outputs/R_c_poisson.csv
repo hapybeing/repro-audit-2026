@@ -1,0 +1,5 @@
+check,variable,estimate,se,stat,p_value,nobs,converged,iterations,note
+R_c_poisson_pml_HC1,FA_Hispanic/Latino,-0.1108143966,0.04185936839,-2.647302166,0.008113681818,68558,True,9,
+R_c_poisson_pml_HC1,FA_Female,0.06801851746,0.01601801964,4.246374956,2.172569384e-05,68558,True,9,
+R_c_poisson_pml_HC1,FA_South,-0.150054967,0.02780487992,-5.396713364,6.787268763e-08,68558,True,9,
+R_c_poisson_pml_HC1,International,0.2358099884,0.02880829181,8.185490137,2.711975997e-16,68558,True,9,

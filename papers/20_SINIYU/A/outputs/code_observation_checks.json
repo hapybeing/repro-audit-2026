@@ -1,0 +1,13 @@
+{
+ "obs1_line420_mask_true_count_on_toy_array": 0,
+ "obs1_obs_cells_masked_on_toy_array": 0,
+ "obs2_swath_ZH_shape": [
+  150,
+  220,
+  239
+ ],
+ "obs2_swath_ZH_n_finite": 7887000,
+ "obs2_swath_ZH_n_below_0": 7489094,
+ "obs2_swath_ZH_n_nan": 0,
+ "note": "Effect on T1/T2 cannot be measured because interp_radar_ppi is not deposited; unverified observations."
+}

@@ -1,0 +1,46 @@
+--- orig/analysis_globals.R	2026-10-10 21:22:02.597306364 +0000
++++ replication/scripts/analysis/analysis_globals.R	2026-10-10 21:22:30.578357031 +0000
+@@ -43,7 +43,7 @@
+   # Max segment size for analysis
+   
+   # Number of cores
+-  ncore <- 40
++  ncore <- 1  # [AUDIT B, E2] was 40
+   
+   # Burnin rate
+   burnin = 100
+@@ -55,7 +55,7 @@
+   if(!dir.exists(tem_res.path)){
+     dir.create(tem_res.path)
+   }
+-  Sys.setenv(RETICULATE_PYTHON = '/usr/bin/python3')
++  Sys.setenv(RETICULATE_PYTHON = '/workspace/audit_runs/17_T1NXVQ/B/venv/bin/python3')  # [AUDIT B, E1]
+   library(foreach)
+   library(doParallel)
+   library(pspm)
+@@ -66,8 +66,7 @@
+   library(tidyr)
+   library(igraph)
+   library(ggplot2)
+-  library(rgeos)
+-  library(rgdal)
++  # [AUDIT B, E3] library(rgeos), library(rgdal) removed: archived packages fail to build (sp.h not shipped by sp 2.x)
+   library(scico) 
+   library(maxLik)
+   library(abind)
+@@ -117,13 +116,12 @@
+     init.ls <- clusterEvalQ(cl = cl, expr = {
+       # Packages 
+       library(reticulate)
+-      Sys.setenv(RETICULATE_PYTHON = '/usr/bin/python3')
++      Sys.setenv(RETICULATE_PYTHON = '/workspace/audit_runs/17_T1NXVQ/B/venv/bin/python3')  # [AUDIT B, E1]
+       library(pspm)
+       library(raster)
+       library(plyr)
+       library(sp)
+-      library(rgdal)
+-      library(rgeos)
++      # [AUDIT B, E3] library(rgdal), library(rgeos) removed
+       library(igraph)
+       library(dplyr)
+       library(survival)

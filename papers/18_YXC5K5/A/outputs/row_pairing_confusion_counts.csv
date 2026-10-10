@@ -1,0 +1,5 @@
+"session","model","cells","TP","FP","FN","TN","mismatch_share"
+"main","GPT 4o Few Shot 8",4712,62,539,320,3791,0.182300509337861
+"main","Undergraduate Coders 8",4712,57,401,325,3929,0.154074702886248
+"Rc","GPT 4o Few Shot 8",4712,232,369,150,3961,0.110144312393888
+"Rc","Undergraduate Coders 8",4712,202,256,180,4074,0.0925297113752122

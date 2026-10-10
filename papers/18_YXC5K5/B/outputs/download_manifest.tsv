@@ -1,0 +1,95 @@
+datafile_id	file	url	md5_matches_metadata	sha256
+10903254	5-24-24claudesonnet10labn590.csv	https://dataverse.harvard.edu/api/access/datafile/10903254	True	0cafdf88ae47654512bec78d4cb8de28489a30f5e31cf4dddf759712efa2f101
+10903256	5-24-24gpt10lab.csv	https://dataverse.harvard.edu/api/access/datafile/10903256	True	04784a03ef60f2be6153c6483d732bc52dd9b82525a57de02e0f18143cac3009
+10903248	5-24-24gpt10lab_4o.csv	https://dataverse.harvard.edu/api/access/datafile/10903248	True	b94d872fbf479f777b3986e4386f188cc24531303339c0a9fab22788e490999b
+10903204	5-24-24gpt10lab_4o_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903204	True	fc68c01040633befedcc2584e0c576991cc309d32a4285e121832bc5e7d59366
+10903180	5-24-24gpt10lab_4o_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903180	True	53fb5919bce3d6946ca7d391ffdb9be34964a3dab0b944e521a734c0c7ed7620
+10903178	5-24-24gpt10lab_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903178	True	4a9ad951940546d90eac35830a756e91e2e975e1d8b8b198ab5b3d0e962da6f8
+10903234	5-24-24gpt10lab_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903234	True	848f82f41109772656fffda78c875aa5f4045cb107b2d5eefa743a36de09db9c
+10903213	5-24-24gpt4lab.csv	https://dataverse.harvard.edu/api/access/datafile/10903213	True	7ac215ab7f839f273041e8bdc30eb2b0e1c291538ea3e3c40ce196a6d286948d
+10903210	5-24-24gpt4lab_4o.csv	https://dataverse.harvard.edu/api/access/datafile/10903210	True	68d2987457d6f78ad088b1a82f8e4f82d2106aadf92e6b945ec9c4ca7485e0b9
+10903219	5-24-24gpt4lab_4o_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903219	True	63ebfd4e740b3d56666718ee8d15c4e7611fdec162822adfbbcc9d74d4013c02
+10903253	5-24-24gpt4lab_4o_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903253	True	bfe7f236dc909320106e578448c5cdb3690ceb3328970e45094c631a97f5e4e0
+10903255	5-24-24gpt4lab_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903255	True	72b501de445d32fad5cc8e18027a37c23f65255dfb31c20f7c23654586bda49e
+10903231	5-24-24gpt4lab_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903231	True	260bb3d467e1f44ae59529f882f002e64e44edcb813f65af77fdd15757299d62
+10903195	5-25-24claudesonnet10labn590_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903195	True	cc87014161705d3e5b7bb438fa4e5891680b411001c9fc05caec3c21b2a72a14
+10903197	5-25-24claudesonnet10labn590_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903197	True	a2828caa52fbcec5887441707b6a6e9d8ef88f86a823684ed551e7d9773b55bf
+10903183	5-25-24claudesonnet4labn590.csv	https://dataverse.harvard.edu/api/access/datafile/10903183	True	5f82da66399ab3808fa3e2645cb9730406d913c2ef214e0c68878b0d2834ff22
+10903201	5-26-24claudesonnet4labn590_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903201	True	846a2795d11e076fea0e8d1a36245f0d8dc396d103dea96cdf1ddbfc2bdb60c0
+10903250	5-26-24claudesonnet4labn590_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903250	True	d45251f1469642f7365c318579293e2181c29e2806cff28c104f0a5196de9f79
+10903169	5-31-24claudesonnet4few_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903169	True	727b5156b6e7156dbb24babf409612ece06a9c00353375685540971d3130e867
+10903225	5-31-24claudesonnet4one_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903225	True	6fc7f33e2946f082ec99e2b5a3ff1db0c822a58acff702f6e9525ea68b898d06
+10903167	5-31-24claudesonnet4zero_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903167	True	b41e73534681e6f1d767cd34918ef3648d90b4c859143860580e41e7ed22bc36
+10903189	5-31-24gpt10few_4o_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903189	True	72044b5e0cd34bd21d2b49a80b2cc416c3457a3b685e018964603fbe35720637
+10903198	5-31-24gpt10few_4turbo_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903198	True	0fdecb3945a22c6e82e922a501625d326436d3b98145be6b5cb73e584324e7ec
+10903194	5-31-24gpt10one_4o_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903194	True	ecee814a63ac5dbfd9bd99c90ec0d41d09a4c1cbe107122f49f56fe74ff15972
+10903179	5-31-24gpt10one_4turbo_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903179	True	9637e25ace05a6f37c26e2967f2de123cb8803c9d5586dcd669a042c5b07aa2f
+10903212	5-31-24gpt10zero_4o_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903212	True	76e0a50eef8df609e75abfe16b0c1b36ac2ffe701f6d9d7fe52f027f1106aff6
+10903193	5-31-24gpt10zero_4o_rand_labs.csv	https://dataverse.harvard.edu/api/access/datafile/10903193	True	75e147ccbd205358ddd230f9087a4b2c851ea7af073492294bfd313096252d7a
+10903176	5-31-24gpt10zero_4turbo_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903176	True	49489bf2acabf29c4c355752eb0a8fdedf4f24c09fc386797df0c56e47b98583
+10903206	5-31-24gpt4few_4o_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903206	True	9e5c468313216dee2b89fbf20eb2bfc1086ebd860637b92462e1f0d7ebdfa5b6
+10903196	5-31-24gpt4few_4turbo_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903196	True	91bac5d4b531a9ed4659dc3cb561e3c24b87f925259522e4f54962b7f7e962cf
+10903205	5-31-24gpt4one_4o_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903205	True	97580cfd801b5a4415808414b09a6f37bdd7dbcba5800a6ce24388055445b4d1
+10903246	5-31-24gpt4one_4turbo_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903246	True	8c30466fb5ab15ecaf1d95a36ff21663daac6eb20a473e66dce25ca5b32a4c6f
+10903168	5-31-24gpt4zero_4o_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903168	True	137eb6b72628fa3d73176030b079b204cd08e3c46d28823224cc64b239821320
+10903247	5-31-24gpt4zero_4turbo_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903247	True	0973e619c7eef2ebd04f63b91d573e18d56d0523e5bc9071bc16da62cf2d1397
+10903172	6-1-24claudesonnet10few_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903172	True	a5aa61feaa6d9693d7e7c925e8a626cad45a23ad244b37eac2766239605780df
+10903184	6-1-24claudesonnet10one_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903184	True	dbc458de0b45faeb395b00352d108743cb7cec30cc40714b4c6c8c5d4f581c18
+10903174	6-1-24claudesonnet10zero_rand.csv	https://dataverse.harvard.edu/api/access/datafile/10903174	True	57ea87f1b1888d80cbf1fb328445475680c5d2f242cb6b27727147be475e5b36
+10903177	6-12-24gpt10lab_fewshot_spanish.csv	https://dataverse.harvard.edu/api/access/datafile/10903177	True	c36aef8f765e8c2099b3e727c44d5653f6631a956e58c34044a5301f8e61aab8
+10903215	6-24-24claude3.510labn590_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903215	True	af0611a8bd994d86fd344a7744d3fc0e8425e38348cfeba9ce3c49816daa7306
+10903173	6-24-24claude3.54labn590_fewshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903173	True	655c4108aca5201e29a18e716e4b41dee7189937c58bccbe62eb8b62f2254398
+10903171	6-24-24gpt10_few_colombia_v1.csv	https://dataverse.harvard.edu/api/access/datafile/10903171	True	de4747655c15095560d27af21bd6d5e4a762a3fa44ffa5f868d4ae0c1b1dfcaa
+10903251	6-24-24gpt10_few_colombia_v2.csv	https://dataverse.harvard.edu/api/access/datafile/10903251	True	3c7d35197eae21d434c01aa104333129350d87ccea6fb91f421aeae7d9b11e95
+10903228	6-25-24gpt10_few_colombia_v3.csv	https://dataverse.harvard.edu/api/access/datafile/10903228	True	4463f3ecb885494ff17acc1decf7c745462256642195e1f4fba298891d59d340
+10903216	8-11-24claudesonnet3.5few_rand4.csv	https://dataverse.harvard.edu/api/access/datafile/10903216	True	43612d81f07fd6d4baaa309425c5a5450be00c8d89c335b7b575949b76df92b8
+10903192	8-11-24claudesonnet3.5one_rand4.csv	https://dataverse.harvard.edu/api/access/datafile/10903192	True	f26446eb9d07f5d0fae2cd829e4f713d0352efc37d648eca1bf81bbaf06ab893
+10903242	8-7-24claudesonnet3.5few_rand10.csv	https://dataverse.harvard.edu/api/access/datafile/10903242	True	cbd4b40118e344c3f8f72651389420b0852f8b25aed5ec67cd79b6acb27d351e
+10903200	8-7-24claudesonnet3.5one_rand10.csv	https://dataverse.harvard.edu/api/access/datafile/10903200	True	6a803015638a4ecb6e9c0beda8bfa62cc2938b583a2ee35e3f980388094143e7
+10903186	8-7-24claudesonnet3.5zero_rand10.csv	https://dataverse.harvard.edu/api/access/datafile/10903186	True	eb205dfb636161e062b109644cc7e1ac5a7ad18cd6f10d1df60c83b8b0a85670
+10903181	8-8-24claude3.510labn590_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903181	True	362fcf4b742e56241d0d1ac82dc2547eeaef5baa3b1da9365f99226db9fa8a67
+10903182	8-8-24claude3.510labn590_zeroshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903182	True	6f03c6cc6076a729f5092629857fe77ce29cc95c3c27b08dadc02b0f1aaa084a
+10903199	8-8-24claude3.54labn590_oneshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903199	True	ccf6c7160554401e2c30f3ebda1296463c02788171ae52cbfca8bbec52e96a5b
+10903232	8-9-24claude3.54labn590_zeroshot.csv	https://dataverse.harvard.edu/api/access/datafile/10903232	True	2a88a6c32fdeb1b0a0f6121e355ec0d4330c8df4207d00b1e30b3f192b1f62df
+10903188	8-9-24claudesonnet3.5zero_rand4.csv	https://dataverse.harvard.edu/api/access/datafile/10903188	True	c8a9359d993ff3abaf64e6cf2f460137d098d0510bf0be090e5b4a42c7850d95
+10903208	AI_goldstandard_four_v2.csv	https://dataverse.harvard.edu/api/access/datafile/10903208	True	f417d3a7e3df334bde7f59d170decba0e88918d31bd1a9b1b3d9ccdafcea7d89
+10903245	AI_goldstandard_ten_v2.csv	https://dataverse.harvard.edu/api/access/datafile/10903245	True	f0faba2c2e3e9bf4b8655cd8f3cb7d521fa6c2d9b8ab2ae770f7193fbf3f98dc
+10903226	Benchmarking_DataAnalysis.Rmd	https://dataverse.harvard.edu/api/access/datafile/10903226	True	520d59d1015f6fe81f0240a8b42fdc714c5496c017bf5d9008a4d2bec126a4f7
+10903236	Benchmarking_DataGeneration.Rmd	https://dataverse.harvard.edu/api/access/datafile/10903236	True	00b778321109c01af4c2ed3a21b008ac4082de2f96c566b40b34e4702fdbb093
+10903170	Benchmarking_ExplanatoryMemo.docx	https://dataverse.harvard.edu/api/access/datafile/10903170	True	105eb9a3cc5f97cfa8d7e753cb4a6f0be7fc8fb0f811ec16f3ebfdad6d03fc9b
+10903239	Benchmarking_Supplementary.Rmd	https://dataverse.harvard.edu/api/access/datafile/10903239	True	423a4bdcb5c7238df175631b35cbb9434de1edaac4ba7d82f51ffaedbadeaf1e
+10903202	Group_ROCCA_codings - Sheet1.csv	https://dataverse.harvard.edu/api/access/datafile/10903202?format=original	True	3dc375c1bf64a93d6151dcd9cf318a5c92beefc29e6668f0a4899b871ba967ba
+10903185	Undergrad_codings_coder1 - Sheet1.csv	https://dataverse.harvard.edu/api/access/datafile/10903185?format=original	True	0926a9008bb4616cafe2c9d1c27e863495ce51122373725df6115f3b8c2c1ab5
+10903241	Undergrad_codings_coder2 - Sheet1.csv	https://dataverse.harvard.edu/api/access/datafile/10903241?format=original	True	9c4c0815b26648e84cefafd0b13c76ade3fbbb6ee3a0496a41a3bdd942f6aeda
+10903243	Undergrad_codings_coder3 - Sheet1.csv	https://dataverse.harvard.edu/api/access/datafile/10903243?format=original	True	164abfb1ba41443f1c1cc1638ebe8f3da315aecf747c3b1eefae7cc26b485ca8
+10903165	chatgpt_prompt_four v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903165	True	01e5982a4204eb29bcb7e0b721eec83efe8f41609b36a0a51b879493f3718459
+10903175	chatgpt_prompt_four_fewshot v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903175	True	1c84db31559c39cd2b6e869cb345b177b0bac7784ce04d67773632f3cc50461b
+10903214	chatgpt_prompt_four_oneshot v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903214	True	9ef82aa3bed640211b2a5425793b9cd67e78be681fac4efe29fac6bffbe880ba
+10903209	chatgpt_prompt_ten v1.txt	https://dataverse.harvard.edu/api/access/datafile/10903209	True	155f770d79e1e56bcaa55a6a02feb3c4f3abb8fb281eaefce07287833443a8a6
+10903166	chatgpt_prompt_ten v1_expl.txt	https://dataverse.harvard.edu/api/access/datafile/10903166	True	7f8fb4bba1d5f27bdd8627a9edfc1a13118ce3419ccdf3c070b0c6e6b0ba6235
+10903252	chatgpt_prompt_ten v7 (2).txt	https://dataverse.harvard.edu/api/access/datafile/10903252	True	2cb83f58081738882c5770e2755c0ce2936ad4f9b17afd857fd6943718db8fbc
+10903211	chatgpt_prompt_ten v7.txt	https://dataverse.harvard.edu/api/access/datafile/10903211	True	2cb83f58081738882c5770e2755c0ce2936ad4f9b17afd857fd6943718db8fbc
+10903224	chatgpt_prompt_ten v7_expl.txt	https://dataverse.harvard.edu/api/access/datafile/10903224	True	4ef20a552ca3d0672eab13c36277e16cddbee33828b5b78d3dfbd47fd1934634
+10903244	chatgpt_prompt_ten_fewshot v7.txt	https://dataverse.harvard.edu/api/access/datafile/10903244	True	03c30eb09a892442a60bb2386b9246a6029c78e2894d400ba2176185ac08b73a
+10903237	chatgpt_prompt_ten_fewshot_spanish v7.txt	https://dataverse.harvard.edu/api/access/datafile/10903237	True	7f580258e5abc85acad40e347938144c1ae5df75e99efbe74ba27bd96792258d
+10903230	chatgpt_prompt_ten_oneshot v7.txt	https://dataverse.harvard.edu/api/access/datafile/10903230	True	1b37510350f9980e6ae8cf509b19ad3bca38f13da53ff0342a0a10f0f5e42bb0
+10903229	claude_prompt_four v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903229	True	487ac395cdde502d013f1e17171dd1c05fb2571187e959f85062a4bef54e4111
+10903203	claude_prompt_four_fewshot v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903203	True	4c1693101431c201cf4e7052693101fa7d57111819e6e2ef8e3a4d5b26a2bd45
+10903223	claude_prompt_four_oneshot v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903223	True	de99a6a779bcebd105049cfff31329f4bbe3c06b2327bd1136f29f91b5ecdf5a
+10903217	claude_prompt_ten v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903217	True	1f847248961e565bcdd341a84a85c9f53549637cc79e71b13cfedd3365cd5a5e
+10903233	claude_prompt_ten_fewshot v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903233	True	fedd18c9061bb73d64cc5af1e1c90f447f47bd6951e965c2d963dabe3b39049d
+10903257	claude_prompt_ten_oneshot v5.txt	https://dataverse.harvard.edu/api/access/datafile/10903257	True	aebbfe5b859ff34fa882508ad5c3e2ff7a75437cc59f60174237112c1f37f0c6
+10903164	gpt4o_10_fewshot_notext.csv	https://dataverse.harvard.edu/api/access/datafile/10903164	True	5ae5ce281d9b98fc1fff1e4488a78a42770ce99e1d9e48ddbfbc05fce9db7326
+10903227	gpt4o_4_fewshot_notext.csv	https://dataverse.harvard.edu/api/access/datafile/10903227	True	a19cd49785a795447a2a7ace3675f4613f77776d50282bd83a47071c9cc4dbb9
+10903249	ham_fig1.eps	https://dataverse.harvard.edu/api/access/datafile/10903249	True	87a0b4cd538ab5b2438310716e0346b69564c91370b80f8d09758c1e046e737c
+10903191	hamming_all_faceted.eps	https://dataverse.harvard.edu/api/access/datafile/10903191	True	b76e49a56db8fd904862124519e94b94890028f25d971f767dd2ec685f625a69
+10903207	human10_agree.csv	https://dataverse.harvard.edu/api/access/datafile/10903207	True	64e5a2476698d34e62917dc7c14893641b1887a4cfd5a80f1bcf25851cc16249
+10903240	human10lab_notext.csv	https://dataverse.harvard.edu/api/access/datafile/10903240	True	4b43bce1d73407897d8397b25d1d04a867fb0bddce6bf87d0fc572d2c021e17b
+10903221	human4_agree.csv	https://dataverse.harvard.edu/api/access/datafile/10903221	True	635a6855e01f331d9a519bdcb35f2a8901818d898dda3b098c380259c4da89ea
+10903190	human4lab_notext.csv	https://dataverse.harvard.edu/api/access/datafile/10903190	True	0f2d7070793ed500644606c1b125ae989d7af393d5f87bbf74f94b0d2975c4fe
+10903238	means_all_faceted.eps	https://dataverse.harvard.edu/api/access/datafile/10903238	True	c3ccfd7fe6e6c2d98a850992f1abf5fc49c4d964d1a7691d03fd92a544538daa
+10903218	pi_codings_2ndhalf.csv	https://dataverse.harvard.edu/api/access/datafile/10903218	True	1d7f6037f01e23cf7fa54c4cc8d6a5bf28dcd80587e92676ed8a486ea460bc43
+10903187	prompt1_expl_output.jsonl	https://dataverse.harvard.edu/api/access/datafile/10903187	True	4a83b3cddcf94c2bc2c6f544c7730c6306fd728c593011715aa79219a7a2986a
+10903235	prompt1_output.jsonl	https://dataverse.harvard.edu/api/access/datafile/10903235	True	e22987860e5d683c232e9cf6aba3ceddc202fb88d3becd019bdfbd2f7cc8d3a2
+10903220	prompt7_expl_output.jsonl	https://dataverse.harvard.edu/api/access/datafile/10903220	True	efaec9cdd49a865dea04a35d366dcc5c27a85451c6bf1d4e94314aaaec72dcad
+10903222	prompt7_output.jsonl	https://dataverse.harvard.edu/api/access/datafile/10903222	True	efb0e6981e6033df5310a038c1d63307d5390b18555c47393bb241082bac0ec6

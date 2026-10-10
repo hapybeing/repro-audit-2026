@@ -1,0 +1,10 @@
+--- /workspace/audit_runs/18_YXC5K5/B/data/Benchmarking_DataAnalysis.Rmd	2026-10-10 18:49:06.232011370 +0000
++++ scripts/Benchmarking_DataAnalysis_Rc.Rmd	2026-10-10 19:00:29.404834141 +0000
+@@ -106,6 +106,7 @@
+ names(pi)[2:9] = paste0("Theme", 1:8) 
+ 
+ pi = pi %>% mutate(across(Theme1:Theme8, ~ replace_na(., 0))) %>% distinct(docid, .keep_all = T)
++pi = pi %>% arrange(docid)
+ 
+ lapply(pi %>% select(Theme1:Theme8), mean)
+ 

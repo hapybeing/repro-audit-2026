@@ -1,0 +1,73 @@
+Run date (IST): 2026-10-11 00:31 IST
+Agent: B
+Seeds: main analysis uses no RNG; robustness bootstrap set.seed(20261010), R default RNG (Mersenne-Twister, Inversion, Rejection), 1000 resamples
+
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+Package sources: Debian apt (installed by this agent via sudo apt-get install -y r-cran-caret r-cran-gridextra r-cran-patchwork r-cran-proc r-cran-cowplot r-cran-reshape2 r-cran-knitr; r-cran-tidyverse via REPO/scripts/setup_env.sh run concurrently by other agents); CRAN source into R_LIBS_USER=/workspace/audit_runs/18_YXC5K5/B/rlib: irr, stargazer (and dependency lpSolve)
+Author environment (memo): R 4.3.3, RStudio 2023.12.1+402, Windows; no package pins
+
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] knitr_1.50      reshape2_1.4.4  cowplot_1.1.3   stargazer_5.2.3
+ [5] pROC_1.18.5     patchwork_1.3.0 gridExtra_2.3   irr_0.85       
+ [9] lpSolve_5.6.23  caret_7.0-1     lattice_0.22-7  lubridate_1.9.4
+[13] forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4     purrr_1.0.4    
+[17] readr_2.1.5     tidyr_1.3.1     tibble_3.2.1    ggplot2_3.5.1  
+[21] tidyverse_2.0.0
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6         xfun_0.51            recipes_1.1.0       
+ [4] tzdb_0.5.0           vctrs_0.6.5          tools_4.5.0         
+ [7] generics_0.1.3       stats4_4.5.0         parallel_4.5.0      
+[10] pkgconfig_2.0.3      ModelMetrics_1.2.2.2 Matrix_1.7-3        
+[13] data.table_1.17.0    lifecycle_1.0.4      farver_2.1.2        
+[16] compiler_4.5.0       munsell_0.5.1        codetools_0.2-20    
+[19] class_7.3-23         prodlim_2024.06.25   pillar_1.10.1       
+[22] MASS_7.3-65          gower_1.0.2          iterators_1.0.14    
+[25] rpart_4.1.24         foreach_1.5.2        nlme_3.1-168        
+[28] parallelly_1.42.0    lava_1.8.1           tidyselect_1.2.1    
+[31] digest_0.6.37        stringi_1.8.4        future_1.34.0       
+[34] listenv_0.9.1        splines_4.5.0        grid_4.5.0          
+[37] colorspace_2.1-1     cli_3.6.4            magrittr_2.0.3      
+[40] survival_3.8-3       future.apply_1.11.3  withr_3.0.2         
+[43] scales_1.3.0         timechange_0.3.0     globals_0.16.3      
+[46] nnet_7.3-20          timeDate_4041.110    hms_1.1.3           
+[49] evaluate_1.0.3       hardhat_1.4.1        rlang_1.1.5         
+[52] Rcpp_1.0.14          glue_1.8.0           ipred_0.9-15        
+[55] R6_2.6.1             plyr_1.8.9          
+
+.libPaths:
+[1] "/workspace/audit_runs/18_YXC5K5/B/rlib"
+[2] "/usr/local/lib/R/site-library"         
+[3] "/usr/lib/R/site-library"               
+[4] "/usr/lib/R/library"                    

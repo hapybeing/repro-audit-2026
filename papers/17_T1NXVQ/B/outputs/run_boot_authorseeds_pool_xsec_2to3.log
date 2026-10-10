@@ -1,0 +1,141 @@
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: sp
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:plyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following objects are masked from ‘package:raster’:
+
+    intersect, select, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tidyr’
+
+The following object is masked from ‘package:raster’:
+
+    extract
+
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:tidyr’:
+
+    crossing
+
+The following objects are masked from ‘package:dplyr’:
+
+    as_data_frame, groups, union
+
+The following object is masked from ‘package:raster’:
+
+    union
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Loading required package: miscTools
+
+Please cite the 'maxLik' package as:
+Henningsen, Arne and Toomet, Ott (2011). maxLik: A package for maximum likelihood estimation in R. Computational Statistics 26(3), 443-458. DOI 10.1007/s00180-010-0217-1.
+
+If you have questions, suggestions, or comments regarding the 'maxLik' package, please use a forum or 'tracker' at maxLik's R-Forge site:
+https://r-forge.r-project.org/projects/maxlik/
+
+Attaching package: ‘maxLik’
+
+The following object is masked from ‘package:raster’:
+
+    maxValue
+
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+The following objects are masked from ‘package:raster’:
+
+    area, select
+
+
+Attaching package: ‘fasterize’
+
+The following object is masked from ‘package:graphics’:
+
+    plot
+
+The following object is masked from ‘package:base’:
+
+    plot
+
+Linking to GEOS 3.13.1, GDAL 3.10.3, PROJ 9.6.0; sf_use_s2() is TRUE
+Loading required package: viridisLite
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.5
+✔ lubridate 1.9.4     ✔ stringr   1.5.1
+✔ purrr     1.0.4     ✔ tibble    3.2.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ lubridate::%--%()       masks igraph::%--%()
+✖ purrr::accumulate()     masks foreach::accumulate()
+✖ dplyr::arrange()        masks plyr::arrange()
+✖ tibble::as_data_frame() masks igraph::as_data_frame(), dplyr::as_data_frame()
+✖ gridExtra::combine()    masks dplyr::combine()
+✖ purrr::compact()        masks plyr::compact()
+✖ purrr::compose()        masks igraph::compose()
+✖ dplyr::count()          masks plyr::count()
+✖ igraph::crossing()      masks tidyr::crossing()
+✖ dplyr::desc()           masks plyr::desc()
+✖ tidyr::extract()        masks raster::extract()
+✖ dplyr::failwith()       masks plyr::failwith()
+✖ dplyr::filter()         masks stats::filter()
+✖ dplyr::id()             masks plyr::id()
+✖ dplyr::lag()            masks stats::lag()
+✖ dplyr::mutate()         masks plyr::mutate()
+✖ dplyr::rename()         masks plyr::rename()
+✖ MASS::select()          masks dplyr::select(), raster::select()
+✖ purrr::simplify()       masks igraph::simplify()
+✖ dplyr::summarise()      masks plyr::summarise()
+✖ dplyr::summarize()      masks plyr::summarize()
+✖ purrr::when()           masks foreach::when()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘smoothr’
+
+The following object is masked from ‘package:stats’:
+
+    smooth
+
+
+Please cite as: 
+
+ Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+ R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
+
+DRAW pool_xsec authorseeds seed 2 min 5.13 VmHWM:	 1285188 kB 
+DRAW pool_xsec authorseeds seed 3 min 5.24 VmHWM:	 1376692 kB 

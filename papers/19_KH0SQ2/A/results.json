@@ -1,0 +1,156 @@
+{
+ "paper_id": "19_KH0SQ2",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "France: OLS coefficient on Quota (reference Parity) in the survey-weighted regression of Support (1-5) on Treatment, treated respondents only (Appendix_plus.R line 948, coef(res4)['TreatmentQuota'])",
+   "paper_value": -0.188,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.187887616768527,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00011238323147300111,
+   "rel_diff": 0.0005977831461329847,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0890, summary.lm p 0.03526; ** bucket (0.01<=p<0.05): True"
+  },
+  {
+   "id": "T2",
+   "description": "UK: OLS coefficient on Quota (reference Parity) in the survey-weighted regression of Support on Treatment, treated respondents only (Appendix_plus.R line 906, coef(res1)['TreatmentQuota'])",
+   "paper_value": 0.047,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.0473249626369344,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00032496263693439914,
+   "rel_diff": 0.006914098658178705,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0765, summary.lm p 0.5361"
+  },
+  {
+   "id": "T3",
+   "description": "UK: OLS coefficient on Male (reference Female) in the additive survey-weighted model Support ~ Treatment + resp_gender, treated respondents (Appendix_plus.R line 915, coef(resg1)['resp_genderMale'])",
+   "paper_value": -0.312,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.311531148082502,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00046885191749801436,
+   "rel_diff": 0.001502730504801328,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0759, summary.lm p 4.396e-05"
+  },
+  {
+   "id": "T4",
+   "description": "France: OLS coefficient on Male (reference Female) in the additive survey-weighted model Support ~ Treatment + resp_gender, treated respondents (Appendix_plus.R line 957, coef(resg2)['resp_genderMale'])",
+   "paper_value": -0.28,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.279941001913928,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 5.899808607201518e-05,
+   "rel_diff": 0.00021070745025719703,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0884, summary.lm p 0.001625"
+  },
+  {
+   "id": "T5",
+   "description": "UK: number of observations in the Support models on treated respondents (nobs(res1); also res2, res3, resg1)",
+   "paper_value": 1099,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1099.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs across models ['res1', 'res2', 'res3', 'resg1']: [1099]"
+  },
+  {
+   "id": "T6",
+   "description": "France: number of observations in the Support models on treated respondents (nobs(res4); also res5, res6, resg2)",
+   "paper_value": 623,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 623.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs across models ['res4', 'res5', 'res6', 'resg2']: [623]"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, 2000 resamples per model, set.seed(20261010) once, order res4, res1, resg1, resg2; percentile CIs; primary T1 (res4 Quota)",
+   "ran": true,
+   "estimate": -0.187887616768527,
+   "se_or_ci": "boot SE 0.1025; 95% percentile CI [-0.3789, 0.0209]",
+   "p_value": 0.089,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_a_bootstrap.csv",
+   "note": "All targets: T1: est -0.1879, boot SE 0.1025, 90% [-0.3493, -0.0080], 95% [-0.3789, 0.0209], 99% [-0.4406, 0.0655], p_boot 0.089, NA draws 0, same as paper: False; T2: est 0.0473, boot SE 0.0843, 90% [-0.0890, 0.1863], 95% [-0.1099, 0.2136], 99% [-0.1557, 0.2725], p_boot 0.576, NA draws 0, same as paper: True; T3: est -0.3115, boot SE 0.0841, 90% [-0.4482, -0.1734], 95% [-0.4704, -0.1418], 99% [-0.5229, -0.0976], p_boot 0, NA draws 0, same as paper: True; T4: est -0.2799, boot SE 0.1022, 90% [-0.4458, -0.1127], 95% [-0.4802, -0.0822], 99% [-0.5482, -0.0247], p_boot 0.004, NA draws 0, same as paper: True"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z|>3 on survey Weight within each country's estimation sample (Support |z|>3 drops 0, see support_absz_gt3_dropped), refit weighted; primary T1",
+   "ran": true,
+   "estimate": -0.136297729159533,
+   "se_or_ci": "SE 0.0884; n dropped 16 of 623",
+   "p_value": 0.123792713428051,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_b_weight_outliers.csv",
+   "note": "All targets: T1: est -0.1363, SE 0.0884, p 0.1238, dropped 16, same as paper: False; T2: est 0.0256, SE 0.0782, p 0.7429, dropped 29, same as paper: True; T3: est -0.3210, SE 0.0776, p 3.82e-05, dropped 29, same as paper: True; T4: est -0.2537, SE 0.0880, p 0.004094, dropped 16, same as paper: True; cases dropped by |z|>3 on Support: T1 0, T2 0, T3 0, T4 0"
+  },
+  {
+   "id": "R_c",
+   "description": "Unweighted OLS on the same estimation samples; primary T1",
+   "ran": true,
+   "estimate": -0.145355191256833,
+   "se_or_ci": "SE 0.0877",
+   "p_value": 0.0977594861666224,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_c_unweighted.csv",
+   "note": "All targets: T1: est -0.1454, SE 0.0877, p 0.09776, same as paper: False; T2: est 0.0541, SE 0.0766, p 0.4806, same as paper: True; T3: est -0.3816, SE 0.0758, p 5.658e-07, same as paper: True; T4: est -0.2527, SE 0.0872, p 0.003902, same as paper: True"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "main_text_figs_JEPP_FINAL.R",
+   "line": 835,
+   "description": "Code observation (not an estimate bug; no target affected): l. 835 `subset_uk$Treatment2<-as.factor(subset_uk$Treatment2)` (and l. 865 for France) refers to a column `Treatment2` that is not in all_merged.RData and is not created anywhere in main_text_figs_JEPP_FINAL.R; it is created only in Appendix_plus.R l. 1278 / 1286. Run as deposited, the script stops here, so the Figure 7 (list experiment) section, l. 835 to the end, does not run.",
+   "evidence": "outputs/main_text_status.txt: 'error at line 835: replacement has 0 rows, data has 1734'; names(all) in all_merged.RData has no Treatment2 (27 columns); grep of the script finds Treatment2 only at l. 835 and 865."
+  }
+ ],
+ "env_fixes": [
+  "diffs/Appendix_plus_driver_load.diff: pre-registered driver adds load(\"all_merged.RData\") and setwd() before Appendix_plus.R l. 892-958 (the script's own load at l. 18 is commented out); no analysis line changed (batch4_class_decisions.md item 2)",
+  "no diff: packages for main_text_figs_JEPP_FINAL.R pre-installed (Debian r-cran-* binaries and CRAN source into the per-run library), so its install.packages() call at l. 18 was not triggered"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets (T1 to T4 coefficients, T5 and T6 Ns) reproduce exactly to the printed rounding, with the same significance buckets, from the deposited Appendix_plus.R lines 892-958 run through the pre-registered load() driver. Alternative class if the driver is not accepted as an environment fix: C (batch4_class_decisions.md item 2).",
+ "alternative_class": "C (if the session driver that adds load(\"all_merged.RData\") is not accepted as an environment fix)",
+ "confidence": "high",
+ "confidence_reason": "Closed-form weighted OLS with no randomness; all estimates and SEs match to 3 decimals and the main-text script's own fits (l. 325, l. 363) give identical Quota coefficients; pending agreement with agent B.",
+ "time_minutes": 14,
+ "uncertainties": [
+  "No author R or package versions are given; current R 4.5.0 and current CRAN/Debian packages were used. Target models use only base stats::lm, so version drift is not expected to matter.",
+  "Reproduced SEs (outputs/targets_extracted.csv) also match the printed Table S1/S10 SEs at 3 decimals, including the Table S10 pattern where the Male SE equals the Quota SE in each full-sample column.",
+  "main_text_figs_JEPP_FINAL.R ran unchanged until l. 835 (expression counts in outputs/main_text_status.txt), then stopped on a missing column Treatment2 (see bugs). The Figure 7 list-experiment section from l. 835 on was not run and was not repaired, since creating the column would be adding analysis code. No target depends on it.",
+  "Robustness (not class-changing): the France framing effect (T1) keeps its negative sign in all three checks but its two-sided p is above 0.05 in each (bootstrap 95% percentile CI includes 0; weight-outlier exclusion and unweighted OLS p above 0.05). T2 stays non-significant and T3/T4 stay negative with p < 0.01 in all three checks. Exact values in results.json robustness entries.",
+  "Exploratory, not pre-registered and not scripted into a table: the weighted response shares hard-coded for Figure 2 (main_text_figs_JEPP_FINAL.R around l. 100-134 and the France block) equal the svymean output printed in outputs/main_text.log (lines 239-256 and 316-334 of the log), checked by eye only.",
+  "Cross-check from main_text_figs_JEPP_FINAL.R (outputs/crosscheck_main_text.csv): res1_l325_UK (Intercept) 2.977234; res1_l325_UK TreatmentQuota 0.047325; res1b_l363_FR (Intercept) 3.643029; res1b_l363_FR TreatmentQuota -0.187888",
+  "Descriptive country counts in all_merged.RData (outputs/descriptive_country_counts.csv): FR 1038, UK 1734; the paper text gives UK N = 1,708, France N = 969, combined 2677 (not targets).",
+  "Secondary context (PREREG, not targets; outputs/targets_extracted.csv): res2 resp_genderMale -0.3808 (SE 0.1084, p 0.0004644); res5 resp_genderMale -0.2671 (SE 0.1235, p 0.03097); res1 (Intercept) 2.9772 (SE 0.0546, p 7.538e-315); res4 (Intercept) 3.6430 (SE 0.0621, p 2.809e-255); res6 TreatmentQuota:resp_genderMale:Masculine -0.1849 (SE 0.0750, p 0.01401)"
+ ]
+}

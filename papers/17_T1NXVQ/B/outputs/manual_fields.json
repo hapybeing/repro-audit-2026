@@ -1,0 +1,23 @@
+{
+ "could_not_run_reason": "",
+ "bugs": [],
+ "env_fixes": [
+  "diffs/analysis_globals.R.diff: E1 RETICULATE_PYTHON to the run venv (system python lacks numpy); E2 ncore 40 -> 1; E3 library(rgeos)/library(rgdal) removed because archived rgeos 0.6-4 / rgdal 1.6-7 failed to compile twice (sp.h missing)",
+  "diffs/analysis_pool.R.diff: pre-registered F1-F3 (one model per process, lapply instead of parLapply, save to audit folder, 120-draw bootstrap replaced by the pre-registered reduced bootstrap); run as a copy analysis_pool_B.R",
+  "package versions: pinned maxLik 1.5-2, miscTools 0.6-26, texreg 1.38.6, infotheo 1.2.0.1 used; pinned igraph 1.4.1 failed to compile (-Werror=format-security), Debian igraph 2.1.4 used; pinned reticulate 1.28 fails to load under Python 3.12 (import imp), Debian reticulate 1.41.0.1 used; cshapes 2.0 needed V8 built with DOWNLOAD_STATIC_LIBV8=1"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six Table 1 targets (four PSPM coefficients and two vertex counts) reproduce to the paper's rounding, and each coefficient's interval from the pre-registered reduced bootstrap (authors' seeds 1..3, estimate +/- 1.96 SD) excludes 0 (batch4 class decision 3 gives A; alternative class if only the full 120-draw bootstrap counts: E).",
+ "confidence": "high",
+ "confidence_reason": "Point estimates and counts match by script; all 6 reproduced bootstrap draws equal the deposited draws for the same seeds within 3.6e-7; environment drift (igraph 2.1.4, reticulate 1.41, Python 3.12, aarch64) did not change any value at 2 decimals.",
+ "time_minutes": 123,
+ "uncertainties": [
+  "Significance rests on K = 3 bootstrap draws per model (pre-registered rule K = min(10, floor(25/t)), t = 6.6 min for the first draw); the printed 120-draw percentile intervals were not recomputed. The reproduced draws equal the deposited draws for seeds 1-3 (outputs/compare_boot_vs_deposited.csv), so the deposited 120-draw intervals are consistent with this run, but draws 4-120 were not re-run.",
+  "Pinned igraph 1.4.1 failed to compile and pinned reticulate 1.28 cannot load under Python 3.12; current Debian builds (igraph 2.1.4, reticulate 1.41.0.1) were used. numpy/scipy/networkx are unpinned in the deposit (numpy 2.5.4, scipy 1.18.1, networkx 3.7 used).",
+  "rgeos and rgdal were not installed (E3); PREREG checked they are not called on the Table 1 path, and the run completed without them.",
+  "maxLik::stdEr returned NA in the extraction for the two main fits (stdEr_maxLik column NA in outputs/targets_pool_xsec.csv and targets_pool_ldv.csv); the authors' summary() printout in the run logs shows the analytic SEs. Not used for any target.",
+  "R_b removes 129 of 3047 lattice edges in every period; with force_contiguous the number of states summed over periods rises (pool_xsec 189 to 220), so R_b changes the outcome coding as well as the sample.",
+  "The sandbox restarted twice during the run (about 02:43 and 03:56 IST); every saved step was checked and resumed; the R_a pool_xsec draws 1001 and 1002-1003 came from two different processes.",
+  "Process note: the workspace tool echoed names of some files in papers/17_T1NXVQ/A/ in change notifications and one glob listing (/workspace/audit_runs/*/*/setup_env*) printed two file names under 17_T1NXVQ/A/. No A file was opened or read."
+ ]
+}

@@ -1,0 +1,1926 @@
+
+> rm(list = ls())
+
+> packages <- c("rstatix", "ggpubr", "sjPlot", "interactions", 
++     "stargazer", "effects", "survey", "collapse", "stats", "scales", 
++     "dplyr", "ggthemes", "patchwork", "cjoint")
+
+> install_packages <- packages[!(packages %in% installed.packages()[, 
++     "Package"])]
+
+> if (length(install_packages)) install.packages(install_packages)
+
+> lapply(packages, library, character.only = TRUE)
+
+Attaching package: ‘rstatix’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+Loading required package: ggplot2
+
+Please cite as: 
+
+ Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+ R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
+
+Loading required package: carData
+lattice theme set by effectsTheme()
+See ?effectsTheme for details.
+Loading required package: grid
+Loading required package: Matrix
+Loading required package: survival
+
+Attaching package: ‘survey’
+
+The following object is masked from ‘package:graphics’:
+
+    dotchart
+
+collapse 2.1.0, see ?`collapse-package` or ?`collapse-documentation`
+
+Attaching package: ‘collapse’
+
+The following object is masked from ‘package:stats’:
+
+    D
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: sandwich
+Loading required package: lmtest
+Loading required package: zoo
+
+Attaching package: ‘zoo’
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+cjoint: AMCE Estimator for Conjoint Experiments
+Version: 2.1.3
+Authors: Soubhik Barari [aut],
+  Elissa Berwick [aut],
+  Jens Hainmueller [aut],
+  Daniel Hopkins [aut],
+  Sean Liu [aut],
+  Anton Strezhnev [aut, cre],
+  Teppei Yamamoto [aut]
+
+[[1]]
+[1] "rstatix"   "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[7] "methods"   "base"     
+
+[[2]]
+ [1] "ggpubr"    "ggplot2"   "rstatix"   "stats"     "graphics"  "grDevices"
+ [7] "utils"     "datasets"  "methods"   "base"     
+
+[[3]]
+ [1] "sjPlot"    "ggpubr"    "ggplot2"   "rstatix"   "stats"     "graphics" 
+ [7] "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+[[4]]
+ [1] "interactions" "sjPlot"       "ggpubr"       "ggplot2"      "rstatix"     
+ [6] "stats"        "graphics"     "grDevices"    "utils"        "datasets"    
+[11] "methods"      "base"        
+
+[[5]]
+ [1] "stargazer"    "interactions" "sjPlot"       "ggpubr"       "ggplot2"     
+ [6] "rstatix"      "stats"        "graphics"     "grDevices"    "utils"       
+[11] "datasets"     "methods"      "base"        
+
+[[6]]
+ [1] "effects"      "carData"      "stargazer"    "interactions" "sjPlot"      
+ [6] "ggpubr"       "ggplot2"      "rstatix"      "stats"        "graphics"    
+[11] "grDevices"    "utils"        "datasets"     "methods"      "base"        
+
+[[7]]
+ [1] "survey"       "survival"     "Matrix"       "grid"         "effects"     
+ [6] "carData"      "stargazer"    "interactions" "sjPlot"       "ggpubr"      
+[11] "ggplot2"      "rstatix"      "stats"        "graphics"     "grDevices"   
+[16] "utils"        "datasets"     "methods"      "base"        
+
+[[8]]
+ [1] "collapse"     "survey"       "survival"     "Matrix"       "grid"        
+ [6] "effects"      "carData"      "stargazer"    "interactions" "sjPlot"      
+[11] "ggpubr"       "ggplot2"      "rstatix"      "stats"        "graphics"    
+[16] "grDevices"    "utils"        "datasets"     "methods"      "base"        
+
+[[9]]
+ [1] "collapse"     "survey"       "survival"     "Matrix"       "grid"        
+ [6] "effects"      "carData"      "stargazer"    "interactions" "sjPlot"      
+[11] "ggpubr"       "ggplot2"      "rstatix"      "stats"        "graphics"    
+[16] "grDevices"    "utils"        "datasets"     "methods"      "base"        
+
+[[10]]
+ [1] "scales"       "collapse"     "survey"       "survival"     "Matrix"      
+ [6] "grid"         "effects"      "carData"      "stargazer"    "interactions"
+[11] "sjPlot"       "ggpubr"       "ggplot2"      "rstatix"      "stats"       
+[16] "graphics"     "grDevices"    "utils"        "datasets"     "methods"     
+[21] "base"        
+
+[[11]]
+ [1] "dplyr"        "scales"       "collapse"     "survey"       "survival"    
+ [6] "Matrix"       "grid"         "effects"      "carData"      "stargazer"   
+[11] "interactions" "sjPlot"       "ggpubr"       "ggplot2"      "rstatix"     
+[16] "stats"        "graphics"     "grDevices"    "utils"        "datasets"    
+[21] "methods"      "base"        
+
+[[12]]
+ [1] "ggthemes"     "dplyr"        "scales"       "collapse"     "survey"      
+ [6] "survival"     "Matrix"       "grid"         "effects"      "carData"     
+[11] "stargazer"    "interactions" "sjPlot"       "ggpubr"       "ggplot2"     
+[16] "rstatix"      "stats"        "graphics"     "grDevices"    "utils"       
+[21] "datasets"     "methods"      "base"        
+
+[[13]]
+ [1] "patchwork"    "ggthemes"     "dplyr"        "scales"       "collapse"    
+ [6] "survey"       "survival"     "Matrix"       "grid"         "effects"     
+[11] "carData"      "stargazer"    "interactions" "sjPlot"       "ggpubr"      
+[16] "ggplot2"      "rstatix"      "stats"        "graphics"     "grDevices"   
+[21] "utils"        "datasets"     "methods"      "base"        
+
+[[14]]
+ [1] "cjoint"       "lmtest"       "zoo"          "sandwich"     "patchwork"   
+ [6] "ggthemes"     "dplyr"        "scales"       "collapse"     "survey"      
+[11] "survival"     "Matrix"       "grid"         "effects"      "carData"     
+[16] "stargazer"    "interactions" "sjPlot"       "ggpubr"       "ggplot2"     
+[21] "rstatix"      "stats"        "graphics"     "grDevices"    "utils"       
+[26] "datasets"     "methods"      "base"        
+
+
+> library(rstatix)
+
+> library(ggpubr)
+
+> library(sjPlot)
+
+> library(interactions)
+
+> library(stargazer)
+
+> library(effects)
+
+> library(survey)
+
+> library(collapse)
+
+> library(stats)
+
+> library(scales)
+
+> library(dplyr)
+
+> library(ggthemes)
+
+> library(patchwork)
+
+> library(cjoint)
+
+> load("all_merged.RData")
+
+> head(all)
+    country Support Support2 Fairness resp_gender Masculine Feminine
+645      UK       1        0        4        Male         8        2
+646      UK       3        0        8        Male         1        1
+647      UK       3        0        5        Male         3        7
+648      UK       2        0        5        Male         7        3
+649      UK      NA       NA       NA        Male         2        2
+650      UK       1        0        2      Female         7        5
+    Sexism_Scale Treatment   ID list_control_response_control
+645    0.9444444    Parity 1317                            NA
+646    0.7222222     Quota 1733                            NA
+647    0.7222222    Parity  922                            NA
+648    0.5000000    Parity 1618                            NA
+649    0.5000000   Control    3                            NA
+650    0.5000000    Parity  336                            NA
+    list_control_response_parity list_control_response_quota
+645                           NA                          NA
+646                           NA                           5
+647                           NA                          NA
+648                           NA                          NA
+649                           NA                          NA
+650                           NA                          NA
+    list_treated_response_control list_treated_response_parity
+645                            NA                            3
+646                            NA                           NA
+647                            NA                            5
+648                            NA                            3
+649                             4                           NA
+650                            NA                            2
+    list_treated_response_quota Knowledge Put_On_Show Center_Of_Attention
+645                          NA         0           1                   1
+646                          NA         0           2                   2
+647                          NA         1           3                   3
+648                          NA         0           1                   1
+649                          NA         0           1                   1
+650                          NA         0           1                   1
+    Acting_Skills resp_age                            fmac_parity
+645             2       33                                Correct
+646             1       45                                   <NA>
+647             3       33 Could be argued is technically correct
+648             1       45                                Correct
+649             1       40                                   <NA>
+650             1       78                                Correct
+                                fmac_quota   Weight Knowledge_relaxed
+645                                   <NA> 4.489272                 0
+646 Could be argued is technically correct 4.133166                 0
+647                                   <NA> 4.111048                 1
+648                                   <NA> 4.000638                 0
+649                                   <NA> 3.836308                 0
+650                                   <NA> 3.762929                 0
+    list_treated lcount
+645            1      3
+646            0      5
+647            1      5
+648            1      3
+649            1      4
+650            1      2
+
+> nrow(all)
+[1] 2772
+
+> table(all$country)
+
+  FR   UK 
+1038 1734 
+
+> T1 <- subset(all, (Treatment == "Quota" | Treatment == 
++     "Parity"))
+
+> nrow(T1)
+[1] 1816
+
+> is.factor(T1$Treatment)
+[1] TRUE
+
+> table(T1$country)
+
+  FR   UK 
+ 653 1163 
+
+> T1$fSupport <- as.factor(T1$Support)
+
+> T1$fTreatment <- as.factor(T1$Treatment)
+
+> T1UK <- subset(T1, (country == "UK"))
+
+> nrow(T1UK)
+[1] 1163
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- T1UK[, vars]
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+645 1317 4.489272        1     Parity
+646 1733 4.133166        3      Quota
+647  922 4.111048        3     Parity
+648 1618 4.000638        2     Parity
+650  336 3.762929        1     Parity
+652  394 3.357853        3      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.14487 0.0121
+fSupport2 0.23387 0.0140
+fSupport3 0.22906 0.0146
+fSupport4 0.25949 0.0142
+fSupport5 0.13272 0.0111
+
+> svymean(~fTreatment, wdat, na.rm = TRUE)
+                     mean     SE
+fTreatmentControl 0.00000 0.0000
+fTreatmentParity  0.49276 0.0163
+fTreatmentQuota   0.50724 0.0163
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1UK[, vars], fTreatment == "Parity")
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+645 1317 4.489272        1     Parity
+647  922 4.111048        3     Parity
+648 1618 4.000638        2     Parity
+650  336 3.762929        1     Parity
+653 1764 3.352616        4     Parity
+655  179 3.226297        3     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.15500 0.0185
+fSupport2 0.24224 0.0205
+fSupport3 0.21443 0.0201
+fSupport4 0.24718 0.0198
+fSupport5 0.14115 0.0170
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1UK[, vars], fTreatment == "Quota")
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+646 1733 4.133166        3      Quota
+652  394 3.357853        3      Quota
+656 1128 3.210861        1      Quota
+658  153 3.127535     <NA>      Quota
+666  765 2.916449        4      Quota
+667 1126 2.896322        3      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.13509 0.0156
+fSupport2 0.22579 0.0193
+fSupport3 0.24317 0.0212
+fSupport4 0.27136 0.0205
+fSupport5 0.12459 0.0145
+
+> cur_df <- T1UK %>% group_by(Treatment, Support) %>% 
++     summarise(count = n()) %>% mutate(perc = count/sum(count))
+`summarise()` has grouped output by 'Treatment'. You can override using the
+`.groups` argument.
+
+> cur_df <- na.omit(cur_df)
+
+> cur_df
+# A tibble: 10 × 4
+# Groups:   Treatment [2]
+   Treatment Support count  perc
+   <fct>       <dbl> <int> <dbl>
+ 1 Parity          1    78 0.136
+ 2 Parity          2   135 0.236
+ 3 Parity          3   113 0.198
+ 4 Parity          4   145 0.253
+ 5 Parity          5    73 0.128
+ 6 Quota           1    76 0.129
+ 7 Quota           2   125 0.212
+ 8 Quota           3   122 0.206
+ 9 Quota           4   157 0.266
+10 Quota           5    75 0.127
+
+> cur_df$wperc <- NA
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     1] <- 0.155
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     2] <- 0.24224
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     3] <- 0.21443
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     4] <- 0.24718
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     5] <- 0.14115
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     1] <- 0.13509
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     2] <- 0.22579
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     3] <- 0.24317
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     4] <- 0.27136
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     5] <- 0.12459
+
+> cur_df
+# A tibble: 10 × 5
+# Groups:   Treatment [2]
+   Treatment Support count  perc wperc
+   <fct>       <dbl> <int> <dbl> <dbl>
+ 1 Parity          1    78 0.136 0.155
+ 2 Parity          2   135 0.236 0.242
+ 3 Parity          3   113 0.198 0.214
+ 4 Parity          4   145 0.253 0.247
+ 5 Parity          5    73 0.128 0.141
+ 6 Quota           1    76 0.129 0.135
+ 7 Quota           2   125 0.212 0.226
+ 8 Quota           3   122 0.206 0.243
+ 9 Quota           4   157 0.266 0.271
+10 Quota           5    75 0.127 0.125
+
+> cur_df$wperc <- cur_df$wperc * 100
+
+> p <- ggplot(data = cur_df, aes(x = factor(Support), 
++     y = wperc, fill = Treatment)) + geom_bar(width = 0.7, position = position_dodge(width = 0.75), 
++     stat = "identity") + scale_y_continuous(labels = scales::percent_format(accuracy = 5)) + 
++     labs(y = "Percentage", x = "To what extent do you support or oppose \ngender quota [parity] laws in your country?", 
++         title = "UK") + theme_bw() + ylim(0, 40) + theme(panel.grid.minor.x = element_blank(), 
++     panel.grid.major.x = element_blank(), plot.title = element_text(hjust = 0.5)) + 
++     theme(legend.title = element_blank())
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
+
+> p2 <- p + scale_x_discrete(breaks = c("1", "2", "3", 
++     "4", "5"), labels = c("Strongly \noppose", "Tend to \noppose", 
++     "Neither support \nnor oppose", "Tend to \nsupport", "Strongly \nsupport"))
+
+> p2
+
+> p <- ggplot(data = cur_df, aes(x = factor(Support), 
++     y = wperc, fill = Treatment)) + geom_bar(width = 0.7, position = position_dodge(width = 0.75), 
++     stat = "identity", color = "black") + scale_fill_manual(values = c("darkgrey", 
++     "lightgrey")) + scale_y_continuous(labels = scales::percent_format(accuracy = 5)) + 
++     labs(y = "Percentage", x = "To what extent do you support or oppose gender quota [parity] laws in your country?", 
++         title = "UK") + theme_bw() + ylim(0, 40) + theme(panel.grid.minor.x = element_blank(), 
++     panel.grid.major.x = element_blank(), plot.title = element_text(hjust = 0.5), 
++     legend.title = element_blank())
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
+
+> p2 <- p + scale_x_discrete(breaks = c("1", "2", "3", 
++     "4", "5"), labels = c("Strongly \noppose", "Tend to \noppose", 
++     "Neither support \nnor oppose", "Tend to \nsupport", "Strongly \nsupport"))
+
+> p2
+
+> T1FR <- subset(T1, (country == "FR"))
+
+> nrow(T1FR)
+[1] 653
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- T1FR[, vars]
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2379  1 0.9071111        4      Quota
+2380  2 1.0742625        3     Parity
+2384  6 1.4174846        3     Parity
+2385  7 1.2846078        2      Quota
+2386  8 1.0322431        5     Parity
+2390 12 1.6320045        3     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+              mean     SE
+fSupport1 0.056271 0.0111
+fSupport2 0.117824 0.0164
+fSupport3 0.253268 0.0190
+fSupport4 0.363396 0.0225
+fSupport5 0.209241 0.0180
+
+> svymean(~fTreatment, wdat, na.rm = TRUE)
+                     mean     SE
+fTreatmentControl 0.00000 0.0000
+fTreatmentParity  0.51427 0.0225
+fTreatmentQuota   0.48573 0.0225
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1FR[, vars], fTreatment == "Parity")
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2380  2 1.0742625        3     Parity
+2384  6 1.4174846        3     Parity
+2386  8 1.0322431        5     Parity
+2390 12 1.6320045        3     Parity
+2392 14 0.8080477     <NA>     Parity
+2394 16 1.1365263        5     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+              mean     SE
+fSupport1 0.037614 0.0116
+fSupport2 0.102189 0.0217
+fSupport3 0.271401 0.0275
+fSupport4 0.357146 0.0322
+fSupport5 0.231650 0.0257
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1FR[, vars], fTreatment == "Quota")
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2379  1 0.9071111        4      Quota
+2385  7 1.2846078        2      Quota
+2391 13 0.8208832        3      Quota
+2393 15 0.6808475        5      Quota
+2399 21 0.5770294        4      Quota
+2402 24 0.8909322        3      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+              mean     SE
+fSupport1 0.075917 0.0191
+fSupport2 0.134288 0.0246
+fSupport3 0.234174 0.0260
+fSupport4 0.369977 0.0316
+fSupport5 0.185643 0.0253
+
+> cur_df <- T1FR %>% group_by(Treatment, Support) %>% 
++     summarise(count = n()) %>% mutate(perc = count/sum(count))
+`summarise()` has grouped output by 'Treatment'. You can override using the
+`.groups` argument.
+
+> cur_df <- na.omit(cur_df)
+
+> cur_df
+# A tibble: 10 × 4
+# Groups:   Treatment [2]
+   Treatment Support count   perc
+   <fct>       <dbl> <int>  <dbl>
+ 1 Parity          1    13 0.0389
+ 2 Parity          2    29 0.0868
+ 3 Parity          3    88 0.263 
+ 4 Parity          4   109 0.326 
+ 5 Parity          5    79 0.237 
+ 6 Quota           1    19 0.0596
+ 7 Quota           2    35 0.110 
+ 8 Quota           3    78 0.245 
+ 9 Quota           4   114 0.357 
+10 Quota           5    59 0.185 
+
+> cur_df$wperc <- NA
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     1] <- 0.037614
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     2] <- 0.102189
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     3] <- 0.271401
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     4] <- 0.357146
+
+> cur_df$wperc[cur_df$Treatment == "Parity" & cur_df$Support == 
++     5] <- 0.23165
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     1] <- 0.075917
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     2] <- 0.134288
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     3] <- 0.234174
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     4] <- 0.369977
+
+> cur_df$wperc[cur_df$Treatment == "Quota" & cur_df$Support == 
++     5] <- 0.185643
+
+> cur_df
+# A tibble: 10 × 5
+# Groups:   Treatment [2]
+   Treatment Support count   perc  wperc
+   <fct>       <dbl> <int>  <dbl>  <dbl>
+ 1 Parity          1    13 0.0389 0.0376
+ 2 Parity          2    29 0.0868 0.102 
+ 3 Parity          3    88 0.263  0.271 
+ 4 Parity          4   109 0.326  0.357 
+ 5 Parity          5    79 0.237  0.232 
+ 6 Quota           1    19 0.0596 0.0759
+ 7 Quota           2    35 0.110  0.134 
+ 8 Quota           3    78 0.245  0.234 
+ 9 Quota           4   114 0.357  0.370 
+10 Quota           5    59 0.185  0.186 
+
+> cur_df$wperc <- cur_df$wperc * 100
+
+> p <- ggplot(data = cur_df, aes(x = factor(Support), 
++     y = wperc, fill = Treatment)) + geom_bar(width = 0.7, position = position_dodge(width = 0.75), 
++     stat = "identity") + scale_y_continuous(labels = scales::percent_format(accuracy = 5)) + 
++     labs(y = "Percentage", x = "To what extent do you support or oppose \ngender quota [parity] laws in your country?", 
++         title = "France") + theme_bw() + ylim(0, 40) + theme(panel.grid.minor.x = element_blank(), 
++     panel.grid.major.x = element_blank(), plot.title = element_text(hjust = 0.5)) + 
++     theme(legend.title = element_blank())
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
+
+> p2 <- p + scale_x_discrete(breaks = c("1", "2", "3", 
++     "4", "5"), labels = c("Strongly \noppose", "Tend to \noppose", 
++     "Neither support \nnor oppose", "Tend to \nsupport", "Strongly \nsupport"))
+
+> p2
+
+> p <- ggplot(data = cur_df, aes(x = factor(Support), 
++     y = wperc, fill = Treatment)) + geom_bar(width = 0.7, position = position_dodge(width = 0.75), 
++     stat = "identity", color = "black") + scale_fill_manual(values = c("darkgrey", 
++     "lightgrey")) + scale_y_continuous(labels = scales::percent_format(accuracy = 5)) + 
++     labs(y = "Percentage", x = "To what extent do you support or oppose gender quota [parity] laws in your country?", 
++         title = "FR") + theme_bw() + ylim(0, 40) + theme(panel.grid.minor.x = element_blank(), 
++     panel.grid.major.x = element_blank(), plot.title = element_text(hjust = 0.5), 
++     legend.title = element_blank())
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
+
+> p2 <- p + scale_x_discrete(breaks = c("1", "2", "3", 
++     "4", "5"), labels = c("Strongly \noppose", "Tend to \noppose", 
++     "Neither support \nnor oppose", "Tend to \nsupport", "Strongly \nsupport"))
+
+> p2
+
+> T1UK <- subset(T1, (country == "UK"))
+
+> nrow(T1UK)
+[1] 1163
+
+> xm <- weighted.mean(T1UK$Support[T1UK$Treatment == 
++     "Parity"], T1UK$Weight[T1UK$Treatment == "Parity"], na.rm = TRUE)
+
+> xm
+[1] 2.977234
+
+> xmb <- weighted.mean(T1UK$Support[T1UK$Treatment == 
++     "Quota"], T1UK$Weight[T1UK$Treatment == "Quota"], na.rm = TRUE)
+
+> xmb
+[1] 3.024559
+
+> res1 <- lm(Support ~ Treatment, data = subset(T1, 
++     country == "UK"), weights = Weight)
+
+> summary(res1)
+
+Call:
+lm(formula = Support ~ Treatment, data = subset(T1, country == 
+    "UK"), weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1893 -0.9458  0.0179  0.9349  3.4882 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     2.97723    0.05456  54.566   <2e-16 ***
+TreatmentQuota  0.04732    0.07647   0.619    0.536    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.259 on 1097 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.000349,	Adjusted R-squared:  -0.0005622 
+F-statistic: 0.383 on 1 and 1097 DF,  p-value: 0.5361
+
+
+> plot_model(res1, type = "pred")
+
+> eff <- allEffects(res1)
+
+> eff_df <- as.data.frame(eff[["Treatment"]])
+
+> p <- ggplot(eff_df, aes(x = Treatment, y = fit, ymin = lower, 
++     ymax = upper, linetype = Treatment)) + geom_linerange(size = 2, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4, show.legend = FALSE) + labs(x = "", y = "Support (1-5)") + 
++     coord_flip() + theme_classic() + ylim(1, 5) + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid"), guide = "none") + scale_shape_manual(values = c(Quota = 16, 
++     Parity = 16), guide = "none") + ggtitle("UK") + theme_bw()
+
+> p
+
+> p <- p + theme(legend.position = "none", axis.text = element_text(size = 18), 
++     axis.text.x = element_text(size = 18), plot.title = element_text(size = 18))
+
+> p
+
+> T1FR <- subset(T1, (country == "FR"))
+
+> nrow(T1FR)
+[1] 653
+
+> xm2 <- weighted.mean(T1FR$Support[T1FR$Treatment == 
++     "Parity"], T1FR$Weight[T1FR$Treatment == "Parity"], na.rm = TRUE)
+
+> xm2
+[1] 3.643029
+
+> xm2b <- weighted.mean(T1FR$Support[T1FR$Treatment == 
++     "Quota"], T1FR$Weight[T1FR$Treatment == "Quota"], na.rm = TRUE)
+
+> xm2b
+[1] 3.455142
+
+> res1b <- lm(Support ~ Treatment, data = subset(T1, 
++     country == "FR"), weights = Weight)
+
+> summary(res1b)
+
+Call:
+lm(formula = Support ~ Treatment, data = subset(T1, country == 
+    "FR"), weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.3452 -0.5890  0.3292  0.6274  3.0786 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     3.64303    0.06215   58.62   <2e-16 ***
+TreatmentQuota -0.18789    0.08905   -2.11   0.0353 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.122 on 621 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.007118,	Adjusted R-squared:  0.005519 
+F-statistic: 4.452 on 1 and 621 DF,  p-value: 0.03526
+
+
+> plot_model(res1b, type = "pred")
+
+> eff <- allEffects(res1b)
+
+> eff_df <- as.data.frame(eff[["Treatment"]])
+
+> p1 <- ggplot(eff_df, aes(x = Treatment, y = fit, ymin = lower, 
++     ymax = upper, linetype = Treatment)) + geom_linerange(size = 2, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4, show.legend = FALSE) + labs(x = "", y = "Support (1-5)") + 
++     coord_flip() + theme_classic() + ylim(1, 5) + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid"), guide = "none") + scale_shape_manual(values = c(Quota = 16, 
++     Parity = 16), guide = "none") + ggtitle("France") + theme_bw()
+
+> p1 <- p1 + theme(legend.position = "none", axis.text = element_text(size = 18), 
++     axis.text.x = element_text(size = 18), plot.title = element_text(size = 18))
+
+> library(cowplot)
+
+Attaching package: ‘cowplot’
+
+The following object is masked from ‘package:patchwork’:
+
+    align_plots
+
+The following object is masked from ‘package:ggthemes’:
+
+    theme_map
+
+The following objects are masked from ‘package:sjPlot’:
+
+    plot_grid, save_plot
+
+The following object is masked from ‘package:ggpubr’:
+
+    get_legend
+
+
+> combined_plot <- plot_grid(p, p1, ncol = 1)
+
+> combined_plot
+
+> res <- t.test(Support ~ country, data = T1)
+
+> res
+
+	Welch Two Sample t-test
+
+data:  Support by country
+t = 9.757, df = 1452.8, p-value < 2.2e-16
+alternative hypothesis: true difference in means between group FR and group UK is not equal to 0
+95 percent confidence interval:
+ 0.4539724 0.6824438
+sample estimates:
+mean in group FR mean in group UK 
+        3.595506         3.027298 
+
+
+> xm <- weighted.mean(T1UK$Support[T1UK$resp_gender == 
++     "Male"], T1UK$Weight[T1UK$resp_gender == "Male"], na.rm = TRUE)
+
+> xm
+[1] 2.844172
+
+> xm <- weighted.mean(T1UK$Support[T1UK$Treatment == 
++     "Parity" & T1UK$resp_gender == "Male"], T1UK$Weight[T1UK$Treatment == 
++     "Parity" & T1UK$resp_gender == "Male"], na.rm = TRUE)
+
+> xm
+[1] 2.779216
+
+> xm <- weighted.mean(T1UK$Support[T1UK$Treatment == 
++     "Quota" & T1UK$resp_gender == "Male"], T1UK$Weight[T1UK$Treatment == 
++     "Quota" & T1UK$resp_gender == "Male"], na.rm = TRUE)
+
+> xm
+[1] 2.90358
+
+> xm <- weighted.mean(T1UK$Support[T1UK$resp_gender == 
++     "Female"], T1UK$Weight[T1UK$resp_gender == "Female"], na.rm = TRUE)
+
+> xm
+[1] 3.154259
+
+> xm <- weighted.mean(T1UK$Support[T1UK$Treatment == 
++     "Parity" & T1UK$resp_gender == "Female"], T1UK$Weight[T1UK$Treatment == 
++     "Parity" & T1UK$resp_gender == "Female"], na.rm = TRUE)
+
+> xm
+[1] 3.159968
+
+> xm <- weighted.mean(T1UK$Support[T1UK$Treatment == 
++     "Quota" & T1UK$resp_gender == "Female"], T1UK$Weight[T1UK$Treatment == 
++     "Quota" & T1UK$resp_gender == "Female"], na.rm = TRUE)
+
+> xm
+[1] 3.148465
+
+> T1UKMEN <- subset(T1, (country == "UK" & resp_gender == 
++     "Male"))
+
+> nrow(T1UKMEN)
+[1] 547
+
+> T1UKWOMEN <- subset(T1, (country == "UK" & resp_gender == 
++     "Female"))
+
+> nrow(T1UKWOMEN)
+[1] 616
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1UKMEN[, vars], fTreatment == "Parity")
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+645 1317 4.489272        1     Parity
+647  922 4.111048        3     Parity
+648 1618 4.000638        2     Parity
+653 1764 3.352616        4     Parity
+657  625 3.134294        1     Parity
+659 1152 3.070871        2     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.22271 0.0301
+fSupport2 0.21372 0.0286
+fSupport3 0.23279 0.0308
+fSupport4 0.22322 0.0281
+fSupport5 0.10757 0.0224
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1UKMEN[, vars], fTreatment == "Quota")
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+646 1733 4.133166        3      Quota
+656 1128 3.210861        1      Quota
+668  615 2.845025        3      Quota
+701  458 2.396858        4      Quota
+702  480 2.385065        5      Quota
+703 1361 2.370605        4      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.17756 0.0255
+fSupport2 0.19678 0.0250
+fSupport3 0.27701 0.0307
+fSupport4 0.24179 0.0282
+fSupport5 0.10685 0.0203
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1UKWOMEN[, vars], fTreatment == "Parity")
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+650  336 3.762929        1     Parity
+655  179 3.226297        3     Parity
+671  591 2.807354     <NA>     Parity
+676 1509 2.722568        2     Parity
+681  967 2.674880        2     Parity
+685   90 2.559836        5     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.09252 0.0217
+fSupport2 0.26856 0.0292
+fSupport3 0.19748 0.0261
+fSupport4 0.26930 0.0278
+fSupport5 0.17214 0.0251
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1UKWOMEN[, vars], fTreatment == "Quota")
+
+> head(T2)
+      ID   Weight fSupport fTreatment
+652  394 3.357853        3      Quota
+658  153 3.127535     <NA>      Quota
+666  765 2.916449        4      Quota
+667 1126 2.896322        3      Quota
+669  138 2.823605        3      Quota
+670   77 2.820108        2      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+              mean     SE
+fSupport1 0.091597 0.0172
+fSupport2 0.255499 0.0292
+fSupport3 0.208504 0.0291
+fSupport4 0.301641 0.0297
+fSupport5 0.142759 0.0208
+
+> res5 <- lm(Support ~ resp_gender, data = T1UK, weights = Weight)
+
+> summary(res5)
+
+Call:
+lm(formula = Support ~ resp_gender, data = T1UK, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1789 -0.9697  0.1336  0.9487  3.7177 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       3.1543     0.0533  59.175  < 2e-16 ***
+resp_genderMale  -0.3101     0.0759  -4.085 4.72e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.25 on 1097 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.01499,	Adjusted R-squared:  0.01409 
+F-statistic: 16.69 on 1 and 1097 DF,  p-value: 4.72e-05
+
+
+> res5 <- lm(Support ~ Treatment + resp_gender + resp_gender:Treatment, 
++     data = T1UK, weights = Weight)
+
+> summary(res5)
+
+Call:
+lm(formula = Support ~ Treatment + resp_gender + resp_gender:Treatment, 
+    data = T1UK, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1900 -0.9856  0.0902  0.9371  3.8297 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     3.15997    0.07513  42.063  < 2e-16 ***
+TreatmentQuota                 -0.01150    0.10664  -0.108 0.914126    
+resp_genderMale                -0.38075    0.10844  -3.511 0.000464 ***
+TreatmentQuota:resp_genderMale  0.13587    0.15193   0.894 0.371365    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.25 on 1095 degrees of freedom
+  (64 observations deleted due to missingness)
+Multiple R-squared:  0.01618,	Adjusted R-squared:  0.01349 
+F-statistic: 6.004 on 3 and 1095 DF,  p-value: 0.0004669
+
+
+> eff <- allEffects(res5)
+
+> eff_df <- as.data.frame(eff[["Treatment:resp_gender"]])
+
+> p <- ggplot(eff_df, aes(x = Treatment, y = fit, color = resp_gender, 
++     ymin = lower, ymax = upper, linetype = Treatment)) + geom_linerange(size = 2, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4) + labs(x = "", y = "") + coord_flip() + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid"), guide = "none") + scale_shape_manual(values = c(Quota = 16, 
++     Parity = 16), guide = "none") + scale_color_manual(values = c("black", 
++     "gray")) + theme_classic() + ylim(1, 5) + theme_bw()
+
+> p <- p + guides(color = guide_legend(title = "Respondent Gender")) + 
++     theme(legend.position = c(0.85, 0.87), legend.background = element_rect(fill = "white", 
++         color = "black"), , axis.text = element_text(size = 18)) + 
++     ggtitle("UK")
+
+> p
+
+> xm <- weighted.mean(T1FR$Support[T1FR$resp_gender == 
++     "Male"], T1FR$Weight[T1FR$resp_gender == "Male"], na.rm = TRUE)
+
+> xm
+[1] 3.412486
+
+> xm <- weighted.mean(T1FR$Support[T1FR$Treatment == 
++     "Parity" & T1FR$resp_gender == "Male"], T1FR$Weight[T1FR$Treatment == 
++     "Parity" & T1FR$resp_gender == "Male"], na.rm = TRUE)
+
+> xm
+[1] 3.509119
+
+> xm <- weighted.mean(T1FR$Support[T1FR$Treatment == 
++     "Quota" & T1FR$resp_gender == "Male"], T1FR$Weight[T1FR$Treatment == 
++     "Quota" & T1FR$resp_gender == "Male"], na.rm = TRUE)
+
+> xm
+[1] 3.316076
+
+> xm <- weighted.mean(T1FR$Support[T1FR$resp_gender == 
++     "Female"], T1FR$Weight[T1FR$resp_gender == "Female"], na.rm = TRUE)
+
+> xm
+[1] 3.697407
+
+> xm <- weighted.mean(T1FR$Support[T1FR$Treatment == 
++     "Parity" & T1FR$resp_gender == "Female"], T1FR$Weight[T1FR$Treatment == 
++     "Parity" & T1FR$resp_gender == "Female"], na.rm = TRUE)
+
+> xm
+[1] 3.776185
+
+> xm <- weighted.mean(T1FR$Support[T1FR$Treatment == 
++     "Quota" & T1FR$resp_gender == "Female"], T1FR$Weight[T1FR$Treatment == 
++     "Quota" & T1FR$resp_gender == "Female"], na.rm = TRUE)
+
+> xm
+[1] 3.609612
+
+> T1FRMEN <- subset(T1, (country == "FR" & resp_gender == 
++     "Male"))
+
+> nrow(T1FRMEN)
+[1] 305
+
+> T1FRWOMEN <- subset(T1, (country == "FR" & resp_gender == 
++     "Female"))
+
+> nrow(T1FRWOMEN)
+[1] 348
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1FRMEN[, vars], fTreatment == "Parity")
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2384  6 1.4174846        3     Parity
+2386  8 1.0322431        5     Parity
+2394 16 1.1365263        5     Parity
+2397 19 1.0449431        4     Parity
+2400 22 0.5931844        4     Parity
+2401 23 0.5770294        3     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.04993 0.0196
+fSupport2 0.14734 0.0385
+fSupport3 0.24594 0.0391
+fSupport4 0.35727 0.0506
+fSupport5 0.19953 0.0372
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1FRMEN[, vars], fTreatment == "Quota")
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2379  1 0.9071111        4      Quota
+2385  7 1.2846078        2      Quota
+2391 13 0.8208832        3      Quota
+2393 15 0.6808475        5      Quota
+2399 21 0.5770294        4      Quota
+2407 29 0.8508359     <NA>      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+             mean     SE
+fSupport1 0.11224 0.0320
+fSupport2 0.17898 0.0414
+fSupport3 0.17693 0.0331
+fSupport4 0.34416 0.0470
+fSupport5 0.18769 0.0388
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1FRWOMEN[, vars], fTreatment == "Parity")
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2380  2 1.0742625        3     Parity
+2390 12 1.6320045        3     Parity
+2392 14 0.8080477     <NA>     Parity
+2405 27 1.0742625        5     Parity
+2433 55 1.8571323        3     Parity
+2435 57 0.5931569     <NA>     Parity
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+              mean     SE
+fSupport1 0.025367 0.0124
+fSupport2 0.057295 0.0186
+fSupport3 0.296719 0.0383
+fSupport4 0.357025 0.0399
+fSupport5 0.263594 0.0353
+
+> vars <- c("ID", "Weight", "fSupport", "fTreatment")
+
+> T2 <- subset(T1FRWOMEN[, vars], fTreatment == "Quota")
+
+> head(T2)
+     ID    Weight fSupport fTreatment
+2402 24 0.8909322        3      Quota
+2408 30 1.0620596     <NA>      Quota
+2411 33 0.9333132        4      Quota
+2413 35 0.6335261        2      Quota
+2414 36 1.7104646        1      Quota
+2417 39 0.7110811        4      Quota
+
+> wdat <- svydesign(id = ~ID, weights = ~Weight, nest = TRUE, 
++     data = T2)
+
+> svymean(~fSupport, wdat, na.rm = TRUE)
+              mean     SE
+fSupport1 0.035571 0.0183
+fSupport2 0.084641 0.0222
+fSupport3 0.297764 0.0390
+fSupport4 0.398650 0.0416
+fSupport5 0.183373 0.0318
+
+> res5 <- lm(Support ~ resp_gender, data = T1FR, weights = Weight)
+
+> summary(res5)
+
+Call:
+lm(formula = Support ~ resp_gender, data = T1FR, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.2697 -0.6396  0.2770  0.7457  3.1636 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      3.69741    0.06342  58.299  < 2e-16 ***
+resp_genderMale -0.28492    0.08863  -3.215  0.00137 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.117 on 621 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.01637,	Adjusted R-squared:  0.01479 
+F-statistic: 10.33 on 1 and 621 DF,  p-value: 0.001373
+
+
+> res5 <- lm(Support ~ Treatment + resp_gender + resp_gender:Treatment, 
++     data = T1FR, weights = Weight)
+
+> summary(res5)
+
+Call:
+lm(formula = Support ~ Treatment + resp_gender + resp_gender:Treatment, 
+    data = T1FR, weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.0990 -0.6123  0.2378  0.7314  3.3558 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     3.77619    0.08721  43.301   <2e-16 ***
+TreatmentQuota                 -0.16657    0.12681  -1.314    0.189    
+resp_genderMale                -0.26707    0.12350  -2.162    0.031 *  
+TreatmentQuota:resp_genderMale -0.02647    0.17708  -0.149    0.881    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.115 on 619 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.02294,	Adjusted R-squared:  0.01821 
+F-statistic: 4.845 on 3 and 619 DF,  p-value: 0.002432
+
+
+> eff <- allEffects(res5)
+
+> eff_df <- as.data.frame(eff[["Treatment:resp_gender"]])
+
+> p2 <- ggplot(eff_df, aes(x = Treatment, y = fit, color = resp_gender, 
++     ymin = lower, ymax = upper, linetype = Treatment)) + geom_linerange(size = 2, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4) + labs(x = "", y = "") + coord_flip() + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid"), guide = "none") + scale_shape_manual(values = c(Quota = 16, 
++     Parity = 16), guide = "none") + scale_color_manual(values = c("black", 
++     "gray")) + theme_classic() + ylim(1, 5) + theme_bw()
+
+> p2 <- p2 + guides(color = guide_legend(title = "Respondent Gender")) + 
++     theme(legend.position = c(0.85, 0.87), legend.background = element_rect(fill = "white", 
++         color = "black"), , axis.text = element_text(size = 18)) + 
++     ggtitle("France")
+
+> p2
+
+> combined_plot2 <- plot_grid(p, p2, ncol = 1)
+
+> combined_plot2
+
+> library(ggplot2)
+
+> library(sjPlot)
+
+> res13 <- lm(Support ~ Treatment + resp_gender + Masculine + 
++     Treatment * resp_gender * Masculine, data = T1UK, weights = Weight)
+
+> p1 <- plot_model(res13, type = "pred", terms = c("Masculine", 
++     "Treatment", "resp_gender"), colors = "bw", title = "UK", 
++     legend.title = "Treatment") + theme_classic()
+
+> p1 <- p1 + scale_color_manual(values = c(Quota = "black", 
++     Parity = "black")) + scale_fill_manual(values = c(Quota = "#CCCCCC", 
++     Parity = "#333333")) + geom_line(size = 2)
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+
+> res14 <- lm(Support ~ Treatment + resp_gender + Masculine + 
++     Treatment * resp_gender * Masculine, data = T1FR, weights = Weight)
+
+> p2 <- plot_model(res14, type = "pred", terms = c("Masculine", 
++     "Treatment", "resp_gender"), colors = "bw", title = "France", 
++     legend.title = "Treatment") + theme_classic()
+
+> p2 <- p2 + scale_color_manual(values = c(Quota = "black", 
++     Parity = "black")) + scale_fill_manual(values = c(Quota = "#CCCCCC", 
++     Parity = "#333333")) + geom_line(size = 2)
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+
+> combined_plot2 <- plot_grid(p1, p2, ncol = 1)
+
+> combined_plot2
+
+> load("yougov_uk_conjoint.RData")
+
+> head(long)
+      Weight   ID resp_gender                  resp_race            resp_class
+1.1 4.489272 1317        Male                    British Skilled working class
+2.1 4.133166 1733        Male                  Pakistani    Lower middle class
+3.1 4.111048  922        Male     Any other ethnic group Skilled working class
+4.1 4.000638 1618        Male                    British    Lower middle class
+5.1 3.836308    3        Male                    British Skilled working class
+6.1 3.762929  336      Female Any other White background    Lower middle class
+    resp_age     resp_education resp_education_simple              resp_region
+1.1       33              Other                   Low                 Scotland
+2.1       45               None                   Low            West Midlands
+3.1       33              Other                   Low          East of England
+4.1       45 GCSE or equivalent                   Low            East Midlands
+5.1       40 GCSE or equivalent                   Low Yorkshire and the Humber
+6.1       78             Degree                  High                   London
+        resp_vote2019   resp_party  resp_brexit Treatment framing_parity_pro1
+1.1 No (did not vote)         <NA> Did Not Vote    Parity           Democracy
+2.1       Yes (voted)       Labour Did Not Vote     Quota                <NA>
+3.1 No (did not vote)         <NA> Did Not Vote    Parity         Other Women
+4.1 No (did not vote)         <NA> Did Not Vote    Parity     Other Countries
+5.1       Yes (voted)       Labour        Leave   Control                <NA>
+6.1       Yes (voted) Conservative Did Not Vote    Parity                Pace
+    framing_parity_pro2   framing_parity_anti1 framing_parity_anti2
+1.1               Style    Only Treat Symptoms     Not Issue of Law
+2.1                <NA>                   <NA>                 <NA>
+3.1                Pace       Not Issue of Law         Lower Impact
+4.1              Policy           Lower Impact          Unnecessary
+5.1                <NA>                   <NA>                 <NA>
+6.1              Policy Unqualified Candidates   Uncertain Benefits
+    framing_quota_pro1 framing_quota_pro2 framing_quota_anti1
+1.1               <NA>               <NA>                <NA>
+2.1 Half of Population Political Benefits Only Treat Symptoms
+3.1               <NA>               <NA>                <NA>
+4.1               <NA>               <NA>                <NA>
+5.1               <NA>               <NA>                <NA>
+6.1               <NA>               <NA>                <NA>
+       framing_quota_anti2 Support_Parity Fairness_Parity Chosen_Parity
+1.1                   <NA>              1               4   Candidate 1
+2.1 Unqualified Candidates             NA              NA          <NA>
+3.1                   <NA>              3               5   Candidate 2
+4.1                   <NA>              2               5   Candidate 1
+5.1                   <NA>             NA              NA          <NA>
+6.1                   <NA>              1               2   Candidate 1
+    Qualified_Cand1_Parity Qualified_Cand2_Parity
+1.1                      8                      7
+2.1                     NA                     NA
+3.1                      5                      9
+4.1                      1                      1
+5.1                     NA                     NA
+6.1                      9                      9
+                               fmac_parity list_Treatment_parity
+1.1                                Correct           Treated (5)
+2.1                                   <NA>                  <NA>
+3.1 Could be argued is technically correct           Treated (5)
+4.1                                Correct           Treated (5)
+5.1                                   <NA>                  <NA>
+6.1                                Correct           Treated (5)
+    list_treated_response_parity list_control_response_parity
+1.1                            3                           NA
+2.1                           NA                           NA
+3.1                            5                           NA
+4.1                            3                           NA
+5.1                           NA                           NA
+6.1                            2                           NA
+    list_Treatment_quota list_treated_response_quota
+1.1                 <NA>                          NA
+2.1          Control (4)                          NA
+3.1                 <NA>                          NA
+4.1                 <NA>                          NA
+5.1                 <NA>                          NA
+6.1                 <NA>                          NA
+    list_control_response_quota list_Treatment_control
+1.1                          NA                   <NA>
+2.1                           5                   <NA>
+3.1                          NA                   <NA>
+4.1                          NA                   <NA>
+5.1                          NA            Treated (5)
+6.1                          NA                   <NA>
+    list_treated_response_control list_control_response_control Support_Quota
+1.1                            NA                            NA            NA
+2.1                            NA                            NA             3
+3.1                            NA                            NA            NA
+4.1                            NA                            NA            NA
+5.1                             4                            NA            NA
+6.1                            NA                            NA            NA
+    Fairness_Quota Chosen_Quota Qualified_Cand1_Quota Qualified_Cand2_Quota
+1.1             NA         <NA>                    NA                    NA
+2.1              8  Candidate 1                     9                     6
+3.1             NA         <NA>                    NA                    NA
+4.1             NA         <NA>                    NA                    NA
+5.1             NA         <NA>                    NA                    NA
+6.1             NA         <NA>                    NA                    NA
+                                fmac_quota Chosen_Control
+1.1                                   <NA>           <NA>
+2.1 Could be argued is technically correct           <NA>
+3.1                                   <NA>           <NA>
+4.1                                   <NA>           <NA>
+5.1                                   <NA>    Candidate 2
+6.1                                   <NA>           <NA>
+    Qualified_Cand1_Control Qualified_Cand2_Control Masculine Feminine
+1.1                      NA                      NA         8        2
+2.1                      NA                      NA         1        1
+3.1                      NA                      NA         3        7
+4.1                      NA                      NA         7        3
+5.1                       1                       1         2        2
+6.1                      NA                      NA         7        5
+    Special_Favors Cause_Problems Rare_Sexism UK_Knowledge_parity_national
+1.1              6              7           7                           NO
+2.1              6              4           6                           NO
+3.1              5              6           5                           NO
+4.1              4              4           4                           NO
+5.1              4              4           4                           NO
+6.1              4              4           4                           NO
+    UK_Knowledge_quota_national UK_Knowledge_parity_party
+1.1                          NO                        NO
+2.1                          NO                        NO
+3.1                          NO                        NO
+4.1                          NO                        NO
+5.1                          NO                        NO
+6.1                          NO                        NO
+    UK_Knowledge_quota_party UK_Knowledge_none UK_Knowledge_dontknow
+1.1                       NO                NO                   YES
+2.1                       NO                NO                   YES
+3.1                      YES                NO                    NO
+4.1                       NO                NO                   YES
+5.1                       NO               YES                    NO
+6.1                       NO                NO                   YES
+    Put_On_Show Center_Of_Attention Acting_Skills task profile feature1
+1.1           1                   1             2    1       A     Male
+2.1           2                   2             1    1       A     Male
+3.1           3                   3             3    1       A   Female
+4.1           1                   1             1    1       A     Male
+5.1           1                   1             1    1       A     Male
+6.1           1                   1             1    1       A     Male
+                 feature2    feature3            feature4 feature5
+1.1               Married     Economy                None       55
+2.1               Married    Pensions               Mayor       55
+3.1                Single Environment City Council Member       35
+4.1 Married with children Environment               Mayor       35
+5.1 Married with children    Security               Mayor       35
+6.1                Single    Pensions                None       35
+                feature6              feature7      choice qualifiedA
+1.1            Solicitor Determined to Succeed Candidate 1          8
+2.1            Solicitor     Good Communicator Candidate 1          9
+3.1            Solicitor          Hard-working Candidate 2          5
+4.1 Small Business Owner      Tough Negotiator Candidate 1          1
+5.1 Small Business Owner         Collaborative Candidate 2          1
+6.1            Solicitor Determined to Succeed Candidate 1          9
+    qualifiedB pair choice2 Qualified_score
+1.1          7    1       1               8
+2.1          6    2       1               9
+3.1          9    3       0               5
+4.1          1    4       1               1
+5.1          1    5       0               1
+6.1          9    6       1               9
+
+> longuk <- long
+
+> nrow(longuk)
+[1] 3468
+
+> res1 <- lm(Qualified_score ~ Treatment, data = subset(longuk, 
++     feature1 == "Female"), weights = Weight)
+
+> summary(res1)
+
+Call:
+lm(formula = Qualified_score ~ Treatment, data = subset(longuk, 
+    feature1 == "Female"), weights = Weight)
+
+Weighted Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.8349  -1.2881   0.4128   1.5382   6.3434 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      7.14777    0.09663  73.974  < 2e-16 ***
+TreatmentParity  0.26919    0.13958   1.929  0.05396 .  
+TreatmentQuota   0.39184    0.13579   2.886  0.00396 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.324 on 1705 degrees of freedom
+Multiple R-squared:  0.005057,	Adjusted R-squared:  0.00389 
+F-statistic: 4.333 on 2 and 1705 DF,  p-value: 0.01327
+
+
+> eff <- allEffects(res1)
+
+> eff_df <- as.data.frame(eff[["Treatment"]])
+
+> p <- ggplot(eff_df, aes(x = Treatment, y = fit, ymin = lower, 
++     ymax = upper, linetype = Treatment)) + geom_linerange(size = 1.5, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4, show.legend = FALSE) + labs(x = "", y = "Perceived `Qualified to be an MP' (1-11) by Treatment, Women Candidates") + 
++     coord_flip() + theme_classic() + ylim(3, 9) + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid", Control = "dashed"), guide = "none") + 
++     scale_shape_manual(values = c(Quota = 16, Parity = 16, Control = 16), 
++         guide = "none") + ggtitle("UK") + theme_bw()
+
+> p <- p + theme(legend.position = "none", axis.text = element_text(size = 18), 
++     axis.text.x = element_text(size = 18), plot.title = element_text(size = 18))
+
+> p
+
+> load("FRCONJdataset.RData")
+
+> head(long)
+       Weight ID resp_age resp_gender                    resp_class resp_class2
+1.1 0.9071111  1       51        Male Without Professional Activity    Inactive
+2.1 1.0742625  2       58      Female Without Professional Activity    Inactive
+3.1 0.9105426  3       60      Female                      Employed       Lower
+4.1 0.7323707  4       53      Female Without Professional Activity    Inactive
+5.1 1.0941869  5       66      Female                       Retired    Inactive
+6.1 1.4174846  6       53        Male                        Worker       Lower
+                                  resp_education resp_education_simple
+1.1                                 Baccalauréat                   Low
+2.1                             National Diploma                   Low
+3.1                                 Baccalauréat                   Low
+4.1 Technical Specialization/Vocational Training                   Low
+5.1 Technical Specialization/Vocational Training                   Low
+6.1 Technical Specialization/Vocational Training                   Low
+     resp_region                               resp_voteR1
+1.1 Paris region  Jean-Luc Mélenchon (La France Insoumise)
+2.1   South West Yannick Jadot (Europe Écologie Les Verts)
+3.1   South East Emmanuel Macron (La République En Marche)
+4.1   South East    Marine Le Pen (Rassemblement National)
+5.1 Paris region    Marine Le Pen (Rassemblement National)
+6.1   North East    Marine Le Pen (Rassemblement National)
+                                  resp_voteR2 Treatment list_Treatment_parity
+1.1 Emmanuel Macron (La République En Marche)     Quota                  <NA>
+2.1                                     Blank    Parity           Treated (5)
+3.1 Emmanuel Macron (La République En Marche)   Control                  <NA>
+4.1    Marine Le Pen (Rassemblement National)   Control                  <NA>
+5.1    Marine Le Pen (Rassemblement National)   Control                  <NA>
+6.1    Marine Le Pen (Rassemblement National)    Parity           Treated (5)
+    list_treated_response_parity list_control_response_parity
+1.1                           NA                           NA
+2.1                            6                           NA
+3.1                           NA                           NA
+4.1                           NA                           NA
+5.1                           NA                           NA
+6.1                            4                           NA
+    list_Treatment_quota list_treated_response_quota
+1.1          Control (4)                          NA
+2.1                 <NA>                          NA
+3.1                 <NA>                          NA
+4.1                 <NA>                          NA
+5.1                 <NA>                          NA
+6.1                 <NA>                          NA
+    list_control_response_quota list_Treatment_control
+1.1                           4                   <NA>
+2.1                          NA                   <NA>
+3.1                          NA            Treated (5)
+4.1                          NA            Treated (5)
+5.1                          NA            Control (4)
+6.1                          NA                   <NA>
+    list_treated_response_control list_control_response_control
+1.1                            NA                            NA
+2.1                            NA                            NA
+3.1                             2                            NA
+4.1                             5                            NA
+5.1                            NA                             5
+6.1                            NA                            NA
+    framing_parity_pro1 framing_parity_pro2   framing_parity_anti1
+1.1                <NA>                <NA>                   <NA>
+2.1  Political Benefits     Other Countries Unqualified Candidates
+3.1                <NA>                <NA>                   <NA>
+4.1                <NA>                <NA>                   <NA>
+5.1                <NA>                <NA>                   <NA>
+6.1     Other Countries         Other Women     Uncertain Benefits
+      framing_parity_anti2 framing_quota_pro1 framing_quota_pro2
+1.1                   <NA> Political Benefits          Necessary
+2.1              Suspicion               <NA>               <NA>
+3.1                   <NA>               <NA>               <NA>
+4.1                   <NA>               <NA>               <NA>
+5.1                   <NA>               <NA>               <NA>
+6.1 Unqualified Candidates               <NA>               <NA>
+    framing_quota_anti1 framing_quota_anti2 Support_Parity Fairness_Parity
+1.1        Lower Impact           Suspicion             NA              NA
+2.1                <NA>                <NA>              3               3
+3.1                <NA>                <NA>             NA              NA
+4.1                <NA>                <NA>             NA              NA
+5.1                <NA>                <NA>             NA              NA
+6.1                <NA>                <NA>              3               6
+    Chosen_Parity Qualified_Cand1_Parity Qualified_Cand2_Parity Support_Quota
+1.1          <NA>                     NA                     NA             4
+2.1   Candidate 1                      6                      6            NA
+3.1          <NA>                     NA                     NA            NA
+4.1          <NA>                     NA                     NA            NA
+5.1          <NA>                     NA                     NA            NA
+6.1   Candidate 1                      8                      8            NA
+    Fairness_Quota Chosen_Quota Qualified_Cand1_Quota Qualified_Cand2_Quota
+1.1              8  Candidate 1                     8                     7
+2.1             NA         <NA>                    NA                    NA
+3.1             NA         <NA>                    NA                    NA
+4.1             NA         <NA>                    NA                    NA
+5.1             NA         <NA>                    NA                    NA
+6.1             NA         <NA>                    NA                    NA
+    Chosen_Control Qualified_Cand1_Control Qualified_Cand2_Control fmac_parity
+1.1           <NA>                      NA                      NA        <NA>
+2.1           <NA>                      NA                      NA Not Correct
+3.1    Candidate 1                      10                      10        <NA>
+4.1    Candidate 2                       3                       9        <NA>
+5.1    Candidate 2                       6                       6        <NA>
+6.1           <NA>                      NA                      NA     Correct
+    fmac_quota Masculine Feminine Special_Favors Cause_Problems Rare_Sexism
+1.1    Correct         9        9              3              3           2
+2.1       <NA>         6        8              3              3           4
+3.1       <NA>         2       11              1              1           2
+4.1       <NA>         1       11              1              1           1
+5.1       <NA>         6        7              1              4           1
+6.1       <NA>         7        7              4              4           4
+    FR_Knowledge_parity_national FR_Knowledge_quota_national
+1.1                          YES                         YES
+2.1                           NO                          NO
+3.1                           NO                          NO
+4.1                           NO                          NO
+5.1                           NO                          NO
+6.1                           NO                          NO
+    FR_Knowledge_parity_party FR_Knowledge_quota_party FR_Knowledge_none
+1.1                        NO                       NO                NO
+2.1                        NO                       NO               YES
+3.1                        NO                       NO                NO
+4.1                        NO                       NO                NO
+5.1                        NO                       NO                NO
+6.1                        NO                       NO                NO
+    FR_Knowledge_dontknow Put_On_Show Center_Of_Attention Acting_Skills task
+1.1                    NO           1                   1             2    1
+2.1                    NO           1                   1             2    1
+3.1                   YES           1                   1             2    1
+4.1                   YES           1                   1             1    1
+5.1                   YES           1                   1             1    1
+6.1                   YES           1                   1             4    1
+    profile feature1 feature2    feature3            feature4 feature5
+1.1       A     Male Divorced Environment               Mayor       65
+2.1       A   Female  Married    Pensions                None       55
+3.1       A   Female Divorced    Pensions City Council Member       45
+4.1       A     Male Divorced      Health               Mayor       35
+5.1       A     Male Divorced      Health               Mayor       35
+6.1       A     Male  Married    Pensions                None       35
+                feature6              feature7      choice qualifiedA
+1.1            Solicitor Determined to Succeed Candidate 1          8
+2.1 Small Business Owner     Good Communicator Candidate 1          6
+3.1              Teacher            Empathetic Candidate 1         10
+4.1            Solicitor            Empathetic Candidate 2          3
+5.1              Teacher         Collaborative Candidate 2          6
+6.1            Solicitor          Hard-working Candidate 1          8
+    qualifiedB pair choice2 Qualified_score
+1.1          7    1       1               8
+2.1          6    2       1               6
+3.1         10    3       1              10
+4.1          9    4       0               3
+5.1          6    5       0               6
+6.1          8    6       1               8
+
+> longfr <- long
+
+> res2 <- lm(Qualified_score ~ Treatment, data = subset(longfr, 
++     feature1 == "Female"), weights = Weight)
+
+> summary(res2)
+
+Call:
+lm(formula = Qualified_score ~ Treatment, data = subset(longfr, 
+    feature1 == "Female"), weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.4682 -1.3989  0.2818  1.5354  6.0898 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       7.3817     0.1238  59.620   <2e-16 ***
+TreatmentParity   0.3279     0.1844   1.778   0.0757 .  
+TreatmentQuota    0.1774     0.1806   0.983   0.3260    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.315 on 966 degrees of freedom
+Multiple R-squared:  0.003297,	Adjusted R-squared:  0.001234 
+F-statistic: 1.598 on 2 and 966 DF,  p-value: 0.2029
+
+
+> eff <- allEffects(res2)
+
+> eff_df <- as.data.frame(eff[["Treatment"]])
+
+> p2 <- ggplot(eff_df, aes(x = Treatment, y = fit, ymin = lower, 
++     ymax = upper, linetype = Treatment)) + geom_linerange(size = 1.5, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4, show.legend = FALSE) + labs(x = "", y = "Perceived `Qualified to be an MP' (1-11) by Treatment, Women Candidates") + 
++     coord_flip() + theme_classic() + ylim(3, 9) + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid", Control = "dashed"), guide = "none") + 
++     scale_shape_manual(values = c(Quota = 16, Parity = 16, Control = 16), 
++         guide = "none") + ggtitle("FR") + theme_bw()
+
+> p2 <- p2 + theme(legend.position = "none", axis.text = element_text(size = 18), 
++     axis.text.x = element_text(size = 18), plot.title = element_text(size = 18))
+
+> p2
+
+> combined_plot3 <- plot_grid(p, p2, ncol = 1)
+
+> combined_plot3
+
+> res1a <- lm(Qualified_score ~ Treatment, data = subset(longuk, 
++     feature1 == "Male"), weights = Weight)
+
+> summary(res1a)
+
+Call:
+lm(formula = Qualified_score ~ Treatment, data = subset(longuk, 
+    feature1 == "Male"), weights = Weight)
+
+Weighted Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.9870  -1.0360  -0.0662   1.6504   6.7001 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      7.10927    0.09860  72.099   <2e-16 ***
+TreatmentParity -0.11626    0.13766  -0.845    0.398    
+TreatmentQuota  -0.03261    0.13924  -0.234    0.815    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.368 on 1757 degrees of freedom
+Multiple R-squared:  0.0004347,	Adjusted R-squared:  -0.0007031 
+F-statistic: 0.3821 on 2 and 1757 DF,  p-value: 0.6825
+
+
+> eff <- allEffects(res1a)
+
+> eff_df <- as.data.frame(eff[["Treatment"]])
+
+> pa <- ggplot(eff_df, aes(x = Treatment, y = fit, ymin = lower, 
++     ymax = upper, linetype = Treatment)) + geom_linerange(size = 1.5, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4, show.legend = FALSE) + labs(x = "", y = "Perceived `Qualified to be an MP' (1-11) by Treatment, Men Candidates") + 
++     coord_flip() + theme_classic() + ylim(3, 9) + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid", Control = "dashed"), guide = "none") + 
++     scale_shape_manual(values = c(Quota = 16, Parity = 16, Control = 16), 
++         guide = "none") + ggtitle("UK") + theme_bw()
+
+> pa <- pa + theme(legend.position = "none", axis.text = element_text(size = 18), 
++     axis.text.x = element_text(size = 18), plot.title = element_text(size = 18))
+
+> pa
+
+> res2a <- lm(Qualified_score ~ Treatment, data = subset(longfr, 
++     feature1 == "Male"), weights = Weight)
+
+> summary(res2a)
+
+Call:
+lm(formula = Qualified_score ~ Treatment, data = subset(longfr, 
+    feature1 == "Male"), weights = Weight)
+
+Weighted Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.6720  -1.0901  -0.0943   1.6047   6.4374 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      7.10782    0.11914  59.660   <2e-16 ***
+TreatmentParity -0.14368    0.16834  -0.854    0.394    
+TreatmentQuota   0.07338    0.17583   0.417    0.677    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.37 on 1104 degrees of freedom
+Multiple R-squared:  0.001461,	Adjusted R-squared:  -0.0003475 
+F-statistic: 0.8079 on 2 and 1104 DF,  p-value: 0.4461
+
+
+> eff <- allEffects(res2a)
+
+> eff_df <- as.data.frame(eff[["Treatment"]])
+
+> p2a <- ggplot(eff_df, aes(x = Treatment, y = fit, 
++     ymin = lower, ymax = upper, linetype = Treatment)) + geom_linerange(size = 1.5, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4, show.legend = FALSE) + labs(x = "", y = "Perceived `Qualified to be an MP' (1-11) by Treatment, Men Candidates") + 
++     coord_flip() + theme_classic() + ylim(3, 9) + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid", Control = "dashed"), guide = "none") + 
++     scale_shape_manual(values = c(Quota = 16, Parity = 16, Control = 16), 
++         guide = "none") + ggtitle("FR") + theme_bw()
+
+> p2a <- p2a + theme(legend.position = "none", axis.text = element_text(size = 18), 
++     axis.text.x = element_text(size = 18), plot.title = element_text(size = 18))
+
+> combined_plot3a <- plot_grid(pa, p2a, ncol = 1)
+
+> combined_plot3a
+
+> res5 <- lm(Qualified_score ~ Treatment + resp_gender + 
++     resp_gender:Treatment, data = subset(longuk, feature1 == 
++     "Female"), weights = Weight)
+
+> summary(res5)
+
+Call:
+lm(formula = Qualified_score ~ Treatment + resp_gender + resp_gender:Treatment, 
+    data = subset(longuk, feature1 == "Female"), weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-11.869  -1.307   0.274   1.521   7.198 
+
+Coefficients:
+                                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                         7.2542     0.1403  51.687  < 2e-16 ***
+TreatmentParity                    -0.3200     0.2020  -1.584    0.113    
+TreatmentQuota                      0.2541     0.1961   1.296    0.195    
+resp_genderFemale                  -0.2003     0.1925  -1.040    0.298    
+TreatmentParity:resp_genderFemale   1.1207     0.2780   4.031 5.81e-05 ***
+TreatmentQuota:resp_genderFemale    0.2605     0.2704   0.963    0.336    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.311 on 1702 degrees of freedom
+Multiple R-squared:  0.01789,	Adjusted R-squared:  0.015 
+F-statistic: 6.201 on 5 and 1702 DF,  p-value: 1.049e-05
+
+
+> eff <- allEffects(res5)
+
+> eff_df <- as.data.frame(eff[["Treatment:resp_gender"]])
+
+> p5 <- ggplot(eff_df, aes(x = Treatment, y = fit, color = resp_gender, 
++     ymin = lower, ymax = upper, linetype = Treatment)) + geom_linerange(size = 2, 
++     show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4) + labs(x = "", y = "Perceived `Qualified to be an MP' (1-11) by Treatment, Women Candidates") + 
++     coord_flip() + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid", Control = "dashed"), guide = "none") + 
++     scale_shape_manual(values = c(Quota = 16, Parity = 16, Control = 16), 
++         guide = "none") + scale_color_manual(values = c("black", 
++     "gray")) + theme_classic() + ylim(3, 9) + theme_bw()
+
+> p5 <- p5 + guides(color = guide_legend(title = "Respondent Gender")) + 
++     theme(legend.position = c(0.93, 0.87), legend.background = element_rect(fill = "white", 
++         color = "black"), , axis.text = element_text(size = 18)) + 
++     ggtitle("UK")
+
+> p5
+
+> res5a <- lm(Qualified_score ~ Treatment + resp_gender + 
++     resp_gender:Treatment, data = subset(longfr, feature1 == 
++     "Female"), weights = Weight)
+
+> summary(res5a)
+
+Call:
+lm(formula = Qualified_score ~ Treatment + resp_gender + resp_gender:Treatment, 
+    data = subset(longfr, feature1 == "Female"), weights = Weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.2070 -1.4040  0.2783  1.5248  6.1800 
+
+Coefficients:
+                                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                         7.1848     0.1876  38.303   <2e-16 ***
+TreatmentParity                     0.5135     0.2702   1.901   0.0577 .  
+TreatmentQuota                      0.3233     0.2607   1.240   0.2153    
+resp_genderFemale                   0.3490     0.2498   1.397   0.1627    
+TreatmentParity:resp_genderFemale  -0.3269     0.3703  -0.883   0.3777    
+TreatmentQuota:resp_genderFemale   -0.2412     0.3630  -0.665   0.5064    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.316 on 963 degrees of freedom
+Multiple R-squared:  0.005493,	Adjusted R-squared:  0.0003295 
+F-statistic: 1.064 on 5 and 963 DF,  p-value: 0.3789
+
+
+> eff <- allEffects(res5a)
+
+> eff_df <- as.data.frame(eff[["Treatment:resp_gender"]])
+
+> p5a <- ggplot(eff_df, aes(x = Treatment, y = fit, 
++     color = resp_gender, ymin = lower, ymax = upper, linetype = Treatment)) + 
++     geom_linerange(size = 2, show.legend = FALSE) + geom_point(aes(shape = Treatment), 
++     size = 4) + labs(x = "", y = "Perceived `Qualified to be an MP' (1-11) by Treatment, Women Candidates") + 
++     coord_flip() + scale_linetype_manual(values = c(Quota = "dotted", 
++     Parity = "solid", Control = "dashed"), guide = "none") + 
++     scale_shape_manual(values = c(Quota = 16, Parity = 16, Control = 16), 
++         guide = "none") + scale_color_manual(values = c("black", 
++     "gray")) + theme_classic() + ylim(3, 9) + theme_bw()
+
+> p5a <- p5a + guides(color = guide_legend(title = "Respondent Gender")) + 
++     theme(legend.position = c(0.93, 0.87), legend.background = element_rect(fill = "white", 
++         color = "black"), , axis.text = element_text(size = 18)) + 
++     ggtitle("FR")
+
+> p5a
+
+> combined_plot4 <- plot_grid(p5, p5a, ncol = 1)
+
+> combined_plot4
+
+> subset_fr <- all[all$country == "FR", ]
+
+> subset_uk <- all[all$country == "UK", ]
+
+> subset_uk$list_treated2 <- ifelse(subset_uk$list_treated == 
++     0, "Control", "Treated")
+
+> subset_uk$list_treated2 <- factor(subset_uk$list_treated2)
+
+> subset_fr$list_treated2 <- ifelse(subset_fr$list_treated == 
++     0, "Control", "Treated")
+
+> subset_fr$list_treated2 <- factor(subset_fr$list_treated2)
+
+> subset_uk$list_treated2 <- as.factor(subset_uk$list_treated2)
+
+> subset_uk$Treatment2 <- as.factor(subset_uk$Treatment2)
+Error in `$<-.data.frame`(`*tmp*`, Treatment2, value = integer(0)) : 
+  replacement has 0 rows, data has 1734
+Calls: source ... withVisible -> eval -> eval -> $<- -> $<-.data.frame
+In addition: Warning messages:
+1: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead. 
+2: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
+ℹ Please use the `legend.position.inside` argument of `theme()` instead. 
+Execution halted
+EXIT 1

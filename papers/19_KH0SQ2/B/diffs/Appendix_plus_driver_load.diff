@@ -1,0 +1,7 @@
+--- cmp/Appendix_plus_l892-958.R	2026-10-10 18:54:22.965204011 +0000
++++ cmp/Appendix_plus_l892-958_driver.R	2026-10-10 18:54:22.979841924 +0000
+@@ -1,3 +1,4 @@
++setwd("/workspace/audit_runs/19_KH0SQ2/B/deposit"); load("all_merged.RData")
+ # using merged all data
+ 
+ # creating main table 1 ::: dv = support for uk and france first

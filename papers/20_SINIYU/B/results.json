@@ -1,0 +1,167 @@
+{
+ "paper_id": "20_SINIYU",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": false,
+ "could_not_run_reason": "The only deposited script that computes a paper number (codes/figure6/O_B_Ku.py, T1/T2) fails at line 17: ModuleNotFoundError: No module named 'interp_radar'. The f2py module interp_radar is not in the deposit (64 files/members searched, outputs/deposit_module_search.json) nor in the locations the data statement names (DATA_STATEMENT.md). No deposited code computes Table 1 (T3-T6). All other inputs O_B_Ku.py reads are present (outputs/input_check.json).",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Mean of the Ku-band reflectivity observation-minus-background (O-B, dBZ) values: np.mean(data) in codes/figure6/O_B_Ku.py line 500, where data = flattened obs_mesh_meso - B_KuRH with NaNs removed (also the mean of the column in o_b_pvp.csv written at line 494)",
+   "paper_value": 1.23,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not produced. codes/figure6/O_B_Ku.py stops at line 17: ModuleNotFoundError: No module named 'interp_radar' (outputs/O_B_Ku.log). Module not in deposit (outputs/deposit_module_search.json) or cited locations (DATA_STATEMENT.md)."
+  },
+  {
+   "id": "T2",
+   "description": "Number of Ku-band O-B data points: len(data) in codes/figure6/O_B_Ku.py (number of rows of o_b_pvp.csv)",
+   "paper_value": 31161,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not produced; same failure as T1 (ModuleNotFoundError: No module named 'interp_radar')."
+  },
+  {
+   "id": "T3",
+   "description": "Table 1, Z9230 (Chongqing) ground radar, 2.4 deg elevation: sample size of volume-matched GR-KR pairs. No deposited script computes Table 1; see PREREG.md section 1",
+   "paper_value": 573,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": null,
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "No deposited code computes Table 1 (no volume-matching script; grep in outputs/deposit_module_search.json content_hits shows none). Not produced; no replacement code written (batch4 decision 5)."
+  },
+  {
+   "id": "T4",
+   "description": "Table 1, Z9230 (Chongqing), 2.4 deg elevation: correlation coefficient between volume-matched GR and KR reflectivity. No deposited script computes Table 1",
+   "paper_value": 0.9,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": null,
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "No deposited code computes Table 1 (no volume-matching script; grep in outputs/deposit_module_search.json content_hits shows none). Not produced; no replacement code written (batch4 decision 5)."
+  },
+  {
+   "id": "T5",
+   "description": "Table 1, Z9092 (Yongchuan), 2.4 deg elevation: correlation coefficient (the lowest in Table 1). No deposited script computes Table 1",
+   "paper_value": 0.82,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": null,
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "No deposited code computes Table 1 (no volume-matching script; grep in outputs/deposit_module_search.json content_hits shows none). Not produced; no replacement code written (batch4 decision 5)."
+  },
+  {
+   "id": "T6",
+   "description": "Table 1, Z9092 (Yongchuan), 3.4 deg elevation: standard deviation of GR minus KR differences, dB (the largest in Table 1). No deposited script computes Table 1",
+   "paper_value": 3.76,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": null,
+   "source_file": null,
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "No deposited code computes Table 1 (no volume-matching script; grep in outputs/deposit_module_search.json content_hits shows none). Not produced; no replacement code written (batch4 decision 5)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Bootstrap of T1 mean: default_rng(20261010), 2000 resamples with replacement, percentile 95% CI, bootstrap SE, two-sided bootstrap p",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/O_B_Ku.log",
+   "note": "Not run: needs the O-B `data` vector built by O_B_Ku.py, which stops at line 17 (ModuleNotFoundError: No module named 'interp_radar')."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z|>3 (np.std ddof=0) from data; mean, n dropped, 95% t-interval, one-sample t-test vs 0",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/O_B_Ku.log",
+   "note": "Not run: needs the O-B `data` vector built by O_B_Ku.py, which stops at line 17 (ModuleNotFoundError: No module named 'interp_radar')."
+  },
+  {
+   "id": "R_c",
+   "description": "Copy of O_B_Ku.py without lines 419-420 (6000 m height cap); mean, n, 95% t-interval, p vs 0",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/O_B_Ku.log",
+   "note": "Not run: needs the O-B `data` vector built by O_B_Ku.py, which stops at line 17 (ModuleNotFoundError: No module named 'interp_radar'). The modified copy would fail at the same import."
+  }
+ ],
+ "bugs": [],
+ "code_observations_unverified": [
+  {
+   "file": "codes/figure6/O_B_Ku.py",
+   "line": 420,
+   "description": "Line 419 sets radar_Z_out to NaN where > 6000 m; line 420 then tests radar_Z_out>6000. to mask obs_mesh_meso, which is False for NaN, so line 420 masks no cells. Whether the 6000 m cut still acts depends on how the missing interp_radar_ppi treats NaN heights.",
+   "evidence": "outputs/code_observation_demo.json lines_419_420: cells_masked_by_420 = 0 on a toy array with two heights above 6000 m. Effect on T1/T2 not demonstrable without the module.",
+   "status": "unverified observation"
+  },
+  {
+   "file": "codes/figure6/O_B_Ku.py",
+   "line": 345,
+   "description": "Line 344 clips negative simulated ZH to 0 (xr.where(ZH<0, 0, ZH)); line 345 overwrites B_value with B_ds['ZH']/Rvar, so the clip has no effect. Same pattern in 1DVAR.py lines 311-312. Later B_KuRH<18 is set to NaN (line 480), so any effect would be only through the interpolation.",
+   "evidence": "outputs/code_observation_demo.json lines_343_345: negative_values_kept = True. Effect on outputs not demonstrable.",
+   "status": "unverified observation"
+  },
+  {
+   "file": "codes/figure6/O_B_Ku.py",
+   "line": 20,
+   "description": "plt.style.use(['science','no-latex']) raises OSError with SciencePlots 2.2.2 unless `import scienceplots` runs first (environment issue, cosmetic; not reached because line 17 fails first).",
+   "evidence": "outputs/input_check.json 'scienceplots style': OSError: 'science' is not a valid package style, path of style file, URL of style file, or library style name (library styles are listed in `style.available`)",
+   "status": "environment observation, not a bug"
+  }
+ ],
+ "env_fixes": [
+  "diffs/paths_symlinks.txt: path-only symlinks FY3G_PMR.HDF -> extracted FY3G_PMR.HDF4, gep00/postvar.nc -> postvar.nc, gep00/swath_spaceborn.nc -> swath_spaceborn_mu3.nc (PREREG steps 1-3; batch4 decision 1). No authors' file was edited."
+ ],
+ "proposed_class": "C",
+ "class_reason": "Materials incomplete: O_B_Ku.py, the only deposited script computing a target (T1, T2), imports interp_radar, which is not in the deposit or any location the data statement names, and no deposited code computes Table 1 (T3-T6); per CHANGELOG #4 and batch4 decision 5 these count as not produced.",
+ "confidence": "high",
+ "confidence_reason": "The failure is deterministic (import error at line 17) and the absence is backed by a scripted search of every deposit file and archive member; no judgement about numbers was needed.",
+ "time_minutes": 9,
+ "out_of_scope": "Claims needing CMA-MESO and its 3D-Var system (Figures 6b, 7, 9 to 13; forecast improvement, CSI/FBIAS) are out of scope per PREREG; not attempted.",
+ "uncertainties": [
+  "The search for interp_radar covered the deposit, the cited data locations (via DATA_STATEMENT.md, not repeated by B) and PyPI (404, uncited). Absence can only be shown within what was searched; ZJU-AERO 0.4.1 and uncited archives were not checked by B.",
+  "Because the script never ran past line 17, no later blocker (memory for the 650 MB HDF arrays with ~1.6 GB free at run time, other runtime errors) could be tested.",
+  "The two code observations (lines 419-420, 343-345) are shown only on toy arrays; their effect on T1/T2 is unknown.",
+  "PREREG-flagged text/code differences (retrieval threshold >10 vs 'at least 10', pressure-level spacing, Table 1 'greater than 0.82' vs lowest value 0.82) were not testable."
+ ]
+}

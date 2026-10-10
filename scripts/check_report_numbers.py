@@ -238,8 +238,8 @@ def fmt(v):
 key = {(r["paper"], r["target_id"]): r for r in rows}
 for i, line in enumerate(tg, 1):
     cells = [c.strip() for c in line.strip().strip("|").split("|")]
-    if K == "3" and len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
-        # batch 3 paper-target rows: Paper | Target | Description | Location | Paper | A | B | Match | A/B agree
+    if K in ("3", "4") and len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
+        # batch 3 and 4 paper-target rows: Paper | Target | Description | Location | Paper | A | B | Match | A/B agree
         r = key.get((cells[0], cells[1]))
         if r is None:
             check(f"line {i} row {cells[0]} {cells[1]} exists in CSV", False, True); continue
@@ -277,7 +277,7 @@ for i, line in enumerate(tg, 1):
     if m and m.group(1) in tcount:
         check(f"line {i} count '{m.group(1)}'", int(m.group(2)), tc[m.group(1)])
     m = re.match(r"- A/B agreement (.+?): (\d+)$", line.strip())
-    if m and K == "3":
+    if m and K in ("3", "4"):
         check(f"line {i} count 'A/B agreement {m.group(1)}'", int(m.group(2)),
               sum(1 for r in rows if r["row_type"] == "paper target" and r.get("AB_agree") == m.group(1)))
     m = re.match(r"- paper targets listed: (\d+) across (\d+) papers", line.strip())
@@ -344,12 +344,51 @@ if K == "3":
             check(f"line {i} 11 v2 {c[0]} paper/A/match/B", (c[1], c[2], c[3], c[4]),
                   (str(t["paper_value"]), fmt(v), str(round(float(v), t["paper_rounding_decimals"]) == round(float(t["paper_value"]), t["paper_rounding_decimals"])),
                    str(b11["same_conclusion_v2"][c[0]])))
+if K == "4":
+    # 17_T1NXVQ reduced-bootstrap block and 18_YXC5K5 R_c block: every printed value must be found (at its printed decimals)
+    # in the source file named in the block; true/false columns are recomputed from the printed interval.
+    f17a, f17b = "papers/17_T1NXVQ/A/outputs/boot_summary.csv", "papers/17_T1NXVQ/B/outputs/summary_bootstrap_authorseeds.csv"
+    f18a, f18b = "papers/18_YXC5K5/A/outputs/R_c_targets_extracted.csv", "papers/18_YXC5K5/B/outputs/R_c_targets_extracted.csv"
+    tj17 = {t["id"]: t for t in json.load(open("papers/17_T1NXVQ/targets.json"))}
+    tj18 = {t["id"]: t for t in json.load(open("papers/18_YXC5K5/targets.json"))}
+    a18 = {t["id"]: t for t in json.load(open("papers/18_YXC5K5/A/results.json"))["targets"]}
+    sec = None
+    for i, line in enumerate(tg, 1):
+        if line.startswith("## "):
+            sec = "17" if line.startswith("## 17_T1NXVQ reduced") else ("18" if line.startswith("## 18_YXC5K5 docid") else None)
+            continue
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if sec == "17" and re.match(r"\| T\d", line):
+            nums = re.findall(r"-?\d+\.\d+", c[2] + " " + c[4])
+            okA = all(matches(x, [f17a]) for x in nums[:2]); okB = all(matches(x, [f17b]) for x in nums[2:])
+            check(f"line {i} 17 {c[0]} paper value vs targets.json, A and B interval ends found in source CSVs",
+                  (c[1], okA, okB), (str(tj17[c[0]]["paper_value"]), True, True))
+            lo_a, hi_a, lo_b, hi_b = map(float, nums)
+            check(f"line {i} 17 {c[0]} excludes-0 columns recomputed", (c[3], c[5]), (str(lo_a > 0 or hi_a < 0), str(lo_b > 0 or hi_b < 0)))
+        if sec == "17" and line.startswith("Reproduced draws"):
+            ma = max(abs(float(r["abs_diff"])) for r in csv.DictReader(open("papers/17_T1NXVQ/A/outputs/boot_vs_deposited.csv")))
+            mb = max(abs(float(r["abs_diff"])) for r in csv.DictReader(open("papers/17_T1NXVQ/B/outputs/compare_boot_vs_deposited.csv")))
+            na = len(list(csv.DictReader(open("papers/17_T1NXVQ/A/outputs/boot_vs_deposited.csv"))))
+            nb = len(list(csv.DictReader(open("papers/17_T1NXVQ/B/outputs/compare_boot_vs_deposited.csv"))))
+            got = re.findall(r"(\d+) coefficients? compared, largest absolute difference ([\d.e+-]+)|B (\d+) compared, largest absolute difference ([\d.e+-]+)", line)
+            check(f"line {i} 17 draws vs deposited (n and max difference, recomputed)", line.count(f"A {na} coefficients compared, largest absolute difference {ma:.2e}") + line.count(f"B {nb} compared, largest absolute difference {mb:.2e}"), 2)
+            covered_t = True
+        if sec == "18" and re.match(r"\| T\d", line):
+            p_, d_ = tj18[c[0]]["paper_value"], tj18[c[0]]["paper_rounding_decimals"]
+            check(f"line {i} 18 R_c {c[0]} paper / as deposited / A / B found in source files",
+                  (c[1], fmt(a18[c[0]]["reproduced_value"]) == c[2], bool(matches(c[3], [f18a])), bool(matches(c[4], [f18b]))),
+                  (str(p_), True, True, True))
+            va, vb = float(c[3]), float(c[4])
+            want = "yes, both runs" if round(va, d_) == round(float(p_), d_) and round(vb, d_) == round(float(p_), d_) else "no, both runs"
+            check(f"line {i} 18 R_c {c[0]} match column recomputed from printed values", c[5], want)
 say("")
 
 # ---------------------------------------------------------------- generic trace of everything else
 say("== Generic trace (numbers not covered above)")
 generic(REPORT, covered)
 t_struct = {i for i, l in enumerate(tg, 1) if (re.match(r"\| T\d", l) or l.startswith("- ") or l.startswith("Internal-check counts"))}
+if K == "4":
+    t_struct |= {i for i, l in enumerate(tg, 1) if l.startswith("Reproduced draws against")}
 if K == "2":
     t_struct |= {i for i, l in enumerate(tg, 1) if re.match(r"\| (FC\d|AME p|coefficient p)", l)}
 
@@ -367,6 +406,10 @@ def t_sections(h):
         return ["papers/07_JH9DBC/A/outputs/targets_extracted_fixest0142.csv", "papers/07_JH9DBC/A/environment.txt", "papers/07_JH9DBC/B/environment.txt"]
     if h.startswith("## 11_DDOFPS with the v2"):
         return ["papers/11_DDOFPS/A/results.json", "papers/11_DDOFPS/targets.json"]
+    if h.startswith("## 17_T1NXVQ reduced"):
+        return ["papers/17_T1NXVQ/A/outputs/boot_K.json", "papers/17_T1NXVQ/B/outputs/bootstrap_K.json", "papers/17_T1NXVQ/A/outputs/boot_summary.csv", "papers/17_T1NXVQ/PREREG.md"]
+    if h.startswith("## 18_YXC5K5 docid"):
+        return ["papers/18_YXC5K5/PREREG.md", "papers/18_YXC5K5/A/outputs/R_c_targets_extracted.csv"]
     if h.startswith("## 10_6MLKJZ figure-claim"):
         return ["papers/10_6MLKJZ/A/outputs/figure_claims.json", "papers/10_6MLKJZ/PREREG.md"]
     return []

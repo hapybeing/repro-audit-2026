@@ -1,0 +1,1 @@
+{"first_draw_minutes":5.18912798563639,"K_raw":4,"K":4,"rule":"K = min(10, floor(25/t)), at least 3; else step 6 not run"}
