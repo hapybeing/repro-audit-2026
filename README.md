@@ -18,6 +18,7 @@ Complete. Pre-registration hashes were pushed before any run (commit d3663e7, 20
 - `SELECTION.md`: how papers were drawn (frame, seed, screening counts, pre-registration timestamp, hashes)
 - `CHANGELOG_METHOD.md`: every method change, dated, with reasons
 - `papers/<id>/`: pre-registration, data statement, absence searches, agent logs and outputs for each paper
+- Snapshot of this repository at commit c360c04 (batch 2), hosted on Google Drive: [repro-audit-2026_batch2_c360c04.zip](https://drive.google.com/file/d/1bCp3vDpjbpz0850QcaJbEgOvQ93fHDyp/view?usp=drivesdk), 23,084,245 bytes, SHA-256 `1782057d8d0a6acdb43290317397ef19f417d31f43f0ea704d69d5a8365e15cf`. Built with `git archive`; third-party material is excluded as listed in `batches/batch1_publish_exclusions.tsv` and `batches/batch2_publish_exclusions.tsv`. Batch 2 pre-registration freeze: https://github.com/hapybeing/repro-audit-2026/issues/1
 - Snapshot of this repository at commit 253db3c (batch 1 revision 3), hosted on Google Drive: [repro-audit-2026_batch1_rev3.zip](https://drive.google.com/file/d/1fiZw3RbsZfcLLr3wLT6zcxNA22SSgp8s/view?usp=drivesdk), 6,540,619 bytes, SHA-256 `5c289485700b1823b415572ab05a45e87bfdcf9a3ade30fb9d91aea6331f4a03`. Built with `git archive`, so it holds exactly the committed files and none of the third-party material listed in `batches/batch1_publish_exclusions.tsv`. The earlier revision 2 zip, which held such material, has been withdrawn.
 
 ## Scope
