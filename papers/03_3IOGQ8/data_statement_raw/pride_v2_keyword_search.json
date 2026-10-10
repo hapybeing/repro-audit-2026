@@ -1,0 +1,61 @@
+{
+ "39585806": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=39585806&pageSize=100",
+  "hits": []
+ },
+ "jacs.4c12585": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=jacs.4c12585&pageSize=100",
+  "hits": []
+ },
+ "10.1021/jacs.4c12585": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=10.1021%2Fjacs.4c12585&pageSize=100",
+  "hits": []
+ },
+ "circular engineered sortase": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=circular+engineered+sortase&pageSize=100",
+  "hits": []
+ },
+ "cW11": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=cW11&pageSize=100",
+  "hits": [
+   [
+    "PXD010124",
+    "Human BAF complex (HA-DPF2 pulldown and SS18-Flag pulldown)",
+    "2018-06-14"
+   ],
+   [
+    "PXD000008",
+    "Carbon source-induced reprogramming of the cell wall proteome  and secretome modulates the adherence and drug resistance  of the fungal pathogen Candida albicans",
+    "2012-07-25"
+   ]
+  ]
+ },
+ "sortase histone": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=sortase+histone&pageSize=100",
+  "hits": []
+ },
+ "Whedon": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=Whedon&pageSize=100",
+  "hits": []
+ },
+ "middle-down TMT histone H3": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=middle-down+TMT+histone+H3&pageSize=100",
+  "hits": []
+ },
+ "Corin MS275": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=Corin+MS275&pageSize=100",
+  "hits": []
+ },
+ "EBZ_Cole": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=EBZ_Cole&pageSize=100",
+  "hits": []
+ },
+ "histone H3 sortase chromatin": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=histone+H3+sortase+chromatin&pageSize=100",
+  "hits": []
+ },
+ "cut-and-paste": {
+  "url": "https://www.ebi.ac.uk/pride/ws/archive/v2/search/projects?keyword=cut-and-paste&pageSize=100",
+  "hits": []
+ }
+}

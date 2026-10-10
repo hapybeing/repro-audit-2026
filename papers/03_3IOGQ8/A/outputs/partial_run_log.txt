@@ -1,0 +1,51 @@
+Partial run of /workspace/audit_runs/03_3IOGQ8/A/run/Byonic_Middle-Down_Processing_Notebook.Rmd at 2026-10-09 21:21:39 IST
+Chunks in file: 28
+== Chunk 1 (Rmd lines 9-488): 41 top-level expressions
+Rmd line 57: library(mzR)
+   -> ERROR: there is no package called ‘mzR’
+Chunk 1: 1 expression(s) raised errors
+== Chunk 2 (Rmd lines 494-646): 23 top-level expressions
+Rmd line 498: Byonic_df <- read.csv("Byonic_results.csv")
+   -> ERROR: cannot open the connection
+Rmd line 500: Byonic_df_backup <- Byonic_df
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 501: Byonic_df <- Byonic_df_backup
+   -> ERROR: object 'Byonic_df_backup' not found
+Rmd line 503: Byonic_df <- Byonic_df %>%
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 515: print(unique(Byonic_df$Sequence..unformatted.))
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 517: Byonic_df <- Byonic_df %>%
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 527: Byonic_df <- Byonic_df %>%
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 574: Byonic_df <- Byonic_df %>%
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 581: experiment1_df <- Byonic_df %>% filter(MS.Alias.name %in% c("your_ms_experiment_1"))
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 584: experiment2_df <- Byonic_df %>% filter(MS.Alias.name %in% c("your_ms_experiment_1"))
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 587: experiment3_df <- Byonic_df %>% filter(MS.Alias.name %in% c("your_ms_experiment_1"))
+   -> ERROR: object 'Byonic_df' not found
+Rmd line 597: experiment1_list <- by(experiment1_df, 1:nrow(experiment1_df), function(row) {
+   -> ERROR: object 'experiment1_df' not found
+Rmd line 604: experiment2_list <- by(experiment2_df, 1:nrow(experiment2_df), function(row) {
+   -> ERROR: object 'experiment2_df' not found
+Rmd line 611: experiment3_list <- by(experiment3_df, 1:nrow(experiment3_df), function(row) {
+   -> ERROR: object 'experiment3_df' not found
+Rmd line 618: experiment1_scan_list <- as.list(c(experiment1_df$Scan.Number.s...Posit.))
+   -> ERROR: object 'experiment1_df' not found
+Rmd line 620: experiment2_scan_list <- as.list(c(experiment2_df$Scan.Number.s...Posit.))
+   -> ERROR: object 'experiment2_df' not found
+Rmd line 622: experiment3_scan_list <- as.list(c(experiment3_df$Scan.Number.s...Posit.))
+   -> ERROR: object 'experiment3_df' not found
+Rmd line 641: experiment1_list <- process_list(experiment1_list)
+   -> ERROR: object 'experiment1_list' not found
+Rmd line 643: experiment2_list <- process_list(experiment2_list)
+   -> ERROR: object 'experiment2_list' not found
+Rmd line 645: experiment3_list <- process_list(experiment3_list)
+   -> ERROR: object 'experiment3_list' not found
+Chunk 2: 20 expression(s) raised errors
+exists('Byonic_df') after chunk 2: FALSE
+file.exists('Byonic_results.csv') in /workspace/audit_runs/03_3IOGQ8/A/run: FALSE
+Chunks 3-28 not run: every one depends on Byonic_df / experiment*_list built in chunk 2 (and chunk 3 on mzML files at placeholder paths).

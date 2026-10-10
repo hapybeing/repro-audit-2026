@@ -1,0 +1,95 @@
+{
+ "PXD049969": {
+  "title": "Influence of Different Sample Preparation Approaches on Proteoform Identification by Top-Down Proteomics",
+  "submitters": [
+   "Andreas Tholey"
+  ],
+  "labPIs": [
+   "Andreas Tholey"
+  ],
+  "references": [
+   {
+    "referenceLine": "Kaulich PT, Jeong K, Kohlbacher O, Tholey A. Influence of different sample preparation approaches on proteoform identification by top-down proteomics. Nat Methods. 2024 21(12):2397-2407",
+    "pubmedID": 39438734,
+    "doi": "10.1038/s41592-024-02481-6"
+   }
+  ]
+ },
+ "PXD046444": {
+  "title": "Ultra-fast label-free quantification and\ncomprehensive proteome coverage\nwith narrow-window data-independent\nacquisition.Three mix species",
+  "submitters": [
+   "Ulises H Guzman "
+  ],
+  "labPIs": [
+   "Jesper V"
+  ],
+  "references": [
+   {
+    "pubmedID": 0,
+    "doi": "10.1038/S41587-023-02099-7"
+   }
+  ]
+ },
+ "PXD046357": {
+  "title": "Ultra-fast label-free quantification and\ncomprehensive proteome coverage\nwith narrow-window data-independent\nacquisition. Single cell",
+  "submitters": [
+   "Ulises H Guzman "
+  ],
+  "labPIs": [
+   "Jesper V."
+  ],
+  "references": [
+   {
+    "pubmedID": 0,
+    "doi": "10.1038/S41587-023-02099-7"
+   }
+  ]
+ },
+ "PXD071607": {
+  "title": "Chemoproteomic analysis of VVD-065 Protein Selectivity",
+  "submitters": [
+   "Christie Eissler"
+  ],
+  "labPIs": [
+   "Gabe Simon"
+  ],
+  "references": [
+   {
+    "referenceLine": "Roy N, Wyseure T, Lo IC, Lu J, Eissler CL, Bernard SM, Bok I, Snead AN, Parker A, Lo UG, Green JC, Inloes J, Jacinto SR, Kuenzi B, Pariollaud M, Negri K, Le K, Horning BD, Ibrahim N, Grabow S, Panda H, Bhatt DP, Wilkerson EM, Saeidi S, Zolkind P, Rush Z, Williams HN, Walton E, Pastuszka MK, Sigler JJ, Tran E, Hee K, McLaughlin J, Ambrus-Aikelin G, Pollock J, Abraham RT, Kinsella TM, Simon GM, Major MB, Weinstein DS, Patricelli MP. A Covalent Allosteric Molecular Glue Suppresses NRF2-Dependent Cancer Growth. Cancer Discov. 2026 16(5):953-975",
+    "pubmedID": 41417010,
+    "doi": "10.1158/2159-8290.cd-25-1187"
+   }
+  ]
+ },
+ "PXD058823": {
+  "title": "\u00acAn Aurora kinase A-BOD1L1-PP2A B56 Axis promotes chromosome segregation fidelity",
+  "submitters": [
+   "Thomas Kucharski"
+  ],
+  "labPIs": [
+   "Duane Compton"
+  ],
+  "references": [
+   {
+    "pubmedID": 0,
+    "doi": "10.1016/J.CELREP.2025.115317"
+   }
+  ]
+ },
+ "PXD048719": {
+  "title": "A Long-Range Recruitment Mechanism for mTORC2 Phosphorylation of Akt",
+  "submitters": [
+   "Brad Palanski"
+  ],
+  "labPIs": [
+   "Philip Cole"
+  ],
+  "references": [
+   {
+    "referenceLine": "Taylor MS, Chen M, Hancock M, Wranik M, Miller BD, O'Meara TR, Palanski BA, Ficarro SB, Groendyke BJ, Xiang Y, Kondo KT, Linde-Garelli KY, Lee MJ, Mondal D, Freund D, Congreve S, Matas K, Hennink M, Xibinaku K, Valenstein ML, van Eeuwen T, Marto JA, Sali A, Shi Y, Gray NS, Sabatini DM, Chu N, Rogala KB, Cole PA. Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2. Science. 2025:eadv7111",
+    "pubmedID": 41308123,
+    "doi": "10.1126/science.adv7111"
+   }
+  ]
+ }
+}

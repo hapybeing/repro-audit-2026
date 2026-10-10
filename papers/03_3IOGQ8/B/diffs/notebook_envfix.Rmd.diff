@@ -1,0 +1,20 @@
+--- run/notebook_orig.Rmd	2026-10-09 15:46:57.355922993 +0000
++++ run/notebook_envfix.Rmd	2026-10-09 15:47:06.468889176 +0000
+@@ -7,7 +7,7 @@
+ ---
+ ```{r}
+ # Define file path to the folder containing your data
+-directory <- c("C:/Users/your_file_path/")
++directory <- c("/workspace/audit_runs/03_3IOGQ8/B/run/")
+ setwd(directory)
+ 
+ # User defined variables
+@@ -54,7 +54,7 @@
+ 
+ library(parallel)
+ library(purrr)
+-library(mzR)
++# library(mzR)  # AGENT B env fix: mzR not installed in this sandbox; first used at line 671, after the run stops at line 498
+ library(tidyr)
+ library(stringr)
+ library(dplyr)

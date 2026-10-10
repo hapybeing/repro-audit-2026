@@ -1,0 +1,25 @@
+{
+  "rmd_lines": 3351,
+  "n_r_chunks": 28,
+  "purled_lines": 3228,
+  "parses": true,
+  "n_top_level_expressions": 498,
+  "input_calls": [
+    {
+      "line": 498,
+      "code": "Byonic_df <- read.csv(\"Byonic_results.csv\")"
+    },
+    {
+      "line": 671,
+      "code": "experiment1_mz <- openMSfile(\"C:/path_to_your_data/file1.mzML.gz\")"
+    },
+    {
+      "line": 675,
+      "code": "experiment2_mz <- openMSfile(\"C:/path_to_your_data/file2.mzML.gz\")"
+    },
+    {
+      "line": 679,
+      "code": "experiment3_mz <- openMSfile(\"C:/path_to_your_data/file3.mzML.gz\")"
+    }
+  ]
+}

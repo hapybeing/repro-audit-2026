@@ -1,0 +1,60 @@
+{
+ "note": "Published values read from the paper's SI xlsx. Context only, not reproduced values.",
+ "sheets": {
+  "Pages": {
+   "n_data_rows": 20
+  },
+  "TableS2_DMSO_Corin_proteoforms": {
+   "n_data_rows": 157,
+   "K9ac_K14ac_K23ac_K27me2": {
+    "cumulative_log2-fold_change": 1.07715354602644,
+    "cumulative_norm_p_value": 4.29831138583007e-38,
+    "pct_increase_100x(2^fc-1)": 110.98691755534054,
+    "pct_increase_from_var_over_ctrl": 110.98691755534213,
+    "mean_log2-fold_change": 0.905290382751772,
+    "median_log2-fold_change": 1.12591789124657,
+    "mean_norm_p_value": 4.31211663191347e-30,
+    "median_norm_p_value": 9.04666734782877e-41
+   }
+  },
+  "TableS3_DMSO_MS275_proteoforms": {
+   "n_data_rows": 179,
+   "K9ac_K14ac_K23ac_K27me2": {
+    "cumulative_log2-fold_change": 1.35671135138228,
+    "cumulative_norm_p_value": 6.05188382826008e-53,
+    "pct_increase_100x(2^fc-1)": 156.1007275368057,
+    "pct_increase_from_var_over_ctrl": 156.1007275368069,
+    "mean_log2-fold_change": 1.14235459059403,
+    "median_log2-fold_change": 1.34027024438502,
+    "mean_norm_p_value": 6.0309770587011e-44,
+    "median_norm_p_value": 5.89489585721772e-53
+   }
+  },
+  "TableS4_DMSO_Corin_quantifiable": {
+   "n_data_rows": 73,
+   "K9ac_K14ac_K23ac_K27me2": {
+    "cumulative_log2-fold_change": 1.07715354602644,
+    "cumulative_norm_p_value": 4.29831138583007e-38,
+    "pct_increase_100x(2^fc-1)": 110.98691755534054,
+    "pct_increase_from_var_over_ctrl": 110.98691755534213,
+    "mean_log2-fold_change": 0.905290382751772,
+    "median_log2-fold_change": 1.12591789124657,
+    "mean_norm_p_value": 4.31211663191347e-30,
+    "median_norm_p_value": 9.04666734782877e-41
+   }
+  },
+  "TableS5_DMSO_MS275_quantifiabl": {
+   "n_data_rows": 98,
+   "K9ac_K14ac_K23ac_K27me2": {
+    "cumulative_log2-fold_change": 1.35671135138228,
+    "cumulative_norm_p_value": 6.05188382826008e-53,
+    "pct_increase_100x(2^fc-1)": 156.1007275368057,
+    "pct_increase_from_var_over_ctrl": 156.1007275368069,
+    "mean_log2-fold_change": 1.14235459059403,
+    "median_log2-fold_change": 1.34027024438502,
+    "mean_norm_p_value": 6.0309770587011e-44,
+    "median_norm_p_value": 5.89489585721772e-53
+   }
+  }
+ }
+}

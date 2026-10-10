@@ -1,0 +1,69 @@
+{
+  "test1_neutral_loss": {
+    "description": "b/c/a/y/z neutral-loss (Kme3, pST, Ksu) m/z at fragment i are computed from a_mass..z_mass BEFORE those are recalculated for fragment i (Rmd lines 195-284 use the masses assigned at lines 287-291 of the previous loop iteration), so they equal the loss from fragment i-1.",
+    "table_charge1": [
+      {
+        "i": 8,
+        "b_ion_mz": 913.532616,
+        "b_nl_Kme3_code": 0,
+        "b_nl_Kme3_if_from_same_fragment": 854.459117
+      },
+      {
+        "i": 9,
+        "b_ion_mz": 1082.66725,
+        "b_nl_Kme3_code": 854.459117,
+        "b_nl_Kme3_if_from_same_fragment": 1023.593751,
+        "b_nl_Kme3_if_from_previous_fragment": 854.459117
+      },
+      {
+        "i": 10,
+        "b_ion_mz": 1169.69928,
+        "b_nl_Kme3_code": 1023.593751,
+        "b_nl_Kme3_if_from_same_fragment": 1110.625781,
+        "b_nl_Kme3_if_from_previous_fragment": 1023.593751
+      },
+      {
+        "i": 11,
+        "b_ion_mz": 1270.74696,
+        "b_nl_Kme3_code": 1110.625781,
+        "b_nl_Kme3_if_from_same_fragment": 1211.673461,
+        "b_nl_Kme3_if_from_previous_fragment": 1110.625781
+      },
+      {
+        "i": 12,
+        "b_ion_mz": 1327.76842,
+        "b_nl_Kme3_code": 1211.673461,
+        "b_nl_Kme3_if_from_same_fragment": 1268.694921,
+        "b_nl_Kme3_if_from_previous_fragment": 1211.673461
+      }
+    ],
+    "code_equals_previous_fragment_minus_loss": true,
+    "code_equals_same_fragment_minus_loss": false,
+    "c_code_equals_previous_fragment_minus_loss": true,
+    "b_charge2_code_equals_previous_fragment_minus_loss": true
+  },
+  "test2_tmt_correction": {
+    "description": "Synthetic scan with only reagent 126 (true 1000) plus its documented +1 impurity in 127 (76). The authors' correction expression is evaluated verbatim.",
+    "expression_rmd_lines": [2659, 2686],
+    "input": {
+      "126_intensity": 1000,
+      "127_intensity": 76,
+      "128_intensity": 0,
+      "129_intensity": 0,
+      "130_intensity": 0,
+      "131_intensity": 0
+    },
+    "corrected": {
+      "126_corrected": 994.224,
+      "127_corrected": 76,
+      "128_corrected": -1.14,
+      "129_corrected": 0,
+      "130_corrected": 0,
+      "131_corrected": 0
+    },
+    "expected_if_impurities_removed": {
+      "126": 1000,
+      "127": 0
+    }
+  }
+}

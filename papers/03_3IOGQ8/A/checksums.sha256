@@ -1,0 +1,13 @@
+5f364768836c382b7b68ba93207e450d7b42dee13bc554d222a55676e976a538  Byonic_Middle-Down_Processing_Notebook.Rmd
+c6756e976bcf2887942914396201028903fa505a9c26fae1bb87ee68efced7e0  dataset_meta.json
+b1a47451aec28d80c701135a9a70d759cbc82e11846b926beaba82e10c3ba846  paper_fulltext.xml
+1eae8f284cb330e5d6ae18d1121a52d7355db0eaaa22689f588b20afedd8aa6a  preprint_fulltext.xml
+9e609e20e48d787f4e87eacd7b8f7c92c4e22e99442c8f4a2473b44ad8b95824  si_bundle.zip
+5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa  pride_sortase.json
+532fb30e5f76afc1832271a747ab7a00fd39b9a3c08207d4026a2032e2c54409  dv_search_whedon.json
+f5d47bb73aa02d04a6153e16ba6acb02206580b213e35b722092d2bd509386c8  si/ja4c12585_si_001.xlsx
+bf87a894e403945d3510c24f24b0538a09904098330b4a7c2a0f5c26bfb2f4e1  si/ja4c12585_si_002.pdf
+# NOT downloaded (no open route found that would use them); checksums from Dataverse metadata (MD5, not sha256):
+# MD5 fc77656d13031a9af6192968b0fbb0f2  20240215_EBZ_Cole_20ng_293_MS275vDMSO_1to1_6plex_2-15grad.raw (file id 10407991, 253010642 bytes)
+# MD5 c7b356dce93df2fd300a2c5bd7c99b48  20240216_EBZ_Cole_20ng_293_1to1_6plex_DMSO_Corin_g2-15.raw (file id 10407990, 245887307 bytes)
+# Rmd MD5 from Dataverse metadata 1374598eb3b2b1aa7b3a3b4dc8c85858 matches md5sum of the downloaded copy.

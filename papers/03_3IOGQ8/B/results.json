@@ -1,0 +1,139 @@
+{
+ "paper_id": "03_3IOGQ8",
+ "agent": "B",
+ "run_date_ist": "2026-10-09",
+ "ran": false,
+ "could_not_run_reason": "Notebook stopped at Rmd line 498 (purled line 486): `Byonic_df <- read.csv(\"Byonic_results.csv\")` -> 'cannot open the connection'. The Byonic PSM export (output of commercial Byonic software) is not in the Dataverse deposit (files: 20240215_EBZ_Cole_20ng_293_MS275vDMSO_1to1_6plex_2-15grad.raw, 20240216_EBZ_Cole_20ng_293_1to1_6plex_DMSO_Corin_g2-15.raw, Byonic_Middle-Down_Processing_Notebook.Rmd), nor is the search FASTA; no PRIDE/MassIVE/ProteomeXchange deposit or other open source exists (paper, preprint and SI cite only the Dataverse DOI).",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Percent increase of proteoform H3K9acK14acK23acK27me2, MS275 vs DMSO (computed as 100*(2^fc_cum - 1) from cumulative-normalised log2FC)",
+   "paper_value": 155,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": "outputs/run_status.json",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not computed. Notebook stopped at Rmd line 498 (purled line 486): `Byonic_df <- read.csv(\"Byonic_results.csv\")` -> 'cannot open the connection'. Byonic_results.csv is not in the deposit and no open route was found (outputs/inputs_and_open_routes.json). For context, 100*(2^fc-1) on the published SI value = 156.10 (floor 156)."
+  },
+  {
+   "id": "T2",
+   "description": "Percent increase of proteoform H3K9acK14acK23acK27me2, Corin vs DMSO (computed as 100*(2^fc_cum - 1) from cumulative-normalised log2FC)",
+   "paper_value": 110,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": "outputs/run_status.json",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not computed. Notebook stopped at Rmd line 498 (purled line 486): `Byonic_df <- read.csv(\"Byonic_results.csv\")` -> 'cannot open the connection'. Byonic_results.csv is not in the deposit and no open route was found (outputs/inputs_and_open_routes.json). For context, 100*(2^fc-1) on the published SI value = 110.99 (floor 110)."
+  },
+  {
+   "id": "T3",
+   "description": "cumulative_log2-fold_change for all_mods 'K9ac K14ac K23ac K27me2', DMSO vs MS275",
+   "paper_value": 1.35671135138228,
+   "paper_rounding_decimals": 14,
+   "reproduced_value": null,
+   "source_file": "outputs/run_status.json",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not computed. Notebook stopped at Rmd line 498 (purled line 486): `Byonic_df <- read.csv(\"Byonic_results.csv\")` -> 'cannot open the connection'. Byonic_results.csv is not in the deposit and no open route was found (outputs/inputs_and_open_routes.json). Published SI value read by script equals paper_value: True."
+  },
+  {
+   "id": "T4",
+   "description": "cumulative_log2-fold_change for all_mods 'K9ac K14ac K23ac K27me2', DMSO vs Corin",
+   "paper_value": 1.07715354602644,
+   "paper_rounding_decimals": 14,
+   "reproduced_value": null,
+   "source_file": "outputs/run_status.json",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not computed. Notebook stopped at Rmd line 498 (purled line 486): `Byonic_df <- read.csv(\"Byonic_results.csv\")` -> 'cannot open the connection'. Byonic_results.csv is not in the deposit and no open route was found (outputs/inputs_and_open_routes.json). Published SI value read by script equals paper_value: True."
+  },
+  {
+   "id": "T5",
+   "description": "Number of proteoforms identified in the DMSO/MS275 6plex sample (rows of proteoform_df)",
+   "paper_value": 179,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": null,
+   "source_file": "outputs/run_status.json",
+   "abs_diff": null,
+   "rel_diff": null,
+   "match_to_rounding": null,
+   "within_5pct": null,
+   "same_conclusion": null,
+   "note": "Not computed. Notebook stopped at Rmd line 498 (purled line 486): `Byonic_df <- read.csv(\"Byonic_results.csv\")` -> 'cannot open the connection'. Byonic_results.csv is not in the deposit and no open route was found (outputs/inputs_and_open_routes.json). Published SI Table S3 data rows counted by script: 179."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Scan-level bootstrap of fc_cum for K9ac K14ac K23ac K27me2, B=2000, seed 20261009, percentile 95% CI",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/run_status.json",
+   "note": "Not run: needs scan-level TMT reporter intensities (assigned_fractional_intensity_hits) created by the pipeline after Rmd line 498; the pipeline cannot pass line 498 because Byonic_results.csv is not deposited. SI tables hold only per-proteoform summaries."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop the most outlying channel per condition (by channel mean log2_cum), Welch t-test on 2 vs 2 channels",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/run_status.json",
+   "note": "Not run: needs scan-level TMT reporter intensities (assigned_fractional_intensity_hits) created by the pipeline after Rmd line 498; the pipeline cannot pass line 498 because Byonic_results.csv is not deposited. SI tables hold only per-proteoform summaries."
+  },
+  {
+   "id": "R_c",
+   "description": "Replicate-level Welch t-test on per-channel means (n=3 vs n=3)",
+   "ran": false,
+   "estimate": null,
+   "se_or_ci": "",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/run_status.json",
+   "note": "Not run: needs scan-level TMT reporter intensities (assigned_fractional_intensity_hits) created by the pipeline after Rmd line 498; the pipeline cannot pass line 498 because Byonic_results.csv is not deposited. SI tables hold only per-proteoform summaries."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Byonic_Middle-Down_Processing_Notebook.Rmd",
+   "line": 2662,
+   "description": "TMT isotope-impurity correction takes each leakage coefficient from the corrected channel's own impurity vector instead of from the neighbouring reagent's vector, so most cross-talk terms use the wrong coefficient (e.g. reagent 126's +1 leak of 0.076 is subtracted from channel 126 using the 127 intensity, while nothing is subtracted from 127 for 126's leak).",
+   "evidence": "Rmd lines 2662-2685: `126_corrected` = 126_intensity*TMT126[3] - (127_intensity*TMT126[4] + ...); vectors defined at lines 22-27 with comment 'reference c(-2, -1, monoisotopic, +1, +2)'. Script 05 finds 12 of 18 subtraction terms differ from the standard first-order mapping (coefficient of reagent j at offset k-j). Impact on the targets cannot be quantified without the input data; all coefficients are <= 0.076. Caveat: assumes the vectors are per-reagent isotope distributions (as the Rmd comment and the usual TMT certificate of analysis convention state). See outputs/isotope_correction_mapping.json."
+  }
+ ],
+ "env_fixes": [
+  "diffs/notebook_envfix.Rmd.diff: working directory placeholder 'C:/Users/your_file_path/' replaced by the scratch run folder; library(mzR) commented out because mzR is not installed and is first used at line 671, after the stopping point at line 498 (no effect on any value)."
+ ],
+ "proposed_class": "C",
+ "class_reason": "Materials incomplete: the notebook's only tabular input (Byonic_results.csv) and the search FASTA are not deposited, though the dataset description promises processed data, so no target can be computed. PREREG's pre-set rule suggested E; under PROTOCOL section 7 the cause is missing files (C), with commercial Byonic as a secondary barrier.",
+ "confidence": "medium",
+ "confidence_reason": "Facts (missing input, no open route, stop at line 498) were verified by script; the C versus E boundary is a judgement and differs from PREREG's suggested E.",
+ "time_minutes": 12,
+ "uncertainties": [
+  "Class C vs E is a judgement: PROTOCOL's E examples are compute or system dependencies; here the blocker is an undeposited intermediate file that only commercial software (Byonic, plus an undeposited FASTA) can regenerate. PREREG section 2 pre-set E.",
+  "Repository search covered PRIDE, ProteomeXchange (PROXI keyword search) and the MassIVE public listing, plus paper, preprint and SI text; jPOST, iProX and Panorama Public were not searched separately (ProteomeXchange indexes them).",
+  "RAW files were not downloaded (no open route uses them without the Byonic export), so their integrity was not checked beyond Dataverse md5 metadata.",
+  "The isotope-correction finding assumes the TMT1xx vectors are per-reagent isotope distributions; the reporter ions actually read are the ETD reporters (114-119 m/z, TMT_ETD_mz_values), for which manufacturer HCD-reporter impurity values may not map one-to-one. Its numerical effect is unknown.",
+  "PEP.2D is joined back from all experiments by scan_number and PID (Rmd ~line 1449); if several MS files share one Byonic export this could duplicate rows. Could not be checked without the export; not listed as a bug.",
+  "The SI zip from Europe PMC had a different sha256 from the one in PREREG, but the xlsx and PDF inside are byte-identical to PREREG's.",
+  "Paper text values 155 % and 110 % differ from 100*(2^fc-1) on the published SI values (156.10 %, 110.99 %); consistent with truncation (noted in PREREG)."
+ ]
+}

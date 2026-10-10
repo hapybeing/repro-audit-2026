@@ -1,0 +1,10 @@
+# Every file-reading call in the deposited Rmd (grep -nE 'read\.|read_|fread|openMSfile|readRDS|load\(|source\(|read_excel')
+498:Byonic_df <- read.csv("Byonic_results.csv")
+671:experiment1_mz <- openMSfile("C:/path_to_your_data/file1.mzML.gz")
+675:experiment2_mz <- openMSfile("C:/path_to_your_data/file2.mzML.gz")
+679:experiment3_mz <- openMSfile("C:/path_to_your_data/file3.mzML.gz")
+
+# Dataverse file list (doi:10.7910/DVN/3IOGQ8, version 1, from dataset_meta.json)
+10407991 20240215_EBZ_Cole_20ng_293_MS275vDMSO_1to1_6plex_2-15grad.raw 253010642 image/RAW MD5 fc77656d13031a9af6192968b0fbb0f2 restricted= False
+10407990 20240216_EBZ_Cole_20ng_293_1to1_6plex_DMSO_Corin_g2-15.raw 245887307 image/RAW MD5 c7b356dce93df2fd300a2c5bd7c99b48 restricted= False
+10408478 Byonic_Middle-Down_Processing_Notebook.Rmd 143738 text/x-r-notebook MD5 1374598eb3b2b1aa7b3a3b4dc8c85858 restricted= False

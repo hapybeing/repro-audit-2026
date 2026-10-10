@@ -1,0 +1,201 @@
+{
+ "run_utc": "2026-10-09T15:49:24.615700",
+ "dataset_description": "Source data related to the manuscript 'A circular engineered sortase for interrogating histone H3 in chromatin'.\nRaw and processed bottom-up and middle-down mass spectrometry data, and scripts used in said processing.",
+ "deposit_files": [
+  {
+   "id": 10407991,
+   "name": "20240215_EBZ_Cole_20ng_293_MS275vDMSO_1to1_6plex_2-15grad.raw",
+   "bytes": 253010642,
+   "md5": "fc77656d13031a9af6192968b0fbb0f2",
+   "restricted": false,
+   "description": "TMT-sixplex middle-down analysis of HEK293 cells treated with DMSO vehicle or HDAC inhibitor MS275."
+  },
+  {
+   "id": 10407990,
+   "name": "20240216_EBZ_Cole_20ng_293_1to1_6plex_DMSO_Corin_g2-15.raw",
+   "bytes": 245887307,
+   "md5": "c7b356dce93df2fd300a2c5bd7c99b48",
+   "restricted": false,
+   "description": "TMT-sixplex middle-down analysis of HEK293 cells treated with DMSO vehicle or HDAC inhibitor Corin."
+  },
+  {
+   "id": 10408478,
+   "name": "Byonic_Middle-Down_Processing_Notebook.Rmd",
+   "bytes": 143738,
+   "md5": "1374598eb3b2b1aa7b3a3b4dc8c85858",
+   "restricted": false,
+   "description": "R script for further processing middle-down data analyzed with Byonic. "
+  }
+ ],
+ "inputs_needed_by_code": [
+  {
+   "input": "Byonic_results.csv (Byonic PSM export)",
+   "code_line": 498,
+   "in_deposit": false
+  },
+  {
+   "input": "file1/2/3.mzML.gz (spectra, converted from Thermo RAW)",
+   "code_line": 671,
+   "in_deposit": false,
+   "note": "RAW files are deposited; open converter ThermoRawFileParser exists, but spectra are only read for scans listed in the Byonic export, so they are useless without it"
+  },
+  {
+   "input": "MS.Alias.name values identifying each experiment",
+   "code_line": 581,
+   "in_deposit": false,
+   "note": "placeholders 'your_ms_experiment_1' for all three experiments; real values live only in the Byonic export"
+  }
+ ],
+ "code_input_calls": [
+  {
+   "line": 498,
+   "code": "Byonic_df <- read.csv(\"Byonic_results.csv\")"
+  },
+  {
+   "line": 671,
+   "code": "experiment1_mz <- openMSfile(\"C:/path_to_your_data/file1.mzML.gz\")"
+  },
+  {
+   "line": 675,
+   "code": "experiment2_mz <- openMSfile(\"C:/path_to_your_data/file2.mzML.gz\")"
+  },
+  {
+   "line": 679,
+   "code": "experiment3_mz <- openMSfile(\"C:/path_to_your_data/file3.mzML.gz\")"
+  }
+ ],
+ "repository_mentions_in_texts": {
+  "paper_fulltext_PMC11638967": [],
+  "preprint_fulltext_PMC11451751": [],
+  "SI_pdf_text": []
+ },
+ "dataverse_doi_mentions_in_texts": {
+  "paper_fulltext_PMC11638967": 4,
+  "preprint_fulltext_PMC11451751": 4,
+  "SI_pdf_text": 0
+ },
+ "pride_search": {
+  "sortase": [
+   [
+    "PXD082607",
+    "Structural and Functional Interrogation of Active Streptococcus pneumoniae Sortase A"
+   ],
+   [
+    "PXD064299",
+    "Untargeted NoPro-clipping from untramsformed and Hoil-1L over-expressing Huh7 cell lines"
+   ],
+   [
+    "PXD034366",
+    "SortaseA cleavable CD1d and H2Kb"
+   ],
+   [
+    "PXD020875",
+    "An improved protocol to purify bacterial pili from Lactobacillus rhamnosus GG based on multimodal chromatography"
+   ],
+   [
+    "PXD019825",
+    "Biophysical, proteomic, and lipidomic characterization of Streptococcus mutans extracellular membrane vesicles from wild-type, \u0394srtA, and \u0394sfp strains provides novel information regarding vesiculogenesis and its function"
+   ],
+   [
+    "PXD010634",
+    "Profiling N-myristoyltransferase activity and inhibition in breast cancer cells (MD-MB-231) using Sortase-A labelling"
+   ]
+  ],
+  "Whedon": [],
+  "circular engineered sortase": [],
+  "cut-and-paste middle-down": [],
+  "39585806": [],
+  "jacs.4c12585": [],
+  "Corin MS275": [],
+  "Philip Cole": [
+   [
+    "PXD048719",
+    "A Long-Range Recruitment Mechanism for mTORC2 Phosphorylation of Akt"
+   ]
+  ]
+ },
+ "proteomexchange_search": {
+  "sortase": [
+   [
+    "PXD082607",
+    "Structural and Functional Interrogation of Active Streptococcus pneumoniae Sortase A",
+    "Elan Eisenmesser"
+   ],
+   [
+    "PXD034366",
+    "SortaseA cleavable CD1d and H2Kb",
+    "Sebastian Zeissig"
+   ],
+   [
+    "PXD034495",
+    "Sortase A-cleavable CD1d identifies sphingomyelins as major class of CD1d-associated lipids",
+    "Andrej Shevchenko"
+   ],
+   [
+    "PXD011050",
+    "Mass spectrometric analysis of proteolytic cleavage related to ArtA and PssA from Haloferax volcanii",
+    "Mechthild Pohlschroder"
+   ],
+   [
+    "PXD010824",
+    "Characterizing of Haloferax volcanii Hvo_0405 as a Tat substrate",
+    "Mechthild Pohlschroder"
+   ],
+   [
+    "PXD010634",
+    "Profiling N-myristoyltransferase activity and inhibition in breast cancer cells (MD-MB-231) using Sortase-A labelling",
+    "Edward W Tate"
+   ]
+  ],
+  "Whedon": [],
+  "circular engineered sortase": [],
+  "cut-and-paste middle-down": [],
+  "39585806": [],
+  "jacs.4c12585": [],
+  "Corin MS275": [],
+  "Philip Cole": [
+   [
+    "PXD048719",
+    "A Long-Range Recruitment Mechanism for mTORC2 Phosphorylation of Akt",
+    "Philip Cole"
+   ]
+  ]
+ },
+ "massive_listing_size": 20351,
+ "massive_filtered_hits": [
+  [
+   "MSV000092535",
+   "Cancer-associated Histone H3 N-terminal arginine mutations disrupt PRC2 activity and impair differentiation",
+   "nacevba",
+   [
+    {
+     "name": "Benjamin Nacev",
+     "email": "nacevba@upmc.edu",
+     "institution": "University of Pittsburgh School of Medicine",
+     "country": "USA"
+    }
+   ]
+  ],
+  [
+   "MSV000091578",
+   "An acetylation-mediated chromatin switch governs H3K4 methylation read-write capability",
+   "faithjo1",
+   [
+    {
+     "name": "Nicolas L. Young",
+     "email": "nicolas.young@bcm.edu",
+     "institution": "Baylor College of Medicine",
+     "country": "United States"
+    }
+   ]
+  ],
+  [
+   "MSV000077780",
+   "MS-Raw data for\"\"Partially overlapping substrate specificities of staphylococcal group A sortases\"",
+   "tranche_aotto",
+   []
+  ]
+ ],
+ "any_search_hit_matching_this_paper": false,
+ "open_route_for_byonic_output_found": false
+}

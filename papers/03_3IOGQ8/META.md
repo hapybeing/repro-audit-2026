@@ -1,0 +1,11 @@
+# 03_3IOGQ8
+- Paper: Circular Engineered Sortase for Interrogating Histone H3 in Chromatin
+- Journal: Journal of the American Chemical Society (2024)
+- Paper DOI: https://doi.org/10.1021/jacs.4c12585
+- Dataset DOI: https://doi.org/10.7910/DVN/3IOGQ8
+- Dataset title: A circular engineered sortase for interrogating histone H3 in chromatin - Source Data
+- Code language (Dataverse file types): R
+- Subject: Chemistry; Medicine, Health and Life Sciences
+- Licence: CC0 1.0
+- Dataset size (bytes): 499041687
+- Audit position 3, batch 1

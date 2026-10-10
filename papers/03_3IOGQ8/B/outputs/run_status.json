@@ -1,0 +1,11 @@
+{
+  "stopped": true,
+  "n_expressions": 497,
+  "last_ok_expr": 41,
+  "failing_expr_index": 42,
+  "failing_purled_line": 486,
+  "failing_code": "Byonic_df <- read.csv(\"Byonic_results.csv\")",
+  "error_message": "cannot open the connection",
+  "objects_defined_before_stop": ["aa_tag", "amino_acid_masses", "atomic_masses", "calculate_fragment_mass_from_sequence", "calculate_ion_mz", "calculate_tolerance", "directory", "find_matches_with_intensity", "generate_ions_for_sequence", "ion_type_adjustments", "max_mods", "min_delta_mod", "PEP", "ppm_tolerance", "save_name", "save_name_csv_suffix", "save_name_RData_suffix", "save_name_suffix", "stored_parameters", "TMT_ETD_mz_values", "TMT_HCD_mz_values", "TMT126", "TMT127", "TMT128", "TMT129", "TMT130", "TMT131"],
+  "byonic_csv_exists_in_run_dir": false
+}

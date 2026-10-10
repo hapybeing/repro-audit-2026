@@ -1,0 +1,11 @@
+--- orig.Rmd	2026-10-09 15:46:14.209269731 +0000
++++ Byonic_Middle-Down_Processing_Notebook.Rmd	2026-10-09 15:46:14.396105374 +0000
+@@ -7,7 +7,7 @@
+ ---
+ ```{r}
+ # Define file path to the folder containing your data
+-directory <- c("C:/Users/your_file_path/")
++directory <- c("/workspace/audit_runs/03_3IOGQ8/A/run/")
+ setwd(directory)
+ 
+ # User defined variables

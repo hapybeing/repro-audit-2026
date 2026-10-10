@@ -1,0 +1,91 @@
+{
+ "source_file": "/workspace/audit_runs/03_3IOGQ8/A/dl/si/ja4c12585_si_001.xlsx",
+ "sha256": "f5d47bb73aa02d04a6153e16ba6acb02206580b213e35b722092d2bd509386c8",
+ "note": "Published SI values (paper side). Not reproduced values.",
+ "sheets": {
+  "TableS2_DMSO_Corin_proteoforms": {
+   "n_data_rows": 157,
+   "target_row": {
+    "all_mods": "K9ac K14ac K23ac K27me2",
+    "proteoform_intensity": 3896903.16659545,
+    "percent_abundance": 0.0588333797826479,
+    "cumulative_norm_p_value": 4.29831138583007e-38,
+    "cumulative_log2-fold_change": 1.07715354602644,
+    "cumulative_ctrl_percent": 0.0189182812721304,
+    "cumulative_var_percent": 0.0399150985105175,
+    "mean_norm_p_value": 4.31211663191347e-30,
+    "mean_log2-fold_change": 0.905290382751772,
+    "mean_ctrl_percent": 0.02047858986684,
+    "mean_var_percent": 0.0383547899158079,
+    "median_norm_p_value": 9.04666734782877e-41,
+    "median_log2-fold_change": 1.12591789124657,
+    "median_ctrl_percent": 0.0184870897099369,
+    "median_var_percent": 0.0403462900727109
+   },
+   "pct_increase_from_cum_fc": 110.98691755534054
+  },
+  "TableS3_DMSO_MS275_proteoforms": {
+   "n_data_rows": 179,
+   "target_row": {
+    "all_mods": "K9ac K14ac K23ac K27me2",
+    "proteoform_intensity": 6406248.91730805,
+    "percent_abundance": 0.0663111743701854,
+    "cumulative_norm_p_value": 6.05188382826008e-53,
+    "cumulative_log2-fold_change": 1.35671135138228,
+    "cumulative_ctrl_percent": 0.0186214655692697,
+    "cumulative_var_percent": 0.0476897088009157,
+    "mean_norm_p_value": 6.0309770587011e-44,
+    "mean_log2-fold_change": 1.14235459059403,
+    "mean_ctrl_percent": 0.0206743681763166,
+    "mean_var_percent": 0.0456368061938688,
+    "median_norm_p_value": 5.89489585721772e-53,
+    "median_log2-fold_change": 1.34027024438502,
+    "median_ctrl_percent": 0.0187744649787301,
+    "median_var_percent": 0.0475367093914553
+   },
+   "pct_increase_from_cum_fc": 156.1007275368057
+  },
+  "TableS4_DMSO_Corin_quantifiable": {
+   "n_data_rows": 73,
+   "target_row": {
+    "all_mods": "K9ac K14ac K23ac K27me2",
+    "proteoform_intensity": 3896903.16659545,
+    "percent_abundance": 0.0588333797826479,
+    "cumulative_norm_p_value": 4.29831138583007e-38,
+    "cumulative_log2-fold_change": 1.07715354602644,
+    "cumulative_ctrl_percent": 0.0189182812721304,
+    "cumulative_var_percent": 0.0399150985105175,
+    "mean_norm_p_value": 4.31211663191347e-30,
+    "mean_log2-fold_change": 0.905290382751772,
+    "mean_ctrl_percent": 0.02047858986684,
+    "mean_var_percent": 0.0383547899158079,
+    "median_norm_p_value": 9.04666734782877e-41,
+    "median_log2-fold_change": 1.12591789124657,
+    "median_ctrl_percent": 0.0184870897099369,
+    "median_var_percent": 0.0403462900727109
+   },
+   "pct_increase_from_cum_fc": 110.98691755534054
+  },
+  "TableS5_DMSO_MS275_quantifiabl": {
+   "n_data_rows": 98,
+   "target_row": {
+    "all_mods": "K9ac K14ac K23ac K27me2",
+    "proteoform_intensity": 6406248.91730805,
+    "percent_abundance": 0.0663111743701854,
+    "cumulative_norm_p_value": 6.05188382826008e-53,
+    "cumulative_log2-fold_change": 1.35671135138228,
+    "cumulative_ctrl_percent": 0.0186214655692697,
+    "cumulative_var_percent": 0.0476897088009157,
+    "mean_norm_p_value": 6.0309770587011e-44,
+    "mean_log2-fold_change": 1.14235459059403,
+    "mean_ctrl_percent": 0.0206743681763166,
+    "mean_var_percent": 0.0456368061938688,
+    "median_norm_p_value": 5.89489585721772e-53,
+    "median_log2-fold_change": 1.34027024438502,
+    "median_ctrl_percent": 0.0187744649787301,
+    "median_var_percent": 0.0475367093914553
+   },
+   "pct_increase_from_cum_fc": 156.1007275368057
+  }
+ }
+}

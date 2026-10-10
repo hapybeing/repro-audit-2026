@@ -1,0 +1,7 @@
+[
+  {"id": "T1", "description": "Percent increase of proteoform H3K9acK14acK23acK27me2, MS275 vs DMSO (computed as 100*(2^fc_cum - 1) from cumulative-normalised log2FC)", "paper_value": 155, "paper_rounding_decimals": 0, "location": "Main text, Results, 'Cut-and-Paste' Middle-Down Proteomics section: '155% vs 110% increase' (https://doi.org/10.1021/jacs.4c12585)"},
+  {"id": "T2", "description": "Percent increase of proteoform H3K9acK14acK23acK27me2, Corin vs DMSO (computed as 100*(2^fc_cum - 1) from cumulative-normalised log2FC)", "paper_value": 110, "paper_rounding_decimals": 0, "location": "Main text, same sentence as T1"},
+  {"id": "T3", "description": "cumulative_log2-fold_change for all_mods 'K9ac K14ac K23ac K27me2', DMSO vs MS275", "paper_value": 1.35671135138228, "paper_rounding_decimals": 14, "location": "SI ja4c12585_si_001.xlsx, sheet TableS5_DMSO_MS275_quantifiabl (and TableS3), column cumulative_log2-fold_change"},
+  {"id": "T4", "description": "cumulative_log2-fold_change for all_mods 'K9ac K14ac K23ac K27me2', DMSO vs Corin", "paper_value": 1.07715354602644, "paper_rounding_decimals": 14, "location": "SI ja4c12585_si_001.xlsx, sheet TableS4_DMSO_Corin_quantifiable (and TableS2), column cumulative_log2-fold_change"},
+  {"id": "T5", "description": "Number of proteoforms identified in the DMSO/MS275 6plex sample (rows of proteoform_df)", "paper_value": 179, "paper_rounding_decimals": 0, "location": "SI ja4c12585_si_001.xlsx, sheet TableS3_DMSO_MS275_proteoforms, data row count (main text: '~180')"}
+]
