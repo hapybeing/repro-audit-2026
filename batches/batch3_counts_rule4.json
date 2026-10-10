@@ -1,0 +1,47 @@
+{
+ "rule": "PROTOCOL.md section 7 with CHANGELOG_METHOD #4 to #6 and the pre-run batch3_class_decisions.md. Classes were set by the lead after both blind agents reported; A and B agreed on every reproduced target value. No class in batch 3 needed a reading made after results. Alternatives are shown for transparency where a pre-run decision could reasonably be read the other way.",
+ "counts_main": {
+  "A": 5,
+  "B": 0,
+  "C": 0,
+  "D": 0,
+  "E": 0
+ },
+ "n_main": 5,
+ "alternatives": {
+  "11_DDOFPS": {
+   "class_rule4": "A",
+   "alt_class": "C",
+   "alt_label": "C if pointing the script at deposited files whose names differ from the names it reads (bd_doxa_programas_HGPE.xlsx, bd_doxa_candidatos_HGPE.xlsx) is not accepted as a path-only fix (pre-run decision #1 accepts it). The v2 programs file gives identical target values"
+  },
+  "13_DX5T9G": {
+   "class_rule4": "A",
+   "alt_class": "E",
+   "alt_label": "E if only the authors' full pipeline as deposited counts: script 03 was killed for running out of memory on the audit's shared 7 GB machine in both runs. A uses the fallback pre-registered before any run (estimation lines, seed and 5000 draws unchanged, simulation blocks dropped)"
+  }
+ },
+ "counts_if_11_DDOFPS_alt": {
+  "A": 4,
+  "B": 0,
+  "C": 1,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_11_DDOFPS_alt": 5,
+ "counts_if_13_DX5T9G_alt": {
+  "A": 4,
+  "B": 0,
+  "C": 0,
+  "D": 0,
+  "E": 1
+ },
+ "n_if_13_DX5T9G_alt": 5,
+ "counts_all_alternatives": {
+  "A": 3,
+  "B": 0,
+  "C": 1,
+  "D": 0,
+  "E": 1
+ },
+ "n_all_alternatives": 5
+}

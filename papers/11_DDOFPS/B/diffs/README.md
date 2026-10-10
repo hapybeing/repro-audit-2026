@@ -1,0 +1,6 @@
+# Agent B diffs for 11_DDOFPS
+
+- `file_name_mapping_v1.diff`: path-only fix pre-registered in PREREG.md section 2 and batch3_class_decisions.md #1. The script reads `bd_doxa_programas.xlsx` (line 67) and `bd_doxa_candidatos.xlsx` (line 94), which are not deposited under those names. In RUNDIR (`/workspace/audit_runs/11_DDOFPS/B/run_v1`) the deposited `bd_doxa_programas_HGPE.xlsx` and `bd_doxa_candidatos_HGPE.xlsx` were copied under the names the script uses. The script text was not changed for this.
+- `file_name_mapping_v2_alternative.diff`: same, for the labelled alternative run (`run_v2`) with `bd_doxa_programas_HGPE_v2.xlsx` as the programs file.
+- `analise_dos_dados_theme_ipsum_tw.diff`: line 53 `theme_ipsum_tw()` is not exported by any CRAN release of hrbrthemes tried (0.9.3 current, then 0.8.7 via remotes::install_version): "Error in theme_ipsum_tw() : could not find function "theme_ipsum_tw"". PREREG allows making only this cosmetic call non-fatal (Figura 1, no target). Wrapped in `tryCatch(..., error = function(e) ggplot2::theme())`. Edited at byte level; Latin-1 encoding, CRLF endings and the 0xB4 byte in line 177 are unchanged (checked with cmp).
+- No other change. The script was run with `source(..., encoding = "latin1")` from `scripts/run_authors.R` (wrapper, not an edit of the script); plots go to RUNDIR/Rplots.pdf.

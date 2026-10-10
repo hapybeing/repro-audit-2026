@@ -1,0 +1,85 @@
+rows 32353 countries 224 NA Final_Code 123 
+value sets:
+$LIED
+[1] 0 1
+
+$RoW
+[1] 0 1
+
+$Polity
+[1] 0 1
+
+$FH
+[1] 0 1
+
+$ARD
+[1] 0 1
+
+$AoW
+[1] 0 1
+
+$CPR
+[1] 0 1
+
+{
+  "full_sample": {
+    "T1": 0.636371,
+    "T2": 0.177264,
+    "T3": 0.539071,
+    "max21": 0.636371,
+    "max_pair": "AoW-ARD",
+    "median21": 0.397692
+  },
+  "R_a": {
+    "estimate": 0.636371,
+    "ci_low": 0.552061,
+    "ci_high": 0.714235,
+    "boot_se": 0.042684,
+    "n_resamples": 1000,
+    "n_undefined": 0,
+    "share_ge_073": 0.009,
+    "p_value": 0,
+    "secondary_ci": {
+      "T2": [0.112108, 0.234441],
+      "T3": [0.493631, 0.584594],
+      "max21": [0.580681, 0.717932]
+    },
+    "seed": 20261010,
+    "n_countries": 223
+  },
+  "R_b": {
+    "n_eligible_countries": 172,
+    "n_dropped": 2,
+    "dropped": ["571", "651"],
+    "dropped_country_years": 372,
+    "estimate": 0.664735,
+    "ci_low": 0.650607,
+    "ci_high": 0.678403,
+    "p_value": 0,
+    "n_pairs": 6199,
+    "secondary": {
+      "T1": 0.664735,
+      "T2": 0.17764,
+      "T3": 0.539856,
+      "max21": 0.664735,
+      "max_pair": "AoW-ARD",
+      "median21": 0.399202
+    }
+  },
+  "R_c": {
+    "N": 6067,
+    "estimate": 0.646769,
+    "ci_low": 0.63189,
+    "ci_high": 0.661173,
+    "p_value": 0,
+    "secondary": {
+      "T1": 0.646769,
+      "T2": 0.2838,
+      "T3": 0.561645,
+      "max21": 0.669546,
+      "max_pair": "AoW-LIED",
+      "median21": 0.431879
+    }
+  },
+  "R_version": "R version 4.5.0 (2025-04-11)"
+} 

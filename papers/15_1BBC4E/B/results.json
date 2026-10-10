@@ -1,0 +1,163 @@
+{
+ "paper_id": "15_1BBC4E",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Pearson correlation between the PDA dummies of the Authoritarian Regimes Data Set (HTW_RegType_MP_Autocracy, renamed ARD) and Autocracies of the World (RegType_magaloni_EA, renamed AoW), pairwise complete observations; cell [ARD, AoW] of corr.ea in Scripts/Comparing Indices/Comparison.R (largest of the 21 pairs)",
+   "paper_value": 0.636,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.636370615832288,
+   "source_file": "outputs/corr_ea.rds",
+   "abs_diff": 0.00037061583228803485,
+   "rel_diff": 0.0005827292960503693,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "; largest of 21 pairs: largest pair: AoW-ARD = 0.636370615832288"
+  },
+  {
+   "id": "T2",
+   "description": "Pearson correlation between the PDA dummies of Polity (Politytype_Anocracy) and Classifying Political Regimes (AnckarRegtype_MP_Autocracy, renamed CPR), pairwise complete observations; cell [Polity, CPR] of corr.ea in Comparison.R (smallest of the 21 pairs)",
+   "paper_value": 0.177,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.17726354296779,
+   "source_file": "outputs/corr_ea.rds",
+   "abs_diff": 0.0002635429677900203,
+   "rel_diff": 0.0014889433208475724,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  },
+  {
+   "id": "T3",
+   "description": "Pearson correlation between the PDA dummies of the Lexical Index of Electoral Democracy (RegType_lied_EA, LIED) and Regimes of the World (RegType_RoW_EA, RoW), pairwise complete observations; cell [LIED, RoW] of corr.ea in Comparison.R",
+   "paper_value": 0.539,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.539071179216179,
+   "source_file": "outputs/corr_ea.rds",
+   "abs_diff": 7.117921617894041e-05,
+   "rel_diff": 0.0001320579149887577,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  },
+  {
+   "id": "T4",
+   "description": "Number of country-years coded by all seven typologies (common sample): nrow(ead) after select(7 *_n regime variables, year) %>% na.omit() in Scripts/Comparing Indices/Share_Common_Sample.R lines 10-13",
+   "paper_value": 6067,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 6067.0,
+   "source_file": "outputs/share_nrow_ead.txt",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nrow(ead) Share_Common_Sample.R; candidate 2 (sum of ead2 tally, Agreement across all.R) = 6067"
+  },
+  {
+   "id": "T5",
+   "description": "Number of common-sample country-years coded as PDA by all seven typologies: n where coded_by == 7 in the ead2 tally of Scripts/Comparing Indices/Agreement across all.R lines 6-22",
+   "paper_value": 144,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 144.0,
+   "source_file": "outputs/agreement_ead2_tally.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "n at coded_by==7"
+  },
+  {
+   "id": "T6",
+   "description": "Number of common-sample country-years coded as PDA by at least one typology: sum of n where coded_by >= 1 in the ead2 tally of Agreement across all.R lines 6-22",
+   "paper_value": 3093,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 3093.0,
+   "source_file": "outputs/agreement_ead2_tally.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "sum n coded_by>=1"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Country-cluster bootstrap (Final_Code), 1000 resamples, set.seed(20261010), pairwise-complete Pearson; T1 percentile 95% CI",
+   "ran": true,
+   "estimate": 0.636370615832288,
+   "se_or_ci": "95% percentile CI [0.5521, 0.7142]; bootstrap SE 0.0427; share of resamples with T1 >= 0.73: 0.009; undefined resamples: 0",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "Secondary 95% CIs: T2 [0.112108458557379, 0.234440921004276], T3 [0.493631415621501, 0.584593877356076], max of 21 [0.580681461695261, 0.717931936297631]. 223 countries resampled; 123 rows with missing Final_Code have only RoW values and enter no correlation. p is the pre-registered min(2 x share of T1 <= 0, 1)."
+  },
+  {
+   "id": "R_b",
+   "description": "Leave-one-country-out influence on T1; drop top 1% of eligible countries (ceiling, at least 1); recompute 7x7 matrix; cor.test for T1",
+   "ran": true,
+   "estimate": 0.664735277719699,
+   "se_or_ci": "cor.test 95% CI [0.6506, 0.6784]",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "2 of 172 countries dropped: Final_Code 571, 651 (outputs/R_b_dropped_country_names.txt), 372 rows; T1 pairs 6199. Secondary: T2 0.1776, T3 0.5399, largest pair AoW-ARD 0.6647, median 0.3992. p-value 0 means below double precision."
+  },
+  {
+   "id": "R_c",
+   "description": "Listwise common sample (all seven PDA dummies non-missing) instead of pairwise complete observations; cor.test for T1",
+   "ran": true,
+   "estimate": 0.646769441457799,
+   "se_or_ci": "cor.test 95% CI [0.6319, 0.6612]",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "N 6067. Secondary: T2 0.2838, T3 0.5616, largest pair AoW-LIED 0.6695 (ARD-AoW is no longer the largest pair, but the largest stays below 0.73), median 0.4319. p-value 0 means below double precision."
+  }
+ ],
+ "bugs": [],
+ "code_observations_unverified": [
+  {
+   "file": "Scripts/Comparing Indices/Comparison.R",
+   "lines": [
+    105,
+    176,
+    183
+   ],
+   "description": "Exploratory, not pre-registered, figures only (Figures 1 and 4). Factor levels are relabelled by position after as.factor(), so the label-to-variable mapping depends on the collation locale. Not a target and not a bug in this run.",
+   "evidence": "outputs/factor_label_locale_check.csv: C.UTF-8 line 176: TRUE; C.UTF-8 line 183: TRUE; C line 176: FALSE; C line 183: FALSE. Author comment at line 104 notes the level order sometimes switched."
+  }
+ ],
+ "env_fixes": [
+  "No diff: corrr 0.4.5 and pacman 0.5.1 installed from CRAN source into the per-run library (no Debian binary). No author file changed (diffs/README.md)."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets reproduce exactly at the paper's printed precision from the unmodified deposited scripts and data (and 21 of 21 Table 3 cells match to 3 decimals).",
+ "confidence": "high",
+ "confidence_reason": "Deterministic correlations and counts on the deposited file, scripts run unmodified, every deposited file matches the PREREG sha256; agreement with agent A not yet checked by compare_ab.py.",
+ "time_minutes": 10,
+ "secondary": {
+  "table3_cells_match_3dp": 21,
+  "table3_cells": 21,
+  "median21": 0.397691580691577,
+  "mean21": 0.405173909246342,
+  "source_file": "outputs/table3_full_comparison.csv; outputs/targets_extracted.csv"
+ },
+ "uncertainties": [
+  "The Dataverse API on 2026-10-10 reports versionNumber 1, versionMinorNumber 1 (PREREG.md says version 1.0). All 49 files are byte-identical to the PREREG sha256 list, so this does not affect the run.",
+  "T1 matches Table 3 (0.636); the prose says '.63' (PREREG inconsistency note). Median 0.398 reproduces the computed median of the printed table; the prose '.39' looks truncated (not a target).",
+  "Robustness p-values of 0 from cor.test are below double precision, not exactly zero. The R_a p-value is the pre-registered bootstrap proportion (no resample had T1 <= 0).",
+  "In R_c the largest pair is LIED-AoW, not ARD-AoW; still below 0.73.",
+  "Appendix and data-preparation scripts were not run (PREREG: merged data used as deposited)."
+ ]
+}

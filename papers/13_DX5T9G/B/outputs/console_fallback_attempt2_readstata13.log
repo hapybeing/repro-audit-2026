@@ -1,0 +1,7 @@
+[1] TRUE
+Error in library(readstata13) : there is no package called ‘readstata13’
+[1] "Error in library(readstata13) : there is no package called ‘readstata13’\n"
+[1] "Traceback:"
+[1] "2: stop(packageNotFoundError(package, lib.loc, sys.call()))"
+[2] "1: library(readstata13)"                                    
+Execution halted

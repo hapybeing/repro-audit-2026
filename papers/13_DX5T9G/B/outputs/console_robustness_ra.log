@@ -1,0 +1,19 @@
+progress: country_i 1 b 600 rows 600 
+progress: country_i 2 b 200 rows 1200 
+progress: country_i 2 b 800 rows 1800 
+progress: country_i 3 b 0 rows 2000 
+     id country                           term estimate_MLE   boot_SE   ci95_lo
+UK 1 T1      UK          I(T_who == "WHO")TRUE    -1.537405 0.4372182 -2.540954
+UK 2 T2      UK I(T_who == "WHO.Ratified")TRUE    -2.011195 0.4180309 -2.972595
+US 1 T3      US          I(T_who == "WHO")TRUE    -1.055760 0.2767574 -1.629198
+US 2 T4      US I(T_who == "WHO.Ratified")TRUE    -1.516737 0.2710874 -2.148043
+        ci95_hi   ci99_lo    ci99_hi p_boot n_nonconverged n_missing_level
+UK 1 -0.8446793 -2.892406 -0.6710459      0              0               0
+UK 2 -1.3406318 -3.384425 -1.1249145      0              0               0
+US 1 -0.5787795 -1.847450 -0.4370046      0              0               0
+US 2 -1.0712546 -2.313467 -0.9292548      0              0               0
+     n_used
+UK 1   1000
+UK 2   1000
+US 1   1000
+US 2   1000

@@ -1,0 +1,13 @@
+# Path-only fix. Files copied (cp, byte-identical) into the run directory under the names the script reads:
+#   bd_doxa_programas_HGPE.xlsx  -> bd_doxa_programas.xlsx   (script line 67)
+#   bd_doxa_candidatos_HGPE.xlsx -> bd_doxa_candidatos.xlsx  (script line 94)
+#   HGPE_lei.xlsx unchanged (line 10). Script text not edited.
+--- deposit_xlsx_names
++++ run_v1_xlsx_names
+@@ -1,4 +1,3 @@
+ HGPE_lei.xlsx
+-bd_doxa_candidatos_HGPE.xlsx
+-bd_doxa_programas_HGPE.xlsx
+-bd_doxa_programas_HGPE_v2.xlsx
++bd_doxa_candidatos.xlsx
++bd_doxa_programas.xlsx

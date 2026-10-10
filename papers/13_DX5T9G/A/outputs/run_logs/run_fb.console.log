@@ -1,0 +1,168 @@
+[1] TRUE
+[1] 2
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] doMC_1.3.8         iterators_1.0.14   foreach_1.5.2      scales_1.3.0      
+ [5] lubridate_1.9.4    ebal_0.1-8         nnet_7.3-20        arm_1.14-4        
+ [9] lme4_1.1-37        MASS_7.3-65        reshape2_1.4.4     tmvtnorm_1.6      
+[13] gmm_1.8            sandwich_3.1-1     Matrix_1.7-3       mvtnorm_1.3-3     
+[17] stringr_1.5.1      readstata13_0.11.0 ggplot2_3.5.1      foreign_0.8-90    
+[21] plyr_1.8.9         logr_1.3.3        
+
+loaded via a namespace (and not attached):
+ [1] generics_0.1.3   stringi_1.8.4    lattice_0.22-7   magrittr_2.0.3  
+ [5] timechange_0.3.0 grid_4.5.0       this.path_2.8.0  codetools_0.2-20
+ [9] abind_1.4-8      reformulas_0.4.1 Rdpack_2.6.3     cli_3.6.4       
+[13] rlang_1.1.5      rbibutils_2.3    munsell_0.5.1    splines_4.5.0   
+[17] withr_3.0.2      tools_4.5.0      nloptr_2.2.1     coda_0.19-4.1   
+[21] minqa_1.2.8      dplyr_1.1.4      colorspace_2.1-1 boot_1.3-31     
+[25] vctrs_0.6.5      R6_2.6.1         zoo_1.8-14       lifecycle_1.0.4 
+[29] pkgconfig_2.0.3  pillar_1.10.1    gtable_0.3.6     glue_1.8.0      
+[33] Rcpp_1.0.14      tibble_3.2.1     tidyselect_1.2.1 nlme_3.1-168    
+[37] compiler_4.5.0  
+Converged within tolerance 
+Automated trimmig of max weight ratio 
+Trim iteration 1 Max Weight Ratio: 10.8 
+Trim iteration 2 Max Weight Ratio: 10.8 
+Trim iteration 3 Max Weight Ratio: 9.792 
+Trim iteration 4 Max Weight Ratio: 9.792 
+Trim iteration 5 Max Weight Ratio: 8.599 
+Trim iteration 6 Max Weight Ratio: 7.733 
+Trim iteration 7 Max Weight Ratio: 7.392 
+Trim iteration 8 Max Weight Ratio: 7.029 
+Trim iteration 9 Max Weight Ratio: 6.499 
+Trim iteration 10 Max Weight Ratio: 5.959 
+Trim iteration 11 Max Weight Ratio: 5.399 
+Trim iteration 12 Max Weight Ratio: 5.076 
+Trim iteration 13 Max Weight Ratio: 4.624 
+Converged within tolerance 
+Converged within tolerance 
+Automated trimmig of max weight ratio 
+Trim iteration 1 Max Weight Ratio: 3.032 
+Trim iteration 2 Max Weight Ratio: 3.032 
+Trim iteration 3 Max Weight Ratio: 2.992 
+Trim iteration 4 Max Weight Ratio: 2.76 
+Trim iteration 5 Max Weight Ratio: 2.543 
+Trim iteration 6 Max Weight Ratio: 2.327 
+Trim iteration 7 Max Weight Ratio: 2.143 
+Converged within tolerance 
+# weights:  72 (55 variable)
+initial  value 2911.609137 
+iter  10 value 2584.140821
+iter  20 value 2527.798142
+iter  30 value 2523.871469
+iter  40 value 2523.339074
+iter  50 value 2523.269979
+iter  60 value 2523.229061
+final  value 2523.226387 
+converged
+# weights:  60 (45 variable)
+initial  value 1000.348699 
+iter  10 value 897.820387
+iter  20 value 847.978048
+iter  30 value 841.071038
+iter  40 value 839.678904
+iter  50 value 839.656640
+iter  60 value 839.650364
+final  value 839.650313 
+converged
+# weights:  60 (45 variable)
+initial  value 941.097495 
+iter  10 value 838.023425
+iter  20 value 805.298927
+iter  30 value 801.969817
+iter  40 value 801.666530
+iter  50 value 801.654856
+iter  60 value 801.650070
+final  value 801.650043 
+converged
+# weights:  60 (45 variable)
+initial  value 970.162943 
+iter  10 value 851.458486
+iter  20 value 826.626293
+iter  30 value 824.257878
+iter  40 value 824.031217
+iter  50 value 823.980128
+final  value 823.979654 
+converged
+# weights:  66 (50 variable)
+initial  value 664.855127 
+iter  10 value 570.215813
+iter  20 value 549.576176
+iter  30 value 548.279427
+iter  40 value 547.865335
+iter  50 value 547.756654
+iter  60 value 547.681008
+iter  70 value 547.647296
+final  value 547.646240 
+converged
+# weights:  72 (55 variable)
+initial  value 2865.023391 
+iter  10 value 2598.252351
+iter  20 value 2520.441836
+iter  30 value 2517.085986
+iter  40 value 2516.932349
+iter  50 value 2516.911232
+final  value 2516.911150 
+converged
+# weights:  60 (45 variable)
+initial  value 935.365594 
+iter  10 value 813.092799
+iter  20 value 786.595162
+iter  30 value 785.226490
+iter  40 value 785.161189
+final  value 785.159589 
+converged
+# weights:  60 (45 variable)
+initial  value 957.767434 
+iter  10 value 869.146963
+iter  20 value 842.482578
+iter  30 value 840.711298
+iter  40 value 840.599141
+iter  50 value 840.565381
+final  value 840.564995 
+converged
+# weights:  60 (45 variable)
+initial  value 971.890363 
+iter  10 value 839.928392
+iter  20 value 812.487631
+iter  30 value 810.596854
+iter  40 value 810.401468
+iter  50 value 810.386041
+final  value 810.384904 
+converged
+# weights:  66 (50 variable)
+initial  value 664.399674 
+iter  10 value 550.600399
+iter  20 value 516.215628
+iter  30 value 507.388585
+iter  40 value 505.774939
+iter  50 value 504.958791
+iter  60 value 504.122255
+iter  70 value 503.966344
+iter  80 value 503.871132
+final  value 503.859393 
+converged
+[1] TRUE
+[1] TRUE
+[1] TRUE

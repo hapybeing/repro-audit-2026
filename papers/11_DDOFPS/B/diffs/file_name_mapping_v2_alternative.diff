@@ -1,0 +1,7 @@
+--- deposited_file_names
++++ names_read_by_script_in_RUNDIR
+@@ -1,2 +1,2 @@
+-bd_doxa_programas_HGPE_v2.xlsx
+-bd_doxa_candidatos_HGPE.xlsx
++bd_doxa_programas.xlsx
++bd_doxa_candidatos.xlsx

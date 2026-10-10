@@ -1,0 +1,82 @@
+--- "code/00_Run it all.R"	2026-10-10 15:58:50.375210403 +0000
++++ code/00_FALLBACK_runner.R	2026-10-10 16:07:29.968055636 +0000
+@@ -64,51 +64,48 @@
+ log_print(sessionInfo())
+ 
+ 
+-## Execute entire analysis
++## Execute entire analysis -- AGENT B FALLBACK RUNNER (PREREG section 2)
++## 01 unchanged; 02 skipped (already run unchanged in attempt 2, not needed for targets);
++## 03 replaced by the labelled fallback (m = 1, no substantive simulations); 05 unchanged; 04, 06, 07, 08 skipped.
+ ##########################
+ source("code/01_Prepare data.R")
+-source("code/02_Descriptives.R")
+-source("code/03_Estimate main models.R")
+-source("code/04_Make main graphs.R")
++source("code/03_FALLBACK_main_models_m1.R")
+ source("code/05_Make main tables.R")
+-source("code/06_Estimate Open.R")
+-source("code/07_Causal moderation for Open.R")
+-source("code/08_Newspaper analysis.R")
+ 
+ 
+ ## Copy files and rename to names in the manuscript
+ ###################################################
+ dir.create(path="output/named_items", showWarnings = FALSE)
+ 
+-file.copy(from="data/cascara_geo_trimmed.png", to="output/named_items/Figure_1.png", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="data/cascara_geo_trimmed.png", to="output/named_items/Figure_1.png", overwrite=TRUE)
+ 
+ file.copy(from="output/table_main_UK_1.tex", to="output/named_items/Table_2.tex", overwrite=TRUE)
+ file.copy(from="output/table_main_US_1.tex", to="output/named_items/Table_3.tex", overwrite=TRUE)
+ 
+-file.copy(from="output/Output_proportions.pdf", to="output/named_items/Figure_2.pdf", overwrite=TRUE)
+-file.copy(from="output/Main_effects_cases.pdf", to="output/named_items/Figure_3.pdf", overwrite=TRUE)
+-file.copy(from="output/Main_effects_health_cap.pdf", to="output/named_items/Figure_4.pdf", overwrite=TRUE)
+-file.copy(from="output/Main_effects_who.pdf", to="output/named_items/Figure_5.pdf", overwrite=TRUE)
+-file.copy(from="output/News_coverage.pdf", to="output/named_items/Figure_6.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/Demographics.pdf", to="output/named_items/Figure_A1.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/table_main_UK_5.tex", to="output/named_items/Table_A1.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_5.tex", to="output/named_items/Table_A2.tex", overwrite=TRUE)
+-
+-file.copy(from="output/High_cases_WHO_effects.pdf", to="output/named_items/Figure_A2.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/Main_moderation_effects.pdf", to="output/named_items/Figure_A3.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/table_main_UK_2.tex", to="output/named_items/Table_A3.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_UK_3.tex", to="output/named_items/Table_A4.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_UK_4.tex", to="output/named_items/Table_A5.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_2.tex", to="output/named_items/Table_A6.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_3.tex", to="output/named_items/Table_A7.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_4.tex", to="output/named_items/Table_A8.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/Output_proportions.pdf", to="output/named_items/Figure_2.pdf", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/Main_effects_cases.pdf", to="output/named_items/Figure_3.pdf", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/Main_effects_health_cap.pdf", to="output/named_items/Figure_4.pdf", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/Main_effects_who.pdf", to="output/named_items/Figure_5.pdf", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/News_coverage.pdf", to="output/named_items/Figure_6.pdf", overwrite=TRUE)
++
++# FALLBACK skipped: file.copy(from="output/Demographics.pdf", to="output/named_items/Figure_A1.pdf", overwrite=TRUE)
++
++# FALLBACK skipped: file.copy(from="output/table_main_UK_5.tex", to="output/named_items/Table_A1.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_main_US_5.tex", to="output/named_items/Table_A2.tex", overwrite=TRUE)
++
++# FALLBACK skipped: file.copy(from="output/High_cases_WHO_effects.pdf", to="output/named_items/Figure_A2.pdf", overwrite=TRUE)
++
++# FALLBACK skipped: file.copy(from="output/Main_moderation_effects.pdf", to="output/named_items/Figure_A3.pdf", overwrite=TRUE)
++
++# FALLBACK skipped: file.copy(from="output/table_main_UK_2.tex", to="output/named_items/Table_A3.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_main_UK_3.tex", to="output/named_items/Table_A4.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_main_UK_4.tex", to="output/named_items/Table_A5.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_main_US_2.tex", to="output/named_items/Table_A6.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_main_US_3.tex", to="output/named_items/Table_A7.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_main_US_4.tex", to="output/named_items/Table_A8.tex", overwrite=TRUE)
+ 
+-file.copy(from="output/table_open_main.tex", to="output/named_items/Table_A9.tex", overwrite=TRUE)
+-file.copy(from="output/Open_explore.pdf", to="output/named_items/Figure_A4.pdf", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/table_open_main.tex", to="output/named_items/Table_A9.tex", overwrite=TRUE)
++# FALLBACK skipped: file.copy(from="output/Open_explore.pdf", to="output/named_items/Figure_A4.pdf", overwrite=TRUE)
+ 
+ 
+ ## End logging

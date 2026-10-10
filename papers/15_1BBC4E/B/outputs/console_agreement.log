@@ -1,0 +1,55 @@
+
+> pacman::p_load(tidyverse, corrr, knitr, kableExtra, 
++     RColorBrewer)
+
+> ead <- readRDS("Data/Regimedata/Measures_merged.rds")
+
+> ead2 <- ead %>% select(RegType_lied_EA, RegType_RoW_EA, 
++     Politytype_Anocracy, status_fh_PF, HTW_RegType_MP_Autocracy, 
++     RegType_magaloni_EA, AnckarRegtype_MP_Autocracy) %>% na.omit()
+
+> ead2 <- ead2 %>% mutate(coded_by = RegType_lied_EA + 
++     RegType_RoW_EA + Politytype_Anocracy + status_fh_PF + HTW_RegType_MP_Autocracy + 
++     RegType_magaloni_EA + AnckarRegtype_MP_Autocracy)
+
+> ead2 <- ead2 %>% group_by(coded_by) %>% tally() %>% 
++     mutate(Regime = "Pseudo-Democratic Autocracy")
+
+> ead3 <- ead %>% select(RegType_lied_DEM, RegType_RoW_DEM, 
++     Politytype_Democracy, status_fh_F, HTW_RegType_Democracy, 
++     RegType_magaloni_DEM, AnckarRegtype_Democracy) %>% na.omit()
+
+> ead3 <- ead3 %>% mutate(coded_by = RegType_lied_DEM + 
++     RegType_RoW_DEM + Politytype_Democracy + status_fh_F + HTW_RegType_Democracy + 
++     RegType_magaloni_DEM + AnckarRegtype_Democracy)
+
+> ead3 <- ead3 %>% group_by(coded_by) %>% tally() %>% 
++     mutate(Regime = "Democracy")
+
+> ead4 <- ead %>% select(RegType_lied_CA, RegType_RoW_CA, 
++     Politytype_Autocracy, status_fh_NF, HTW_RegType_Non_MP_Autocracy, 
++     RegType_magaloni_CA, AnckarRegtype_Non_MP_Autocracy) %>% 
++     na.omit()
+
+> ead4 <- ead4 %>% mutate(coded_by = RegType_lied_CA + 
++     RegType_RoW_CA + Politytype_Autocracy + status_fh_NF + HTW_RegType_Non_MP_Autocracy + 
++     RegType_magaloni_CA + AnckarRegtype_Non_MP_Autocracy)
+
+> ead4 <- ead4 %>% group_by(coded_by) %>% tally() %>% 
++     mutate(Regime = "Other Autocracy")
+
+> ead5 <- rbind(ead2, ead3, ead4)
+
+> ead5$Regime <- fct_rev(factor(ead5$Regime, levels = c("Other Autocracy", 
++     "Pseudo-Democratic Autocracy", "Democracy")))
+
+> ead5 %>% group_by(Regime) %>% mutate(n2 = sum(n)) %>% 
++     filter(Regime != "Other Autocracy") %>% ggplot(aes(x = coded_by, 
++     y = n, fill = Regime)) + geom_bar(stat = "identity", position = position_dodge(width = 0.9)) + 
++     theme_classic(base_size = 20) + ylab("") + xlab("Number of typologies coding a country-year as...") + 
++     labs(fill = "") + scale_fill_grey() + scale_x_continuous(breaks = seq(0, 
++     7, 1)) + geom_text(aes(label = paste0(round(n/n2, 2) * 100, 
++     "%")), size = 5, position = position_dodge(width = 0.9), 
++     vjust = -0.5) + theme(legend.position = "bottom")
+null device 
+          1 

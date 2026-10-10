@@ -1,0 +1,7 @@
+# Diffs, agent B, 13_DX5T9G
+
+- `00_Run_it_all_cores.diff`: `registerDoMC(cores=7)` to `cores=1`. Allowed env fix in PREREG section 2 (memory on a shared 7 GB machine). Estimates do not depend on worker count (`run_models` calls `set.seed(1230)` itself).
+- `03_Estimate_main_models_FALLBACK.diff`: new file `code/03_FALLBACK_main_models_m1.R`, the PREREG section 2 labelled fallback. The authors' `03` was run unchanged first and was killed by the kernel OOM killer (3.3 GB RSS) during the substantive-effects simulation for the US main model. The fallback keeps the authors' lines for m = 1 only (subset, `set.seed(1230)`, `multinom`, `mvrnorm(n=5000)`, `store_coefficients` adply block) and drops the simulation and moderation blocks and the `Estimates_numbers.csv` export. No random numbers are drawn between `set.seed(1230)` and `mvrnorm`, so `Mean`, `SD`, `pvalue` are those of the full run.
+- `00_FALLBACK_runner.diff`: new file `code/00_FALLBACK_runner.R` (copy of the cores=1 `00`), sourcing `01` (unchanged), the fallback `03`, and `05` (unchanged); `02`, `04`, `06`, `07`, `08` and the file copies for items they make are skipped. `02` had already run unchanged in the full attempt (its `Choices_prop.csv` is kept as `outputs/Choices_prop_attempt2.csv`).
+
+Package-level environment fixes (no code change): logr 1.3.3 (authors' version) instead of 1.4.0, whose warning hook crashed on readstata13's multi-line warning; ebal 0.1-8 (authors' pin); reinstall of r-cran-readstata13 and r-cran-tmvtnorm after they vanished from the shared site library.

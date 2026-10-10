@@ -1,0 +1,2 @@
+[ 2347.484979] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/hark-exec/cmd-427-449,task=R,pid=26037,uid=1000
+[ 2347.484993] Out of memory: Killed process 26037 (R) total-vm:3658580kB, anon-rss:3044784kB, file-rss:52kB, shmem-rss:10504kB, UID:1000 pgtables:6172kB oom_score_adj:1000

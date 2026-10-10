@@ -1,0 +1,45 @@
+--- raw/replication_code.ipynb	2026-10-10 15:50:28.822683341 +0000
++++ run/replication_code_audit.ipynb	2026-10-10 15:57:00.597018317 +0000
+@@ -347,6 +347,17 @@
+   {
+    "cell_type": "code",
+    "execution_count": null,
++   "metadata": {},
++   "outputs": [],
++   "source": [
++    "# AUDIT-ADDED (agent B): save objects only, no computation changed\n",
++    "import pickle\n",
++    "pickle.dump({'G_citation': G_citation, 'authorities_2021_table1': authorities, 'df_auth_cit_net_2021_table1': df_auth_cit_net}, open('audit_table1_objects.pkl','wb'))\n"
++   ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": null,
+    "id": "061b4256",
+    "metadata": {},
+    "outputs": [],
+@@ -472,6 +483,17 @@
+     "\n",
+     "f.close()\n"
+    ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": null,
++   "metadata": {},
++   "outputs": [],
++   "source": [
++    "# AUDIT-ADDED (agent B): save objects only, no computation changed\n",
++    "import pickle\n",
++    "pickle.dump({'G_citation_table2': G_citation}, open('audit_table2_objects.pkl','wb'))\n"
++   ]
+   }
+  ],
+  "metadata": {
+@@ -495,4 +517,4 @@
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+-}
++}
+\ No newline at end of file

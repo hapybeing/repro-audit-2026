@@ -1,0 +1,218 @@
+{
+ "who_cells": [
+  {
+   "country": "UK",
+   "row": "WHO (recommendation)",
+   "column": 1,
+   "paper": -1.53,
+   "reproduced_cell": "-1.53$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation)",
+   "column": 2,
+   "paper": -1.36,
+   "reproduced_cell": "-1.36$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation)",
+   "column": 3,
+   "paper": -2.26,
+   "reproduced_cell": "-2.26$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation)",
+   "column": 4,
+   "paper": -1.9,
+   "reproduced_cell": "-1.90$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation)",
+   "column": 5,
+   "paper": -1.36,
+   "reproduced_cell": "-1.36$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation, ratification)",
+   "column": 1,
+   "paper": -2.01,
+   "reproduced_cell": "-2.01$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation, ratification)",
+   "column": 2,
+   "paper": -2.72,
+   "reproduced_cell": "-2.72$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation, ratification)",
+   "column": 3,
+   "paper": -2.62,
+   "reproduced_cell": "-2.62$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation, ratification)",
+   "column": 4,
+   "paper": -2.56,
+   "reproduced_cell": "-2.56$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "UK",
+   "row": "WHO (recommendation, ratification)",
+   "column": 5,
+   "paper": -2.06,
+   "reproduced_cell": "-2.06$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation)",
+   "column": 1,
+   "paper": -1.06,
+   "reproduced_cell": "-1.06$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation)",
+   "column": 2,
+   "paper": -2.15,
+   "reproduced_cell": "-2.15$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation)",
+   "column": 3,
+   "paper": -1.31,
+   "reproduced_cell": "-1.31$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation)",
+   "column": 4,
+   "paper": -1.4,
+   "reproduced_cell": "-1.40$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation)",
+   "column": 5,
+   "paper": -1.25,
+   "reproduced_cell": "-1.25$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation, ratification)",
+   "column": 1,
+   "paper": -1.52,
+   "reproduced_cell": "-1.52$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation, ratification)",
+   "column": 2,
+   "paper": -1.83,
+   "reproduced_cell": "-1.83$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation, ratification)",
+   "column": 3,
+   "paper": -2.05,
+   "reproduced_cell": "-2.05$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation, ratification)",
+   "column": 4,
+   "paper": -1.84,
+   "reproduced_cell": "-1.84$^{**}$",
+   "match": true,
+   "stars_double": true
+  },
+  {
+   "country": "US",
+   "row": "WHO (recommendation, ratification)",
+   "column": 5,
+   "paper": -1.95,
+   "reproduced_cell": "-1.95$^{**}$",
+   "match": true,
+   "stars_double": true
+  }
+ ],
+ "n_who_cells": 20,
+ "n_who_cells_match": 20,
+ "n_who_cells_double_star": 20,
+ "star_observations": {
+  "UK_all_neighbors_gender_cell": "-0.47$^{*}$",
+  "UK_all_neighbors_ideology_cell": "1.76$^{**}$",
+  "US_threatened_ideology_dk_cell": "-7.81$^{**}$"
+ },
+ "paper_printed_note": "paper prints UK All-neighbors Gender -0.47 (0.21) and Ideology 1.76 (0.57) without stars; US Ideology (do not know), Threatened neighbors -7.81** (0.00)",
+ "leave_open_proportions_reproduced": {
+  "United States": [
+   "0.16",
+   "0.14",
+   "0.18"
+  ],
+  "United Kingdom": [
+   "0.16",
+   "0.13",
+   "0.18"
+  ]
+ },
+ "leave_open_proportions_paper": {
+  "United Kingdom": [
+   "0.16",
+   "0.13",
+   "0.18"
+  ],
+  "United States": [
+   "0.16",
+   "0.14",
+   "0.18"
+  ]
+ },
+ "leave_open_match": true
+}

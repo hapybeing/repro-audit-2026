@@ -1,0 +1,40 @@
+--- orig/crosssection_linear.R	2026-10-10 16:03:56.519720442 +0000
++++ crosssection_linear.R	2026-10-10 16:04:04.137945133 +0000
+@@ -1,4 +1,4 @@
+-library(specr)
++# library(specr)  # AUDIT ENV FIX: specr not installed; no specr function is called in this script
+ library(fixest)
+ library(readr)
+ library(broom.mixed)
+@@ -92,6 +92,7 @@
+                                     mutate(resource_and_agriculture = if_else(resource_and_agriculture == 1, "Both", "None/Single")) %>%
+                                     as.data.frame())
+ 
++try({  # AUDIT ENV FIX: plot block made non-fatal (PREREG step 4); no estimates touched
+ effect_plot_bin = marginaleffects::plot_predictions(full_model_h1_graph,
+                                                     condition = "resource_and_agriculture",
+ ) +
+@@ -113,6 +114,7 @@
+ ggsave(plot = effect_plots,
+        filename = "plots/effect_plots_h1.pdf",
+        dpi = 300, device = "pdf", width = 15, height = 9, unit = "cm")
++})
+ 
+ 
+ ########
+@@ -197,6 +199,7 @@
+ ##########
+ 
+ 
++try({  # AUDIT ENV FIX: plot block made non-fatal (PREREG step 4); no estimates touched
+ effect_plot_set = marginaleffects::plot_predictions(full_model_h3,
+                                                     condition = "n_non_intersection_group_polygons",
+ ) +
+@@ -219,6 +222,7 @@
+ ggsave(plot = effect_plots,
+        filename = "plots/effect_plots_h2_h3.pdf",
+        dpi = 300, device = "pdf", width = 15, height = 9, unit = "cm")
++})
+ 
+ 
+ 

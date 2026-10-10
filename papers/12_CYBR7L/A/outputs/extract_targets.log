@@ -1,0 +1,93 @@
+/workspace/audit_runs/12_CYBR7L/A/venv/lib/python3.12/site-packages/networkx/algorithms/link_analysis/hits_alg.py:78: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
+  A = nx.adjacency_matrix(G, nodelist=list(G), dtype=float)
+key,value,source_file,note
+table1_1980_top_n,4,outputs/output_for_table_1.txt,
+table1_1980_N,82,outputs/output_for_table_1.txt,
+table1_1980_african_top_count,0,outputs/output_for_table_1.txt,
+table1_1980_african_top_pct,0.0,outputs/output_for_table_1.txt,
+table1_1980_african_all_count,11,outputs/output_for_table_1.txt,
+table1_1980_african_all_pct,13.41,outputs/output_for_table_1.txt,
+table1_1980_based_top_count,1,outputs/output_for_table_1.txt,
+table1_1980_based_top_pct,25.0,outputs/output_for_table_1.txt,
+table1_1980_based_all_count,10,outputs/output_for_table_1.txt,
+table1_1980_based_all_pct,12.2,outputs/output_for_table_1.txt,
+table1_1990_top_n,7,outputs/output_for_table_1.txt,
+table1_1990_N,133,outputs/output_for_table_1.txt,
+table1_1990_african_top_count,0,outputs/output_for_table_1.txt,
+table1_1990_african_top_pct,0.0,outputs/output_for_table_1.txt,
+table1_1990_african_all_count,18,outputs/output_for_table_1.txt,
+table1_1990_african_all_pct,13.53,outputs/output_for_table_1.txt,
+table1_1990_based_top_count,0,outputs/output_for_table_1.txt,
+table1_1990_based_top_pct,0.0,outputs/output_for_table_1.txt,
+table1_1990_based_all_count,14,outputs/output_for_table_1.txt,
+table1_1990_based_all_pct,10.53,outputs/output_for_table_1.txt,
+table1_2000_top_n,12,outputs/output_for_table_1.txt,
+table1_2000_N,248,outputs/output_for_table_1.txt,
+table1_2000_african_top_count,2,outputs/output_for_table_1.txt,
+table1_2000_african_top_pct,16.67,outputs/output_for_table_1.txt,
+table1_2000_african_all_count,67,outputs/output_for_table_1.txt,
+table1_2000_african_all_pct,27.02,outputs/output_for_table_1.txt,
+table1_2000_based_top_count,1,outputs/output_for_table_1.txt,
+table1_2000_based_top_pct,8.33,outputs/output_for_table_1.txt,
+table1_2000_based_all_count,50,outputs/output_for_table_1.txt,
+table1_2000_based_all_pct,20.16,outputs/output_for_table_1.txt,
+table1_2010_top_n,22,outputs/output_for_table_1.txt,
+table1_2010_N,447,outputs/output_for_table_1.txt,
+table1_2010_african_top_count,6,outputs/output_for_table_1.txt,
+table1_2010_african_top_pct,27.27,outputs/output_for_table_1.txt,
+table1_2010_african_all_count,103,outputs/output_for_table_1.txt,
+table1_2010_african_all_pct,23.04,outputs/output_for_table_1.txt,
+table1_2010_based_top_count,6,outputs/output_for_table_1.txt,
+table1_2010_based_top_pct,27.27,outputs/output_for_table_1.txt,
+table1_2010_based_all_count,77,outputs/output_for_table_1.txt,
+table1_2010_based_all_pct,17.23,outputs/output_for_table_1.txt,
+table1_2021_top_n,45,outputs/output_for_table_1.txt,
+table1_2021_N,903,outputs/output_for_table_1.txt,
+table1_2021_african_top_count,4,outputs/output_for_table_1.txt,
+table1_2021_african_top_pct,8.89,outputs/output_for_table_1.txt,
+table1_2021_african_all_count,155,outputs/output_for_table_1.txt,
+table1_2021_african_all_pct,17.17,outputs/output_for_table_1.txt,
+table1_2021_based_top_count,2,outputs/output_for_table_1.txt,
+table1_2021_based_top_pct,4.44,outputs/output_for_table_1.txt,
+table1_2021_based_all_count,117,outputs/output_for_table_1.txt,
+table1_2021_based_all_pct,12.96,outputs/output_for_table_1.txt,
+T1,8.89,outputs/output_for_table_1.txt,cell 8 year 2021 Africans first pct
+T2,4.44,outputs/output_for_table_1.txt,cell 8 year 2021 based in Africa first pct
+T3,27.27,outputs/output_for_table_1.txt,cell 8 year 2010 Africans first pct
+T6,903,outputs/output_for_table_1.txt,cell 8 year 2021 num_authors
+table2_nonafr_1980,85.71,outputs/output_for_table_2.txt,
+table2_nonafr_1990,87.5,outputs/output_for_table_2.txt,
+table2_nonafr_2000,79.55,outputs/output_for_table_2.txt,
+table2_nonafr_2010,64.29,outputs/output_for_table_2.txt,
+table2_nonafr_2021,78.53,outputs/output_for_table_2.txt,
+table2_afr_1980,100.0,outputs/output_for_table_2.txt,
+table2_afr_1990,100.0,outputs/output_for_table_2.txt,
+table2_afr_2000,50.0,outputs/output_for_table_2.txt,
+table2_afr_2010,40.74,outputs/output_for_table_2.txt,
+table2_afr_2021,55.36,outputs/output_for_table_2.txt,
+T4,78.53,outputs/output_for_table_2.txt,cell 9 first loop 2021
+T5,55.36,outputs/output_for_table_2.txt,cell 9 second loop 2021
+cell3_nb_papers,923,outputs/executed.ipynb,
+cell3_nb_authors,903,outputs/executed.ipynb,T6 candidate 2
+
+    year  rank    AuthorID  Author_is_African  Author_based_in_Africa              Authority
+0   2021    40  2105868080                  0                     0.0   0.005919054857064337
+1   2021    41  2683388422                  0                     0.0   0.005804263782083515
+2   2021    42  2289774726                  0                     0.0   0.005804263782083515
+3   2021    43  2632597601                  1                     1.0   0.004903867347342236
+4   2021    44  2146781787                  1                     0.0    0.00489100592196561
+5   2021    45  1852449350                  0                     0.0    0.00466448687982947
+6   2021    46  2163526829                  0                     0.0  0.0046164626538661695
+7   2021    47  2342542907                  0                     0.0    0.00459391700460421
+8   2021    48  2156662195                  0                     0.0   0.004456783918204693
+9   2021    49  1063158385                  0                     0.0   0.004337917042240618
+10  2021    50  2097033270                  0                     0.0   0.004260645093449923
+11  2010    18  2686910525                  1                     1.0     0.0128420490601903
+12  2010    19  2103513003                  1                     1.0   0.012780684584693554
+13  2010    20  2158004154                  1                     1.0   0.012710941385010454
+14  2010    21  2151785466                  0                     0.0   0.012290921183946039
+15  2010    22   112260535                  0                     0.0   0.012089241388277543
+16  2010    23  2156662195                  0                     0.0    0.01183326070245731
+17  2010    24  2344727389                  0                     0.0   0.011734501782074906
+18  2010    25  2153033528                  0                     1.0   0.011734501782074906
+19  2010    26  2163106571                  0                     0.0   0.011670116173158957

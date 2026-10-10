@@ -1,0 +1,23 @@
+--- replication_code.ipynb.py.txt	2026-10-10 15:58:01.580113052 +0000
++++ replication_code_audit.ipynb.py.txt	2026-10-10 15:58:01.584438616 +0000
+@@ -273,6 +273,11 @@
+ 
+ f.close()
+ ##### CELL 9
++# AUDIT ADDED (saves objects only): G_citation from cell 6 before cell 9 reassigns the name
++import pickle
++pickle.dump({'G_citation': G_citation, 'author_attributes': author_attributes}, open('audit_G_citation_cell6.pkl','wb'))
++
++##### CELL 10
+ # Reproduce Table 2 (Percentages of authors who cite more non-African and non-Africa-based authors than expected by chance)
+ f = open('output_for_table_2.txt', 'w')
+ 
+@@ -393,3 +398,8 @@
+     print('1956 -',year,':',round(fraction_above_baseline*100,2),'%',file=f)
+ 
+ f.close()
++
++##### CELL 11
++# AUDIT ADDED (saves objects only): objects after cell 9
++import pickle
++pickle.dump({'G_citation': G_citation, 'author_attributes': author_attributes}, open('audit_G_citation_cell9.pkl','wb'))

@@ -1,0 +1,7 @@
+[1] TRUE
+Error in library(plyr) : there is no package called ‘plyr’
+[1] "Error in library(plyr) : there is no package called ‘plyr’\n"
+[1] "Traceback:"
+[1] "2: stop(packageNotFoundError(package, lib.loc, sys.call()))"
+[2] "1: library(plyr)"                                           
+Execution halted

@@ -1,0 +1,21 @@
+--- /dev/fd/63	2026-10-10 15:57:00.600000000 +0000
++++ /dev/fd/62	2026-10-10 15:57:00.600000000 +0000
+@@ -263,6 +263,10 @@
+     print("\n",file=f)
+ 
+ f.close()
++# AUDIT-ADDED (agent B): save objects only, no computation changed
++import pickle
++pickle.dump({'G_citation': G_citation, 'authorities_2021_table1': authorities, 'df_auth_cit_net_2021_table1': df_auth_cit_net}, open('audit_table1_objects.pkl','wb'))
++
+ # Reproduce Table 2 (Percentages of authors who cite more non-African and non-Africa-based authors than expected by chance)
+ f = open('output_for_table_2.txt', 'w')
+ 
+@@ -384,3 +388,7 @@
+ 
+ f.close()
+ 
++# AUDIT-ADDED (agent B): save objects only, no computation changed
++import pickle
++pickle.dump({'G_citation_table2': G_citation}, open('audit_table2_objects.pkl','wb'))
++

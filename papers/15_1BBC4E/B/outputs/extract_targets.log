@@ -1,0 +1,23 @@
+Table 3 cells matching to 3 dp: 21 of 21 
+              id        value                   source
+1             T1    0.6363706              corr_ea.rds
+2             T2    0.1772635              corr_ea.rds
+3             T3    0.5390712              corr_ea.rds
+4             T4 6067.0000000       share_nrow_ead.txt
+5  T4_candidate2 6067.0000000 agreement_ead2_tally.csv
+6             T5  144.0000000 agreement_ead2_tally.csv
+7             T6 3093.0000000 agreement_ead2_tally.csv
+8       median21    0.3976916              corr_ea.rds
+9         mean21    0.4051739              corr_ea.rds
+10         max21    0.6363706              corr_ea.rds
+                              note
+1                                 
+2                                 
+3                                 
+4  nrow(ead) Share_Common_Sample.R
+5             sum(n) of ead2 tally
+6                 n at coded_by==7
+7                sum n coded_by>=1
+8      median of 21 distinct pairs
+9        mean of 21 distinct pairs
+10           largest pair: AoW-ARD

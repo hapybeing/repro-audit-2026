@@ -1,0 +1,157 @@
+                                                         model
+full_model_h1.1                                  full_model_h1
+full_model_h1.2                                  full_model_h1
+full_model_h1.3                                  full_model_h1
+full_model_h1.4                                  full_model_h1
+full_model_h1.5                                  full_model_h1
+full_model_h1.6                                  full_model_h1
+full_model_h1.7                                  full_model_h1
+full_model_h1.8                                  full_model_h1
+full_model_h1.9                                  full_model_h1
+full_model_h1_n_resources.1          full_model_h1_n_resources
+full_model_h1_n_resources.2          full_model_h1_n_resources
+full_model_h1_n_resources.3          full_model_h1_n_resources
+full_model_h1_n_resources.4          full_model_h1_n_resources
+full_model_h1_n_resources.5          full_model_h1_n_resources
+full_model_h1_n_resources.6          full_model_h1_n_resources
+full_model_h1_n_resources.7          full_model_h1_n_resources
+full_model_h1_n_resources.8          full_model_h1_n_resources
+full_model_h1_n_resources.9          full_model_h1_n_resources
+full_model_h1_n_resources.10         full_model_h1_n_resources
+full_model_h1_max.1                          full_model_h1_max
+full_model_h1_max.2                          full_model_h1_max
+full_model_h1_max.3                          full_model_h1_max
+full_model_h1_max.4                          full_model_h1_max
+full_model_h1_max.5                          full_model_h1_max
+full_model_h1_max.6                          full_model_h1_max
+full_model_h1_max.7                          full_model_h1_max
+full_model_h1_max.8                          full_model_h1_max
+full_model_h1_max.9                          full_model_h1_max
+full_model_h1_n_resources_max.1  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.2  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.3  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.4  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.5  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.6  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.7  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.8  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.9  full_model_h1_n_resources_max
+full_model_h1_n_resources_max.10 full_model_h1_n_resources_max
+                                                                  term
+full_model_h1.1                               resource_and_agriculture
+full_model_h1.2                                                 n_orgs
+full_model_h1.3                                                 regaut
+full_model_h1.4                                              groupsize
+full_model_h1.5                                         incidence_flag
+full_model_h1.6                                         status_pwrrank
+full_model_h1.7                                        any_multiethnic
+full_model_h1.8                                nightlight_total_pc_log
+full_model_h1.9                                           n_tek_groups
+full_model_h1_n_resources.1        none_one_or_both_nats_agri_charNone
+full_model_h1_n_resources.2      none_one_or_both_nats_agri_charSingle
+full_model_h1_n_resources.3                                     n_orgs
+full_model_h1_n_resources.4                                     regaut
+full_model_h1_n_resources.5                                  groupsize
+full_model_h1_n_resources.6                             incidence_flag
+full_model_h1_n_resources.7                             status_pwrrank
+full_model_h1_n_resources.8                            any_multiethnic
+full_model_h1_n_resources.9                    nightlight_total_pc_log
+full_model_h1_n_resources.10                              n_tek_groups
+full_model_h1_max.1                           resource_and_agriculture
+full_model_h1_max.2                                             n_orgs
+full_model_h1_max.3                                             regaut
+full_model_h1_max.4                                          groupsize
+full_model_h1_max.5                                     incidence_flag
+full_model_h1_max.6                                     status_pwrrank
+full_model_h1_max.7                                    any_multiethnic
+full_model_h1_max.8                            nightlight_total_pc_log
+full_model_h1_max.9                                       n_tek_groups
+full_model_h1_n_resources_max.1    none_one_or_both_nats_agri_charNone
+full_model_h1_n_resources_max.2  none_one_or_both_nats_agri_charSingle
+full_model_h1_n_resources_max.3                                 n_orgs
+full_model_h1_n_resources_max.4                                 regaut
+full_model_h1_n_resources_max.5                              groupsize
+full_model_h1_n_resources_max.6                         incidence_flag
+full_model_h1_n_resources_max.7                         status_pwrrank
+full_model_h1_n_resources_max.8                        any_multiethnic
+full_model_h1_n_resources_max.9                nightlight_total_pc_log
+full_model_h1_n_resources_max.10                          n_tek_groups
+                                     estimate         se          t           p
+full_model_h1.1                   5.06545e-01 0.11847496  4.2755476 6.81542e-05
+full_model_h1.2                   4.94233e-03 0.01666836  0.2965097 7.67848e-01
+full_model_h1.3                   3.14710e-01 0.19389883  1.6230628 1.09733e-01
+full_model_h1.4                  -1.05230e+00 0.35662839 -2.9506871 4.49308e-03
+full_model_h1.5                  -1.16383e-01 0.19323161 -0.6022988 5.49208e-01
+full_model_h1.6                   5.23744e-03 0.05731329  0.0913826 9.27488e-01
+full_model_h1.7                  -1.56887e-01 0.20407065 -0.7687877 4.44986e-01
+full_model_h1.8                   1.40746e-02 0.35403453  0.0397548 9.68418e-01
+full_model_h1.9                   3.48444e-03 0.00788729  0.4417789 6.60211e-01
+full_model_h1_n_resources.1      -4.75310e-01 0.16374583 -2.9027275 5.14213e-03
+full_model_h1_n_resources.2      -4.99608e-01 0.11092439 -4.5040413 3.07020e-05
+full_model_h1_n_resources.3      -4.52108e-03 0.01725061 -0.2620823 7.94141e-01
+full_model_h1_n_resources.4       3.25542e-01 0.18787676  1.7327413 8.81950e-02
+full_model_h1_n_resources.5      -1.11572e+00 0.32448925 -3.4384016 1.06018e-03
+full_model_h1_n_resources.6      -1.44307e-01 0.17286447 -0.8348003 4.07088e-01
+full_model_h1_n_resources.7       1.24840e-02 0.05585740  0.2234976 8.23895e-01
+full_model_h1_n_resources.8      -1.74175e-01 0.20010327 -0.8704238 3.87481e-01
+full_model_h1_n_resources.9       1.54554e-01 0.39712317  0.3891829 6.98496e-01
+full_model_h1_n_resources.10      6.60591e-03 0.00731756  0.9027473 3.70211e-01
+full_model_h1_max.1               1.90686e-01 0.05820999  3.2758222 1.73999e-03
+full_model_h1_max.2              -4.02640e-03 0.01105164 -0.3643259 7.16875e-01
+full_model_h1_max.3               7.12934e-02 0.08422324  0.8464808 4.00593e-01
+full_model_h1_max.4              -4.64605e-01 0.15928863 -2.9167514 4.94388e-03
+full_model_h1_max.5               3.99648e-03 0.08729260  0.0457825 9.63633e-01
+full_model_h1_max.6               1.96758e-02 0.02677431  0.7348762 4.65231e-01
+full_model_h1_max.7              -5.39698e-02 0.08889863 -0.6070941 5.46042e-01
+full_model_h1_max.8               1.77827e-01 0.24450623  0.7272898 4.69831e-01
+full_model_h1_max.9              -1.26804e-03 0.00375378 -0.3378026 7.36672e-01
+full_model_h1_n_resources_max.1  -1.65292e-01 0.07960125 -2.0765047 4.20676e-02
+full_model_h1_n_resources_max.2  -2.06861e-01 0.04930506 -4.1955314 8.97127e-05
+full_model_h1_n_resources_max.3  -8.43138e-03 0.01096730 -0.7687749 4.44993e-01
+full_model_h1_n_resources_max.4   8.45488e-02 0.07632592  1.1077336 2.72326e-01
+full_model_h1_n_resources_max.5  -4.97084e-01 0.14483621 -3.4320413 1.08120e-03
+full_model_h1_n_resources_max.6  -7.61439e-03 0.07642835 -0.0996279 9.20966e-01
+full_model_h1_n_resources_max.7   2.59671e-02 0.02527810  1.0272561 3.08356e-01
+full_model_h1_n_resources_max.8  -5.50473e-02 0.08671929 -0.6347752 5.27949e-01
+full_model_h1_n_resources_max.9   2.50050e-01 0.24069372  1.0388714 3.02965e-01
+full_model_h1_n_resources_max.10  8.91697e-05 0.00364219  0.0244825 9.80548e-01
+                                    p_normal nobs n_fe_groups
+full_model_h1.1                  1.90668e-05  138          62
+full_model_h1.2                  7.66841e-01  138          62
+full_model_h1.3                  1.04576e-01  138          62
+full_model_h1.4                  3.17068e-03  138          62
+full_model_h1.5                  5.46975e-01  138          62
+full_model_h1.6                  9.27189e-01  138          62
+full_model_h1.7                  4.42019e-01  138          62
+full_model_h1.8                  9.68289e-01  138          62
+full_model_h1.9                  6.58649e-01  138          62
+full_model_h1_n_resources.1      3.69928e-03  138          62
+full_model_h1_n_resources.2      6.66732e-06  138          62
+full_model_h1_n_resources.3      7.93258e-01  138          62
+full_model_h1_n_resources.4      8.31417e-02  138          62
+full_model_h1_n_resources.5      5.85159e-04  138          62
+full_model_h1_n_resources.6      4.03830e-01  138          62
+full_model_h1_n_resources.7      8.23148e-01  138          62
+full_model_h1_n_resources.8      3.84069e-01  138          62
+full_model_h1_n_resources.9      6.97141e-01  138          62
+full_model_h1_n_resources.10     3.66660e-01  138          62
+full_model_h1_max.1              1.05355e-03  138          62
+full_model_h1_max.2              7.15615e-01  138          62
+full_model_h1_max.3              3.97285e-01  138          62
+full_model_h1_max.4              3.53698e-03  138          62
+full_model_h1_max.5              9.63484e-01  138          62
+full_model_h1_max.6              4.62415e-01  138          62
+full_model_h1_max.7              5.43788e-01  138          62
+full_model_h1_max.8              4.67048e-01  138          62
+full_model_h1_max.9              7.35512e-01  138          62
+full_model_h1_n_resources_max.1  3.78473e-02  138          62
+full_model_h1_n_resources_max.2  2.72233e-05  138          62
+full_model_h1_n_resources_max.3  4.42027e-01  138          62
+full_model_h1_n_resources_max.4  2.67977e-01  138          62
+full_model_h1_n_resources_max.5  5.99056e-04  138          62
+full_model_h1_n_resources_max.6  9.20640e-01  138          62
+full_model_h1_n_resources_max.7  3.04300e-01  138          62
+full_model_h1_n_resources_max.8  5.25575e-01  138          62
+full_model_h1_n_resources_max.9  2.98865e-01  138          62
+full_model_h1_n_resources_max.10 9.80468e-01  138          62
+factor levels: Both None Single 

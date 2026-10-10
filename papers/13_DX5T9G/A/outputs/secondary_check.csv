@@ -1,0 +1,25 @@
+check,country,row,column,paper_value,reproduced_cell,reproduced_se,match_2dp,has_two_stars
+WHO cell,UK,WHO (recommendation),Infected neighbor,-1.53,-1.53$^{**}$,(0.28),True,True
+WHO cell,UK,WHO (recommendation),Threatened neighbors,-1.36,-1.36$^{**}$,(0.39),True,True
+WHO cell,UK,WHO (recommendation),All neighbors,-2.26,-2.26$^{**}$,(0.31),True,True
+WHO cell,UK,WHO (recommendation),Entire region,-1.9,-1.90$^{**}$,(0.29),True,True
+WHO cell,UK,WHO (recommendation),Entire world,-1.36,-1.36$^{**}$,(0.29),True,True
+WHO cell,UK,"WHO (recommendation, ratification)",Infected neighbor,-2.01,-2.01$^{**}$,(0.27),True,True
+WHO cell,UK,"WHO (recommendation, ratification)",Threatened neighbors,-2.72,-2.72$^{**}$,(0.45),True,True
+WHO cell,UK,"WHO (recommendation, ratification)",All neighbors,-2.62,-2.62$^{**}$,(0.30),True,True
+WHO cell,UK,"WHO (recommendation, ratification)",Entire region,-2.56,-2.56$^{**}$,(0.29),True,True
+WHO cell,UK,"WHO (recommendation, ratification)",Entire world,-2.06,-2.06$^{**}$,(0.29),True,True
+WHO cell,US,WHO (recommendation),Infected neighbor,-1.06,-1.06$^{**}$,(0.24),True,True
+WHO cell,US,WHO (recommendation),Threatened neighbors,-2.15,-2.15$^{**}$,(0.56),True,True
+WHO cell,US,WHO (recommendation),All neighbors,-1.31,-1.31$^{**}$,(0.26),True,True
+WHO cell,US,WHO (recommendation),Entire region,-1.4,-1.40$^{**}$,(0.26),True,True
+WHO cell,US,WHO (recommendation),Entire world,-1.25,-1.25$^{**}$,(0.25),True,True
+WHO cell,US,"WHO (recommendation, ratification)",Infected neighbor,-1.52,-1.52$^{**}$,(0.23),True,True
+WHO cell,US,"WHO (recommendation, ratification)",Threatened neighbors,-1.83,-1.83$^{**}$,(0.44),True,True
+WHO cell,US,"WHO (recommendation, ratification)",All neighbors,-2.05,-2.05$^{**}$,(0.26),True,True
+WHO cell,US,"WHO (recommendation, ratification)",Entire region,-1.84,-1.84$^{**}$,(0.25),True,True
+WHO cell,US,"WHO (recommendation, ratification)",Entire world,-1.95,-1.95$^{**}$,(0.24),True,True
+PREREG inconsistency cell,UK,Gender (male),All neighbors,"-0.47 (0.21), printed without star per PREREG #6",-0.47$^{*}$,(0.21),,False
+PREREG inconsistency cell,UK,Ideology (left-right),All neighbors,"1.76 (0.57), printed without star per PREREG #6",1.76$^{**}$,(0.57),,True
+PREREG inconsistency cell,UK,Health capacity (world-class),Threatened neighbors,"0.60 (0.31), printed with * per PREREG #6",0.60$^{\dag}$,(0.31),,False
+PREREG inconsistency cell,US,Ideology (don't know),Threatened neighbors,-7.81** (0.00) per PREREG #7,-7.81$^{**}$,(0.00),,True

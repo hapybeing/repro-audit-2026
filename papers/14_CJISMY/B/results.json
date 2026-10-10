@@ -1,0 +1,133 @@
+{
+ "paper_id": "14_CJISMY",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Coefficient on 'Natural resources and agriculture' (resource_and_agriculture) in the cross-sectional linear model with country fixed effects, outcome binary disagreement averaged 2000-2019 (Table 1 Model 1; code object coef(full_model_h1)['resource_and_agriculture'] in crosssection_linear.R)",
+   "paper_value": 0.51,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.506545354667801,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.003454645332198969,
+   "rel_diff": -0.006773814376860724,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "clustered SE 0.1185 (rounds to 0.12); fixest coeftable p 6.82e-05, band p<0.001 (***); normal p 1.91e-05; reference level 'Both'; fixest 0.11.1"
+  },
+  {
+   "id": "T2",
+   "description": "Coefficient on 'Natural resources and agriculture' (resource_and_agriculture) in the cross-sectional linear model with country fixed effects, outcome share of disagreeing organizations (Table 1 Model 3; code object coef(full_model_h1_max)['resource_and_agriculture'])",
+   "paper_value": 0.19,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.190685569838297,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0006855698382969844,
+   "rel_diff": 0.0036082623068262334,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "clustered SE 0.0582 (rounds to 0.06); fixest coeftable p 0.00174, band p<0.01 (**); normal p 0.00105; reference level 'Both'; fixest 0.11.1"
+  },
+  {
+   "id": "T3",
+   "description": "Coefficient on 'Neither resources nor agri (baseline: both)' in Table 1 Model 2, outcome binary disagreement (code object coef(full_model_h1_n_resources)['none_one_or_both_nats_agri_charNone'])",
+   "paper_value": -0.48,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -0.475309502695255,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.004690497304744967,
+   "rel_diff": 0.009771869384885348,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "clustered SE 0.1637 (rounds to 0.16); fixest coeftable p 0.00514, band p<0.01 (**); normal p 0.0037; reference level 'Both'; fixest 0.11.1"
+  },
+  {
+   "id": "T4",
+   "description": "Coefficient on 'Resources or agri (baseline: both)' in Table 1 Model 2, outcome binary disagreement (code object coef(full_model_h1_n_resources)['none_one_or_both_nats_agri_charSingle'])",
+   "paper_value": -0.5,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -0.499608023674717,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003919763252829833,
+   "rel_diff": 0.0007839526505659666,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "clustered SE 0.1109 (rounds to 0.11); fixest coeftable p 3.07e-05, band p<0.001 (***); normal p 6.67e-06; reference level 'Both'; fixest 0.11.1"
+  },
+  {
+   "id": "T5",
+   "description": "Number of observations (ethnic group-country units) in Table 1 Model 1 (nobs(full_model_h1))",
+   "paper_value": 138,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 138,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "country FE groups 62 (paper 62); Models 2-4 nobs 138, 138, 138"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Country-cluster bootstrap, 1000 resamples of the 62 countries, seed 20261010, refit with boot_id FE and clusters; T1 coefficient (Model 1)",
+   "ran": true,
+   "estimate": 0.506545354667801,
+   "se_or_ci": "bootstrap SD 0.1461; percentile 95% CI [0.1848, 0.7675]; failed draws 0",
+   "p_value": 0.008,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.csv",
+   "note": "p<0.001 also holds: False. bootstrap SD as se; percentile 95% CI; 1000 successful draws of 1000; seed 20261010. Model 3 secondary: estimate 0.1907, bootstrap SD 0.0687, CI [0.0384, 0.3086], p 0.016"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop cases with Cook's distance > 4/N from lm(F1 + factor(country)) on the estimation sample (non-finite kept), refit Model 1; T1 coefficient",
+   "ran": true,
+   "estimate": 0.541175564135477,
+   "se_or_ci": "clustered SE 0.1256; N 122; dropped 16",
+   "p_value": 6.70545870578255e-05,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.csv",
+   "note": "p<0.001 also holds: True. lm coef equals feols coef to 1e-8: TRUE; Cook's threshold 4/N = 0.02899; non-finite Cook's distances kept: 20; |z|>3 rule on outcome would remove: 0. Model 3 secondary: estimate 0.2112, SE 0.0510, p 0.000121, N 121, dropped 17"
+  },
+  {
+   "id": "R_c",
+   "description": "Model 1 without country fixed effects (pooled OLS), SE clustered by country, same estimation sample; T1 coefficient",
+   "ran": true,
+   "estimate": 0.148215993776223,
+   "se_or_ci": "clustered SE 0.0998; N 138",
+   "p_value": 0.14259698598228,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness.csv",
+   "note": "p<0.001 also holds: False. pooled OLS with intercept, SE clustered by country. Model 3 secondary: estimate 0.0598, SE 0.0492, p 0.23, N 138"
+  }
+ ],
+ "bugs": [],
+ "code_review_summary": "none found. Read all of crosssection_linear.R (228 lines) and funs_and_constants.R (58 lines); other deposited scripts were not reviewed line by line.",
+ "env_fixes": [
+  "diffs/crosssection_linear.R.diff: library(specr) commented out for the main run (specr not yet installed then; no specr function is called in the script; after specr 1.0.0 was installed the unmodified script gave identical results, see outputs/specr_check.txt); both marginaleffects plot blocks wrapped in try() (PREREG step 4). No model or data line changed.",
+  "Data placed as data/epro_data_h1.csv, data/epro_data_h2.csv, data/epro_geo_data_h3.csv via ?format=original (deposit is flat, code reads data/). Path-only, no file edit.",
+  "Packages: fixest 0.11.1 (authors' pin) and texreg 1.38.6 (authors' pin) built from the CRAN archive into a fresh library; dplyr 1.0.9 and vctrs 0.5.1 (authors' pins) built but could not be loaded with the rest of the installed stack (see LOG.md), so system dplyr 1.1.4 / vctrs 0.6.5 were used."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All five Table 1 targets reproduce to the printed rounding with the authors' pinned fixest 0.11.1, with significance bands matching the printed stars; the factor reference level is 'Both' as in the paper.",
+ "confidence": "high",
+ "confidence_reason": "Deterministic OLS; data checksums match PREREG; pinned fixest and texreg used; numbers parsed by script from coeftable output.",
+ "time_minutes": 19,
+ "uncertainties": [
+  "dplyr 1.0.9 / vctrs 0.5.1 pins were not usable together with the system tidyverse stack (vctrs 0.5.1: 'namespace vctrs 0.5.1 is already loaded, but >= 0.6.0 is required'; dplyr 1.0.9: broom.mixed needs dplyr >= 1.0.10). The factor level order (Both, None, Single) came from dplyr 1.1.4 / vctrs 0.6.5; whether the authors' dplyr 1.0.9 gives the same order was not run, but the paper's printed baseline 'Both' matches.",
+  "Model 2 category counts in mean_h1 (all 139 groups, before the one missing-covariate drop): Both 40, None 25, Single 74 (outputs/factor_levels.csv).",
+  "R_c (no country fixed effects) gives a smaller T1 coefficient 0.1482 with p 0.143: the H1 association in the pooled model is not significant at 0.05 (robustness only, does not change the class).",
+  "Context check, not pre-registered as a check (PREREG section 1 notes that p. 824 prose says a min-to-max change predicts a 0.2 point increase, Figure 2 left panel, while Table 1 Model 1 prints 0.51). The Figure 2 left-panel model in the code dichotomises the predictor (Both vs None/Single): Model 1 coef resource_and_agriculture (min 0 to max 1 change) = 0.5065; full_model_h1_graph coef resource_and_agricultureNone/Single (Figure 2 left panel model) = -0.2197; Model 3 coef resource_and_agriculture = 0.1907; range of resource_and_agriculture in estimation sample (min|max) = 0|1 (outputs/figure2_prose_check.csv). So the 0.2 in the prose is close in size to the Both vs None/Single gap of the dichotomised Figure 2 model, not to the Model 1 coefficient. Described, not judged.",
+  "specr: specr 1.0.0 (authors' pin) was installed from CRAN after the main run; the unmodified crosssection_linear.R then ran without error (outputs/console_crosssection_linear_unmodified.log). Same 38 model-term rows: True; max abs difference in estimate/SE/p/nobs vs the edited-script run: 0.0."
+ ]
+}

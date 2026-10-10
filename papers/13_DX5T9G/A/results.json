@@ -1,0 +1,159 @@
+{
+ "paper_id": "13_DX5T9G",
+ "agent": "A",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "Full 00_Run it all.R was OOM-killed in 03 (simulation arrays; 3.04 GB RSS at kill, about 2-3 GB available on the shared machine). Targets come from the pre-registered fallback (authors' 03 estimation lines unchanged, simulations skipped); 04, 06, 07, 08 not run.",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "UK sample (Table 2): multinomial-logit coefficient on 'WHO (recommendation)' in the 'Close border to infected neighbor' (Y=2) vs 'leave open' equation, main model; printed value is the mean of 5000 parametric draws (store_estimates[[2]]$Coefficients, X1 '2:I(T_who == \"WHO\")TRUE', Subset 1, Mean)",
+   "paper_value": -1.53,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.53367494417818,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0036749441781800396,
+   "rel_diff": 0.0024019242994640783,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 mvrnorm draws (pre-registered candidate 1), fallback run. SD 0.2794, code pvalue 4.35e-08. Candidate 2 MLE (labelled refit of identical multinom call) -1.5374, analytic SE 0.2748, Wald p 2.22e-08. Printed cell in reproduced .tex: -1.53$^{**}$"
+  },
+  {
+   "id": "T2",
+   "description": "UK sample (Table 2): coefficient on 'WHO (recommendation, ratification)' in the infected-neighbor (Y=2) equation, main model (X1 '2:I(T_who == \"WHO.Ratified\")TRUE', Subset 1, Mean)",
+   "paper_value": -2.01,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -2.01057371800477,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0005737180047700186,
+   "rel_diff": 0.0002854318431691635,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 mvrnorm draws (pre-registered candidate 1), fallback run. SD 0.2742, code pvalue 2.82e-13. Candidate 2 MLE (labelled refit of identical multinom call) -2.0112, analytic SE 0.2678, Wald p 5.86e-14. Printed cell in reproduced .tex: -2.01$^{**}$"
+  },
+  {
+   "id": "T3",
+   "description": "US sample (Table 3): coefficient on 'WHO (recommendation)' in the infected-neighbor (Y=2) equation, main model (store_estimates[[1]]$Coefficients, X1 '2:I(T_who == \"WHO\")TRUE', Subset 1, Mean)",
+   "paper_value": -1.06,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.0619375493752,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.001937549375199854,
+   "rel_diff": 0.001827876769056466,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 mvrnorm draws (pre-registered candidate 1), fallback run. SD 0.2398, code pvalue 9.79e-06. Candidate 2 MLE (labelled refit of identical multinom call) -1.0558, analytic SE 0.2341, Wald p 6.48e-06. Printed cell in reproduced .tex: -1.06$^{**}$"
+  },
+  {
+   "id": "T4",
+   "description": "US sample (Table 3): coefficient on 'WHO (recommendation, ratification)' in the infected-neighbor (Y=2) equation, main model (X1 '2:I(T_who == \"WHO.Ratified\")TRUE', Subset 1, Mean)",
+   "paper_value": -1.52,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.52214164321613,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0021416432161300847,
+   "rel_diff": 0.001408975800085582,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 mvrnorm draws (pre-registered candidate 1), fallback run. SD 0.2282, code pvalue 2.97e-11. Candidate 2 MLE (labelled refit of identical multinom call) -1.5167, analytic SE 0.2255, Wald p 1.74e-11. Printed cell in reproduced .tex: -1.52$^{**}$"
+  },
+  {
+   "id": "T5",
+   "description": "UK estimation sample size for the main model (column N = nrow(tmp) in store_estimates[[2]]$Coefficients, Subset 1)",
+   "paper_value": 1599,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1599.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "N = nrow(tmp) column of store_estimates Coefficients (fallback run); table caption prints 1599"
+  },
+  {
+   "id": "T6",
+   "description": "US estimation sample size for the main model (column N in store_estimates[[1]]$Coefficients, Subset 1)",
+   "paper_value": 1625,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1625.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "N = nrow(tmp) column of store_estimates Coefficients (fallback run); table caption prints 1625"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Nonparametric case bootstrap within country, 1000 resamples, set.seed(20261010), weights w held fixed; primary quantity T2",
+   "ran": true,
+   "estimate": -2.01119455745179,
+   "se_or_ci": "boot SE 0.4180; 95% PI [-2.9726, -1.3406]; 99% PI [-3.3844, -1.1249]; 1000 converged fits used, 0 non-converged",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_a_bootstrap.csv",
+   "note": "p_boot = min(2*mean(b>=0),1); 0 means no resample of 1000 had b>=0 (p < 0.002 at this resolution). Bootstrap fits use Hess=FALSE (coefficients identical; Hessian not needed). Others: T1 MLE -1.537, boot SE 0.437, 99% PI [-2.892, -0.671], p_boot 0; T3 MLE -1.056, boot SE 0.277, 99% PI [-1.847, -0.437], p_boot 0; T4 MLE -1.517, boot SE 0.271, 99% PI [-2.313, -0.929], p_boot 0"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z(w)|>3 within country, else top 1% of w; refit authors' main model; primary quantity T2",
+   "ran": true,
+   "estimate": -1.87099623071319,
+   "se_or_ci": "SD of draws 0.2758; MLE -1.8721; N 1577",
+   "p_value": 1.38733023082409e-11,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_b_extreme_weights.csv",
+   "note": "Exclusion: UK rule |z(w)|>3, dropped 22 (|z| log cases >3: 0, |z| age >3: 0); US rule top 1% of w (no |z|>3), dropped 16 (|z| log cases >3: 0, |z| age >3: 0) (outputs/R_b_exclusion_info.csv). Others: T1 Mean -1.429, SD 0.281, p 3.73e-07; T3 Mean -1.124, SD 0.237, p 2.26e-06; T4 Mean -1.625, SD 0.233, p 3.8e-12"
+  },
+  {
+   "id": "R_c",
+   "description": "Unweighted estimation of the main model, set.seed(1230), mvrnorm 5000; primary quantity T2",
+   "ran": true,
+   "estimate": -1.73856536455063,
+   "se_or_ci": "SD of draws 0.2516; MLE -1.7386",
+   "p_value": 5.83650848985616e-12,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_c_unweighted.csv",
+   "note": "Others: T1 Mean -1.319, SD 0.258, p 3.27e-07; T3 Mean -1.160, SD 0.245, p 2.17e-06; T4 Mean -1.750, SD 0.235, p 1.36e-13"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "code/06_Estimate Open.R",
+   "line": 199,
+   "description": "Footnote 20 probit models mod_UK (lines 197-199) and mod_US (lines 201-203) pass weights as w=subset(data, ...)$w1, but the prepared data has no column w1 (01_Prepare data.R creates only w). $w1 is NULL, so both models are fitted unweighted, while the other models in 06 use weights=w.",
+   "evidence": "outputs/check_06_w1.csv: w1_column_exists=FALSE; as-deposited fit equals unweighted fit: UK TRUE, US TRUE; equals w-weighted fit: UK FALSE, US FALSE; WHO coefficient as deposited 1.468 (UK), 0.556 (US) vs w-weighted 1.903, 0.510. Affects a footnote only, not any target. 06 itself was not run end to end; the check refits the two calls on the agent's prepared data."
+  }
+ ],
+ "env_fixes": [
+  "diffs/00_Run_it_all.R.diff: registerDoMC cores 7 to 1 (memory; allowed by PREREG)",
+  "diffs/03_Estimate_main_models_FALLBACK.diff: labelled deviation, pre-registered fallback after OOM kill; simulation blocks removed, estimation lines unchanged",
+  "diffs/00_fallback_runner.diff: runner for 00 preliminaries + 01 + fallback 03 + 05",
+  "packages: ebal 0.1-8 and logr 1.3.3 (authors' versions) via remotes::install_version; r-cran-readstata13 0.11.0 and r-cran-tmvtnorm 1.6 via apt; other packages Debian versions (environment.txt)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets match the printed Table 2 and Table 3 values to two decimals (N exactly), with negative WHO coefficients and code p-values below .01, using the authors' estimation code unchanged via the pre-registered fallback. As-is outcome (labelled deviation): the full deposited pipeline could not finish on this 7 GB shared machine (OOM in 03), which on its own would be E; per PREREG the class is proposed from the fallback.",
+ "confidence": "medium",
+ "confidence_reason": "Exact match by script, but the full pipeline could not finish (memory) so the pre-registered fallback was used, and R/package versions differ from the authors'; B not yet compared.",
+ "time_minutes": 17,
+ "uncertainties": [
+  "Targets come from the fallback run, not from the full 03 script. The fallback keeps the authors' estimation and draw lines unchanged; equality with a full run is argued from the code (set.seed(1230) immediately before multinom and mvrnorm), not observed.",
+  "Secondary context (not targets): 20 of 20 WHO cells of the reproduced Tables 2 and 3 equal the PREREG secondary values to two decimals, 20 carry ** (outputs/secondary_check.csv).",
+  "PREREG inconsistency 6: the reproduced UK table prints Gender (male) All neighbors as -0.47* and Ideology (left-right) All neighbors as 1.76**, and Health capacity Threatened neighbors as 0.60 with a dagger; PREREG records the printed paper as -0.47 and 1.76 without stars and 0.60 with *. Stars only; not a target; the agent did not re-read the paper PDF (outputs/secondary_check.csv).",
+  "PREREG inconsistency 7 reproduced: US Ideology (don't know), Threatened neighbors prints -7.81** (0.00) in outputs/Table_3_table_main_US_1.tex (near-empty cell; not a target).",
+  "R_a: UK bootstrap SEs (about 0.42 to 0.44) are much larger than the authors' parametric SDs (about 0.27 to 0.28); US bootstrap SEs about 0.27 to 0.28 vs 0.23 to 0.24. Weights were held fixed; conclusion unchanged (99% intervals exclude 0).",
+  "Unverified observation (01_Prepare data.R lines 121, 127, 136, 162): the CCES commonweight and BES wt_demog are stored as w but not used; target rows are sampled uniformly (sample(1:nrow(t_tmp), 10000, replace=TRUE)), so the entropy-balancing targets are unweighted CCES/BES moments. Whether this is intended could not be determined.",
+  "Unverified observation (01 lines 153-154): runif() for the dummy M is called before set.seed(1230); M is only the left-hand side for model.matrix and does not affect the weights.",
+  "Unverified observation (01 lines 121-126): 419 CCES rows with missing ideo5 stay in t_data; model.matrix drops them when sampled, so the effective target sample is slightly below 10000 in the US. Not tested for impact.",
+  "Code review scope: read fully 00, 01, 03, 05 and X_Auxiliary; 02 lines 1-60; 06 lines 1-60 and 180-220 (plus grep for weights); 04, 07, 08 not read. Bugs list has one item (06 w1); no bug found in the target path.",
+  "Version drift: R 4.5.0 vs 4.2.2, nnet 7.3-20 vs 7.3-18, MASS 7.3-65 vs 7.3-58.1, readstata13 0.11.0 vs 0.10.0, aarch64 Linux reference BLAS vs x86_64 macOS build; ebal and logr at the authors' versions."
+ ]
+}

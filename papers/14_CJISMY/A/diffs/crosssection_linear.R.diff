@@ -1,0 +1,12 @@
+--- orig/crosssection_linear.R	2026-10-10 15:50:38.038196055 +0000
++++ run/crosssection_linear.R	2026-10-10 15:58:09.218076327 +0000
+@@ -1,7 +1,7 @@
+-library(specr)
++# library(specr)  # audit env fix: specr not installed; no specr function is called in this script
+ library(fixest)
+ library(readr)
+-library(broom.mixed)
++# library(broom.mixed)  # audit env fix: fails to load with pinned dplyr 1.0.9 (needs >= 1.0.10); no broom.mixed function is called in this script
+ library(texreg)
+ library(dplyr)
+ library(fixest)

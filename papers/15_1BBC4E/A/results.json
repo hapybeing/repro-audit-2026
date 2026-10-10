@@ -1,0 +1,146 @@
+{
+ "paper_id": "15_1BBC4E",
+ "agent": "A",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Pearson correlation between the PDA dummies of the Authoritarian Regimes Data Set (HTW_RegType_MP_Autocracy, renamed ARD) and Autocracies of the World (RegType_magaloni_EA, renamed AoW), pairwise complete observations; cell [ARD, AoW] of corr.ea in Scripts/Comparing Indices/Comparison.R (largest of the 21 pairs)",
+   "paper_value": 0.636,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.636370615832288,
+   "source_file": "outputs/targets_extracted.csv (from outputs/corr_ea_fullprec.csv)",
+   "abs_diff": 0.00037061583228803485,
+   "rel_diff": 0.0005827292960503693,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  },
+  {
+   "id": "T2",
+   "description": "Pearson correlation between the PDA dummies of Polity (Politytype_Anocracy) and Classifying Political Regimes (AnckarRegtype_MP_Autocracy, renamed CPR), pairwise complete observations; cell [Polity, CPR] of corr.ea in Comparison.R (smallest of the 21 pairs)",
+   "paper_value": 0.177,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.17726354296779,
+   "source_file": "outputs/targets_extracted.csv (from outputs/corr_ea_fullprec.csv)",
+   "abs_diff": 0.0002635429677900203,
+   "rel_diff": 0.0014889433208475724,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  },
+  {
+   "id": "T3",
+   "description": "Pearson correlation between the PDA dummies of the Lexical Index of Electoral Democracy (RegType_lied_EA, LIED) and Regimes of the World (RegType_RoW_EA, RoW), pairwise complete observations; cell [LIED, RoW] of corr.ea in Comparison.R",
+   "paper_value": 0.539,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.539071179216179,
+   "source_file": "outputs/targets_extracted.csv (from outputs/corr_ea_fullprec.csv)",
+   "abs_diff": 7.117921617894041e-05,
+   "rel_diff": 0.0001320579149887577,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": ""
+  },
+  {
+   "id": "T4",
+   "description": "Number of country-years coded by all seven typologies (common sample): nrow(ead) after select(7 *_n regime variables, year) %>% na.omit() in Scripts/Comparing Indices/Share_Common_Sample.R lines 10-13",
+   "paper_value": 6067,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 6067,
+   "source_file": "outputs/targets_extracted.csv (from outputs/share_nrow_ead.txt)",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "T4 candidate 2 (sum of ead2 tally, Figure 3 sample) = 6067, same as candidate 1."
+  },
+  {
+   "id": "T5",
+   "description": "Number of common-sample country-years coded as PDA by all seven typologies: n where coded_by == 7 in the ead2 tally of Scripts/Comparing Indices/Agreement across all.R lines 6-22",
+   "paper_value": 144,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 144,
+   "source_file": "outputs/targets_extracted.csv (from outputs/agreement_ead2_tally.csv)",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "share of common sample = 0.0237"
+  },
+  {
+   "id": "T6",
+   "description": "Number of common-sample country-years coded as PDA by at least one typology: sum of n where coded_by >= 1 in the ead2 tally of Agreement across all.R lines 6-22",
+   "paper_value": 3093,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 3093,
+   "source_file": "outputs/targets_extracted.csv (from outputs/agreement_ead2_tally.csv)",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "T4_cand2 minus n at coded_by==0, from the same ead2 tally as T5"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Country-cluster bootstrap (Final_Code), 1000 resamples, set.seed(20261010), pairwise-complete Pearson matrix; T1 primary",
+   "ran": true,
+   "estimate": 0.636370615832288,
+   "se_or_ci": "95% percentile CI [0.5433, 0.7172]; bootstrap SE 0.0418",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json; outputs/R_a_bootstrap_draws.csv",
+   "note": "223 clusters (123 rows with missing Final_Code excluded from the pool; they enter no pair). Undefined T1 resamples: 0. Share of resamples with T1 >= 0.73: 0.007. p = min(2 x share T1 <= 0, 1). Secondary CIs: T2 [0.1170, 0.2316], T3 [0.4951, 0.5847], largest pair [0.5799, 0.7196] (share >= 0.73: 0.012), median [0.3500, 0.4610]."
+  },
+  {
+   "id": "R_b",
+   "description": "Influential-country exclusion: drop top 1% (ceiling, min 1) of countries by |leave-one-country-out change in T1|, recompute 7x7 matrix",
+   "ran": true,
+   "estimate": 0.664735277719699,
+   "se_or_ci": "cor.test 95% CI [0.6506, 0.6784]",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json; outputs/R_b_loco_T1.csv",
+   "note": "2 of 172 countries dropped: Botswana, Egypt (Final_Code 571, 651), 372 country-years in total, 82 with an ARD-AoW pair; n = 6199. T2 0.1776, T3 0.5399, largest pair AoW-ARD (0.6647), median 0.3992. p printed as 0 means below double precision."
+  },
+  {
+   "id": "R_c",
+   "description": "Listwise common sample (all seven PDA dummies non-missing) instead of pairwise-complete observations",
+   "ran": true,
+   "estimate": 0.646769441457799,
+   "se_or_ci": "cor.test 95% CI [0.6319, 0.6612]",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json; outputs/R_c_listwise_matrix.csv",
+   "note": "N = 6067. T2 0.2838, T3 0.5616, median 0.4319. Largest pair here is AoW-LIED (0.6695), not ARD-AoW; still below 0.73. p printed as 0 means below double precision."
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "none: no author file changed (see diffs/README.md); corrr 0.4.5 and pacman 0.5.1 installed from CRAN into the per-run library"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets reproduced exactly at the paper's printed precision by running the authors' three scripts unmodified on the deposited Measures_merged.rds; all 21 Table 3 cells also match to 3 dp.",
+ "confidence": "high",
+ "confidence_reason": "Deterministic computation, unmodified code, deposited input file with matching checksum; final confidence also depends on agent B agreeing.",
+ "time_minutes": 6,
+ "uncertainties": [
+  "Code review: none found (bugs list empty). Read Comparison.R fully, Share_Common_Sample.R and Agreement across all.R fully; other scripts not reviewed. Unverified observation: Comparison.R lines 105, 176 and 183 relabel alphabetically ordered factor levels by position, so Figure 1 and Figure 4 labels depend on the collation locale; correct in this run (C.UTF-8, outputs/label_locale_check.csv), not tested under a locale that sorts upper case before lower case; consistent with the author's comment at line 104. Not on any target.",
+  "Input is the deposited merged file; the data preparation (Merging_measures.R, needs democracyData from GitHub) was not re-run, as the PREREG plan states.",
+  "Paper values come from PREREG.md, which read Table 3 from PDF-extracted text; the PDF bytes and the supplemental appendix were not available to this run.",
+  "Prose values noted in PREREG (highest correlation '.63', median '.39') differ from the rounded reproduced values 0.636 and median 0.3977 (outputs/targets_extracted.csv); Table 3 itself matches. Consistent with truncation in the prose; not a target.",
+  "R_a judgment call: 123 rows with missing Final_Code (only RoW non-missing, so they enter no correlation) were left out of the bootstrap cluster pool; with them as an extra cluster the random draws would differ.",
+  "R_b/R_c p-values are below double precision and stored as 0; R_a p = 0 means no bootstrap resample had T1 <= 0.",
+  "No version pins in the deposit; current CRAN/Debian versions used (corrr 0.4.5)."
+ ]
+}

@@ -1,0 +1,62 @@
+{
+  "full_sample": {
+    "T1": 0.636371,
+    "T2": 0.177264,
+    "T3": 0.539071,
+    "max21": 0.636371,
+    "max_pair": "AoW-ARD",
+    "median21": 0.397692
+  },
+  "na_final_code_rows": 123,
+  "na_final_code_rows_with_ARD_AoW_pair": 0,
+  "R_a": {
+    "seed": 20261010,
+    "B": 1000,
+    "n_clusters": 223,
+    "estimate": 0.636371,
+    "ci_lo": 0.54332,
+    "ci_hi": 0.717217,
+    "boot_se": 0.041779,
+    "share_T1_ge_0.73": 0.007,
+    "p_value": 0,
+    "n_undefined": 0,
+    "T2_ci": [0.117015, 0.231571],
+    "T3_ci": [0.495114, 0.584684],
+    "max21_ci": [0.579917, 0.719559],
+    "median21_ci": [0.349954, 0.461026],
+    "share_max21_ge_0.73": 0.012,
+    "same": true
+  },
+  "R_b": {
+    "n_countries_ranked": 172,
+    "n_dropped": 2,
+    "dropped_Final_Code": [571, 651],
+    "dropped_names": ["Botswana", "Egypt"],
+    "dropped_country_years_all_rows": 372,
+    "dropped_country_years_with_ARD_AoW_pair": 82,
+    "estimate": 0.664735,
+    "ci_lo": 0.650607,
+    "ci_hi": 0.678403,
+    "p_value": 0,
+    "n": 6199,
+    "T2": 0.17764,
+    "T3": 0.539856,
+    "max21": 0.664735,
+    "max_pair": "AoW-ARD",
+    "median21": 0.399202,
+    "same": true
+  },
+  "R_c": {
+    "N": 6067,
+    "estimate": 0.646769,
+    "ci_lo": 0.63189,
+    "ci_hi": 0.661173,
+    "p_value": 0,
+    "T2": 0.2838,
+    "T3": 0.561645,
+    "max21": 0.669546,
+    "max_pair": "AoW-LIED",
+    "median21": 0.431879,
+    "same": true
+  }
+}

@@ -1,0 +1,165 @@
+{
+ "paper_id": "13_DX5T9G",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "UK sample (Table 2): multinomial-logit coefficient on 'WHO (recommendation)' in the 'Close border to infected neighbor' (Y=2) vs 'leave open' equation, main model; printed value is the mean of 5000 parametric draws (store_estimates[[2]]$Coefficients, X1 '2:I(T_who == \"WHO\")TRUE', Subset 1, Mean)",
+   "paper_value": -1.53,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.53367494417818,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.003675,
+   "rel_diff": -0.002402,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 parametric draws (pre-registered candidate 1). SD 0.2794, code p-value 4.35e-08. Candidate 2 MLE coef -1.5374 (analytic SE 0.2748, Wald p 2.22e-08). Produced by the PREREG labelled fallback (m = 1, simulations skipped) after the full 03 was OOM-killed."
+  },
+  {
+   "id": "T2",
+   "description": "UK sample (Table 2): coefficient on 'WHO (recommendation, ratification)' in the infected-neighbor (Y=2) equation, main model (X1 '2:I(T_who == \"WHO.Ratified\")TRUE', Subset 1, Mean)",
+   "paper_value": -2.01,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -2.01057371800477,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.000574,
+   "rel_diff": -0.000285,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 parametric draws (pre-registered candidate 1). SD 0.2742, code p-value 2.82e-13. Candidate 2 MLE coef -2.0112 (analytic SE 0.2678, Wald p 5.86e-14). Produced by the PREREG labelled fallback (m = 1, simulations skipped) after the full 03 was OOM-killed."
+  },
+  {
+   "id": "T3",
+   "description": "US sample (Table 3): coefficient on 'WHO (recommendation)' in the infected-neighbor (Y=2) equation, main model (store_estimates[[1]]$Coefficients, X1 '2:I(T_who == \"WHO\")TRUE', Subset 1, Mean)",
+   "paper_value": -1.06,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.0619375493752,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.001938,
+   "rel_diff": -0.001828,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 parametric draws (pre-registered candidate 1). SD 0.2398, code p-value 9.79e-06. Candidate 2 MLE coef -1.0558 (analytic SE 0.2341, Wald p 6.48e-06). Produced by the PREREG labelled fallback (m = 1, simulations skipped) after the full 03 was OOM-killed."
+  },
+  {
+   "id": "T4",
+   "description": "US sample (Table 3): coefficient on 'WHO (recommendation, ratification)' in the infected-neighbor (Y=2) equation, main model (X1 '2:I(T_who == \"WHO.Ratified\")TRUE', Subset 1, Mean)",
+   "paper_value": -1.52,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -1.52214164321613,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.002142,
+   "rel_diff": -0.001409,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Mean of 5000 parametric draws (pre-registered candidate 1). SD 0.2282, code p-value 2.97e-11. Candidate 2 MLE coef -1.5167 (analytic SE 0.2255, Wald p 1.74e-11). Produced by the PREREG labelled fallback (m = 1, simulations skipped) after the full 03 was OOM-killed."
+  },
+  {
+   "id": "T5",
+   "description": "UK estimation sample size for the main model (column N = nrow(tmp) in store_estimates[[2]]$Coefficients, Subset 1)",
+   "paper_value": 1599,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1599,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "N = nrow(tmp) of the main model rows."
+  },
+  {
+   "id": "T6",
+   "description": "US estimation sample size for the main model (column N in store_estimates[[1]]$Coefficients, Subset 1)",
+   "paper_value": 1625,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 1625,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "N = nrow(tmp) of the main model rows."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Nonparametric case bootstrap within country, weights w held fixed, set.seed(20261010) once, 1000 resamples UK then US, weighted multinom refit; estimate = original-sample MLE; p = min(2*mean(b>=0),1); significant if 99% percentile CI excludes 0",
+   "ran": true,
+   "estimate": -2.01119455745179,
+   "se_or_ci": "boot SE 0.4180; 95% [-2.973, -1.341]; 99% [-3.384, -1.125]",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_a_bootstrap_summary.csv",
+   "note": "Primary = T2. Non-converged fits: UK 0, US 0. Secondary: T1: MLE -1.537, 99% [-2.892, -0.671], p 0; T3: MLE -1.056, 99% [-1.847, -0.437], p 0; T4: MLE -1.517, 99% [-2.313, -0.929], p 0"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z(w)| > 3 within country (fallback: top 1% of w if none); refit authors' main model with set.seed(1230), mvrnorm 5000, Mean/SD/pvalue (df = combined post-exclusion N)",
+   "ran": true,
+   "estimate": -1.87099623071319,
+   "se_or_ci": "SD 0.2758",
+   "p_value": 1.38733023082409e-11,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_b_extreme_weights.csv",
+   "note": "UK rule: |z(w)| > 3 within country, dropped 22; US rule: top 1% of w within country (no |z|>3 rows), dropped 16. |z|>3 on log cases: UK 0, US 0; on Age: UK 0, US 0 (outputs/R_b_exclusion_info.csv). Secondary: T1: Mean -1.429, p 3.73e-07; T3: Mean -1.124, p 2.26e-06; T4: Mean -1.625, p 3.8e-12"
+  },
+  {
+   "id": "R_c",
+   "description": "Unweighted estimation of the main model (no weights), set.seed(1230), mvrnorm 5000, authors' Mean/SD/pvalue",
+   "ran": true,
+   "estimate": -1.73856536455063,
+   "se_or_ci": "SD 0.2516; MLE -1.7386",
+   "p_value": 5.83650848985616e-12,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/R_c_unweighted.csv",
+   "note": "Secondary: T1: Mean -1.319, p 3.27e-07; T3: Mean -1.160, p 2.17e-06; T4: Mean -1.750, p 1.36e-13"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "code/06_Estimate Open.R",
+   "line": 199,
+   "description": "Footnote 20 verisimilitude probit models (mod_UK line 197-199, mod_US line 201-203) pass weights as `...$w1`, but the prepared data has no column w1 (01_Prepare data.R creates only `w`). `$w1` returns NULL, so these two bayesglm models run unweighted, unlike every other model in the deposit. Not a target.",
+   "evidence": "outputs/code_checks.txt Check 2: columns of output/Prepped_survey_data.csv are X, T_health_cap, T_cases, Y, Authoritarianism, T_who, Gender_male, Age, LR, Edu_university, Country, w; is.null(subset(...)$w1) is TRUE. Lines 199 and 203."
+  },
+  {
+   "file": "code/06_Estimate Open.R",
+   "line": 72,
+   "description": "Inside the country loop (i = 1 US, i = 2 UK) the counterfactual data for the change-in-probability simulations is `tmp_0 <- tmp_1 <- data`, the combined UK+US data, instead of the country subset `tmp` used to fit the model. Each country's effects in Figure A4 (Open_explore.pdf) are averaged over both samples' covariates. Numerically small. Not a target.",
+   "evidence": "Line 72 vs lines 53-54 (tmp = country subset). outputs/code_checks.txt Check 3 (own re-run with an arbitrary seed, not the authors' draws): WHO None->WHO mean change, combined vs own-country rows: US 0.1127 vs 0.1128; UK 0.1388 vs 0.1374"
+  }
+ ],
+ "env_fixes": [
+  "diffs/00_Run_it_all_cores.diff: registerDoMC cores 7 -> 1 for memory (PREREG allowed fix)",
+  "diffs/03_Estimate_main_models_FALLBACK.diff: PREREG labelled fallback (m = 1 only, simulations skipped) after the unchanged full 03 was OOM-killed at 3.3 GB RSS",
+  "diffs/00_FALLBACK_runner.diff: runner for 00 preliminaries + 01 + fallback 03 + 05",
+  "package: logr 1.3.3 (authors' version) instead of 1.4.0, whose warning hook crashed read.dta13 in 01",
+  "package: ebal 0.1-8 (authors' pin) via remotes::install_version",
+  "package: reinstalled r-cran-readstata13 0.11.0-1 and r-cran-tmvtnorm 1.6-1+b1 (Debian) after they disappeared from the shared site library; copied directly used Debian binaries into the private run library"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets match the printed values to rounding (T1-T4 to 2 decimals as the pre-registered draw Mean, T5/T6 exactly), with negative WHO coefficients and code p < .01. Targets came from the PREREG labelled fallback for 03 because the full 03 exceeded available memory; 01 ran unchanged.",
+ "confidence": "high",
+ "confidence_reason": "Script-matched to rounding with the authors' pinned ebal and logr; the only deviation is the pre-registered fallback, which by construction uses the same random draws as the full 03 (refit in robustness.R gives identical Mean).",
+ "time_minutes": 29,
+ "uncertainties": [
+  "The full 03_Estimate main models.R did not complete here (OOM at 3.3 GB RSS with about 3.1 GB available on the shared machine); targets come from the PREREG fallback. Outputs of 03's simulations, 04, 06, 07, 08 (Figures 3-6, A2-A4, Table A9, Estimates_numbers.csv) were not produced, so figure-based claims (e.g. WHO change in probability 0.13 UK, 0.11 US) were not checked.",
+  "Memory gate: the brief says wait if free memory < 3 GB; the 'free' column stayed below 3 GB because about 3.9 GB was shared/tmpfs plus page cache from other processes, so MemAvailable >= 3 GB was used as the gate.",
+  "Secondary (not targets): 20 of 20 WHO cells in Tables 2-3 match the paper; 'leave open' proportions match: True (outputs/secondary_check.json, Choices_prop from the unchanged 02 run).",
+  "Our regenerated Table 2 prints stars on UK All-neighbors Gender (-0.47$^{*}$) and Ideology (1.76$^{**}$), which the published table shows without stars (PREREG inconsistency 6). Values match; only the stars differ, which suggests a typesetting difference in the published table. Not a target. US Ideology (do not know), Threatened neighbors also gives -7.81$^{**}$ as printed (SD prints as 0.00).",
+  "Unverified observation, 01_Prepare data.R lines 138-142: BES LR stays a factor after mapvalues and becomes character when rbind-ed with the numeric CCES LR, so the ebalance formula's LR >= 0.0 & LR <= 0.3 and LR >= 0.7 are string comparisons for UK target rows. In this C.UTF-8 locale they agree with the numeric comparison on all 2139 BES rows (outputs/code_checks.txt Check 1); under a locale whose collation ignores the minus sign (for example en_US) '-99' could sort above '0.7'. Not testable here (only C/POSIX locales installed). Weights here reproduce the targets exactly, so no effect on this run.",
+  "Unverified observation, 01_Prepare data.R line 162: the 10,000 target-population rows are drawn with sample() without the CCES/BES survey weights, so the population weights carried in t_data$w are not used in entropy balancing (they are used only in 02's population descriptives). Could be intended; not a confirmed bug.",
+  "pvalue in 03 uses df = nrow(data) of the combined UK+US data rather than the country N; with N about 1600 this has no practical effect on stars.",
+  "The tool issued the first fallback launch twice; the duplicate failed immediately on a transient missing plyr. All reported numbers come from the single successful fallback run and the sequential robustness runs."
+ ]
+}

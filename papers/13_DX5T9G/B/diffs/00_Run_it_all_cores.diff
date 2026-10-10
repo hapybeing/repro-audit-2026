@@ -1,0 +1,11 @@
+--- "../orig/code_original/00_Run it all.R"	2026-10-10 15:58:50.341340444 +0000
++++ "code/00_Run it all.R"	2026-10-10 15:58:50.375210403 +0000
+@@ -56,7 +56,7 @@
+ ####################
+ library(doMC)
+ detectCores()
+-registerDoMC(cores=7)
++registerDoMC(cores=1)
+ 
+ 
+ ## Versions of R packages

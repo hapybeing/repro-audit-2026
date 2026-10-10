@@ -1,0 +1,5 @@
+lib <- Sys.getenv("R_LIBS_USER"); .libPaths(c(lib, .libPaths()))
+options(repos="https://cloud.r-project.org")
+r1 <- try(remotes::install_version("vctrs", version="0.5.1", lib=lib, upgrade="never", dependencies=FALSE, Ncpus=1))
+r2 <- try(remotes::install_version("dplyr", version="1.0.9", lib=lib, upgrade="never", dependencies=FALSE, Ncpus=1))
+cat("DONE\n"); print(installed.packages(lib.loc=lib)[,c("Package","Version")])

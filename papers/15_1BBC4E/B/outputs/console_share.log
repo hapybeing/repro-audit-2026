@@ -1,0 +1,126 @@
+
+> pacman::p_load(tidyverse, corrr, knitr, kableExtra, 
++     RColorBrewer)
+
+> ead <- readRDS("Data/Regimedata/Measures_merged.rds")
+
+> ead <- ead %>% select(RegType_lied_n, RegType_RoW_n, 
++     Politytype_n, fh_status_n, HTW_RegType_n, RegType_magaloni_n, 
++     AnckarRegtype_n, year) %>% na.omit()
+
+> summary(ead$year)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1972    1983    1994    1993    2003    2012 
+
+> df1 <- ead %>% select(Politytype_n) %>% filter(!is.na(Politytype_n))
+
+> df1 <- df1 %>% group_by(Politytype_n) %>% tally()
+
+> df1$Politytype_n <- factor(df1$Politytype_n, levels = c(2, 
++     1, 0))
+
+> df1 <- df1 %>% group_by(Politytype_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df1 <- df1 %>% mutate(Indicator = "Polity") %>% rename(Regime_Type = Politytype_n)
+
+> df2 <- ead %>% select(fh_status_n) %>% filter(!is.na(fh_status_n))
+
+> df2 <- df2 %>% group_by(fh_status_n) %>% tally()
+
+> df2$fh_status_n <- factor(df2$fh_status_n, levels = c(2, 
++     1, 0))
+
+> df2 <- df2 %>% group_by(fh_status_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df2 <- df2 %>% mutate(Indicator = "FH") %>% rename(Regime_Type = fh_status_n)
+
+> df3 <- ead %>% select(RegType_RoW_n) %>% filter(!is.na(RegType_RoW_n))
+
+> df3 <- df3 %>% group_by(RegType_RoW_n) %>% tally()
+
+> df3$RegType_RoW_n <- factor(df3$RegType_RoW_n, levels = c(2, 
++     1, 0))
+
+> df3 <- df3 %>% group_by(RegType_RoW_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df3 <- df3 %>% mutate(Indicator = "RoW") %>% rename(Regime_Type = RegType_RoW_n)
+
+> df4 <- ead %>% select(RegType_lied_n) %>% filter(!is.na(RegType_lied_n))
+
+> df4 <- df4 %>% group_by(RegType_lied_n) %>% tally()
+
+> df4$RegType_lied_n <- factor(df4$RegType_lied_n, levels = c(2, 
++     1, 0))
+
+> df4 <- df4 %>% group_by(RegType_lied_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df4 <- df4 %>% mutate(Indicator = "LIED") %>% rename(Regime_Type = RegType_lied_n)
+
+> df5 <- ead %>% select(HTW_RegType_n) %>% filter(!is.na(HTW_RegType_n))
+
+> df5 <- df5 %>% group_by(HTW_RegType_n) %>% tally()
+
+> df5$HTW_RegType_n <- factor(df5$HTW_RegType_n, levels = c(2, 
++     1, 0))
+
+> df5 <- df5 %>% group_by(HTW_RegType_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df5 <- df5 %>% mutate(Indicator = "ARD") %>% rename(Regime_Type = HTW_RegType_n)
+
+> df6 <- ead %>% select(AnckarRegtype_n) %>% filter(!is.na(AnckarRegtype_n))
+
+> df6 <- df6 %>% group_by(AnckarRegtype_n) %>% tally()
+
+> df6$AnckarRegtype_n <- factor(df6$AnckarRegtype_n, 
++     levels = c(2, 1, 0))
+
+> df6 <- df6 %>% group_by(AnckarRegtype_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df6 <- df6 %>% mutate(Indicator = "CPR") %>% rename(Regime_Type = AnckarRegtype_n)
+
+> df7 <- ead %>% select(RegType_magaloni_n) %>% filter(!is.na(RegType_magaloni_n))
+
+> df7 <- df7 %>% group_by(RegType_magaloni_n) %>% tally()
+
+> df7$RegType_magaloni_n <- factor(df7$RegType_magaloni_n, 
++     levels = c(2, 1, 0))
+
+> df7 <- df7 %>% group_by(RegType_magaloni_n) %>% summarise(n = sum(n)) %>% 
++     mutate(percentage = n/sum(n))
+
+> df7 <- df7 %>% mutate(Indicator = "AoW") %>% rename(Regime_Type = RegType_magaloni_n)
+
+> df <- bind_rows(df4, df3, df1, df2, df5, df7, df6)
+
+> df$Indicator <- factor(df$Indicator, levels = c("LIED", 
++     "RoW", "Polity", "FH", "ARD", "AoW", "CPR"))
+
+> unique(df$Indicator)
+[1] LIED   RoW    Polity FH     ARD    AoW    CPR   
+Levels: LIED RoW Polity FH ARD AoW CPR
+
+> df <- df %>% mutate(Reg_Char = case_when(Regime_Type == 
++     2 ~ "Democracy", Regime_Type == 1 ~ "Pseudo-Democratic Autocracy", 
++     Regime_Type == 0 ~ "Other Autocracy"))
+
+> df$Reg_Char <- factor(df$Reg_Char, levels = c("Democracy", 
++     "Pseudo-Democratic Autocracy", "Other Autocracy"))
+
+> df %>% mutate(text_col = if_else(Reg_Char == "Democracy", 
++     "1", "2")) %>% ggplot(aes(x = Indicator, y = percentage, 
++     fill = Reg_Char)) + geom_bar(stat = "identity") + theme_classic() + 
++     ylab("") + xlab("") + scale_fill_grey() + theme(text = element_text(size = 20)) + 
++     labs(fill = "") + scale_y_continuous(limits = c(0, 1), breaks = c(0.25, 
++     0.5, 0.75, 1), labels = function(y) paste0(y * 100, "%")) + 
++     theme(legend.position = "bottom") + scale_color_manual(values = c("white", 
++     "black")) + geom_text(aes(label = paste0(round(percentage, 
++     2) * 100, "%"), color = text_col), position = "stack", size = 5, 
++     hjust = 0.4, vjust = 2) + guides(color = "none")
+null device 
+          1 

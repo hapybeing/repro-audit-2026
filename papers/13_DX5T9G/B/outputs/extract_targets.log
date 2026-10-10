@@ -1,0 +1,14 @@
+  id country                               X1       Mean       SD      pvalue
+1 T1      UK          2:I(T_who == "WHO")TRUE   -1.53367 0.279404 4.35270e-08
+2 T2      UK 2:I(T_who == "WHO.Ratified")TRUE   -2.01057 0.274154 2.81732e-13
+3 T3      US          2:I(T_who == "WHO")TRUE   -1.06194 0.239777 9.78856e-06
+4 T4      US 2:I(T_who == "WHO.Ratified")TRUE   -1.52214 0.228157 2.96921e-11
+5 T5      UK                                N 1599.00000       NA          NA
+6 T6      US                                N 1625.00000       NA          NA
+     N
+1 1599
+2 1599
+3 1625
+4 1625
+5 1599
+6 1625

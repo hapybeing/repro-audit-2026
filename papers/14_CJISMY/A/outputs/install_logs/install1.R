@@ -1,0 +1,6 @@
+lib <- Sys.getenv("R_LIBS_USER"); .libPaths(c(lib, .libPaths()))
+options(repos="https://cloud.r-project.org")
+if (!requireNamespace("dreamerr", quietly=TRUE)) remotes::install_version("dreamerr", version="1.2.3", lib=lib, upgrade="never", Ncpus=1)
+remotes::install_version("fixest", version="0.11.1", lib=lib, upgrade="never", dependencies=FALSE, Ncpus=1)
+remotes::install_version("texreg", version="1.38.6", lib=lib, upgrade="never", dependencies=FALSE, Ncpus=1)
+cat("DONE\n"); print(packageVersion("fixest", lib.loc=lib))

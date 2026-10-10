@@ -1,0 +1,1 @@
+specr 1.0.0 (authors' pin) was installed from CRAN after the main run; the unmodified crosssection_linear.R then ran without error (outputs/console_crosssection_linear_unmodified.log). Same 38 model-term rows: True; max abs difference in estimate/SE/p/nobs vs the edited-script run: 0.0.

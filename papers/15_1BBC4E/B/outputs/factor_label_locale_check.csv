@@ -1,0 +1,6 @@
+"locale","line","all_correct","note"
+"C.UTF-8",176,TRUE,"AnckarRegtype_n,fh_status_n,HTW_RegType_n,Politytype_n,RegType_lied_n,RegType_magaloni_n,RegType_RoW_n"
+"C.UTF-8",183,TRUE,"AnckarRegtype_MP_Autocracy,HTW_RegType_MP_Autocracy,Politytype_Anocracy,RegType_lied_EA,RegType_magaloni_EA,RegType_RoW_EA,status_fh_PF"
+"C",176,FALSE,"AnckarRegtype_n,HTW_RegType_n,Politytype_n,RegType_RoW_n,RegType_lied_n,RegType_magaloni_n,fh_status_n"
+"C",183,FALSE,"AnckarRegtype_MP_Autocracy,HTW_RegType_MP_Autocracy,Politytype_Anocracy,RegType_RoW_EA,RegType_lied_EA,RegType_magaloni_EA,status_fh_PF"
+"en_US.UTF-8",NA,NA,"locale not available"

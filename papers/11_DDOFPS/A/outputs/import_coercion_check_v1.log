@@ -1,0 +1,14 @@
+               col_index         column class_script class_guessmax_inf
+ano                    1            ano      numeric            numeric
+numpartido             9     numpartido      numeric            numeric
+APE3                 103           APE3    character          character
+APE4                 104           APE4    character          character
+sequencial_tse       116 sequencial_tse      logical          character
+raca_tse             123       raca_tse      logical          character
+               nonNA_script nonNA_guessmax_inf values_lost used_by_targets
+ano                    9439               9439           0            TRUE
+numpartido             9433               9433           0            TRUE
+APE3                   9439               9439           0            TRUE
+APE4                   9439               9439           0            TRUE
+sequencial_tse            0               6959        6959           FALSE
+raca_tse                  0               2800        2800           FALSE

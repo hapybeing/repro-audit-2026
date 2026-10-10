@@ -1,0 +1,385 @@
+
+> library(fixest)
+
+> library(readr)
+
+> library(texreg)
+Version:  1.38.6
+Date:     2022-04-06
+Author:   Philip Leifeld (University of Essex)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+> library(fixest)
+
+> library(patchwork)
+
+> library(ggplot2)
+
+> source("funs_and_constants.R")
+
+> epr_yearly_group_clusters_h1 <- read_csv("data/epro_data_h1.csv")
+Rows: 356 Columns: 626
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (18): groupname, countryname, statusname, geo_typename, ed_religion1, ...
+dbl  (597): gwgroupid, countries_gwid, year, isactive, isrelevant, groupsize...
+lgl    (9): active_anc_groupid, active_des_groupid_arr, relevant_anc_groupid...
+date   (2): ggp_startdate, ggp_enddate
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+> epro_year_group_clusters <- read_csv("data/epro_data_h2.csv")
+Rows: 4273 Columns: 1223
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr    (20): groupname, countryname, statusname, geo_typename, ed_religion1,...
+dbl  (1191): gwgroupid, countries_gwid, year, isactive, isrelevant, groupsiz...
+lgl    (10): active_anc_groupid, active_des_groupid_arr, relevant_anc_groupi...
+date    (2): ggp_startdate, ggp_enddate
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+> epro_year_group_clusters_geo <- read_csv("data/epro_geo_data_h3.csv")
+Rows: 3807 Columns: 625
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (17): statename, group, type, the_geom, groupname, countryname, status...
+dbl  (597): gwgroupid, year, any_multiethnic, agreement, agreement_with_gov_...
+lgl    (9): active_anc_groupid, active_des_groupid_arr, relevant_anc_groupid...
+date   (2): ggp_startdate, ggp_enddate
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+> mean_h1 <- epr_yearly_group_clusters_h1 %>% filter(year >= 
++     2000) %>% group_by(gwgroupid, countries_gwid) %>% summarize(across(c(share_disagreement, 
++     disagreement, n_orgs, resource_and_agriculture, regaut, groupsize, 
++     incidence_flag, status_pwrrank, any_multiethnic, nightlight_total_pc_log, 
++     n_tek_groups), ~mean(.x, na.rm = T)), none_one_or_both_nats_agri_char = Mode(as.factor(none_one_or_both_nats_agri_char), 
++     na.rm = TRUE))
+`summarise()` has grouped output by 'gwgroupid'. You can override using the
+`.groups` argument.
+
+> mean_h2 <- epro_year_group_clusters %>% filter(year >= 
++     2000) %>% group_by(gwgroupid, countries_gwid) %>% summarize(across(c(share_disagreement, 
++     disagreement, n_orgs, n_ed_religions, hhi_rel, religious_segments_bin, 
++     regaut, groupsize, incidence_flag, status_pwrrank, any_multiethnic, 
++     nightlight_total_pc_log, n_tek_groups), ~mean(.x, na.rm = T)))
+`summarise()` has grouped output by 'gwgroupid'. You can override using the
+`.groups` argument.
+
+> mean_h3 <- epro_year_group_clusters_geo %>% filter(year >= 
++     2000) %>% group_by(gwgroupid, countries_gwid) %>% summarize(across(c(share_disagreement, 
++     disagreement, n_non_intersection_group_polygons, multiple_polygons_bin, 
++     spatial_hhi, n_orgs, regaut, groupsize, incidence_flag, status_pwrrank, 
++     any_multiethnic, nightlight_total_pc_log, n_tek_groups), 
++     ~mean(.x, na.rm = T)))
+`summarise()` has grouped output by 'gwgroupid'. You can override using the
+`.groups` argument.
+
+> full_model_h1 <- feols(disagreement ~ resource_and_agriculture + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h1 %>% 
++     as.data.frame())
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h1_max <- feols(share_disagreement ~ resource_and_agriculture + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h1)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h1_n_resources <- feols(disagreement ~ 
++     none_one_or_both_nats_agri_char + n_orgs + regaut + groupsize + 
++         incidence_flag + status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h1)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h1_n_resources_max <- feols(share_disagreement ~ 
++     none_one_or_both_nats_agri_char + n_orgs + regaut + groupsize + 
++         incidence_flag + status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h1)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> screenreg(list(full_model_h1, full_model_h1_n_resources, 
++     full_model_h1_max, full_model_h1_n_resources_max), stars = stars)
+
+====================================================================================
+                                       Model 1     Model 2     Model 3    Model 4   
+------------------------------------------------------------------------------------
+resource_and_agriculture                 0.51 ***                0.19 **            
+                                        (0.12)                  (0.06)              
+n_orgs                                   0.00       -0.00       -0.00      -0.01    
+                                        (0.02)      (0.02)      (0.01)     (0.01)   
+regaut                                   0.31        0.33 .      0.07       0.08    
+                                        (0.19)      (0.19)      (0.08)     (0.08)   
+groupsize                               -1.05 **    -1.12 **    -0.46 **   -0.50 ** 
+                                        (0.36)      (0.32)      (0.16)     (0.14)   
+incidence_flag                          -0.12       -0.14        0.00      -0.01    
+                                        (0.19)      (0.17)      (0.09)     (0.08)   
+status_pwrrank                           0.01        0.01        0.02       0.03    
+                                        (0.06)      (0.06)      (0.03)     (0.03)   
+any_multiethnic                         -0.16       -0.17       -0.05      -0.06    
+                                        (0.20)      (0.20)      (0.09)     (0.09)   
+nightlight_total_pc_log                  0.01        0.15        0.18       0.25    
+                                        (0.35)      (0.40)      (0.24)     (0.24)   
+n_tek_groups                             0.00        0.01       -0.00       0.00    
+                                        (0.01)      (0.01)      (0.00)     (0.00)   
+none_one_or_both_nats_agri_charNone                 -0.48 **               -0.17 *  
+                                                    (0.16)                 (0.08)   
+none_one_or_both_nats_agri_charSingle               -0.50 ***              -0.21 ***
+                                                    (0.11)                 (0.05)   
+------------------------------------------------------------------------------------
+Num. obs.                              138         138         138        138       
+Num. groups: countries_gwid             62          62          62         62       
+R^2 (full model)                         0.70        0.72        0.63       0.65    
+R^2 (proj model)                         0.25        0.29        0.17       0.22    
+Adj. R^2 (full model)                    0.39        0.41        0.23       0.26    
+Adj. R^2 (proj model)                    0.15        0.19        0.06       0.10    
+====================================================================================
+*** p < 0.001; ** p < 0.01; * p < 0.05; . p < 0.1
+
+> texreg(list(full_model_h1, full_model_h1_n_resources, 
++     full_model_h1_max, full_model_h1_n_resources_max), stars = stars, 
++     custom.coef.map = coef_map, custom.header = list(`Disagreement (1/0)` = 1:2, 
++         `Prop. Disagreement` = 3:4), table = FALSE, include.proj.stats = FALSE, 
++     file = "tables/h1_crosssection_lin.tex")
+The table was written to the file 'tables/h1_crosssection_lin.tex'.
+
+
+> full_model_h1_graph <- feols(disagreement ~ resource_and_agriculture + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h1 %>% 
++     mutate(resource_and_agriculture = if_else(resource_and_agriculture == 
++         1, "Both", "None/Single")) %>% as.data.frame())
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> effect_plot_bin = marginaleffects::plot_predictions(full_model_h1_graph, 
++     condition = "resource_and_agriculture", ) + theme_minimal() + 
++     labs(x = "Natural Resources\nand Agricultural Production", 
++         y = "Disagreement")
+
+> effect_plot_cat = marginaleffects::plot_predictions(full_model_h1_n_resources, 
++     condition = "none_one_or_both_nats_agri_char", ) + theme_minimal() + 
++     labs(x = "Combination of Natural Resources\nand Agricultural Production", 
++         y = "")
+
+> effect_plots = (effect_plot_bin | effect_plot_cat)
+
+> ggsave(plot = effect_plots, filename = "plots/effect_plots_h1.pdf", 
++     dpi = 300, device = "pdf", width = 15, height = 9, unit = "cm")
+
+> full_model_h2 <- feols(disagreement ~ religious_segments_bin + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h2)
+NOTE: 32 observations removed because of NA values (RHS: 32).
+
+> full_model_h2_n_rels <- feols(disagreement ~ n_ed_religions + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h2)
+NOTE: 23 observations removed because of NA values (RHS: 23).
+
+> full_model_h2_herf <- feols(disagreement ~ hhi_rel + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h2)
+NOTE: 32 observations removed because of NA values (RHS: 32).
+
+> full_model_h2_max <- feols(share_disagreement ~ religious_segments_bin + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h2)
+NOTE: 32 observations removed because of NA values (RHS: 32).
+
+> full_model_h2_max_n_rels <- feols(share_disagreement ~ 
++     n_ed_religions + n_orgs + regaut + groupsize + incidence_flag + 
++         status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h2)
+NOTE: 23 observations removed because of NA values (RHS: 23).
+
+> full_model_h2_max_herf <- feols(share_disagreement ~ 
++     hhi_rel + n_orgs + regaut + groupsize + incidence_flag + 
++         status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h2)
+NOTE: 32 observations removed because of NA values (RHS: 32).
+
+> screenreg(list(full_model_h2, full_model_h2_n_rels, 
++     full_model_h2_herf, full_model_h2_max, full_model_h2_max_n_rels, 
++     full_model_h2_max_herf), stars = stars, custom.header = list(`Disagreement (1/0)` = 1:3, 
++     `Prop. Disagreement` = 4:6))
+
+=====================================================================================
+                                  Disagreement (1/0)           Prop. Disagreement    
+                             ----------------------------  --------------------------
+                             Model 1   Model 2   Model 3   Model 4  Model 5   Model 6
+-------------------------------------------------------------------------------------
+religious_segments_bin        -0.02                          0.01                    
+                              (0.15)                        (0.07)                   
+n_orgs                         0.03 .    0.02      0.03 .    0.01     0.00      0.01 
+                              (0.02)    (0.01)    (0.02)    (0.01)   (0.01)    (0.01)
+regaut                         0.19      0.19      0.19      0.04     0.05      0.04 
+                              (0.15)    (0.17)    (0.15)    (0.06)   (0.07)    (0.06)
+groupsize                     -0.65 .   -0.82 *   -0.64 .   -0.26    -0.35 *   -0.25 
+                              (0.36)    (0.35)    (0.35)    (0.16)   (0.15)    (0.15)
+incidence_flag                -0.30     -0.26     -0.30     -0.13    -0.12     -0.13 
+                              (0.29)    (0.29)    (0.29)    (0.15)   (0.15)    (0.15)
+status_pwrrank                 0.01      0.04      0.01      0.01     0.02      0.01 
+                              (0.06)    (0.06)    (0.06)    (0.03)   (0.03)    (0.03)
+any_multiethnic                0.01     -0.03      0.01      0.02    -0.00      0.01 
+                              (0.16)    (0.14)    (0.15)    (0.07)   (0.06)    (0.07)
+nightlight_total_pc_log       -0.29      0.23     -0.31     -0.02     0.28     -0.03 
+                              (0.43)    (0.57)    (0.44)    (0.27)   (0.34)    (0.27)
+n_tek_groups                   0.01      0.01      0.01      0.00     0.00      0.00 
+                              (0.01)    (0.01)    (0.01)    (0.00)   (0.00)    (0.00)
+n_ed_religions                          -0.09                        -0.05           
+                                        (0.07)                       (0.03)          
+hhi_rel                                            0.01                         0.06 
+                                                  (0.26)                       (0.12)
+-------------------------------------------------------------------------------------
+Num. obs.                    152       161       152       152      161       152    
+Num. groups: countries_gwid   61        65        61        61       65        61    
+R^2 (full model)               0.69      0.68      0.69      0.59     0.60      0.59 
+R^2 (proj model)               0.15      0.16      0.15      0.09     0.12      0.09 
+Adj. R^2 (full model)          0.43      0.41      0.43      0.25     0.26      0.25 
+Adj. R^2 (proj model)          0.06      0.07      0.06     -0.01     0.03     -0.01 
+=====================================================================================
+*** p < 0.001; ** p < 0.01; * p < 0.05; . p < 0.1
+
+> texreg(list(full_model_h2, full_model_h2_n_rels, full_model_h2_herf, 
++     full_model_h2_max, full_model_h2_max_n_rels, full_model_h2_max_herf), 
++     stars = stars, custom.coef.map = coef_map, custom.header = list(`Disagreement (1/0)` = 1:3, 
++         `Prop. Disagreement` = 4:6), table = FALSE, include.proj.stats = FALSE, 
++     file = "tables/h2_crosssection_lin.tex")
+The table was written to the file 'tables/h2_crosssection_lin.tex'.
+
+
+> full_model_h3 <- feols(disagreement ~ n_non_intersection_group_polygons + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h3)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h3_max <- feols(share_disagreement ~ n_non_intersection_group_polygons + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h3)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h3_bin <- feols(disagreement ~ multiple_polygons_bin + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h3)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h3_max_bin <- feols(share_disagreement ~ 
++     multiple_polygons_bin + n_orgs + regaut + groupsize + incidence_flag + 
++         status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h3)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> full_model_h3_hhi <- feols(disagreement ~ spatial_hhi + 
++     n_orgs + regaut + groupsize + incidence_flag + status_pwrrank + 
++     any_multiethnic + nightlight_total_pc_log + n_tek_groups | 
++     countries_gwid, cluster = ~countries_gwid, data = mean_h3)
+NOTE: 10 observations removed because of NA values (RHS: 10).
+
+> full_model_h3_max_hhi <- feols(share_disagreement ~ 
++     spatial_hhi + n_orgs + regaut + groupsize + incidence_flag + 
++         status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h3)
+NOTE: 10 observations removed because of NA values (RHS: 10).
+
+> full_model_h3_prop_no_outliers <- feols(disagreement ~ 
++     n_non_intersection_group_polygons + n_orgs + regaut + groupsize + 
++         incidence_flag + status_pwrrank + any_multiethnic + nightlight_total_pc_log + 
++         n_tek_groups | countries_gwid, cluster = ~countries_gwid, 
++     data = mean_h3)
+NOTE: 1 observation removed because of NA values (RHS: 1).
+
+> screenreg(list(full_model_h3, full_model_h3_max, full_model_h3_hhi, 
++     full_model_h3_max_hhi, full_model_h3_bin, full_model_h3_max_bin), 
++     stars = stars)
+
+=============================================================================================
+                                   Model 1   Model 2   Model 3   Model 4   Model 5   Model 6 
+---------------------------------------------------------------------------------------------
+n_non_intersection_group_polygons    0.00      0.00                                          
+                                    (0.00)    (0.00)                                         
+n_orgs                               0.02      0.00      0.02      0.00      0.02      0.00  
+                                    (0.01)    (0.01)    (0.01)    (0.01)    (0.01)    (0.01) 
+regaut                               0.16      0.02      0.20      0.04      0.16      0.03  
+                                    (0.15)    (0.06)    (0.18)    (0.08)    (0.15)    (0.06) 
+groupsize                           -0.81 *   -0.34 *   -0.80 *   -0.35 *   -0.81 *   -0.34 *
+                                    (0.36)    (0.15)    (0.37)    (0.16)    (0.36)    (0.15) 
+incidence_flag                      -0.29     -0.13     -0.29     -0.13     -0.29     -0.13  
+                                    (0.30)    (0.16)    (0.29)    (0.16)    (0.29)    (0.16) 
+status_pwrrank                       0.05      0.02      0.04      0.02      0.04      0.02  
+                                    (0.06)    (0.03)    (0.06)    (0.03)    (0.06)    (0.03) 
+any_multiethnic                     -0.04     -0.01     -0.04     -0.01     -0.04     -0.00  
+                                    (0.15)    (0.06)    (0.15)    (0.06)    (0.15)    (0.06) 
+nightlight_total_pc_log              0.10      0.10      0.28      0.30      0.17      0.25  
+                                    (0.71)    (0.40)    (0.66)    (0.38)    (0.56)    (0.34) 
+n_tek_groups                         0.01      0.00      0.01      0.00      0.01      0.00  
+                                    (0.01)    (0.00)    (0.01)    (0.00)    (0.01)    (0.00) 
+spatial_hhi                                             -0.10     -0.08                      
+                                                        (0.14)    (0.07)                     
+multiple_polygons_bin                                                       -0.04     -0.03  
+                                                                            (0.08)    (0.04) 
+---------------------------------------------------------------------------------------------
+Num. obs.                          161       161       152       152       161       161     
+Num. groups: countries_gwid         65        65        62        62        65        65     
+R^2 (full model)                     0.68      0.59      0.67      0.59      0.68      0.59  
+R^2 (proj model)                     0.15      0.11      0.14      0.10      0.15      0.11  
+Adj. R^2 (full model)                0.41      0.25      0.38      0.23      0.41      0.25  
+Adj. R^2 (proj model)                0.06      0.01      0.04     -0.00      0.06      0.02  
+=============================================================================================
+*** p < 0.001; ** p < 0.01; * p < 0.05; . p < 0.1
+
+> texreg(list(full_model_h3, full_model_h3_bin, full_model_h3_hhi, 
++     full_model_h3_max, full_model_h3_max_bin, full_model_h3_max_hhi), 
++     stars = stars, custom.coef.map = coef_map, custom.header = list(`Disagreement (1/0)` = 1:3, 
++         `Prop. Disagreement` = 4:6), table = FALSE, include.proj.stats = FALSE, 
++     file = "tables/h3_crosssection_lin.tex")
+The table was written to the file 'tables/h3_crosssection_lin.tex'.
+
+
+> effect_plot_set = marginaleffects::plot_predictions(full_model_h3, 
++     condition = "n_non_intersection_group_polygons", ) + theme_minimal() + 
++     labs(x = "Number of Group Settlement Areas", y = "") + coord_cartesian(xlim = c(0, 
++     40))
+
+> effect_plot_rel = marginaleffects::plot_predictions(full_model_h2, 
++     condition = "religious_segments_bin", ) + theme_minimal() + 
++     labs(x = "Several Religious Segments (0/1)", y = "Disagreement")
+
+> effect_plots = (effect_plot_rel | effect_plot_set)
+
+> ggsave(plot = effect_plots, filename = "plots/effect_plots_h2_h3.pdf", 
++     dpi = 300, device = "pdf", width = 15, height = 9, unit = "cm")

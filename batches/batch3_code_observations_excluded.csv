@@ -1,0 +1,21 @@
+paper,agents,item,reason_excluded,source_file
+11_DDOFPS,A and B,Script reads bd_doxa_programas.xlsx / bd_doxa_candidatos.xlsx; the deposit has the _HGPE names,"environment fix (pre-registered path-only fix, pre-run decision #1); alternative class shown in batches/batch3_class_rules.json",papers/11_DDOFPS/B/results.json
+11_DDOFPS,A and B,theme_ipsum_tw() not exported by current hrbrthemes,"package-version environment fix (Figura 1 styling, no target)",papers/11_DDOFPS/A/results.json
+11_DDOFPS,A and B,Script sourced with encoding latin1,environment fix only,papers/11_DDOFPS/B/results.json
+11_DDOFPS,A,CRAN ggplot2 4.0.3 masks system ggplot2 3.5.1,package-version environment note,papers/11_DDOFPS/A/results.json
+11_DDOFPS,A and B,Paper note 9 prints an expected 2018 APE4 count of 16; the code gives 16.87,"secondary number in the text, not a target and not a code observation",papers/11_DDOFPS/B/results.json
+11_DDOFPS,A and B,"Figura 4 wording 'p-valor > 0,001' versus the code's p far below 0.001","pre-registered reading of the paper's wording (PREREG T4 criterion), not a code observation",papers/11_DDOFPS/A/results.json
+12_CYBR7L,A and B,nx.hits is unseeded (svds start vector),"handled by pre-run decision #3 and R_a (20 seeds give the same top-5% set), not a code observation",papers/12_CYBR7L/A/results.json
+12_CYBR7L,A and B,Python 3.12.15 used instead of README Python 3.14.2,environment note; all five README package versions installed exactly,papers/12_CYBR7L/B/results.json
+12_CYBR7L,A and B,Pickle cell placed after cell 8 rather than only at the end,"protocol note on the audit's save-only cells, not the authors' code",papers/12_CYBR7L/A/results.json
+12_CYBR7L,A,Text p. 708 says 42 percent where Table 2 prints 40.7 (run gives 40.74),"text versus table difference noted in PREREG.md, not a target and not a code observation",papers/12_CYBR7L/A/results.json
+13_DX5T9G,A and B,Full 03 script killed for running out of memory; pre-registered fallback used,"environment limit and labelled deviation (alternative class E in batches/batch3_class_rules.json), not a code observation",papers/13_DX5T9G/B/results.json
+13_DX5T9G,A and B,registerDoMC cores 7 to 1,environment fix allowed by PREREG.md,papers/13_DX5T9G/A/results.json
+13_DX5T9G,B,logr 1.4.0 warning hook crashed read.dta13; authors' logr 1.3.3 used,package-version environment fix,papers/13_DX5T9G/B/results.json
+13_DX5T9G,A and B,Regenerated Table 2 prints stars on three non-target cells that the printed table shows without stars or with a different mark (PREREG inconsistency 6),"difference in significance marks only; values match; recorded under Limitations, not a code observation",papers/13_DX5T9G/A/results.json
+13_DX5T9G,B,First fallback launch issued twice; the duplicate failed at once,"process note, no reported number comes from it",papers/13_DX5T9G/B/results.json
+14_CJISMY,A,Categorical H1 variable aggregated with Mode(); ties broken by first occurrence (line 26),checked by the agent and found consistent with the paper's 'nominal by mode' rule (pre-flagged in PREREG.md),papers/14_CJISMY/A/results.json
+14_CJISMY,A and B,library(specr) / library(broom.mixed) commented out,environment fix; B ran the unmodified script after installing specr 1.0.0 with identical results,papers/14_CJISMY/B/results.json
+14_CJISMY,A and B,dplyr 1.0.9 / vctrs 0.5.1 pins could not be loaded; system versions used,package-version environment note,papers/14_CJISMY/B/results.json
+15_1BBC4E,A and B,Prose values '.63' and '.39' versus Table 3 0.636 and median 0.398,"text versus table rounding, Table 3 reproduces; not a code observation",papers/15_1BBC4E/B/results.json
+15_1BBC4E,B,Dataverse API reports version 1.1 where PREREG.md says 1.0,metadata note; all 49 files byte-identical to the PREREG sha256 list,papers/15_1BBC4E/B/results.json

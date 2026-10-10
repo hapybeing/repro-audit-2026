@@ -1,0 +1,37 @@
+Estimation sample rows: 138  countries: 62 
+                           check    target   estimate         se            p
+Estimate  baseline_on_est_sample T1_model1 0.50654535 0.11847496 6.815423e-05
+Estimate1                    R_a T1_model1 0.50654535 0.14606492 8.000000e-03
+Estimate2                    R_b T1_model1 0.54117556 0.12561209 6.705459e-05
+Estimate3                    R_c T1_model1 0.14821599 0.09978419 1.425970e-01
+Estimate4 baseline_on_est_sample T2_model3 0.19068557 0.05820999 1.739991e-03
+Estimate5                    R_a T2_model3 0.19068557 0.06866876 1.600000e-02
+Estimate6                    R_b T2_model3 0.21115083 0.05103039 1.212081e-04
+Estimate7                    R_c T2_model3 0.05976756 0.04924354 2.295355e-01
+              ci_low   ci_high   n n_dropped n_failed
+Estimate          NA        NA 138        NA       NA
+Estimate1 0.18482065 0.7674769 138        NA        0
+Estimate2         NA        NA 122        16       NA
+Estimate3         NA        NA 138        NA       NA
+Estimate4         NA        NA 138        NA       NA
+Estimate5 0.03839502 0.3085711 138        NA        0
+Estimate6         NA        NA 121        17       NA
+Estimate7         NA        NA 138        NA       NA
+                                                                                                                                                          note
+Estimate                                                                                                                                                      
+Estimate1                                                                  bootstrap SD as se; percentile 95% CI; 1000 successful draws of 1000; seed 20261010
+Estimate2 lm coef equals feols coef to 1e-8: TRUE; Cook's threshold 4/N = 0.02899; non-finite Cook's distances kept: 20; |z|>3 rule on outcome would remove: 0
+Estimate3                                                                                                   pooled OLS with intercept, SE clustered by country
+Estimate4                                                                                                                                                     
+Estimate5                                                                  bootstrap SD as se; percentile 95% CI; 1000 successful draws of 1000; seed 20261010
+Estimate6 lm coef equals feols coef to 1e-8: TRUE; Cook's threshold 4/N = 0.02899; non-finite Cook's distances kept: 20; |z|>3 rule on outcome would remove: 0
+Estimate7                                                                                                   pooled OLS with intercept, SE clustered by country
+          fixest_version
+Estimate          0.11.1
+Estimate1         0.11.1
+Estimate2         0.11.1
+Estimate3         0.11.1
+Estimate4         0.11.1
+Estimate5         0.11.1
+Estimate6         0.11.1
+Estimate7         0.11.1

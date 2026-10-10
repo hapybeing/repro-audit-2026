@@ -1,0 +1,17 @@
+fixest 0.11.1 
+factor levels (in order): Both None Single 
+reference level: Both 
+                                  model                                  term
+1                  model1_full_model_h1              resource_and_agriculture
+10     model2_full_model_h1_n_resources   none_one_or_both_nats_agri_charNone
+11     model2_full_model_h1_n_resources none_one_or_both_nats_agri_charSingle
+20             model3_full_model_h1_max              resource_and_agriculture
+29 model4_full_model_h1_n_resources_max   none_one_or_both_nats_agri_charNone
+30 model4_full_model_h1_n_resources_max none_one_or_both_nats_agri_charSingle
+     estimate se_cluster     p_fixest nobs n_fe_groups
+1   0.5065454 0.11847496 6.815423e-05  138          62
+10 -0.4753095 0.16374583 5.142132e-03  138          62
+11 -0.4996080 0.11092439 3.070197e-05  138          62
+20  0.1906856 0.05820999 1.739991e-03  138          62
+29 -0.1652924 0.07960125 4.206758e-02  138          62
+30 -0.2068609 0.04930506 8.971274e-05  138          62

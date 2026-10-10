@@ -1,0 +1,18 @@
+bb4df219008eaac03f29da310f9c47eda18f483e3b3dc7e2294631bb5c417914  datafile_6911550  # replication/code/00_Run it all.R
+92794c4d4a915ea847545ac74c274ab10ffe7bd6fc1e960b8ad025420c44fec8  datafile_6911552  # replication/code/01_Prepare data.R
+93015a353ed7cdd9cbb70b1ddb3381de3392de7a186f689dfb9bef15d7917c0c  datafile_6911541  # replication/code/02_Descriptives.R
+7a578a41c0ce65cbcf0f66937250eecaf437df1601b6ed362eb9a4acb1606dfb  datafile_6911557  # replication/code/03_Estimate main models.R
+ef939e9c5ba10d6896da660f81bc76b5748c924d801174071451784e8d0fa9dc  datafile_6911540  # replication/code/04_Make main graphs.R
+378ff3c35fae457f8f14c474e06d6a8ed01e12f85bd273552fcb868ffcf441eb  datafile_6911547  # replication/code/05_Make main tables.R
+2afcfdd41c42765413cb52c38eafe670119695320baf5d6c05a8a3fdb81ee632  datafile_6911558  # replication/code/06_Estimate Open.R
+397184217d30eab93fea37bbe70db455ba4e58874d1c901909029c3e60265124  datafile_6911542  # replication/code/07_Causal moderation for Open.R
+0d36271ca63a9b76138e2627ad02e06469552279c66b064110a18041b9cf950f  datafile_6911545  # replication/code/08_Newspaper analysis.R
+5334fad543ab7cdd20800b01749970bc11963fa2df7bac439f28d671c144edd7  datafile_6911560  # replication/code/X_Auxiliary functions.R
+ff240d623426fdf389e64c4343ade594649e4e77d1fd2141c4e2be2701037a13  datafile_6911561  # replication/ReadMe.txt
+eb6c835e3947d5b678ddd908138a79c6a663c7179ca3728091cd2eeb95db6160  datafile_6911537  # replication/log/PandemicBorder.log
+e09eeaab5dbdb25515c1a98e0da6a40e762321da67a444491d2e9aae9ce038a6  datafile_6911548  # replication/data/cascara_geo_trimmed.png
+3b348166bb2b104aed18017eafbb7d964f6401f7950f9cb1f147d18d40790f1d  datafile_6911553.orig  # replication/data/ViralBorders - US.csv (?format=original)
+25b452348c82191c9c1877cdf965f781bbedd7dd6a45589a09e68d8bd4cffe1f  datafile_6911559.orig  # replication/data/ViralBorders - UK.csv (?format=original)
+2bbcc7e1bd8263938064bc6881ae92528d8b8bf5aee9bb12e92d02f865016340  datafile_6911551.orig  # replication/data/BES/bes_f2f_2017_v1.5.dta (?format=original)
+02af87ce84f7497db4aa9e6cc5a05e75c40792aca307bf0ac0f48cfb4e77aa08  datafile_6911556.orig  # replication/data/News Queries/News.csv (?format=original)
+3282e5c40228f32876460ffe34da5131fa6acd2b390fc9093d02e03d8691285a  datafile_6911546  # replication/data/CCES/cces18_common_vv.dta

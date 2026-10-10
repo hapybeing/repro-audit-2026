@@ -1,0 +1,17 @@
+Locale LC_COLLATE: C.UTF-8 
+
+Check 1: class of BES$LR after mapvalues: factor 
+class of LR after rbind with numeric CCES-like frame: character 
+collate=C.UTF-8: rows where string comparison differs from numeric: left-dummy 0, right-dummy 0 (n=2139)
+collate=C: rows where string comparison differs from numeric: left-dummy 0, right-dummy 0 (n=2139)
+value counts of LR string:
+
+-99   0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9   1 
+241  60  48 138 227 228 622 172 216 126  19  42 
+
+Check 2: columns of Prepped_survey_data.csv: X, T_health_cap, T_cases, Y, Authoritarianism, T_who, Gender_male, Age, LR, Edu_university, Country, w 
+is.null(subset(data, Country=='UK' & T_cases >= 10000 & T_health_cap=='Poor')$w1): TRUE 
+Check 3 US T_who None->WHO: mean change using combined data (as coded, n=3224) 0.1127; using own-country rows (n=1625) 0.1128
+Check 3 US Gender_male 0->1: mean change using combined data (as coded, n=3224) 0.0301; using own-country rows (n=1625) 0.0299
+Check 3 UK T_who None->WHO: mean change using combined data (as coded, n=3224) 0.1388; using own-country rows (n=1599) 0.1374
+Check 3 UK Gender_male 0->1: mean change using combined data (as coded, n=3224) 0.0223; using own-country rows (n=1599) 0.0224

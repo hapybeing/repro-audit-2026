@@ -1,0 +1,23 @@
+"","DataSet","Y","Mean","Q025","Q975"
+"1","United States","Leave borders open","0.16","0.14","0.18"
+"2","United Kingdom","Leave borders open","0.16","0.13","0.18"
+"3","United States","Close border to
+infected neighbor","0.32","0.30","0.35"
+"4","United Kingdom","Close border to
+infected neighbor","0.32","0.28","0.35"
+"5","United States","Close borders to
+ neighbors 1","0.02","0.01","0.03"
+"6","United Kingdom","Close borders to
+ neighbors 1","0.04","0.02","0.06"
+"7","United States","Close borders to
+ neighbors 2","0.14","0.12","0.16"
+"8","United Kingdom","Close borders to
+ neighbors 2","0.13","0.10","0.16"
+"9","United States","Close borders to
+entire region","0.16","0.14","0.18"
+"10","United Kingdom","Close borders to
+entire region","0.19","0.16","0.22"
+"11","United States","Close borders to
+entire world","0.20","0.17","0.22"
+"12","United Kingdom","Close borders to
+entire world","0.17","0.14","0.20"

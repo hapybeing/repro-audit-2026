@@ -1,0 +1,7 @@
+"check","outcome","estimate","se","ci_lo","ci_hi","p","n_used","n_dropped","n_boot_ok","n_boot_failed","note"
+"R_a","disagreement",0.506545354667801,0.146064924215304,0.184820646973767,0.767476910587978,0.008,138,NA,1000,0,""
+"R_b","disagreement",0.541175564135477,0.12561208989491,NA,NA,6.70545870578255e-05,122,16,NA,NA,"lm vs feols coef abs diff 4.55e-15; nonfinite Cook's kept 20; |z|>3 on outcome would drop 0"
+"R_c","disagreement",0.148215993776223,0.0997841894641221,NA,NA,0.14259698598228,138,NA,NA,NA,""
+"R_a","share_disagreement",0.190685569838297,0.0686687624253815,0.0383950161061222,0.308571096967544,0.016,138,NA,1000,0,""
+"R_b","share_disagreement",0.211150834971887,0.0510303939366459,NA,NA,0.00012120814907438,121,17,NA,NA,"lm vs feols coef abs diff 1.44e-15; nonfinite Cook's kept 20; |z|>3 on outcome would drop 0"
+"R_c","share_disagreement",0.059767562035223,0.0492435397182235,NA,NA,0.229535539310709,138,NA,NA,NA,""

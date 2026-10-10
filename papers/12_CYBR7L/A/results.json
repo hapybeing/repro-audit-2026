@@ -1,0 +1,168 @@
+{
+ "paper_id": "12_CYBR7L",
+ "agent": "A",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Percentage of the top 5% authors by HITS authority score in the 1956-2021 author citation network who are African (notebook cell 8, year 2021, 100*nb_africans/nb_authors)",
+   "paper_value": 9,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 8.89,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": -0.11,
+   "rel_diff": -0.012222,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: top 8.89 < complete 17.17; count reproduced 4 vs paper 4"
+  },
+  {
+   "id": "T2",
+   "description": "Percentage of the top 5% authors by authority score in the 1956-2021 network who are Africa-based (cell 8, year 2021, 100*nb_based_in_africa/nb_authors)",
+   "paper_value": 4,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 4.44,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": 0.44,
+   "rel_diff": 0.11,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: top 4.44 < complete 12.96; count reproduced 2 vs paper 2"
+  },
+  {
+   "id": "T3",
+   "description": "Percentage of the top 5% authors by authority score in the 1956-2010 network who are African (cell 8, year 2010, 100*nb_africans/nb_authors)",
+   "paper_value": 27,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 27.27,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": 0.27,
+   "rel_diff": 0.01,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: top2010 27.27 > complete2010 23.04 and > top2000 16.67; count reproduced 6 vs paper 6"
+  },
+  {
+   "id": "T4",
+   "description": "Percentage of non-African and non-Africa-based citing authors who cite more non-African and non-Africa-based authors than expected by chance, 1956-2021 (cell 9, first loop, year 2021, fraction_above_baseline*100)",
+   "paper_value": 78.5,
+   "paper_rounding_decimals": 1,
+   "reproduced_value": 78.53,
+   "source_file": "outputs/output_for_table_2.txt",
+   "abs_diff": 0.03,
+   "rel_diff": 0.000382,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: 78.53 > 50 and > 1956-2010 64.29"
+  },
+  {
+   "id": "T5",
+   "description": "Percentage of African or Africa-based citing authors who cite more non-African and non-Africa-based authors than expected by chance, 1956-2021 (cell 9, second loop, year 2021, fraction_above_baseline*100)",
+   "paper_value": 55.4,
+   "paper_rounding_decimals": 1,
+   "reproduced_value": 55.36,
+   "source_file": "outputs/output_for_table_2.txt",
+   "abs_diff": -0.04,
+   "rel_diff": -0.000722,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: 55.36 > 1956-2010 40.74 (above 50: True)"
+  },
+  {
+   "id": "T6",
+   "description": "Total number of authors in the 1956-2021 sample (cell 8, year 2021, num_authors = len(df[df['Year']<=2021].drop_duplicates(subset='AuthorID')))",
+   "paper_value": 903,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 903.0,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "same_conclusion rule: N 903.0 within 5 of 903; cell 3 nb_authors 903.0, nb_papers 923.0, top-5% size 45.0"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "nx.hits on G_citation[2021] with nstart from default_rng(20261010); cell 8 ranking and top-5% rule; spread over seeds 1-20",
+   "ran": true,
+   "estimate": 8.88888888888889,
+   "se_or_ci": "none (paper reports no test); complete-set African share 17.1650%",
+   "p_value": 0.08909445792058336,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "paper reports no significance test; direction only. p_value = one-sided hypergeometric P(X<=k), information only. African top count 4 of 45. Secondary T2 (Africa-based): top 4.4444% vs complete 12.9568%, p=0.0532. Seeds 1-20: African share min 8.8889 max 8.8889, Africa-based min 4.4444 max 4.4444; 0 of 20 seeds give a top-5% set different from the reference unseeded call; 20 of 20 keep the direction. Primary-seed set differs from reference: False. Reference = an unseeded nx.hits call in robustness.py (the notebook does not save its own top set); its counts equal the notebook output. Per-seed: outputs/R_a_seeds.csv."
+  },
+  {
+   "id": "R_b",
+   "description": "drop authors with |z|>3 on 2021 authority score (ddof=0), recompute hits on reduced graph, top round(5*N_reduced/100), compare with reduced complete set",
+   "ran": true,
+   "estimate": 13.333333333333334,
+   "se_or_ci": "none (paper reports no test); complete-set African share 17.3572%",
+   "p_value": 0.30888490483365355,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "paper reports no significance test; direction only. p_value = one-sided hypergeometric P(X<=k), information only. African top count 6 of 45. Secondary T2 (Africa-based): top 8.8889% vs complete 13.1019%, p=0.2741. Dropped 10 authors (0 African, 0 Africa-based); reduced N 893; top size 45."
+  },
+  {
+   "id": "R_c",
+   "description": "rank by weighted in-degree in G_citation[2021]; ties-included top set at rank round(5*N/100)",
+   "ran": true,
+   "estimate": 8.695652173913043,
+   "se_or_ci": "none (paper reports no test); complete-set African share 17.1650%",
+   "p_value": 0.07940518998282174,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "paper reports no significance test; direction only. p_value = one-sided hypergeometric P(X<=k), information only. African top count 4 of 46. Secondary T2 (Africa-based): top 4.3478% vs complete 12.9568%, p=0.0479. Threshold weighted in-degree 15, ties-included set size 46. Secondary strict first-45 (mergesort): African 3 (6.6667%), p=0.0340."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "replication_code.ipynb",
+   "line": 77,
+   "description": "Cell 4 (Figure 1), line 15 of the cell: df_tmp['Author_based_in_Africa'][df_tmp['AuthorID']==key] = value is a chained assignment. Under pandas 3.0.0 (the README version, Copy-on-Write) it does not modify df_tmp, so Figure 1's Africa-based series uses each author's first row rather than the mode-based location the loop computes. Affects Figure 1 only; no target.",
+   "evidence": "outputs/code_checks.json cell4_chained_assignment: value written was present after assignment = False; pandas 3.0.0 warning: 'A value is being set on a copy of a DataFrame or Series through chained assignment. Such c...'. Line 77 is the line in the notebook JSON file; warnings are silenced in cell 1 (warnings.simplefilter('ignore'))."
+  }
+ ],
+ "env_fixes": [
+  "diffs/replication_code_audit_cells.diff (and the full-JSON form diffs/replication_code_audit.ipynb.diff): two save-only cells that pickle G_citation and author_attributes, as PREREG section 2 allows; no analysis change. No package, path or backend change to the code was needed (MPLBACKEND=Agg set in the environment only)."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets reproduced to the paper's printed precision by running the deposited notebook as is with the README package versions.",
+ "confidence": "high",
+ "confidence_reason": "Exact README package versions, single deposited notebook run unchanged, values parsed by script; HITS randomness shown not to move the top-5% sets (20 seeds). Agent B comparison pending.",
+ "time_minutes": 16,
+ "uncertainties": [
+  "Python 3.12.15 used instead of README Python 3.14.2; all five README package versions installed exactly (numpy 2.4.1, pandas 3.0.0, scipy 1.17.0, matplotlib 3.10.8, networkx 2.8.8). No version pin change was needed.",
+  "nx.hits in the notebook is unseeded (svds start vector). The main run is one unseeded run. Boundary check outputs/boundary_authority_scores.csv: 2021 rank 45 authority 0.0046644868798294 vs rank 46 0.0046164626538661; 2010 rank 22 0.0120892413882775 vs rank 23 0.0118332607024573 (no tie at either boundary). R_a: all 20 seeds and the primary seed give the identical 2021 top-5% set.",
+  "Code observation (confirmed by run, judged a design inconsistency rather than a bug): cell 8 complete-set Africa-based counts use each author's first row (notebook JSON line 318, df2 = ...drop_duplicates(keep='first')), while the top-5% counts use the mode-based node attribute. With the mode-based value the 2021 complete-set count would be 120 instead of 117, 2010 79 instead of 77 (outputs/code_checks.json). Top-5% counts are the same either way (2021: 2 vs 2; 2010: 6 vs 6). Not a target value; T2's comparison direction is unaffected.",
+  "Code observation (confirmed by run): authors whose location rows are all blank get an empty mode, which cells 6 and 9 set to 1 (Africa-based), while the appendix says undetermined values were set to missing. Count of such authors: 2021 0, 2010 1 (in 2010 top 5%: 0). Ties coded 1 (as the appendix states): 2021 4, 2010 2. outputs/code_checks.json.",
+  "R_a 'main run top set' comparison uses a reference unseeded nx.hits call in robustness.py, because the notebook does not save its top-5% AuthorIDs; its counts (4 African, 2 Africa-based of 45) equal the notebook output.",
+  "PREREG section 2 says the G_citation pickle cell is an 'added final cell'. Cell 9 reassigns G_citation (graphs with isolated nodes), so a final cell alone would not save the cell 6 objects the checks name. A save-only cell was inserted after cell 8 (cell 6 graphs, used for boundary scores and all robustness checks) and a second save-only cell was added at the end. Both only pickle objects (diffs/replication_code_audit_cells.diff).",
+  "Paper text p. 708 says 42 percent for the African or Africa-based 1956-2010 cell; the run gives 40.74, matching Table 2's 40.7 (not a target)."
+ ],
+ "secondary_context": {
+  "cell3_nb_papers": 923.0,
+  "cell3_nb_authors": 903.0,
+  "table1_2021_top_n": 45.0,
+  "table1_2010_top_n": 22.0,
+  "table1_2000_african_top_pct": 16.67,
+  "table2_nonafr_2010": 64.29,
+  "table2_afr_2010": 40.74,
+  "source_files": [
+   "outputs/targets_extracted.csv",
+   "outputs/output_for_table_1.txt",
+   "outputs/output_for_table_2.txt",
+   "outputs/executed.ipynb"
+  ]
+ }
+}

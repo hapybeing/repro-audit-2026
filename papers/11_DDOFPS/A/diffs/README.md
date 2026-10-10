@@ -1,0 +1,9 @@
+# Environment fixes, 11_DDOFPS, agent A
+
+The deposited script `Análise dos Dados Nota Técnica.R` (sha256 a057273f...527b) was run byte-identical (copied as `orig_script.R`). No line of the authors' code was edited.
+
+1. `file_name_mapping_v1.diff` (primary, PREREG section 2 and batch3_class_decisions #1). The script reads `bd_doxa_programas.xlsx` (line 67) and `bd_doxa_candidatos.xlsx` (line 94), which are not deposited under those names. The deposited `bd_doxa_programas_HGPE.xlsx` and `bd_doxa_candidatos_HGPE.xlsx` were copied byte-identical into the run directory under the names the script uses. Path only.
+2. `file_name_mapping_v2_alternative.diff` (labelled alternative). Same, with `bd_doxa_programas_HGPE_v2.xlsx` as the programs file.
+3. `run_authors_graphics_device.diff`: change to my own wrapper `scripts/run_authors.R`, not to the authors' code. The default `pdf()` device stopped with `Error in grid.Call.graphics(C_text, ...): invalid font type` when drawing Figura 1 with `theme_ipsum_tw()` (Titillium Web font not installed). Plots now go to a cairo PNG device, which substitutes a font. Cosmetic only; Figura 1 has no target (PREREG allows making this cosmetic call non-fatal; this route needed no code change). The wrapper also prints `summary(warnings())` after the script.
+4. Encoding: the wrapper sources the script with `source(..., encoding = "latin1")`. The byte 0xB4 on line 177 is read as U+00B4, so the filter entry stays "´45" exactly as deposited.
+5. Package version (no file diff): current CRAN hrbrthemes 0.9.3 has no `theme_ipsum_tw()` (`Error in theme_ipsum_tw() : could not find function "theme_ipsum_tw"`, line 53). CRAN Archive 0.8.7 also lacks it. hrbrthemes 0.8.0 (CRAN Archive, tarball sha256 ecfe33ff0907f141c84587376274d2c8249f03938f72e7a5676d945b1630f014) exports it and was installed into the per-run library (needs extrafont, installed from CRAN).

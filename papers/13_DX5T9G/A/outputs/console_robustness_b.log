@@ -1,0 +1,16 @@
+  country                   rule n_dropped n_absz_w_gt3 n_absz_logcases_gt3
+1      UK               |z(w)|>3        22           22                   0
+2      US top 1% of w (no |z|>3)        16            0                   0
+  n_absz_age_gt3
+1              0
+2              0
+  target          var      Mean        SD       pvalue       MLE    N
+1     T1          WHO -1.428742 0.2805254 3.727506e-07 -1.431676 1577
+2     T2 WHO.Ratified -1.870996 0.2757929 1.387330e-11 -1.872142 1577
+3     T3          WHO -1.124092 0.2373000 2.263787e-06 -1.117179 1609
+4     T4 WHO.Ratified -1.625400 0.2331594 3.803797e-12 -1.618758 1609
+  convergence country
+1           0      UK
+2           0      UK
+3           0      US
+4           0      US

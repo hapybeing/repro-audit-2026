@@ -1,0 +1,9 @@
+path	reason
+papers/12_CYBR7L/A/outputs/executed.ipynb	full copy of the authors' notebook with its outputs (licence varies); targets are parsed into outputs/output_for_table_*.txt and targets_extracted.csv (36324 bytes)
+papers/12_CYBR7L/A/scripts/replication_code_audit.ipynb	full copy of the authors' notebook with the audit's two save-only cells (licence varies); the change is in diffs/ (25281 bytes)
+papers/12_CYBR7L/B/outputs/executed.ipynb	full copy of the authors' notebook with its outputs (licence varies); targets are parsed into outputs/output_for_table_*.txt and targets_extracted.csv (36320 bytes)
+papers/15_1BBC4E/A/outputs/agreement_ead2.rds	R data object or dataset derived from the third-party deposit (regenerable with the agent's scripts) (221 bytes)
+papers/15_1BBC4E/A/outputs/corr_ea.rds	R data object or dataset derived from the third-party deposit (regenerable with the agent's scripts) (436 bytes)
+papers/15_1BBC4E/A/outputs/share_ead.rds	R data object or dataset derived from the third-party deposit (regenerable with the agent's scripts) (128481 bytes)
+papers/15_1BBC4E/B/outputs/corr_ea.rds	R data object or dataset derived from the third-party deposit (regenerable with the agent's scripts) (436 bytes)
+papers/11_DDOFPS to 15_1BBC4E: deposit copies, author scripts, venvs and session images	never placed in the repo: kept in the agents' scratch folders outside the repository (sha256 of deposit files in each PREREG.md)

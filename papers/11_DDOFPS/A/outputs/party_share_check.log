@@ -1,0 +1,9 @@
+           filter rows_selected rows_total rows_numpartido_nonNA
+1 deposited (´45)          4629       9439                  9433
+2         with 45          5340       9439                  9433
+  rows_matching_literal_entry_with_accent share_of_all_rows
+1                                       0         0.4904121
+2                                      NA         0.5657379
+  share_of_nonNA_numpartido
+1                 0.4907241
+2                 0.5660977

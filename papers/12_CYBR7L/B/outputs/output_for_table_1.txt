@@ -1,0 +1,55 @@
+Years 1956-1980
+Top 4 out of 82 (i.e., 5%) by authority score centrality:
+0 (i.e., 0.0%) Africans (11 i.e. 13.41% in the complete set)
+1 (i.e., 25.0%) based in Africa (10 i.e. 12.2% in the complete set)
+0 (i.e., 0.0%) African and based in Africa (6 i.e. 7.32% in the complete set)
+1 (i.e., 25.0%) females (5 i.e. 6.1% in the complete set)
+0 (i.e., 0.0%) female and African (0 i.e. 0.0% in the complete set)
+0 (i.e., 0.0%) female and based in Africa (0 i.e. 0.0% in the complete set)
+0 (i.e., 0.0%) female, African, and based in Africa (0 i.e. 0.0% in the complete set)
+
+
+Years 1956-1990
+Top 7 out of 133 (i.e., 5%) by authority score centrality:
+0 (i.e., 0.0%) Africans (18 i.e. 13.53% in the complete set)
+0 (i.e., 0.0%) based in Africa (14 i.e. 10.53% in the complete set)
+0 (i.e., 0.0%) African and based in Africa (10 i.e. 7.52% in the complete set)
+1 (i.e., 14.29%) females (13 i.e. 9.77% in the complete set)
+0 (i.e., 0.0%) female and African (1 i.e. 0.75% in the complete set)
+0 (i.e., 0.0%) female and based in Africa (0 i.e. 0.0% in the complete set)
+0 (i.e., 0.0%) female, African, and based in Africa (0 i.e. 0.0% in the complete set)
+
+
+Years 1956-2000
+Top 12 out of 248 (i.e., 5%) by authority score centrality:
+2 (i.e., 16.67%) Africans (67 i.e. 27.02% in the complete set)
+1 (i.e., 8.33%) based in Africa (50 i.e. 20.16% in the complete set)
+1 (i.e., 8.33%) African and based in Africa (41 i.e. 16.53% in the complete set)
+2 (i.e., 16.67%) females (29 i.e. 11.69% in the complete set)
+0 (i.e., 0.0%) female and African (6 i.e. 2.42% in the complete set)
+0 (i.e., 0.0%) female and based in Africa (5 i.e. 2.02% in the complete set)
+0 (i.e., 0.0%) female, African, and based in Africa (5 i.e. 2.02% in the complete set)
+
+
+Years 1956-2010
+Top 22 out of 447 (i.e., 5%) by authority score centrality:
+6 (i.e., 27.27%) Africans (103 i.e. 23.04% in the complete set)
+6 (i.e., 27.27%) based in Africa (77 i.e. 17.23% in the complete set)
+5 (i.e., 22.73%) African and based in Africa (61 i.e. 13.65% in the complete set)
+6 (i.e., 27.27%) females (89 i.e. 19.91% in the complete set)
+1 (i.e., 4.55%) female and African (11 i.e. 2.46% in the complete set)
+1 (i.e., 4.55%) female and based in Africa (9 i.e. 2.01% in the complete set)
+1 (i.e., 4.55%) female, African, and based in Africa (9 i.e. 2.01% in the complete set)
+
+
+Years 1956-2021
+Top 45 out of 903 (i.e., 5%) by authority score centrality:
+4 (i.e., 8.89%) Africans (155 i.e. 17.17% in the complete set)
+2 (i.e., 4.44%) based in Africa (117 i.e. 12.96% in the complete set)
+1 (i.e., 2.22%) African and based in Africa (90 i.e. 9.97% in the complete set)
+17 (i.e., 37.78%) females (292 i.e. 32.34% in the complete set)
+0 (i.e., 0.0%) female and African (29 i.e. 3.21% in the complete set)
+0 (i.e., 0.0%) female and based in Africa (28 i.e. 3.1% in the complete set)
+0 (i.e., 0.0%) female, African, and based in Africa (22 i.e. 2.44% in the complete set)
+
+

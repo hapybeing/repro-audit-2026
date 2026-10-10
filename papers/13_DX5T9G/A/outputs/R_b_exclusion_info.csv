@@ -1,0 +1,3 @@
+"country","rule","n_dropped","n_absz_w_gt3","n_absz_logcases_gt3","n_absz_age_gt3"
+"UK","|z(w)|>3",22,22,0,0
+"US","top 1% of w (no |z|>3)",16,0,0,0

@@ -1,0 +1,74 @@
+--- "orig_code/00_Run it all.R"	2026-10-10 15:53:01.504485659 +0000
++++ replication/code/00_fallback_runner.R	2026-10-10 15:58:50.483411727 +0000
+@@ -56,7 +56,7 @@
+ ####################
+ library(doMC)
+ detectCores()
+-registerDoMC(cores=7)
++registerDoMC(cores=1)
+ 
+ 
+ ## Versions of R packages
+@@ -64,57 +64,14 @@
+ log_print(sessionInfo())
+ 
+ 
+-## Execute entire analysis
+-##########################
++## FALLBACK RUNNER (PREREG section 2): full 03 was OOM-killed on this machine.
++## 00 preliminaries (lines 1-64 above, verbatim apart from cores=1), then 01 unchanged,
++## then 03 with the simulation blocks removed (coefficients, draws, Mean/SD/pvalue unchanged), then 05 unchanged.
+ source("code/01_Prepare data.R")
+-source("code/02_Descriptives.R")
+-source("code/03_Estimate main models.R")
+-source("code/04_Make main graphs.R")
++source("code/03_Estimate main models_fallback.R")
++file.copy(from="output/Estimates-Main-fallback.Rdata", to="output/Estimates-Main.Rdata", overwrite=TRUE)
+ source("code/05_Make main tables.R")
+-source("code/06_Estimate Open.R")
+-source("code/07_Causal moderation for Open.R")
+-source("code/08_Newspaper analysis.R")
+-
+-
+-## Copy files and rename to names in the manuscript
+-###################################################
+ dir.create(path="output/named_items", showWarnings = FALSE)
+-
+-file.copy(from="data/cascara_geo_trimmed.png", to="output/named_items/Figure_1.png", overwrite=TRUE)
+-
+ file.copy(from="output/table_main_UK_1.tex", to="output/named_items/Table_2.tex", overwrite=TRUE)
+ file.copy(from="output/table_main_US_1.tex", to="output/named_items/Table_3.tex", overwrite=TRUE)
+-
+-file.copy(from="output/Output_proportions.pdf", to="output/named_items/Figure_2.pdf", overwrite=TRUE)
+-file.copy(from="output/Main_effects_cases.pdf", to="output/named_items/Figure_3.pdf", overwrite=TRUE)
+-file.copy(from="output/Main_effects_health_cap.pdf", to="output/named_items/Figure_4.pdf", overwrite=TRUE)
+-file.copy(from="output/Main_effects_who.pdf", to="output/named_items/Figure_5.pdf", overwrite=TRUE)
+-file.copy(from="output/News_coverage.pdf", to="output/named_items/Figure_6.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/Demographics.pdf", to="output/named_items/Figure_A1.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/table_main_UK_5.tex", to="output/named_items/Table_A1.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_5.tex", to="output/named_items/Table_A2.tex", overwrite=TRUE)
+-
+-file.copy(from="output/High_cases_WHO_effects.pdf", to="output/named_items/Figure_A2.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/Main_moderation_effects.pdf", to="output/named_items/Figure_A3.pdf", overwrite=TRUE)
+-
+-file.copy(from="output/table_main_UK_2.tex", to="output/named_items/Table_A3.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_UK_3.tex", to="output/named_items/Table_A4.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_UK_4.tex", to="output/named_items/Table_A5.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_2.tex", to="output/named_items/Table_A6.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_3.tex", to="output/named_items/Table_A7.tex", overwrite=TRUE)
+-file.copy(from="output/table_main_US_4.tex", to="output/named_items/Table_A8.tex", overwrite=TRUE)
+-
+-file.copy(from="output/table_open_main.tex", to="output/named_items/Table_A9.tex", overwrite=TRUE)
+-file.copy(from="output/Open_explore.pdf", to="output/named_items/Figure_A4.pdf", overwrite=TRUE)
+-
+-
+-## End logging
+-##############
+ log_close()
+-writeLines(readLines(lf, encoding = "UTF-8"))
+-
+-
+-

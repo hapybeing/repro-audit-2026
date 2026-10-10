@@ -1,0 +1,151 @@
+--- "03_Estimate main models.R"	2026-10-10 15:57:01.348955513 +0000
++++ 03_FALLBACK_main_models_m1.R	2026-10-10 16:07:19.431220874 +0000
+@@ -4,7 +4,7 @@
+ ## Yoshiharu Kobayashi, Menevis Cilizoglu, 
+ ## Tobias Heinrich, William Christiansen
+ #############################################################
+-## 3) Estimate main models
++## 3) Estimate main models -- AGENT B FALLBACK (PREREG section 2): m = 1 only, simulations of substantive effects skipped
+ #############################################################
+ 
+ 
+@@ -31,7 +31,7 @@
+   store_sim <- c()
+   store_coefficients <- c()
+   store_all_raw_cases <- array(NA, dim=c(5, 5000, 3, 6, 3))
+-  for(m in 1:5)
++  for(m in 1:1)  # FALLBACK: was 1:5
+   {
+     if(i == 1) tmp <- subset(data, Country == "US")
+     if(i == 2) tmp <- subset(data, Country == "UK")
+@@ -65,105 +65,10 @@
+                                                                   pvalue=2*pt(q=-1 * abs(mean(x) / sd(x)), df=nrow(data)),
+                                                                   Data=i, Subset=m, N=nrow(tmp))))
+     
+-    
+-    ## Reshape coefficients for simulations
+-    beta <- array(0, dim=c(6, 5000, dim(theta)[2]/5))
+-    for(j in 2:6)
+-    {
+-      beta[j, , ] <- theta[, grepl(x=colnames(theta), pattern=paste0(j, ":"))]
+-    }
+-    
+-    
+-    ## Simulations of substantive effects
+-    store_tmp <- c()
+-    for(j in 1:length(sim_set))
+-    {
+-      store_cases_tmp <- array(0, dim=c(nrow(tmp), nrow(theta), 
+-                                        length(sim_set[[j]]$u_cases), 6),
+-                               dimnames=list(Obs=NULL, Iter=NULL, 
+-                                             Cases=sim_set[[j]]$u_cases, Y=1:6))
+-      store_cases <- store_cases_tmp
+-      
+-      for(k in 1:length(sim_set[[j]]$u_cases))
+-      {
+-        tmp2 <- tmp
+-        tmp2[, sim_set[[j]]$Var] <- sim_set[[j]]$u_cases[k]
+-        X_sim <- model.matrix(this_form, data=tmp2)
+-        
+-        raw_exp <- array(0, dim=c(nrow(X_sim), 5000, 6))
+-        for(l in 1:6)
+-        {
+-          raw_exp[, , l] <- exp(X_sim %*% t(beta[l, , ]))
+-        }
+-        denom <- aaply(.data=raw_exp, .margins=1, .fun=function(x) rowSums(x))
+-        
+-        for(l in 1:6)
+-        {
+-          store_cases_tmp[, , k, l] <- raw_exp[, , l] / denom
+-        }
+-      }
+-      
+-      ## Rescale the outcome
+-      store_cases[ , , , 1] <- store_cases_tmp[ , ,  , 1]
+-      for(k in 2:6) 
+-      {
+-        for(n in k:6)
+-        {
+-          store_cases[ , , , k] <- store_cases[ , , , k] + store_cases_tmp[ , , , n]
+-        }
+-      }
+-      
+-      ## Store raw probabilities
+-      V_max <- ifelse(j == 3, 2, 3)
+-      store_all_raw_cases[m, ,  1:V_max, , j] <-  aaply(.data=store_cases, .margins=c(2, 3, 4), 
+-                                                        .fun=function(x) weighted.mean(x=x, w=tmp$w))
+-      
+-      for(k in length(sim_set[[j]]$u_cases):1)
+-      {
+-        store_cases[, , k, ] <- store_cases[, , k, ] - store_cases[, , 1, ]
+-      }
+-      
+-      store_cases <- aaply(.data=store_cases, .margins=c(2, 3, 4), 
+-                           .fun=function(x) weighted.mean(x=x, w=tmp$w))
+-      store_cases <- adply(.data=store_cases, .margins=c(2, 3),
+-                           .fun=function(x) data.frame(Mean=mean(x), SD=sd(x),
+-                                                       Q025=quantile(x, 0.025),
+-                                                       Q975=quantile(x, 0.975), 
+-                                                       PP=mean(x > 0), 
+-                                                       Scenario=sim_set[[j]]$Var,
+-                                                       Data=i, Subset=m))
+-      store_tmp <- rbind(store_cases, store_tmp)
+-    }
+-    store_sim <- rbind(store_sim, store_tmp)
++    ## FALLBACK: lines 69-137 (simulations of substantive effects) skipped; no random numbers are drawn between set.seed(1230) and mvrnorm, so theta is unchanged
+   }
+-  
+-  
+-  ## Calculate treatment moderation
+-  store_all_raw_cases <- store_all_raw_cases[2:4, , , 1, ]
+-  mod_case_med_T0 <- store_all_raw_cases[1, , 1, 2] - store_all_raw_cases[1, , 1, 1]
+-  mod_case_med_T1 <- store_all_raw_cases[2, , 1, 2] - store_all_raw_cases[2, , 1, 1]
+-  mod_case_med_T2 <- store_all_raw_cases[3, , 1, 2] - store_all_raw_cases[3, , 1, 1]
+-  mod_case_high_T0 <- store_all_raw_cases[1, , 1, 3] - store_all_raw_cases[1, , 1, 1]
+-  mod_case_high_T1 <- store_all_raw_cases[2, , 1, 3] - store_all_raw_cases[2, , 1, 1]
+-  mod_case_high_T2 <- store_all_raw_cases[3, , 1, 3] - store_all_raw_cases[3, , 1, 1]
+-  
+-  mod_med_T0 <- store_all_raw_cases[1, , 3, 2] - store_all_raw_cases[1, , 3, 1]
+-  mod_med_T1 <- store_all_raw_cases[2, , 3, 2] - store_all_raw_cases[2, , 3, 1]
+-  mod_med_T2 <- store_all_raw_cases[3, , 3, 2] - store_all_raw_cases[3, , 3, 1]
+-  
+-  ATME <- cbind(mod_case_med_T1 - mod_case_med_T0, mod_case_med_T2 - mod_case_med_T0,
+-                mod_case_high_T1 - mod_case_high_T0, mod_case_high_T2 - mod_case_high_T0,
+-                mod_med_T1 - mod_med_T0, mod_med_T2 - mod_med_T0)
+-  colnames(ATME) <- c("T1T0_case_med", "T2T0_case_med", "T1T0_case_high", "T2T0_case_high", "T1T0_med", "T2T0_med")
+-  
+-  ATME <- adply(.data=ATME, .margins=2, .fun=function(x) data.frame(Mean=mean(x), SD=sd(x),
+-                                                                    Q025=quantile(x, 0.025),
+-                                                                    Q975=quantile(x, 0.975), 
+-                                                                    PP=mean(x > 0), Data=i))
+-  
+-  ## Combine, bundle up
+-  out <- list(Simulations=store_sim, Coefficients=store_coefficients, ATME=ATME)
+-  
++  ## FALLBACK: treatment moderation (lines 141-162) skipped
++  out <- list(Coefficients=store_coefficients)
+   return(out)
+ }
+ 
+@@ -174,21 +79,6 @@
+ save(store_estimates, file="output/Estimates-Main.Rdata")
+ 
+ 
+-## Save outputs to a .csv
+-#########################
+-out <- ldply(.data=store_estimates, .fun=function(x) x$Simulations)
+-out[, c("Mean", "SD", "Q025", "Q975", "PP")] <- format(round(out[, c("Mean", "SD", "Q025", "Q975", "PP")],
+-                                                             di=2), nsmall=2)
+-out$Data <- ifelse(out$Data == 1, "US", "UK")
+-out$Subset <- mapvalues(x=out$Subset,
+-                        from=1:5,
+-                        to=c("All", "WHO = None", "WHO = WHO", "WHO = WHO.Ratified",
+-                             "Bad Health, High Cases"))
+-write.csv(x=out, file="output/Estimates_numbers.csv")
+-
+-
+-
+ ## Garbage collection
+ #####################
+ rm(list=setdiff(ls(), c("log_fp", "lf")))
+-

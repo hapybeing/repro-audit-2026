@@ -1,0 +1,160 @@
+{
+ "paper_id": "11_DDOFPS",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Total number of observations (rows) in the programs database bd_doxa_programas_HGPE, summed over the six elections in the Figura 2 code section (sum(df$programas) after line 75; equals nrow(bd_doxa_programas))",
+   "paper_value": 9439,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 9439.0,
+   "source_file": "outputs/targets_extracted_v1.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nrow(bd_doxa_programas) = 9439; per year 1998..2018 = 1071, 1778, 1351, 1610, 2703, 926; v2 programs file gives 9439 (outputs/targets_extracted_v2.csv)"
+  },
+  {
+   "id": "T2",
+   "description": "Pearson correlation r between HGPE_total (seconds) and VR_RECEITA_total (campaign revenue), election year 2002, candidates database sheet 2002_2018 after na.omit (teste_2); stat_cor layer of Figura 6, line 219",
+   "paper_value": 0.45,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.45,
+   "source_file": "outputs/targets_extracted_v1.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "stat_cor r is itself rounded to 2 decimals by ggpubr; cor.test cross-check r = 0.44754284456147, p = 2.5856613873457e-17, n = 323; v2 programs file gives 0.45 (outputs/targets_extracted_v2.csv)"
+  },
+  {
+   "id": "T3",
+   "description": "Pearson correlation r between HGPE_total and VR_RECEITA_total, election year 2018 (same object as T2)",
+   "paper_value": 0.72,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.72,
+   "source_file": "outputs/targets_extracted_v1.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "cor.test cross-check r = 0.715158969593276, p = 6.08564749021949e-138, n = 875; v2 programs file gives 0.72 (outputs/targets_extracted_v2.csv)"
+  },
+  {
+   "id": "T4",
+   "description": "Number of 2018 programs with the minority-defence appeal (APE4 == 'Sim'), cell ['2018','Sim'] of table(bd_doxa_programas$ano, bd_doxa_programas$APE4), line 138/148",
+   "paper_value": 40,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 40.0,
+   "source_file": "outputs/targets_extracted_v1.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "expected 2018 Sim = 16.8738213793834 (paper note 9 says 16); chisq = 113.98380929986, df = 5, p = 5.89105815047296e-23; v2 programs file gives 40 (outputs/targets_extracted_v2.csv)"
+  },
+  {
+   "id": "T5",
+   "description": "Observed count of political appeal (APE3 == 'Sim') for party 13 (PT), cell ['13','Sim'] of table(partidos_sel$numpartido, partidos_sel$APE3), lines 176-198",
+   "paper_value": 602,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 602.0,
+   "source_file": "outputs/targets_extracted_v1.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "MDB (15) observed 417; parties in table: 11;12;13;15;22;25;50; v2 programs file gives 602 (outputs/targets_extracted_v2.csv)"
+  },
+  {
+   "id": "T6",
+   "description": "Chi-square expected count of APE3 == 'Sim' for party 13 (PT), test2$expected['13','Sim'] from chisq.test(table(partidos_sel$numpartido, partidos_sel$APE3)), lines 180-183",
+   "paper_value": 524,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 524.249081875135,
+   "source_file": "outputs/targets_extracted_v1.csv",
+   "abs_diff": 0.2490818751,
+   "rel_diff": 0.0004753471,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "MDB (15) expected 342.150788507237; test2 p = 2.17261556442512e-17; v2 programs file gives 524.249081875135 (outputs/targets_extracted_v2.csv)"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Stratified (by ano) case bootstrap of teste_2, seed 20261010, 2000 resamples; Pearson r(2018)",
+   "ran": true,
+   "estimate": 0.715158969593276,
+   "se_or_ci": "95% percentile CI [0.6440, 0.7785]; bootstrap SE 0.0339",
+   "p_value": 0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "p is min(2*share r<=0,1) over 2000 draws, i.e. < 1/2000 when 0. Share of resamples with r(2018) > r(2002): 0.9995. Original r(2018)-r(2002) = 0.2676"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 of VR_RECEITA_total within year; Pearson r(2018)",
+   "ran": true,
+   "estimate": 0.529777250701415,
+   "se_or_ci": "95% CI (cor.test) [0.4794, 0.5766]",
+   "p_value": 3.03427654143748e-62,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "Rows dropped per year: 2002: 5, 2006: 10, 2010: 17, 2014: 12, 2018: 31; r by year: 2002: 0.493, 2006: 0.679, 2010: 0.646, 2014: 0.606, 2018: 0.530; r(2018)-r(2002) = 0.0366"
+  },
+  {
+   "id": "R_c",
+   "description": "Spearman rank correlation (exact = FALSE) per year on teste_2; rho(2018)",
+   "ran": true,
+   "estimate": 0.500162387485315,
+   "se_or_ci": "",
+   "p_value": 1.42530469847352e-56,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "rho by year: 2002: 0.691, 2006: 0.587, 2010: 0.551, 2014: 0.529, 2018: 0.500; rho(2018)-rho(2002) = -0.1907 (secondary: the increase over time seen with Pearson is not seen with Spearman)"
+  }
+ ],
+ "bugs": [],
+ "code_review": "none found. Read all 270 lines of 'Análise dos Dados Nota Técnica.R'. Unverified observation: line 177 entry '´45' (byte 0xB4 + '45') matches no row; 711 rows have numpartido 45 and are left out of Figura 5. The paper's Figura 5 legend also omits 45 (per PREREG), so intent cannot be confirmed. Exploratory (not pre-registered) run with '45': PT observed 602 vs expected 557.76, observed > expected still holds (outputs/robustness.json, exploratory_party45).",
+ "env_fixes": [
+  "diffs/file_name_mapping_v1.diff: script reads bd_doxa_programas.xlsx / bd_doxa_candidatos.xlsx, deposited as bd_doxa_programas_HGPE.xlsx / bd_doxa_candidatos_HGPE.xlsx; copied under script names (pre-registered path fix)",
+  "diffs/file_name_mapping_v2_alternative.diff: labelled alternative run with bd_doxa_programas_HGPE_v2.xlsx",
+  "diffs/analise_dos_dados_theme_ipsum_tw.diff: theme_ipsum_tw() absent from hrbrthemes 0.9.3 and 0.8.7 (CRAN); cosmetic call on line 53 made non-fatal via tryCatch, as PREREG allows (Figura 1, no target)",
+  "Script sourced with encoding = 'latin1' via scripts/run_authors.R (wrapper, no edit)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets match the paper to its printed rounding with the pre-registered primary file (bd_doxa_programas_HGPE.xlsx); the v2 programs file gives identical values, so the alternative class is the same. Only path and cosmetic environment fixes were needed.",
+ "alternative_class_v2": "A",
+ "same_conclusion_v2": {
+  "T1": true,
+  "T2": true,
+  "T3": true,
+  "T4": true,
+  "T5": true,
+  "T6": true
+ },
+ "confidence": "medium",
+ "confidence_reason": "Numbers matched by script and v1/v2 agree; judgement remains on whether the renamed input files count as an environment fix (batch decision #1 says yes) and on Agent A agreement, which B cannot see; package versions are current CRAN, not the authors' (unpinned).",
+ "time_minutes": 8,
+ "uncertainties": [
+  "Input files are not deposited under the names the script reads; class A rests on batch3_class_decisions.md #1 treating the mapping as a path-only fix. A reading of the materials as unclear would give C.",
+  "theme_ipsum_tw() could not be found in CRAN hrbrthemes 0.9.3 or 0.8.7; Figura 1 styling differs from the authors' (no target affected).",
+  "T2/T3 pre-registered statistic is ggpubr stat_cor's r, which ggpubr rounds to 2 decimals; the full-precision cor.test values (0.4475, 0.7152) also round to the printed values.",
+  "Paper note 9 expected 2018 APE4 count 16 vs code 16.87 (rounds to 17); secondary, not a target.",
+  "Figura 4 p-value wording 'p-valor > 0,001': code p = 5.89105815047296e-23, consistent with reading (1) p < 0.001.",
+  "Robustness R_b and R_c keep r(2018) positive and significant, but the secondary claim of a stronger correlation over time is weaker after outlier exclusion and reversed under Spearman.",
+  "The paper text was not re-read by Agent B (SciELO blocks scripted access); paper values taken from PREREG.md.",
+  "Package versions are current CRAN / Debian (ggplot2 4.0.3, ggpubr 0.6.0, rio 1.2.3); the deposit pins none."
+ ]
+}

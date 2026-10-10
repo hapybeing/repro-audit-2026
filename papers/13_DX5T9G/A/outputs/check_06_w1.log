@@ -1,0 +1,33 @@
+06 lines 195-203 as deposited:
+## Probit results for Footnote 20; verisimilitude
+##########################################################################
+mod_UK <- bayesglm(Y_open ~ 1 +I(T_who == "WHO") + I(T_who == "WHO.Ratified") +  log(T_cases) + Authoritarianism + I(Age/100)  + Gender_male + Edu_university + I(I(LR != -99) * LR) + I(LR == -99),
+                   data=subset(data, Country == "UK" & T_cases >= 10000 & T_health_cap == "Poor"), family=binomial(link="probit"),
+                   w=subset(data, Country == "UK" & T_cases >= 10000 & T_health_cap == "Poor")$w1)
+
+mod_US <- bayesglm(Y_open ~ 1 + I(T_who == "WHO") + I(T_who == "WHO.Ratified") + log(T_cases) + Authoritarianism + I(Age/100)  + Gender_male + Edu_university + I(I(LR != -99) * LR) + I(LR == -99),
+                   data=subset(data, Country == "US" & T_cases >= 10000 & T_health_cap == "Poor"), family=binomial(link="probit"),
+                   w=subset(data, Country == "US" & T_cases >= 10000 & T_health_cap == "Poor")$w1)
+
+Yopen line(s) in 06:
+[1] "data$Y_open <- ifelse(data$Y == 1, 1, 0)"                                                                                                                                                                
+[2] "form <- \"I(Y_open == 1)~ 1 + I(T_health_cap == \\\"Great\\\") + log(T_cases) + "                                                                                                                        
+[3] "mod_UK <- bayesglm(Y_open ~ 1 +I(T_who == \"WHO\") + I(T_who == \"WHO.Ratified\") +  log(T_cases) + Authoritarianism + I(Age/100)  + Gender_male + Edu_university + I(I(LR != -99) * LR) + I(LR == -99),"
+Warning messages:
+1: In eval(family$initialize) : non-integer #successes in a binomial glm!
+2: In eval(family$initialize) : non-integer #successes in a binomial glm!
+                       country   n w1_column_exists coef_WHO_as_deposited
+I(T_who == "WHO")TRUE       UK 354            FALSE             1.4678894
+I(T_who == "WHO")TRUE1      US 370            FALSE             0.5563132
+                       coef_WHO_unweighted coef_WHO_weighted_w
+I(T_who == "WHO")TRUE            1.4678894           1.9025146
+I(T_who == "WHO")TRUE1           0.5563132           0.5103587
+                       coef_WHORat_as_deposited coef_WHORat_unweighted
+I(T_who == "WHO")TRUE                 1.5216083              1.5216083
+I(T_who == "WHO")TRUE1                0.7078829              0.7078829
+                       coef_WHORat_weighted_w as_deposited_equals_unweighted
+I(T_who == "WHO")TRUE               2.0495185                           TRUE
+I(T_who == "WHO")TRUE1              0.7151469                           TRUE
+                       as_deposited_equals_weighted_w
+I(T_who == "WHO")TRUE                           FALSE
+I(T_who == "WHO")TRUE1                          FALSE

@@ -1,0 +1,69 @@
+Downloading package from url: https://cloud.r-project.org/src/contrib/Archive/dreamerr/dreamerr_1.2.3.tar.gz
+* installing *source* package ‘dreamerr’ ...
+** this is package ‘dreamerr’ version ‘1.2.3’
+** package ‘dreamerr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dreamerr)
+Downloading package from url: https://cloud.r-project.org/src/contrib/Archive/fixest/fixest_0.11.1.tar.gz
+* installing *source* package ‘fixest’ ...
+** this is package ‘fixest’ version ‘0.11.1’
+** package ‘fixest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+using C++11
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c convergence.cpp -o convergence.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c demeaning.cpp -o demeaning.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c dsb.cpp -o dsb.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c lm_related.cpp -o lm_related.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c misc_funs.cpp -o misc_funs.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c parallel_funs.cpp -o parallel_funs.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c quf.cpp -o quf.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c string_funs.cpp -o string_funs.o
+g++ -std=gnu++11 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c vcov_related.cpp -o vcov_related.o
+g++ -std=gnu++11 -shared -L/usr/lib/R/lib -Wl,-z,relro -o fixest.so RcppExports.o convergence.o demeaning.o dsb.o lm_related.o misc_funs.o parallel_funs.o quf.o string_funs.o vcov_related.o -fopenmp -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/14_CJISMY/A/rlib/00LOCK-fixest/00new/fixest/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fixest)
+Downloading package from url: https://cloud.r-project.org/src/contrib/Archive/texreg/texreg_1.38.6.tar.gz
+* installing *source* package ‘texreg’ ...
+** this is package ‘texreg’ version ‘1.38.6’
+** package ‘texreg’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (texreg)
+DONE
+[1] ‘0.11.1’

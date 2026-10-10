@@ -1,0 +1,11 @@
+--- orig.R	2026-10-10 15:55:00.620122036 +0000
++++ "Análise dos Dados Nota Técnica.R"	2026-10-10 15:55:00.650283917 +0000
+@@ -50,7 +50,7 @@
+   labs(x = element_blank(),
+        y = "tempo em minutos",
+        title = "Tempo di�rio de HGPE destinado a cada cargo") +
+-  theme_ipsum_tw() +
++  tryCatch(theme_ipsum_tw(), error = function(e) ggplot2::theme()) +
+   theme(panel.grid.major.x = element_blank(),
+         panel.grid.minor.x = element_blank(),
+         #panel.grid.major.y = element_blank(),

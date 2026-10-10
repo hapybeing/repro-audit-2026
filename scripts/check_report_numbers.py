@@ -202,8 +202,8 @@ for i, line in enumerate(rep, 1):
 oc = json.load(open(f"batches/batch{K}_code_observations_counts.json"))
 for i, line in enumerate(rep, 1):
     if re.search(r"\d+ observations: \d+ verified", line):
-        a = re.findall(r"(\d+) (observations|verified findings|unverified agent observations|out of scope)", line)
-        got = {k: int(v) for v, k in a}
+        a = re.findall(r"(\d+) (observations|verified findings?|unverified agent observations?|out of scope)", line)
+        got = {(k if k.endswith("s") or k == "out of scope" else k + "s"): int(v) for v, k in a}
         check(f"line {i} code observation counts", got,
               {"observations": oc["n_observations"], "verified findings": oc["by_status"]["verified finding"],
                "unverified agent observations": oc["by_status"]["unverified agent observation"],
@@ -238,6 +238,17 @@ def fmt(v):
 key = {(r["paper"], r["target_id"]): r for r in rows}
 for i, line in enumerate(tg, 1):
     cells = [c.strip() for c in line.strip().strip("|").split("|")]
+    if K == "3" and len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
+        # batch 3 paper-target rows: Paper | Target | Description | Location | Paper | A | B | Match | A/B agree
+        r = key.get((cells[0], cells[1]))
+        if r is None:
+            check(f"line {i} row {cells[0]} {cells[1]} exists in CSV", False, True); continue
+        check(f"line {i} {cells[0]} {cells[1]} paper/A/B/match/AB",
+              (cells[4], cells[5], cells[6], cells[7], cells[8]),
+              (fmt(r["paper_value"]), fmt(r["A_value"]), fmt(r["B_value"]), r["match_status"], r["AB_agree"]))
+        tv = next((t for t in json.load(open(f"papers/{cells[0]}/targets.json")) if t.get("id") == cells[1]), None)
+        check(f"line {i} {cells[0]} {cells[1]} paper value vs targets.json", fmt(r["paper_value"]), fmt(tv["paper_value"]) if tv else None)
+        continue
     if len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
         r = key.get((cells[0], cells[1]))
         if r is None:
@@ -265,6 +276,10 @@ for i, line in enumerate(tg, 1):
     m = re.match(r"- (.+?): (\d+)$", line.strip())
     if m and m.group(1) in tcount:
         check(f"line {i} count '{m.group(1)}'", int(m.group(2)), tc[m.group(1)])
+    m = re.match(r"- A/B agreement (.+?): (\d+)$", line.strip())
+    if m and K == "3":
+        check(f"line {i} count 'A/B agreement {m.group(1)}'", int(m.group(2)),
+              sum(1 for r in rows if r["row_type"] == "paper target" and r.get("AB_agree") == m.group(1)))
     m = re.match(r"- paper targets listed: (\d+) across (\d+) papers", line.strip())
     if m:
         listed = [r for r in rows if r["row_type"] == "paper target" and r["target_id"] != "(none)"]
@@ -313,6 +328,22 @@ if K == "2":
                     "FC2": (f"holds {fa['FC2']['same_conclusion']}", f"holds {fb['FC2']['same_conclusion']}"),
                     "FC3": (f"strict {fa['FC3']['same_conclusion_strict']}, lenient {fa['FC3']['same_conclusion_lenient']}", f"strict {fb['FC3']['strict_same_conclusion']}, lenient {fb['FC3']['lenient_same_conclusion']}")}[c[0]]
             check(f"line {i} 10 {c[0]} A/B outcome vs figure_claims.json", (c[2], c[3]), want)
+if K == "3":
+    # 11_DDOFPS v2 programs-file block: values from A's results.json (alternative_v2) and B's same_conclusion_v2
+    a11 = json.load(open("papers/11_DDOFPS/A/results.json")); b11 = json.load(open("papers/11_DDOFPS/B/results.json"))
+    tj11 = {t["id"]: t for t in json.load(open("papers/11_DDOFPS/targets.json"))}
+    av2 = {t["id"]: t for t in a11["alternative_v2"]["targets"]}
+    sec = None
+    for i, line in enumerate(tg, 1):
+        if line.startswith("## "):
+            sec = "11v2" if line.startswith("## 11_DDOFPS with the v2") else None
+            continue
+        if sec == "11v2" and re.match(r"\| T\d", line):
+            c = [x.strip() for x in line.strip().strip("|").split("|")]
+            t = tj11[c[0]]; v = av2[c[0]]["reproduced_value"]
+            check(f"line {i} 11 v2 {c[0]} paper/A/match/B", (c[1], c[2], c[3], c[4]),
+                  (str(t["paper_value"]), fmt(v), str(round(float(v), t["paper_rounding_decimals"]) == round(float(t["paper_value"]), t["paper_rounding_decimals"])),
+                   str(b11["same_conclusion_v2"][c[0]])))
 say("")
 
 # ---------------------------------------------------------------- generic trace of everything else
@@ -334,6 +365,8 @@ def t_sections(h):
         return ["papers/06_VSV5DM/targets.json", "papers/06_VSV5DM/A/outputs/targets_extracted.csv"]
     if h.startswith("## 07_JH9DBC with current"):
         return ["papers/07_JH9DBC/A/outputs/targets_extracted_fixest0142.csv", "papers/07_JH9DBC/A/environment.txt", "papers/07_JH9DBC/B/environment.txt"]
+    if h.startswith("## 11_DDOFPS with the v2"):
+        return ["papers/11_DDOFPS/A/results.json", "papers/11_DDOFPS/targets.json"]
     if h.startswith("## 10_6MLKJZ figure-claim"):
         return ["papers/10_6MLKJZ/A/outputs/figure_claims.json", "papers/10_6MLKJZ/PREREG.md"]
     return []

@@ -1,0 +1,22 @@
+estimation sample N = 138  countries = 62 
+  check            outcome  estimate        se    ci_lo    ci_hi           p
+1   R_a       disagreement 0.5065454 0.1460649 0.184821 0.767477 8.00000e-03
+2   R_b       disagreement 0.5411756 0.1256121       NA       NA 6.70546e-05
+3   R_c       disagreement 0.1482160 0.0997842       NA       NA 1.42597e-01
+4   R_a share_disagreement 0.1906856 0.0686688 0.038395 0.308571 1.60000e-02
+5   R_b share_disagreement 0.2111508 0.0510304       NA       NA 1.21208e-04
+6   R_c share_disagreement 0.0597676 0.0492435       NA       NA 2.29536e-01
+  n_used n_dropped n_boot_ok n_boot_failed
+1    138        NA      1000             0
+2    122        16        NA            NA
+3    138        NA        NA            NA
+4    138        NA      1000             0
+5    121        17        NA            NA
+6    138        NA        NA            NA
+                                                                                         note
+1                                                                                            
+2 lm vs feols coef abs diff 4.55e-15; nonfinite Cook's kept 20; |z|>3 on outcome would drop 0
+3                                                                                            
+4                                                                                            
+5 lm vs feols coef abs diff 1.44e-15; nonfinite Cook's kept 20; |z|>3 on outcome would drop 0
+6                                                                                            

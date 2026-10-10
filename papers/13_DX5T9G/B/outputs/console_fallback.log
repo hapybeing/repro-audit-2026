@@ -1,0 +1,374 @@
+[1] TRUE
+Loading required package: mvtnorm
+Loading required package: Matrix
+Loading required package: stats4
+Loading required package: gmm
+Loading required package: sandwich
+Loading required package: MASS
+Loading required package: lme4
+
+Attaching package: ‘lme4’
+
+The following object is masked from ‘package:gmm’:
+
+    checkConv
+
+
+arm (Version 1.14-4, built: 2024-4-1)
+
+Working directory is /workspace/audit_runs/13_DX5T9G/B/replication
+
+
+Attaching package: ‘arm’
+
+The following object is masked from ‘package:mvtnorm’:
+
+    standardize
+
+##
+## ebal Package: Implements Entropy Balancing.
+
+## See http://www.stanford.edu/~jhain/ for additional information.
+
+
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:arm’:
+
+    rescale
+
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: parallel
+[1] 2
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] doMC_1.3.8         iterators_1.0.14   foreach_1.5.2      scales_1.3.0      
+ [5] lubridate_1.9.4    ebal_0.1-8         nnet_7.3-20        arm_1.14-4        
+ [9] lme4_1.1-37        MASS_7.3-65        reshape2_1.4.4     tmvtnorm_1.6      
+[13] gmm_1.8            sandwich_3.1-1     Matrix_1.7-3       mvtnorm_1.3-3     
+[17] stringr_1.5.1      readstata13_0.11.0 ggplot2_3.5.1      foreign_0.8-90    
+[21] plyr_1.8.9         logr_1.3.3        
+
+loaded via a namespace (and not attached):
+ [1] generics_0.1.3   stringi_1.8.4    lattice_0.22-7   magrittr_2.0.3  
+ [5] timechange_0.3.0 grid_4.5.0       this.path_2.8.0  codetools_0.2-20
+ [9] abind_1.4-8      reformulas_0.4.1 Rdpack_2.6.3     cli_3.6.4       
+[13] rlang_1.1.5      rbibutils_2.3    munsell_0.5.1    splines_4.5.0   
+[17] withr_3.0.2      tools_4.5.0      nloptr_2.2.1     coda_0.19-4.1   
+[21] minqa_1.2.8      dplyr_1.1.4      colorspace_2.1-1 boot_1.3-31     
+[25] vctrs_0.6.5      R6_2.6.1         zoo_1.8-14       lifecycle_1.0.4 
+[29] pkgconfig_2.0.3  pillar_1.10.1    gtable_0.3.6     glue_1.8.0      
+[33] Rcpp_1.0.14      tibble_3.2.1     tidyselect_1.2.1 nlme_3.1-168    
+[37] compiler_4.5.0  
+Converged within tolerance 
+Automated trimmig of max weight ratio 
+Trim iteration 1 Max Weight Ratio: 10.8 
+Trim iteration 2 Max Weight Ratio: 10.8 
+Trim iteration 3 Max Weight Ratio: 9.792 
+Trim iteration 4 Max Weight Ratio: 9.792 
+Trim iteration 5 Max Weight Ratio: 8.599 
+Trim iteration 6 Max Weight Ratio: 7.733 
+Trim iteration 7 Max Weight Ratio: 7.392 
+Trim iteration 8 Max Weight Ratio: 7.029 
+Trim iteration 9 Max Weight Ratio: 6.499 
+Trim iteration 10 Max Weight Ratio: 5.959 
+Trim iteration 11 Max Weight Ratio: 5.399 
+Trim iteration 12 Max Weight Ratio: 5.076 
+Trim iteration 13 Max Weight Ratio: 4.624 
+Converged within tolerance 
+Converged within tolerance 
+Automated trimmig of max weight ratio 
+Trim iteration 1 Max Weight Ratio: 3.032 
+Trim iteration 2 Max Weight Ratio: 3.032 
+Trim iteration 3 Max Weight Ratio: 2.992 
+Trim iteration 4 Max Weight Ratio: 2.76 
+Trim iteration 5 Max Weight Ratio: 2.543 
+Trim iteration 6 Max Weight Ratio: 2.327 
+Trim iteration 7 Max Weight Ratio: 2.143 
+Converged within tolerance 
+Warning message:
+In read.dta13("data/CCES/cces18_common_vv.dta") : 
+   Factor codes of type double or float detected in variables
+
+   tookpost, CCEStake, gender, educ, race,
+   hispanic, marstat, multrace_1, multrace_2,
+   multrace_3, multrace_4, multrace_5,
+   multrace_8, multrace_97, multrace_98,
+   multrace_99, CC18_354a_1, CC18_354a_2,
+   CC18_354a_3, CC18_354a_4, CC18_354a_5,
+   CC18_354a_6, CC18_354a_7, CC18_354a_8,
+   CC18_354a_9, CC18_354a_10, CC18_354a_11,
+   CC18_354a_12, CC18_354b_1, CC18_354b_2,
+   CC18_354b_3, CC18_354b_4, CC18_354b_5,
+   CC18_354b_6, CC18_354b_7, CC18_354b_8,
+   CC18_354b_9, CC18_354b_10, CC18_354b_11,
+   CC18_354b_12, CC18_354b_13, CC18_354b_14,
+   CC18_354b_15, comptype, add_confirm,
+   inputzip, votereg, votereg_f, regzip,
+   OScode, CompRating, region, sample_group,
+   ccesmodule, CC18_300_1, CC18_300_2,
+   CC18_300_3, CC18_300_4, CC18_300_5,
+   CC18_300_6, CC18_300b, CC18_300c,
+   CC18_300d_1, CC18_300d_2, CC18_300d_3,
+   CC18_300d_4, CC18_300d_5, CC18_301,
+   CC18_302, CC18_303_1, CC18_303_2,
+   CC18_303_3, CC18_30 [... truncated]
+# weights:  72 (55 variable)
+initial  value 2911.609137 
+iter  10 value 2584.140821
+iter  20 value 2527.798142
+iter  30 value 2523.871469
+iter  40 value 2523.339074
+iter  50 value 2523.269979
+iter  60 value 2523.229061
+final  value 2523.226387 
+converged
+# weights:  72 (55 variable)
+initial  value 2865.023391 
+iter  10 value 2598.252351
+iter  20 value 2520.441836
+iter  30 value 2517.085986
+iter  40 value 2516.932349
+iter  50 value 2516.911232
+final  value 2516.911150 
+converged
+[1] TRUE
+[1] TRUE
+========================================================================= 
+Log Path: output/log/test.log 
+Program Path: /workspace/audit_runs/13_DX5T9G/B/replication/code/00_FALLBACK_runner.R 
+Working Directory: /workspace/audit_runs/13_DX5T9G/B/replication 
+User Name: sandbox 
+R Version: 4.5.0 (2025-04-11) 
+Machine: (none) aarch64 
+Operating System: Linux 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 
+Base Packages: stats graphics grDevices utils datasets methods base Other Packages: logr_1.3.3 
+Log Start Time: 2026-10-10 16:13:19.533822 
+========================================================================= 
+
+> #############################################################
+> ## No Entry in a Pandemic: Public Support for Border Closures
+> #############################################################
+> ## Yoshiharu Kobayashi, Menevis Cilizoglu, 
+> ## Tobias Heinrich, William Christiansen
+> #############################################################
+> ## 0) Run it all
+> #############################################################
+> 
+> rm(list=ls())
+> 
+> 
+> ## Computing environment
+> ########################
+> ## The R script files were run with R version 4.2.2 running on macOS Ventura 13.1. The computer was a 2020
+> ## MacBook Air, with Apple M1 chip and 16GB of memory.
+> ## Multiple cores will make everything faster but having or using them is not necessary.
+> 
+> 
+> ## Preliminaries
+> ################
+> ## Set folder to where the replication files and folders are
+> #setwd("/Users/YKobayashi/Dropbox/Projects/ViralBorders - Leaders/replication")
+> dir.create(path="output", showWarnings = FALSE)
+> dir.create(path="output/figures", showWarnings = FALSE)
+> 
+> 
+> ## Logging
+> ##########
+> set.seed(10002)
+> library(logr)
+> log_fp <- file.path("output/test.log")
+> lf <- log_open(log_fp)
+> log_code()
+> 
+> 
+> ## Load packages
+> ################
+> library(plyr)
+> library(foreign)
+> library(ggplot2)
+> library(readstata13)
+> library(stringr)
+> library(tmvtnorm)
+> library(reshape2)
+> library(arm)
+> library(nnet)
+> library(ebal)
+> library(lubridate)
+> library(scales)
+> 
+> source("code/X_Auxiliary functions.R")
+> 
+> 
+> ## Parallel settings
+> ####################
+> library(doMC)
+> detectCores()
+> registerDoMC(cores=1)
+> 
+> 
+> ## Versions of R packages
+> #########################
+> log_print(sessionInfo())
+> 
+> 
+> ## Execute entire analysis -- AGENT B FALLBACK RUNNER (PREREG section 2)
+> ## 01 unchanged; 02 skipped (already run unchanged in attempt 2, not needed for targets);
+> ## 03 replaced by the labelled fallback (m = 1, no substantive simulations); 05 unchanged; 04, 06, 07, 08 skipped.
+> ##########################
+> source("code/01_Prepare data.R")
+> source("code/03_FALLBACK_main_models_m1.R")
+> source("code/05_Make main tables.R")
+> 
+> 
+> ## Copy files and rename to names in the manuscript
+> ###################################################
+> dir.create(path="output/named_items", showWarnings = FALSE)
+> 
+> # FALLBACK skipped: file.copy(from="data/cascara_geo_trimmed.png", to="output/named_items/Figure_1.png", overwrite=TRUE)
+> 
+> file.copy(from="output/table_main_UK_1.tex", to="output/named_items/Table_2.tex", overwrite=TRUE)
+> file.copy(from="output/table_main_US_1.tex", to="output/named_items/Table_3.tex", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/Output_proportions.pdf", to="output/named_items/Figure_2.pdf", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/Main_effects_cases.pdf", to="output/named_items/Figure_3.pdf", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/Main_effects_health_cap.pdf", to="output/named_items/Figure_4.pdf", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/Main_effects_who.pdf", to="output/named_items/Figure_5.pdf", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/News_coverage.pdf", to="output/named_items/Figure_6.pdf", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/Demographics.pdf", to="output/named_items/Figure_A1.pdf", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/table_main_UK_5.tex", to="output/named_items/Table_A1.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/table_main_US_5.tex", to="output/named_items/Table_A2.tex", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/High_cases_WHO_effects.pdf", to="output/named_items/Figure_A2.pdf", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/Main_moderation_effects.pdf", to="output/named_items/Figure_A3.pdf", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/table_main_UK_2.tex", to="output/named_items/Table_A3.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/table_main_UK_3.tex", to="output/named_items/Table_A4.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/table_main_UK_4.tex", to="output/named_items/Table_A5.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/table_main_US_2.tex", to="output/named_items/Table_A6.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/table_main_US_3.tex", to="output/named_items/Table_A7.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/table_main_US_4.tex", to="output/named_items/Table_A8.tex", overwrite=TRUE)
+> 
+> # FALLBACK skipped: file.copy(from="output/table_open_main.tex", to="output/named_items/Table_A9.tex", overwrite=TRUE)
+> # FALLBACK skipped: file.copy(from="output/Open_explore.pdf", to="output/named_items/Figure_A4.pdf", overwrite=TRUE)
+> 
+> 
+> ## End logging
+> ##############
+> log_close()
+> writeLines(readLines(lf, encoding = "UTF-8"))
+> 
+> 
+> 
+
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] doMC_1.3.8         iterators_1.0.14   foreach_1.5.2      scales_1.3.0      
+ [5] lubridate_1.9.4    ebal_0.1-8         nnet_7.3-20        arm_1.14-4        
+ [9] lme4_1.1-37        MASS_7.3-65        reshape2_1.4.4     tmvtnorm_1.6      
+[13] gmm_1.8            sandwich_3.1-1     Matrix_1.7-3       mvtnorm_1.3-3     
+[17] stringr_1.5.1      readstata13_0.11.0 ggplot2_3.5.1      foreign_0.8-90    
+[21] plyr_1.8.9         logr_1.3.3        
+
+loaded via a namespace (and not attached):
+ [1] generics_0.1.3   stringi_1.8.4    lattice_0.22-7   magrittr_2.0.3  
+ [5] timechange_0.3.0 grid_4.5.0       this.path_2.8.0  codetools_0.2-20
+ [9] abind_1.4-8      reformulas_0.4.1 Rdpack_2.6.3     cli_3.6.4       
+[13] rlang_1.1.5      rbibutils_2.3    munsell_0.5.1    splines_4.5.0   
+[17] withr_3.0.2      tools_4.5.0      nloptr_2.2.1     coda_0.19-4.1   
+[21] minqa_1.2.8      dplyr_1.1.4      colorspace_2.1-1 boot_1.3-31     
+[25] vctrs_0.6.5      R6_2.6.1         zoo_1.8-14       lifecycle_1.0.4 
+[29] pkgconfig_2.0.3  pillar_1.10.1    gtable_0.3.6     glue_1.8.0      
+[33] Rcpp_1.0.14      tibble_3.2.1     tidyselect_1.2.1 nlme_3.1-168    
+[37] compiler_4.5.0  
+
+NOTE: Log Print Time:  2026-10-10 16:13:20.857181 
+NOTE: Elapsed Time: 1.32073593139648 secs 
+
+Warning message:
+In read.dta13("data/CCES/cces18_common_vv.dta") : 
+   Factor codes of type double or float detected in variables
+
+   tookpost, CCEStake, gender, educ, race,
+   hispanic, marstat, multrace_1, multrace_2,
+   multrace_3, multrace_4, multrace_5,
+   multrace_8, multrace_97, multrace_98,
+   multrace_99, CC18_354a_1, CC18_354a_2,
+   CC18_354a_3, CC18_354a_4, CC18_354a_5,
+   CC18_354a_6, CC18_354a_7, CC18_354a_8,
+   CC18_354a_9, CC18_354a_10, CC18_354a_11,
+   CC18_354a_12, CC18_354b_1, CC18_354b_2,
+   CC18_354b_3, CC18_354b_4, CC18_354b_5,
+   CC18_354b_6, CC18_354b_7, CC18_354b_8,
+   CC18_354b_9, CC18_354b_10, CC18_354b_11,
+   CC18_354b_12, CC18_354b_13, CC18_354b_14,
+   CC18_354b_15, comptype, add_confirm,
+   inputzip, votereg, votereg_f, regzip,
+   OScode, CompRating, region, sample_group,
+   ccesmodule, CC18_300_1, CC18_300_2,
+   CC18_300_3, CC18_300_4, CC18_300_5,
+   CC18_300_6, CC18_300b, CC18_300c,
+   CC18_300d_1, CC18_300d_2, CC18_300d_3,
+   CC18_300d_4, CC18_300d_5, CC18_301,
+   CC18_302, CC18_303_1, CC18_303_2,
+   CC18_303_3, CC18_30 [... truncated]
+
+NOTE: Log Print Time: 2026-10-10 16:13:32.415173 
+NOTE: Log Elapsed Time: 11.5575935840607 
+
+========================================================================= 
+Log End Time: 2026-10-10 16:13:32.414775 
+Log Elapsed Time: 0 00:00:12 
+========================================================================= 

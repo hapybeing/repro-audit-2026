@@ -1,0 +1,146 @@
+{
+ "paper_id": "12_CYBR7L",
+ "agent": "B",
+ "run_date_ist": "2026-10-10",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Percentage of the top 5% authors by HITS authority score in the 1956-2021 author citation network who are African (notebook cell 8, year 2021, 100*nb_africans/nb_authors)",
+   "paper_value": 9,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 8.89,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": -0.11,
+   "rel_diff": -0.012222,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "count 4 of 45 (paper 4 of 45); complete-set 17.17% (paper 17%). Main run unseeded as deposited; primary-seed (20261010) run gives the same top-45 set (outputs/robustness.json)."
+  },
+  {
+   "id": "T2",
+   "description": "Percentage of the top 5% authors by authority score in the 1956-2021 network who are Africa-based (cell 8, year 2021, 100*nb_based_in_africa/nb_authors)",
+   "paper_value": 4,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 4.44,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": 0.44,
+   "rel_diff": 0.11,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "count 2 of 45 (paper 2 of 45); complete-set 12.96% (paper 13%). Main run unseeded as deposited; primary-seed (20261010) run gives the same top-45 set (outputs/robustness.json)."
+  },
+  {
+   "id": "T3",
+   "description": "Percentage of the top 5% authors by authority score in the 1956-2010 network who are African (cell 8, year 2010, 100*nb_africans/nb_authors)",
+   "paper_value": 27,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 27.27,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": 0.27,
+   "rel_diff": 0.01,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "count 6 of 22 (paper 6 of 22); complete-set 2010 23.04% (paper 23%); 2000 top share 16.67% (paper 17%)"
+  },
+  {
+   "id": "T4",
+   "description": "Percentage of non-African and non-Africa-based citing authors who cite more non-African and non-Africa-based authors than expected by chance, 1956-2021 (cell 9, first loop, year 2021, fraction_above_baseline*100)",
+   "paper_value": 78.5,
+   "paper_rounding_decimals": 1,
+   "reproduced_value": 78.53,
+   "source_file": "outputs/output_for_table_2.txt",
+   "abs_diff": 0.03,
+   "rel_diff": 0.000382,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "1956-2010 value 64.29% (paper 64.3%)"
+  },
+  {
+   "id": "T5",
+   "description": "Percentage of African or Africa-based citing authors who cite more non-African and non-Africa-based authors than expected by chance, 1956-2021 (cell 9, second loop, year 2021, fraction_above_baseline*100)",
+   "paper_value": 55.4,
+   "paper_rounding_decimals": 1,
+   "reproduced_value": 55.36,
+   "source_file": "outputs/output_for_table_2.txt",
+   "abs_diff": -0.04,
+   "rel_diff": -0.000722,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "1956-2010 value 40.74% (paper 40.7%; text p. 708 says 42%)"
+  },
+  {
+   "id": "T6",
+   "description": "Total number of authors in the 1956-2021 sample (cell 8, year 2021, num_authors = len(df[df['Year']<=2021].drop_duplicates(subset='AuthorID')))",
+   "paper_value": 903,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 903.0,
+   "source_file": "outputs/output_for_table_1.txt",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "cell 3 nb_authors 903, nb_papers 923 (paper 903, 923); top-5% size 45 (paper 45)"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "nx.hits on G_citation[2021] with nstart from np.random.default_rng(s).standard_normal, s=20261010 primary, s=1..20 spread; cell 8 ranking and top-5% rule",
+   "ran": true,
+   "estimate": 8.88888888888889,
+   "se_or_ci": "seeds 1-20 African share range 8.89 to 8.89; Africa-based 4.44 to 4.44",
+   "p_value": 0.08909445792058336,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "primary seed: 4/45 African vs complete-set 17.17%; Africa-based 2/45 (4.44%, p 0.0532) vs 12.96%; primary top set differs from main run: False; seeds 1-20 with a different top set: 0; seeds keeping direction: 20/20 (outputs/R_a_seeds.csv). paper reports no significance test; same_direction set from direction only (top share < complete-set share). p is one-sided hypergeometric P(X<=k), information only."
+  },
+  {
+   "id": "R_b",
+   "description": "drop authors with |z|>3 on authority score (seed 20261010, ddof=0) from graph and df2, recompute hits, top round(5*(903-dropped)/100)",
+   "ran": true,
+   "estimate": 13.333333333333334,
+   "se_or_ci": "not applicable",
+   "p_value": 0.30888490483365355,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "dropped 10 authors (0 African or Africa-based); top 45 of 893: 6 African vs reduced complete-set 17.36%; Africa-based 4 (8.89%, p 0.2741) vs 13.10%. paper reports no significance test; same_direction set from direction only (top share < complete-set share). p is one-sided hypergeometric P(X<=k), information only."
+  },
+  {
+   "id": "R_c",
+   "description": "rank by weighted in-degree on G_citation[2021]; top set = all with in-degree >= value at rank 45 (ties included)",
+   "ran": true,
+   "estimate": 8.695652173913043,
+   "se_or_ci": "not applicable",
+   "p_value": 0.07940518998282174,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "cutoff in-degree 15.0, set size 46: 4 African vs 17.17%; Africa-based 2 (4.35%, p 0.0479); strict first-45 (mergesort): 3 African (6.67%, p 0.0340), 2 Africa-based. paper reports no significance test; same_direction set from direction only (top share < complete-set share). p is one-sided hypergeometric P(X<=k), information only."
+  }
+ ],
+ "bugs": [],
+ "env_fixes": [
+  "diffs/replication_code_audit.ipynb.diff (and readable cell view diffs/replication_code_audit_cells.diff): two added cells that only pickle objects (G_citation after Table 1, G_citation after Table 2); no computation changed. No package or path fix was needed."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets match the paper at its printed rounding from a clean run of the deposited notebook with the README package versions.",
+ "confidence": "medium",
+ "confidence_reason": "Exact match by script with README package versions, but Python 3.12 instead of 3.14.2, HITS is unseeded, and agreement with agent A is not yet known.",
+ "time_minutes": 25,
+ "code_review": "none found. Read all 10 notebook cells in full. Observations (not bugs): Table 1 complete-set shares use first-row raw location while top-5% counts use mode-based location; for 2021 the complete-set Africa-based count is 117 first-row vs 120 mode-based (12.96% vs 13.29%, both round to 13%); 0 authors have all-blank location; 4 have tied location (none in the top 45) (outputs/location_coding_check.json).",
+ "uncertainties": [
+  "Python 3.12.15 used instead of README 3.14.2; all five README package versions installed exactly.",
+  "Main run unseeded as deposited (svds start vector). Boundary gaps (outputs/boundary_authority_scores.csv): 2021 rank 45 vs 46 authority 0.004664 vs 0.004616 in the main run; 2010 rank 22 vs 23 from a fresh unseeded hits call 0.012089 vs 0.011833. No tie at either boundary; 2010 ranks 24 and 25 are tied but outside the top 22.",
+  "PREREG says the pickle comes from an added final cell; a final cell would hold the Table 2 networks (cell 9 rebuilds G_citation with isolates), so the Table 1 networks were pickled by a cell inserted right after the Table 1 cell, and a second pickle cell was added at the end. Only saving, no computation changed.",
+  "Figure claims not checked (not pre-registered as targets); figures are saved in outputs/ for inspection.",
+  "Batch 3 decision 3: class from the primary-seed run; the primary-seed (20261010) top-45 set equals the main run top-45 set, so T1 and T2 are the same either way. T3 (2010) was not rerun with a seed (not pre-registered).",
+  "While checking that a pip install had finished, a `ps aux` listing briefly showed an agent A process command line (a pandas reinstall in A's venv). No A file was opened, listed or read."
+ ]
+}

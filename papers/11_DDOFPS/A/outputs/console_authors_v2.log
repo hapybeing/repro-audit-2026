@@ -1,0 +1,522 @@
+
+> pacman::p_load(tidyverse, rio, janitor, hrbrthemes, 
++     patchwork, paletteer, ggplot2, directlabels)
+
+> HGPE_lei <- import("HGPE_lei.xlsx")
+
+> HGPE_lei_longa <- pivot_longer(filter(HGPE_lei, ano %in% 
++     c(2014, 2018)), cols = c(tempo_pres, tempo_dep_fed, tempo_sen, 
++     tempo_dep_est, tempo_gov), names_to = "cargo", values_to = "tempo")
+
+> HGPE_lei_longa
+# A tibble: 10 × 6
+     ano duracao_dias tempo_diario tempo_blocos cargo         tempo
+   <dbl>        <dbl>        <dbl>        <dbl> <chr>         <dbl>
+ 1  2014           45          100           50 tempo_pres       50
+ 2  2014           45          100           50 tempo_dep_fed    50
+ 3  2014           45          100           50 tempo_sen        20
+ 4  2014           45          100           50 tempo_dep_est    40
+ 5  2014           45          100           50 tempo_gov        40
+ 6  2018           35           50           25 tempo_pres       25
+ 7  2018           35           50           25 tempo_dep_fed    25
+ 8  2018           35           50           25 tempo_sen        10
+ 9  2018           35           50           25 tempo_dep_est    20
+10  2018           35           50           25 tempo_gov        20
+
+> HGPE_lei_longa$cargo <- factor(HGPE_lei_longa$cargo, 
++     levels = c("tempo_pres", "tempo_dep_fed", "tempo_gov", "tempo_dep_est", 
++         "tempo_sen"))
+
+> HGPE_lei_longa
+# A tibble: 10 × 6
+     ano duracao_dias tempo_diario tempo_blocos cargo         tempo
+   <dbl>        <dbl>        <dbl>        <dbl> <fct>         <dbl>
+ 1  2014           45          100           50 tempo_pres       50
+ 2  2014           45          100           50 tempo_dep_fed    50
+ 3  2014           45          100           50 tempo_sen        20
+ 4  2014           45          100           50 tempo_dep_est    40
+ 5  2014           45          100           50 tempo_gov        40
+ 6  2018           35           50           25 tempo_pres       25
+ 7  2018           35           50           25 tempo_dep_fed    25
+ 8  2018           35           50           25 tempo_sen        10
+ 9  2018           35           50           25 tempo_dep_est    20
+10  2018           35           50           25 tempo_gov        20
+
+> cargos_no_hgpe <- ggplot(HGPE_lei_longa, mapping = aes(x = ano, 
++     y = tempo, fill = cargo)) + geom_bar(stat = "identity", width = 2.3, 
++     position = position_dodge(width = 2.5)) + scale_fill_manual(labels = c("Presidente", 
++     "Deputado federal", "Governador", "Deputado estadual", "Senador"), 
++     values = c("#305371", "#007894", "#009FA2", "#35C399", "#96E282")) + 
++     scale_x_continuous(breaks = c(2014, 2018), labels = c("1998 a 2014", 
++         "a partir de 2018")) + scale_y_continuous(breaks = seq(0, 
++     50, by = 10), limits = c(0, 50)) + labs(x = element_blank(), 
++     y = "tempo em minutos", title = "Tempo diário de HGPE destinado a cada cargo") + 
++     theme_ipsum_tw() + theme(panel.grid.major.x = element_blank(), 
++     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(), 
++     plot.title = element_text(size = 13), legend.text = element_text(size = 9), 
++     legend.title = element_blank(), legend.position = "bottom")
+
+> cargos_no_hgpe
+
+> bd_doxa_programas <- import("bd_doxa_programas.xlsx")
+
+> df <- bd_doxa_programas
+
+> df$soma_candidatos = 1
+
+> df <- df %>% group_by(ano)
+
+> df <- df %>% summarise(programas = sum(soma_candidatos, 
++     na.rm = TRUE))
+
+> df <- df %>% ungroup()
+
+> p <- ggplot(data = df, aes(x = ano, y = programas)) + 
++     geom_bar(stat = "identity")
+
+> p
+
+> ggplot(data = df, aes(x = ano, y = programas)) + geom_bar(stat = "identity", 
++     fill = "#007894") + geom_text(aes(label = programas), vjust = -0.3, 
++     size = 3.5) + theme_minimal() + scale_x_continuous(breaks = seq(1998, 
++     2018, by = 4))
+
+> library(openxlsx)
+
+> bd_doxa_candidatos <- read.xlsx("bd_doxa_candidatos.xlsx", 
++     sheet = "2002_2018")
+
+> dg <- bd_doxa_candidatos
+
+> summary(dg$prestacao_contas)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+ 0.0000  0.0000  1.0000  0.7003  1.0000  1.0000     462 
+
+> dg$controle = 1
+
+> dg <- dg %>% group_by(ano)
+
+> dg <- dg %>% summarise(candidatos = sum(prestacao_contas, 
++     na.rm = TRUE))
+
+> dg <- dg %>% ungroup()
+
+> q <- ggplot(data = dg, aes(x = ano, y = candidatos)) + 
++     geom_bar(stat = "identity")
+
+> q
+
+> ggplot(data = dg, aes(x = ano, y = candidatos)) + 
++     geom_bar(stat = "identity", fill = "#007894") + geom_text(aes(label = candidatos), 
++     vjust = -0.3, size = 3.5) + theme_minimal() + scale_x_continuous(breaks = seq(2002, 
++     2018, by = 4))
+
+> library("gplots")
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+
+> names(bd_doxa_programas)
+  [1] "ano"                  "cargo"                "estado"              
+  [4] "cpfcand"              "nomecand"             "nomeurna"            
+  [7] "numurna"              "siglapartido"         "numpartido"          
+ [10] "sexo"                 "raca"                 "data"                
+ [13] "dvd"                  "tempohgpe"            "MEN1"                
+ [16] "MEN2"                 "MEN3"                 "MEN4"                
+ [19] "MEN5"                 "MEN6"                 "MEN7"                
+ [22] "MEN8"                 "MEN9"                 "MEN10"               
+ [25] "MEN11"                "MEN12"                "MEN13"               
+ [28] "PAR0"                 "PAR1"                 "PAR2"                
+ [31] "PAR3"                 "PAR4"                 "PAR5"                
+ [34] "PAR6"                 "PAR7"                 "PAR8"                
+ [37] "PAR9"                 "PAR10"                "ORA"                 
+ [40] "TEMC0"                "TEMC1"                "TEMC2"               
+ [43] "TEMC3"                "TEMC4"                "TEMC5"               
+ [46] "TEMC6"                "TEMC7"                "TEMC8"               
+ [49] "TEMC9"                "TEMC10"               "TEMC11"              
+ [52] "TEMC12"               "TEMC13"               "TEMC14"              
+ [55] "TEMC15"               "TEMC16"               "TEMC17"              
+ [58] "TEMC18"               "TEMC19"               "TEMD0"               
+ [61] "TEMD1"                "TEMD2"                "TEMD3"               
+ [64] "TEMD4"                "TEMD5"                "TEMD6"               
+ [67] "TEMD7"                "TEMD8"                "TEMD9"               
+ [70] "TEMD10"               "TEMD11"               "TEMD12"              
+ [73] "TEMD13"               "TEMD14"               "TEMD15"              
+ [76] "TEMD16"               "TEMD17"               "TEMD18"              
+ [79] "TEMD19"               "LOC1"                 "LOC2"                
+ [82] "GINT0"                "GINT1"                "GINT2"               
+ [85] "GINT3"                "GINT4"                "GINT5"               
+ [88] "GINT6"                "GINT7"                "GINT8"               
+ [91] "GINT9"                "GINT10"               "GINT11"              
+ [94] "GINT12"               "PROM0"                "PROM1"               
+ [97] "PROM2"                "PROM3"                "PROM4"               
+[100] "PROM5"                "APE1"                 "APE2"                
+[103] "APE3"                 "APE4"                 "OBJ1"                
+[106] "OBJ2"                 "OBJ3"                 "sigla"               
+[109] "nome"                 "tipo"                 "situacao"            
+[112] "sigla_uf_tse"         "nome_urna"            "id_candidato_bd_tse" 
+[115] "titulo_eleitoral_tse" "sequencial_tse"       "ocupacao_tse"        
+[118] "data_nascimento_tse"  "idade_tse"            "genero_tse"          
+[121] "instrucao_tse"        "estado_civil_tse"     "raca_tse"            
+
+> table(bd_doxa_programas$ano, bd_doxa_programas$GINT5)
+      
+        Não  Sim
+  1998 1025   46
+  2002 1755   23
+  2006 1301   50
+  2010 1553   57
+  2014 2608   95
+  2018  906   20
+
+> table(bd_doxa_programas$ano, bd_doxa_programas$OBJ1)
+      
+        Não  Sim
+  1998  898  173
+  2002 1407  371
+  2006 1123  228
+  2010  920  690
+  2014 2072  631
+  2018  783  143
+
+> table(bd_doxa_programas$ano, bd_doxa_programas$OBJ2)
+      
+        Não  Sim
+  1998  624  447
+  2002  663 1115
+  2006  987  364
+  2010  794  816
+  2014 1023 1680
+  2018  541  385
+
+> table(bd_doxa_programas$ano, bd_doxa_programas$APE3)
+      
+        Não  Sim
+  1998  517  554
+  2002 1164  614
+  2006  659  692
+  2010  936  674
+  2014 1473 1230
+  2018  737  189
+
+> table(bd_doxa_programas$ano, bd_doxa_programas$APE4)
+      
+        Não  Sim
+  1998 1036   35
+  2002 1778    0
+  2006 1314   37
+  2010 1609    1
+  2014 2644   59
+  2018  886   40
+
+> table(bd_doxa_programas$siglapartido, bd_doxa_programas$APE4)
+               
+                 Não  Sim
+  AVANTE          10    0
+  DC               3    0
+  DEM            279    3
+  MDB             55    5
+  PAN             56    0
+  PATRIOTA         6    0
+  PC do B        185    1
+  PCB             95    0
+  PCO             33    0
+  PDT            611    4
+  PEN             94    0
+  PFL            416    7
+  PGT             20    0
+  PHS            141    1
+  PL             140    0
+  PMB              6    1
+  PMDB           705   11
+  PMN            125    3
+  PODE            11    0
+  PP             446   15
+  PPB            293    4
+  PPL             15    0
+  PPS            304    1
+  PR             248    5
+  PRB            208    5
+  PRN              9    2
+  PRONA           42    1
+  PROS           119    4
+  PRP             87    0
+  PRTB           159    0
+  PSB            395    7
+  PSC            315    4
+  PSD            219    4
+  PSDB           684   27
+  PSDC           126    1
+  PSL            118    0
+  PSN             13    1
+  PSOL           191    2
+  PST             19    0
+  PSTU            97    3
+  PT            1155   34
+  PT do B        210    2
+  PTB            281    4
+  PTC             96    0
+  PTN             91    1
+  PV             242    5
+  REDE            15    0
+  SD              53    2
+  SOLIDARIEDADE   20    2
+
+> ggplot(bd_doxa_programas) + aes(x = ano, fill = APE4) + 
++     geom_bar()
+
+> test <- chisq.test(table(bd_doxa_programas$ano, bd_doxa_programas$APE4))
+
+> test
+
+	Pearson's Chi-squared test
+
+data:  table(bd_doxa_programas$ano, bd_doxa_programas$APE4)
+X-squared = 113.98, df = 5, p-value < 2.2e-16
+
+
+> test$expected
+      
+             Não      Sim
+  1998 1051.4839 19.51605
+  2002 1745.6008 32.39919
+  2006 1326.3817 24.61829
+  2010 1580.6621 29.33785
+  2014 2653.7452 49.25479
+  2018  909.1262 16.87382
+
+> library(corrplot)
+corrplot 0.95 loaded
+
+> corrplot(test$residuals, is.cor = FALSE)
+
+> corrplot(test$expected, is.cor = FALSE)
+
+> library(vcd)
+Loading required package: grid
+
+> mosaic(~ano + APE4, direction = c("v", "h"), data = bd_doxa_programas, 
++     shade = TRUE)
+
+> table(bd_doxa_programas$OBJ1, bd_doxa_programas$APE4)
+     
+       Não  Sim
+  Não 7090  113
+  Sim 2177   59
+
+> mosaic(~OBJ1 + APE4, direction = c("v", "h"), data = bd_doxa_programas, 
++     shade = TRUE)
+
+> partidos_sel <- filter(bd_doxa_programas, numpartido %in% 
++     c("15", "13", "50", "22", "25", "´45", "12", "11"))
+
+> test2 <- chisq.test(table(partidos_sel$numpartido, 
++     partidos_sel$APE3))
+
+> test2
+
+	Pearson's Chi-squared test
+
+data:  table(partidos_sel$numpartido, partidos_sel$APE3)
+X-squared = 90.695, df = 6, p-value < 2.2e-16
+
+
+> test2$expected
+    
+          Não       Sim
+  11 423.7857 334.21430
+  12 343.8367 271.16332
+  13 664.7509 524.24908
+  15 433.8492 342.15079
+  22 219.7200 173.27997
+  25 394.1542 310.84576
+  50 107.9032  85.09678
+
+> library(corrplot)
+
+> corrplot(test2$residuals, is.cor = FALSE)
+
+> corrplot(test2$expected, is.cor = FALSE)
+
+> library(vcd)
+
+> mosaic(~numpartido + APE3, direction = c("v", "h"), 
++     data = partidos_sel, shade = TRUE)
+
+> table(partidos_sel$numpartido, partidos_sel$APE3)
+    
+     Não Sim
+  11 465 293
+  12 401 214
+  13 587 602
+  15 359 417
+  22 244 149
+  25 418 287
+  50 114  79
+
+> library(ggpubr)
+
+> bd_doxa_candidatos$el <- as.factor(bd_doxa_candidatos$ano)
+
+> teste_1 <- bd_doxa_candidatos %>% select(el, ano, 
++     HGPE_total, VR_RECEITA_total, sg_partido)
+
+> teste_2 <- na.omit(teste_1)
+
+> sp <- ggscatter(teste_2, x = "HGPE_total", y = "VR_RECEITA_total", 
++     color = "el", palette = "jco", add = "reg.line", conf.int = TRUE)
+
+> sp
+
+> sp + stat_cor(aes(color = el))
+
+> sp + stat_cor(aes(color = el), label.y = 1, label.x = 1, 
++     p.accuracy = 0.001, r.accuracy = 0)
+
+> gg <- ggplot(bd_doxa_candidatos, aes(x = HGPE_total, 
++     y = VR_RECEITA_total, color = as.factor(ano)))
+
+> gg + geom_point()
+
+> gg + geom_smooth(alpha = 0.3, method = "lm")
+`geom_smooth()` using formula = 'y ~ x'
+
+> library(ggplot2)
+
+> names(bd_doxa_candidatos)
+ [1] "ano"                                  
+ [2] "sigla_uf"                             
+ [3] "numurna"                              
+ [4] "nome_urna"                            
+ [5] "sequencial_candidato"                 
+ [6] "cpf_candidato"                        
+ [7] "id_candidato_bd"                      
+ [8] "idade"                                
+ [9] "ocupacao"                             
+[10] "classificao"                          
+[11] "instrucao"                            
+[12] "estado_civil"                         
+[13] "genero"                               
+[14] "raca"                                 
+[15] "numero_partido"                       
+[16] "sg_partido"                           
+[17] "tempo_HGPE_partido"                   
+[18] "soma_recursos_partidarios_UF"         
+[19] "soma_partido_candidato_UF"            
+[20] "votos_partido"                        
+[21] "partido_quo"                          
+[22] "magnitude"                            
+[23] "quociente_eleitoral"                  
+[24] "votos_uf_validos"                     
+[25] "soma_campanha_UF_geral"               
+[26] "ideologia_BLS"                        
+[27] "ideologia_krause_et_al"               
+[28] "ideologia_bolognesi_et_al"            
+[29] "democracia_intra"                     
+[30] "HGPE_participao"                      
+[31] "HGPE_total"                           
+[32] "prop_tempo_HGPE_partido"              
+[33] "prestacao_contas"                     
+[34] "aplicacoes"                           
+[35] "internet"                             
+[36] "coletivo"                             
+[37] "outros_cand"                          
+[38] "doa_partido"                          
+[39] "pfisica"                              
+[40] "rproprio"                             
+[41] "empresas"                             
+[42] "fundo_especial"                       
+[43] "fundo_partidario"                     
+[44] "recursos_privados"                    
+[45] "recursos_publicos"                    
+[46] "VR_RECEITA_total"                     
+[47] "prop_recursos_partido"                
+[48] "recursos_percentual_candidato_partido"
+[49] "resultado"                            
+[50] "votos_per_candidato"                  
+[51] "log_votos"                            
+[52] "log_soma"                             
+[53] "el"                                   
+
+> teste_3 <- bd_doxa_candidatos %>% select(el, ano, 
++     HGPE_total, VR_RECEITA_total, resultado, log_soma)
+
+> teste_4 <- na.omit(teste_3)
+
+> teste_4 <- teste_4 %>% mutate(eleito = recode(resultado, 
++     eleito = "eleito", `eleito por media` = "eleito", `eleito por qp` = "eleito", 
++     `nao eleito` = "nao eleito", suplente = "nao eleito"))
+
+> ggplot(teste_4, aes(x = eleito, y = HGPE_total, fill = el)) + 
++     geom_boxplot()
+
+> ggplot(teste_4, aes(x = eleito, y = log(HGPE_total), 
++     fill = el)) + geom_boxplot() + facet_wrap(~el)
+
+> ggplot(teste_4, aes(x = eleito, y = log_soma, fill = el)) + 
++     geom_boxplot() + facet_wrap(~el)
+There were 50 or more warnings (use warnings() to see the first 50)
+
+WARNINGS_SUMMARY
+Summary of (a total of 50) warning messages:
+1x : The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+ℹ The deprecated feature was likely used in the hrbrthemes package.
+  Please report the issue at <https://github.com/hrbrmstr/hrbrthemes/issues>.
+1x : `label` cannot be a <ggplot2::element_blank> object.
+1x : Expecting logical in DL1073 / R1073C116: got '1428'
+1x : Expecting logical in DL1074 / R1074C116: got '1278'
+1x : Expecting logical in DL1075 / R1075C116: got '1278'
+1x : Expecting logical in DL1076 / R1076C116: got '1278'
+1x : Expecting logical in DL1077 / R1077C116: got '1278'
+1x : Expecting logical in DL1078 / R1078C116: got '1278'
+1x : Expecting logical in DL1079 / R1079C116: got '1278'
+1x : Expecting logical in DL1080 / R1080C116: got '1278'
+1x : Expecting logical in DL1081 / R1081C116: got '1278'
+1x : Expecting logical in DL1082 / R1082C116: got '1278'
+1x : Expecting logical in DL1083 / R1083C116: got '1278'
+1x : Expecting logical in DL1084 / R1084C116: got '1278'
+1x : Expecting logical in DL1085 / R1085C116: got '1278'
+1x : Expecting logical in DL1086 / R1086C116: got '1278'
+1x : Expecting logical in DL1087 / R1087C116: got '1278'
+1x : Expecting logical in DL1088 / R1088C116: got '1278'
+1x : Expecting logical in DL1089 / R1089C116: got '1278'
+1x : Expecting logical in DL1090 / R1090C116: got '1278'
+1x : Expecting logical in DL1091 / R1091C116: got '1411'
+1x : Expecting logical in DL1092 / R1092C116: got '1411'
+1x : Expecting logical in DL1093 / R1093C116: got '1411'
+1x : Expecting logical in DL1094 / R1094C116: got '1411'
+1x : Expecting logical in DL1095 / R1095C116: got '1411'
+1x : Expecting logical in DL1096 / R1096C116: got '1411'
+1x : Expecting logical in DL1097 / R1097C116: got '1411'
+1x : Expecting logical in DL1098 / R1098C116: got '1411'
+1x : Expecting logical in DL1099 / R1099C116: got '1411'
+1x : Expecting logical in DL1100 / R1100C116: got '1282'
+1x : Expecting logical in DL1101 / R1101C116: got '1282'
+1x : Expecting logical in DL1102 / R1102C116: got '1282'
+1x : Expecting logical in DL1103 / R1103C116: got '1282'
+1x : Expecting logical in DL1104 / R1104C116: got '1282'
+1x : Expecting logical in DL1105 / R1105C116: got '1282'
+1x : Expecting logical in DL1106 / R1106C116: got '1282'
+1x : Expecting logical in DL1107 / R1107C116: got '1282'
+1x : Expecting logical in DL1108 / R1108C116: got '1508'
+1x : Expecting logical in DL1109 / R1109C116: got '1419'
+1x : Expecting logical in DL1110 / R1110C116: got '1406'
+1x : Expecting logical in DL1111 / R1111C116: got '1406'
+1x : Expecting logical in DL1112 / R1112C116: got '1406'
+1x : Expecting logical in DL1113 / R1113C116: got '1406'
+1x : Expecting logical in DL1114 / R1114C116: got '1406'
+1x : Expecting logical in DL1115 / R1115C116: got '1406'
+1x : Expecting logical in DL1116 / R1116C116: got '1406'
+1x : Expecting logical in DL1117 / R1117C116: got '1406'
+1x : Expecting logical in DL1118 / R1118C116: got '1406'
+1x : Expecting logical in DL1119 / R1119C116: got '1406'
+1x : Expecting logical in DL1120 / R1120C116: got '1406'
+null device 
+          1 
+
+SCRIPT_COMPLETED_OK

@@ -1,0 +1,5 @@
+"quantity","value"
+"Model 1 coef resource_and_agriculture (min 0 to max 1 change)","0.5065"
+"full_model_h1_graph coef resource_and_agricultureNone/Single (Figure 2 left panel model)","-0.2197"
+"Model 3 coef resource_and_agriculture","0.1907"
+"range of resource_and_agriculture in estimation sample (min|max)","0|1"

@@ -1,0 +1,51 @@
+                                country                           term
+I(T_who == "WHO")TRUE                UK          I(T_who == "WHO")TRUE
+I(T_who == "WHO.Ratified")TRUE       UK I(T_who == "WHO.Ratified")TRUE
+I(T_who == "WHO")TRUE1               US          I(T_who == "WHO")TRUE
+I(T_who == "WHO.Ratified")TRUE1      US I(T_who == "WHO.Ratified")TRUE
+                                     Mean        SD       pvalue       MLE
+I(T_who == "WHO")TRUE           -1.533675 0.2794040 4.352700e-08 -1.537405
+I(T_who == "WHO.Ratified")TRUE  -2.010574 0.2741543 2.817324e-13 -2.011195
+I(T_who == "WHO")TRUE1          -1.061938 0.2397773 9.788564e-06 -1.055760
+I(T_who == "WHO.Ratified")TRUE1 -1.522142 0.2281572 2.969211e-11 -1.516737
+                                SE_analytic       p_wald convergence    N id
+I(T_who == "WHO")TRUE             0.2748277 2.218117e-08           0 1599 T1
+I(T_who == "WHO.Ratified")TRUE    0.2677640 5.864576e-14           0 1599 T2
+I(T_who == "WHO")TRUE1            0.2340860 6.478508e-06           0 1625 T3
+I(T_who == "WHO.Ratified")TRUE1   0.2254908 1.739357e-11           0 1625 T4
+                                country                           term
+I(T_who == "WHO")TRUE                UK          I(T_who == "WHO")TRUE
+I(T_who == "WHO.Ratified")TRUE       UK I(T_who == "WHO.Ratified")TRUE
+I(T_who == "WHO")TRUE1               US          I(T_who == "WHO")TRUE
+I(T_who == "WHO.Ratified")TRUE1      US I(T_who == "WHO.Ratified")TRUE
+                                     Mean        SD       pvalue       MLE
+I(T_who == "WHO")TRUE           -1.428742 0.2805254 3.727506e-07 -1.431676
+I(T_who == "WHO.Ratified")TRUE  -1.870996 0.2757929 1.387330e-11 -1.872142
+I(T_who == "WHO")TRUE1          -1.124092 0.2373000 2.263787e-06 -1.117179
+I(T_who == "WHO.Ratified")TRUE1 -1.625400 0.2331594 3.803797e-12 -1.618758
+                                SE_analytic       p_wald convergence    N id
+I(T_who == "WHO")TRUE             0.2768641 2.327914e-07           0 1577 T1
+I(T_who == "WHO.Ratified")TRUE    0.2718130 5.673772e-12           0 1577 T2
+I(T_who == "WHO")TRUE1            0.2390086 2.950697e-06           0 1609 T3
+I(T_who == "WHO.Ratified")TRUE1   0.2312824 2.576971e-12           0 1609 T4
+   country                                       rule rows_dropped n_before
+UK      UK                  |z(w)| > 3 within country           22     1599
+US      US top 1% of w within country (no |z|>3 rows)           16     1625
+   n_after    max_w w_cutoff_value info_n_absz3_logcases info_n_absz3_age
+UK    1577 4.623945       4.411509                     0                0
+US    1609 2.142824       2.121649                     0                0
+                                country                           term
+I(T_who == "WHO")TRUE                UK          I(T_who == "WHO")TRUE
+I(T_who == "WHO.Ratified")TRUE       UK I(T_who == "WHO.Ratified")TRUE
+I(T_who == "WHO")TRUE1               US          I(T_who == "WHO")TRUE
+I(T_who == "WHO.Ratified")TRUE1      US I(T_who == "WHO.Ratified")TRUE
+                                     Mean        SD       pvalue       MLE
+I(T_who == "WHO")TRUE           -1.318734 0.2576594 3.266562e-07 -1.314399
+I(T_who == "WHO.Ratified")TRUE  -1.738565 0.2516198 5.836508e-12 -1.738638
+I(T_who == "WHO")TRUE1          -1.160364 0.2445194 2.170479e-06 -1.156354
+I(T_who == "WHO.Ratified")TRUE1 -1.750307 0.2354991 1.359655e-13 -1.747776
+                                SE_analytic       p_wald convergence    N id
+I(T_who == "WHO")TRUE             0.2598433 4.227198e-07           0 1599 T1
+I(T_who == "WHO.Ratified")TRUE    0.2517514 4.979170e-12           0 1599 T2
+I(T_who == "WHO")TRUE1            0.2474086 2.955879e-06           0 1625 T3
+I(T_who == "WHO.Ratified")TRUE1   0.2399058 3.210517e-13           0 1625 T4

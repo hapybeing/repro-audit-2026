@@ -1,0 +1,37 @@
+--- replication_code.ipynb	2026-10-10 15:58:01.470737754 +0000
++++ replication_code_audit.ipynb	2026-10-10 15:58:01.534727539 +0000
+@@ -347,6 +347,13 @@
+   {
+    "cell_type": "code",
+    "execution_count": null,
++   "metadata": {},
++   "outputs": [],
++   "source": "# AUDIT ADDED (saves objects only): G_citation from cell 6 before cell 9 reassigns the name\nimport pickle\npickle.dump({'G_citation': G_citation, 'author_attributes': author_attributes}, open('audit_G_citation_cell6.pkl','wb'))\n"
++  },
++  {
++   "cell_type": "code",
++   "execution_count": null,
+    "id": "061b4256",
+    "metadata": {},
+    "outputs": [],
+@@ -472,6 +479,13 @@
+     "\n",
+     "f.close()\n"
+    ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": null,
++   "metadata": {},
++   "outputs": [],
++   "source": "# AUDIT ADDED (saves objects only): objects after cell 9\nimport pickle\npickle.dump({'G_citation': G_citation, 'author_attributes': author_attributes}, open('audit_G_citation_cell9.pkl','wb'))\n"
+   }
+  ],
+  "metadata": {
+@@ -495,4 +509,4 @@
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+-}
++}
+\ No newline at end of file
