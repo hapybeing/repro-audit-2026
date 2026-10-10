@@ -1,0 +1,2 @@
+InputError: Unknown variable intdiel in &gb
+  Enter `MMPBSA.py --help` for help

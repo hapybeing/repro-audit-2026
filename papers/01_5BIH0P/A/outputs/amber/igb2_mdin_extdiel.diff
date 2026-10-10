@@ -1,0 +1,9 @@
+--- _MMPBSA_gb.mdin.orig	2026-10-09 16:10:15.617335023 +0000
++++ _MMPBSA_gb.mdin	2026-10-09 16:10:15.625685465 +0000
+@@ -2,5 +2,5 @@
+ &cntrl
+  ntb=0, nsnb=99999, cut=999.0, imin=5, 
+  ncyc=0, igb=2, surften=0.0072, 
+- extdiel=80.0, dec_verbose=0, 
++ dec_verbose=0, 
+ /

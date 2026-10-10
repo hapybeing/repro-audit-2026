@@ -1,0 +1,29 @@
+--- xvg2csv_orig.py	2026-10-09 15:43:15.928009791 +0000
++++ xvg2csv.py	2026-10-09 15:43:16.041729442 +0000
+@@ -6,7 +6,7 @@
+ 
+ fname = sys.argv[1]
+ if fname[-3:] != "xvg":
+-    print "The provided file is not in .xvg format."
++    print("The provided file is not in .xvg format.")
+     sys.exit(0)
+ 
+ with open(fname, 'r') as fid:
+@@ -23,14 +23,14 @@
+ M = len(ll[-1].split())
+ labels = [""]*M
+ labels[0] = "Time (ps)"
+-print "Found",M,"columns:"
+-print '  ',"Time"
++print("Found",M,"columns:")
++print('  ',"Time")
+ 
+ i=1
+ for l in ll:
+   if l.startswith("@ s"):
+       label = ' '.join(l.split()[3:])[1:-1]
+-      print '  ',label
++      print('  ',label)
+       labels[i] = label
+       i += 1
+       if i == M:

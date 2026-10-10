@@ -1,0 +1,65 @@
+{
+ "dataset": "doi:10.7910/DVN/5BIH0P",
+ "version": "6.0",
+ "n_files": 146,
+ "total_bytes": 938233575,
+ "restricted_files": [],
+ "extension_counts": {
+  "pdb": 13,
+  "tab": 6,
+  "xvg": 8,
+  "1": 2,
+  "prmtop": 3,
+  "dat": 2,
+  "csv": 1,
+  "h5": 1,
+  "inpcrd": 4,
+  "ndx": 5,
+  "0": 13,
+  "mdin": 6,
+  "": 1,
+  "out": 1,
+  "gro": 9,
+  "mdp": 15,
+  "sh": 2,
+  "edr": 5,
+  "log": 7,
+  "tpr": 11,
+  "trr": 3,
+  "cpt": 8,
+  "in": 2,
+  "itp": 12,
+  "top": 3,
+  "2": 1,
+  "py": 2
+ },
+ "xtc_files": [],
+ "trr_files": [
+  "em.trr",
+  "npt.trr",
+  "nvt.trr"
+ ],
+ "pdb_snapshots": [
+  "2xwt-rs3-310k-250ns.pdb",
+  "2xwt-rs3-310k-300ns.pdb",
+  "2xwt-rs3-310k-350ns.pdb",
+  "2xwt-rs3-310k-400ns.pdb"
+ ],
+ "python_files": [
+  "xvg2csv-1.py",
+  "xvg2csv.py"
+ ],
+ "shell_files": [
+  "em-md-nvt-npt-single-1.sh",
+  "em-md-nvt-npt-single.sh"
+ ],
+ "files_named_in_analysis_headers_but_absent": [
+  "dynamic-nopbc.xtc",
+  "dynamic-nopbc-2.xtc",
+  "system_reduced.xtc",
+  "COM_traj_0.xtc",
+  "md_0_10.xtc"
+ ],
+ "filenames_with_pdb_id_prefix_other_than_2xwt": [],
+ "dataset_title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (310K, 37\u00b0C, 400 ns): random seed #3"
+}

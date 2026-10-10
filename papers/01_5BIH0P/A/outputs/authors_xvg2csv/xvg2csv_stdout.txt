@@ -1,0 +1,8 @@
+Found 2 columns:
+   Time
+Found 2 columns:
+   Time
+   fter lsq fit to Protein
+Found 2 columns:
+   Time
+   fter lsq fit to Protein

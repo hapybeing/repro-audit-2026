@@ -1,0 +1,8 @@
+GB igb=2 recompute, 20 deposited frames
+&general
+  startframe=1, endframe=20, interval=1,
+  verbose=2, keep_files=0,
+/
+&gb
+  igb=2, saltcon=0.0, surften=0.0072, surfoff=0.0, molsurf=0, probe=1.4,
+/

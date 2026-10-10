@@ -1,0 +1,31 @@
+{
+ "n_frames": 20,
+ "seed": 20261009,
+ "R_a": {
+  "bootstrap_mean": -103.74796305,
+  "ci_2.5": -108.186025,
+  "ci_97.5": -98.62491250000001,
+  "ci_excludes_0": true,
+  "share_boot_means_below_0": 1.0,
+  "n_resamples": 10000,
+  "method": "rng.integers(0,n,size=(10000,n)); percentile interval"
+ },
+ "R_b": {
+  "max_abs_z": 2.899488874020363,
+  "n_dropped_absz_gt3": 0,
+  "rule": "no |z|>3; fallback 5% trim each side (drop single lowest and highest of 20)",
+  "mean": -104.50611111111111,
+  "sem": 1.8208139634432352,
+  "n": 18,
+  "dropped_low": -122.02,
+  "dropped_high": -70.82
+ },
+ "R_c": {
+  "pb_mean": 14.422999999999998,
+  "pb_sd_ddof1": 10.555758268906073,
+  "pb_sem_ddof1": 2.3603393043329484,
+  "gb_mean": -103.69750000000002,
+  "same_sign_as_gb": false,
+  "pb_t_vs_0": 6.11056214397788
+ }
+}

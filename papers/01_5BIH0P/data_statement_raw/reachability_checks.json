@@ -1,0 +1,248 @@
+{
+ "checked_utc": "2026-10-10T06:36:28.347739Z",
+ "checks": [
+  {
+   "url": "https://sites.google.com/view/thermopcd/home",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 200",
+    "content-type: text/html; charset=utf-8",
+    "content-length: 0"
+   ]
+  },
+  {
+   "url": "https://sites.google.com/view/thermopcd/autoimmune-diseases/tshr-2x",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 200",
+    "content-type: text/html; charset=utf-8",
+    "content-length: 0"
+   ]
+  },
+  {
+   "url": "https://dataverse.harvard.edu/dataverse/ThermoPCD",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 202",
+    "content-length: 0",
+    "content-type: text/html; charset=UTF-8"
+   ]
+  },
+  {
+   "url": "https://doi.org/10.7910/DVN/5BIH0P",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 302",
+    "content-type: text/html;charset=utf-8",
+    "location: https://dataverse.harvard.edu/citation"
+   ]
+  },
+  {
+   "url": "https://doi.org/10.7910/DVN/TZAPSH",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 302",
+    "content-type: text/html;charset=utf-8",
+    "location: https://dataverse.harvard.edu/citation"
+   ]
+  },
+  {
+   "url": "https://dataverse.harvard.edu/api/access/datafile/7474501",
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 388975292,
+   "dataset": "doi:10.7910/DVN/HNEN97",
+   "dataset_title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (313K, 40\u00b0C, 200 ns): random seed #3",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 303",
+    "content-type: application/json;charset=UTF-8",
+    "location: https://dvn-cloud-iqss.s3.amazonaws.com/10.7910/DVN/HNEN97/18b45946ffa-35d9f1af53ce"
+   ]
+  },
+  {
+   "url": "https://dataverse.harvard.edu/api/access/datafile/7468395",
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 388479956,
+   "dataset": "doi:10.7910/DVN/4WUEFJ",
+   "dataset_title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (313K, 40\u00b0C, 200 ns): random seed #2",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 303",
+    "content-type: application/json;charset=UTF-8",
+    "location: https://dvn-cloud-iqss.s3.amazonaws.com/10.7910/DVN/4WUEFJ/18b3cc0c22b-a255c522d118"
+   ]
+  },
+  {
+   "url": "https://dataverse.harvard.edu/api/access/datafile/7528268",
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777535128,
+   "dataset": "doi:10.7910/DVN/XOPTZX",
+   "dataset_title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (312K, 39\u00b0C, 200 ns): random seed #4",
+   "head": [
+    "HTTP/1.1 200 Connection Established",
+    "HTTP/2 303",
+    "content-type: application/json;charset=UTF-8",
+    "location: https://dvn-cloud-iqss.s3.amazonaws.com/10.7910/DVN/XOPTZX/18ba8b583b3-7f9f95b4f963"
+   ]
+  }
+ ],
+ "two_xwt_trajectory_files_in_collection": [
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 388975292,
+   "dataset": "doi:10.7910/DVN/HNEN97",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (313K, 40\u00b0C, 200 ns): random seed #3"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 388479956,
+   "dataset": "doi:10.7910/DVN/4WUEFJ",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (313K, 40\u00b0C, 200 ns): random seed #2"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777535128,
+   "dataset": "doi:10.7910/DVN/XOPTZX",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (312K, 39\u00b0C, 200 ns): random seed #4"
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 77782316,
+   "dataset": "doi:10.7910/DVN/XOPTZX",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (312K, 39\u00b0C, 200 ns): random seed #4"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 388720972,
+   "dataset": "doi:10.7910/DVN/PBNQW5",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (313K, 40\u00b0C, 200 ns): random seed #1"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777199164,
+   "dataset": "doi:10.7910/DVN/YBQBBP",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (312K, 39\u00b0C, 200 ns): random seed #5"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144709304,
+   "dataset": "doi:10.7910/DVN/LVNMKB",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (310K, 37\u00b0C, 100 ns): random seed #1"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144733500,
+   "dataset": "doi:10.7910/DVN/PL7AE3",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (311K, 38\u00b0C, 100 ns): random seed #1."
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144663180,
+   "dataset": "doi:10.7910/DVN/XBDPUF",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (312K, 39\u00b0C, 100 ns): random seed #1."
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144703324,
+   "dataset": "doi:10.7910/DVN/IEJSPT",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (313K, 40\u00b0C, 100 ns): random seed #1."
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777385368,
+   "dataset": "doi:10.7910/DVN/3ME4AA",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (310K, 37\u00b0C, 200 ns): random seed #5"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777242648,
+   "dataset": "doi:10.7910/DVN/D5UAQM",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (311K, 38\u00b0C, 200 ns): random seed #5"
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 77764776,
+   "dataset": "doi:10.7910/DVN/D5UAQM",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (311K, 38\u00b0C, 200 ns): random seed #5"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144843032,
+   "dataset": "doi:10.7910/DVN/RUFXBO",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (310K, 37\u00b0C, 100 ns): random seed #2."
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144742384,
+   "dataset": "doi:10.7910/DVN/DSCIQR",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (311K, 38\u00b0C, 100 ns): random seed #2."
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777395952,
+   "dataset": "doi:10.7910/DVN/YPSSGZ",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (310K, 37\u00b0C, 200 ns): random seed #4"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 777513964,
+   "dataset": "doi:10.7910/DVN/DSMKWY",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (311K, 38\u00b0C, 200 ns): random seed #4"
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 77768316,
+   "dataset": "doi:10.7910/DVN/DSMKWY",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (311K, 38\u00b0C, 200 ns): random seed #4"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144654108,
+   "dataset": "doi:10.7910/DVN/WLOVHQ",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (312K, 39\u00b0C, 100 ns): random seed #2."
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 144768296,
+   "dataset": "doi:10.7910/DVN/G5MAJS",
+   "title": "PDB - 2XWT: Crystal structure of TSH receptor, (313K, 40\u00b0C, 100 ns): random seed #2."
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 77803600,
+   "dataset": "doi:10.7910/DVN/DIKYS0",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (310K, 37\u00b0C, 200 ns): random seed #2"
+  },
+  {
+   "file": "dynamic-nopbc.xtc",
+   "bytes": 388818296,
+   "dataset": "doi:10.7910/DVN/PIM6IY",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (312K, 39\u00b0C, 400 ns): random seed #2"
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 155551400,
+   "dataset": "doi:10.7910/DVN/JABDLN",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (312K, 39\u00b0C, 200 ns): random seed #4"
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 155733164,
+   "dataset": "doi:10.7910/DVN/8YWAEK",
+   "title": "PDB: 2XWT, Crystal structure of TSH receptor in complex with human mAb autoantibody K1-70 (310K, 37\u00b0C, 400 ns): random seed #1"
+  },
+  {
+   "file": "system_reduced.xtc",
+   "bytes": 155551400,
+   "dataset": "doi:10.7910/DVN/5Q0TL3",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (312K, 39\u00b0C, 400 ns): random seed #3"
+  },
+  {
+   "file": "system_reduced.xtc.1",
+   "bytes": 1554663932,
+   "dataset": "doi:10.7910/DVN/5Q0TL3",
+   "title": "PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (312K, 39\u00b0C, 400 ns): random seed #3"
+  }
+ ],
+ "any_2xwt_310K_seed3": []
+}

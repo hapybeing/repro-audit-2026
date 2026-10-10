@@ -1,0 +1,78 @@
+{
+ "tag": "gb",
+ "systems": {
+  "complex": {
+   "n_frames": 20,
+   "max_abs_diff_TOTAL_vs_deposited": 0.004843360000450048,
+   "max_abs_diff_EGB_vs_deposited": 0.004899999999906868,
+   "esurf_source": "B cpptraj surf",
+   "max_abs_diff_SASA_B_vs_deposited": 0.0
+  },
+  "receptor": {
+   "n_frames": 20,
+   "max_abs_diff_TOTAL_vs_deposited": 0.00471952000134479,
+   "max_abs_diff_EGB_vs_deposited": 0.004600000000209548,
+   "esurf_source": "B cpptraj surf",
+   "max_abs_diff_SASA_B_vs_deposited": 0.0
+  },
+  "ligand": {
+   "n_frames": 20,
+   "max_abs_diff_TOTAL_vs_deposited": 0.004365279999092309,
+   "max_abs_diff_EGB_vs_deposited": 0.004899999999906868,
+   "esurf_source": "B cpptraj surf",
+   "max_abs_diff_SASA_B_vs_deposited": 0.0
+  }
+ },
+ "delta_TOTAL": {
+  "n_frames": 20,
+  "mean": -103.69764727600018,
+  "sd_ddof0": 11.052019327225485,
+  "sd_ddof1": 11.339132576560075,
+  "per_frame": [
+   -93.59016656000222,
+   -89.225551119996,
+   -70.82461927999611,
+   -107.62250839999979,
+   -122.02118248000352,
+   -96.59909232000291,
+   -103.20561752000094,
+   -103.85574319999887,
+   -102.49355464000018,
+   -92.32897208000031,
+   -111.16704360000222,
+   -116.64274503999968,
+   -114.23143656000275,
+   -112.42360448000045,
+   -103.10698056000365,
+   -110.4300834399969,
+   -107.43686616000105,
+   -107.87888839999687,
+   -100.59358503999783,
+   -108.27470464000135
+  ],
+  "deposited_per_frame": [
+   -93.59,
+   -89.23,
+   -70.82,
+   -107.62,
+   -122.02,
+   -96.6,
+   -103.21,
+   -103.86,
+   -102.49,
+   -92.33,
+   -111.17,
+   -116.64,
+   -114.23,
+   -112.42,
+   -103.11,
+   -110.43,
+   -107.44,
+   -107.88,
+   -100.59,
+   -108.27
+  ],
+  "max_abs_diff_vs_deposited_per_frame": 0.004704640001349958,
+  "deposited_mean_same_frames": -103.69750000000002
+ }
+}

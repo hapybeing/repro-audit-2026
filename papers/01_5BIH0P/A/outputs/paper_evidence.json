@@ -1,0 +1,32 @@
+{
+ "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10950042/fullTextXML",
+ "mentions_2XWT": [
+  "a 5 TNFα in complex with Fab of Infliximab 200 5VL3 1 CD22 d1-d3 in complex with Fab of Epratuzumab 100 1ADQ 1 Human IgM RH in complex with IgG autoantigen 100 2XWT b 5 TSH receptor in complex with autoantibody K1-70 mAb 200 3G04 a , b 5 TSH receptor in complex with autoantibody M22 mAb 200 6BFQ 1 GM-CSF in complex with au"
+ ],
+ "computed_numbers_in_text": {
+  "0.36 nm": [
+   "for each heavy chain). For comparison, we superimposed the structures obtained at 310 K and at 313 K with the original crystal structure, thus yielding RMSD of 0.36 nm and 1.52 nm, respectively. This increase in RMSD can be explained by visualizing Figure 4 , whereby enhanced mobility of Fab domains is apparent from 310 K to "
+  ],
+  "1.52 nm": [
+   "vy chain). For comparison, we superimposed the structures obtained at 310 K and at 313 K with the original crystal structure, thus yielding RMSD of 0.36 nm and 1.52 nm, respectively. This increase in RMSD can be explained by visualizing Figure 4 , whereby enhanced mobility of Fab domains is apparent from 310 K to 313 K. This "
+  ],
+  "−114.2": [
+   "om three random seeds, for a duration of 500 ns each, as indicated in Figure 5 . The averages (in kJ/mol) of these binding free energies with temperatures were −114.2 ± 6.4, −132 ± 2.9, −148 ± 9.2 and −126.3 ± 8.1, from 310 K to 313 K, respectively. The increase in the binding free energy from 37°C to 39°C, by about 30%, bet"
+  ],
+  "−126.3": [
+   "500 ns each, as indicated in Figure 5 . The averages (in kJ/mol) of these binding free energies with temperatures were −114.2 ± 6.4, −132 ± 2.9, −148 ± 9.2 and −126.3 ± 8.1, from 310 K to 313 K, respectively. The increase in the binding free energy from 37°C to 39°C, by about 30%, between these important inhibitors of the im"
+  ],
+  "about 30%": [
+   "es were −114.2 ± 6.4, −132 ± 2.9, −148 ± 9.2 and −126.3 ± 8.1, from 310 K to 313 K, respectively. The increase in the binding free energy from 37°C to 39°C, by about 30%, between these important inhibitors of the immune response during cancer progression may, in part, shed light on the positive role of inflammation-range temper"
+  ]
+ },
+ "complexes_with_computed_numbers": {
+  "5DK3": 4,
+  "6UMT": 1
+ },
+ "mentions_xtc": 0,
+ "abstract_claim_trajectories": [
+  "ngen Machine for Chemical Simulations (GROMACS) to prepare and run the structures at different temperatures for 100–500 ns, in single or multiple random seeds. MD trajectories are freely available. Processed data include Protein Data Bank outputs for all files obtained every 50 ns, and free binding energy calculations for some of the immune complexes. Pr"
+ ],
+ "table1_note": "2XWT appears only as a Table 1 row (seeds=5, duration=200 ns, footnote b: free binding energy calculations available)"
+}

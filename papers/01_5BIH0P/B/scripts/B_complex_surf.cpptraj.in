@@ -1,0 +1,5 @@
+parm COM.prmtop
+trajin _GMXMMPBSA_complex.mdcrd.0
+surf :* out B_complex_surf.dat
+run
+quit

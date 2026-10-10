@@ -1,0 +1,191 @@
+{
+ "GB_dBOND": {
+  "average": -0.0,
+  "sd_prop": 12.57,
+  "sd": 0.0,
+  "sem_prop": 2.81,
+  "sem": 0.0
+ },
+ "GB_dANGLE": {
+  "average": 0.0,
+  "sd_prop": 24.19,
+  "sd": 0.0,
+  "sem_prop": 5.41,
+  "sem": 0.0
+ },
+ "GB_dDIHED": {
+  "average": 0.0,
+  "sd_prop": 11.04,
+  "sd": 0.0,
+  "sem_prop": 2.47,
+  "sem": 0.0
+ },
+ "GB_dUB": {
+  "average": -0.0,
+  "sd_prop": 6.03,
+  "sd": 0.0,
+  "sem_prop": 1.35,
+  "sem": 0.0
+ },
+ "GB_dIMP": {
+  "average": -0.0,
+  "sd_prop": 4.77,
+  "sd": 0.0,
+  "sem_prop": 1.07,
+  "sem": 0.0
+ },
+ "GB_dCMAP": {
+  "average": 0.0,
+  "sd_prop": 5.43,
+  "sd": 0.0,
+  "sem_prop": 1.21,
+  "sem": 0.0
+ },
+ "GB_dVDWAALS": {
+  "average": -97.82,
+  "sd_prop": 15.35,
+  "sd": 8.37,
+  "sem_prop": 3.43,
+  "sem": 1.87
+ },
+ "GB_dEEL": {
+  "average": -668.97,
+  "sd_prop": 30.59,
+  "sd": 36.06,
+  "sem_prop": 6.84,
+  "sem": 8.06
+ },
+ "GB_dEGB": {
+  "average": 681.82,
+  "sd_prop": 14.65,
+  "sd": 37.08,
+  "sem_prop": 3.28,
+  "sem": 8.29
+ },
+ "GB_dESURF": {
+  "average": -18.72,
+  "sd_prop": 1.03,
+  "sd": 0.91,
+  "sem_prop": 0.23,
+  "sem": 0.2
+ },
+ "GB_dGGAS": {
+  "average": -766.8,
+  "sd_prop": 35.49,
+  "sd": 36.49,
+  "sem_prop": 7.94,
+  "sem": 8.16
+ },
+ "GB_dGSOLV": {
+  "average": 663.1,
+  "sd_prop": 14.69,
+  "sd": 37.19,
+  "sem_prop": 3.28,
+  "sem": 8.32
+ },
+ "GB_dTOTAL": {
+  "average": -103.7,
+  "sd_prop": 38.41,
+  "sd": 11.05,
+  "sem_prop": 8.59,
+  "sem": 2.47
+ },
+ "PB_dBOND": {
+  "average": -0.0,
+  "sd_prop": 12.57,
+  "sd": 0.0,
+  "sem_prop": 2.81,
+  "sem": 0.0
+ },
+ "PB_dANGLE": {
+  "average": 0.0,
+  "sd_prop": 24.19,
+  "sd": 0.0,
+  "sem_prop": 5.41,
+  "sem": 0.0
+ },
+ "PB_dDIHED": {
+  "average": 0.0,
+  "sd_prop": 11.04,
+  "sd": 0.0,
+  "sem_prop": 2.47,
+  "sem": 0.0
+ },
+ "PB_dUB": {
+  "average": -0.0,
+  "sd_prop": 6.03,
+  "sd": 0.0,
+  "sem_prop": 1.35,
+  "sem": 0.0
+ },
+ "PB_dIMP": {
+  "average": -0.0,
+  "sd_prop": 4.77,
+  "sd": 0.0,
+  "sem_prop": 1.07,
+  "sem": 0.0
+ },
+ "PB_dCMAP": {
+  "average": 0.0,
+  "sd_prop": 5.43,
+  "sd": 0.0,
+  "sem_prop": 1.21,
+  "sem": 0.0
+ },
+ "PB_dVDWAALS": {
+  "average": -97.82,
+  "sd_prop": 15.35,
+  "sd": 8.37,
+  "sem_prop": 3.43,
+  "sem": 1.87
+ },
+ "PB_dEEL": {
+  "average": -668.97,
+  "sd_prop": 30.59,
+  "sd": 36.06,
+  "sem_prop": 6.84,
+  "sem": 8.06
+ },
+ "PB_dEPB": {
+  "average": 687.85,
+  "sd_prop": 20.29,
+  "sd": 38.93,
+  "sem_prop": 4.54,
+  "sem": 8.71
+ },
+ "PB_dENPOLAR": {
+  "average": -90.09,
+  "sd_prop": 4.87,
+  "sd": 3.94,
+  "sem_prop": 1.09,
+  "sem": 0.88
+ },
+ "PB_dEDISPER": {
+  "average": 183.46,
+  "sd_prop": 4.76,
+  "sd": 6.89,
+  "sem_prop": 1.06,
+  "sem": 1.54
+ },
+ "PB_dGGAS": {
+  "average": -766.8,
+  "sd_prop": 35.49,
+  "sd": 36.49,
+  "sem_prop": 7.94,
+  "sem": 8.16
+ },
+ "PB_dGSOLV": {
+  "average": 781.22,
+  "sd_prop": 21.4,
+  "sd": 38.34,
+  "sem_prop": 4.79,
+  "sem": 8.57
+ },
+ "PB_dTOTAL": {
+  "average": 14.42,
+  "sd_prop": 41.45,
+  "sd": 10.29,
+  "sem_prop": 9.27,
+  "sem": 2.3
+ }
+}

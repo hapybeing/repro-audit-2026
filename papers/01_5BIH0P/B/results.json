@@ -1,0 +1,185 @@
+{
+ "paper_id": "01_5BIH0P",
+ "agent": "B",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "No paper target exists for this dataset: the paper reports computed numbers only for 5DK3 (RMSD) and 6UMT (binding free energies); 2XWT appears only as a Table 1 metadata row (5 seeds, 200 ns, footnote b). The production trajectory is not deposited, so no RMSD/RMSF/Rg/SASA/H-bond series can be regenerated. Only internal-consistency checks and pre-registered robustness checks on the deposited MMPBSA per-frame data were run.",
+ "targets": [],
+ "internal_checks": [
+  {
+   "id": "I1",
+   "term": "GB_dTOTAL",
+   "prereg_author_value": -103.7,
+   "author_dat_value_parsed": -103.7,
+   "recomputed_mean_from_perframe_csv": -103.69750000000002,
+   "match_to_2dp": true,
+   "recomputed_sd_ddof0": 11.051955878938353,
+   "recomputed_sd_ddof1": 11.339067479991002,
+   "author_dat_sd": 11.05,
+   "source_file": "outputs/internal_checks.json"
+  },
+  {
+   "id": "I2",
+   "term": "PB_dTOTAL",
+   "prereg_author_value": 14.42,
+   "author_dat_value_parsed": 14.42,
+   "recomputed_mean_from_perframe_csv": 14.422999999999998,
+   "match_to_2dp": true,
+   "recomputed_sd_ddof0": 10.288480500054417,
+   "recomputed_sd_ddof1": 10.555758268906073,
+   "author_dat_sd": 10.29,
+   "source_file": "outputs/internal_checks.json"
+  },
+  {
+   "id": "I3_VDWAALS",
+   "term": "GB_dVDWAALS",
+   "prereg_author_value": -97.82,
+   "author_dat_value_parsed": -97.82,
+   "recomputed_mean_from_perframe_csv": -97.82300000000001,
+   "match_to_2dp": true,
+   "recomputed_sd_ddof0": 8.372097168571324,
+   "recomputed_sd_ddof1": 8.58959045650759,
+   "author_dat_sd": 8.37,
+   "source_file": "outputs/internal_checks.json"
+  },
+  {
+   "id": "I3_EEL",
+   "term": "GB_dEEL",
+   "prereg_author_value": -668.97,
+   "author_dat_value_parsed": -668.97,
+   "recomputed_mean_from_perframe_csv": -668.9739999999999,
+   "match_to_2dp": true,
+   "recomputed_sd_ddof0": 36.0568392125544,
+   "recomputed_sd_ddof1": 36.99353647669592,
+   "author_dat_sd": 36.06,
+   "source_file": "outputs/internal_checks.json"
+  },
+  {
+   "id": "I3_EGB",
+   "term": "GB_dEGB",
+   "prereg_author_value": 681.82,
+   "author_dat_value_parsed": 681.82,
+   "recomputed_mean_from_perframe_csv": 681.823,
+   "match_to_2dp": true,
+   "recomputed_sd_ddof0": 37.0752565871094,
+   "recomputed_sd_ddof1": 38.03841065637676,
+   "author_dat_sd": 37.08,
+   "source_file": "outputs/internal_checks.json"
+  },
+  {
+   "id": "I3_ESURF",
+   "term": "GB_dESURF",
+   "prereg_author_value": -18.72,
+   "author_dat_value_parsed": -18.72,
+   "recomputed_mean_from_perframe_csv": -18.724,
+   "match_to_2dp": true,
+   "recomputed_sd_ddof0": 0.9073775399468512,
+   "recomputed_sd_ddof1": 0.9309497131537515,
+   "author_dat_sd": 0.91,
+   "source_file": "outputs/internal_checks.json"
+  },
+  {
+   "id": "I1_amber_rerun",
+   "term": "GB dTOTAL recomputed with AmberTools 26 sander from deposited prmtop + mdcrd intermediates",
+   "n_frames": 20,
+   "recomputed_mean": -103.69764727600018,
+   "deposited_mean_same_frames": -103.69750000000002,
+   "max_abs_perframe_diff_vs_deposited": 0.004704640001349958,
+   "per_system": {
+    "complex": {
+     "n_frames": 20,
+     "max_abs_diff_TOTAL_vs_deposited": 0.004843360000450048,
+     "max_abs_diff_EGB_vs_deposited": 0.004899999999906868,
+     "esurf_source": "B cpptraj surf",
+     "max_abs_diff_SASA_B_vs_deposited": 0.0
+    },
+    "receptor": {
+     "n_frames": 20,
+     "max_abs_diff_TOTAL_vs_deposited": 0.00471952000134479,
+     "max_abs_diff_EGB_vs_deposited": 0.004600000000209548,
+     "esurf_source": "B cpptraj surf",
+     "max_abs_diff_SASA_B_vs_deposited": 0.0
+    },
+    "ligand": {
+     "n_frames": 20,
+     "max_abs_diff_TOTAL_vs_deposited": 0.004365279999092309,
+     "max_abs_diff_EGB_vs_deposited": 0.004899999999906868,
+     "esurf_source": "B cpptraj surf",
+     "max_abs_diff_SASA_B_vs_deposited": 0.0
+    }
+   },
+   "source_file": "outputs/gb_recompute_gb.json"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Bootstrap of mean per-frame GB dTOTAL (20 frames), 10,000 resamples, default_rng(20261009); percentile 95% CI",
+   "ran": true,
+   "estimate": -103.74796305,
+   "se_or_ci": "95% percentile CI [-108.1860, -98.6249] kcal/mol; excludes 0: True",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/robustness.json",
+   "note": "No paper value exists for 2XWT; compared only with the deposited GB mean (-103.70): same sign, CI excludes 0. Not a different MD seed (only seed 3 deposited)."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop frames with |z|>3 (ddof=1) on per-frame GB dTOTAL; if none, drop single lowest and highest frame",
+   "ran": true,
+   "estimate": -104.50611111111111,
+   "se_or_ci": "SEM 1.8208 (ddof=1, n=18)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/robustness.json",
+   "note": "max |z| = 2.899, 0 frames with |z|>3, so fallback trim applied (dropped -122.02 and -70.82). No paper value."
+  },
+  {
+   "id": "R_c",
+   "description": "Poisson-Boltzmann instead of Generalized Born: mean per-frame PB dTOTAL, same 20 frames",
+   "ran": true,
+   "estimate": 14.422999999999998,
+   "se_or_ci": "SEM 2.3603 (ddof=1, n=20)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/robustness.json",
+   "note": "Sign differs from GB (-103.6975); same_sign_as_gb=False. Descriptive only; no paper value. Optional R_c2 (igb=2) not run."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "xvg2csv.py (identical copy xvg2csv-1.py)",
+   "line": 31,
+   "description": "Legend test l.startswith('@ s') also matches GROMACS '@ subtitle' lines, so the subtitle is taken as a column label and cut by split()[3:] and [1:-1].",
+   "evidence": "2xwt-rs3-310k-200ns-rmsd.xvg contains '@ subtitle \"Protein after lsq fit to Protein\"' and no '@ s0 legend' line; script header written: 'Time (ps),fter lsq fit to Protein'; Dataverse ingest variable names ['Time (ps)', 'fter lsq fit to Protein']. Same in 400 ns RMSD file. Label only; values unaffected."
+  },
+  {
+   "file": "xvg2csv.py (identical copy xvg2csv-1.py)",
+   "line": 25,
+   "description": "First column label is hard-coded 'Time (ps)' regardless of the x axis of the .xvg file.",
+   "evidence": "RMSD .xvg files were made with '-tu ns' and declare '@    xaxis  label \"Time (ns)\"', but the deposited CSV/.tab column is named 'Time (ps)' (values 0.0, 0.01, ... are ns). Units label wrong in deposited 200 ns and 400 ns RMSD .tab files."
+  },
+  {
+   "file": "xvg2csv.py (identical copy xvg2csv-1.py)",
+   "line": 36,
+   "description": "Header row is written only when the number of '@ s' lines equals columns-1; for a .xvg with no legend lines (gmx rmsf) no header is written.",
+   "evidence": "2xwt-rs3-400ns-310k-rmsf.csv first line is '1,0.3080' (674 data rows); Dataverse ingest then used that row as variable names ['1', '0.3080'] and the ingested .tab has 673 cases, so residue 1 is missing from the ingested table (the original CSV still has it)."
+  }
+ ],
+ "env_fixes": [
+  "diffs/xvg2csv.py.diff: Python 2 print statements converted to print() calls so the script runs under Python 3.12 (no python2 interpreter available); no logic change."
+ ],
+ "proposed_class": "C",
+ "class_reason": "The deposit cannot reproduce any number reported in the paper: the paper reports no computed value for 2XWT, and the inputs needed to regenerate the 2XWT analyses (production .xtc trajectories) are not deposited. What can be run (the gmx_MMPBSA summary from its own per-frame data, and a sander GB rerun from the deposited intermediates) is internally consistent, but that is not a reproduction of the paper.",
+ "confidence": "medium",
+ "confidence_reason": "Facts are checked by script, but C versus E (or 'not applicable') is a judgement because there is no paper target at all.",
+ "time_minutes": 43,
+ "uncertainties": [
+  "Class choice: PROTOCOL classes assume a paper number exists; C is chosen because the materials do not support any reported number. E would also be defensible only if one treats the missing trajectory as 'could not run'; we did run what exists.",
+  "PREREG asked for sample SD (ddof=1); the author SDs in FINAL_RESULTS_MMPBSA.dat match population SD (ddof=0): GB dTOTAL SD ddof0 11.0520 vs ddof1 11.3391 vs author 11.05. Means are unaffected.",
+  "Images embedded in Supporting file 1 (12 images) and the main figures were not OCR'd; their text and captions do not mention 2XWT, and the main-text figures concern other PDB entries.",
+  "Table 1 lists 2XWT with 200 ns while the dataset title says 400 ns; 400 ns files are dated 2024-06-11 (after acceptance). The 400 ns RMSD series starts at about 4.48 nm at t=0 and contains a duplicated time point at 200 ns (40,002 rows), while the 200 ns series starts at 0.0005 nm; cause cannot be determined without the trajectories. Descriptive only, not a paper number.",
+  "AmberTools GB rerun from deposited intermediates: 20 frames, max per-frame |diff| vs deposited dTOTAL 0.0047 kcal/mol",
+  "Environment differs from the authors' (AmberTools 26 on aarch64 vs Amber 21 / gmx_MMPBSA 1.5.2 on x86_64)."
+ ]
+}

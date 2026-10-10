@@ -1,0 +1,5 @@
+parm REC.prmtop
+trajin _GMXMMPBSA_receptor.mdcrd.0
+surf :* out B_receptor_surf.dat
+run
+quit

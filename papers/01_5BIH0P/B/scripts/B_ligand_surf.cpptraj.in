@@ -1,0 +1,5 @@
+parm LIG.prmtop
+trajin _GMXMMPBSA_ligand.mdcrd.0
+surf :* out B_ligand_surf.dat
+run
+quit

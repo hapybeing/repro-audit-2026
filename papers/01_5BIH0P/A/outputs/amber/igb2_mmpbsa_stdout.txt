@@ -1,0 +1,28 @@
+Loading and checking parameter files for compatibility...
+CHAMBER prmtops found. Forcing use of sander
+cpptraj found! Using /workspace/audit_runs/01_5BIH0P/A/amberenv/bin/cpptraj
+sander found! Using /workspace/audit_runs/01_5BIH0P/A/amberenv/bin/sander
+Preparing trajectories for simulation...
+20 frames were processed by cpptraj for use in calculation.
+
+Running calculations on normal system...
+
+Beginning GB calculations with /workspace/audit_runs/01_5BIH0P/A/amberenv/bin/sander
+  calculating complex contribution...
+  calculating receptor contribution...
+  calculating ligand contribution...
+
+Timing:
+Total setup time:                           0.016 min.
+Creating trajectories with cpptraj:         0.021 min.
+Total calculation time:                     6.169 min.
+
+Total GB calculation time:                  6.169 min.
+
+Statistics calculation & output writing:    0.000 min.
+Total time taken:                           6.209 min.
+
+
+MMPBSA.py Finished! Thank you for using. Please cite us if you publish this work with this paper:
+   Miller III, B. R., McGee Jr., T. D., Swails, J. M. Homeyer, N. Gohlke, H. and Roitberg, A. E.
+   J. Chem. Theory Comput., 2012, 8 (9) pp 3314--3321

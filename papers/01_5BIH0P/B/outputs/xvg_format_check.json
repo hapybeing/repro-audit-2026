@@ -1,0 +1,55 @@
+{
+ "2xwt-rs3-310k-200ns-rmsd": {
+  "stdout": "Found 2 columns:\n   Time\n   fter lsq fit to Protein\n",
+  "returncode": 0,
+  "identical_to_deposited": true,
+  "sha256_mine": "d7e646999507186954abf14828bcefa9d9e0b58a8a0ace14b4239e37e0201f14",
+  "first_line_written": "Time (ps),fter lsq fit to Protein",
+  "data_rows_in_xvg": 20001,
+  "xvg_axis_and_legend_lines": [
+   "@    xaxis  label \"Time (ns)\"",
+   "@    yaxis  label \"RMSD (nm)\"",
+   "@ subtitle \"Protein after lsq fit to Protein\""
+  ],
+  "dataverse_ingest_varnames": [
+   "Time (ps)",
+   "fter lsq fit to Protein"
+  ],
+  "dataverse_ingest_caseQnty": 20001
+ },
+ "2xwt-rs3-400ns-310k-rmsd": {
+  "stdout": "Found 2 columns:\n   Time\n   fter lsq fit to Protein\n",
+  "returncode": 0,
+  "identical_to_deposited": true,
+  "sha256_mine": "c820a00879ced52cbe9a1d19637273d8743b8046fc280d8dbbce21ee3b5e7e53",
+  "first_line_written": "Time (ps),fter lsq fit to Protein",
+  "data_rows_in_xvg": 40002,
+  "xvg_axis_and_legend_lines": [
+   "@    xaxis  label \"Time (ns)\"",
+   "@    yaxis  label \"RMSD (nm)\"",
+   "@ subtitle \"Protein after lsq fit to Protein\""
+  ],
+  "dataverse_ingest_varnames": [
+   "Time (ps)",
+   "fter lsq fit to Protein"
+  ],
+  "dataverse_ingest_caseQnty": 40002
+ },
+ "2xwt-rs3-400ns-310k-rmsf": {
+  "stdout": "Found 2 columns:\n   Time\n",
+  "returncode": 0,
+  "identical_to_deposited": true,
+  "sha256_mine": "5c37a09b560528d27fac759d590a984bcc1244c36fd7186d6af476de690e895e",
+  "first_line_written": "1,0.3080",
+  "data_rows_in_xvg": 674,
+  "xvg_axis_and_legend_lines": [
+   "@    xaxis  label \"Residue\"",
+   "@    yaxis  label \"(nm)\""
+  ],
+  "dataverse_ingest_varnames": [
+   "1",
+   "0.3080"
+  ],
+  "dataverse_ingest_caseQnty": 673
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "GB_delta_identity_max_abs_diff": 0.010000000000360387,
+ "PB_delta_identity_max_abs_diff": 0.01000000000036394,
+ "mdout_complex": {
+  "n_frames_in_mdout": 20,
+  "max_abs_diff_vs_csv": {
+   "VDWAALS": 0.004800000000614091,
+   "EEL": 0.005000000004656613,
+   "EGB": 0.004899999999906868,
+   "BOND": 0.004200000000309956
+  },
+  "esurf_from_surf_dat_max_abs_diff": 0.0
+ },
+ "mdout_receptor": {
+  "n_frames_in_mdout": 20,
+  "max_abs_diff_vs_csv": {
+   "VDWAALS": 0.004899999999906868,
+   "EEL": 0.004600000000209548,
+   "EGB": 0.004600000000209548,
+   "BOND": 0.004499999999779902
+  },
+  "esurf_from_surf_dat_max_abs_diff": 0.0
+ },
+ "mdout_ligand": {
+  "n_frames_in_mdout": 20,
+  "max_abs_diff_vs_csv": {
+   "VDWAALS": 0.004999999999881766,
+   "EEL": 0.005000000001018634,
+   "EGB": 0.004899999999906868,
+   "BOND": 0.004900000000020555
+  },
+  "esurf_from_surf_dat_max_abs_diff": 0.0
+ }
+}

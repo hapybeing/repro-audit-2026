@@ -1,0 +1,56 @@
+{
+ "2xwt-rs3-310k-200ns-rmsd": {
+  "rerun_csv_sha256": "d7e646999507186954abf14828bcefa9d9e0b58a8a0ace14b4239e37e0201f14",
+  "deposited_tab_original_sha256": "d7e646999507186954abf14828bcefa9d9e0b58a8a0ace14b4239e37e0201f14",
+  "byte_identical": true,
+  "csv_header_line": "Time (ps),fter lsq fit to Protein",
+  "xvg_xaxis_label": "Time (ns)",
+  "xvg_subtitle": "Protein after lsq fit to Protein",
+  "xvg_legend_lines": 0,
+  "gmx_command": "gmx rms -s md_0_10.tpr -f dynamic-nopbc.xtc -o 2xwt-rs3-310k-200ns-rmsd.xvg -tu ns",
+  "first_data_row": [
+   "0.0000000",
+   "0.0005100"
+  ],
+  "last_data_row": [
+   "200.0000153",
+   "0.6465326"
+  ]
+ },
+ "2xwt-rs3-400ns-310k-rmsd": {
+  "rerun_csv_sha256": "c820a00879ced52cbe9a1d19637273d8743b8046fc280d8dbbce21ee3b5e7e53",
+  "deposited_tab_original_sha256": "c820a00879ced52cbe9a1d19637273d8743b8046fc280d8dbbce21ee3b5e7e53",
+  "byte_identical": true,
+  "csv_header_line": "Time (ps),fter lsq fit to Protein",
+  "xvg_xaxis_label": "Time (ns)",
+  "xvg_subtitle": "Protein after lsq fit to Protein",
+  "xvg_legend_lines": 0,
+  "gmx_command": "gmx rms -s md_1_30.tpr -f dynamic-nopbc-2.xtc -o 2xwt-rs3-400ns-31ok-rmsd.xvg -tu ns",
+  "first_data_row": [
+   "0.0000000",
+   "4.4786162"
+  ],
+  "last_data_row": [
+   "400.0000305",
+   "4.4340663"
+  ]
+ },
+ "2xwt-rs3-400ns-310k-rmsf": {
+  "rerun_csv_sha256": "5c37a09b560528d27fac759d590a984bcc1244c36fd7186d6af476de690e895e",
+  "deposited_tab_original_sha256": "5c37a09b560528d27fac759d590a984bcc1244c36fd7186d6af476de690e895e",
+  "byte_identical": true,
+  "csv_header_line": "1,0.3080",
+  "xvg_xaxis_label": "Residue",
+  "xvg_subtitle": null,
+  "xvg_legend_lines": 0,
+  "gmx_command": "gmx rmsf -s md_1_30.tpr -f dynamic-nopbc-2.xtc -o 2xwt-rs3-400ns-310k-rmsf.xvg -res",
+  "first_data_row": [
+   "1",
+   "0.3080"
+  ],
+  "last_data_row": [
+   "674",
+   "0.6797"
+  ]
+ }
+}

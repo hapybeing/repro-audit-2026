@@ -1,0 +1,220 @@
+{
+ "paper_id": "01_5BIH0P",
+ "agent": "A",
+ "run_date_ist": "2026-10-09",
+ "ran": true,
+ "could_not_run_reason": "No paper target exists for this dataset (targets.json is empty): the paper's only computed numbers concern 5DK3 and 6UMT, which are not in DVN/5BIH0P. What did run: the authors' xvg2csv.py (after a Python 2 to 3 print fix), the pre-registered internal checks I1-I3 and robustness checks R_a-R_c on the deposited per-frame MMPBSA data; the optional AmberTools 26 GB recompute (igb=5) from the deposited prmtops and 20-frame trajectory, plus R_c2 (igb=2). The production MD trajectory is not deposited, so no MD-derived quantity could be regenerated.",
+ "targets": [
+  {
+   "id": "I1",
+   "description": "GB Delta TOTAL, average over 20 frames (kcal/mol), 2XWT seed 3, 310 K, 200 ns",
+   "paper_value": -103.7,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -103.69750000000002,
+   "source_file": "outputs/internal_checks.json",
+   "abs_diff": 0.0024999999999835154,
+   "rel_diff": 2.4108003857121654e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check, not a paper target (PREREG section 1, optional internal-consistency values); mean of 20 deposited per-frame Delta values from FINAL_RESULTS_MMPBSA.csv. Deposited SD 11.05 equals the population SD (ddof=0) 11.0520; sample SD (ddof=1) is 11.3391."
+  },
+  {
+   "id": "I2",
+   "description": "PB Delta TOTAL, average over 20 frames (kcal/mol)",
+   "paper_value": 14.42,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 14.422999999999998,
+   "source_file": "outputs/internal_checks.json",
+   "abs_diff": 0.0029999999999983373,
+   "rel_diff": 0.00020804438280154906,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check, not a paper target (PREREG section 1, optional internal-consistency values); mean of 20 deposited per-frame Delta values from FINAL_RESULTS_MMPBSA.csv"
+  },
+  {
+   "id": "I3a",
+   "description": "GB Delta VDWAALS average (kcal/mol)",
+   "paper_value": -97.82,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -97.82300000000001,
+   "source_file": "outputs/internal_checks.json",
+   "abs_diff": -0.0030000000000143245,
+   "rel_diff": -3.0668574933697864e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check, not a paper target (PREREG section 1, optional internal-consistency values); mean of 20 deposited per-frame Delta values from FINAL_RESULTS_MMPBSA.csv"
+  },
+  {
+   "id": "I3b",
+   "description": "GB Delta EEL average (kcal/mol)",
+   "paper_value": -668.97,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -668.9739999999999,
+   "source_file": "outputs/internal_checks.json",
+   "abs_diff": -0.0039999999999054126,
+   "rel_diff": -5.979341375406091e-06,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check, not a paper target (PREREG section 1, optional internal-consistency values); mean of 20 deposited per-frame Delta values from FINAL_RESULTS_MMPBSA.csv"
+  },
+  {
+   "id": "I3c",
+   "description": "GB Delta EGB average (kcal/mol)",
+   "paper_value": 681.82,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 681.823,
+   "source_file": "outputs/internal_checks.json",
+   "abs_diff": 0.0029999999999290594,
+   "rel_diff": 4.39998826659391e-06,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check, not a paper target (PREREG section 1, optional internal-consistency values); mean of 20 deposited per-frame Delta values from FINAL_RESULTS_MMPBSA.csv"
+  },
+  {
+   "id": "I3d",
+   "description": "GB Delta ESURF average (kcal/mol)",
+   "paper_value": -18.72,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -18.724,
+   "source_file": "outputs/internal_checks.json",
+   "abs_diff": -0.004000000000001336,
+   "rel_diff": -0.00021367521367528504,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check, not a paper target (PREREG section 1, optional internal-consistency values); mean of 20 deposited per-frame Delta values from FINAL_RESULTS_MMPBSA.csv"
+  },
+  {
+   "id": "I1_amber",
+   "description": "GB (igb=5) Delta TOTAL recomputed with AmberTools MMPBSA.py from deposited prmtops + 20-frame mdcrd",
+   "paper_value": -103.7,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": -103.6976472760015,
+   "source_file": "outputs/amber_gb_recompute.json",
+   "abs_diff": 0.002352723998498618,
+   "rel_diff": 2.2687791692368545e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "internal check (optional PREREG step 2), not a paper target; different AmberTools version and CPU architecture than the authors'"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "bootstrap of mean per-frame GB Delta TOTAL, 10,000 resamples, numpy default_rng(20261009), 2.5/97.5 percentiles",
+   "ran": true,
+   "estimate": -103.74796305,
+   "se_or_ci": "95% percentile CI [-108.19, -98.62]",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/robustness.json",
+   "note": "No paper value exists for 2XWT, so comparison with the paper is not applicable (null). CI excludes 0: True; same sign as the deposited GB mean (I1). p_value left null: the pre-registered check defines no test (descriptive one-sample t p=5.47e-20 is in the source file)."
+  },
+  {
+   "id": "R_b",
+   "description": "drop frames with |z|>3 (ddof=1) on per-frame GB Delta TOTAL; if none, trim 1 lowest and 1 highest frame",
+   "ran": true,
+   "estimate": -104.50611111111111,
+   "se_or_ci": "SEM 1.82 (n=18)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/robustness.json",
+   "note": "No paper value exists for 2XWT, so comparison with the paper is not applicable (null). No frame had |z|>3 (max |z| = 2.899), so the pre-registered fallback (5% trimming each side) was applied."
+  },
+  {
+   "id": "R_c",
+   "description": "Poisson-Boltzmann instead of Generalized Born: mean per-frame PB Delta TOTAL from the same file",
+   "ran": true,
+   "estimate": 14.422999999999998,
+   "se_or_ci": "SEM 2.36 (ddof=1, n=20)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/robustness.json",
+   "note": "No paper value exists for 2XWT, so comparison with the paper is not applicable (null). Same sign as GB estimate: False (PB positive, GB negative), as anticipated descriptively in PREREG."
+  },
+  {
+   "id": "R_c2",
+   "description": "GB recomputed with igb=2 instead of igb=5 on the same 20 frames (AmberTools MMPBSA.py)",
+   "ran": true,
+   "estimate": -89.47803227600146,
+   "se_or_ci": "SEM 2.17 (ddof=1, n=20)",
+   "p_value": null,
+   "same_direction_and_significance_as_paper": null,
+   "source_file": "outputs/amber_gb_recompute.json",
+   "note": "No paper value exists for 2XWT, so comparison with the paper is not applicable (null). igb=2 Delta TOTAL mean vs igb=5 recompute: same sign = True"
+  }
+ ],
+ "supplementary_checks": {
+  "GB_delta_identity_max_abs_diff": 0.010000000000360387,
+  "PB_delta_identity_max_abs_diff": 0.01000000000036394,
+  "mdout_complex": {
+   "n_frames_in_mdout": 20,
+   "max_abs_diff_vs_csv": {
+    "VDWAALS": 0.004800000000614091,
+    "EEL": 0.005000000004656613,
+    "EGB": 0.004899999999906868,
+    "BOND": 0.004200000000309956
+   },
+   "esurf_from_surf_dat_max_abs_diff": 0.0
+  },
+  "mdout_receptor": {
+   "n_frames_in_mdout": 20,
+   "max_abs_diff_vs_csv": {
+    "VDWAALS": 0.004899999999906868,
+    "EEL": 0.004600000000209548,
+    "EGB": 0.004600000000209548,
+    "BOND": 0.004499999999779902
+   },
+   "esurf_from_surf_dat_max_abs_diff": 0.0
+  },
+  "mdout_ligand": {
+   "n_frames_in_mdout": 20,
+   "max_abs_diff_vs_csv": {
+    "VDWAALS": 0.004999999999881766,
+    "EEL": 0.005000000001018634,
+    "EGB": 0.004899999999906868,
+    "BOND": 0.004900000000020555
+   },
+   "esurf_from_surf_dat_max_abs_diff": 0.0
+  }
+ },
+ "bugs": [
+  {
+   "file": "xvg2csv.py (identical in xvg2csv-1.py)",
+   "line": 31,
+   "description": "Legend detection `if l.startswith(\"@ s\")` also matches the GROMACS '@ subtitle' line, and line 33 `' '.join(l.split()[3:])[1:-1]` then drops the first word and first character, so the CSV column header is wrong.",
+   "evidence": "Deposited 2xwt-rs3-310k-200ns-rmsd.tab and 2xwt-rs3-400ns-310k-rmsd.tab (original-format downloads) have header 'Time (ps),fter lsq fit to Protein'; the .xvg has no '@ s0 legend' line, only '@ subtitle \"Protein after lsq fit to Protein\"'. Labels only; numeric values are unaffected (outputs/xvg2csv_check.json)."
+  },
+  {
+   "file": "xvg2csv.py (identical in xvg2csv-1.py)",
+   "line": 25,
+   "description": "First column header is hard-coded as 'Time (ps)', but the RMSD .xvg files were produced with `gmx rms ... -tu ns`, so the deposited RMSD .tab files label nanosecond values as picoseconds.",
+   "evidence": "xvg header 'xaxis label \"Time (ns)\"' and command '-tu ns'; last time value 400.0000305 in the 400 ns file and 200.0000153 in the 200 ns file, while the .tab header says 'Time (ps)' (outputs/xvg2csv_check.json). Labels only."
+  }
+ ],
+ "env_fixes": [
+  "diffs/xvg2csv.py.diff: xvg2csv.py is Python 2 (print statements) and raises SyntaxError under Python 3.12; print statements converted to print() calls, output text unchanged. No python2 interpreter on the machine.",
+  "diffs/mmpbsa_gb_mdin_extdiel.diff: optional AmberTools GB recompute only (not the authors' code). AmberTools 26 MMPBSA.py rejects intdiel/extdiel in &gb and writes extdiel=80.0; removed so sander's default 78.5 applies, as in the authors' sander mdin."
+ ],
+ "proposed_class": "C",
+ "class_reason": "The paper reports no computed number for 2XWT (it appears only as a Table 1 metadata row), and the deposit lacks the production trajectories that its own analysis files were made from, so the materials cannot produce any reported paper number; nothing was blocked by compute or an uninstallable dependency, which is what E describes. The deposited code and MMPBSA intermediates that could be run were run (including a GB recompute with AmberTools) and are internally consistent, but that is not reproduction of a paper number.",
+ "confidence": "medium",
+ "confidence_reason": "Class needed judgement (no paper target exists; C vs E is a definitional call), and A/B agreement is not yet known.",
+ "time_minutes": 39,
+ "uncertainties": [
+  "C vs E is a definitional judgement. I chose C because the obstacle is that the materials hold and can produce no number the paper reports (no 2XWT value in the paper; production trajectory not deposited), not a compute or dependency limit. An auditor reading E as \"the paper-level analysis (re-running 200-400 ns MD) exceeds compute\" could reasonably pick E; even then, a re-run would have no paper value to compare with.",
+  "The PROTOCOL class scheme has no \"no reproducible target\" category; any class assigned here describes the deposit, not the correctness of the paper's own 5DK3/6UMT numbers, which this audit did not examine.",
+  "I did not check whether the 2XWT production trajectory or the 5DK3/6UMT data exist in other ThermoPCD Dataverse datasets; the audit scope is this one dataset.",
+  "The deposited SD/SEM in FINAL_RESULTS_MMPBSA.dat are population (ddof=0) values; PREREG step 1 names ddof=1. Only the averages are pre-registered targets, so this does not change any check result; both SDs are in outputs/internal_checks.json.",
+  "R_a-R_c have no paper value to compare with, so same_direction_and_significance_as_paper is null; the pre-registered checks define no hypothesis test, so p_value is null (descriptive one-sample t p-values are in outputs/robustness.json).",
+  "The 400 ns RMSD series (2xwt-rs3-400ns-310k-rmsd.xvg) starts at about 4.48 nm at t=0, while the 200 ns series starts near 0; it was computed against md_1_30.tpr, which is twice the size of md_0_10.tpr. The cause cannot be checked without the trajectory; recorded descriptively, not as a bug (outputs/xvg2csv_check.json first_data_row).",
+  "The optional AmberTools GB recompute used AmberTools 26 on aarch64 (authors: Amber 21 sander, x86_64) and an mdin edit to restore extdiel=78.5 (diffs/README.md); it checks the deposited intermediates, not the paper.",
+  "The sandbox recycled once during the run (about 21:21 IST); the AmberTools install was restarted and all files on /workspace survived. No result file was affected."
+ ]
+}

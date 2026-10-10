@@ -1,0 +1,30 @@
+Agent B environment, 01_5BIH0P
+Date: 2026-10-09 21:26:41 IST
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+System python: Python 3.12.15
+venv (RUNDIR/venv) pip freeze:
+h5py==3.16.0
+numpy==2.5.3
+
+AmberTools env (micromamba, conda-forge, prefix RUNDIR/amber):
+2.9.0
+  ambertools                 26.0          cuda_None_nompi_py311hb1a6229_100  conda-forge
+  numpy                      2.4.6         py311hecca567_0                    conda-forge
+  parmed                     4.3.1         py311h13197f2_1                    conda-forge
+  python                     3.11.17       h94ad73b_1_cpython                 conda-forge
+sander: AmberTools 26.0 conda-forge build cuda_None_nompi; OMP_NUM_THREADS=1, nice 10
+
+Seeds: numpy default_rng(20261009) for R_a bootstrap
+No python2 available; xvg2csv.py run under Python 3 with print-statement env fix (diffs/xvg2csv.py.diff)
+Authors' env (from gmx_MMPBSA.log): gmx_MMPBSA 1.5.2, Amber 21 sander, ParmEd 3.4.3, Python 3.9.12, x86_64 Ubuntu 20.04; GROMACS 2021.5 per xvg headers

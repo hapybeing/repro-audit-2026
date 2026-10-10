@@ -1,0 +1,35 @@
+{
+ "R_a": {
+  "n_resamples": 10000,
+  "seed": 20261009,
+  "bootstrap_mean": -103.74796305,
+  "ci_2.5": -108.186025,
+  "ci_97.5": -98.62491250000001,
+  "ci_excludes_0": true,
+  "point_estimate": -103.69750000000002,
+  "p_t_full": 5.472866733127356e-20
+ },
+ "R_b": {
+  "rule": "|z|>3 (ddof=1); fallback 5% trimming (drop 1 lowest, 1 highest of 20)",
+  "max_abs_z": 2.899488874020363,
+  "n_dropped_z3": 0,
+  "frames_dropped_z3": [],
+  "applied": "trim_1_each_side",
+  "mean": -104.50611111111111,
+  "sem": 1.8208139634432352,
+  "n": 18,
+  "dropped_low": -122.02,
+  "dropped_high": -70.82,
+  "p_t": 6.610786291154265e-21
+ },
+ "R_c": {
+  "model": "Poisson-Boltzmann (deposited per-frame PB Delta TOTAL)",
+  "mean": 14.422999999999998,
+  "sem": 2.3603393043329484,
+  "sd": 10.555758268906073,
+  "n": 20,
+  "p_t": 7.106360216727146e-06,
+  "same_sign_as_GB": false,
+  "GB_mean": -103.69750000000002
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "fulltext_hits": [
+  "100 1ADQ 1 Human IgM RH in complex with IgG autoantigen 100 2XWT b 5 TSH receptor in complex with autoantibody K1-70 mAb 200 3G04 a , b 5 TSH re",
+  "1 Human IgM RH in complex with IgG autoantigen 100 2XWT b 5 TSH receptor in complex with autoantibody K1-70 mAb 200 3G04 a , b 5 TSH receptor i",
+  "igen 100 2XWT b 5 TSH receptor in complex with autoantibody K1-70 mAb 200 3G04 a , b 5 TSH receptor in complex with autoantibody M22 mAb 200 6BFQ",
+  "tor in complex with autoantibody K1-70 mAb 200 3G04 a , b 5 TSH receptor in complex with autoantibody M22 mAb 200 6BFQ 1 GM-CSF in complex with"
+ ],
+ "supp_hits": {
+  "Supporting file 1. Computational methods.docx": {
+   "n_chars": 5579,
+   "hits_2XWT_TSH_K1-70": 0,
+   "n_embedded_images": 12
+  },
+  "Supporting file 2. Protocol to obtain parameters of interactions.pptx": {
+   "n_chars": 4655,
+   "hits_2XWT_TSH_K1-70": 0,
+   "n_embedded_images": 1
+  },
+  "Supporting_file_3._Protocol_to_obtain_binding_free_energy_data...docx": {
+   "n_chars": 10421,
+   "hits_2XWT_TSH_K1-70": 0,
+   "n_embedded_images": 1
+  }
+ },
+ "table1_row_2XWT": {
+  "n_seeds": 5,
+  "description": "TSH receptor in complex with autoantibody K1-70 mAb",
+  "duration_ns": 200,
+  "footnote": "b"
+ },
+ "table1_footnote_b": "b Free binding energy calculations are available.",
+ "figures_mentioning_PDB": [
+  "1IGY",
+  "4HDI",
+  "4L4J",
+  "4ZQK",
+  "5DK3",
+  "6GFE",
+  "6UMT",
+  "code",
+  "file"
+ ]
+}

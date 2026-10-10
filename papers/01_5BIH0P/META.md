@@ -1,0 +1,11 @@
+# 01_5BIH0P
+- Paper: ThermoPCD: a database of molecular dynamics trajectories of antibody–antigen complexes at physiologic and fever-range temperatures
+- Journal: Database (2024)
+- Paper DOI: https://doi.org/10.1093/database/baae015
+- Dataset DOI: https://doi.org/10.7910/DVN/5BIH0P
+- Dataset title: PDB - 2XWT: TSH receptor in complex with autoantibody K1-70 (310K, 37°C, 400 ns): random seed #3
+- Code language (Dataverse file types): Python
+- Subject: Computer and Information Science
+- Licence: CC0 1.0
+- Dataset size (bytes): 938233575
+- Audit position 1, batch 1
