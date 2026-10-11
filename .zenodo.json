@@ -1,0 +1,18 @@
+{
+  "title": "repro-audit-2026: pre-registered reproducibility audit of 25 random Harvard Dataverse papers",
+  "description": "Pre-registered reproducibility audit of 25 random Harvard Dataverse papers, re-run by two blind AI agents. n=25, mostly political science. All code, logs and hashes public.",
+  "creators": [
+    {
+      "name": "Kumar, Gaurang"
+    }
+  ],
+  "upload_type": "software",
+  "keywords": [
+    "reproducibility",
+    "metascience",
+    "open-science",
+    "replication",
+    "ai-agents",
+    "research-integrity"
+  ]
+}
