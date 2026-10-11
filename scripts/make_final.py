@@ -360,12 +360,13 @@ a(f"- Small sample: n = {len(rows)} papers from one repository (Harvard Datavers
 a("- Agent runs, not human replications: A and B share no context but use the same underlying model family, so they can share blind spots (PROTOCOL.md).")
 a("- Version substitutions: runs used R 4.5 and, where no versions were pinned, current package releases. Some pinned packages did not build or load, so pre-registered fallbacks or system versions were used (14_CJISMY, 17_T1NXVQ, 25_914AN0), and for 07_JH9DBC the package version of record was chosen after seeing current-version output (batches/batch2_report.md, batches/batch3_report.md, batches/batch4_report.md, batches/batch5_report.md).")
 a("- Reduced bootstraps: 17_T1NXVQ significance uses a pre-registered reduced bootstrap with the authors' seeds instead of the full bootstrap (batches/batch4_report.md).")
-a("- Target-blocks-only runs and fallbacks: 24_U9CKK6 and 25_914AN0 ran only the target blocks; 13_DX5T9G used a pre-registered fallback after running out of memory; 19_KH0SQ2 used a pre-registered session driver (batches/batch3_report.md, batches/batch4_report.md, batches/batch5_report.md). Each has an alternative class.")
+a("- Target-blocks-only runs and fallbacks: 24_U9CKK6 and 25_914AN0 ran only the target blocks; 13_DX5T9G used a pre-registered fallback after running out of memory; 19_KH0SQ2 used a pre-registered session driver (batches/batch3_report.md, batches/batch4_report.md, batches/batch5_report.md). 24_U9CKK6, 13_DX5T9G and 19_KH0SQ2 each have an alternative class; 25_914AN0 has no alternative class for its targets (batches/batch5_report.md).")
 a("- Sandbox restarts interrupted some runs in batches 4 and 5, and a sandbox recycle before the batch 1 runs removed the R environment and PROTOCOL.md, which was restored verbatim (CHANGELOG_METHOD.md #3). Every reported number comes from a process that completed (batches/batch4_report.md, batches/batch5_report.md).")
 a("- Batch 1 pre-registration ordering is self-attested: hashes were frozen locally before the runs but first published with the results (CHANGELOG_METHOD.md #5e).")
 a("- Post-results reading: CHANGELOG_METHOD.md #6a (an N-only or p-only mismatch with every estimate matching is C, not D) was written after the batch 2 results; counts are shown both ways in batches/batch2_counts_rule4.json, and it also sets the main class of 21_LEFTNE in batch 5, where it was a pre-run decision.")
 a("- Some paper values were read from supplements through viewers or screenshots because publishers block scripted downloads; each case is in its batch report. Absence searches show absence only within what they searched.")
 a("- No author was contacted. A class C or an alternative C or E means the paper could not be fully checked from the materials as deposited under that reading; it is not a judgement of the research.")
+a("- Batch 2 freeze file check in the public repository: CHANGELOG_METHOD.md was extended with a later entry after the batch 2 results (the frozen text is still the unchanged start of the file), and the third-party page images and texts listed in batches/batch2_publish_exclusions.tsv are kept out of the public repository, so those files cannot be re-hashed here. Batches 3 to 5 re-hash fully. Details: final/FINAL_prereg_hash_check.txt.")
 a("")
 a("## Links")
 for k in B:
@@ -373,7 +374,7 @@ for k in B:
 for i in range(1, 5):
     a(f"- Pre-registration freeze for batch {i + 1}: {GH}/issues/{i}")
 a(f"- Repository: {GH}")
-a("- v1.0 snapshot: FINAL_ARCHIVE_LINK_PENDING")
+a("- v1.0 snapshot of this repository: see README.md (Google Drive link with size and SHA-256) and https://github.com/hapybeing/repro-audit-2026/releases/tag/v1.0")
 a("")
 a("Credit: Gaurang Kumar (@hapybeing). Analysis carried out with Hark.")
 rep = "\n".join(L) + "\n"

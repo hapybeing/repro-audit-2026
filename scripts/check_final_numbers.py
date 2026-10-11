@@ -10,7 +10,7 @@ Three layers, written separately from scripts/make_final.py so the two do not sh
     the files cited on its line, in its section heading, or in the section's stated sources. Identifiers (DOIs, URLs,
     paths, dates, paper ids, target ids, observation ids, CHANGELOG refs, commit hashes) are not measurements.
 Also fails on an em dash, on any percent sign other than the 5% tolerance quoted from PROTOCOL.md, and on a
-README Status line that is not the final one. Exit status 1 on any failure."""
+README Status line that is not the final one, or a README snapshot line other than v1.0. Exit status 1 on any failure."""
 import csv, json, re, subprocess, sys
 from collections import Counter
 
@@ -179,7 +179,7 @@ ok("\u2014" not in R and "\u2013 " not in R.replace("antibody\u2013antigen", "")
 ok("%" not in R.replace("within 5%", ""), "no percent sign except the 5% tolerance quoted from PROTOCOL.md")
 ok(not re.search(r"paper (is|was) wrong|wrong paper|papers are wrong", R.replace("does not mean the paper is wrong", "")), "no paper called wrong")
 ok("Gaurang Kumar (@hapybeing)" in R, "credit line present")
-ok("FINAL_ARCHIVE_LINK_PENDING" in R, "snapshot placeholder present")
+ok("- v1.0 snapshot of this repository: see README.md" in R and "releases/tag/v1.0" in R, "v1.0 snapshot line present (placeholder filled in commit 00e3025)")
 
 CNT = re.compile(r"A (\d+), B (\d+), C (\d+), D (\d+), E (\d+)")
 lines = R.splitlines()
@@ -280,7 +280,8 @@ ok(n_unm == 0, f"generic trace: {n_tok} number tokens checked outside identifier
 
 # README
 rd = open("README.md", encoding="utf-8").read()
-ok("All 25 papers complete (batches 1 to 5)." in rd and "FINAL_ARCHIVE_LINK_PENDING" in rd, "README Status line and snapshot placeholder")
+ok("All 25 papers complete (batches 1 to 5)." in rd and "repro-audit-2026_v1.0_ce29bd5.zip" in rd and "c00b2c7217529cab2e015650125fef3d32abf1e596e118f8a0a61ed17f19bfd0" in rd, "README Status line and v1.0 snapshot line (Drive link and SHA-256)")
+ok(len(re.findall(r"drive\.google\.com/file/d/", rd)) == 1, "README keeps only the v1.0 snapshot link (older batch snapshots are in the release notes)")
 for c, label in ((main, "main"), (alt24, "all alternatives")):
     ok(", ".join(f"{k} {c[k]}" for k in CLS) in rd, f"README states {label} counts {c}")
 ok(f"{cj['targets_matched_by_both']} of {cj['targets_total']} pre-registered targets" in rd, "README targets matched/total")
