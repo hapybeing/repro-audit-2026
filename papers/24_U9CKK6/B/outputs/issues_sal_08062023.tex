@@ -1,0 +1,49 @@
+
+\usepackage{booktabs}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c}
+\toprule
+ & Austerity & Immigration & EU-Integration \\
+\midrule
+Challenger                        & $-0.02$      & $0.04^{**}$  & $0.03$       \\
+                                  & $(0.03)$     & $(0.01)$     & $(0.02)$     \\
+Austerity Salience                & $0.01$       &              &              \\
+                                  & $(0.01)$     &              &              \\
+Immigration Salience              &              & $0.00$       &              \\
+                                  &              & $(0.00)$     &              \\
+EU Salience                       &              &              & $-0.01^{**}$ \\
+                                  &              &              & $(0.00)$     \\
+Challenger * Austerity Salience   & $0.04^{**}$  &              &              \\
+                                  & $(0.01)$     &              &              \\
+Challenger * Immigration Salience &              & $-0.00$      &              \\
+                                  &              & $(0.01)$     &              \\
+Challenger * EU Salience          &              &              & $0.02^{*}$   \\
+                                  &              &              & $(0.01)$     \\
+LR-Position                       & $-0.00$      & $0.02^{***}$ & $-0.02^{*}$  \\
+                                  & $(0.01)$     & $(0.01)$     & $(0.01)$     \\
+EP-Opposition                     & $0.00$       & $0.05^{***}$ & $-0.04^{**}$ \\
+                                  & $(0.02)$     & $(0.01)$     & $(0.02)$     \\
+Nat. Opposition                   & $-0.00$      & $-0.01$      & $0.01$       \\
+                                  & $(0.01)$     & $(0.01)$     & $(0.01)$     \\
+\midrule
+Topic Controls                    & Yes          & Yes          & Yes          \\
+Year Fixed Effects                & Yes          & Yes          & Yes          \\
+Country Fixed Effects             & Yes          & Yes          & Yes          \\
+AIC                               & $265457.67$  & $600893.23$  & $196811.74$  \\
+BIC                               & $266076.71$  & $601659.80$  & $197311.52$  \\
+Log Likelihood                    & $-132663.83$ & $-300372.62$ & $-98351.87$  \\
+Num. obs.                         & $101077$     & $233056$     & $77276$      \\
+Num. groups: mep\_ids             & $765$        & $1402$       & $480$        \\
+Num. groups: party\_id            & $151$        & $192$        & $38$         \\
+Var: mep\_ids (Intercept)         & $0.03$       & $0.01$       & $0.03$       \\
+Var: party\_id (Intercept)        & $0.01$       & $0.00$       & $0.00$       \\
+Var: Residual                     & $0.80$       & $0.77$       & $0.74$       \\
+\bottomrule
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$. Random Intercepts for Parties and MEPs}}
+\end{tabular}
+\caption{The effect of changes in issue salience on issue emphasis}
+\label{table:coefficients}
+\end{center}
+\end{table}

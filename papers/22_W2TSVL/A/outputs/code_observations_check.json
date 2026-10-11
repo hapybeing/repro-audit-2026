@@ -1,0 +1,32 @@
+{
+  "d3_label_13": "No tiene estudios",
+  "d3_eq_13_n": 17,
+  "d3_eq_14_n": 2,
+  "education_levels_NA_n": 19,
+  "education_NA_among_d3_13": 17,
+  "unions_class": ["ordered", "factor"],
+  "tableA4_mean_unions_by_group_as_coded": {
+    "Control": "NA",
+    "Strike": "NA",
+    "Pro_strike": "NA",
+    "Anti_strike": "NA",
+    "Double_frame": "NA"
+  },
+  "tableA4_mean_unions_numeric_by_group": {
+    "Control": 3.2488,
+    "Strike": 3.0842,
+    "Pro_strike": 3.407,
+    "Anti_strike": 2.9635,
+    "Double_frame": 3.1684
+  },
+  "tableA4_typed_constants_unions": [3.25, 3.08, 3.41, 2.96, 3.17],
+  "tableA4_mean_support_by_group": {
+    "Control": 4.36,
+    "Strike": 4.1755,
+    "Pro_strike": 4.9141,
+    "Anti_strike": 4.4043,
+    "Double_frame": 4.4332
+  },
+  "tableA4_typed_constants_support": [4.36, 4.18, 4.91, 4.4, 4.43],
+  "n_rows": 1011
+}

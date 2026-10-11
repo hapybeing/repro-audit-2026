@@ -1,0 +1,33 @@
+lavaan 0.7.3 
+study1 complete rows 977 lavaan nobs 977 
+saved through 100 2026-10-10 21:50:12 
+saved through 200 2026-10-10 21:50:17 
+saved through 300 2026-10-10 21:50:23 
+saved through 400 2026-10-10 21:50:29 
+saved through 500 2026-10-10 21:50:35 
+saved through 600 2026-10-10 21:50:41 
+saved through 700 2026-10-10 21:50:47 
+saved through 800 2026-10-10 21:50:53 
+saved through 900 2026-10-10 21:50:58 
+saved through 1000 2026-10-10 21:51:04 
+   study    K n_rows lavaan_nobs   estimate     orig_se      orig_p n_ok
+1 study1 1000    977         977 0.01678099 0.005796155 0.003789254 1000
+  n_failed     boot_sd       ci_lo      ci_hi p_boot
+1        0 0.007891141 0.003395787 0.03413546   0.02
+lavaan 0.7.3 
+study2 complete rows 1030 lavaan nobs 1030 
+saved through 100 2026-10-10 21:51:11 
+saved through 200 2026-10-10 21:51:17 
+saved through 300 2026-10-10 21:51:22 
+saved through 400 2026-10-10 21:51:28 
+saved through 500 2026-10-10 21:51:34 
+saved through 600 2026-10-10 21:51:40 
+saved through 700 2026-10-10 21:51:46 
+saved through 800 2026-10-10 21:51:52 
+saved through 900 2026-10-10 21:51:57 
+saved through 1000 2026-10-10 21:52:03 
+   study    K n_rows lavaan_nobs   estimate    orig_se       orig_p n_ok
+1 study2 1000   1030        1030 0.08017804 0.01908546 2.657375e-05 1000
+  n_failed    boot_sd      ci_lo    ci_hi p_boot
+1        0 0.02065147 0.04080245 0.122873      0
+RA_DONE

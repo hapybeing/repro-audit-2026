@@ -1,0 +1,176 @@
+{
+ "paper_id": "22_W2TSVL",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Ordered logit coefficient for the anti-strike treatment (anti_strike), DV union influence (unions), control condition as reference, no weights, no controls (Appendix A1.R model m1)",
+   "paper_value": -0.386,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.385803718390492,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00019628160950801998,
+   "rel_diff": 0.0005085015790363212,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.1795, Wald z -2.1492, two-sided Wald p 0.03162 (pre-registered); secondary LR p 0.03148. Main-script polr fit gives the same coefficient (crosscheck_main_vs_appendix.csv). Cell re-checked in publisher supplement PDF: -0.386 (agrees with targets.json: True)."
+  },
+  {
+   "id": "T2",
+   "description": "Ordered logit coefficient for the pro-strike treatment (pro_strike), DV support for striking teachers (factor(Support_teachers)), control condition as reference, no weights, no controls (Appendix A1.R model m7)",
+   "paper_value": 0.473,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.473368703140289,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003687031402890284,
+   "rel_diff": 0.000779499239511688,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.1817, Wald z 2.6056, two-sided Wald p 0.009172 (pre-registered); secondary LR p 0.009045. Main-script polr fit gives the same coefficient (crosscheck_main_vs_appendix.csv). Cell re-checked in publisher supplement PDF: 0.473 (agrees with targets.json: True)."
+  },
+  {
+   "id": "T3",
+   "description": "Ordered logit coefficient for the pro-strike treatment (pro_strike), DV union influence (unions), control condition as reference, no weights, no controls (model m1)",
+   "paper_value": 0.194,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.193589744546613,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0004102554533869929,
+   "rel_diff": 0.002114718831891716,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.1811, Wald z 1.0691, two-sided Wald p 0.285 (pre-registered); secondary LR p 0.2849. Main-script polr fit gives the same coefficient (crosscheck_main_vs_appendix.csv). Cell re-checked in publisher supplement PDF: 0.194 (agrees with targets.json: True)."
+  },
+  {
+   "id": "T4",
+   "description": "Ordered logit coefficient for the anti-strike treatment (anti_strike), DV union influence (unions), pro-strike condition as reference, no weights, no controls (model m4)",
+   "paper_value": -0.579,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.579391686370038,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00039168637003805795,
+   "rel_diff": 0.0006764876857306701,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.1791, Wald z -3.2351, two-sided Wald p 0.001216 (pre-registered); secondary LR p 0.001192. Main-script polr fit gives the same coefficient (crosscheck_main_vs_appendix.csv). Cell re-checked in publisher supplement PDF: -0.579 (agrees with targets.json: True)."
+  },
+  {
+   "id": "T5",
+   "description": "Number of observations in the union influence simple model (nobs(m1))",
+   "paper_value": 976,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 976.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs() = 976; m$n = 976. Cell re-checked in publisher supplement PDF: 976.0 (agrees with targets.json: True)."
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in the support for striking teachers simple model (nobs(m7))",
+   "paper_value": 961,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 961.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs() = 961; m$n = 961. Cell re-checked in publisher supplement PDF: 961.0 (agrees with targets.json: True)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap, set.seed(20261011), 1000 resamples, refit m1 (then m7); percentile CIs, two-sided bootstrap p",
+   "ran": true,
+   "estimate": -0.385803718390492,
+   "se_or_ci": "boot SE 0.1855; 95% CI [-0.7316, -0.0327]; 99% CI [-0.8622, 0.0367]",
+   "p_value": 0.034,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "T1: 0 failed fits of 1000. Secondary T2 (m7 pro_strike): estimate 0.4734, boot SE 0.1862, 95% CI [0.1036, 0.8392], 99% CI [-0.0197, 0.9716], boot p 0.016, 0 failed; pre-registered T2 criterion (99% CI excludes 0) met: False. Draws: outputs/bootstrap_*_draws.csv."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z(age d2)| > 3 over all 1011 rows, refit m1 and m7, Wald SE and p",
+   "ran": true,
+   "estimate": -0.385711609567811,
+   "se_or_ci": "Wald SE 0.1795",
+   "p_value": 0.0316588063053201,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "2 rows dropped (max |z| 3.081); T1 N 974. Secondary T2: estimate 0.4798, SE 0.1820, p 0.008387, N 959; T2 criterion (p < 0.01, positive) met: True."
+  },
+  {
+   "id": "R_c",
+   "description": "OLS of outcome on treatment dummies (m1 and m7 rows), HC2 robust SEs",
+   "ran": true,
+   "estimate": -0.285238821138214,
+   "se_or_ci": "HC2 SE 0.1409",
+   "p_value": 0.0432123405310588,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness.json",
+   "note": "Outcome units (1 to 5 scale), N 976. Secondary T2 (1 to 7 scale): estimate 0.5541, HC2 SE 0.2382, p 0.02021, N 961; T2 criterion (p < 0.01, positive) met: False."
+  }
+ ],
+ "bugs": [],
+ "code_observations": [
+  {
+   "file": "Framing Labor Action_Appendix A1.R",
+   "line": 110,
+   "type": "verified observation, no target affected",
+   "description": "Education recode maps d3 codes 1-12 only; code 13 ('No tiene estudios', no schooling) becomes NA instead of 'basica', together with code 14 (NS/NC).",
+   "evidence": "outputs/code_observations_check.json: d3 == 13 for 17 rows, all NA in education_levels (17); education_levels NA total 19. Affects only the control-variable models (m3, m6, m9, m12) and the balance tables, not T1 to T6. Could be a deliberate choice; not judged."
+  },
+  {
+   "file": "Framing Labor Action_Appendix A1.R",
+   "line": 224,
+   "type": "verified observation, no target affected",
+   "description": "Table A4 group means of `unions` are computed on an ordered factor, so mean() returns NA with a warning; the table values are typed as constants at line 234.",
+   "evidence": "outputs/appendix_stdout.txt warning 'argument is not numeric or logical: returning NA'; outputs/code_observations_check.json shows the numeric group means round to the typed constants (and the support means at line 264 also match to 2 decimals)."
+  },
+  {
+   "file": "Framing Labor Action_R script.R",
+   "line": 212,
+   "type": "unverified observation",
+   "description": "aes(estimate, term, color) passes an undefined `color` positionally; with ggplot2 3.5.1 the script ran to the end without error and drew 4 pages (outputs/main_script_figures.pdf). Not inspected further; figures only."
+  }
+ ],
+ "code_review_scope": "Read both deposited R scripts in full (Appendix A1.R 319 lines, R script.R 266 lines). No bug found that affects the targets.",
+ "env_fixes": [
+  "diffs/appendix_A1_R.diff: absolute Windows data path at line 14 replaced by the relative file name; install.packages() lines 4-6, 138, 282 commented out",
+  "diffs/main_R_script.diff: absolute Windows data path at line 14 replaced by the relative file name; install.packages() lines 4-8 commented out",
+  "scripts/run_appendix.R: browseURL defined as a no-op before source() (no edit to the authors' file)",
+  "stargazer 5.2.3, tableone 0.13.2, gmodels 2.19.1 installed from CRAN source into the per-run library (no Debian binaries for stargazer/tableone)"
+ ],
+ "cross_checks": {
+  "main_script_vs_appendix_max_abs_coef_diff": 1.92901250528621e-15,
+  "source_file": "outputs/crosscheck_main_vs_appendix.csv",
+  "supplement_cells_agree_with_targets_json": true,
+  "supplement_source_file": "outputs/supplement_target_check.json"
+ },
+ "proposed_class": "A",
+ "class_reason": "All six targets reproduced exactly to the printed rounding by the authors' own Appendix A1 script with path/install/browseURL fixes only, with the same sign and pre-registered Wald-p star bucket; the main script's figure models give identical coefficients.",
+ "confidence": "high",
+ "confidence_reason": "Exact match by script, deterministic code with no randomness, and only path-type fixes; pending agent B.",
+ "time_minutes": 7,
+ "uncertainties": [
+  "Run on R 4.5.0 aarch64 Debian with MASS 7.3.65 versus the authors' R 4.4.2 on Windows; coefficients agree to all printed digits, so this did not matter here.",
+  "R_a secondary T2: the pre-registered 99% percentile CI for the pro-strike effect on strike support includes 0 by a small margin (see robustness note), although the 95% CI excludes 0; T1 criterion is met.",
+  "R_c secondary T2: OLS with HC2 gives p about 0.02 for the pro-strike effect, above the paper's printed 0.01 threshold for the ordered logit; sign agrees. T1 criterion met.",
+  "Batch brief mentions 'path line 15' for paper 22; the read_dta call with the absolute path is on line 14 of both scripts (line 15 of the main script is the authors' commented relative-path alternative). Line 14 was edited, which is what PREREG.md describes.",
+  "Weighted-model Ns (975, 962 in Tables A1/A2 col 2) were reproduced in the stargazer output (outputs/table_1A_new.htm, table_A2_new.htm) but why they differ from the unweighted Ns was not investigated; not a target."
+ ]
+}

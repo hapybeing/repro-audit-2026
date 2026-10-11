@@ -1,0 +1,36 @@
+   outcome n_est    b_orig   se_orig       rb_b     rb_se      rb_l      rb_u
+    <char> <int>     <num>     <num>      <num>     <num>     <num>     <num>
+1: MIA_100 15142 -1.431898 0.1748186 -0.8517472 0.1388297 -1.123853 -0.579641
+           rb_p  rb_n rb_dropped      rc_b     rc_se      rc_l       rc_u
+          <num> <int>      <int>     <num>     <num>     <num>      <num>
+1: 8.741515e-10 14737        405 -1.431898 0.4010577 -2.217971 -0.6458251
+           rc_p rc_nclust
+          <num>     <int>
+1: 0.0003738576       982
+   outcome n_est    b_orig   se_orig      rb_b     rb_se      rb_l    rb_u
+    <char> <int>     <num>     <num>     <num>     <num>     <num>   <num>
+1: KIA_100 15142 0.6285247 0.2471712 0.6285247 0.2471712 0.1440692 1.11298
+         rb_p  rb_n rb_dropped      rc_b     rc_se       rc_l     rc_u     rc_p
+        <num> <int>      <int>     <num>     <num>      <num>    <num>    <num>
+1: 0.01100523 15142          0 0.6285247 0.5178143 -0.3863914 1.643441 0.225115
+   rc_nclust
+       <int>
+1:       982
+    outcome n_est    b_orig   se_orig       rb_b    rb_se       rb_l       rb_u
+     <char> <int>     <num>     <num>      <num>    <num>      <num>      <num>
+1: WMED_100 15142 -0.286805 0.1343158 -0.2411773 0.129423 -0.4948464 0.01249186
+         rb_p  rb_n rb_dropped      rc_b     rc_se       rc_l      rc_u
+        <num> <int>      <int>     <num>     <num>      <num>     <num>
+1: 0.06241591 14968        174 -0.286805 0.1996497 -0.6781184 0.1045084
+        rc_p rc_nclust
+       <num>     <int>
+1: 0.1511672       982
+   outcome n_est     b_orig    se_orig        rb_b      rb_se       rb_l
+    <char> <int>      <num>      <num>       <num>      <num>      <num>
+1: POW_100 15142 -0.1757369 0.05562562 -0.06319092 0.02460285 -0.1114125
+          rb_u       rb_p  rb_n rb_dropped       rc_b     rc_se       rc_l
+         <num>      <num> <int>      <int>      <num>     <num>      <num>
+1: -0.01496934 0.01022632 14757        385 -0.1757369 0.1011235 -0.3739389
+         rc_u       rc_p rc_nclust
+        <num>      <num>     <int>
+1: 0.02246517 0.08255208       982

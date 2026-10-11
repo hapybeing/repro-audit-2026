@@ -1,0 +1,3 @@
+"term","estimate","se","p_naive","nobs","conv","dropped","target","rows_dropped"
+"challenge:aut_sal",0.0364456314280667,0.0115098045061983,0.00154292929770409,99154,"none","","T5",1923
+"challenge:EU_sal",0.012581921615821,0.00719786953541492,0.0804629287908447,76686,"none","","T6",590

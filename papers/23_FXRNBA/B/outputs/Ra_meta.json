@@ -1,0 +1,5 @@
+{
+ "first20_seconds": 5,
+ "projected_minutes_999": 4.16,
+ "B_reason": "first 20 replicates took 5 s, projected 4.2 min for 999 (< 30 min), so B = 999 per the reduced-K rule"
+}

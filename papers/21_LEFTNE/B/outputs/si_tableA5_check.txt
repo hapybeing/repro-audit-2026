@@ -1,0 +1,12 @@
+64165d965e1bb1072bd5caf7a43ceb501ac0008402400dc9c7d68c2988c42c3e  SI.doc
+--- header row
+ 	None	Balanced	Party	Gender	Gender-Party	Gender-Edu	Gender:Edu
+--- Trump row (cells tab separated: None, Balanced, Party, ...)
+Trump	0.15 ***
+(0.02)	0.16 ***
+(0.03)	0.04
+--- Trump:Party row (None and Balanced cells blank)
+Trump:Party	 	 	0.22 ***
+(0.05)	 	0.15
+--- N row
+N	584	489	489	582	248	302	582

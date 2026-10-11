@@ -7,6 +7,8 @@ Two layers:
     A decimal matches if some number in a cited file rounds to it at the same number of decimals; an integer must occur
     as a number in a cited file. Integers 0 to 31 are flagged "weak" when only the generic trace supports them, because
     small integers occur in most files by chance.
+Batch 5 adds structured checks for the extra blocks of batch5_targets.md (21 SI cells, 23 T6 formulas, 24 target cells,
+24 R_a bootstrap recomputed from the per-draw files, 25 table versus prose).
 Identifiers (DOIs, URLs, file paths, paper and dataset IDs, target IDs like T4, observation IDs like 05-1) are listed
 but not traced as measurements. Exit status 1 if any number is unmatched."""
 import csv, glob, json, os, re, sys
@@ -238,7 +240,7 @@ def fmt(v):
 key = {(r["paper"], r["target_id"]): r for r in rows}
 for i, line in enumerate(tg, 1):
     cells = [c.strip() for c in line.strip().strip("|").split("|")]
-    if K in ("3", "4") and len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
+    if K in ("3", "4", "5") and len(cells) == 9 and re.match(r"(?:0[1-9]|1\d|2[0-5])_", cells[0]):
         # batch 3 and 4 paper-target rows: Paper | Target | Description | Location | Paper | A | B | Match | A/B agree
         r = key.get((cells[0], cells[1]))
         if r is None:
@@ -277,7 +279,7 @@ for i, line in enumerate(tg, 1):
     if m and m.group(1) in tcount:
         check(f"line {i} count '{m.group(1)}'", int(m.group(2)), tc[m.group(1)])
     m = re.match(r"- A/B agreement (.+?): (\d+)$", line.strip())
-    if m and K in ("3", "4"):
+    if m and K in ("3", "4", "5"):
         check(f"line {i} count 'A/B agreement {m.group(1)}'", int(m.group(2)),
               sum(1 for r in rows if r["row_type"] == "paper target" and r.get("AB_agree") == m.group(1)))
     m = re.match(r"- paper targets listed: (\d+) across (\d+) papers", line.strip())
@@ -381,6 +383,77 @@ if K == "4":
             va, vb = float(c[3]), float(c[4])
             want = "yes, both runs" if round(va, d_) == round(float(p_), d_) and round(vb, d_) == round(float(p_), d_) else "no, both runs"
             check(f"line {i} 18 R_c {c[0]} match column recomputed from printed values", c[5], want)
+if K == "5":
+    import statistics
+    from math import erf, sqrt
+    tj21 = {t["id"]: t for t in json.load(open("papers/21_LEFTNE/targets.json"))}
+    a5 = json.load(open("papers/21_LEFTNE/A/outputs/si_A5_check.json"))
+    b5 = open("papers/21_LEFTNE/B/outputs/si_tableA5_check.txt").read()
+    bN = re.search(r"\nN\t(\d+)\t(\d+)\t(\d+)", b5).groups()
+    f23a, f23b = "papers/23_FXRNBA/A/outputs/targets_extracted.csv", "papers/23_FXRNBA/B/outputs/targets_extracted.csv"
+    tj24 = {t["id"]: t for t in json.load(open("papers/24_U9CKK6/targets.json"))}
+    am24 = open("papers/24_U9CKK6/A/outputs/pdf_target_cell_check.md").read()
+    bj24 = {c["id"]: c for c in json.load(open("papers/24_U9CKK6/B/outputs/pdf_cell_check.json"))["cells"]}
+    est24 = {t["id"]: t for t in json.load(open("papers/24_U9CKK6/A/results.json"))["targets"]}["T1"]["reproduced_value"]
+    tj25 = {t["id"]: t for t in json.load(open("papers/25_914AN0/targets.json"))}
+    r25 = {ag: {t["id"]: t for t in json.load(open(f"papers/25_914AN0/{ag}/results.json"))["targets"]} for ag in "AB"}
+
+    def q7(x, p):
+        x = sorted(x); h = (len(x) - 1) * p; lo = int(h)
+        return x[lo] + (h - lo) * (x[min(lo + 1, len(x) - 1)] - x[lo])
+
+    sec = None
+    for i, line in enumerate(tg, 1):
+        if line.startswith("## "):
+            sec = ("21" if line.startswith("## 21_LEFTNE") else "23" if line.startswith("## 23_FXRNBA") else
+                   "24c" if line.startswith("## 24_U9CKK6 target cells") else "24r" if line.startswith("## 24_U9CKK6 R_a") else
+                   "25" if line.startswith("## 25_914AN0") else None)
+            continue
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if sec == "21" and re.match(r"\| T[34] ", line):
+            tid = c[0][:2]
+            want_a = (a5["T3_cell_None_Trump"] + ", N " + a5["N_None"]) if tid == "T3" else (a5["T4_cell_Party_TrumpParty"] + ", N " + a5["N_Party"])
+            cell_b = "0.15 *** (0.02)" if tid == "T3" else "0.22 *** (0.05)"
+            ok_b = cell_b.split(" (")[0] in b5 and "(" + cell_b.split("(")[1] in b5
+            check(f"line {i} 21 {tid} SI cell: targets.json / A re-check / B re-check", (c[1], c[2], c[3]),
+                  (str(tj21[tid]["paper_value"]), want_a, f"{cell_b if ok_b else 'not found'}, N {bN[0] if tid == 'T3' else bN[2]}"))
+        if sec == "21" and line.startswith("T6 is the only"):
+            dg = json.load(open("papers/21_LEFTNE/A/outputs/diagnostics.json"))
+            b21 = open("papers/21_LEFTNE/B/outputs/diag_t6_and_samples.txt").read()
+            nums = [int(x) for x in re.findall(r"\b(\d{3})\b", line)]
+            check(f"line {i} 21 T6 paragraph: 698 and 697 traced", sorted(set(nums)),
+                  sorted({int(dg["nobs_mod2"]), int(tj21["T6"]["paper_value"]), int(re.search(r"complier==1 rows: (\d+)", b21).group(1))}))
+            covered_t = True
+        if sec == "23" and re.match(r"\| \d: ", line):
+            check(f"line {i} 23 T6 formula '{c[0][:2]}' A and B values found in source CSVs; rounding column",
+                  (bool(matches(c[1], [f23a])), bool(matches(c[2], [f23b])), c[3]),
+                  (True, True, "yes" if round(float(c[1]), 1) == 3.6 and round(float(c[2]), 1) == 3.6 else "no"))
+        if sec == "24c" and re.match(r"\| T\d ", line):
+            tid = c[0]; bv = bj24[tid].get("model2_value", bj24[tid].get("value"))
+            check(f"line {i} 24 {tid} cell re-check: targets.json / A / B value / B agrees", (c[1], c[2], c[3], c[4]),
+                  (fmt(tj24[tid]["paper_value"]), "yes" if f"Matches {tid}." in am24 else "no", fmt(bv), "yes" if bj24[tid]["matches_targets_json"] else "no"))
+        if sec == "24r" and re.match(r"\| [AB] \|", line):
+            ag = c[0]
+            rr = list(csv.DictReader(open(f"papers/24_U9CKK6/{ag}/outputs/R_a_partial.csv")))
+            e = [float(x["estimate"]) for x in rr if x.get("ok", "TRUE") == "TRUE"]
+            sd = statistics.stdev(e); lo, hi = q7(e, 0.025), q7(e, 0.975)
+            pz = 2 * (1 - 0.5 * (1 + erf(abs(est24 / sd) / sqrt(2))))
+            if ag == "A":
+                kr = next(csv.DictReader(open("papers/24_U9CKK6/A/outputs/R_a_K.csv"))); t1, K_ = float(kr["t_first_secs"]), int(kr["K"])
+            else:
+                kb = open("papers/24_U9CKK6/B/outputs/R_a_K.txt").read().split(); t1, K_ = float(kb[kb.index("first_refit_secs") + 1]), int(kb[0])
+            want = (f"{t1:.2f}", str(K_), str(len(e)), f"{sd:.6f}", f"[{lo:.6f}, {hi:.6f}]", "yes" if lo > 0 or hi < 0 else "no", f"{pz:.4f}", "yes" if pz < 0.001 else "no")
+            check(f"line {i} 24 R_a run {ag} recomputed from R_a_partial.csv and the K file", tuple(c[1:9]), want)
+            rj = json.load(open(f"papers/24_U9CKK6/{ag}/results.json"))
+            ra = next(x for x in rj["robustness"] if x["id"] == "R_a")
+            check(f"line {i} 24 R_a run {ag} normal p equals results.json p_value at 4 decimals", f"{ra['p_value']:.4f}", c[7])
+        if sec == "24r" and line.startswith("Both runs fail"):
+            covered_t = True
+        if sec == "25" and re.match(r"\| T\d ", line):
+            tid = c[0]
+            prose = float(re.search(r"prose p\. 180 gives (-?[\d.]+)", tj25[tid]["location"]).group(1))
+            check(f"line {i} 25 {tid} table / prose / A / B", (c[1], c[2], c[3], c[4]),
+                  (str(tj25[tid]["paper_value"]), str(prose), fmt(r25["A"][tid]["reproduced_value"]), fmt(r25["B"][tid]["reproduced_value"])))
 say("")
 
 # ---------------------------------------------------------------- generic trace of everything else
@@ -389,6 +462,8 @@ generic(REPORT, covered)
 t_struct = {i for i, l in enumerate(tg, 1) if (re.match(r"\| T\d", l) or l.startswith("- ") or l.startswith("Internal-check counts"))}
 if K == "4":
     t_struct |= {i for i, l in enumerate(tg, 1) if l.startswith("Reproduced draws against")}
+if K == "5":
+    t_struct |= {i for i, l in enumerate(tg, 1) if re.match(r"\| (\d: |[AB] \|)", l) or l.startswith("T6 is the only")}
 if K == "2":
     t_struct |= {i for i, l in enumerate(tg, 1) if re.match(r"\| (FC\d|AME p|coefficient p)", l)}
 
@@ -410,6 +485,16 @@ def t_sections(h):
         return ["papers/17_T1NXVQ/A/outputs/boot_K.json", "papers/17_T1NXVQ/B/outputs/bootstrap_K.json", "papers/17_T1NXVQ/A/outputs/boot_summary.csv", "papers/17_T1NXVQ/PREREG.md"]
     if h.startswith("## 18_YXC5K5 docid"):
         return ["papers/18_YXC5K5/PREREG.md", "papers/18_YXC5K5/A/outputs/R_c_targets_extracted.csv"]
+    if h.startswith("## 21_LEFTNE T6"):
+        return ["papers/21_LEFTNE/A/outputs/si_A5_check.json", "papers/21_LEFTNE/targets.json", "papers/21_LEFTNE/A/outputs/diagnostics.json"]
+    if h.startswith("## 23_FXRNBA T6"):
+        return ["papers/23_FXRNBA/targets.json", "papers/23_FXRNBA/PREREG.md", "papers/23_FXRNBA/A/outputs/targets_extracted.csv"]
+    if h.startswith("## 24_U9CKK6 target cells"):
+        return ["papers/24_U9CKK6/targets.json", "papers/24_U9CKK6/PREREG.md"]
+    if h.startswith("## 24_U9CKK6 R_a"):
+        return ["papers/24_U9CKK6/PREREG.md", "papers/24_U9CKK6/A/outputs/R_a_K.csv", "papers/24_U9CKK6/B/outputs/R_a_K.txt", "papers/24_U9CKK6/A/outputs/R_a_partial.csv"]
+    if h.startswith("## 25_914AN0"):
+        return ["papers/25_914AN0/targets.json"]
     if h.startswith("## 10_6MLKJZ figure-claim"):
         return ["papers/10_6MLKJZ/A/outputs/figure_claims.json", "papers/10_6MLKJZ/PREREG.md"]
     return []

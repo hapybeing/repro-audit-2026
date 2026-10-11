@@ -1,0 +1,151 @@
+{
+ "paper_id": "25_914AN0",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Coefficient on log(NKVD_OO+1) for MIA share of monthly losses (MIA_100), three-way FE model weighted by N_SOLDIERS (mermods 'FE pop weights', lfe::felm)",
+   "paper_value": -1.432,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -1.43189819109743,
+   "source_file": "outputs/targets_extracted.csv (from outputs/mermods.rds)",
+   "abs_diff": 0.00010180890256994424,
+   "rel_diff": 7.109560235331302e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "95% CI b +/- 1.96 SE as in the code: (-1.7745, -1.0893); SE 0.1748. b MIA_100"
+  },
+  {
+   "id": "T2",
+   "description": "Coefficient on log(NKVD_OO+1) for KIA share (KIA_100), same model",
+   "paper_value": 0.629,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.628524723625405,
+   "source_file": "outputs/targets_extracted.csv (from outputs/mermods.rds)",
+   "abs_diff": 0.0004752763745949906,
+   "rel_diff": -0.0007556063189109549,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "95% CI b +/- 1.96 SE as in the code: (0.1441, 1.1130); SE 0.2472. b KIA_100. Article prose p. 180 gives 0.52 (second candidate); reproduced value matches the table value 0.629, not the prose value."
+  },
+  {
+   "id": "T3",
+   "description": "Coefficient on log(NKVD_OO+1) for share receiving valor medals (WMED_100), same model",
+   "paper_value": -0.287,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.286805020310439,
+   "source_file": "outputs/targets_extracted.csv (from outputs/mermods.rds)",
+   "abs_diff": 0.00019497968956100342,
+   "rel_diff": 0.000679371740630674,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "95% CI b +/- 1.96 SE as in the code: (-0.5501, -0.0235); SE 0.1343. b WMED_100. Article prose p. 180 gives -0.34 (second candidate); reproduced value matches the table value -0.287, not the prose value."
+  },
+  {
+   "id": "T4",
+   "description": "Coefficient on log(NKVD_OO+1) for POW share (POW_100), same model",
+   "paper_value": -0.176,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.175736877764229,
+   "source_file": "outputs/targets_extracted.csv (from outputs/mermods.rds)",
+   "abs_diff": 0.0002631222357709906,
+   "rel_diff": 0.0014950127032442647,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "95% CI b +/- 1.96 SE as in the code: (-0.2848, -0.0667); SE 0.0556. b POW_100"
+  },
+  {
+   "id": "T5",
+   "description": "Number of division-month observations in the FE pop-weights models (mod_fe N)",
+   "paper_value": 15142,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 15142.0,
+   "source_file": "outputs/targets_extracted.csv (from outputs/mermods.rds, FE pop weights rows, column n)",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "n FE pop weights (unique values across outcomes: 15142)"
+  },
+  {
+   "id": "T6",
+   "description": "Coefficient on blocking (belligerent used blocking units) for P(victory), war-level linear probability model with country and decade FE, SE clustered by country and conflict (fixest::feols, Model 1)",
+   "paper_value": -0.495,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.495182079181466,
+   "source_file": "outputs/targets_extracted.csv (from outputs/war_mod_out.rds)",
+   "abs_diff": 0.00018207918146601054,
+   "rel_diff": -0.00036783673023436475,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "95% CI b +/- 1.96 SE as in the code: (-0.9003, -0.0901); SE 0.2067. b blocking, Model 1, outcome outcome_win, n=191"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap of the FE pop-weights model on the 15142-row estimation sample, set.seed(20261011), K=500 (time rule met), NKVD coefficient for MIA (primary); KIA, Medals, POW from the same resamples",
+   "ran": true,
+   "estimate": -1.43189819109751,
+   "se_or_ci": "bootstrap SE 0.3275; percentile 95% CI (-2.0369, -0.7727); K=500, failed refits 0",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/ra_boot.csv; outputs/ra_summary.csv",
+   "note": "Secondary outcomes: KIA_100 b=0.6285, boot SE 0.3785, CI (-0.0928, 1.3640), p=0.084, same=False; WMED_100 b=-0.2868, boot SE 0.1416, CI (-0.5108, 0.0108), p=0.064, same=False; POW_100 b=-0.1757, boot SE 0.0837, CI (-0.3493, -0.0313), p=0.024, same=True"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z|>3 on the outcome (unweighted z within the estimation sample), refit FE pop-weights model; MIA primary",
+   "ran": true,
+   "estimate": -0.851747210934066,
+   "se_or_ci": "felm SE 0.1388; 95% CI (-1.1239, -0.5796); rows dropped 405, n=14737",
+   "p_value": 8.74151450572921e-10,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/rb_rc.csv",
+   "note": "Secondary outcomes: KIA_100 b=0.6285, CI (0.1441, 1.1130), p=0.0110, dropped 0, same=True; WMED_100 b=-0.2412, CI (-0.4948, 0.0125), p=0.0624, dropped 174, same=False; POW_100 b=-0.0632, CI (-0.1114, -0.0150), p=0.0102, dropped 385, same=True"
+  },
+  {
+   "id": "R_c",
+   "description": "Same FE pop-weights model with SE clustered by unit (DIV_ARMY), felm cluster part; MIA primary",
+   "ran": true,
+   "estimate": -1.4318981910975,
+   "se_or_ci": "clustered SE 0.4011; 95% CI (-2.2180, -0.6458); clusters 982",
+   "p_value": 0.000373857570488189,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/rb_rc.csv",
+   "note": "Secondary outcomes: KIA_100 clustered SE 0.5178, CI (-0.3864, 1.6434), p=0.2251, same=False; WMED_100 clustered SE 0.1996, CI (-0.6781, 0.1045), p=0.1512, same=False; POW_100 clustered SE 0.1011, CI (-0.3739, 0.0225), p=0.0826, same=False"
+  }
+ ],
+ "bugs": [],
+ "code_observations": [
+  "Verified by run, not a bug in the deposited one-session pipeline: functions.R ensemble_modz (lines 240, 256, 274, 290) assigns the weights column by reference inside the data= argument and passes weights=X_s$weights. When X_s is a data.table without column over-allocation (e.g. loaded with readRDS), the 'RE pop weights' lmer fit silently uses the stale weights column (1) and equals the unweighted fit. In my first staged run this changed Table A2.4 and the Hausman p row of Table A2.3 but not the FE targets. With setalloccol(X_s), which restores the state line 58 produces in one session, Tables A2.3 and A2.4 match the deposited .tex exactly (outputs/diff_tabA2_*.txt, outputs/s1b_run1_noalloc/, scripts/diag_alloc_test.R).",
+  "Unverified observation: functions.R line 102 (tlagz) refers to X_ instead of its argument data; tlagz is defined but never called in run2_main.R, so no output depends on it.",
+  "Code read: run2_main.R lines 43-157 and 1310-1408, functions.R lines 1-95 and 228-336 (preprocez, phtest_felm, ensemble_modz, betamat). No real bug found in the target blocks."
+ ],
+ "env_fixes": [
+  "diffs/functions_R_mc_cores.diff: mc.cores=0.5 on 2 CPUs is rejected by mclapply; wrapped in max(1, ...) as PREREG allows",
+  "Staged run of the pre-registered blocks (S1a, S1b, S4) via scripts/s1a_prep.R, s1b_models.R, s4_war.R that evaluate the authors' line ranges verbatim; s1b adds data.table::setalloccol(X_s) after loading the saved X_s (see LOG.md 07:58-08:02)",
+  "Package fallbacks: lfe 3.0-0 failed to compile under R 4.5 (Calloc removed), used lfe 3.1.1; data.table 1.15.4 failed (Calloc), used Debian 1.17.0; V8 (SUNGEO dependency chain) built with DOWNLOAD_STATIC_LIBV8=1 after apt r-cran-v8 failed. Pinned fixest 0.12.0, lme4 1.1-35.3, SUNGEO 1.3.0, robustlmm 3.3-1, Matching 4.10-14, optimx 2023-10.21, dplyr 1.1.4 installed/used."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets (T1-T6) reproduced to the printed rounding by the authors' code; regenerated Tables A2.3, A2.4, A1.2, A6.16 and A6.17 equal the authors' deposited .tex files apart from the header lines.",
+ "confidence": "high",
+ "confidence_reason": "Exact matches by script with pinned fixest/lme4; lfe and data.table were fallback versions but outputs equal the deposited tables; A/B agreement not yet known to me.",
+ "time_minutes": 35,
+ "uncertainties": [
+  "Article prose p. 180 gives KIA 0.52 and Medals -0.34; the code and appendix Table A2.3 give 0.629 and -0.287 (reproduced). Not a target mismatch under batch5 decision 4, reported only.",
+  "My first staged S1b run produced different RE (non-target) results because readRDS drops data.table over-allocation; fixed in my stage script with setalloccol. The PREREG statement that both routes give the same objects does not hold without that step for the RE models.",
+  "Target cells checked against the author-hosted appendix PDF (sha256 c9ad51f6..., same as PREREG); excerpts in outputs/appendix_tabA2_3_excerpt.txt and outputs/appendix_tabA6_17_excerpt.txt. All six printed values agree with targets.json.",
+  "Only the pre-registered target blocks were run; placebo simulations, matching, sequential-g and other appendix analyses were not run.",
+  "A short concurrent R process (environment listing) ran briefly while the bootstrap was running."
+ ]
+}

@@ -1,0 +1,78 @@
+lavaan version: 0.6.19 from /usr/lib/R/site-library/lavaan 
+Study 1 TREATMENT levels/table:
+
+  Alexa Clinton Marches   MeToo   Trump 
+    191     196     200     197     199 
+class TRUMP: numeric 
+                   lhs op     rhs               label    est    se      z
+34   indirTRUMPanxiety :=   a1*b1   indirTRUMPanxiety  0.018 0.006  3.282
+35     indirTRUMPanger :=   a2*b2     indirTRUMPanger  0.017 0.006  2.895
+36      indirTRUMPhope :=   a3*b3      indirTRUMPhope -0.025 0.007 -3.418
+37 indirCLINTONanxiety :=  a99*b1 indirCLINTONanxiety  0.006 0.004  1.387
+38   indirCLINTONanger := a299*b2   indirCLINTONanger  0.002 0.003  0.715
+39    indirCLINTONhope := a399*b3    indirCLINTONhope  0.007 0.007  1.007
+   pvalue ci.lower ci.upper
+34  0.001    0.007    0.029
+35  0.004    0.005    0.028
+36  0.001   -0.040   -0.011
+37  0.165   -0.002    0.014
+38  0.475   -0.004    0.008
+39  0.314   -0.006    0.020
+Study 2 TREATMENT table:
+
+  Alexa Clinton   March   MeToo   Trump 
+    205     209     215     210     191 
+                   lhs op     rhs               label    est    se      z
+34   indirTRUMPanxiety :=   a1*b1   indirTRUMPanxiety  0.019 0.006  3.003
+35     indirTRUMPanger :=   a2*b2     indirTRUMPanger  0.080 0.019  4.201
+36      indirTRUMPhope :=   a3*b3      indirTRUMPhope -0.019 0.008 -2.415
+37 indirCLINTONanxiety :=  a99*b1 indirCLINTONanxiety -0.011 0.005 -2.313
+38   indirCLINTONanger := a299*b2   indirCLINTONanger  0.000 0.004 -0.022
+39    indirCLINTONhope := a399*b3    indirCLINTONhope  0.107 0.016  6.795
+   pvalue ci.lower ci.upper
+34  0.003    0.007    0.032
+35  0.000    0.043    0.118
+36  0.016   -0.035   -0.004
+37  0.021   -0.019   -0.002
+38  0.982   -0.008    0.008
+39  0.000    0.076    0.138
+3-arm Study 1 rows: 586 
+
+Call:
+lm(formula = futureengage_novote ~ TREATMENT, data = df_compliers)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.21691 -0.14872 -0.07568  0.11103  0.60128 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                       0.39872    0.01291  30.893  < 2e-16 ***
+TREATMENTTreatment of Minorities  0.06820    0.02100   3.248  0.00122 ** 
+TREATMENTTreatment of Women       0.05512    0.02026   2.721  0.00667 ** 
+TREATMENTTrump                    0.05196    0.01919   2.708  0.00694 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1932 on 694 degrees of freedom
+Multiple R-squared:  0.01996,	Adjusted R-squared:  0.01573 
+F-statistic: 4.712 on 3 and 694 DF,  p-value: 0.002899
+
+                          id     estimate         se  statistic     p_value
+1                         T1  1.67810e-02 0.00579616  2.8951931 3.78925e-03
+2         T1_context_Clinton  2.04053e-03 0.00285437  0.7148803 4.74683e-01
+3                         T2  8.01780e-02 0.01908546  4.2010009 2.65738e-05
+4         T2_context_Clinton -9.28287e-05 0.00417009 -0.0222606 9.82240e-01
+Estimate                  T3  1.50007e-01 0.02482906  6.0416002 2.72664e-09
+Estimate1                 T4  2.17866e-01 0.05267309  4.1361987 4.16478e-05
+Estimate2                 T5  5.51234e-02 0.02025926  2.7208967 6.67364e-03
+11                        T6  6.98000e+02         NA         NA          NA
+          nobs                  note
+1          977                      
+2          977                      
+3         1030                      
+4         1030                      
+Estimate   584 R2 0.0704827969165627
+Estimate1  489                      
+Estimate2  698                      
+11         698                      

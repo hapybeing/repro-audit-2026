@@ -1,0 +1,11 @@
+--- code/functions.R (original)	2026-10-11 02:14:39.712786746 +0000
++++ code/functions.R (env fix)	2026-10-11 02:14:39.717105289 +0000
+@@ -303,7 +303,7 @@
+     m3[,hausman_p := ht$p.value]%>%.[,n:=length(summary(mod_xc)$residuals)]
+     data.table::rbindlist(list(m1,m3,m4,m6),fill=T)
+     },error=function(e){print(paste0(y0,"; ",e));NULL})
+-},mc.cores=min(length(yvarz),parallel::detectCores()/4)) %>% .[lengths(.) != 0] %>% data.table::rbindlist(fill=TRUE)
++},mc.cores=max(1, min(length(yvarz),parallel::detectCores()/4))) %>% .[lengths(.) != 0] %>% data.table::rbindlist(fill=TRUE)
+ return(out)
+ }
+ 

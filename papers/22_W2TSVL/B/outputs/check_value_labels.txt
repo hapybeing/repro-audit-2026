@@ -1,0 +1,128 @@
+
+== TratUT2 : Tratamiento 
+                           Control T1: Información neutral sobre paro 
+                                 1                                  2 
+                      T2: Pro-paro                      T3: Anti-paro 
+                                 3                                  4 
+                T4: Encuadre doble 
+                                 5 
+
+  1   2   3   4   5 
+210 200 206 201 194 
+
+== UT2_1 : Pensando en los sindicatos en general, ¿le gustaría personalmente que los sindic 
+    Mucha más influencia   Algo más de influencia      La misma influencia 
+                       1                        2                        3 
+Algo menos de influencia   Mucha menos influencia                    NS/NR 
+                       4                        5                        6 
+
+  1   2   3   4   5   6 
+222 225 185 192 152  35 
+
+== UT2_2 : ¿Usted apoya o se opone a los docentes que están en paro en Tamaulipas? Para su 
+1 Opone totalmente                  2                  3                  4 
+                 1                  2                  3                  4 
+                 5                  6 7 Apoya totalmente              NS/NR 
+                 5                  6                  7                  8 
+
+  1   2   3   4   5   6   7   8 
+235  35  64  74 146  85 322  50 
+
+== d1 : Sexo del entrevistado(a) 
+Hombre  Mujer 
+     1      2 
+
+  1   2 
+507 504 
+
+== d3 : ¿Hasta qué año de escuela estudio usted? 
+            Primaria incompleta               Primaria completa 
+                              1                               2 
+          Secundaria incompleta       Sec. completa/equivalente 
+                              3                               4 
+              Carrera comercial                 Carrera técnica 
+                              5                               6 
+        Preparatoria incompleta    Prepa completa o equivalente 
+                              7                               8 
+  Carrera universitaria- trunca Carrera universitaria terminada 
+                              9                              10 
+                       Maestría                       Doctorado 
+                             11                              12 
+              No tiene estudios                           NS/NC 
+                             13                              14 
+
+  1   2   3   4   5   6   7   8   9  10  11  13  14 
+ 65 137  48 244   8  16  65 243  44 116   6  17   2 
+
+== d12 : Aproximadamente, ¿cómo cuánto ganan al mes todos los que viven en su casa, inclu 
+      Hasta $800      $801-$2,400    $2,401-$4,000    $4,001-$8,000 
+               1                2                3                4 
+  $8,001-$16,000  $16,001-$30,000  $30,001-$40,000 $ Más de $40,000 
+               5                6                7                8 
+           NS/NC 
+               9 
+
+  1   2   3   4   5   6   7   8   9 
+  5  74 140 218 212 104  12  17 229 
+
+== PartyID : Independientemente de por quién haya votado en el pasado, ¿con cuál partido polí 
+                 Mucho PAN                   Poco PAN 
+                         1                          2 
+                 Mucho PRI                   Poco PRI 
+                         3                          4 
+                 Mucho PRD                   Poco PRD 
+                         5                          6 
+               Poco MORENA               Mucho MORENA 
+                         7                          8 
+                Mucho PVEM                  Poco PVEM 
+                         9                         10 
+Mucho MOVIMIENTO CIUDADANO  Poco MOVIMIENTO CIUDADANO 
+                        11                         12 
+               Otro ANOTAR                    Ninguno 
+                        13                         14 
+                     Ns/Nc 
+                        15 
+
+  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+ 37  36  47  23   6   9 150 313   5   3  11  10   7 310  44 
+
+== EdadRec : Rangos de edad 
+ De 18 a 29  De 30 a 49 De 50 o más 
+          1           2           3 
+
+  1   2   3 
+306 408 297 
+
+== Entidad : Estado 
+     Aguascalientes     Baja California Baja California Sur            Campeche 
+                  1                   2                   3                   4 
+           Coahuila              Colima             Chiapas           Chihuahua 
+                  5                   6                   7                   8 
+Ciudad de México/DF             Durango          Guanajuato            Guerrero 
+                  9                  10                  11                  12 
+            Hidalgo             Jalisco    Estado de México           Michoacán 
+                 13                  14                  15                  16 
+            Morelos             Nayarit          Nuevo León              Oaxaca 
+                 17                  18                  19                  20 
+             Puebla           Querétaro        Quintana Roo     San Luis Potosí 
+                 21                  22                  23                  24 
+            Sinaloa              Sonora             Tabasco          Tamaulipas 
+                 25                  26                  27                  28 
+           Tlaxcala            Veracruz             Yucatán           Zacatecas 
+                 29                  30                  31                  32 
+
+  1   2   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21 
+ 10  30  10  23  10  40  30  80  11  50  30  20  70 140  30  20  10  40  51  50 
+ 22  23  24  25  26  27  28  29  30  31  32 
+ 20  10  20  30  20  24  30  10  62  20  10 
+
+EdadRec by age range:
+$`1`
+[1] 18 29
+
+$`2`
+[1] 30 49
+
+$`3`
+[1] 50 89
+

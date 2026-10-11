@@ -1,0 +1,4 @@
+                   term  estimate          se      p_naive   nobs conv dropped
+1 challenge:days_to_nat 0.0132575 0.002957635 7.378565e-06 261365 none        
+  rows_dropped     secs
+1         5489 21.12393

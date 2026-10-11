@@ -1,0 +1,50 @@
+PARTISANSHIP in NORC.RDS: TRUE ; in Qualtrics: TRUE 
+NORC columns:
+ [1] "AGE7"               "AGE"                "GENDER"            
+ [4] "RACETHNICITY"       "IDEO"               "INCOME"            
+ [7] "EDUC"               "PARTISANSHIP"       "anger"             
+[10] "fear"               "hope"               "treat"             
+[13] "TREATMENT"          "futureengage"       "futureengage_wvote"
+[16] "party_nolean"       "party"              "Linked_Fate2B"     
+[19] "TREATMENT2"         "M1_1"               "M1_4"              
+
+INCOME x Income:
+                     
+                       1  2  3  4  5  7  8  9 10 11 12 <NA>
+  $10,000 - $19,999    0 54  0  0  0  0  0  0  0  0  0    0
+  $100,000 - $149,999  0  0  0  0  0  0  0  0  0 88  0    0
+  $150,000 or more     0  0  0  0  0  0  0  0  0  0 60    0
+  $20,000 - $29,999    0  0 50  0  0  0  0  0  0  0  0    0
+  $30,000 - $39,999    0  0  0 44  0  0  0  0  0  0  0    0
+  $40,000 - $49,999    0  0  0  0 39  0  0  0  0  0  0    0
+  $50,000 - $59,999    0  0  0  0  0  0  0  0  0  0  0   68
+  $60,000 - $69,999    0  0  0  0  0 47  0  0  0  0  0    0
+  $70,000 - $79,999    0  0  0  0  0  0 46  0  0  0  0    0
+  $80,000 - $89,999    0  0  0  0  0  0  0 16  0  0  0    0
+  $90,000 - $99,999    0  0  0  0  0  0  0  0 23  0  0    0
+  Less than $10,000   45  0  0  0  0  0  0  0  0  0  0    0
+  Prefer not to say    0  0  0  0  0  0  0  0  0  0  0    6
+
+IDEOLOGY x Ideology:
+                                 
+                                    1   2   3   4   6   7 <NA>
+  Conservative                      0   0   0   0  86   0    0
+  Extremely Conservative            0   0   0   0   0  67    0
+  Extremely liberal                31   0   0   0   0   0    0
+  Haven't thought much about this   0   0   0   0   0   0   55
+  Liberal                           0  84   0   0   0   0    0
+  Moderate; middle of the road      0   0   0 157   0   0    0
+  Slightly conservative             0   0   0   0   0   0   58
+  Slightly liberal                  0   0  48   0   0   0    0
+
+NORC 3-arm PARTISANSHIP (what line 87 would show if it used df_TESS):
+
+   Democrat Independent  Republican        <NA> 
+      57.19       10.74       31.90        0.17 
+
+Qualtrics 3-arm PARTISANSHIP (what line 87 shows, df):
+
+              Democrat            Independent Other (please specify) 
+                 36.69                  26.11                   2.22 
+            Republican 
+                 34.98 

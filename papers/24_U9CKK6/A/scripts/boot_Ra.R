@@ -1,0 +1,49 @@
+## R_a party-cluster bootstrap of T1 (challenge:days_to_nat in cycle_AE_fit2), as pre-registered.
+## Resumable: draws pre-generated and saved; results appended every 5 draws to outputs/R_a_partial.csv.
+## copy_index = which copy of that party (1st, 2nd, ...) in the draw; party_id and mep_ids relabelled paste(id, copy_index).
+.libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+suppressMessages(library(lme4))
+S <- "/workspace/audit_runs/24_U9CKK6/A"
+OUT <- "/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/24_U9CKK6/A/outputs"
+ctl <- lmerControl(optimizer = "Nelder_Mead")
+s <- readRDS(file.path(S, "models", "sample_cycle_AE_fit2.rds")); d <- s$data; f <- s$formula
+parties <- sort(unique(d$party_id)); stopifnot(length(parties) == 204)
+drawfile <- file.path(OUT, "R_a_draws.rds")
+if (!file.exists(drawfile)) {
+  set.seed(20261011)
+  draws <- lapply(1:200, function(i) sample(parties, length(parties), replace = TRUE))
+  saveRDS(draws, drawfile)
+}
+draws <- readRDS(drawfile)
+rows_by_party <- split(seq_len(nrow(d)), d$party_id)
+partial <- file.path(OUT, "R_a_partial.csv"); kfile <- file.path(OUT, "R_a_K.csv")
+done <- if (file.exists(partial)) read.csv(partial) else NULL
+buf <- list()
+fit_one <- function(i) {
+  dr <- draws[[i]]; copy <- ave(seq_along(dr), dr, FUN = seq_along)
+  idx <- unlist(lapply(seq_along(dr), function(j) rows_by_party[[as.character(dr[j])]]))
+  cp <- unlist(lapply(seq_along(dr), function(j) rep(copy[j], length(rows_by_party[[as.character(dr[j])]]))))
+  b <- d[idx, ]; b$party_id <- paste(b$party_id, cp); b$mep_ids <- paste(b$mep_ids, cp)
+  t0 <- Sys.time()
+  m <- tryCatch(lmer(f, data = b, control = ctl), error = function(e) e)
+  secs <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
+  if (inherits(m, "error")) return(data.frame(draw = i, estimate = NA, ok = FALSE, secs = secs, nrow = nrow(b),
+                                              conv_messages = conditionMessage(m), dropped_cols = ""))
+  data.frame(draw = i, estimate = unname(fixef(m)["challenge:days_to_nat"]), ok = TRUE, secs = secs, nrow = nrow(b),
+             conv_messages = paste(m@optinfo$conv$lme4$messages, collapse = " | "),
+             dropped_cols = paste(attr(getME(m, "X"), "col.dropped"), collapse = ";"))
+}
+flush <- function() { if (length(buf)) { x <- do.call(rbind, buf); write.csv(rbind(done, x), partial, row.names = FALSE); done <<- rbind(done, x); buf <<- list() } }
+if (!file.exists(kfile)) {
+  r1 <- fit_one(1); buf[[1]] <- r1; flush()
+  t <- r1$secs; K <- min(200, floor(3600 / t)); status <- "K_rule"
+  if (K < 30) { if (30 * t <= 7200) { K <- 30; status <- "K_30_floor" } else { K <- 0; status <- "not_run_too_slow" } }
+  write.csv(data.frame(t_first_secs = t, K = K, status = status), kfile, row.names = FALSE)
+}
+K <- read.csv(kfile)$K
+todo <- setdiff(seq_len(K), done$draw)
+for (i in todo) {
+  buf[[length(buf) + 1]] <- fit_one(i); invisible(gc())
+  if (length(buf) >= 5) { flush(); cat("progress", nrow(done), "of", K, format(Sys.time()), "\n") }
+}
+flush(); cat("BOOT_DONE", nrow(done), "\n")

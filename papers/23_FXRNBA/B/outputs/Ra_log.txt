@@ -1,0 +1,32 @@
+=== SAMPLE SIZES ===
+Main sample (2013-2023, no co-pollutants): N = 7163 
+Co-pollutant sample (2013-2023): N = 5623 
+
+=== DESCRIPTIVE STATISTICS (Main Sample) ===
+PM2.5 on smoke days: 14.04 µg/m³
+PM2.5 on non-smoke days: 6.26 µg/m³
+Difference: 7.78 µg/m³
+
+Ra_boot_indices sha256-able file written; B generated = 999 
+2026-10-10 21:35:20 saved 20 replicates; elapsed this session 5 s
+2026-10-10 21:35:29 saved 70 replicates; elapsed this session 14 s
+2026-10-10 21:35:38 saved 120 replicates; elapsed this session 23 s
+2026-10-10 21:35:48 saved 170 replicates; elapsed this session 33 s
+2026-10-10 21:35:57 saved 220 replicates; elapsed this session 42 s
+2026-10-10 21:36:06 saved 270 replicates; elapsed this session 52 s
+2026-10-10 21:36:15 saved 320 replicates; elapsed this session 60 s
+2026-10-10 21:36:24 saved 370 replicates; elapsed this session 69 s
+2026-10-10 21:36:33 saved 420 replicates; elapsed this session 78 s
+2026-10-10 21:36:42 saved 470 replicates; elapsed this session 87 s
+2026-10-10 21:36:51 saved 520 replicates; elapsed this session 96 s
+2026-10-10 21:37:00 saved 570 replicates; elapsed this session 106 s
+2026-10-10 21:37:09 saved 620 replicates; elapsed this session 114 s
+2026-10-10 21:37:18 saved 670 replicates; elapsed this session 123 s
+2026-10-10 21:37:27 saved 720 replicates; elapsed this session 132 s
+2026-10-10 21:37:36 saved 770 replicates; elapsed this session 141 s
+2026-10-10 21:37:45 saved 820 replicates; elapsed this session 150 s
+2026-10-10 21:37:54 saved 870 replicates; elapsed this session 159 s
+2026-10-10 21:38:04 saved 920 replicates; elapsed this session 169 s
+2026-10-10 21:38:13 saved 970 replicates; elapsed this session 178 s
+2026-10-10 21:38:18 saved 999 replicates; elapsed this session 183 s
+RA DONE

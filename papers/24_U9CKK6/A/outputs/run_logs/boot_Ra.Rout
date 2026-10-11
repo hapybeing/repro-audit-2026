@@ -1,0 +1,90 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ## R_a party-cluster bootstrap of T1 (challenge:days_to_nat in cycle_AE_fit2), as pre-registered.
+> ## Resumable: draws pre-generated and saved; results appended every 5 draws to outputs/R_a_partial.csv.
+> ## copy_index = which copy of that party (1st, 2nd, ...) in the draw; party_id and mep_ids relabelled paste(id, copy_index).
+> .libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+> suppressMessages(library(lme4))
+> S <- "/workspace/audit_runs/24_U9CKK6/A"
+> OUT <- "/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/24_U9CKK6/A/outputs"
+> ctl <- lmerControl(optimizer = "Nelder_Mead")
+> s <- readRDS(file.path(S, "models", "sample_cycle_AE_fit2.rds")); d <- s$data; f <- s$formula
+> parties <- sort(unique(d$party_id)); stopifnot(length(parties) == 204)
+> drawfile <- file.path(OUT, "R_a_draws.rds")
+> if (!file.exists(drawfile)) {
++   set.seed(20261011)
++   draws <- lapply(1:200, function(i) sample(parties, length(parties), replace = TRUE))
++   saveRDS(draws, drawfile)
++ }
+> draws <- readRDS(drawfile)
+> rows_by_party <- split(seq_len(nrow(d)), d$party_id)
+> partial <- file.path(OUT, "R_a_partial.csv"); kfile <- file.path(OUT, "R_a_K.csv")
+> done <- if (file.exists(partial)) read.csv(partial) else NULL
+> buf <- list()
+> fit_one <- function(i) {
++   dr <- draws[[i]]; copy <- ave(seq_along(dr), dr, FUN = seq_along)
++   idx <- unlist(lapply(seq_along(dr), function(j) rows_by_party[[as.character(dr[j])]]))
++   cp <- unlist(lapply(seq_along(dr), function(j) rep(copy[j], length(rows_by_party[[as.character(dr[j])]]))))
++   b <- d[idx, ]; b$party_id <- paste(b$party_id, cp); b$mep_ids <- paste(b$mep_ids, cp)
++   t0 <- Sys.time()
++   m <- tryCatch(lmer(f, data = b, control = ctl), error = function(e) e)
++   secs <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
++   if (inherits(m, "error")) return(data.frame(draw = i, estimate = NA, ok = FALSE, secs = secs, nrow = nrow(b),
++                                               conv_messages = conditionMessage(m), dropped_cols = ""))
++   data.frame(draw = i, estimate = unname(fixef(m)["challenge:days_to_nat"]), ok = TRUE, secs = secs, nrow = nrow(b),
++              conv_messages = paste(m@optinfo$conv$lme4$messages, collapse = " | "),
++              dropped_cols = paste(attr(getME(m, "X"), "col.dropped"), collapse = ";"))
++ }
+> flush <- function() { if (length(buf)) { x <- do.call(rbind, buf); write.csv(rbind(done, x), partial, row.names = FALSE); done <<- rbind(done, x); buf <<- list() } }
+> if (!file.exists(kfile)) {
++   r1 <- fit_one(1); buf[[1]] <- r1; flush()
++   t <- r1$secs; K <- min(200, floor(3600 / t)); status <- "K_rule"
++   if (K < 30) { if (30 * t <= 7200) { K <- 30; status <- "K_30_floor" } else { K <- 0; status <- "not_run_too_slow" } }
++   write.csv(data.frame(t_first_secs = t, K = K, status = status), kfile, row.names = FALSE)
++ }
+> K <- read.csv(kfile)$K
+> todo <- setdiff(seq_len(K), done$draw)
+> for (i in todo) {
++   buf[[length(buf) + 1]] <- fit_one(i); invisible(gc())
++   if (length(buf) >= 5) { flush(); cat("progress", nrow(done), "of", K, format(Sys.time()), "\n") }
++ }
+progress 6 of 115 2026-10-10 23:31:15 
+progress 11 of 115 2026-10-10 23:33:07 
+progress 16 of 115 2026-10-10 23:35:00 
+progress 21 of 115 2026-10-10 23:36:58 
+progress 26 of 115 2026-10-10 23:38:52 
+progress 31 of 115 2026-10-10 23:40:46 
+progress 36 of 115 2026-10-10 23:42:33 
+progress 41 of 115 2026-10-10 23:44:27 
+progress 46 of 115 2026-10-10 23:46:19 
+progress 51 of 115 2026-10-10 23:48:14 
+progress 56 of 115 2026-10-10 23:50:10 
+progress 61 of 115 2026-10-10 23:52:00 
+progress 66 of 115 2026-10-10 23:53:39 
+progress 71 of 115 2026-10-10 23:55:31 
+progress 76 of 115 2026-10-10 23:57:22 
+progress 81 of 115 2026-10-10 23:59:20 
+progress 86 of 115 2026-10-11 00:01:13 
+progress 91 of 115 2026-10-11 00:03:09 
+progress 96 of 115 2026-10-11 00:05:12 
+progress 101 of 115 2026-10-11 00:07:04 
+progress 106 of 115 2026-10-11 00:08:46 
+progress 111 of 115 2026-10-11 00:10:27 
+> flush(); cat("BOOT_DONE", nrow(done), "\n")
+BOOT_DONE 115 
+> 

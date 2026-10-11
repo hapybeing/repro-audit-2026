@@ -1,0 +1,11 @@
+--- orig/functions.R	2026-10-11 01:37:14.381994445 +0000
++++ Replication_IO/code/functions.R	2026-10-11 01:37:45.129897501 +0000
+@@ -303,7 +303,7 @@
+     m3[,hausman_p := ht$p.value]%>%.[,n:=length(summary(mod_xc)$residuals)]
+     data.table::rbindlist(list(m1,m3,m4,m6),fill=T)
+     },error=function(e){print(paste0(y0,"; ",e));NULL})
+-},mc.cores=min(length(yvarz),parallel::detectCores()/4)) %>% .[lengths(.) != 0] %>% data.table::rbindlist(fill=TRUE)
++},mc.cores=max(1, min(length(yvarz),parallel::detectCores()/4))) %>% .[lengths(.) != 0] %>% data.table::rbindlist(fill=TRUE)
+ return(out)
+ }
+ 

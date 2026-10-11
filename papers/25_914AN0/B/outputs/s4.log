@@ -1,0 +1,196 @@
+[1] "**** Starting run1_setup.R ****"
+Loading required package: data.table
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:data.table’:
+
+    between, first, last
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: stringr
+Loading required package: parallel
+Loading required package: lfe
+Loading required package: Matrix
+Loading required package: lme4
+Loading required package: nlme
+
+Attaching package: ‘nlme’
+
+The following object is masked from ‘package:lme4’:
+
+    lmList
+
+The following object is masked from ‘package:dplyr’:
+
+    collapse
+
+Loading required package: Formula
+Loading required package: xtable
+Loading required package: optimx
+
+Attaching package: ‘optimx’
+
+The following object is masked from ‘package:nlme’:
+
+    coef<-
+
+Loading required package: splines
+Loading required package: ggplot2
+Loading required package: robustlmm
+Loading required package: Matching
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+## 
+##  Matching (Version 4.10-14, Build Date: 2023-09-13)
+##  See https://www.jsekhon.com for additional documentation.
+##  Please cite software as:
+##   Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching
+##   Software with Automated Balance Optimization: The Matching package for R.''
+##   Journal of Statistical Software, 42(7): 1-52. 
+##
+
+Loading required package: fixest
+
+Attaching package: ‘fixest’
+
+The following object is masked from ‘package:lfe’:
+
+    fepois
+
+Loading required package: SUNGEO
+Loading required package: tidyselect
+[1] "**** Finished run1_setup.R ****"
+#### run2_main.R lines 1310-1388
+[1] "Running: code chunk 4"
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.002   0.000   0.003 
+   user  system elapsed 
+  0.000   0.000   0.002 
+   user  system elapsed 
+  0.001   0.000   0.001 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.187   0.000   0.187 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.001   0.000   0.001 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.000   0.000   0.001 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.146   0.000   0.146 
+   user  system elapsed 
+  0.002   0.003   0.008 
+   user  system elapsed 
+  0.001   0.000   0.000 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+NOTE: 137 observations removed because of NA values (RHS: 137, Fixed-effects: 1).
+      |-> this msg only concerns the variables common to all estimations
+Variance contained negative values in the diagonal and was 'fixed' (a la Cameron, Gelbach & Miller 2011).
+Variance contained negative values in the diagonal and was 'fixed' (a la Cameron, Gelbach & Miller 2011).
+Variance contained negative values in the diagonal and was 'fixed' (a la Cameron, Gelbach & Miller 2011).
+   user  system elapsed 
+  0.023   0.000   0.023 
+   user  system elapsed 
+  0.013   0.000   0.012 
+                               mod.1            mod.2               mod.3
+Dependent Var.:          outcome_win     outcome_lose       outcome_other
+                                                                         
+blocking           -0.4952* (0.2067)  0.2646 (0.3457)     0.2306 (0.2501)
+cinc                -0.2785 (0.2310)  0.1080 (0.0805)  0.1706*** (0.0098)
+log(deploy_dist+1) -0.0549* (0.0256)  0.0443 (0.0848)     0.0106 (0.0269)
+polity2_new         -0.0085 (0.0212)  0.0025 (0.0126)     0.0061 (0.0091)
+opp_geneva           0.2413 (0.1926) -0.1606 (0.1341)    -0.0807 (0.1845)
+Fixed-Effects:     ----------------- ----------------  ------------------
+name                             Yes              Yes                 Yes
+decade                           Yes              Yes                 Yes
+__________________ _________________ ________________  __________________
+S.E.: Clustered     by: name & conf. by: name & conf. by: name & conflict
+Observations                     191              191                 191
+R2                           0.64826          0.57620             0.57443
+Within R2                    0.13098          0.05088             0.01508
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+   user  system elapsed 
+  0.009   0.000   0.010 
+   model_name  outcome_name        x          b          l           u
+       <char>        <char>   <char>      <num>      <num>       <num>
+1:    Model 1   outcome_win blocking -0.4951821 -0.9002938 -0.09007034
+2:    Model 2  outcome_lose blocking  0.2645979 -0.4129359  0.94213171
+3:    Model 3 outcome_other blocking  0.2305842 -0.2596741  0.72084241
+          l90        u90        r2      aic      bic     n name_fe decade_fe
+        <num>      <num>     <num>    <num>    <num> <int>   <int>     <int>
+1: -0.8424207 -0.1479434 0.6482572 249.0578 577.5374   191      90         7
+2: -0.3161453  0.8453412 0.5762020 298.8823 627.3619   191      90         7
+3: -0.1896372  0.6508055 0.5744284 288.6554 617.1351   191      90         7
+OLS estimation, Dep. Var.: outcome_win
+Observations: 191
+Fixed-effects: name: 90,  decade: 7
+Standard-errors: Clustered (name & conflict) 
+                      Estimate Std. Error   t value Pr(>|t|)    
+blocking             -0.495182   0.206690 -2.395776 0.019385 *  
+cinc                 -0.278525   0.231015 -1.205659 0.232190    
+log(deploy_dist + 1) -0.054890   0.025562 -2.147335 0.035388 *  
+polity2_new          -0.008540   0.021159 -0.403624 0.687774    
+opp_geneva            0.241284   0.192649  1.252454 0.214759    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.273692     Adj. R2: 0.257432
+                 Within R2: 0.130981
+#### run2_main.R lines 1389-1405
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.002   0.000   0.002 
+   user  system elapsed 
+  0.023   0.000   0.022 
+   user  system elapsed 
+  0.003   0.000   0.005 
+S4 done

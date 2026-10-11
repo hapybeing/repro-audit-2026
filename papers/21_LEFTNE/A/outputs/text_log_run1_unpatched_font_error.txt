@@ -1,0 +1,529 @@
+
+> Packages <- c("here", "car", "survey", "margins", 
++     "interplot", "aod", "dplyr", "foreign", "nnet", "ggplot2", 
++     "reshape2", "Rmisc", "tidyverse", "broom", "dotwhisker", 
++     "janitor", "qualtRics", "jtools", "mediation", "gtools", 
++     "gridExtra", "huxtable", "DT", "ggsci", "hrbrthemes", "haven", 
++     "effectsize", "readr", "purrr", "emmeans")
+
+> lapply(Packages, library, character.only = TRUE)
+here() starts at /workspace/audit_runs/21_LEFTNE/A/data
+Loading required package: carData
+Loading required package: grid
+Loading required package: Matrix
+Loading required package: survival
+
+Attaching package: ‘survey’
+
+The following object is masked from ‘package:graphics’:
+
+    dotchart
+
+Loading required package: ggplot2
+
+Attaching package: ‘aod’
+
+The following object is masked from ‘package:survival’:
+
+    rats
+
+
+Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:car’:
+
+    recode
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: lattice
+Loading required package: plyr
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: ‘plyr’
+
+The following objects are masked from ‘package:dplyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following object is masked from ‘package:here’:
+
+    here
+
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.4     ✔ tibble    3.2.1
+✔ purrr     1.0.4     ✔ tidyr     1.3.1
+✔ readr     2.1.5     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ plyr::arrange()   masks dplyr::arrange()
+✖ purrr::compact()  masks plyr::compact()
+✖ plyr::count()     masks dplyr::count()
+✖ plyr::desc()      masks dplyr::desc()
+✖ tidyr::expand()   masks Matrix::expand()
+✖ plyr::failwith()  masks dplyr::failwith()
+✖ dplyr::filter()   masks stats::filter()
+✖ plyr::id()        masks dplyr::id()
+✖ dplyr::lag()      masks stats::lag()
+✖ plyr::mutate()    masks dplyr::mutate()
+✖ tidyr::pack()     masks Matrix::pack()
+✖ dplyr::recode()   masks car::recode()
+✖ plyr::rename()    masks dplyr::rename()
+✖ purrr::some()     masks car::some()
+✖ plyr::summarise() masks dplyr::summarise()
+✖ plyr::summarize() masks dplyr::summarize()
+✖ tidyr::unpack()   masks Matrix::unpack()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘janitor’
+
+The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Loading required package: mvtnorm
+
+Attaching package: ‘mvtnorm’
+
+The following object is masked from ‘package:jtools’:
+
+    standardize
+
+Loading required package: sandwich
+mediation: Causal Mediation Analysis
+Version: 4.5.1
+
+
+Attaching package: ‘gtools’
+
+The following object is masked from ‘package:car’:
+
+    logit
+
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+
+Attaching package: ‘huxtable’
+
+The following object is masked from ‘package:dplyr’:
+
+    add_rownames
+
+The following object is masked from ‘package:ggplot2’:
+
+    theme_grey
+
+
+Attaching package: ‘effectsize’
+
+The following objects are masked from ‘package:huxtable’:
+
+    print_html, print_md
+
+The following object is masked from ‘package:mvtnorm’:
+
+    standardize
+
+The following object is masked from ‘package:jtools’:
+
+    standardize
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+[[1]]
+[1] "here"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[7] "methods"   "base"     
+
+[[2]]
+ [1] "car"       "carData"   "here"      "stats"     "graphics"  "grDevices"
+ [7] "utils"     "datasets"  "methods"   "base"     
+
+[[3]]
+ [1] "survey"    "survival"  "Matrix"    "grid"      "car"       "carData"  
+ [7] "here"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[13] "methods"   "base"     
+
+[[4]]
+ [1] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+ [7] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[13] "datasets"  "methods"   "base"     
+
+[[5]]
+ [1] "interplot" "ggplot2"   "margins"   "survey"    "survival"  "Matrix"   
+ [7] "grid"      "car"       "carData"   "here"      "stats"     "graphics" 
+[13] "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+[[6]]
+ [1] "aod"       "interplot" "ggplot2"   "margins"   "survey"    "survival" 
+ [7] "Matrix"    "grid"      "car"       "carData"   "here"      "stats"    
+[13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+[[7]]
+ [1] "dplyr"     "aod"       "interplot" "ggplot2"   "margins"   "survey"   
+ [7] "survival"  "Matrix"    "grid"      "car"       "carData"   "here"     
+[13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+[19] "base"     
+
+[[8]]
+ [1] "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"   "margins"  
+ [7] "survey"    "survival"  "Matrix"    "grid"      "car"       "carData"  
+[13] "here"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[19] "methods"   "base"     
+
+[[9]]
+ [1] "nnet"      "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"  
+ [7] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+[13] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[19] "datasets"  "methods"   "base"     
+
+[[10]]
+ [1] "nnet"      "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"  
+ [7] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+[13] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[19] "datasets"  "methods"   "base"     
+
+[[11]]
+ [1] "reshape2"  "nnet"      "foreign"   "dplyr"     "aod"       "interplot"
+ [7] "ggplot2"   "margins"   "survey"    "survival"  "Matrix"    "grid"     
+[13] "car"       "carData"   "here"      "stats"     "graphics"  "grDevices"
+[19] "utils"     "datasets"  "methods"   "base"     
+
+[[12]]
+ [1] "Rmisc"     "plyr"      "lattice"   "reshape2"  "nnet"      "foreign"  
+ [7] "dplyr"     "aod"       "interplot" "ggplot2"   "margins"   "survey"   
+[13] "survival"  "Matrix"    "grid"      "car"       "carData"   "here"     
+[19] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+[25] "base"     
+
+[[13]]
+ [1] "lubridate" "forcats"   "stringr"   "purrr"     "readr"     "tidyr"    
+ [7] "tibble"    "tidyverse" "Rmisc"     "plyr"      "lattice"   "reshape2" 
+[13] "nnet"      "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"  
+[19] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+[25] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[31] "datasets"  "methods"   "base"     
+
+[[14]]
+ [1] "broom"     "lubridate" "forcats"   "stringr"   "purrr"     "readr"    
+ [7] "tidyr"     "tibble"    "tidyverse" "Rmisc"     "plyr"      "lattice"  
+[13] "reshape2"  "nnet"      "foreign"   "dplyr"     "aod"       "interplot"
+[19] "ggplot2"   "margins"   "survey"    "survival"  "Matrix"    "grid"     
+[25] "car"       "carData"   "here"      "stats"     "graphics"  "grDevices"
+[31] "utils"     "datasets"  "methods"   "base"     
+
+[[15]]
+ [1] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+ [6] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[11] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[16] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[21] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[26] "car"        "carData"    "here"       "stats"      "graphics"  
+[31] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[16]]
+ [1] "janitor"    "dotwhisker" "broom"      "lubridate"  "forcats"   
+ [6] "stringr"    "purrr"      "readr"      "tidyr"      "tibble"    
+[11] "tidyverse"  "Rmisc"      "plyr"       "lattice"    "reshape2"  
+[16] "nnet"       "foreign"    "dplyr"      "aod"        "interplot" 
+[21] "ggplot2"    "margins"    "survey"     "survival"   "Matrix"    
+[26] "grid"       "car"        "carData"    "here"       "stats"     
+[31] "graphics"   "grDevices"  "utils"      "datasets"   "methods"   
+[36] "base"      
+
+[[17]]
+ [1] "qualtRics"  "janitor"    "dotwhisker" "broom"      "lubridate" 
+ [6] "forcats"    "stringr"    "purrr"      "readr"      "tidyr"     
+[11] "tibble"     "tidyverse"  "Rmisc"      "plyr"       "lattice"   
+[16] "reshape2"   "nnet"       "foreign"    "dplyr"      "aod"       
+[21] "interplot"  "ggplot2"    "margins"    "survey"     "survival"  
+[26] "Matrix"     "grid"       "car"        "carData"    "here"      
+[31] "stats"      "graphics"   "grDevices"  "utils"      "datasets"  
+[36] "methods"    "base"      
+
+[[18]]
+ [1] "jtools"     "qualtRics"  "janitor"    "dotwhisker" "broom"     
+ [6] "lubridate"  "forcats"    "stringr"    "purrr"      "readr"     
+[11] "tidyr"      "tibble"     "tidyverse"  "Rmisc"      "plyr"      
+[16] "lattice"    "reshape2"   "nnet"       "foreign"    "dplyr"     
+[21] "aod"        "interplot"  "ggplot2"    "margins"    "survey"    
+[26] "survival"   "Matrix"     "grid"       "car"        "carData"   
+[31] "here"       "stats"      "graphics"   "grDevices"  "utils"     
+[36] "datasets"   "methods"    "base"      
+
+[[19]]
+ [1] "mediation"  "sandwich"   "mvtnorm"    "MASS"       "jtools"    
+ [6] "qualtRics"  "janitor"    "dotwhisker" "broom"      "lubridate" 
+[11] "forcats"    "stringr"    "purrr"      "readr"      "tidyr"     
+[16] "tibble"     "tidyverse"  "Rmisc"      "plyr"       "lattice"   
+[21] "reshape2"   "nnet"       "foreign"    "dplyr"      "aod"       
+[26] "interplot"  "ggplot2"    "margins"    "survey"     "survival"  
+[31] "Matrix"     "grid"       "car"        "carData"    "here"      
+[36] "stats"      "graphics"   "grDevices"  "utils"      "datasets"  
+[41] "methods"    "base"      
+
+[[20]]
+ [1] "gtools"     "mediation"  "sandwich"   "mvtnorm"    "MASS"      
+ [6] "jtools"     "qualtRics"  "janitor"    "dotwhisker" "broom"     
+[11] "lubridate"  "forcats"    "stringr"    "purrr"      "readr"     
+[16] "tidyr"      "tibble"     "tidyverse"  "Rmisc"      "plyr"      
+[21] "lattice"    "reshape2"   "nnet"       "foreign"    "dplyr"     
+[26] "aod"        "interplot"  "ggplot2"    "margins"    "survey"    
+[31] "survival"   "Matrix"     "grid"       "car"        "carData"   
+[36] "here"       "stats"      "graphics"   "grDevices"  "utils"     
+[41] "datasets"   "methods"    "base"      
+
+[[21]]
+ [1] "gridExtra"  "gtools"     "mediation"  "sandwich"   "mvtnorm"   
+ [6] "MASS"       "jtools"     "qualtRics"  "janitor"    "dotwhisker"
+[11] "broom"      "lubridate"  "forcats"    "stringr"    "purrr"     
+[16] "readr"      "tidyr"      "tibble"     "tidyverse"  "Rmisc"     
+[21] "plyr"       "lattice"    "reshape2"   "nnet"       "foreign"   
+[26] "dplyr"      "aod"        "interplot"  "ggplot2"    "margins"   
+[31] "survey"     "survival"   "Matrix"     "grid"       "car"       
+[36] "carData"    "here"       "stats"      "graphics"   "grDevices" 
+[41] "utils"      "datasets"   "methods"    "base"      
+
+[[22]]
+ [1] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+ [6] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[11] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[16] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[21] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[26] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[31] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[36] "car"        "carData"    "here"       "stats"      "graphics"  
+[41] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[23]]
+ [1] "DT"         "huxtable"   "gridExtra"  "gtools"     "mediation" 
+ [6] "sandwich"   "mvtnorm"    "MASS"       "jtools"     "qualtRics" 
+[11] "janitor"    "dotwhisker" "broom"      "lubridate"  "forcats"   
+[16] "stringr"    "purrr"      "readr"      "tidyr"      "tibble"    
+[21] "tidyverse"  "Rmisc"      "plyr"       "lattice"    "reshape2"  
+[26] "nnet"       "foreign"    "dplyr"      "aod"        "interplot" 
+[31] "ggplot2"    "margins"    "survey"     "survival"   "Matrix"    
+[36] "grid"       "car"        "carData"    "here"       "stats"     
+[41] "graphics"   "grDevices"  "utils"      "datasets"   "methods"   
+[46] "base"      
+
+[[24]]
+ [1] "ggsci"      "DT"         "huxtable"   "gridExtra"  "gtools"    
+ [6] "mediation"  "sandwich"   "mvtnorm"    "MASS"       "jtools"    
+[11] "qualtRics"  "janitor"    "dotwhisker" "broom"      "lubridate" 
+[16] "forcats"    "stringr"    "purrr"      "readr"      "tidyr"     
+[21] "tibble"     "tidyverse"  "Rmisc"      "plyr"       "lattice"   
+[26] "reshape2"   "nnet"       "foreign"    "dplyr"      "aod"       
+[31] "interplot"  "ggplot2"    "margins"    "survey"     "survival"  
+[36] "Matrix"     "grid"       "car"        "carData"    "here"      
+[41] "stats"      "graphics"   "grDevices"  "utils"      "datasets"  
+[46] "methods"    "base"      
+
+[[25]]
+ [1] "hrbrthemes" "ggsci"      "DT"         "huxtable"   "gridExtra" 
+ [6] "gtools"     "mediation"  "sandwich"   "mvtnorm"    "MASS"      
+[11] "jtools"     "qualtRics"  "janitor"    "dotwhisker" "broom"     
+[16] "lubridate"  "forcats"    "stringr"    "purrr"      "readr"     
+[21] "tidyr"      "tibble"     "tidyverse"  "Rmisc"      "plyr"      
+[26] "lattice"    "reshape2"   "nnet"       "foreign"    "dplyr"     
+[31] "aod"        "interplot"  "ggplot2"    "margins"    "survey"    
+[36] "survival"   "Matrix"     "grid"       "car"        "carData"   
+[41] "here"       "stats"      "graphics"   "grDevices"  "utils"     
+[46] "datasets"   "methods"    "base"      
+
+[[26]]
+ [1] "haven"      "hrbrthemes" "ggsci"      "DT"         "huxtable"  
+ [6] "gridExtra"  "gtools"     "mediation"  "sandwich"   "mvtnorm"   
+[11] "MASS"       "jtools"     "qualtRics"  "janitor"    "dotwhisker"
+[16] "broom"      "lubridate"  "forcats"    "stringr"    "purrr"     
+[21] "readr"      "tidyr"      "tibble"     "tidyverse"  "Rmisc"     
+[26] "plyr"       "lattice"    "reshape2"   "nnet"       "foreign"   
+[31] "dplyr"      "aod"        "interplot"  "ggplot2"    "margins"   
+[36] "survey"     "survival"   "Matrix"     "grid"       "car"       
+[41] "carData"    "here"       "stats"      "graphics"   "grDevices" 
+[46] "utils"      "datasets"   "methods"    "base"      
+
+[[27]]
+ [1] "effectsize" "haven"      "hrbrthemes" "ggsci"      "DT"        
+ [6] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+[11] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[16] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[21] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[26] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[31] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[36] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[41] "car"        "carData"    "here"       "stats"      "graphics"  
+[46] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[28]]
+ [1] "effectsize" "haven"      "hrbrthemes" "ggsci"      "DT"        
+ [6] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+[11] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[16] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[21] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[26] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[31] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[36] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[41] "car"        "carData"    "here"       "stats"      "graphics"  
+[46] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[29]]
+ [1] "effectsize" "haven"      "hrbrthemes" "ggsci"      "DT"        
+ [6] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+[11] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[16] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[21] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[26] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[31] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[36] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[41] "car"        "carData"    "here"       "stats"      "graphics"  
+[46] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[30]]
+ [1] "emmeans"    "effectsize" "haven"      "hrbrthemes" "ggsci"     
+ [6] "DT"         "huxtable"   "gridExtra"  "gtools"     "mediation" 
+[11] "sandwich"   "mvtnorm"    "MASS"       "jtools"     "qualtRics" 
+[16] "janitor"    "dotwhisker" "broom"      "lubridate"  "forcats"   
+[21] "stringr"    "purrr"      "readr"      "tidyr"      "tibble"    
+[26] "tidyverse"  "Rmisc"      "plyr"       "lattice"    "reshape2"  
+[31] "nnet"       "foreign"    "dplyr"      "aod"        "interplot" 
+[36] "ggplot2"    "margins"    "survey"     "survival"   "Matrix"    
+[41] "grid"       "car"        "carData"    "here"       "stats"     
+[46] "graphics"   "grDevices"  "utils"      "datasets"   "methods"   
+[51] "base"      
+
+
+> options(scipen = 999)
+
+> steph_theme <- list(hrbrthemes::theme_ipsum_rc(base_size = 12, 
++     grid = "", plot_title_size = 20, axis_text_size = 18), ggsci::scale_color_npg(), 
++     ggsci::scale_fill_npg(), theme(legend.position = "top", plot.caption = element_text(hjust = 0, 
++         face = "italic"), plot.title.position = "plot", plot.caption.position = "plot"))
+
+> steph_theme_gray <- list(hrbrthemes::theme_ipsum_rc(base_size = 12, 
++     grid = "", plot_title_size = 20, axis_text_size = 18), ggsci::scale_color_material("grey"), 
++     ggsci::scale_fill_material("grey"), theme(legend.position = "top", 
++         plot.caption = element_text(hjust = 0, face = "italic"), 
++         plot.title.position = "plot", plot.caption.position = "plot"))
+
+> df <- readRDS("Qualtrics_2019.RDS")
+
+> df <- df %>% filter(TREATMENT == "Trump" | TREATMENT == 
++     "Clinton" | TREATMENT == "Alexa")
+
+> df$TREATMENT_sort <- factor(df$TREATMENT, levels = c("Alexa", 
++     "Trump", "Clinton"))
+
+> df_TESS <- readRDS("NORC.RDS")
+
+> df_TESS$TREATMENT_sort <- factor(df_TESS$TREATMENT, 
++     levels = c("Alexa", "Trump", "Clinton"))
+
+> df_TESS <- df_TESS %>% filter(TREATMENT == "Trump" | 
++     TREATMENT == "Clinton" | TREATMENT == "Alexa")
+
+> df_TESS$TREATMENT_sort <- factor(df_TESS$TREATMENT, 
++     levels = c("Alexa", "Trump", "Clinton"))
+
+> anes <- readRDS("ANES16.RDS")
+
+> anes18 <- readRDS("ANES18.RDS")
+
+> options(scipen = 999)
+
+> df1 <- subset(df, df$anger != "<NA>")
+
+> summary(lm(anger ~ TREATMENT, data = df))
+
+Call:
+lm(formula = anger ~ TREATMENT, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2779 -0.1453 -0.1280  0.1047  0.8720 
+
+Coefficients:
+                 Estimate Std. Error t value        Pr(>|t|)    
+(Intercept)       0.12795    0.01774   7.214 0.0000000000017 ***
+TREATMENTClinton  0.01735    0.02499   0.694           0.488    
+TREATMENTTrump    0.15001    0.02483   6.042 0.0000000027266 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2451 on 581 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.07048,	Adjusted R-squared:  0.06728 
+F-statistic: 22.03 on 2 and 581 DF,  p-value: 0.0000000006009
+
+
+> summarySE(df1, measurevar = "anger", groupvars = c("TREATMENT"), 
++     conf.interval = 0.9)
+  TREATMENT   N     anger        sd         se         ci
+1     Alexa 191 0.1279450 0.2141469 0.01549512 0.02561209
+2   Clinton 194 0.1452964 0.2109447 0.01514495 0.02503138
+3     Trump 199 0.2779523 0.2981952 0.02113850 0.03493318
+
+> TukeyHSD(aov(anger ~ TREATMENT, data = df))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = anger ~ TREATMENT, data = df)
+
+$TREATMENT
+                    diff         lwr        upr     p adj
+Clinton-Alexa 0.01735137 -0.04135732 0.07606006 0.7668197
+Trump-Alexa   0.15000724  0.09166559 0.20834888 0.0000000
+Trump-Clinton 0.13265587  0.07454486 0.19076688 0.0000004
+
+
+> tgc <- summarySE(df1, measurevar = "anger", groupvars = c("TREATMENT"), 
++     conf.interval = 0.9)
+
+> tgc$TREATMENT <- c("Control", "Clinton", "Trump")
+
+> tgc$low = tgc$anger - tgc$ci
+
+> tgc$high = tgc$anger + tgc$ci
+
+> tgc$sort <- c(3, 2, 1)
+
+> tgc <- tgc %>% arrange(sort)
+
+> ggplot(data = tgc, aes(x = reorder(TREATMENT, sort), 
++     y = anger)) + geom_bar(position = "dodge", stat = "identity") + 
++     geom_errorbar(position = "dodge", aes(ymin = low, ymax = high)) + 
++     steph_theme_gray + labs(title = "Mean Levels of Anger", x = "Treatment Condition", 
++     y = "Average level of anger", caption = "Fall 2019 Qualtrics Survey", 
++     subtitle = "By Experimental Condition", fill = "Gender:") + 
++     theme(legend.position = "none")
+Ignoring unknown labels:
+• fill : "Gender:"
+Error in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  : 
+  invalid font type
+Calls: source ... drawDetails -> drawDetails.text -> grid.Call.graphics
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted

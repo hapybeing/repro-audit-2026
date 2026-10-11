@@ -1,0 +1,14 @@
+MIA est sample rows: 15142 
+KIA est sample rows: 15142 
+WMED est sample rows: 15142 
+POW est sample rows: 15142 
+saved through k = 50 1.228168 mins 
+saved through k = 100 2.590527 mins 
+saved through k = 150 3.993336 mins 
+saved through k = 200 5.409958 mins 
+saved through k = 250 6.956751 mins 
+saved through k = 300 8.429152 mins 
+saved through k = 350 9.902234 mins 
+saved through k = 400 11.36206 mins 
+saved through k = 450 12.89761 mins 
+saved through k = 500 14.32784 mins 

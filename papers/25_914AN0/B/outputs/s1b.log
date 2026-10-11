@@ -1,0 +1,1172 @@
+MEM
+start S1b
+2026-10-11 02:31:30
+
+
+               total        used        free      shared  buff/cache   available
+Mem:            7945        4332        2982        3419        4249        3613
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 305800 16.4     707688 37.8   499981 26.8
+Vcells 533298  4.1    8388608 64.0  1973934 15.1
+[1] "**** Starting run1_setup.R ****"
+Loading required package: data.table
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:data.table’:
+
+    between, first, last
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: stringr
+Loading required package: parallel
+Loading required package: lfe
+Loading required package: Matrix
+Loading required package: lme4
+Loading required package: nlme
+
+Attaching package: ‘nlme’
+
+The following object is masked from ‘package:lme4’:
+
+    lmList
+
+The following object is masked from ‘package:dplyr’:
+
+    collapse
+
+Loading required package: Formula
+Loading required package: xtable
+Loading required package: optimx
+
+Attaching package: ‘optimx’
+
+The following object is masked from ‘package:nlme’:
+
+    coef<-
+
+Loading required package: splines
+Loading required package: ggplot2
+Loading required package: robustlmm
+Loading required package: Matching
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+## 
+##  Matching (Version 4.10-14, Build Date: 2023-09-13)
+##  See https://www.jsekhon.com for additional documentation.
+##  Please cite software as:
+##   Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching
+##   Software with Automated Balance Optimization: The Matching package for R.''
+##   Journal of Statistical Software, 42(7): 1-52. 
+##
+
+Loading required package: fixest
+
+Attaching package: ‘fixest’
+
+The following object is masked from ‘package:lfe’:
+
+    fepois
+
+Loading required package: SUNGEO
+Loading required package: tidyselect
+[1] "**** Finished run1_setup.R ****"
+                            UNIT_UA   YRMO            unit_match   bxid   iddp
+                             <char> <char>                <char> <char> <char>
+    1:                   14 сад 5 а 194106                14 сад   9308      6
+    2:                 20 озад 12 а 194106               20 озад   9308      6
+    3:                375 озад 18 а 194106              375 озад   9304      1
+    4:                    1 мд 20 а 194107                  1 мд  19776      2
+    5: 1 отд. д-н бронепоездов 12 а 194107 1 отд дн бронепоездов   9308      6
+   ---                                                                        
+21518:                   99 сд 46 а 194501                 99 сд   9411    201
+21519:                   99 сд 46 а 194502                 99 сд   9411    201
+21520:                   99 сд 46 а 194503                 99 сд   9400    205
+21521:                   99 сд 46 а 194504                 99 сд   9353    219
+21522:                   99 сд 46 а 194505                 99 сд   9344    222
+                                          bat_name   TID STATUS  FRONT   ARMY
+                                            <char> <num> <char> <char> <char>
+    1: Оборонительная операция в Западной Украине.     1 ACTIVE    ЮЗФ    5 а
+    2: Оборонительная операция в Западной Украине.     1 ACTIVE    ЮЗФ   12 а
+    3:   Оборонительная операция в Литве и Латвии.     1 ACTIVE     ЮФ   18 а
+    4:       Оборонительное сражение в Белоруссии.     2 ACTIVE   ЗапФ   20 а
+    5: Оборонительная операция в Западной Украине.     2 ACTIVE    ЮЗФ   12 а
+   ---                                                                       
+21518:        Будапештская наступательная операция    44 ACTIVE 3 УкрФ   46 а
+21519:        Будапештская наступательная операция    45 ACTIVE 3 УкрФ   46 а
+21520:        Балатонская оборонительная операция.    46 ACTIVE 2 УкрФ   46 а
+21521:            Венская наступательная операция.    47 ACTIVE 2 УкрФ   46 а
+21522:         Берлинская наступательная операция.    48 ACTIVE 2 УкрФ   46 а
+                     UNIT_NAME   UNIT_TYPE          UNIT_NAME_ALT
+                        <char>      <char>                 <char>
+    1:                  14 сад    AVIATION                 14 сад
+    2:                 20 озад     ART_AAD                20 озад
+    3:                375 озад     ART_AAD               375 озад
+    4:                    1 мд    ARM_MECH                   1 мд
+    5: 1 отд. д-н бронепоездов    ARM_MECH 1 отд д-н бронепоездов
+   ---                                                           
+21518:                   99 сд INF_RFL_ABN                  99 сд
+21519:                   99 сд INF_RFL_ABN                  99 сд
+21520:                   99 сд INF_RFL_ABN                  99 сд
+21521:                   99 сд INF_RFL_ABN                  99 сд
+21522:                   99 сд INF_RFL_ABN                  99 сд
+       outcome_DEFECT outcome_DESERT outcome_KIA outcome_MIA outcome_OK
+                <num>          <num>       <num>       <num>      <num>
+    1:              0              0   0.0000000 0.000000000          0
+    2:              0              0   0.0000000 1.000000000          0
+    3:              0              0   0.0000000 0.000000000          0
+    4:              0              0   0.0000000 0.000000000          0
+    5:              0              0   1.0000000 0.000000000          0
+   ---                                                                 
+21518:              0              0   0.5954774 0.105527638          0
+21519:              0              0   0.5101010 0.020202020          0
+21520:              0              0   0.4744608 0.007945516          0
+21521:              0              0   0.5000000 0.012755102          0
+21522:              0              0   0.1307506 0.007263923          0
+       outcome_POW outcome_PUNISHED outcome_TREASON outcome_WIA outcome_KWIA
+             <num>            <num>           <num>       <num>        <num>
+    1: 0.000000000      0.000000000               0           0    0.0000000
+    2: 0.000000000      0.000000000               0           0    0.0000000
+    3: 1.000000000      0.000000000               0           0    0.0000000
+    4: 0.000000000      0.000000000               0           0    0.0000000
+    5: 0.000000000      0.000000000               0           0    1.0000000
+   ---                                                                      
+21518: 0.012562814      0.002512563               0           0    0.5954774
+21519: 0.000000000      0.000000000               0           0    0.5101010
+21520: 0.000000000      0.003405221               0           0    0.4744608
+21521: 0.001275510      0.001275510               0           0    0.5000000
+21522: 0.002421308      0.002421308               0           0    0.1307506
+       outcome_DDT outcome_MIAPOWDDT outcome_MIAPOWDDTPUN rank_ENLISTED
+             <num>             <num>                <num>         <num>
+    1:           0       0.000000000           0.00000000     0.0000000
+    2:           0       1.000000000           1.00000000     0.0000000
+    3:           0       1.000000000           1.00000000     1.0000000
+    4:           0       0.000000000           0.00000000     0.0000000
+    5:           0       0.000000000           0.00000000     0.0000000
+   ---                                                                 
+21518:           0       0.118090452           0.12060302     0.6379747
+21519:           0       0.020202020           0.02020202     0.6614583
+21520:           0       0.007945516           0.01135074     0.6210046
+21521:           0       0.014030612           0.01530612     0.6002554
+21522:           0       0.009685230           0.01210654     0.8921569
+         rank_NCO rank_OFFICER rank_POLITICAL rank_CIV medal_batmerit
+            <num>        <num>          <num>    <num>          <num>
+    1: 0.00000000   1.00000000              0        0    0.000000000
+    2: 0.00000000   1.00000000              0        0    0.000000000
+    3: 0.00000000   0.00000000              0        0    0.000000000
+    4: 0.00000000   1.00000000              0        0    0.000000000
+    5: 0.00000000   0.00000000              0        0    0.000000000
+   ---                                                               
+21518: 0.28101266   0.08101266              0        0    0.020100503
+21519: 0.26041667   0.07812500              0        0    0.050505051
+21520: 0.25913242   0.12214612              0        0    0.036322361
+21521: 0.25798212   0.14176245              0        0    0.030612245
+21522: 0.09558824   0.01225490              0        0    0.007263923
+       medal_courage medal_patwar medal_glory medal_redbnr medal_heroussr
+               <num>        <num>       <num>        <num>          <num>
+    1:    0.00000000            0 0.000000000            0              0
+    2:    0.00000000            0 0.000000000            0              0
+    3:    0.00000000            0 0.000000000            0              0
+    4:    0.00000000            0 0.000000000            0              0
+    5:    0.00000000            0 0.000000000            0              0
+   ---                                                                   
+21518:    0.04773869            0 0.030150754            0              0
+21519:    0.08080808            0 0.030303030            0              0
+21520:    0.17253121            0 0.051078320            0              0
+21521:    0.17346939            0 0.047193878            0              0
+21522:    0.03389831            0 0.004842615            0              0
+       medals_new russian_jw C1926_URBAN_POP C1926_TOTAL_POP M_1km_ADM3
+            <num>      <num>           <num>           <num>      <num>
+    1: 0.00000000  1.0000000             NaN             NaN     0.0000
+    2: 0.00000000  1.0000000             NaN             NaN     0.0000
+    3: 0.00000000  1.0000000             NaN             NaN     0.0000
+    4: 0.00000000  0.0000000             NaN             NaN     0.0000
+    5: 0.00000000  1.0000000             NaN             NaN     0.0000
+   ---                                                                 
+21518: 0.09798995  0.7060302       17726.937        43194.64   792.7222
+21519: 0.16161616  0.6666667        5132.289        32159.73   270.6889
+21520: 0.25993190  0.7162316       24130.571        45938.13   816.8730
+21521: 0.25127551  0.7270408       20364.232        45252.16   871.7020
+21522: 0.04600484  0.5690073       27381.053        51659.18  1165.5263
+       M_5km_ADM3 M_10km_ADM3 M_15km_ADM3 M_20km_ADM3 M_25km_ADM3
+            <num>       <num>       <num>       <num>       <num>
+    1:     0.0000      0.0000      0.0000       0.000       0.000
+    2:     0.0000      0.0000      0.0000       0.000       0.000
+    3:     0.0000      0.0000      0.0000       0.000       0.000
+    4:     0.0000      0.0000      0.0000       0.000       0.000
+    5:     0.0000      0.0000      0.0000       0.000       0.000
+   ---                                                           
+21518:  1240.0159   1350.1270   1440.9762    1540.286    1868.159
+21519:   428.2889    551.2667    842.2889    1102.844    1321.444
+21520:  1306.8333   1472.2222   1599.6667    1852.444    2195.921
+21521:  1385.1987   1539.1325   1686.3907    1871.748    2194.464
+21522:  1731.9211   1904.6579   1996.1842    2128.658    2397.868
+       M_1km_ADM2_ADM3 M_5km_ADM2_ADM3 M_10km_ADM2_ADM3 M_15km_ADM2_ADM3
+                 <num>           <num>            <num>            <num>
+    1:          0.0000          0.0000           0.0000           0.0000
+    2:          0.0000          0.0000           0.0000           0.0000
+    3:          0.0000          0.0000           0.0000           0.0000
+    4:          0.0000          0.0000           0.0000           0.0000
+    5:          0.0000          0.0000           0.0000           0.0000
+   ---                                                                  
+21518:        800.2460       1289.6429        1460.5556        1599.0714
+21519:        289.4667        453.8222         589.7556         943.7111
+21520:        824.6032       1380.2540        1597.3651        1792.6190
+21521:        893.2583       1483.8675        1709.6755        1945.6689
+21522:       1173.3947       1835.7895        2061.1842        2219.0263
+       M_20km_ADM2_ADM3 M_25km_ADM2_ADM3 ROAD_JUNCTIONS_WITHIN_1km
+                  <num>            <num>                     <num>
+    1:            0.000            0.000                       NaN
+    2:            0.000            0.000                       NaN
+    3:            0.000            0.000                       NaN
+    4:            0.000            0.000                       NaN
+    5:            0.000            0.000                       NaN
+   ---                                                            
+21518:         1749.349         2147.000                         0
+21519:         1240.444         1531.489                         0
+21520:         2128.659         2523.294                         0
+21521:         2197.219         2620.828                         0
+21522:         2432.526         2748.316                         0
+       ROAD_JUNCTIONS_WITHIN_5km ROAD_JUNCTIONS_KM_TO CROPLAND_WITHIN_1km
+                           <num>                <num>               <num>
+    1:                       NaN                  NaN                 NaN
+    2:                       NaN                  NaN                 NaN
+    3:                       NaN                  NaN                 NaN
+    4:                       NaN                  NaN                 NaN
+    5:                       NaN                  NaN                 NaN
+   ---                                                                   
+21518:                0.03968254             51.57479          0.03174603
+21519:                0.04444444             53.89655          0.06666667
+21520:                0.00000000             42.00255          0.02380952
+21521:                0.03311258             47.61051          0.01324503
+21522:                0.02631579             45.51930          0.00000000
+       CROPLAND_WITHIN_5km CROPLAND_KM_TO KM_TO_RAICENTER      lon      lat
+                     <num>          <num>           <num>    <num>    <num>
+    1:                 NaN            NaN             NaN      NaN      NaN
+    2:                 NaN            NaN             NaN      NaN      NaN
+    3:                 NaN            NaN             NaN      NaN      NaN
+    4:                 NaN            NaN             NaN      NaN      NaN
+    5:                 NaN            NaN             NaN      NaN      NaN
+   ---                                                                     
+21518:           0.3253968      10.941861        23.28612 48.13849 52.18429
+21519:           0.3555556      11.239854        23.91304 50.96884 53.49777
+21520:           0.3015873       8.770582        17.29020 46.67924 52.75982
+21521:           0.3509934      21.179701        17.57027 48.32669 53.48463
+21522:           0.2105263       7.408834        16.06926 50.30778 52.37545
+       M_GRID_ADM2_ADM3 M_GRID_ADM3 URBAN_PCT      dob rank_O outcome_DEFECT_O
+                  <num>       <num>     <num>    <num>  <num>            <num>
+    1:           0.0000      0.0000       NaN 1907.000    NaN                0
+    2:           0.0000      0.0000       NaN 1920.000    NaN                0
+    3:           0.0000      0.0000       NaN 1918.000    NaN              NaN
+    4:           0.0000      0.0000       NaN 1902.000    NaN                0
+    5:           0.0000      0.0000       NaN 1911.000    NaN              NaN
+   ---                                                                        
+21518:        1433.2778   1300.1270  21.47673 1914.710    NaN                0
+21519:         819.1778    717.1333  23.49071 1915.124    NaN                0
+21520:        1594.7381   1445.4762  25.31026 1914.028    NaN                0
+21521:        1766.9735   1524.3311  26.46412 1915.229    NaN                0
+21522:        1919.8158   1769.6053  32.95009 1921.587    NaN                0
+       outcome_DESERT_O outcome_KIA_O outcome_MIA_O outcome_OK_O outcome_POW_O
+                  <num>         <num>         <num>        <num>         <num>
+    1:                0     0.0000000   0.000000000            0             0
+    2:                0     0.0000000   1.000000000            0             0
+    3:              NaN           NaN           NaN          NaN           NaN
+    4:                0     0.0000000   0.000000000            0             0
+    5:              NaN           NaN           NaN          NaN           NaN
+   ---                                                                        
+21518:                0     0.5625000   0.125000000            0             0
+21519:                0     0.5333333   0.200000000            0             0
+21520:                0     0.3551402   0.000000000            0             0
+21521:                0     0.5855856   0.009009009            0             0
+21522:                0     0.4000000   0.200000000            0             0
+       outcome_PUNISHED_O outcome_TREASON_O outcome_WIA_O outcome_KWIA_O
+                    <num>             <num>         <num>          <num>
+    1:                  0                 0             0      0.0000000
+    2:                  0                 0             0      0.0000000
+    3:                NaN               NaN           NaN            NaN
+    4:                  0                 0             0      0.0000000
+    5:                NaN               NaN           NaN            NaN
+   ---                                                                  
+21518:                  0                 0             0      0.5625000
+21519:                  0                 0             0      0.5333333
+21520:                  0                 0             0      0.3551402
+21521:                  0                 0             0      0.5855856
+21522:                  0                 0             0      0.4000000
+       outcome_DDT_O outcome_MIAPOWDDT_O outcome_MIAPOWDDTPUN_O
+               <num>               <num>                  <num>
+    1:             0         0.000000000            0.000000000
+    2:             0         1.000000000            1.000000000
+    3:           NaN                 NaN                    NaN
+    4:             0         0.000000000            0.000000000
+    5:           NaN                 NaN                    NaN
+   ---                                                         
+21518:             0         0.125000000            0.125000000
+21519:             0         0.200000000            0.200000000
+21520:             0         0.000000000            0.000000000
+21521:             0         0.009009009            0.009009009
+21522:             0         0.200000000            0.200000000
+       medal_batmerit_O medal_courage_O medal_patwar_O medal_glory_O
+                  <num>           <num>          <num>         <num>
+    1:       0.00000000      0.00000000              0             0
+    2:       0.00000000      0.00000000              0             0
+    3:              NaN             NaN            NaN           NaN
+    4:       0.00000000      0.00000000              0             0
+    5:              NaN             NaN            NaN           NaN
+   ---                                                              
+21518:       0.00000000      0.03125000              0             0
+21519:       0.13333333      0.00000000              0             0
+21520:       0.01869159      0.04672897              0             0
+21521:       0.00000000      0.06306306              0             0
+21522:       0.00000000      0.00000000              0             0
+       medal_redbnr_O medal_heroussr_O medals_new_O M_1km_ADM3_O M_5km_ADM3_O
+                <num>            <num>        <num>        <num>        <num>
+    1:              0                0   0.00000000      0.00000       0.0000
+    2:              0                0   0.00000000      0.00000       0.0000
+    3:            NaN              NaN          NaN      0.00000       0.0000
+    4:              0                0   0.00000000      0.00000       0.0000
+    5:            NaN              NaN          NaN      0.00000       0.0000
+   ---                                                                       
+21518:              0                0   0.03125000     83.92308     106.6923
+21519:              0                0   0.13333333      0.00000       7.0000
+21520:              0                0   0.06542056    189.90909     209.0000
+21521:              0                0   0.06306306   1526.25000    2612.7812
+21522:              0                0   0.00000000      0.00000       5.5000
+       M_10km_ADM3_O M_15km_ADM3_O M_20km_ADM3_O M_25km_ADM3_O
+               <num>         <num>         <num>         <num>
+    1:        0.0000        0.0000        0.0000         0.000
+    2:        0.0000        0.0000        0.0000         0.000
+    3:        0.0000        0.0000        0.0000         0.000
+    4:        0.0000        0.0000        0.0000         0.000
+    5:        0.0000        0.0000        0.0000         0.000
+   ---                                                        
+21518:      145.3846      350.4615      440.9231       598.000
+21519:       92.5000      197.0000      281.5000       377.000
+21520:      309.1364      464.1818      747.0909      1330.182
+21521:     2739.2500     2876.8438     2987.9375      3152.500
+21522:        6.5000        7.0000       27.5000        56.500
+       M_1km_ADM2_ADM3_O M_5km_ADM2_ADM3_O M_10km_ADM2_ADM3_O
+                   <num>             <num>              <num>
+    1:            0.0000            0.0000             0.0000
+    2:            0.0000            0.0000             0.0000
+    3:            0.0000            0.0000             0.0000
+    4:            0.0000            0.0000             0.0000
+    5:            0.0000            0.0000             0.0000
+   ---                                                       
+21518:          102.3846          136.2308           184.0769
+21519:            0.0000            7.0000           120.5000
+21520:          199.3636          231.2727           358.4545
+21521:         1539.0938         2743.1875          2961.0625
+21522:            0.0000            5.5000             6.5000
+       M_15km_ADM2_ADM3_O M_20km_ADM2_ADM3_O M_25km_ADM2_ADM3_O
+                    <num>              <num>              <num>
+    1:             0.0000             0.0000             0.0000
+    2:             0.0000             0.0000             0.0000
+    3:             0.0000             0.0000             0.0000
+    4:             0.0000             0.0000             0.0000
+    5:             0.0000             0.0000             0.0000
+   ---                                                         
+21518:           398.5385           531.3846           707.3077
+21519:           383.5000           468.0000           563.5000
+21520:           640.3182          1036.8636          1660.4091
+21521:          3175.5625          3337.8125          3572.4062
+21522:             7.0000            27.5000            56.5000
+       M_GRID_ADM2_ADM3_O M_GRID_ADM3_O rank_E outcome_DEFECT_E
+                    <num>         <num>  <num>            <num>
+    1:             0.0000        0.0000    NaN              NaN
+    2:             0.0000        0.0000    NaN              NaN
+    3:             0.0000        0.0000    NaN              NaN
+    4:             0.0000        0.0000    NaN              NaN
+    5:             0.0000        0.0000    NaN              NaN
+   ---                                                         
+21518:           392.1538      338.6923    NaN              NaN
+21519:           226.0000      198.0000    NaN              NaN
+21520:           506.3182      402.7273    NaN              NaN
+21521:          2937.0000     2709.9688    NaN              NaN
+21522:            25.5000       25.5000    NaN              NaN
+       outcome_DESERT_E outcome_KIA_E outcome_MIA_E outcome_OK_E outcome_POW_E
+                  <num>         <num>         <num>        <num>         <num>
+    1:              NaN           NaN           NaN          NaN           NaN
+    2:              NaN           NaN           NaN          NaN           NaN
+    3:              NaN           NaN           NaN          NaN           NaN
+    4:              NaN           NaN           NaN          NaN           NaN
+    5:              NaN           NaN           NaN          NaN           NaN
+   ---                                                                        
+21518:              NaN           NaN           NaN          NaN           NaN
+21519:              NaN           NaN           NaN          NaN           NaN
+21520:              NaN           NaN           NaN          NaN           NaN
+21521:              NaN           NaN           NaN          NaN           NaN
+21522:              NaN           NaN           NaN          NaN           NaN
+       outcome_PUNISHED_E outcome_TREASON_E outcome_WIA_E outcome_KWIA_E
+                    <num>             <num>         <num>          <num>
+    1:                NaN               NaN           NaN            NaN
+    2:                NaN               NaN           NaN            NaN
+    3:                NaN               NaN           NaN            NaN
+    4:                NaN               NaN           NaN            NaN
+    5:                NaN               NaN           NaN            NaN
+   ---                                                                  
+21518:                NaN               NaN           NaN            NaN
+21519:                NaN               NaN           NaN            NaN
+21520:                NaN               NaN           NaN            NaN
+21521:                NaN               NaN           NaN            NaN
+21522:                NaN               NaN           NaN            NaN
+       outcome_DDT_E outcome_MIAPOWDDT_E outcome_MIAPOWDDTPUN_E
+               <num>               <num>                  <num>
+    1:           NaN                 NaN                    NaN
+    2:           NaN                 NaN                    NaN
+    3:           NaN                 NaN                    NaN
+    4:           NaN                 NaN                    NaN
+    5:           NaN                 NaN                    NaN
+   ---                                                         
+21518:           NaN                 NaN                    NaN
+21519:           NaN                 NaN                    NaN
+21520:           NaN                 NaN                    NaN
+21521:           NaN                 NaN                    NaN
+21522:           NaN                 NaN                    NaN
+       medal_batmerit_E medal_courage_E medal_patwar_E medal_glory_E
+                  <num>           <num>          <num>         <num>
+    1:              NaN             NaN            NaN           NaN
+    2:              NaN             NaN            NaN           NaN
+    3:              NaN             NaN            NaN           NaN
+    4:              NaN             NaN            NaN           NaN
+    5:              NaN             NaN            NaN           NaN
+   ---                                                              
+21518:              NaN             NaN            NaN           NaN
+21519:              NaN             NaN            NaN           NaN
+21520:              NaN             NaN            NaN           NaN
+21521:              NaN             NaN            NaN           NaN
+21522:              NaN             NaN            NaN           NaN
+       medal_redbnr_E medal_heroussr_E medals_new_E M_1km_ADM3_E M_5km_ADM3_E
+                <num>            <num>        <num>        <num>        <num>
+    1:            NaN              NaN          NaN            0            0
+    2:            NaN              NaN          NaN            0            0
+    3:            NaN              NaN          NaN            0            0
+    4:            NaN              NaN          NaN            0            0
+    5:            NaN              NaN          NaN            0            0
+   ---                                                                       
+21518:            NaN              NaN          NaN            0            0
+21519:            NaN              NaN          NaN            0            0
+21520:            NaN              NaN          NaN            0            0
+21521:            NaN              NaN          NaN            0            0
+21522:            NaN              NaN          NaN            0            0
+       M_10km_ADM3_E M_15km_ADM3_E M_20km_ADM3_E M_25km_ADM3_E
+               <num>         <num>         <num>         <num>
+    1:             0             0             0             0
+    2:             0             0             0             0
+    3:             0             0             0             0
+    4:             0             0             0             0
+    5:             0             0             0             0
+   ---                                                        
+21518:             0             0             0             0
+21519:             0             0             0             0
+21520:             0             0             0             0
+21521:             0             0             0             0
+21522:             0             0             0             0
+       M_1km_ADM2_ADM3_E M_5km_ADM2_ADM3_E M_10km_ADM2_ADM3_E
+                   <num>             <num>              <num>
+    1:                 0                 0                  0
+    2:                 0                 0                  0
+    3:                 0                 0                  0
+    4:                 0                 0                  0
+    5:                 0                 0                  0
+   ---                                                       
+21518:                 0                 0                  0
+21519:                 0                 0                  0
+21520:                 0                 0                  0
+21521:                 0                 0                  0
+21522:                 0                 0                  0
+       M_15km_ADM2_ADM3_E M_20km_ADM2_ADM3_E M_25km_ADM2_ADM3_E
+                    <num>              <num>              <num>
+    1:                  0                  0                  0
+    2:                  0                  0                  0
+    3:                  0                  0                  0
+    4:                  0                  0                  0
+    5:                  0                  0                  0
+   ---                                                         
+21518:                  0                  0                  0
+21519:                  0                  0                  0
+21520:                  0                  0                  0
+21521:                  0                  0                  0
+21522:                  0                  0                  0
+       M_GRID_ADM2_ADM3_E M_GRID_ADM3_E outcome_DEFECT_SUM outcome_DESERT_SUM
+                    <num>         <num>              <num>              <num>
+    1:                  0             0                  0                  0
+    2:                  0             0                  0                  0
+    3:                  0             0                  0                  0
+    4:                  0             0                  0                  0
+    5:                  0             0                  0                  0
+   ---                                                                       
+21518:                  0             0                  0                  0
+21519:                  0             0                  0                  0
+21520:                  0             0                  0                  0
+21521:                  0             0                  0                  0
+21522:                  0             0                  0                  0
+       outcome_KIA_SUM outcome_MIA_SUM outcome_OK_SUM outcome_POW_SUM
+                 <num>           <num>          <num>           <num>
+    1:               0               0              0               0
+    2:               0               1              0               0
+    3:               0               0              0               1
+    4:               0               0              0               0
+    5:               1               0              0               0
+   ---                                                               
+21518:             237              42              0               5
+21519:             101               4              0               0
+21520:             418               7              0               0
+21521:             392              10              0               1
+21522:              54               3              0               1
+       outcome_PUNISHED_SUM outcome_TREASON_SUM outcome_WIA_SUM
+                      <num>               <num>           <num>
+    1:                    0                   0               0
+    2:                    0                   0               0
+    3:                    0                   0               0
+    4:                    0                   0               0
+    5:                    0                   0               0
+   ---                                                         
+21518:                    1                   0               0
+21519:                    0                   0               0
+21520:                    3                   0               0
+21521:                    1                   0               0
+21522:                    1                   0               0
+       outcome_KWIA_SUM outcome_DDT_SUM outcome_MIAPOWDDT_SUM
+                  <num>           <num>                 <num>
+    1:                0               0                     0
+    2:                0               0                     1
+    3:                0               0                     1
+    4:                0               0                     0
+    5:                1               0                     0
+   ---                                                       
+21518:              237               0                    47
+21519:              101               0                     4
+21520:              418               0                     7
+21521:              392               0                    11
+21522:               54               0                     4
+       outcome_MIAPOWDDTPUN_SUM rank_ENLISTED_SUM rank_NCO_SUM rank_OFFICER_SUM
+                          <num>             <num>        <num>            <num>
+    1:                        0                 0            0                1
+    2:                        1                 0            0                1
+    3:                        1                 1            0                0
+    4:                        0                 0            0                1
+    5:                        0                 0            0                0
+   ---                                                                         
+21518:                       48               252          111               32
+21519:                        4               127           50               15
+21520:                       10               544          227              107
+21521:                       12               470          202              111
+21522:                        5               364           39                5
+       rank_POLITICAL_SUM rank_CIV_SUM medal_batmerit_SUM medal_courage_SUM
+                    <num>        <num>              <num>             <num>
+    1:                  0            0                  0                 0
+    2:                  0            0                  0                 0
+    3:                  0            0                  0                 0
+    4:                  0            0                  0                 0
+    5:                  0            0                  0                 0
+   ---                                                                     
+21518:                  0            0                  8                19
+21519:                  0            0                 10                16
+21520:                  0            0                 32               152
+21521:                  0            0                 24               136
+21522:                  0            0                  3                14
+       medal_patwar_SUM medal_glory_SUM medal_redbnr_SUM medal_heroussr_SUM
+                  <num>           <num>            <num>              <num>
+    1:                0               0                0                  0
+    2:                0               0                0                  0
+    3:                0               0                0                  0
+    4:                0               0                0                  0
+    5:                0               0                0                  0
+   ---                                                                     
+21518:                0              12                0                  0
+21519:                0               6                0                  0
+21520:                0              45                0                  0
+21521:                0              37                0                  0
+21522:                0               2                0                  0
+       medals_new_SUM russian_jw_SUM rank_O_SUM outcome_DEFECT_O_SUM
+                <num>          <num>      <num>                <num>
+    1:              0              1          0                    0
+    2:              0              1          0                    0
+    3:              0              1          0                    0
+    4:              0              0          0                    0
+    5:              0              1          0                    0
+   ---                                                              
+21518:             39            281          0                    0
+21519:             32            132          0                    0
+21520:            229            631          0                    0
+21521:            197            570          0                    0
+21522:             19            235          0                    0
+       outcome_DESERT_O_SUM outcome_KIA_O_SUM outcome_MIA_O_SUM
+                      <num>             <num>             <num>
+    1:                    0                 0                 0
+    2:                    0                 0                 1
+    3:                    0                 0                 0
+    4:                    0                 0                 0
+    5:                    0                 0                 0
+   ---                                                         
+21518:                    0                18                 4
+21519:                    0                 8                 3
+21520:                    0                38                 0
+21521:                    0                65                 1
+21522:                    0                 2                 1
+       outcome_OK_O_SUM outcome_POW_O_SUM outcome_PUNISHED_O_SUM
+                  <num>             <num>                  <num>
+    1:                0                 0                      0
+    2:                0                 0                      0
+    3:                0                 0                      0
+    4:                0                 0                      0
+    5:                0                 0                      0
+   ---                                                          
+21518:                0                 0                      0
+21519:                0                 0                      0
+21520:                0                 0                      0
+21521:                0                 0                      0
+21522:                0                 0                      0
+       outcome_TREASON_O_SUM outcome_WIA_O_SUM outcome_KWIA_O_SUM
+                       <num>             <num>              <num>
+    1:                     0                 0                  0
+    2:                     0                 0                  0
+    3:                     0                 0                  0
+    4:                     0                 0                  0
+    5:                     0                 0                  0
+   ---                                                           
+21518:                     0                 0                 18
+21519:                     0                 0                  8
+21520:                     0                 0                 38
+21521:                     0                 0                 65
+21522:                     0                 0                  2
+       outcome_DDT_O_SUM outcome_MIAPOWDDT_O_SUM outcome_MIAPOWDDTPUN_O_SUM
+                   <num>                   <num>                      <num>
+    1:                 0                       0                          0
+    2:                 0                       1                          1
+    3:                 0                       0                          0
+    4:                 0                       0                          0
+    5:                 0                       0                          0
+   ---                                                                     
+21518:                 0                       4                          4
+21519:                 0                       3                          3
+21520:                 0                       0                          0
+21521:                 0                       1                          1
+21522:                 0                       1                          1
+       medal_batmerit_O_SUM medal_courage_O_SUM medal_patwar_O_SUM
+                      <num>               <num>              <num>
+    1:                    0                   0                  0
+    2:                    0                   0                  0
+    3:                    0                   0                  0
+    4:                    0                   0                  0
+    5:                    0                   0                  0
+   ---                                                            
+21518:                    0                   1                  0
+21519:                    2                   0                  0
+21520:                    2                   5                  0
+21521:                    0                   7                  0
+21522:                    0                   0                  0
+       medal_glory_O_SUM medal_redbnr_O_SUM medal_heroussr_O_SUM
+                   <num>              <num>                <num>
+    1:                 0                  0                    0
+    2:                 0                  0                    0
+    3:                 0                  0                    0
+    4:                 0                  0                    0
+    5:                 0                  0                    0
+   ---                                                          
+21518:                 0                  0                    0
+21519:                 0                  0                    0
+21520:                 0                  0                    0
+21521:                 0                  0                    0
+21522:                 0                  0                    0
+       medals_new_O_SUM rank_E_SUM outcome_DEFECT_E_SUM outcome_DESERT_E_SUM
+                  <num>      <num>                <num>                <num>
+    1:                0          0                    0                    0
+    2:                0          0                    0                    0
+    3:                0          0                    0                    0
+    4:                0          0                    0                    0
+    5:                0          0                    0                    0
+   ---                                                                      
+21518:                1          0                    0                    0
+21519:                2          0                    0                    0
+21520:                7          0                    0                    0
+21521:                7          0                    0                    0
+21522:                0          0                    0                    0
+       outcome_KIA_E_SUM outcome_MIA_E_SUM outcome_OK_E_SUM outcome_POW_E_SUM
+                   <num>             <num>            <num>             <num>
+    1:                 0                 0                0                 0
+    2:                 0                 0                0                 0
+    3:                 0                 0                0                 0
+    4:                 0                 0                0                 0
+    5:                 0                 0                0                 0
+   ---                                                                       
+21518:                 0                 0                0                 0
+21519:                 0                 0                0                 0
+21520:                 0                 0                0                 0
+21521:                 0                 0                0                 0
+21522:                 0                 0                0                 0
+       outcome_PUNISHED_E_SUM outcome_TREASON_E_SUM outcome_WIA_E_SUM
+                        <num>                 <num>             <num>
+    1:                      0                     0                 0
+    2:                      0                     0                 0
+    3:                      0                     0                 0
+    4:                      0                     0                 0
+    5:                      0                     0                 0
+   ---                                                               
+21518:                      0                     0                 0
+21519:                      0                     0                 0
+21520:                      0                     0                 0
+21521:                      0                     0                 0
+21522:                      0                     0                 0
+       outcome_KWIA_E_SUM outcome_DDT_E_SUM outcome_MIAPOWDDT_E_SUM
+                    <num>             <num>                   <num>
+    1:                  0                 0                       0
+    2:                  0                 0                       0
+    3:                  0                 0                       0
+    4:                  0                 0                       0
+    5:                  0                 0                       0
+   ---                                                             
+21518:                  0                 0                       0
+21519:                  0                 0                       0
+21520:                  0                 0                       0
+21521:                  0                 0                       0
+21522:                  0                 0                       0
+       outcome_MIAPOWDDTPUN_E_SUM medal_batmerit_E_SUM medal_courage_E_SUM
+                            <num>                <num>               <num>
+    1:                          0                    0                   0
+    2:                          0                    0                   0
+    3:                          0                    0                   0
+    4:                          0                    0                   0
+    5:                          0                    0                   0
+   ---                                                                    
+21518:                          0                    0                   0
+21519:                          0                    0                   0
+21520:                          0                    0                   0
+21521:                          0                    0                   0
+21522:                          0                    0                   0
+       medal_patwar_E_SUM medal_glory_E_SUM medal_redbnr_E_SUM
+                    <num>             <num>              <num>
+    1:                  0                 0                  0
+    2:                  0                 0                  0
+    3:                  0                 0                  0
+    4:                  0                 0                  0
+    5:                  0                 0                  0
+   ---                                                        
+21518:                  0                 0                  0
+21519:                  0                 0                  0
+21520:                  0                 0                  0
+21521:                  0                 0                  0
+21522:                  0                 0                  0
+       medal_heroussr_E_SUM medals_new_E_SUM N_SOLDIERS geom_id_N GRID_ID_N
+                      <num>            <num>      <num>     <int>     <int>
+    1:                    0                0          1         1         1
+    2:                    0                0          1         1         1
+    3:                    0                0          1         1         1
+    4:                    0                0          1         1         1
+    5:                    0                0          1         1         1
+   ---                                                                     
+21518:                    0                0        398       164        84
+21519:                    0                0        198        79        37
+21520:                    0                0        881       206        81
+21521:                    0                0        784       207       102
+21522:                    0                0        413        63        32
+       OID_1937_N nearest_OID_1937_N geom_id_TOP1 GRID_ID_TOP1
+            <int>              <int>       <char>       <char>
+    1:          1                  1         <NA>         <NA>
+    2:          1                  1         <NA>         <NA>
+    3:          1                  1         <NA>         <NA>
+    4:          1                  1         <NA>         <NA>
+    5:          1                  1         <NA>         <NA>
+   ---                                                        
+21518:         39                 40       111356        10022
+21519:         26                 27        23202        10255
+21520:         33                 39        15996        11657
+21521:         41                 46       111356        10022
+21522:         23                 24         1220         9755
+                  OID_1937_TOP1      nearest_OID_1937_TOP1 geom_id_TOP1_PCT
+                         <char>                     <char>            <num>
+    1:                     <NA>                       <NA>               NA
+    2:                     <NA>                       <NA>               NA
+    3:                     <NA>                       <NA>               NA
+    4:                     <NA>                       <NA>               NA
+    5:                     <NA>                       <NA>               NA
+   ---                                                                     
+21518:   ROSTOVSKAYA OBLAST'-60 STALINGRADSKAYA OBLAST'-66             5.56
+21519: VORONEZHSKAYA OBLAST'-61 STALINGRADSKAYA OBLAST'-66             6.67
+21520:   MOSKOVSKAYA OBLAST'-50        UDMURTSKAYA ASSR-72             6.35
+21521: VORONEZHSKAYA OBLAST'-61 STALINGRADSKAYA OBLAST'-66             3.31
+21522:   IVANOVSKAYA OBLAST'-31   YAROSLAVSKAYA OBLAST'-75             7.89
+       GRID_ID_TOP1_PCT OID_1937_TOP1_PCT nearest_OID_1937_TOP1_PCT
+                  <num>             <num>                     <num>
+    1:               NA                NA                        NA
+    2:               NA                NA                        NA
+    3:               NA                NA                        NA
+    4:               NA                NA                        NA
+    5:               NA                NA                        NA
+   ---                                                             
+21518:             5.56             11.11                     10.32
+21519:             6.67             15.56                      8.89
+21520:             6.35              8.73                      7.14
+21521:             3.31             10.60                     10.60
+21522:             7.89             15.79                     13.16
+                           geom_id_TOP5                 GRID_ID_TOP5
+                                 <char>                       <char>
+    1:                             <NA>                         <NA>
+    2:                             <NA>                         <NA>
+    3:                             <NA>                         <NA>
+    4:                             <NA>                         <NA>
+    5:                             <NA>                         <NA>
+   ---                                                              
+21518:    111356|6868|27996|16411|76915  10022|6115|11851|9523|13296
+21519: 23202|11148|175877|114332|109196 10255|7982|11213|11109|10144
+21520:       15996|18205|8924|7496|1220  11657|7305|13304|13296|9755
+21521:      111356|11084|8924|6868|1220  10022|13296|12990|9755|6115
+21522:        1220|71|141122|72658|8924    9755|4849|13296|6140|4857
+                                                                                                                   OID_1937_TOP5
+                                                                                                                          <char>
+    1:                                                                                                                      <NA>
+    2:                                                                                                                      <NA>
+    3:                                                                                                                      <NA>
+    4:                                                                                                                      <NA>
+    5:                                                                                                                      <NA>
+   ---                                                                                                                          
+21518: ROSTOVSKAYA OBLAST'-60|KRASNODARSKIY KRAY-39|ORENBURGSKAYA OBLAST'-58|VORONEZHSKAYA OBLAST'-61|ORDZHONIKIDZEVSKIY KRAY-57
+21519:      VORONEZHSKAYA OBLAST'-61|SVERDLOVSKAYA OBLAST'-68|TAMBOVSKAYA OBLAST'-69|MORDOVSKAYA ASSR-49|VOLOGODSKAYA OBLAST'-73
+21520:          MOSKOVSKAYA OBLAST'-50|TATARSKAYA ASSR-70|SVERDLOVSKAYA OBLAST'-68|SARATOVSKAYA OBLAST'-63|KRASNODARSKIY KRAY-39
+21521: VORONEZHSKAYA OBLAST'-61|ORENBURGSKAYA OBLAST'-58|ROSTOVSKAYA OBLAST'-60|KRASNODARSKIY KRAY-39|STALINGRADSKAYA OBLAST'-66
+21522:       IVANOVSKAYA OBLAST'-31|ORENBURGSKAYA OBLAST'-58|KURSKAYA OBLAST'-44|VORONEZHSKAYA OBLAST'-61|RYAZANSKAYA OBLAST'-62
+                                                                                                         nearest_OID_1937_TOP5
+                                                                                                                        <char>
+    1:                                                                                                                    <NA>
+    2:                                                                                                                    <NA>
+    3:                                                                                                                    <NA>
+    4:                                                                                                                    <NA>
+    5:                                                                                                                    <NA>
+   ---                                                                                                                        
+21518:       STALINGRADSKAYA OBLAST'-66|BASHKIRSKAYA ASSR-9|KRASNODARSKIY KRAY-34|MOSKOVSKAYA OBLAST'-50|ORLOVSKAYA OBLAST'-59
+21519:   STALINGRADSKAYA OBLAST'-66|BASHKIRSKAYA ASSR-9|SARATOVSKAYA OBLAST'-63|ROSTOVSKAYA OBLAST'-60|GOR'KOVSKAYA OBLAST'-28
+21520:                  UDMURTSKAYA ASSR-72|STALINGRADSKAYA OBLAST'-66|MOSCOW-77|KURSKAYA OBLAST'-44|ASSR NEMTSEV POVOLZH'YA-8
+21521: STALINGRADSKAYA OBLAST'-66|IVANOVSKAYA OBLAST'-31|KRASNODARSKIY KRAY-34|MOSKOVSKAYA OBLAST'-50|YAROSLAVSKAYA OBLAST'-75
+21522:       YAROSLAVSKAYA OBLAST'-75|BASHKIRSKAYA ASSR-9|ORLOVSKAYA OBLAST'-59|MOSKOVSKAYA OBLAST'-50|SARATOVSKAYA OBLAST'-63
+       soldiers_dist       UNIT_CLEAN_LONG NKVD_ALL NKVD_OO purged_all
+               <num>                <char>    <int>   <int>      <int>
+    1:            NA                  <NA>        0       0         NA
+    2:            NA                  <NA>        0       0         NA
+    3:            NA                  <NA>        0       0         NA
+    4:            NA                  <NA>        0       0          2
+    5:            NA                  <NA>        0       0         NA
+   ---                                                                
+21518:     1047.9911 99 стрелковая дивизия       20      20          5
+21519:      927.4923 99 стрелковая дивизия       20      20          5
+21520:      983.2689 99 стрелковая дивизия       20      20          5
+21521:     1003.0588 99 стрелковая дивизия       20      20          5
+21522:     1162.3712 99 стрелковая дивизия       16      16          5
+       purged_nonru_pct purged_all_na purged_nonru_pct_na   DIV_ARMY
+                  <num>         <int>               <num>     <char>
+    1:               NA             0             0.00000       <NA>
+    2:               NA             0             0.00000       <NA>
+    3:               NA             0             0.00000       <NA>
+    4:               NA             2                  NA       <NA>
+    5:               NA            NA                  NA       <NA>
+   ---                                                              
+21518:         66.66667             5            66.66667 99 сд 46 а
+21519:         66.66667             5            66.66667 99 сд 46 а
+21520:         66.66667             5            66.66667 99 сд 46 а
+21521:         66.66667             5            66.66667 99 сд 46 а
+21522:         66.66667             5            66.66667 99 сд 46 а
+       outcome_OK2 outcome_FF   KIA_100 WIA_100     MIA_100     POW_100 DES_100
+             <num>      <num>     <num>   <num>       <num>       <num>   <num>
+    1:   1.0000000  0.0000000   0.00000       0   0.0000000   0.0000000       0
+    2:   0.0000000 -1.0000000   0.00000       0 100.0000000   0.0000000       0
+    3:   0.0000000 -1.0000000   0.00000       0   0.0000000 100.0000000       0
+    4:   1.0000000  0.0000000   0.00000       0   0.0000000   0.0000000       0
+    5:   0.0000000  1.0000000 100.00000       0   0.0000000   0.0000000       0
+   ---                                                                         
+21518:   0.2839196  0.4748744  59.54774       0  10.5527638   1.2562814       0
+21519:   0.4696970  0.4898990  51.01010       0   2.0202020   0.0000000       0
+21520:   0.5141884  0.4631101  47.44608       0   0.7945516   0.0000000       0
+21521:   0.4846939  0.4846939  50.00000       0   1.2755102   0.1275510       0
+21522:   0.8571429  0.1186441  13.07506       0   0.7263923   0.2421308       0
+         PUN_100  WMED_100   RUS_100 NKVD_OO_ POP_DENSITY AGE_1941  YRMO_date
+           <num>     <num>     <num>   <lgcl>       <num>    <num>     <Date>
+    1: 0.0000000  0.000000 100.00000    FALSE         NaN 34.00000 1941-06-01
+    2: 0.0000000  0.000000 100.00000    FALSE         NaN 21.00000 1941-06-01
+    3: 0.0000000  0.000000 100.00000    FALSE         NaN 23.00000 1941-06-01
+    4: 0.0000000  0.000000   0.00000    FALSE         NaN 39.00000 1941-07-01
+    5: 0.0000000  0.000000 100.00000    FALSE         NaN 30.00000 1941-07-01
+   ---                                                                       
+21518: 0.2512563  9.798995  70.60302     TRUE    69.11143 26.28954 1945-01-01
+21519: 0.0000000 16.161616  66.66667     TRUE    51.45557 25.87626 1945-02-01
+21520: 0.3405221 25.993190  71.62316     TRUE    73.50102 26.97203 1945-03-01
+21521: 0.1275510 25.127551  72.70408     TRUE    72.40345 25.77097 1945-04-01
+21522: 0.2421308  4.600484  56.90073    FALSE    82.65469 19.41341 1945-05-01
+       ECH_BAT ECH_BDE ECH_RGT ECH_DIV ECH_CPS
+         <num>   <num>   <num>   <num>   <num>
+    1:       0       0       0       1       0
+    2:       0       0       0       1       0
+    3:       0       0       0       1       0
+    4:       0       0       0       1       0
+    5:       0       0       0       1       0
+   ---                                        
+21518:       0       0       0       1       0
+21519:       0       0       0       1       0
+21520:       0       0       0       1       0
+21521:       0       0       0       1       0
+21522:       0       0       0       1       0
+truelength(X_s) = 1273 
+#### run2_main.R lines 62-73
+   user  system elapsed 
+  0.000   0.000   0.001 
+   user  system elapsed 
+  0.000   0.000   0.001 
+   user  system elapsed 
+ 30.487   0.072  26.884 
+   user  system elapsed 
+      0       0       0 
+    outcome_name     model_name            b            l           u
+          <char>         <char>        <num>        <num>       <num>
+ 1:      KIA_100  FE unweighted  0.331886326 -0.221684593  0.88545725
+ 2:      KIA_100 FE pop weights  0.628524724  0.144069153  1.11298029
+ 3:      WIA_100  FE unweighted  0.051788373  0.009651317  0.09392543
+ 4:      WIA_100 FE pop weights  0.037646836 -0.002806776  0.07810045
+ 5:      MIA_100  FE unweighted -0.933686358 -1.287688467 -0.57968425
+ 6:      MIA_100 FE pop weights -1.431898191 -1.774542601 -1.08925378
+ 7:      POW_100  FE unweighted -0.281979600 -0.413642139 -0.15031706
+ 8:      POW_100 FE pop weights -0.175736878 -0.284763087 -0.06671067
+ 9:      DES_100  FE unweighted -0.088274762 -0.131361191 -0.04518833
+10:      DES_100 FE pop weights -0.057944120 -0.083944145 -0.03194409
+11:      PUN_100  FE unweighted -0.004813816 -0.079016374  0.06938874
+12:      PUN_100 FE pop weights  0.021390949 -0.012321129  0.05510303
+13:     WMED_100  FE unweighted  0.264048137 -0.051464497  0.57956077
+14:     WMED_100 FE pop weights -0.286805020 -0.550064022 -0.02354602
+             l90         u90 b_Intercept l_Intercept u_Intercept   b_AGE_1941
+           <num>       <num>       <num>       <num>       <num>        <num>
+ 1: -0.142603033  0.80637569          NA          NA          NA  2.380739657
+ 2:  0.213277092  1.04377236          NA          NA          NA  2.150700479
+ 3:  0.015670896  0.08790585          NA          NA          NA -0.045599120
+ 4:  0.002972311  0.07232136          NA          NA          NA -0.052173897
+ 5: -1.237116737 -0.63025598          NA          NA          NA  0.058571458
+ 6: -1.725593399 -1.13820298          NA          NA          NA  0.176572282
+ 7: -0.394833205 -0.16912599          NA          NA          NA -0.345452536
+ 8: -0.269187915 -0.08228584          NA          NA          NA -0.430157288
+ 9: -0.125205987 -0.05134354          NA          NA          NA  0.050227617
+10: -0.080229856 -0.03565838          NA          NA          NA  0.008870353
+11: -0.068416009  0.05878838          NA          NA          NA -0.073352076
+12: -0.007505118  0.05028702          NA          NA          NA -0.055574254
+13: -0.006391264  0.53448754          NA          NA          NA -1.546163110
+14: -0.512455593 -0.06115445          NA          NA          NA -1.099323071
+      l_AGE_1941    u_AGE_1941 b_soldiers_dist l_soldiers_dist u_soldiers_dist
+           <num>         <num>           <num>           <num>           <num>
+ 1:  1.827412304  2.9340670099     2.351430207     1.944011848      2.75884857
+ 2:  1.550071618  2.7513293393     1.972353973     1.470929728      2.47377822
+ 3: -0.087717637 -0.0034806039     0.037827804     0.006815680      0.06883993
+ 4: -0.102328357 -0.0020194380     0.047689688     0.005819136      0.08956024
+ 5: -0.295274892  0.4124178091     0.124508408    -0.136030853      0.38504767
+ 6: -0.248238855  0.6013834184    -1.091968988    -1.446614955     -0.73732302
+ 7: -0.477057145 -0.2138479263    -0.325081026    -0.421982316     -0.22817974
+ 8: -0.565328173 -0.2949864032    -0.277822951    -0.390667943     -0.16497796
+ 9:  0.007160146  0.0932950880    -0.018132233    -0.049843079      0.01357861
+10: -0.023364524  0.0411052296    -0.007235074    -0.034145783      0.01967564
+11: -0.147521986  0.0008178338     0.088333994     0.033722230      0.14294576
+12: -0.097370548 -0.0137779599     0.068738371     0.033845484      0.10363126
+13: -1.861536921 -1.2307892981    -0.334070991    -0.566282683     -0.10185930
+14: -1.425712040 -0.7729341024     0.371686062     0.099206079      0.64416605
+      b_RUS_100     l_RUS_100    u_RUS_100  b_URBAN_PCT l_URBAN_PCT
+          <num>         <num>        <num>        <num>       <num>
+ 1: -0.52393332 -1.0389715708 -0.008895078  0.341861717 -0.08243359
+ 2: -0.26584965 -0.9664700681  0.434770778  2.008851994  1.27011352
+ 3: -0.01962292 -0.0588269271  0.019581077  0.006733113 -0.02556366
+ 4: -0.10070671 -0.1592107852 -0.042202626  0.035126384 -0.02656068
+ 5: -0.83885961 -1.1682205294 -0.509498697 -0.355672123 -0.62700399
+ 6: -2.92819669 -3.4237295801 -2.432663790 -1.156671598 -1.67916452
+ 7:  0.13920083  0.0167029882  0.261698674 -0.090937919 -0.19185326
+ 8:  0.15749507 -0.0001788073  0.315168952 -0.375968377 -0.54222068
+ 9: -0.01129760 -0.0513848960  0.028789686  0.001747262 -0.03127718
+10: -0.02991800 -0.0675192767  0.007683280  0.004925600 -0.03472142
+11: -0.03987143 -0.1089089379  0.029166073 -0.057345217 -0.11421923
+12: -0.05021712 -0.0989715805 -0.001462656 -0.060891889 -0.11229889
+13:  1.18785537  0.8943047707  1.481405965 -0.116207036 -0.35803789
+14:  4.00469458  3.6239689926  4.385420173  0.318011243 -0.08342816
+      u_URBAN_PCT b_POP_DENSITY l_POP_DENSITY u_POP_DENSITY b_M_10km_ADM3
+            <num>         <num>         <num>         <num>         <num>
+ 1:  0.7661570243 -1.0295561900  -1.630974241   -0.42813814    1.16668989
+ 2:  2.7475904685 -4.9329093861  -6.342171576   -3.52364720    4.12256301
+ 3:  0.0390298875  0.0129683698  -0.032810744    0.05874748   -0.01926417
+ 4:  0.0968134441  0.0081476021  -0.109530365    0.12582557   -0.02699417
+ 5: -0.0843402516  0.2563489934  -0.128250794    0.64094878   -0.35415762
+ 6: -0.6341786716 -1.3900888739  -2.386827978   -0.39334977    0.25622222
+ 7:  0.0099774217  0.2426183164   0.099575708    0.38566092   -0.14671955
+ 8: -0.2097160707  1.1361325157   0.818979562    1.45328547   -0.55458283
+ 9:  0.0347717022 -0.0060084928  -0.052819037    0.04080205    0.05823956
+10:  0.0445726191  0.0246825583  -0.050950492    0.10031561   -0.02186017
+11: -0.0004712086  0.5653714890   0.484755336    0.64598764   -0.41111513
+12: -0.0094848850  0.1690052299   0.070938120    0.26707234   -0.06921082
+13:  0.1256238213  0.0001424014  -0.342641128    0.34292593   -0.25582449
+14:  0.7194506425  0.7617721819  -0.004037893    1.52758226   -1.08167211
+    l_M_10km_ADM3 u_M_10km_ADM3  reml   msg       aic       bic icc_DIV_ARMY
+            <num>         <num> <num> <num>     <num>     <num>       <char>
+ 1:    0.53516885   1.798210943    NA    NA 131447.20 140277.21         <NA>
+ 2:    2.68752533   5.557600698    NA    NA 132780.97 141610.98         <NA>
+ 3:   -0.06733468   0.028806345    NA    NA  53451.90  62281.91         <NA>
+ 4:   -0.14682448   0.092836131    NA    NA  56933.23  65763.24         <NA>
+ 5:   -0.75800792   0.049692684    NA    NA 117907.62 126737.63         <NA>
+ 6:   -0.75874731   1.271191742    NA    NA 120728.59 129558.61         <NA>
+ 7:   -0.29692192   0.003482826    NA    NA  87954.90  96784.92         <NA>
+ 8:   -0.87753653  -0.231629129    NA    NA  90013.36  98843.37         <NA>
+ 9:    0.00908599   0.107393128    NA    NA  54126.64  62956.66         <NA>
+10:   -0.09887656   0.055156212    NA    NA  48214.25  57044.27         <NA>
+11:   -0.49576639  -0.326463866    NA    NA  70588.74  79418.75         <NA>
+12:   -0.16907158   0.030649946    NA    NA  62767.92  71597.94         <NA>
+13:   -0.61576548   0.104116514    NA    NA 114421.80 123251.82         <NA>
+14:   -1.86148890  -0.301855321    NA    NA 114900.23 123730.24         <NA>
+    icc_bxid icc_TID icc_Residual N_bxid N_DIV_ARMY N_TID
+      <char>  <char>       <char>  <int>      <int> <int>
+ 1:     <NA>    <NA>         <NA>    129        982    47
+ 2:     <NA>    <NA>         <NA>    129        982    47
+ 3:     <NA>    <NA>         <NA>    129        982    47
+ 4:     <NA>    <NA>         <NA>    129        982    47
+ 5:     <NA>    <NA>         <NA>    129        982    47
+ 6:     <NA>    <NA>         <NA>    129        982    47
+ 7:     <NA>    <NA>         <NA>    129        982    47
+ 8:     <NA>    <NA>         <NA>    129        982    47
+ 9:     <NA>    <NA>         <NA>    129        982    47
+10:     <NA>    <NA>         <NA>    129        982    47
+11:     <NA>    <NA>         <NA>    129        982    47
+12:     <NA>    <NA>         <NA>    129        982    47
+13:     <NA>    <NA>         <NA>    129        982    47
+14:     <NA>    <NA>         <NA>    129        982    47
+                              hausman_p     n
+                                  <num> <int>
+ 1: 0.000001186637534634069162363129851 15142
+ 2: 0.000000000006365820735464603813945 15142
+ 3: 0.000000000154499162172947417388929 15142
+ 4: 0.001885063155929158880755314164901 15142
+ 5: 0.000000000000000000000000161516295 15142
+ 6: 0.000004051773344171456175488808121 15142
+ 7: 0.000000000000000000000000004825906 15142
+ 8: 0.000000000000000919432479584722104 15142
+ 9: 0.038435225797189852270374643694595 15142
+10: 0.000025868124943384503074171945625 15142
+11: 0.001360067575838656882616928278651 15142
+12: 0.000000000000636791296848015148214 15142
+13: 0.000001025466916454088665179990129 15142
+14: 0.000000000389560844833249060951935 15142
+   user  system elapsed 
+      0       0       0 
+Empty data.table (0 rows and 41 cols): outcome_name,model_name,b,l,u,l90...
+ensemble time: 27.91969 secs 
+mermods saved, rows: 28 
+MEM
+after models
+2026-10-11 02:32:04
+
+
+               total        used        free      shared  buff/cache   available
+Mem:            7945        4979        2335        3419        4249        2966
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  5009476 267.6    9124921 487.4  7105050 379.5
+Vcells 13607126 103.9   29289624 223.5 29288782 223.5
+#### run2_main.R lines 76-90
+   user  system elapsed 
+  0.011   0.000   0.012 
+   user  system elapsed 
+  0.013   0.000   0.014 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.007   0.004   0.012 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.030   0.000   0.032 
+null device 
+          1 
+#### run2_main.R lines 110-157
+   user  system elapsed 
+  0.034   0.000   0.034 
+   user  system elapsed 
+  0.002   0.000   0.002 
+
+Call:
+   lfe::felm(formula = log(NKVD_OO + 1) ~ TID + UNIT_TYPE + RUS_100 +      soldiers_dist + AGE_1941 + URBAN_PCT + POP_DENSITY + log(M_10km_ADM3 +      1) | ARMY, data = X_s, weights = X_s$N_SOLDIERS) 
+
+Weighted Residuals:
+     Min       1Q   Median       3Q      Max 
+-125.434   -5.726    0.720    7.823  128.638 
+
+Coefficients:
+                        Estimate  Std. Error t value             Pr(>|t|)    
+TID                   0.05975778  0.00086074  69.426 < 0.0000000000000002 ***
+UNIT_TYPEART_AAD     -0.32902527  0.18488822  -1.780             0.075159 .  
+UNIT_TYPEAVIATION     0.20562492  0.44310160   0.464             0.642611    
+UNIT_TYPEINF_RFL_ABN  0.44481536  0.13436805   3.310             0.000933 ***
+RUS_100              -0.00468202  0.00110075  -4.253          0.000021144 ***
+soldiers_dist         0.00012159  0.00002995   4.060          0.000049191 ***
+AGE_1941              0.07421199  0.00416919  17.800 < 0.0000000000000002 ***
+URBAN_PCT            -0.00295100  0.00146592  -2.013             0.044121 *  
+POP_DENSITY          -0.00063267  0.00041459  -1.526             0.127025    
+log(M_10km_ADM3 + 1)  0.07920953  0.01611458   4.915          0.000000893 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 18.04 on 19407 degrees of freedom
+  (1960 observations deleted due to missingness)
+Multiple R-squared(full model): 0.4513   Adjusted R-squared: 0.447 
+Multiple R-squared(proj model): 0.2736   Adjusted R-squared: 0.2679 
+F-statistic(full model):103.7 on 154 and 19407 DF, p-value: < 0.00000000000000022 
+F-statistic(proj model): 731.1 on 10 and 19407 DF, p-value: < 0.00000000000000022 
+
+
+   user  system elapsed 
+  0.004   0.000   0.004 
+   user  system elapsed 
+  0.000   0.000   0.001 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.015   0.000   0.016 
+   user  system elapsed 
+  0.000   0.004   0.007 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.000   0.000   0.001 
+   user  system elapsed 
+  0.012   0.000   0.012 
+   user  system elapsed 
+  0.047   0.000   0.048 
+   user  system elapsed 
+  0.004   0.000   0.008 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.001   0.000   0.000 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+      0       0       0 
+   user  system elapsed 
+  0.012   0.000   0.013 
+   user  system elapsed 
+  0.052   0.000   0.052 
+   user  system elapsed 
+  0.003   0.000   0.006 
+S1b done

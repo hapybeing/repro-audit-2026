@@ -1,0 +1,2 @@
+first 10 replicates x 4 outcomes: 4.3 s of fit time (0.43 s per replicate); projected K=500 total 3.6 min <= 60 min, so K=500 with all four outcomes (PREREG R_a wall-time rule).
+CORRECTED (run 2, after fixing my script): first 10 replicates x 4 outcomes = 40 fits, 40 ok, 19.6 s fit time (1.96 s per replicate); projected K=500 total 16.4 min. Rule: <= 60 min -> K=500 with all four outcomes. (The run-1 projection of 3.6 min was invalid: 3 of 4 refits per replicate errored instantly because of my script error.)

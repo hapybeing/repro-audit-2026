@@ -1,0 +1,29 @@
+{
+  "lavaan_version": "0.7.3",
+  "study1_TREATMENT_class": "character",
+  "study2_TREATMENT_class": "factor",
+  "study2_TRUMP_class": "factor",
+  "study2_TRUMP_levels": ["0", "1"],
+  "study2_max_abs_diff_est_factor_vs_numeric": 0,
+  "study2_indirTRUMPanger_factor": 0.0801780387557153,
+  "study2_indirTRUMPanger_numeric": 0.0801780387557153,
+  "study2_nobs_factor": 1030,
+  "study2_nobs_numeric": 1030,
+  "study2_a2_lavaan": 0.362865534414506,
+  "study2_a2_ols_same_rows": 0.362865534414508,
+  "ces_rows": 1000,
+  "ces_complier_table": {
+    "0": 302,
+    "1": 698
+  },
+  "compliers_rows": 698,
+  "compliers_NA_outcome": 0,
+  "compliers_NA_treatment": 0,
+  "compliers_by_treatment": {
+    "Relaxed": 224,
+    "Treatment of Minorities": 136,
+    "Treatment of Women": 153,
+    "Trump": 185
+  },
+  "nobs_mod2": 698
+}

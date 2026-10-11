@@ -1,0 +1,5 @@
+"script","index","column_name","used_in_table2_formulas","radical_position_script9","ncol_script9","radical_in_table2_formulas"
+"6_analysis1.R line 35",117,"nat_opp",TRUE,119,119,FALSE
+"6_analysis1.R line 35",118,"radical",FALSE,119,119,FALSE
+"9_analysis4.R line 43",117,"nat_opp",TRUE,119,119,FALSE
+"9_analysis4.R line 43",118,"EU_sal",TRUE,119,119,FALSE

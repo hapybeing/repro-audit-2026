@@ -1,0 +1,86 @@
+--- run_table2_ranges_verbatim.R	2026-10-11 00:15:59.182382162 +0000
++++ run_table2_F1F2.R	2026-10-11 00:15:59.186959989 +0000
+@@ -1,3 +1,5 @@
++## ENV: run with working directory = RUNDIR (set by the caller). Lines below are the authors' unless marked ## ENV.
++cat('START', format(Sys.time()), '\n')
+ ####################ISSUE SALIENCE EFFECTS ############
+ library(lme4)
+ library(texreg)
+@@ -10,6 +12,7 @@
+ library(skimr)
+ library(tidyverse)
+ load("Data/EP_debates_07062023.Rdata")
++EP_debates$text <- NA_character_; EP_debates$ori_text <- NA_character_ ## ENV F1 (pre-registered memory fallback)
+ 
+ ##### LOAD DATA FROM RAUH AND DE WILDE
+ 
+@@ -62,42 +65,60 @@
+ 
+ ##### AUSTERITY SALIENCE (EUROBAROMETER)
+ 
++if (!file.exists("models/AUT_sal_model.rds")) { ## ENV F2 resume after sandbox restart
+ AUT_sal_model <- lmer(aut_dict_scale ~ challenge*aut_sal + lrgen_scale  + EP_Coa + nat_opp +de_macro + de_civil + de_health + 
+                         de_agri + de_labour + de_edu + de_envi + de_energy + 
+                         de_immi + de_transport + de_law + de_welfare  + de_commerce +
+                         de_defense + de_techno + de_trade + de_intern + de_govern +
+                         de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ as.factor(year) + as.factor(country) +
+                         (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(AUT_sal_model, "models/AUT_sal_model.rds"); cat('SAVED AUT_sal_model', format(Sys.time()), '\n') ## ENV save model
++rm(AUT_sal_model); invisible(gc()) ## ENV F2
++} ## ENV F2 resume
+ 
+-texreg(AUT_sal_model)
++AUT_sal_model <- readRDS("models/AUT_sal_model.rds"); texreg(AUT_sal_model); rm(AUT_sal_model); invisible(gc()) ## ENV F2 (authors' line: texreg(AUT_sal_model))
+ 
+ 
+ ##### IMMIGRATION SALIENCE (EUROBAROEMTER)
+ 
+ 
++if (!file.exists("models/Immi_sal_model.rds")) { ## ENV F2 resume after sandbox restart
+ Immi_sal_model <- lmer(immi_dict_scale ~ challenge*immi_sal + lrgen_scale  + EP_Coa + nat_opp + de_macro + de_civil + de_health + 
+                          de_agri + de_labour + de_edu + de_envi + de_energy + 
+                          de_immi + de_transport + de_law + de_welfare  + de_commerce +
+                          de_defense + de_techno + de_trade + de_intern + de_govern +
+                          de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ as.factor(year) + as.factor(country) +
+                          (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(Immi_sal_model, "models/Immi_sal_model.rds"); cat('SAVED Immi_sal_model', format(Sys.time()), '\n') ## ENV save model
++rm(Immi_sal_model); invisible(gc()) ## ENV F2
++} ## ENV F2 resume
+ 
+-texreg(Immi_sal_model)
++Immi_sal_model <- readRDS("models/Immi_sal_model.rds"); texreg(Immi_sal_model); rm(Immi_sal_model); invisible(gc()) ## ENV F2 (authors' line: texreg(Immi_sal_model))
+ 
+ ##### EU-SALIENCE (RdW)
+ 
++if (!file.exists("models/EU_sal_model.rds")) { ## ENV F2 resume after sandbox restart
+ EU_sal_model <- lmer(int_dict_scale ~ challenge*EU_sal + EP_Coa + lrgen_scale  + nat_opp + de_macro + de_civil + de_health + 
+                        de_agri + de_labour + de_edu + de_envi + de_energy + 
+                        de_immi + de_transport + de_law + de_welfare  + de_commerce +
+                        de_defense + de_techno + de_trade + de_intern + de_govern +
+                        de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5 + as.factor(year) + as.factor(country) +
+                        (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(EU_sal_model, "models/EU_sal_model.rds"); cat('SAVED EU_sal_model', format(Sys.time()), '\n') ## ENV save model
++rm(EU_sal_model); invisible(gc()) ## ENV F2
++} ## ENV F2 resume
+ 
+-texreg(EU_sal_model)
++EU_sal_model <- readRDS("models/EU_sal_model.rds"); texreg(EU_sal_model); rm(EU_sal_model); invisible(gc()) ## ENV F2 (authors' line: texreg(EU_sal_model))
+ 
+ ##### combine them in one table
+ 
+ 
++
++## ENV F2: rebuild the authors' combined table from saved models; call text unchanged
++rm(EP_eurobar_cent); invisible(gc())
++AUT_sal_model <- readRDS("models/AUT_sal_model.rds")
++Immi_sal_model <- readRDS("models/Immi_sal_model.rds")
++EU_sal_model <- readRDS("models/EU_sal_model.rds")
+ texreg(list(AUT_sal_model, Immi_sal_model, EU_sal_model),
+        file = "Tables/issues_sal_08062023.tex",
+        include.ci = FALSE,
+@@ -120,4 +141,4 @@
+        custom.note = "%stars. Random Intercepts for Parties and MEPs",
+        digits = 2,
+        caption = "The effect of changes in issue salience on issue emphasis")
+-
++cat('END', format(Sys.time()), '\n')

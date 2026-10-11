@@ -1,0 +1,2 @@
+saved through rep 20 elapsed 5.5 s
+done; secs this session: 5.5 

@@ -1,0 +1,468 @@
+START 2026-10-11 00:19:44 
+There were 50 or more warnings (use warnings() to see the first 50)
+Loading required package: Matrix
+Version:  1.40
+Date:     2026-08-24
+Author:   Philip Leifeld (University of Manchester)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+
+Attaching package: ‘fixest’
+
+The following objects are masked from ‘package:sjstats’:
+
+    r2, se
+
+ [1] "NGL"      "EFD/EFDD" "ECR"      "EDD"      "ALDE"     "EPP"     
+ [7] "Greens"   "S&D"      "ID"       "No Group" "UEN"     
+ [1] "NGL"      "EFD/EFDD" "ECR"      "EDD"      "ALDE"     "EPP"     
+ [7] "Greens"   "S&D"      "ID"       "No Group" "UEN"     
+[1] 0 5
+ Factor w/ 2 levels "Challenger","Mainstream": 2 1 1 2 2 2 2 2 1 1 ...
+[1] -915.8126  843.1874
+SAVED cycle_AE 2026-10-11 00:20:19 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c}
+\hline
+ & Model 1 \\
+\hline
+(Intercept)                      & $14.49^{***}$ \\
+                                 & $(1.72)$      \\
+challenge                        & $0.06^{***}$  \\
+                                 & $(0.01)$      \\
+days\_to\_EP                     & $0.01^{**}$   \\
+                                 & $(0.00)$      \\
+days\_to\_nat                    & $0.00$        \\
+                                 & $(0.00)$      \\
+lrgen\_scale                     & $0.01$        \\
+                                 & $(0.01)$      \\
+de\_macro                        & $0.20^{***}$  \\
+                                 & $(0.03)$      \\
+de\_civil                        & $1.35^{***}$  \\
+                                 & $(0.03)$      \\
+de\_health                       & $0.20^{***}$  \\
+                                 & $(0.04)$      \\
+de\_agri                         & $0.23^{***}$  \\
+                                 & $(0.04)$      \\
+de\_labour                       & $0.15^{***}$  \\
+                                 & $(0.04)$      \\
+de\_edu                          & $0.46^{***}$  \\
+                                 & $(0.04)$      \\
+de\_envi                         & $0.18^{***}$  \\
+                                 & $(0.04)$      \\
+de\_energy                       & $0.19^{***}$  \\
+                                 & $(0.04)$      \\
+de\_immi                         & $0.36^{***}$  \\
+                                 & $(0.05)$      \\
+de\_transport                    & $0.24^{***}$  \\
+                                 & $(0.04)$      \\
+de\_law                          & $0.37^{***}$  \\
+                                 & $(0.04)$      \\
+de\_welfare                      & $0.34^{***}$  \\
+                                 & $(0.04)$      \\
+de\_commerce                     & $0.40^{***}$  \\
+                                 & $(0.03)$      \\
+de\_defense                      & $0.59^{***}$  \\
+                                 & $(0.04)$      \\
+de\_techno                       & $-0.01$       \\
+                                 & $(0.05)$      \\
+de\_trade                        & $0.09^{**}$   \\
+                                 & $(0.03)$      \\
+de\_intern                       & $0.36^{***}$  \\
+                                 & $(0.04)$      \\
+de\_govern                       & $0.49^{***}$  \\
+                                 & $(0.04)$      \\
+de\_lands                        & $0.36^{***}$  \\
+                                 & $(0.03)$      \\
+de\_culture                      & $0.17^{**}$   \\
+                                 & $(0.06)$      \\
+proced\_1                        & $0.23^{***}$  \\
+                                 & $(0.04)$      \\
+proced\_2                        & $0.71^{***}$  \\
+                                 & $(0.03)$      \\
+proced\_3                        & $0.27^{***}$  \\
+                                 & $(0.03)$      \\
+proced\_4                        & $-0.00$       \\
+                                 & $(0.05)$      \\
+proced\_5                        & $0.19^{***}$  \\
+                                 & $(0.03)$      \\
+year                             & $-0.01^{***}$ \\
+                                 & $(0.00)$      \\
+as.factor(country)Belgium        & $0.06$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Bulgaria       & $-0.03$       \\
+                                 & $(0.10)$      \\
+as.factor(country)Croatia        & $-0.12$       \\
+                                 & $(0.17)$      \\
+as.factor(country)Cyprus         & $-0.04$       \\
+                                 & $(0.13)$      \\
+as.factor(country)Czech Republic & $0.06$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Denmark        & $0.01$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Estonia        & $0.15$        \\
+                                 & $(0.11)$      \\
+as.factor(country)Finland        & $0.05$        \\
+                                 & $(0.08)$      \\
+as.factor(country)France         & $0.10$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Germany        & $0.02$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Greece         & $0.00$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Hungary        & $0.03$        \\
+                                 & $(0.10)$      \\
+as.factor(country)Ireland        & $0.17$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Italy          & $0.08$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Latvia         & $0.21$        \\
+                                 & $(0.11)$      \\
+as.factor(country)Lithuania      & $-0.02$       \\
+                                 & $(0.09)$      \\
+as.factor(country)Luxembourg     & $0.33^{**}$   \\
+                                 & $(0.12)$      \\
+as.factor(country)Malta          & $-0.02$       \\
+                                 & $(0.13)$      \\
+as.factor(country)Netherlands    & $0.14$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Poland         & $-0.06$       \\
+                                 & $(0.09)$      \\
+as.factor(country)Portugal       & $-0.01$       \\
+                                 & $(0.09)$      \\
+as.factor(country)Romania        & $0.03$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Slovakia       & $0.07$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Slovenia       & $0.03$        \\
+                                 & $(0.10)$      \\
+as.factor(country)Spain          & $0.04$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Sweden         & $0.08$        \\
+                                 & $(0.08)$      \\
+as.factor(country)United Kingdom & $0.09$        \\
+                                 & $(0.08)$      \\
+challenge:days\_to\_EP           & $0.00$        \\
+                                 & $(0.01)$      \\
+challenge:days\_to\_nat          & $0.02^{***}$  \\
+                                 & $(0.00)$      \\
+\hline
+AIC                              & $738767.85$   \\
+BIC                              & $739429.00$   \\
+Log Likelihood                   & $-369320.92$  \\
+Num. obs.                        & $266854$      \\
+Num. groups: mep\_ids            & $1466$        \\
+Num. groups: party\_id           & $204$         \\
+Var: mep\_ids (Intercept)        & $0.02$        \\
+Var: party\_id (Intercept)       & $0.02$        \\
+Var: Residual                    & $0.93$        \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+SAVED cycle_AE_fit2 2026-10-11 00:20:46 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c}
+\hline
+ & Model 1 \\
+\hline
+(Intercept)                      & $15.21^{***}$ \\
+                                 & $(1.73)$      \\
+challenge                        & $0.05^{***}$  \\
+                                 & $(0.01)$      \\
+days\_to\_EP                     & $0.01^{***}$  \\
+                                 & $(0.00)$      \\
+days\_to\_nat                    & $0.00$        \\
+                                 & $(0.00)$      \\
+EP\_Coa                          & $0.06^{***}$  \\
+                                 & $(0.01)$      \\
+lrgen\_scale                     & $0.02^{*}$    \\
+                                 & $(0.01)$      \\
+de\_macro                        & $0.20^{***}$  \\
+                                 & $(0.03)$      \\
+de\_civil                        & $1.35^{***}$  \\
+                                 & $(0.03)$      \\
+de\_health                       & $0.20^{***}$  \\
+                                 & $(0.04)$      \\
+de\_agri                         & $0.23^{***}$  \\
+                                 & $(0.04)$      \\
+de\_labour                       & $0.15^{***}$  \\
+                                 & $(0.04)$      \\
+de\_edu                          & $0.46^{***}$  \\
+                                 & $(0.04)$      \\
+de\_envi                         & $0.18^{***}$  \\
+                                 & $(0.04)$      \\
+de\_energy                       & $0.19^{***}$  \\
+                                 & $(0.04)$      \\
+de\_immi                         & $0.36^{***}$  \\
+                                 & $(0.05)$      \\
+de\_transport                    & $0.24^{***}$  \\
+                                 & $(0.04)$      \\
+de\_law                          & $0.38^{***}$  \\
+                                 & $(0.04)$      \\
+de\_welfare                      & $0.34^{***}$  \\
+                                 & $(0.04)$      \\
+de\_commerce                     & $0.40^{***}$  \\
+                                 & $(0.03)$      \\
+de\_defense                      & $0.59^{***}$  \\
+                                 & $(0.04)$      \\
+de\_techno                       & $-0.01$       \\
+                                 & $(0.05)$      \\
+de\_trade                        & $0.09^{**}$   \\
+                                 & $(0.03)$      \\
+de\_intern                       & $0.36^{***}$  \\
+                                 & $(0.04)$      \\
+de\_govern                       & $0.49^{***}$  \\
+                                 & $(0.04)$      \\
+de\_lands                        & $0.36^{***}$  \\
+                                 & $(0.03)$      \\
+de\_culture                      & $0.17^{**}$   \\
+                                 & $(0.06)$      \\
+proced\_1                        & $0.23^{***}$  \\
+                                 & $(0.04)$      \\
+proced\_2                        & $0.71^{***}$  \\
+                                 & $(0.03)$      \\
+proced\_3                        & $0.27^{***}$  \\
+                                 & $(0.03)$      \\
+proced\_4                        & $-0.00$       \\
+                                 & $(0.05)$      \\
+proced\_5                        & $0.19^{***}$  \\
+                                 & $(0.03)$      \\
+year                             & $-0.01^{***}$ \\
+                                 & $(0.00)$      \\
+as.factor(country)Belgium        & $0.07$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Bulgaria       & $-0.01$       \\
+                                 & $(0.09)$      \\
+as.factor(country)Croatia        & $-0.09$       \\
+                                 & $(0.16)$      \\
+as.factor(country)Cyprus         & $-0.04$       \\
+                                 & $(0.12)$      \\
+as.factor(country)Czech Republic & $0.07$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Denmark        & $0.02$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Estonia        & $0.18$        \\
+                                 & $(0.10)$      \\
+as.factor(country)Finland        & $0.06$        \\
+                                 & $(0.08)$      \\
+as.factor(country)France         & $0.10$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Germany        & $0.02$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Greece         & $0.01$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Hungary        & $0.04$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Ireland        & $0.17^{*}$    \\
+                                 & $(0.08)$      \\
+as.factor(country)Italy          & $0.08$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Latvia         & $0.22^{*}$    \\
+                                 & $(0.10)$      \\
+as.factor(country)Lithuania      & $-0.00$       \\
+                                 & $(0.08)$      \\
+as.factor(country)Luxembourg     & $0.36^{**}$   \\
+                                 & $(0.11)$      \\
+as.factor(country)Malta          & $0.02$        \\
+                                 & $(0.12)$      \\
+as.factor(country)Netherlands    & $0.13$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Poland         & $-0.05$       \\
+                                 & $(0.08)$      \\
+as.factor(country)Portugal       & $0.01$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Romania        & $0.05$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Slovakia       & $0.09$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Slovenia       & $0.06$        \\
+                                 & $(0.10)$      \\
+as.factor(country)Spain          & $0.04$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Sweden         & $0.08$        \\
+                                 & $(0.07)$      \\
+as.factor(country)United Kingdom & $0.09$        \\
+                                 & $(0.07)$      \\
+challenge:days\_to\_EP           & $0.00$        \\
+                                 & $(0.01)$      \\
+challenge:days\_to\_nat          & $0.02^{***}$  \\
+                                 & $(0.00)$      \\
+\hline
+AIC                              & $738747.50$   \\
+BIC                              & $739419.15$   \\
+Log Likelihood                   & $-369309.75$  \\
+Num. obs.                        & $266854$      \\
+Num. groups: mep\_ids            & $1466$        \\
+Num. groups: party\_id           & $204$         \\
+Var: mep\_ids (Intercept)        & $0.02$        \\
+Var: party\_id (Intercept)       & $0.01$        \\
+Var: Residual                    & $0.93$        \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+SAVED cycle_AE_fit3 2026-10-11 00:21:14 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c}
+\hline
+ & Model 1 \\
+\hline
+(Intercept)                      & $15.18^{***}$ \\
+                                 & $(1.73)$      \\
+challenge                        & $0.04^{**}$   \\
+                                 & $(0.02)$      \\
+days\_to\_EP                     & $0.01^{**}$   \\
+                                 & $(0.00)$      \\
+days\_to\_nat                    & $-0.00$       \\
+                                 & $(0.00)$      \\
+EP\_Coa                          & $0.07^{***}$  \\
+                                 & $(0.01)$      \\
+nat\_opp                         & $0.02^{***}$  \\
+                                 & $(0.01)$      \\
+lrgen\_scale                     & $0.02^{*}$    \\
+                                 & $(0.01)$      \\
+de\_macro                        & $0.20^{***}$  \\
+                                 & $(0.03)$      \\
+de\_civil                        & $1.35^{***}$  \\
+                                 & $(0.03)$      \\
+de\_health                       & $0.20^{***}$  \\
+                                 & $(0.04)$      \\
+de\_agri                         & $0.23^{***}$  \\
+                                 & $(0.04)$      \\
+de\_labour                       & $0.15^{***}$  \\
+                                 & $(0.04)$      \\
+de\_edu                          & $0.46^{***}$  \\
+                                 & $(0.04)$      \\
+de\_envi                         & $0.18^{***}$  \\
+                                 & $(0.04)$      \\
+de\_energy                       & $0.19^{***}$  \\
+                                 & $(0.04)$      \\
+de\_immi                         & $0.36^{***}$  \\
+                                 & $(0.05)$      \\
+de\_transport                    & $0.24^{***}$  \\
+                                 & $(0.04)$      \\
+de\_law                          & $0.38^{***}$  \\
+                                 & $(0.04)$      \\
+de\_welfare                      & $0.34^{***}$  \\
+                                 & $(0.04)$      \\
+de\_commerce                     & $0.40^{***}$  \\
+                                 & $(0.03)$      \\
+de\_defense                      & $0.59^{***}$  \\
+                                 & $(0.04)$      \\
+de\_techno                       & $-0.01$       \\
+                                 & $(0.05)$      \\
+de\_trade                        & $0.09^{**}$   \\
+                                 & $(0.03)$      \\
+de\_intern                       & $0.36^{***}$  \\
+                                 & $(0.04)$      \\
+de\_govern                       & $0.49^{***}$  \\
+                                 & $(0.04)$      \\
+de\_lands                        & $0.36^{***}$  \\
+                                 & $(0.03)$      \\
+de\_culture                      & $0.17^{**}$   \\
+                                 & $(0.06)$      \\
+proced\_1                        & $0.23^{***}$  \\
+                                 & $(0.04)$      \\
+proced\_2                        & $0.71^{***}$  \\
+                                 & $(0.03)$      \\
+proced\_3                        & $0.27^{***}$  \\
+                                 & $(0.03)$      \\
+proced\_4                        & $-0.00$       \\
+                                 & $(0.05)$      \\
+proced\_5                        & $0.20^{***}$  \\
+                                 & $(0.03)$      \\
+year                             & $-0.01^{***}$ \\
+                                 & $(0.00)$      \\
+as.factor(country)Belgium        & $0.07$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Bulgaria       & $-0.00$       \\
+                                 & $(0.09)$      \\
+as.factor(country)Croatia        & $-0.10$       \\
+                                 & $(0.16)$      \\
+as.factor(country)Cyprus         & $-0.05$       \\
+                                 & $(0.12)$      \\
+as.factor(country)Czech Republic & $0.07$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Denmark        & $0.02$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Estonia        & $0.18$        \\
+                                 & $(0.10)$      \\
+as.factor(country)Finland        & $0.06$        \\
+                                 & $(0.08)$      \\
+as.factor(country)France         & $0.10$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Germany        & $0.02$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Greece         & $0.01$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Hungary        & $0.04$        \\
+                                 & $(0.09)$      \\
+as.factor(country)Ireland        & $0.17^{*}$    \\
+                                 & $(0.08)$      \\
+as.factor(country)Italy          & $0.08$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Latvia         & $0.21^{*}$    \\
+                                 & $(0.10)$      \\
+as.factor(country)Lithuania      & $-0.01$       \\
+                                 & $(0.08)$      \\
+as.factor(country)Luxembourg     & $0.35^{**}$   \\
+                                 & $(0.11)$      \\
+as.factor(country)Malta          & $0.01$        \\
+                                 & $(0.12)$      \\
+as.factor(country)Netherlands    & $0.13$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Poland         & $-0.05$       \\
+                                 & $(0.08)$      \\
+as.factor(country)Portugal       & $0.01$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Romania        & $0.05$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Slovakia       & $0.08$        \\
+                                 & $(0.08)$      \\
+as.factor(country)Slovenia       & $0.06$        \\
+                                 & $(0.10)$      \\
+as.factor(country)Spain          & $0.04$        \\
+                                 & $(0.07)$      \\
+as.factor(country)Sweden         & $0.08$        \\
+                                 & $(0.07)$      \\
+as.factor(country)United Kingdom & $0.09$        \\
+                                 & $(0.07)$      \\
+challenge:days\_to\_EP           & $0.00$        \\
+                                 & $(0.01)$      \\
+challenge:days\_to\_nat          & $0.02^{***}$  \\
+                                 & $(0.01)$      \\
+days\_to\_EP:nat\_opp            & $-0.01$       \\
+                                 & $(0.00)$      \\
+days\_to\_nat:nat\_opp           & $-0.00$       \\
+                                 & $(0.00)$      \\
+\hline
+AIC                              & $738764.50$   \\
+BIC                              & $739467.63$   \\
+Log Likelihood                   & $-369315.25$  \\
+Num. obs.                        & $266854$      \\
+Num. groups: mep\_ids            & $1466$        \\
+Num. groups: party\_id           & $204$         \\
+Var: mep\_ids (Intercept)        & $0.02$        \\
+Var: party\_id (Intercept)       & $0.01$        \\
+Var: Residual                    & $0.93$        \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}

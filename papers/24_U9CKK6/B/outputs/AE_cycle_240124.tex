@@ -1,0 +1,50 @@
+
+\usepackage{booktabs}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c c}
+\toprule
+ & Anti-Establishment Rhetoric & Anti-Establishment Rhetoric & Anti-Establishment Rhetoric & Anti-Establishment Rhetoric \\
+\midrule
+Challenger                                       & $0.06^{***}$ & $0.05^{***}$ & $0.04^{**}$  & $0.04^{**}$  \\
+                                                 & $(0.01)$     & $(0.01)$     & $(0.02)$     & $(0.02)$     \\
+Proximity to next EP-Election                    & $0.01^{**}$  & $0.01^{***}$ & $0.01^{**}$  & $0.01^{***}$ \\
+                                                 & $(0.00)$     & $(0.00)$     & $(0.00)$     & $(0.00)$     \\
+Proximity to next National Election              & $0.00$       & $0.00$       & $-0.00$      & $-0.00$      \\
+                                                 & $(0.00)$     & $(0.00)$     & $(0.00)$     & $(0.00)$     \\
+Challenger * Proximity to next EP-Election       & $0.00$       & $0.00$       & $0.00$       & $0.00$       \\
+                                                 & $(0.01)$     & $(0.01)$     & $(0.01)$     & $(0.01)$     \\
+Challenger * Proximity to next National Election & $0.02^{***}$ & $0.02^{***}$ & $0.02^{***}$ & $0.02^{***}$ \\
+                                                 & $(0.00)$     & $(0.00)$     & $(0.01)$     & $(0.00)$     \\
+Nat. Opp. * Proximity to next EP-Election        &              &              & $-0.01$      &              \\
+                                                 &              &              & $(0.00)$     &              \\
+Nat. Opp. * Proximity to next National Election  &              &              & $-0.00$      &              \\
+                                                 &              &              & $(0.00)$     &              \\
+LR-Position                                      & $0.01$       & $0.02^{*}$   & $0.02^{*}$   & $0.02$       \\
+                                                 & $(0.01)$     & $(0.01)$     & $(0.01)$     & $(0.01)$     \\
+EP Opposition                                    &              & $0.06^{***}$ & $0.07^{***}$ &              \\
+                                                 &              & $(0.01)$     & $(0.01)$     &              \\
+Nat. Opposition                                  &              &              & $0.02^{***}$ &              \\
+                                                 &              &              & $(0.01)$     &              \\
+\midrule
+Topic Controls                                   & Yes          & Yes          & Yes          & Yes          \\
+Year Fixed Effects                               & Yes          & Yes          & Yes          & Yes          \\
+Country Fixed Effects                            & Yes          & Yes          & Yes          & Yes          \\
+EP-Group Fixed Effects                           & No           & No           & No           & Yes          \\
+AIC                                              & $738767.85$  & $738747.50$  & $738764.50$  & $738727.89$  \\
+BIC                                              & $739429.00$  & $739419.15$  & $739467.63$  & $739493.99$  \\
+Log Likelihood                                   & $-369320.92$ & $-369309.75$ & $-369315.25$ & $-369290.95$ \\
+Num. obs.                                        & $266854$     & $266854$     & $266854$     & $266854$     \\
+Num. groups: mep\_ids                            & $1466$       & $1466$       & $1466$       & $1466$       \\
+Num. groups: party\_id                           & $204$        & $204$        & $204$        & $204$        \\
+Var: mep\_ids (Intercept)                        & $0.02$       & $0.02$       & $0.02$       & $0.02$       \\
+Var: party\_id (Intercept)                       & $0.02$       & $0.01$       & $0.01$       & $0.01$       \\
+Var: Residual                                    & $0.93$       & $0.93$       & $0.93$       & $0.93$       \\
+\bottomrule
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$. Random Intercepts for Parties and MEPs}}
+\end{tabular}
+\caption{Anti-Establishment Rhetoric conditional on Electoral Cycle}
+\label{table:coefficients}
+\end{center}
+\end{table}

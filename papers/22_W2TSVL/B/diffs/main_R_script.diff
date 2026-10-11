@@ -1,0 +1,26 @@
+--- "orig/Framing Labor Action_R script.R"	2026-10-10 21:13:21.390067732 +0000
++++ "run/Framing Labor Action_R script.R"	2026-10-10 21:13:21.520931888 +0000
+@@ -1,17 +1,17 @@
+ # Replication code for Christopher Chambers-Ju & Mart Trasberg manuscript "Framing Labor Action" (Last updated Feb 15, 2025)
+ # Code for the Appendix A1 is in the companion R script
+ 
+-install.packages("foreign")
+-install.packages("haven")
+-install.packages("broom")
+-install.packages("dplyr")
+-install.packages("plyr")
++# install.packages("foreign")
++# install.packages("haven")
++# install.packages("broom")
++# install.packages("dplyr")
++# install.packages("plyr")
+ 
+ # Loading data
+ library(foreign)
+ library(haven)
+ 
+-dta <- read_dta("C:/Users/L03538527/OneDrive - Instituto Tecnologico y de Estudios Superiores de Monterrey/Research/Education in Mexico/Drafts/Perspectives on Politics/Analysis/OA23 Base UT-TEC.dta")
++dta <- read_dta("OA23 Base UT-TEC.dta")
+ #dta <- read_dta("OA23 Base UT-TEC.dta")
+ # Use "Import Dataset" in RStudio
+ 

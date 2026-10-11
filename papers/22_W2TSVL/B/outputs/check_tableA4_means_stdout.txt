@@ -1,0 +1,16 @@
+appendix line 226 equivalent, mean(ordered factor): NA 
+     treatment unions_mean_computed unions_typed unions_match_2dp
+1      Control               3.2488         3.25             TRUE
+2       Strike               3.0842         3.08             TRUE
+3   Pro_strike               3.4070         3.41             TRUE
+4  Anti_strike               2.9635         2.96             TRUE
+5 Double_frame               3.1684         3.17             TRUE
+  support_mean_computed support_typed support_match_2dp
+1                4.3600          4.36              TRUE
+2                4.1755          4.18              TRUE
+3                4.9141          4.91              TRUE
+4                4.4043          4.40              TRUE
+5                4.4332          4.43              TRUE
+               var   n   mean     sd n_rows_data
+1           unions 976 3.1773 1.3895        1011
+2 Support_teachers 961 4.4610 2.3933        1011

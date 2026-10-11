@@ -1,0 +1,82 @@
+--- /workspace/audit_runs/24_U9CKK6/A/ranges/9_analysis4_L1-123.R	2026-10-10 23:10:51.430212028 +0000
++++ scripts/run_table2_f1f2.R	2026-10-10 23:10:51.420233482 +0000
+@@ -1,3 +1,7 @@
++## [ENV FIX] per-run library, working directory, model save folder (agent A)
++.libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
++setwd("/workspace/audit_runs/24_U9CKK6/A/run")
++cat("START", format(Sys.time()), "\n")
+ ####################ISSUE SALIENCE EFFECTS ############
+ library(lme4)
+ library(texreg)
+@@ -10,6 +14,8 @@
+ library(skimr)
+ library(tidyverse)
+ load("Data/EP_debates_07062023.Rdata")
++## [ENV FIX F1] blank unused speech-text columns 4 and 6 (positions kept)
++EP_debates$text <- NA_character_; EP_debates$ori_text <- NA_character_
+ 
+ ##### LOAD DATA FROM RAUH AND DE WILDE
+ 
+@@ -62,6 +68,8 @@
+ 
+ ##### AUSTERITY SALIENCE (EUROBAROMETER)
+ 
++## [ENV FIX] resume: skip if saved
++if (!file.exists("/workspace/audit_runs/24_U9CKK6/A/models/AUT_sal_model.rds")) { t0 <- Sys.time()
+ AUT_sal_model <- lmer(aut_dict_scale ~ challenge*aut_sal + lrgen_scale  + EP_Coa + nat_opp +de_macro + de_civil + de_health + 
+                         de_agri + de_labour + de_edu + de_envi + de_energy + 
+                         de_immi + de_transport + de_law + de_welfare  + de_commerce +
+@@ -70,11 +78,16 @@
+                         (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+ 
+ texreg(AUT_sal_model)
++saveRDS(AUT_sal_model, "/workspace/audit_runs/24_U9CKK6/A/models/AUT_sal_model.rds"); cat("SAVED AUT_sal_model", format(Sys.time()), format(Sys.time()-t0), "\n")
++rm(AUT_sal_model); invisible(gc())  ## [ENV FIX F2]
++}
+ 
+ 
+ ##### IMMIGRATION SALIENCE (EUROBAROEMTER)
+ 
+ 
++## [ENV FIX] resume: skip if saved
++if (!file.exists("/workspace/audit_runs/24_U9CKK6/A/models/Immi_sal_model.rds")) { t0 <- Sys.time()
+ Immi_sal_model <- lmer(immi_dict_scale ~ challenge*immi_sal + lrgen_scale  + EP_Coa + nat_opp + de_macro + de_civil + de_health + 
+                          de_agri + de_labour + de_edu + de_envi + de_energy + 
+                          de_immi + de_transport + de_law + de_welfare  + de_commerce +
+@@ -83,9 +96,14 @@
+                          (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+ 
+ texreg(Immi_sal_model)
++saveRDS(Immi_sal_model, "/workspace/audit_runs/24_U9CKK6/A/models/Immi_sal_model.rds"); cat("SAVED Immi_sal_model", format(Sys.time()), format(Sys.time()-t0), "\n")
++rm(Immi_sal_model); invisible(gc())  ## [ENV FIX F2]
++}
+ 
+ ##### EU-SALIENCE (RdW)
+ 
++## [ENV FIX] resume: skip if saved
++if (!file.exists("/workspace/audit_runs/24_U9CKK6/A/models/EU_sal_model.rds")) { t0 <- Sys.time()
+ EU_sal_model <- lmer(int_dict_scale ~ challenge*EU_sal + EP_Coa + lrgen_scale  + nat_opp + de_macro + de_civil + de_health + 
+                        de_agri + de_labour + de_edu + de_envi + de_energy + 
+                        de_immi + de_transport + de_law + de_welfare  + de_commerce +
+@@ -94,10 +112,15 @@
+                        (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+ 
+ texreg(EU_sal_model)
++saveRDS(EU_sal_model, "/workspace/audit_runs/24_U9CKK6/A/models/EU_sal_model.rds"); cat("SAVED EU_sal_model", format(Sys.time()), format(Sys.time()-t0), "\n")
++rm(EU_sal_model); invisible(gc())  ## [ENV FIX F2]
++}
+ 
+ ##### combine them in one table
+ 
+ 
++## [ENV FIX F2] combined texreg moved to scripts/texreg_table2_from_rds.R
++if (FALSE) {
+ texreg(list(AUT_sal_model, Immi_sal_model, EU_sal_model),
+        file = "Tables/issues_sal_08062023.tex",
+        include.ci = FALSE,
+@@ -121,3 +144,5 @@
+        digits = 2,
+        caption = "The effect of changes in issue salience on issue emphasis")
+ 
++}
++cat("END", format(Sys.time()), "\n")

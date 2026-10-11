@@ -1,0 +1,147 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ## [ENV FIX] per-run library, working directory, model save folder (agent A)
+> .libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+> setwd("/workspace/audit_runs/24_U9CKK6/A/run")
+> cat("START", format(Sys.time()), "\n")
+START 2026-10-10 23:11:57 
+> ################################################################################
+> ################################################################################
+> ################################################################################
+> ############### Analysis Script 1 ##############################################
+> ############### Null Models, Anti-Establishment Rhetoric########################
+> ############### Electoral Cycle Models##########################################
+> ################################################################################
+> load("Data/EP_debates_07062023.Rdata")
+There were 50 or more warnings (use warnings() to see the first 50)
+> library(lme4)
+Loading required package: Matrix
+> library(texreg)
+Version:  1.40
+Date:     2026-08-24
+Author:   Philip Leifeld (University of Manchester)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+> library(sjPlot)
+> library(sjstats)
+> library(fixest)
+
+Attaching package: ‘fixest’
+
+The following objects are masked from ‘package:sjstats’:
+
+    r2, se
+
+> library(ggplot2)
+> 
+> #####
+> 
+> levels(EP_debates$EU_party)
+ [1] "NGL"      "EFD/EFDD" "ECR"      "EDD"      "ALDE"     "EPP"     
+ [7] "Greens"   "S&D"      "ID"       "No Group" "UEN"     
+> levels(EP_debates$EU_party) <- c("NGL", "EFD/EFDD", "ECR",
++                                  "EDD", "ALDE",  "EPP",
++                                  "Greens","S&D", "ID",
++                                  "No Group", "UEN", "EFD/EFDD", 
++                                  "NGL", "Greens", "No Group")
+> levels(EP_debates$EU_party)
+ [1] "NGL"      "EFD/EFDD" "ECR"      "EDD"      "ALDE"     "EPP"     
+ [7] "Greens"   "S&D"      "ID"       "No Group" "UEN"     
+> 
+> ### BEGIN BY CENTERING AND SCALING EVERYTHING
+> 
+> EP_debates$radical <- abs(EP_debates$lrgen - 5)
+> range(EP_debates$radical, na.rm = TRUE)
+[1] 0 5
+> 
+> centFUN <- function(x) {
++   x - mean(x, na.rm = TRUE)
++ }
+> 
+> result <- apply(EP_debates[,c(22:24, 27:71, 73:75, 77:107,117:118)], MARGIN = 2, FUN = centFUN)
+> result <- as.data.frame(result)
+> 
+> 
+> EP_eurobar_cent <- cbind(EP_debates[,-c(22:24, 27:71, 73:75, 77:107,117:118)], result)
+> 
+> rm(list=setdiff(ls(), "EP_eurobar_cent"))
+> 
+> EP_eurobar_cent$embed_dict_scale <- scale(EP_eurobar_cent$embed_dict)
+> EP_eurobar_cent$aut_dict_scale <- scale(EP_eurobar_cent$aut_dict)
+> EP_eurobar_cent$immi_dict_scale <- scale(EP_eurobar_cent$immi_dict)
+> EP_eurobar_cent$int_dict_scale <- scale(EP_eurobar_cent$int_dict)
+> EP_eurobar_cent$lrgen_scale <- scale(EP_eurobar_cent$lrgen)
+> EP_eurobar_cent$radical_scale <- scale(EP_eurobar_cent$radical)
+> 
+> EP_eurobar_cent$aut_sal <- scale(EP_eurobar_cent$mip_n_govdebt_ipol)
+> EP_eurobar_cent$immi_sal <- scale(EP_eurobar_cent$mip_n_immigration_ipol)
+> EP_eurobar_cent$eum_ipol <- scale(EP_eurobar_cent$eum_ipol)
+> 
+> ############### ANTI-ESTABLISHMENT CYCLE MODEL #################################
+> 
+> ### For Plotting Only
+> EP_eurobar_cent$chall_fact <- as.factor(ifelse(EP_eurobar_cent$challenge == 1, "Challenger", "Mainstream"))
+> str(EP_eurobar_cent$chall_fact)
+ Factor w/ 2 levels "Challenger","Mainstream": 2 1 1 2 2 2 2 2 1 1 ...
+> range(EP_eurobar_cent$days_from_EP)
+[1] -915.8126  843.1874
+> 
+> EP_eurobar_cent$days_to_EP <- scale(EP_eurobar_cent$days_from_EP)# Make them more intuitive as of reviewer request
+> EP_eurobar_cent$days_to_nat <- scale(EP_eurobar_cent$days_from_nat)
+> 
+> ## [ENV FIX] resume: skip if saved
+> if (!file.exists("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE.rds")) { t0 <- Sys.time()
++ cycle_AE <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat  + lrgen_scale  + de_macro + de_civil + de_health + 
++                    de_agri + de_labour + de_edu + de_envi + de_energy + 
++                    de_immi + de_transport + de_law + de_welfare  + de_commerce +
++                    de_defense + de_techno + de_trade + de_intern + de_govern +
++                    de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
++                    (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++ 
++ texreg(cycle_AE)
++ saveRDS(cycle_AE, "/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE.rds"); cat("SAVED cycle_AE", format(Sys.time()), format(Sys.time()-t0), "\n")
++ }
+SAVED cycle_AE 2026-10-10 23:12:33 25.91064 secs 
+> 
+> ## [ENV FIX] resume: skip if saved
+> if (!file.exists("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit2.rds")) { t0 <- Sys.time()
++ cycle_AE_fit2 <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat  + EP_Coa  + lrgen_scale  + de_macro + de_civil + de_health + 
++                    de_agri + de_labour + de_edu + de_envi + de_energy + 
++                    de_immi + de_transport + de_law + de_welfare  + de_commerce +
++                    de_defense + de_techno + de_trade + de_intern + de_govern +
++                    de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
++                    (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++ 
++ texreg(cycle_AE_fit2)
++ saveRDS(cycle_AE_fit2, "/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit2.rds"); cat("SAVED cycle_AE_fit2", format(Sys.time()), format(Sys.time()-t0), "\n")
++ }
+SAVED cycle_AE_fit2 2026-10-10 23:13:00 27.56176 secs 
+> 
+> ## [ENV FIX] resume: skip if saved
+> if (!file.exists("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit3.rds")) { t0 <- Sys.time()
++ cycle_AE_fit3 <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat  + EP_Coa + nat_opp*days_to_EP + nat_opp*days_to_nat + lrgen_scale  + de_macro + de_civil + de_health + 
++                         de_agri + de_labour + de_edu + de_envi + de_energy + 
++                         de_immi + de_transport + de_law + de_welfare  + de_commerce +
++                         de_defense + de_techno + de_trade + de_intern + de_govern +
++                         de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
++                         (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++ 
++ texreg(cycle_AE_fit3)
++ saveRDS(cycle_AE_fit3, "/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit3.rds"); cat("SAVED cycle_AE_fit3", format(Sys.time()), format(Sys.time()-t0), "\n")
++ }

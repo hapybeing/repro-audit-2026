@@ -1,0 +1,167 @@
+also installing the dependencies ‘dreamerr’, ‘stringmagic’
+
+trying URL 'https://cloud.r-project.org/src/contrib/dreamerr_1.5.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stringmagic_1.3.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/fixest_0.14.2.tar.gz'
+* installing *source* package ‘stringmagic’ ...
+** this is package ‘stringmagic’ version ‘1.3.0’
+** package ‘stringmagic’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c string_tools.cpp -o string_tools.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c stringmagic.cpp -o stringmagic.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c stringmagic_parser.cpp -o stringmagic_parser.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c to_index.cpp -o to_index.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o stringmagic.so RcppExports.o string_tools.o stringmagic.o stringmagic_parser.o to_index.o -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/23_FXRNBA/B/rlib/00LOCK-stringmagic/00new/stringmagic/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stringmagic)
+* installing *source* package ‘dreamerr’ ...
+** this is package ‘dreamerr’ version ‘1.5.0’
+** package ‘dreamerr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dreamerr)
+* installing *source* package ‘fixest’ ...
+** this is package ‘fixest’ version ‘0.14.2’
+** package ‘fixest’ successfully unpacked and MD5 sums checked
+** using staged installation
+* checking if OpenMP works with CXXFLAGS='' LIBS=''... no
+* checking if OpenMP works with CXXFLAGS='$(SHLIB_OPENMP_CXXFLAGS)' LIBS='$(SHLIB_OPENMP_CXXFLAGS)'... yes
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c collineairy.cpp -o collineairy.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c convergence.cpp -o convergence.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c demeaning.cpp -o demeaning.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c dsb.cpp -o dsb.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c fixest_main.cpp -o fixest_main.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c index_fixed_effects.cpp -o index_fixed_effects.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c lm_related.cpp -o lm_related.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c misc_funs.cpp -o misc_funs.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c parallel_funs.cpp -o parallel_funs.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c string_funs.cpp -o string_funs.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c to_index.cpp -o to_index.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'    -fopenmp -DSTRICT_R_HEADERS -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c vcov_related.cpp -o vcov_related.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o fixest.so RcppExports.o collineairy.o convergence.o demeaning.o dsb.o fixest_main.o index_fixed_effects.o lm_related.o misc_funs.o parallel_funs.o string_funs.o to_index.o vcov_related.o -fopenmp -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/23_FXRNBA/B/rlib/00LOCK-fixest/00new/fixest/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fixest)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpc3aHC7/downloaded_packages’
+also installing the dependency ‘ahaz’
+
+trying URL 'https://cloud.r-project.org/src/contrib/ahaz_1.15.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ivtools_2.3.0.tar.gz'
+* installing *source* package ‘ahaz’ ...
+** this is package ‘ahaz’ version ‘1.15.1’
+** package ‘ahaz’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+gcc -std=gnu23 -I"/usr/share/R/include" -DNDEBUG       -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2  -c ahaz.c -o ahaz.o
+gcc -std=gnu23 -shared -L/usr/lib/R/lib -Wl,-z,relro -o ahaz.so ahaz.o -llapack -lblas -lgfortran -lm -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/23_FXRNBA/B/rlib/00LOCK-ahaz/00new/ahaz/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ahaz)
+* installing *source* package ‘ivtools’ ...
+** this is package ‘ivtools’ version ‘2.3.0’
+** package ‘ivtools’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/usr/share/R/include" -DNDEBUG  -I'/usr/lib/R/site-library/Rcpp/include'     -fPIC  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wdate-time -D_FORTIFY_SOURCE=2   -c ivtools.cpp -o ivtools.o
+g++ -std=gnu++17 -shared -L/usr/lib/R/lib -Wl,-z,relro -o ivtools.so RcppExports.o ivtools.o -L/usr/lib/R/lib -lR
+installing to /workspace/audit_runs/23_FXRNBA/B/rlib/00LOCK-ivtools/00new/ivtools/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ivtools)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpc3aHC7/downloaded_packages’
+trying URL 'https://cloud.r-project.org/src/contrib/weathermetrics_1.2.2.tar.gz'
+Content type 'application/x-gzip' length 33242 bytes (32 KB)
+==================================================
+downloaded 32 KB
+
+* installing *source* package ‘weathermetrics’ ...
+** this is package ‘weathermetrics’ version ‘1.2.2’
+** package ‘weathermetrics’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (weathermetrics)
+
+The downloaded source packages are in
+	‘/tmp/Rtmpc3aHC7/downloaded_packages’
+        fixest        ivtools weathermetrics           ahaz       dreamerr 
+      "0.14.2"        "2.3.0"        "1.2.2"       "1.15.1"        "1.5.0" 
+   stringmagic 
+       "1.3.0" 

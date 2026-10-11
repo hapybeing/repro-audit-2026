@@ -1,0 +1,2 @@
+"id","study","K","n_rows","lavaan_nobs","n_ok","n_failed","estimate","boot_ci_low","boot_ci_high","boot_sd","p_value","seed"
+"R_a","study1",1000,977,977,1000,0,0.0167809890019406,0.00339578662148733,0.034135455912398,0.00789114068215521,0.02,20261011

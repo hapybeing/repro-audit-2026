@@ -1,0 +1,149 @@
+{
+ "paper_id": "23_FXRNBA",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Model 3 (preferred) IV-Poisson 2SRI coefficient on PM2.5 (instrumented by smoke presence), station + year + month + day-of-week FE, weather + holiday controls, main sample. Code object r3$pm25_mean$beta = iv3$est['pm25_mean'] (wildfire_data_analysis.R lines 577-584)",
+   "paper_value": 0.005,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.00504085268098223,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 4.085268098222988e-05,
+   "rel_diff": 0.008170536196445977,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.002281. Models 1, 2, 4 coefficients 0.0093, 0.0102, 0.0118 (secondary, not targets)."
+  },
+  {
+   "id": "T2",
+   "description": "p-value of the Model 3 PM2.5 coefficient, two-sided normal p from the date-clustered ivglm vcov: r3$pm25_mean$p = 2*pnorm(-abs(beta/se)) (grab_by_name, lines 393-404)",
+   "paper_value": 0.027,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.0271239913660187,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00012399136601870184,
+   "rel_diff": 0.0045922728155074755,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Candidate 2 (summary(iv3) Pr(>|z|)) = 0.027124, identical to candidate 1."
+  },
+  {
+   "id": "T3",
+   "description": "N (station-days) of the main sample used in Models 1-3: N_main = nrow(seattle_main) (lines 550, 623)",
+   "paper_value": 7163,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 7163.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Co-pollutant sample N (Model 4, secondary) = 5623."
+  },
+  {
+   "id": "T4",
+   "description": "Model 3 first-stage F for the smoke instrument: d3$F = coef^2/clustered var of z_smoke from feols(pm25_mean ~ z_smoke + W | station + year + month + dow, cluster = ~date) (fs_diag, lines 364-374, 582-583)",
+   "paper_value": 42.72,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 42.7197431508042,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0002568491958001573,
+   "rel_diff": -6.012387542138514e-06,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "fixest 0.14.2; fixest 0.13.2 fallback not needed. Partial R2 Model 3 = 0.0563; first-stage F Models 1, 2, 4 = 46.79, 42.36, 74.97."
+  },
+  {
+   "id": "T5",
+   "description": "Model 3 first-stage coefficient on smoke presence (increase in mean ambient PM2.5 on a smoke day, conditional on covariates), coef(d3$fs)['z_smoke'] (printed by line 667)",
+   "paper_value": 7.0,
+   "paper_rounding_decimals": 1,
+   "reproduced_value": 6.9833887042607,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.01661129573929987,
+   "rel_diff": -0.00237304224847141,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Candidate 1 coef(d3$fs)['z_smoke']; date-clustered SE 1.0684, p 7.12e-11, nobs 7163. Prose-only value (class decision 5)."
+  },
+  {
+   "id": "T6",
+   "description": "Percent more assaults on an average smoke day: 100*(exp(T1_unrounded * T5_unrounded) - 1), computed by the agent's extraction script from r3$pm25_mean$beta and coef(d3$fs)['z_smoke']; not computed in any deposited script (see PREREG.md for candidate formulas)",
+   "paper_value": 3.6,
+   "paper_rounding_decimals": 1,
+   "reproduced_value": 3.5829167155403,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0170832844597002,
+   "rel_diff": -0.004745356794361166,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "First pre-registered formula 100*(exp(T1*T5)-1) with unrounded objects. Candidate 2 (100*T1*T5) = 3.5202; candidate 3 (100*(exp(T1*7.0)-1)) = 3.5916. Not computed in any deposited script."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Date-cluster bootstrap (seed 20261011, B=999) of the Model 3 2SRI point estimate on seattle_main (N 7163); percentile 95% interval",
+   "ran": true,
+   "estimate": 0.00504085268098223,
+   "se_or_ci": "bootstrap SD 0.002419; 95% percentile CI [0.000878, 0.010542]",
+   "p_value": 0.022022022022022022,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Ra_summary.json (replicates outputs/Ra_boot.csv, indices outputs/Ra_boot_indices.rds)",
+   "note": "999 successful replicates of 999, 0 failed, 0 flagged non-converged; bootstrap mean 0.005131. B=999 kept (20 replicates took 5.5 s)."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop station-days with |z|>3 on assault (pooled z over 7163 rows), refit Model 3 with authors' run_ivglm/grab_by_name/fs_diag",
+   "ran": true,
+   "estimate": 0.00435654225978597,
+   "se_or_ci": "SE 0.002159; 95% CI [0.000125, 0.008588]",
+   "p_value": 0.043599189672119,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_Rb_Rc.csv",
+   "note": "N 7121, dropped 42 (weller street:42); all dropped rows have assault >= 24; first-stage F 42.31."
+  },
+  {
+   "id": "R_c",
+   "description": "Linear 2SLS: feols(log(1+assault) ~ W | station+year+month+dow | pm25_mean ~ z_smoke, cluster=~date)",
+   "ran": true,
+   "estimate": 0.00532513346086875,
+   "se_or_ci": "SE 0.002321; 95% CI [0.000777, 0.009874]",
+   "p_value": 0.0218039177849501,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_Rb_Rc.csv",
+   "note": "N 7163; first-stage Wald F (ivwald, clustered) 42.72; fixest 0.14.2."
+  }
+ ],
+ "bugs": [],
+ "code_review": "none found. Read wildfire_data_analysis.R lines 1-668 in full (preprocessing, sample construction, helpers, Table 1) and section 7 (lines 842-900); the rest of the script (sections 6B, 8-17) and wildfire_plots.R were not reviewed line by line. All 17 sections ran without error.",
+ "env_fixes": [
+  "none to code: no file was edited, so diffs/ holds only README.md. The deposit's Dataverse folder labels match the paths in the code, so files were placed in 'Data Analysis/', 'Beats/', 'Crime Data/' under the working directory.",
+  "Dataverse ?format=original CSVs used (PREREG, class decision 3); sha256 of all 14 files match PREREG.md.",
+  "LC_ALL=C.UTF-8 for the run (PREREG allowed locale fix).",
+  "fixest 0.14.2, ivtools, weathermetrics, ahaz, dreamerr, stringmagic installed from CRAN source into a per-run library (no Debian r-cran binaries exist for them); everything else from Debian system R packages."
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets reproduced to the paper's rounding by the unchanged deposited script (T6 with the first pre-registered formula), with no code edits.",
+ "confidence": "high",
+ "confidence_reason": "Unchanged code, checksummed deposit files, deterministic estimator; subset and full runs gave identical numbers (pending agreement with agent B per PROTOCOL section 8).",
+ "time_minutes": 20,
+ "uncertainties": [
+  "T5 and T6 are prose values; T6 is not computed in any deposited script, so its formula is our first pre-registered candidate (candidate 2 rounds to 3.5 and candidate 3 to 3.6, see T6 note).",
+  "Supplementary Information (tables B1 to B14) was not compared: it could not be opened during pre-registration (captcha); the script's SI tables are saved in outputs/author_tables/ unchecked.",
+  "wildfire_plots.R was not run (not needed for any target, PREREG step 4 optional); figure-based numbers such as the 2.2% per IQR were not checked.",
+  "EXPLORATORY (not pre-registered): PREREG inconsistency 1 has no effect on this deposit: rows with complete Model 3 variables = 7163, of which 0 are dropped only by the extra na.omit columns (outputs/exploratory_na_rows.json, plain CSV count).",
+  "The sandbox restarted once mid-run (full run killed, then rerun from scratch); system R was reinstalled by setup_env.sh, so the system package set may differ slightly from the subset run. Both runs gave identical target numbers.",
+  "The upstream build of the merged station-day CSVs from raw sources is not deposited (data-statement finding, class decision 7); the audit starts from the deposited merged CSVs."
+ ]
+}

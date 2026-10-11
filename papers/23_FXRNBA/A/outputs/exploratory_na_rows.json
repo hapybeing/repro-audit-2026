@@ -1,0 +1,18 @@
+{
+ "label": "EXPLORATORY, not pre-registered",
+ "rows_2013_2023": 8034,
+ "rows_complete_model3_vars": 7163,
+ "rows_complete_model3_and_extra_vars": 7163,
+ "rows_dropped_only_by_extra_columns": 0,
+ "missing_by_extra_column_among_model3_complete": {
+  "WDF2": 0,
+  "Robbery": 0,
+  "Burglary/Breaking & Entering": 0,
+  "Theft From Motor Vehicle": 0,
+  "Motor Vehicle Theft": 0,
+  "Intimidation": 0,
+  "Person": 0,
+  "Property": 0
+ },
+ "wdf2_out_of_0_360": 0
+}

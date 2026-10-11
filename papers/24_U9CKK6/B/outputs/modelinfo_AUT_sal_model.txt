@@ -1,0 +1,10 @@
+nobs 101077
+AIC 265457.669263774
+logLik -132663.834631887
+ mep_ids party_id 
+     765      151 
+ Groups   Name        Variance 
+ mep_ids  (Intercept) 0.0315683
+ party_id (Intercept) 0.0056831
+ Residual             0.7985166
+dropped_cols 

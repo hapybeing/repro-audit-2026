@@ -1,0 +1,81 @@
+{
+ "T1": {
+  "row": "Table A1 Anti-strike col 1",
+  "pdf_cells": [
+   "-0.386",
+   "-0.421",
+   "-0.521",
+   "-0.579",
+   "-0.557",
+   "-0.617"
+  ],
+  "read": -0.386,
+  "targets_json_value": -0.386,
+  "agrees": true
+ },
+ "T2": {
+  "row": "Table A2 Pro-strike col 1",
+  "pdf_cells": [
+   "0.473",
+   "0.428",
+   "0.391"
+  ],
+  "read": 0.473,
+  "targets_json_value": 0.473,
+  "agrees": true
+ },
+ "T3": {
+  "row": "Table A1 Pro-strike col 1",
+  "pdf_cells": [
+   "0.194",
+   "0.136",
+   "0.096"
+  ],
+  "read": 0.194,
+  "targets_json_value": 0.194,
+  "agrees": true
+ },
+ "T4": {
+  "row": "Table A1 Anti-strike col 4",
+  "pdf_cells": [
+   "-0.386",
+   "-0.421",
+   "-0.521",
+   "-0.579",
+   "-0.557",
+   "-0.617"
+  ],
+  "read": -0.579,
+  "targets_json_value": -0.579,
+  "agrees": true
+ },
+ "T5": {
+  "row": "Table A1 Observations col 1",
+  "pdf_cells": [
+   "976",
+   "975",
+   "754",
+   "976",
+   "975",
+   "754"
+  ],
+  "read": 976.0,
+  "targets_json_value": 976,
+  "agrees": true
+ },
+ "T6": {
+  "row": "Table A2 Observations col 1",
+  "pdf_cells": [
+   "961",
+   "962",
+   "747",
+   "961",
+   "962",
+   "747"
+  ],
+  "read": 961.0,
+  "targets_json_value": 961,
+  "agrees": true
+ },
+ "all_agree": true
+}

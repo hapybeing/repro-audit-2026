@@ -1,0 +1,47 @@
+{
+ "rule": "PROTOCOL.md section 7 with CHANGELOG_METHOD #4 to #6 and the pre-run batch5_class_decisions.md. Classes were set by the lead after both blind agents reported; A and B proposed the same class for every paper. No class in batch 5 needed a reading made after results. Alternatives are shown for transparency where a pre-run decision could reasonably be read the other way.",
+ "counts_main": {
+  "A": 4,
+  "B": 0,
+  "C": 1,
+  "D": 0,
+  "E": 0
+ },
+ "n_main": 5,
+ "alternatives": {
+  "21_LEFTNE": {
+   "class_rule4": "C",
+   "alt_class": "B",
+   "alt_label": "B under a literal reading of PROTOCOL.md section 7 without CHANGELOG_METHOD #6a: every estimate target (T1 to T5) matches at printed rounding and only T6, the Table 3 N, differs (698 reproduced, 697 printed; the deposited data hold exactly 698 compliers)"
+  },
+  "24_U9CKK6": {
+   "class_rule4": "A",
+   "alt_class": "C",
+   "alt_label": "C if running only the pre-registered target blocks is not accepted: a top-to-bottom run of 6_analysis1.R stops at line 132 on variables (right, left) that no deposited script creates; those lines feed appendix models only (pre-run decision #2)"
+  }
+ },
+ "counts_if_21_LEFTNE_alt": {
+  "A": 4,
+  "B": 1,
+  "C": 0,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_21_LEFTNE_alt": 5,
+ "counts_if_24_U9CKK6_alt": {
+  "A": 3,
+  "B": 0,
+  "C": 2,
+  "D": 0,
+  "E": 0
+ },
+ "n_if_24_U9CKK6_alt": 5,
+ "counts_all_alternatives": {
+  "A": 3,
+  "B": 1,
+  "C": 1,
+  "D": 0,
+  "E": 0
+ },
+ "n_all_alternatives": 5
+}

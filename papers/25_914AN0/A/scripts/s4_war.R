@@ -1,0 +1,11 @@
+# S4: war-level models (run2_main.R lines 1312-1405 verbatim). Fresh session.
+setwd("/workspace/audit_runs/25_914AN0/A/Replication_IO")
+source("/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/25_914AN0/A/scripts/common.R")
+logmem("S4 start")
+source("code/run1_setup.R")
+run_lines(1312, 1387)
+source("/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/25_914AN0/A/scripts/common.R")
+saveRDS(mod_out, file.path(PDIR,"outputs","war_mod_out.rds"))
+sink(file.path(PDIR,"outputs","war_feols_summary.txt")); print(summary(mod)); print(mod_out); sink()
+run_lines(1389, 1405)
+logmem("S4 done")

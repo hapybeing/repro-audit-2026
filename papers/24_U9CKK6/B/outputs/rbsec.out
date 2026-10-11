@@ -1,0 +1,6 @@
+                term   estimate         se     p_naive  nobs conv dropped
+T5 challenge:aut_sal 0.03644563 0.01150980 0.001542929 99154 none        
+T6  challenge:EU_sal 0.01258192 0.00719787 0.080462929 76686 none        
+   target rows_dropped
+T5     T5         1923
+T6     T6          590

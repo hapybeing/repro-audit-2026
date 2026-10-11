@@ -1,0 +1,116 @@
+{
+ "lavaan_study1": {
+  "indirTRUMPnxty": {
+   "est": 0.018,
+   "se": 0.006,
+   "z": 3.282,
+   "p": 0.001
+  },
+  "indirTRUMPangr": {
+   "est": 0.017,
+   "se": 0.006,
+   "z": 2.895,
+   "p": 0.004
+  },
+  "indirTRUMPhope": {
+   "est": -0.025,
+   "se": 0.007,
+   "z": -3.418,
+   "p": 0.001
+  },
+  "indrCLINTONnxt": {
+   "est": 0.006,
+   "se": 0.004,
+   "z": 1.387,
+   "p": 0.165
+  },
+  "indrCLINTONngr": {
+   "est": 0.002,
+   "se": 0.003,
+   "z": 0.715,
+   "p": 0.475
+  },
+  "indirCLINTONhp": {
+   "est": 0.007,
+   "se": 0.007,
+   "z": 1.007,
+   "p": 0.314
+  }
+ },
+ "lavaan_study2": {
+  "indirTRUMPnxty": {
+   "est": 0.019,
+   "se": 0.006,
+   "z": 3.003,
+   "p": 0.003
+  },
+  "indirTRUMPangr": {
+   "est": 0.08,
+   "se": 0.019,
+   "z": 4.201,
+   "p": 0.0
+  },
+  "indirTRUMPhope": {
+   "est": -0.019,
+   "se": 0.008,
+   "z": -2.415,
+   "p": 0.016
+  },
+  "indrCLINTONnxt": {
+   "est": -0.011,
+   "se": 0.005,
+   "z": -2.313,
+   "p": 0.021
+  },
+  "indrCLINTONngr": {
+   "est": -0.0,
+   "se": 0.004,
+   "z": -0.022,
+   "p": 0.982
+  },
+  "indirCLINTONhp": {
+   "est": 0.107,
+   "se": 0.016,
+   "z": 6.795,
+   "p": 0.0
+  }
+ },
+ "table3_printed": {
+  "treatment_of_women": [
+   "0.06",
+   "**"
+  ],
+  "N": 698
+ },
+ "tableA8_mediate": {
+  "A8_study1_Clinton": {
+   "acme": 0.0030673,
+   "ci90_lo": -0.00311454,
+   "ci90_hi": 0.00950808,
+   "p_printed": "0.438",
+   "n": 582
+  },
+  "A8_study1_Trump": {
+   "acme": 0.025225,
+   "ci90_lo": 0.0094339,
+   "ci90_hi": 0.0415286,
+   "p_printed": "0.006",
+   "n": 582
+  },
+  "A8_study2_Clinton": {
+   "acme": -0.00012522,
+   "ci90_lo": -0.00554541,
+   "ci90_hi": 0.00577834,
+   "p_printed": "0.940",
+   "n": 605
+  },
+  "A8_study2_Trump": {
+   "acme": 0.108151,
+   "ci90_lo": 0.071255,
+   "ci90_hi": 0.148563,
+   "p_printed": "<0.0000000000000002",
+   "n": 605
+  }
+ },
+ "tableA5_printed_excerpt": "+     anger6, anger7, model.names = c(\"None\", \"Balanced\", \"Party\", \n+         \"Gender\", \"Gender-Party\", \"Gender-Edu\", \"Gender:Edu\"))\n \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n                None     Balanced    Party      Gender    Gender-P   Gender-E  \n                                                            arty        du     \n            \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n   (Interce   0.13 ***   0.10 ***   0.14 ***   0.11 ***   0.14 ***   0.13 ***  \n   pt)                                                                         \n              (0.02)\u00a0\u00a0   (0.02)\u00a0\u00a0   (0.03)\u00a0\u00a0   (0.03)\u00a0\u00a0   (0.04)\u00a0\u00a0   (0.03)\u00a0\u00a0  \n                     \u00a0          \u00a0          \u00a0          \u00a0          \u00a0          \u00a0  \n   TREATMEN   0.02\u00a0\u00a0\u00a0\u00a0   0.02\u00a0\u00a0\u00a0\u00a0   -0.00\u00a0\u00a0\u00a0   0.03\u00a0\u00a0\u00a0\u00a0   0.03\u00a0\u00a0\u00a0\u00a0   0.00\u00a0\u00a0\u00a0\u00a0  \n   TClinton                                \u00a0                                   \n              (0.02)\u00a0\u00a0   (0.03)\u00a0\u00a0   (0.04)\u00a0\u00a0   (0.04)\u00a0\u00a0   (0.06)\u00a0\u00a0   (0.04)\u00a0\u00a0  \n                     \u00a0          \u00a0          \u00a0          \u00a0          \u00a0          \u00a0  \n   TREATMEN   0.15 ***   0.16 ***   0.04\u00a0\u00a0\u00a0\u00a0   0.12 ***   0.11\u00a0\u00a0\u00a0\u00a0   0.19 ***  \n   TTrump                                                                      \n              (0.02)\u00a0\u00a0   (0.03)\u00a0\u00a0   (0.04)\u00a0\u00a0   (0.04)\u00a0\u00a0   (0.06)\u00a0\u00a0   (0.04)\u00a0\u00a0  \n                     \u00a0          \u00a0          \u00a0          \u00a0          \u00a0          \u00a0  \n   party_le    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.06 **\u00a0   -0.03\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   -0.02\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   anersinc                                \u00a0                     \u00a0             \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.02)\u00a0\u00a0   (0.04)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.05)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n                                \u00a0          \u00a0                     \u00a0             \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.04\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   -0.02\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TClinton                                                      \u00a0             \n   :party_l                                                                    \n   eanersin                                                                    \n   c                                                                           \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.05)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.08)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n                                           \u00a0                     \u00a0             \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.22 ***    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.15\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TTrump:p                                                                    \n   arty_lea                                                                    \n   nersinc                                                                     \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.05)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.08)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n                                           \u00a0                     \u00a0             \n   GENDER      \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.03\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.04)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n                                                      \u00a0                        \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   -0.02\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TClinton                                           \u00a0                        \n   :GENDER                                                                     \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.05)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n                                                      \u00a0                        \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.06\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TTrump:G                                                                    \n   ENDER                                                                       \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.05)\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n                                                      \u00a0                        \n   EDUCATIO    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   0.06\u00a0\u00a0\u00a0\u00a0  \n   N_r                                                                         \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.05)\u00a0\u00a0  \n                                                                            \u00a0  \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   -0.00\u00a0\u00a0\u00a0  \n   TClinton                                                                 \u00a0  \n   :EDUCATI                                                                    \n   ON_r                                                                        \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.07)\u00a0\u00a0  \n                                                                            \u00a0  \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   -0.03\u00a0\u00a0\u00a0  \n   TTrump:E                                                                 \u00a0  \n   DUCATION                                                                    \n   _r                                                                          \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0   (0.08)\u00a0\u00a0  \n                                                                            \u00a0  \n   GENDER:E    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   DUCATION                                                                    \n   _r                                                                          \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TClinton                                                                    \n   :GENDER:                                                                    \n   EDUCATIO                                                                    \n   N_r                                                                         \n               \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TREATMEN    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0    \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0  \n   TTrump:G                "
+}

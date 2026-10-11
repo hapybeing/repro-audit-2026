@@ -1,0 +1,16 @@
+# Descriptive diagnostics only (no estimation change): T6 sample and Study 1 sample sizes.
+.libPaths(c("/workspace/audit_runs/21_LEFTNE/B/rlib", .libPaths()))
+setwd("/workspace/audit_runs/21_LEFTNE/B/data")
+sink("/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/21_LEFTNE/B/outputs/diag_t6_and_samples.txt")
+c <- readRDS("CES2020.RDS")
+cat("CES2020 rows:", nrow(c), "\n"); print(table(complier = c$complier, useNA = "ifany"))
+cc <- c[which(c$complier == 1), ]
+cat("complier==1 rows:", nrow(cc), "\n"); print(table(cc$TREATMENT, useNA = "ifany"))
+cat("NA futureengage_novote among compliers:", sum(is.na(cc$futureengage_novote)), "\n")
+print(summary(cc$futureengage_novote))
+cat("rows with complier NA:", sum(is.na(c$complier)), "\n")
+cat("Column names:\n"); print(names(c))
+q <- readRDS("Qualtrics_2019.RDS"); cat("\nQualtrics rows:", nrow(q), "\n"); print(table(q$TREATMENT, useNA = "ifany"))
+q3 <- q[q$TREATMENT %in% c("Alexa","Trump","Clinton"), ]; cat("3-arm rows:", nrow(q3), " non-missing anger:", sum(!is.na(q3$anger)), "\n")
+n <- readRDS("NORC.RDS"); cat("\nNORC rows:", nrow(n), "\n"); print(table(n$TREATMENT, useNA = "ifany"))
+sink()

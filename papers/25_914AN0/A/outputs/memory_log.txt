@@ -1,0 +1,10 @@
+[2026-10-11 07:18:54 IST] S1a start (guard) MemAvailable=3893 MB, this R VmHWM=54 MB 
+[2026-10-11 07:19:05 IST] after line 55 MemAvailable=2172 MB, this R VmHWM=1783 MB 
+[2026-10-11 07:19:06 IST] after line 58 MemAvailable=2122 MB, this R VmHWM=1846 MB 
+[2026-10-11 07:19:06 IST] after lines 98-107 MemAvailable=2125 MB, this R VmHWM=1847 MB 
+[2026-10-11 07:19:07 IST] S1a saved MemAvailable=2111 MB, this R VmHWM=1847 MB 
+[2026-10-11 07:20:38 IST] S1b start (guard) MemAvailable=3840 MB, this R VmHWM=54 MB 
+[2026-10-11 07:21:09 IST] after ensemble_modz MemAvailable=3239 MB, this R VmHWM=718 MB 
+[2026-10-11 07:21:09 IST] S1b done MemAvailable=3239 MB, this R VmHWM=719 MB 
+[2026-10-11 07:22:18 IST] S4 start MemAvailable=3890 MB, this R VmHWM=45 MB 
+[2026-10-11 07:22:23 IST] S4 done MemAvailable=3419 MB, this R VmHWM=566 MB 

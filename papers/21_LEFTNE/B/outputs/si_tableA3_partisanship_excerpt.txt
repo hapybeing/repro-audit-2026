@@ -1,0 +1,5 @@
+	%
+Republican	34.98%
+Democrat	36.68%
+Independent	26.10%
+

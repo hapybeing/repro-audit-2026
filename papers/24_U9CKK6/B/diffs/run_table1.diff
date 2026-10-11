@@ -1,0 +1,45 @@
+--- run_table1_ranges_verbatim.R	2026-10-11 00:15:59.173770875 +0000
++++ run_table1.R	2026-10-11 00:15:59.178668473 +0000
+@@ -1,3 +1,5 @@
++## ENV: run with working directory = RUNDIR (set by the caller). Lines below are the authors' unless marked ## ENV.
++cat('START', format(Sys.time()), '\n')
+ ################################################################################
+ ################################################################################
+ ################################################################################
+@@ -67,6 +69,7 @@
+                    de_defense + de_techno + de_trade + de_intern + de_govern +
+                    de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
+                    (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(cycle_AE, "models/cycle_AE.rds"); cat('SAVED cycle_AE', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(cycle_AE)
+ 
+@@ -76,6 +79,7 @@
+                    de_defense + de_techno + de_trade + de_intern + de_govern +
+                    de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
+                    (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(cycle_AE_fit2, "models/cycle_AE_fit2.rds"); cat('SAVED cycle_AE_fit2', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(cycle_AE_fit2)
+ 
+@@ -85,6 +89,7 @@
+                         de_defense + de_techno + de_trade + de_intern + de_govern +
+                         de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
+                         (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(cycle_AE_fit3, "models/cycle_AE_fit3.rds"); cat('SAVED cycle_AE_fit3', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(cycle_AE_fit3)
+ 
+@@ -95,6 +100,7 @@
+                         de_defense + de_techno + de_trade + de_intern + de_govern +
+                         de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + EU_party + as.factor(country) +
+                         (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(cycle_AE_fit_group, "models/cycle_AE_fit_group.rds"); cat('SAVED cycle_AE_fit_group', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(cycle_AE_fit_group)
+ 
+@@ -122,3 +128,4 @@
+        custom.note = "%stars. Random Intercepts for Parties and MEPs",
+        digits = 2,
+        caption = "Anti-Establishment Rhetoric conditional on Electoral Cycle")
++cat('END', format(Sys.time()), '\n')

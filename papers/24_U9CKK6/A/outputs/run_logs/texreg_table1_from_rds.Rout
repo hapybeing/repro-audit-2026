@@ -1,0 +1,63 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ## [ENV FIX] per-run library, working directory, model save folder (agent A)
+> .libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+> setwd("/workspace/audit_runs/24_U9CKK6/A/run")
+> cat("START", format(Sys.time()), "\n")
+START 2026-10-10 23:19:02 
+> library(lme4)
+Loading required package: Matrix
+> library(texreg)
+Version:  1.40
+Date:     2026-08-24
+Author:   Philip Leifeld (University of Manchester)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+> cycle_AE <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE.rds")
+> cycle_AE_fit2 <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit2.rds")
+> cycle_AE_fit3 <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit3.rds")
+> cycle_AE_fit_group <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit_group.rds")
+> texreg(list(cycle_AE, cycle_AE_fit2, cycle_AE_fit3, cycle_AE_fit_group),
++        file = "Tables/AE_cycle_240124.tex",
++        include.ci = FALSE,
++        custom.coef.map = list("challenge" = "Challenger",
++                               "days_to_EP" = "Proximity to next EP-Election",
++                               "days_to_nat" = "Proximity to next National Election",
++                               "challenge:days_to_EP" = "Challenger * Proximity to next EP-Election",
++                               "challenge:days_to_nat" = "Challenger * Proximity to next National Election",
++                               "days_to_EP:nat_opp" = "Nat. Opp. * Proximity to next EP-Election ",
++                               "days_to_nat:nat_opp"= "Nat. Opp. * Proximity to next National Election",
++                               "lrgen_scale" = "LR-Position",
++                               "EP_Coa" = "EP Opposition",
++                               "nat_opp" = "Nat. Opposition"),
++        booktabs = TRUE,
++        dcolumn = FALSE,
++        custom.gof.rows = list("Topic Controls" = c("Yes", "Yes", "Yes", "Yes"),
++                               "Year Fixed Effects" = c("Yes", "Yes", "Yes", "Yes"),
++                               "Country Fixed Effects" = c("Yes", "Yes", "Yes", "Yes"),
++                               "EP-Group Fixed Effects" = c("No", "No", "No", "Yes")),
++        custom.model.names = c("Anti-Establishment Rhetoric", "Anti-Establishment Rhetoric", "Anti-Establishment Rhetoric", "Anti-Establishment Rhetoric"),
++        custom.note = "%stars. Random Intercepts for Parties and MEPs",
++        digits = 2,
++        caption = "Anti-Establishment Rhetoric conditional on Electoral Cycle")
+The table was written to the file 'Tables/AE_cycle_240124.tex'.
+
+> cat("END", format(Sys.time()), "\n")
+END 2026-10-10 23:19:09 
+> 

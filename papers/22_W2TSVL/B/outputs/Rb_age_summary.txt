@@ -1,0 +1,1 @@
+age d2: n_nonmissing=1011 mean=40.8081 sd=15.6437 min=18 max=89 n_missing=0 rows_dropped=2

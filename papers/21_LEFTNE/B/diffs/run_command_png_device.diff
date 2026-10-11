@@ -1,0 +1,5 @@
+--- /tmp/cmd_orig.txt	2026-10-10 21:53:30.816000000 +0000
++++ /tmp/cmd_new.txt	2026-10-10 21:53:30.816000000 +0000
+@@ -1 +1 @@
+-Rscript -e 'source("01- Replication_Text.R", echo=TRUE, max.deparse.length=Inf)'
++Rscript -e 'options(device = function(...) grDevices::png(file.path("<OUT>/figures", "<log>_%03d.png"), width = 1200, height = 900, type = "cairo")); source("01- Replication_Text.R", echo=TRUE, max.deparse.length=Inf)'

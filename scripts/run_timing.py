@@ -8,7 +8,8 @@ File modification times are those of the working copy at the time this script ru
 import datetime, glob, os, re, sys
 
 K = int(sys.argv[1])
-PIDS = {4: ["16_QZNVZ0", "17_T1NXVQ", "18_YXC5K5", "19_KH0SQ2", "20_SINIYU"]}[K]
+PIDS = {4: ["16_QZNVZ0", "17_T1NXVQ", "18_YXC5K5", "19_KH0SQ2", "20_SINIYU"],
+        5: ["21_LEFTNE", "22_W2TSVL", "23_FXRNBA", "24_U9CKK6", "25_914AN0"]}[K]
 
 
 def utc(ts):

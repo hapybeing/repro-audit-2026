@@ -1,0 +1,21 @@
+saved through rep 70 elapsed 10.1 s
+saved through rep 120 elapsed 19.5 s
+saved through rep 170 elapsed 32.3 s
+saved through rep 220 elapsed 41.7 s
+saved through rep 270 elapsed 48.2 s
+saved through rep 320 elapsed 56.2 s
+saved through rep 370 elapsed 66.4 s
+saved through rep 420 elapsed 73 s
+saved through rep 470 elapsed 79.3 s
+saved through rep 520 elapsed 85.6 s
+saved through rep 570 elapsed 91.8 s
+saved through rep 620 elapsed 98.4 s
+saved through rep 670 elapsed 104.8 s
+saved through rep 720 elapsed 111.2 s
+saved through rep 770 elapsed 117.5 s
+saved through rep 820 elapsed 123.7 s
+saved through rep 870 elapsed 130.3 s
+saved through rep 920 elapsed 136.9 s
+saved through rep 970 elapsed 143.5 s
+saved through rep 999 elapsed 147.1 s
+done; secs this session: 147.1 

@@ -1,0 +1,26 @@
+--- "02- Replication_Appendix.R"	2026-10-10 21:32:30.977309704 +0000
++++ "02- Replication_Appendix_figfix.R"	2026-10-10 21:47:40.692877506 +0000
+@@ -413,9 +413,9 @@
+ 
+ 
+ mydf <- ggeffects::ggpredict(mod4, terms = c("Gender", "Party", 'TREATMENT'))
+-plot(mydf, connect.lines = F, ci_style = "errorbar", colors = "bw") +
++try(plot(mydf, connect.lines = F, ci_style = "errorbar", colors = "bw") +
+   steph_theme +
+-  labs(title="Predicted Values of Compliance", y = "Compliance", caption = "CCES 2020",subtitle = "By Experimental Condition")
++  labs(title="Predicted Values of Compliance", y = "Compliance", caption = "CCES 2020",subtitle = "By Experimental Condition"))
+ 
+ mod4 <- lm(word_count ~ TREATMENT * Gender * Party, data = df_cces, weights = teamweight)
+ emm <- emmeans::emmeans(mod4, ~ c(TREATMENT, Gender, Party)) 
+@@ -425,9 +425,9 @@
+ pairs(emm, adjust = "none")
+ 
+ mydf <- ggeffects::ggpredict(mod4, terms = c("Gender", "Party", 'TREATMENT'))
+-plot(mydf, connect_lines = F, ci_style = "errorbar", colors = "bw") +
++try(plot(mydf, connect_lines = F, ci_style = "errorbar", colors = "bw") +
+   steph_theme +
+-  labs(title="Predicted Values of Response Length", y = "Word Count", caption = "CCES 2020",subtitle = "By Experimental Condition")
++  labs(title="Predicted Values of Response Length", y = "Word Count", caption = "CCES 2020",subtitle = "By Experimental Condition"))
+ 
+ 
+ 

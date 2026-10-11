@@ -1,0 +1,1438 @@
+
+> Packages <- c("here", "car", "survey", "margins", 
++     "interplot", "aod", "dplyr", "foreign", "nnet", "ggplot2", 
++     "reshape2", "Rmisc", "tidyverse", "broom", "dotwhisker", 
++     "janitor", "qualtRics", "jtools", "mediation", "gtools", 
++     "gridExtra", "huxtable", "DT", "ggsci", "hrbrthemes", "haven", 
++     "effectsize", "readr", "purrr", "emmeans")
+
+> lapply(Packages, library, character.only = TRUE)
+here() starts at /workspace/audit_runs/21_LEFTNE/B/data
+Loading required package: carData
+Loading required package: grid
+Loading required package: Matrix
+Loading required package: survival
+
+Attaching package: ‘survey’
+
+The following object is masked from ‘package:graphics’:
+
+    dotchart
+
+Loading required package: ggplot2
+
+Attaching package: ‘aod’
+
+The following object is masked from ‘package:survival’:
+
+    rats
+
+
+Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:car’:
+
+    recode
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: lattice
+Loading required package: plyr
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: ‘plyr’
+
+The following objects are masked from ‘package:dplyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following object is masked from ‘package:here’:
+
+    here
+
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.4     ✔ tibble    3.2.1
+✔ purrr     1.0.4     ✔ tidyr     1.3.1
+✔ readr     2.1.5     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ plyr::arrange()   masks dplyr::arrange()
+✖ purrr::compact()  masks plyr::compact()
+✖ plyr::count()     masks dplyr::count()
+✖ plyr::desc()      masks dplyr::desc()
+✖ tidyr::expand()   masks Matrix::expand()
+✖ plyr::failwith()  masks dplyr::failwith()
+✖ dplyr::filter()   masks stats::filter()
+✖ plyr::id()        masks dplyr::id()
+✖ dplyr::lag()      masks stats::lag()
+✖ plyr::mutate()    masks dplyr::mutate()
+✖ tidyr::pack()     masks Matrix::pack()
+✖ dplyr::recode()   masks car::recode()
+✖ plyr::rename()    masks dplyr::rename()
+✖ purrr::some()     masks car::some()
+✖ plyr::summarise() masks dplyr::summarise()
+✖ plyr::summarize() masks dplyr::summarize()
+✖ tidyr::unpack()   masks Matrix::unpack()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘janitor’
+
+The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Loading required package: mvtnorm
+
+Attaching package: ‘mvtnorm’
+
+The following object is masked from ‘package:jtools’:
+
+    standardize
+
+Loading required package: sandwich
+mediation: Causal Mediation Analysis
+Version: 4.5.1
+
+
+Attaching package: ‘gtools’
+
+The following object is masked from ‘package:car’:
+
+    logit
+
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+
+Attaching package: ‘huxtable’
+
+The following object is masked from ‘package:dplyr’:
+
+    add_rownames
+
+The following object is masked from ‘package:ggplot2’:
+
+    theme_grey
+
+
+Attaching package: ‘effectsize’
+
+The following objects are masked from ‘package:huxtable’:
+
+    print_html, print_md
+
+The following object is masked from ‘package:mvtnorm’:
+
+    standardize
+
+The following object is masked from ‘package:jtools’:
+
+    standardize
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+[[1]]
+[1] "here"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[7] "methods"   "base"     
+
+[[2]]
+ [1] "car"       "carData"   "here"      "stats"     "graphics"  "grDevices"
+ [7] "utils"     "datasets"  "methods"   "base"     
+
+[[3]]
+ [1] "survey"    "survival"  "Matrix"    "grid"      "car"       "carData"  
+ [7] "here"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[13] "methods"   "base"     
+
+[[4]]
+ [1] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+ [7] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[13] "datasets"  "methods"   "base"     
+
+[[5]]
+ [1] "interplot" "ggplot2"   "margins"   "survey"    "survival"  "Matrix"   
+ [7] "grid"      "car"       "carData"   "here"      "stats"     "graphics" 
+[13] "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+[[6]]
+ [1] "aod"       "interplot" "ggplot2"   "margins"   "survey"    "survival" 
+ [7] "Matrix"    "grid"      "car"       "carData"   "here"      "stats"    
+[13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+[[7]]
+ [1] "dplyr"     "aod"       "interplot" "ggplot2"   "margins"   "survey"   
+ [7] "survival"  "Matrix"    "grid"      "car"       "carData"   "here"     
+[13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+[19] "base"     
+
+[[8]]
+ [1] "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"   "margins"  
+ [7] "survey"    "survival"  "Matrix"    "grid"      "car"       "carData"  
+[13] "here"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[19] "methods"   "base"     
+
+[[9]]
+ [1] "nnet"      "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"  
+ [7] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+[13] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[19] "datasets"  "methods"   "base"     
+
+[[10]]
+ [1] "nnet"      "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"  
+ [7] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+[13] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[19] "datasets"  "methods"   "base"     
+
+[[11]]
+ [1] "reshape2"  "nnet"      "foreign"   "dplyr"     "aod"       "interplot"
+ [7] "ggplot2"   "margins"   "survey"    "survival"  "Matrix"    "grid"     
+[13] "car"       "carData"   "here"      "stats"     "graphics"  "grDevices"
+[19] "utils"     "datasets"  "methods"   "base"     
+
+[[12]]
+ [1] "Rmisc"     "plyr"      "lattice"   "reshape2"  "nnet"      "foreign"  
+ [7] "dplyr"     "aod"       "interplot" "ggplot2"   "margins"   "survey"   
+[13] "survival"  "Matrix"    "grid"      "car"       "carData"   "here"     
+[19] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+[25] "base"     
+
+[[13]]
+ [1] "lubridate" "forcats"   "stringr"   "purrr"     "readr"     "tidyr"    
+ [7] "tibble"    "tidyverse" "Rmisc"     "plyr"      "lattice"   "reshape2" 
+[13] "nnet"      "foreign"   "dplyr"     "aod"       "interplot" "ggplot2"  
+[19] "margins"   "survey"    "survival"  "Matrix"    "grid"      "car"      
+[25] "carData"   "here"      "stats"     "graphics"  "grDevices" "utils"    
+[31] "datasets"  "methods"   "base"     
+
+[[14]]
+ [1] "broom"     "lubridate" "forcats"   "stringr"   "purrr"     "readr"    
+ [7] "tidyr"     "tibble"    "tidyverse" "Rmisc"     "plyr"      "lattice"  
+[13] "reshape2"  "nnet"      "foreign"   "dplyr"     "aod"       "interplot"
+[19] "ggplot2"   "margins"   "survey"    "survival"  "Matrix"    "grid"     
+[25] "car"       "carData"   "here"      "stats"     "graphics"  "grDevices"
+[31] "utils"     "datasets"  "methods"   "base"     
+
+[[15]]
+ [1] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+ [6] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[11] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[16] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[21] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[26] "car"        "carData"    "here"       "stats"      "graphics"  
+[31] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[16]]
+ [1] "janitor"    "dotwhisker" "broom"      "lubridate"  "forcats"   
+ [6] "stringr"    "purrr"      "readr"      "tidyr"      "tibble"    
+[11] "tidyverse"  "Rmisc"      "plyr"       "lattice"    "reshape2"  
+[16] "nnet"       "foreign"    "dplyr"      "aod"        "interplot" 
+[21] "ggplot2"    "margins"    "survey"     "survival"   "Matrix"    
+[26] "grid"       "car"        "carData"    "here"       "stats"     
+[31] "graphics"   "grDevices"  "utils"      "datasets"   "methods"   
+[36] "base"      
+
+[[17]]
+ [1] "qualtRics"  "janitor"    "dotwhisker" "broom"      "lubridate" 
+ [6] "forcats"    "stringr"    "purrr"      "readr"      "tidyr"     
+[11] "tibble"     "tidyverse"  "Rmisc"      "plyr"       "lattice"   
+[16] "reshape2"   "nnet"       "foreign"    "dplyr"      "aod"       
+[21] "interplot"  "ggplot2"    "margins"    "survey"     "survival"  
+[26] "Matrix"     "grid"       "car"        "carData"    "here"      
+[31] "stats"      "graphics"   "grDevices"  "utils"      "datasets"  
+[36] "methods"    "base"      
+
+[[18]]
+ [1] "jtools"     "qualtRics"  "janitor"    "dotwhisker" "broom"     
+ [6] "lubridate"  "forcats"    "stringr"    "purrr"      "readr"     
+[11] "tidyr"      "tibble"     "tidyverse"  "Rmisc"      "plyr"      
+[16] "lattice"    "reshape2"   "nnet"       "foreign"    "dplyr"     
+[21] "aod"        "interplot"  "ggplot2"    "margins"    "survey"    
+[26] "survival"   "Matrix"     "grid"       "car"        "carData"   
+[31] "here"       "stats"      "graphics"   "grDevices"  "utils"     
+[36] "datasets"   "methods"    "base"      
+
+[[19]]
+ [1] "mediation"  "sandwich"   "mvtnorm"    "MASS"       "jtools"    
+ [6] "qualtRics"  "janitor"    "dotwhisker" "broom"      "lubridate" 
+[11] "forcats"    "stringr"    "purrr"      "readr"      "tidyr"     
+[16] "tibble"     "tidyverse"  "Rmisc"      "plyr"       "lattice"   
+[21] "reshape2"   "nnet"       "foreign"    "dplyr"      "aod"       
+[26] "interplot"  "ggplot2"    "margins"    "survey"     "survival"  
+[31] "Matrix"     "grid"       "car"        "carData"    "here"      
+[36] "stats"      "graphics"   "grDevices"  "utils"      "datasets"  
+[41] "methods"    "base"      
+
+[[20]]
+ [1] "gtools"     "mediation"  "sandwich"   "mvtnorm"    "MASS"      
+ [6] "jtools"     "qualtRics"  "janitor"    "dotwhisker" "broom"     
+[11] "lubridate"  "forcats"    "stringr"    "purrr"      "readr"     
+[16] "tidyr"      "tibble"     "tidyverse"  "Rmisc"      "plyr"      
+[21] "lattice"    "reshape2"   "nnet"       "foreign"    "dplyr"     
+[26] "aod"        "interplot"  "ggplot2"    "margins"    "survey"    
+[31] "survival"   "Matrix"     "grid"       "car"        "carData"   
+[36] "here"       "stats"      "graphics"   "grDevices"  "utils"     
+[41] "datasets"   "methods"    "base"      
+
+[[21]]
+ [1] "gridExtra"  "gtools"     "mediation"  "sandwich"   "mvtnorm"   
+ [6] "MASS"       "jtools"     "qualtRics"  "janitor"    "dotwhisker"
+[11] "broom"      "lubridate"  "forcats"    "stringr"    "purrr"     
+[16] "readr"      "tidyr"      "tibble"     "tidyverse"  "Rmisc"     
+[21] "plyr"       "lattice"    "reshape2"   "nnet"       "foreign"   
+[26] "dplyr"      "aod"        "interplot"  "ggplot2"    "margins"   
+[31] "survey"     "survival"   "Matrix"     "grid"       "car"       
+[36] "carData"    "here"       "stats"      "graphics"   "grDevices" 
+[41] "utils"      "datasets"   "methods"    "base"      
+
+[[22]]
+ [1] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+ [6] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[11] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[16] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[21] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[26] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[31] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[36] "car"        "carData"    "here"       "stats"      "graphics"  
+[41] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[23]]
+ [1] "DT"         "huxtable"   "gridExtra"  "gtools"     "mediation" 
+ [6] "sandwich"   "mvtnorm"    "MASS"       "jtools"     "qualtRics" 
+[11] "janitor"    "dotwhisker" "broom"      "lubridate"  "forcats"   
+[16] "stringr"    "purrr"      "readr"      "tidyr"      "tibble"    
+[21] "tidyverse"  "Rmisc"      "plyr"       "lattice"    "reshape2"  
+[26] "nnet"       "foreign"    "dplyr"      "aod"        "interplot" 
+[31] "ggplot2"    "margins"    "survey"     "survival"   "Matrix"    
+[36] "grid"       "car"        "carData"    "here"       "stats"     
+[41] "graphics"   "grDevices"  "utils"      "datasets"   "methods"   
+[46] "base"      
+
+[[24]]
+ [1] "ggsci"      "DT"         "huxtable"   "gridExtra"  "gtools"    
+ [6] "mediation"  "sandwich"   "mvtnorm"    "MASS"       "jtools"    
+[11] "qualtRics"  "janitor"    "dotwhisker" "broom"      "lubridate" 
+[16] "forcats"    "stringr"    "purrr"      "readr"      "tidyr"     
+[21] "tibble"     "tidyverse"  "Rmisc"      "plyr"       "lattice"   
+[26] "reshape2"   "nnet"       "foreign"    "dplyr"      "aod"       
+[31] "interplot"  "ggplot2"    "margins"    "survey"     "survival"  
+[36] "Matrix"     "grid"       "car"        "carData"    "here"      
+[41] "stats"      "graphics"   "grDevices"  "utils"      "datasets"  
+[46] "methods"    "base"      
+
+[[25]]
+ [1] "hrbrthemes" "ggsci"      "DT"         "huxtable"   "gridExtra" 
+ [6] "gtools"     "mediation"  "sandwich"   "mvtnorm"    "MASS"      
+[11] "jtools"     "qualtRics"  "janitor"    "dotwhisker" "broom"     
+[16] "lubridate"  "forcats"    "stringr"    "purrr"      "readr"     
+[21] "tidyr"      "tibble"     "tidyverse"  "Rmisc"      "plyr"      
+[26] "lattice"    "reshape2"   "nnet"       "foreign"    "dplyr"     
+[31] "aod"        "interplot"  "ggplot2"    "margins"    "survey"    
+[36] "survival"   "Matrix"     "grid"       "car"        "carData"   
+[41] "here"       "stats"      "graphics"   "grDevices"  "utils"     
+[46] "datasets"   "methods"    "base"      
+
+[[26]]
+ [1] "haven"      "hrbrthemes" "ggsci"      "DT"         "huxtable"  
+ [6] "gridExtra"  "gtools"     "mediation"  "sandwich"   "mvtnorm"   
+[11] "MASS"       "jtools"     "qualtRics"  "janitor"    "dotwhisker"
+[16] "broom"      "lubridate"  "forcats"    "stringr"    "purrr"     
+[21] "readr"      "tidyr"      "tibble"     "tidyverse"  "Rmisc"     
+[26] "plyr"       "lattice"    "reshape2"   "nnet"       "foreign"   
+[31] "dplyr"      "aod"        "interplot"  "ggplot2"    "margins"   
+[36] "survey"     "survival"   "Matrix"     "grid"       "car"       
+[41] "carData"    "here"       "stats"      "graphics"   "grDevices" 
+[46] "utils"      "datasets"   "methods"    "base"      
+
+[[27]]
+ [1] "effectsize" "haven"      "hrbrthemes" "ggsci"      "DT"        
+ [6] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+[11] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[16] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[21] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[26] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[31] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[36] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[41] "car"        "carData"    "here"       "stats"      "graphics"  
+[46] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[28]]
+ [1] "effectsize" "haven"      "hrbrthemes" "ggsci"      "DT"        
+ [6] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+[11] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[16] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[21] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[26] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[31] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[36] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[41] "car"        "carData"    "here"       "stats"      "graphics"  
+[46] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[29]]
+ [1] "effectsize" "haven"      "hrbrthemes" "ggsci"      "DT"        
+ [6] "huxtable"   "gridExtra"  "gtools"     "mediation"  "sandwich"  
+[11] "mvtnorm"    "MASS"       "jtools"     "qualtRics"  "janitor"   
+[16] "dotwhisker" "broom"      "lubridate"  "forcats"    "stringr"   
+[21] "purrr"      "readr"      "tidyr"      "tibble"     "tidyverse" 
+[26] "Rmisc"      "plyr"       "lattice"    "reshape2"   "nnet"      
+[31] "foreign"    "dplyr"      "aod"        "interplot"  "ggplot2"   
+[36] "margins"    "survey"     "survival"   "Matrix"     "grid"      
+[41] "car"        "carData"    "here"       "stats"      "graphics"  
+[46] "grDevices"  "utils"      "datasets"   "methods"    "base"      
+
+[[30]]
+ [1] "emmeans"    "effectsize" "haven"      "hrbrthemes" "ggsci"     
+ [6] "DT"         "huxtable"   "gridExtra"  "gtools"     "mediation" 
+[11] "sandwich"   "mvtnorm"    "MASS"       "jtools"     "qualtRics" 
+[16] "janitor"    "dotwhisker" "broom"      "lubridate"  "forcats"   
+[21] "stringr"    "purrr"      "readr"      "tidyr"      "tibble"    
+[26] "tidyverse"  "Rmisc"      "plyr"       "lattice"    "reshape2"  
+[31] "nnet"       "foreign"    "dplyr"      "aod"        "interplot" 
+[36] "ggplot2"    "margins"    "survey"     "survival"   "Matrix"    
+[41] "grid"       "car"        "carData"    "here"       "stats"     
+[46] "graphics"   "grDevices"  "utils"      "datasets"   "methods"   
+[51] "base"      
+
+
+> options(scipen = 999)
+
+> steph_theme <- list(hrbrthemes::theme_ipsum_rc(base_size = 12, 
++     grid = "", plot_title_size = 20, axis_text_size = 18), ggsci::scale_color_npg(), 
++     ggsci::scale_fill_npg(), theme(legend.position = "top", plot.caption = element_text(hjust = 0, 
++         face = "italic"), plot.title.position = "plot", plot.caption.position = "plot"))
+
+> steph_theme_gray <- list(hrbrthemes::theme_ipsum_rc(base_size = 12, 
++     grid = "", plot_title_size = 20, axis_text_size = 18), ggsci::scale_color_material("grey"), 
++     ggsci::scale_fill_material("grey"), theme(legend.position = "top", 
++         plot.caption = element_text(hjust = 0, face = "italic"), 
++         plot.title.position = "plot", plot.caption.position = "plot"))
+
+> df <- readRDS("Qualtrics_2019.RDS")
+
+> df <- df %>% filter(TREATMENT == "Trump" | TREATMENT == 
++     "Clinton" | TREATMENT == "Alexa")
+
+> df$TREATMENT_sort <- factor(df$TREATMENT, levels = c("Alexa", 
++     "Trump", "Clinton"))
+
+> df_TESS <- readRDS("NORC.RDS")
+
+> df_TESS$TREATMENT_sort <- factor(df_TESS$TREATMENT, 
++     levels = c("Alexa", "Trump", "Clinton"))
+
+> df_TESS <- df_TESS %>% filter(TREATMENT == "Trump" | 
++     TREATMENT == "Clinton" | TREATMENT == "Alexa")
+
+> df_TESS$TREATMENT_sort <- factor(df_TESS$TREATMENT, 
++     levels = c("Alexa", "Trump", "Clinton"))
+
+> anes <- readRDS("ANES16.RDS")
+
+> anes18 <- readRDS("ANES18.RDS")
+
+> options(scipen = 999)
+
+> df1 <- subset(df, df$anger != "<NA>")
+
+> summary(lm(anger ~ TREATMENT, data = df))
+
+Call:
+lm(formula = anger ~ TREATMENT, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2779 -0.1453 -0.1280  0.1047  0.8720 
+
+Coefficients:
+                 Estimate Std. Error t value        Pr(>|t|)    
+(Intercept)       0.12795    0.01774   7.214 0.0000000000017 ***
+TREATMENTClinton  0.01735    0.02499   0.694           0.488    
+TREATMENTTrump    0.15001    0.02483   6.042 0.0000000027266 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2451 on 581 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.07048,	Adjusted R-squared:  0.06728 
+F-statistic: 22.03 on 2 and 581 DF,  p-value: 0.0000000006009
+
+
+> summarySE(df1, measurevar = "anger", groupvars = c("TREATMENT"), 
++     conf.interval = 0.9)
+  TREATMENT   N     anger        sd         se         ci
+1     Alexa 191 0.1279450 0.2141469 0.01549512 0.02561209
+2   Clinton 194 0.1452964 0.2109447 0.01514495 0.02503138
+3     Trump 199 0.2779523 0.2981952 0.02113850 0.03493318
+
+> TukeyHSD(aov(anger ~ TREATMENT, data = df))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = anger ~ TREATMENT, data = df)
+
+$TREATMENT
+                    diff         lwr        upr     p adj
+Clinton-Alexa 0.01735137 -0.04135732 0.07606006 0.7668197
+Trump-Alexa   0.15000724  0.09166559 0.20834888 0.0000000
+Trump-Clinton 0.13265587  0.07454486 0.19076688 0.0000004
+
+
+> tgc <- summarySE(df1, measurevar = "anger", groupvars = c("TREATMENT"), 
++     conf.interval = 0.9)
+
+> tgc$TREATMENT <- c("Control", "Clinton", "Trump")
+
+> tgc$low = tgc$anger - tgc$ci
+
+> tgc$high = tgc$anger + tgc$ci
+
+> tgc$sort <- c(3, 2, 1)
+
+> tgc <- tgc %>% arrange(sort)
+
+> ggplot(data = tgc, aes(x = reorder(TREATMENT, sort), 
++     y = anger)) + geom_bar(position = "dodge", stat = "identity") + 
++     geom_errorbar(position = "dodge", aes(ymin = low, ymax = high)) + 
++     steph_theme_gray + labs(title = "Mean Levels of Anger", x = "Treatment Condition", 
++     y = "Average level of anger", caption = "Fall 2019 Qualtrics Survey", 
++     subtitle = "By Experimental Condition", fill = "Gender:") + 
++     theme(legend.position = "none")
+Ignoring unknown labels:
+• fill : "Gender:"
+
+> anger1 <- lm(anger ~ TREATMENT, data = df)
+
+> anger2 <- lm(anger ~ TREATMENT + Vote_Choice, data = df)
+
+> anger3 <- lm(anger ~ TREATMENT + Vote_Choice + party_leanersinc + 
++     GENDER + EDUCATION_r, data = df)
+
+> export_summs(anger1, anger2, anger3, error_format = "({p.value})")
+          ───────────────────────────────────────────────────────────
+                                Model 1      Model 2      Model 3    
+                             ────────────────────────────────────────
+            (Intercept)          0.13 ***     0.09 ***     0.05      
+                                (0.00)       (0.00)       (0.06)     
+            TREATMENTClinton     0.02         0.02         0.02      
+                                (0.49)       (0.58)       (0.61)     
+            TREATMENTTrump       0.15 ***     0.15 ***     0.14 ***  
+                                (0.00)       (0.00)       (0.00)     
+            Vote_ChoiceHilla                  0.07 **      0.01      
+            ry Clinton                                               
+                                             (0.00)       (0.76)     
+            Vote_ChoiceOther                  0.10 *       0.10      
+                                             (0.03)       (0.10)     
+            party_leanersinc                               0.07      
+                                                          (0.10)     
+            GENDER                                         0.01      
+                                                          (0.56)     
+            EDUCATION_r                                    0.04      
+                                                          (0.16)     
+                             ────────────────────────────────────────
+            N                  584          442          392         
+            R2                   0.07         0.09         0.10      
+          ───────────────────────────────────────────────────────────
+*** p < 0.001; ** p < 0.01; * p < 0.05.
+
+Column names: names, Model 1, Model 2, Model 3
+
+> anger1 <- lm(hope ~ TREATMENT, data = df)
+
+> anger2 <- lm(hope ~ TREATMENT + Vote_Choice, data = df)
+
+> anger3 <- lm(hope ~ TREATMENT + Vote_Choice + party_leanersinc + 
++     GENDER + EDUCATION_r, data = df)
+
+> export_summs(anger1, anger2, anger3, error_format = "({p.value})")
+          ───────────────────────────────────────────────────────────
+                                Model 1      Model 2      Model 3    
+                             ────────────────────────────────────────
+            (Intercept)          0.42 ***     0.43 ***     0.37 ***  
+                                (0.00)       (0.00)       (0.00)     
+            TREATMENTClinton     0.03         0.06         0.08 *    
+                                (0.28)       (0.07)       (0.03)     
+            TREATMENTTrump      -0.11 ***    -0.11 **     -0.11 **   
+                                (0.00)       (0.00)       (0.00)     
+            Vote_ChoiceHilla                 -0.02        -0.07      
+            ry Clinton                                               
+                                             (0.57)       (0.20)     
+            Vote_ChoiceOther                 -0.16 **     -0.09      
+                                             (0.00)       (0.21)     
+            party_leanersinc                               0.05      
+                                                          (0.34)     
+            GENDER                                         0.07 *    
+                                                          (0.03)     
+            EDUCATION_r                                    0.04      
+                                                          (0.14)     
+                             ────────────────────────────────────────
+            N                  584          442          392         
+            R2                   0.04         0.07         0.08      
+          ───────────────────────────────────────────────────────────
+*** p < 0.001; ** p < 0.01; * p < 0.05.
+
+Column names: names, Model 1, Model 2, Model 3
+
+> anger1 <- lm(fear ~ TREATMENT, data = df)
+
+> anger2 <- lm(fear ~ TREATMENT + Vote_Choice, data = df)
+
+> anger3 <- lm(fear ~ TREATMENT + Vote_Choice + party_leanersinc + 
++     GENDER + EDUCATION_r, data = df)
+
+> export_summs(anger1, anger2, anger3, error_format = "({p.value})")
+          ───────────────────────────────────────────────────────────
+                                Model 1      Model 2      Model 3    
+                             ────────────────────────────────────────
+            (Intercept)          0.16 ***     0.13 ***     0.10 **   
+                                (0.00)       (0.00)       (0.00)     
+            TREATMENTClinton     0.04         0.02         0.03      
+                                (0.13)       (0.44)       (0.33)     
+            TREATMENTTrump       0.12 ***     0.13 ***     0.11 ***  
+                                (0.00)       (0.00)       (0.00)     
+            Vote_ChoiceHilla                  0.05 *      -0.01      
+            ry Clinton                                               
+                                             (0.03)       (0.77)     
+            Vote_ChoiceOther                  0.01        -0.01      
+                                             (0.80)       (0.85)     
+            party_leanersinc                               0.08      
+                                                          (0.07)     
+            GENDER                                         0.05 *    
+                                                          (0.05)     
+            EDUCATION_r                                   -0.01      
+                                                          (0.70)     
+                             ────────────────────────────────────────
+            N                  584          441          391         
+            R2                   0.04         0.06         0.07      
+          ───────────────────────────────────────────────────────────
+*** p < 0.001; ** p < 0.01; * p < 0.05.
+
+Column names: names, Model 1, Model 2, Model 3
+
+> margins_summary <- function(model, ..., level = 0.9, 
++     by_factor = TRUE) {
++     mar <- margins(model, ...)
++     summary(mar, level = 0.9, by_factor = by_factor)
++ }
+
+> df1 <- subset(df, df$party_leanersinc != "NA")
+
+> anger1 <- lm(anger ~ TREATMENT * party_leanersinc, 
++     data = df1)
+
+> margins_summary(anger1, at = list(party_leanersinc = range(df1$party_leanersinc)))[c(3:6), 
++     ]
+           factor party_leanersinc     AME     SE       z      p   lower  upper
+ TREATMENTClinton           0.0000 -0.0021 0.0380 -0.0561 0.9553 -0.0647 0.0604
+ TREATMENTClinton           1.0000  0.0377 0.0385  0.9788 0.3277 -0.0256 0.1009
+   TREATMENTTrump           0.0000  0.0444 0.0374  1.1863 0.2355 -0.0172 0.1059
+   TREATMENTTrump           1.0000  0.2622 0.0371  7.0731 0.0000  0.2013 0.3232
+
+> df1 <- subset(df, df$GENDER != "NA")
+
+> anger1 <- lm(anger ~ TREATMENT * GENDER, data = df1)
+
+> margins_summary(anger1, at = list(GENDER = range(df1$GENDER)))[c(3:6), 
++     ]
+           factor GENDER    AME     SE      z      p   lower  upper
+ TREATMENTClinton 0.0000 0.0255 0.0364 0.7015 0.4830 -0.0343 0.0853
+ TREATMENTClinton 1.0000 0.0103 0.0343 0.3008 0.7636 -0.0461 0.0668
+   TREATMENTTrump 0.0000 0.1235 0.0360 3.4277 0.0006  0.0642 0.1827
+   TREATMENTTrump 1.0000 0.1808 0.0343 5.2686 0.0000  0.1243 0.2372
+
+> df1 <- subset(df, df$GENDER != "NA")
+
+> df1 <- subset(df1, df1$party_leanersinc != "NA")
+
+> anger1 <- lm(anger ~ TREATMENT * party_leanersinc * 
++     GENDER, data = df1)
+
+> data1 <- margins_summary(anger1, at = list(party_leanersinc = range(df1$party_leanersinc), 
++     GENDER = range(df1$GENDER)))[c(13:16), ]
+
+> data1 <- data1 %>% dplyr::mutate(GENDER = recode(GENDER, 
++     `0` = "Men", `1` = "Women")) %>% dplyr::mutate(party_leanersinc = recode(party_leanersinc, 
++     `0` = "Republican", `1` = "Democratic")) %>% dplyr::mutate(term = paste(party_leanersinc, 
++     GENDER, sep = " ")) %>% dplyr::rename(estimate = AME, conf.low = lower, 
++     conf.high = upper) %>% dplyr::select(-GENDER, -party_leanersinc, 
++     -SE, -z, -p, -factor)
+
+> df1 <- subset(df, df$GENDER != "NA")
+
+> anger1 <- lm(anger ~ TREATMENT * GENDER, data = df1)
+
+> data <- margins_summary(anger1, at = list(GENDER = range(df1$GENDER)))[5:6, 
++     ]
+
+> data <- data %>% dplyr::mutate(term = recode(GENDER, 
++     `0` = "Men", `1` = "Women")) %>% dplyr::rename(estimate = AME, 
++     conf.low = lower, conf.high = upper) %>% dplyr::select(-SE, 
++     -z, -p, -factor, -GENDER)
+
+> data <- rbind(data, data1)
+
+> Fig2 <- dwplot(data, dot_args = list(color = "black"), 
++     whisker_args = list(color = "grey")) + theme_bw() + steph_theme + 
++     theme(legend.title = element_blank(), legend.position = "none") + 
++     xlab("") + geom_vline(xintercept = 0, colour = "grey60", 
++     linetype = 2)
+
+> Fig2
+
+> df1 <- subset(df, df$GENDER != "NA")
+
+> df1 <- subset(df1, df1$EDUCATION_r != "NA")
+
+> anger1 <- lm(anger ~ TREATMENT * GENDER * EDUCATION_r, 
++     data = df1)
+
+> data2 <- margins_summary(anger1, at = list(GENDER = range(df1$GENDER), 
++     EDUCATION_r = range(df1$EDUCATION_r)))[c(9:16), ]
+
+> data2 <- data2 %>% dplyr::mutate(GENDER = recode(GENDER, 
++     `0` = "Men", `1` = "Women")) %>% dplyr::mutate(EDUCATION_r = recode(EDUCATION_r, 
++     `0` = "Less Educated", `1` = "Highly Educated")) %>% dplyr::mutate(Treatment = recode(factor, 
++     TREATMENTClinton = "Clinton", TREATMENTTrump = "Trump")) %>% 
++     dplyr::mutate(term = paste(EDUCATION_r, GENDER, sep = " ")) %>% 
++     dplyr::rename(estimate = AME, conf.low = lower, conf.high = upper) %>% 
++     dplyr::select(-GENDER, -EDUCATION_r, -SE, -z, -factor)
+
+> data2
+   estimate          p conf.low conf.high Treatment                  term
+  0.0204327 0.67047018 -0.05855   0.09942   Clinton     Less Educated Men
+  0.0348410 0.53524177 -0.05759   0.12727   Clinton   Highly Educated Men
+  0.0022727 0.95842013 -0.06943   0.07398   Clinton   Less Educated Women
+ -0.0000947 0.99869672 -0.09545   0.09527   Clinton Highly Educated Women
+  0.0949038 0.05036350  0.01513   0.17468     Trump     Less Educated Men
+  0.1576756 0.00391354  0.06778   0.24757     Trump   Highly Educated Men
+  0.1864754 0.00001064  0.11683   0.25613     Trump   Less Educated Women
+  0.1571272 0.00860198  0.05876   0.25549     Trump Highly Educated Women
+
+> df_TESS1 <- subset(df_TESS, df_TESS$anger != "NA")
+
+> tgc <- summarySE(df_TESS1, measurevar = "anger", groupvars = c("TREATMENT_sort"), 
++     conf.interval = 0.9)
+
+> tgc$low = tgc$anger - tgc$ci
+
+> tgc$high = tgc$anger + tgc$ci
+
+> tgc$sort <- c(3, 1, 2)
+
+> tgc <- tgc %>% arrange(sort)
+
+> tgc$TREATMENT_sort <- c("Trump", "Clinton", "Control")
+
+> ggplot(data = tgc, aes(x = reorder(TREATMENT_sort, 
++     sort), y = anger)) + geom_bar(position = "dodge", stat = "identity") + 
++     geom_errorbar(position = "dodge", aes(ymin = low, ymax = high)) + 
++     steph_theme + labs(title = "Mean Levels of Anger", x = "Treatment Condition", 
++     y = "Average level of anger", caption = "Fall 2019 NORC Survey", 
++     subtitle = "By Experimental Condition", fill = "Gender:") + 
++     theme(legend.position = "none")
+Ignoring unknown labels:
+• fill : "Gender:"
+
+> df_TESS1 <- df_TESS %>% filter(complete.cases(party, 
++     TREATMENT, anger))
+
+> df_TESS1$TREATMENT <- droplevels(df_TESS1$TREATMENT)
+
+> anger1 <- lm(anger ~ TREATMENT * party, data = df_TESS1)
+
+> data <- margins_summary(anger1, at = list(party = range(df_TESS1$party)))[3:6, 
++     ]
+
+> data <- data %>% dplyr::mutate(model = recode(party, 
++     `0` = "Republican Women", `1` = "Democratic Women")) %>% 
++     dplyr::rename(estimate = AME, conf.low = lower, conf.high = upper, 
++         term = factor) %>% dplyr::select(-party, -SE, -z, -p) %>% 
++     mutate(term = str_sub(term, 10))
+
+> dwplot(data) + theme_bw() + steph_theme + xlab("") + 
++     theme(legend.justification = c(0.02, 0.993), legend.position = c(0.02, 
++         0.99), legend.title = element_blank(), legend.background = element_rect(color = "gray90")) + 
++     scale_colour_grey(start = 0.3, end = 0.7, name = "model") + 
++     geom_vline(xintercept = 0, colour = "grey60", linetype = 2)
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+
+> df_TESS1 <- subset(df_TESS, df_TESS$hope != "NA")
+
+> tgc <- summarySE(df_TESS1, measurevar = "hope", groupvars = c("TREATMENT"), 
++     conf.interval = 0.9)
+
+> tgc$low = tgc$hope - tgc$ci
+
+> tgc$high = tgc$hope + tgc$ci
+
+> tgc$sort <- c(3, 2, 1)
+
+> tgc <- tgc %>% arrange(sort)
+
+> tgc$TREATMENT <- c("Trump", "Clinton", "Control")
+
+> enthus2_plot <- ggplot(data = tgc, aes(x = reorder(TREATMENT, 
++     sort), y = hope)) + geom_bar(position = "dodge", stat = "identity") + 
++     geom_errorbar(position = "dodge", aes(ymin = low, ymax = high)) + 
++     steph_theme_gray + labs(title = "", x = "Treatment Condition", 
++     y = "Average level of enthusiasm", caption = "Fall 2019 NORC Survey", 
++     subtitle = "By Experimental Condition", fill = "Gender:") + 
++     theme(legend.position = "none")
+
+> df1 <- subset(df, df$hope != "<NA>")
+
+> tgc <- summarySE(df1, measurevar = "hope", groupvars = c("TREATMENT"), 
++     conf.interval = 0.9)
+
+> tgc$low = tgc$hope - tgc$ci
+
+> tgc$high = tgc$hope + tgc$ci
+
+> tgc$sort <- c(3, 2, 1)
+
+> tgc <- tgc %>% arrange(sort)
+
+> tgc$TREATMENT <- c("Trump", "Clinton", "Control")
+
+> enthus1_plot <- ggplot(data = tgc, aes(x = reorder(TREATMENT, 
++     sort), y = hope)) + geom_bar(position = "dodge", stat = "identity") + 
++     geom_errorbar(position = "dodge", aes(ymin = low, ymax = high)) + 
++     steph_theme_gray + labs(title = "Mean Levels of Enthusiasm", 
++     x = "Treatment Condition", y = "Average level of enthusiasm", 
++     caption = "Fall 2019 Qualtrics Survey", subtitle = "By Experimental Condition", 
++     fill = "Gender:") + theme(legend.position = "none")
+
+> gridExtra::grid.arrange(enthus1_plot, enthus2_plot, 
++     ncol = 2)
+Ignoring unknown labels:
+• fill : "Gender:"
+Ignoring unknown labels:
+• fill : "Gender:"
+
+> df1 <- subset(df, df$GENDER != "NA")
+
+> df1 <- subset(df1, df1$EDUCATION_r != "NA")
+
+> anger1 <- lm(hope ~ TREATMENT * GENDER * EDUCATION_r, 
++     data = df1)
+
+> data2 <- margins_summary(anger1, at = list(GENDER = range(df1$GENDER), 
++     EDUCATION_r = range(df1$EDUCATION_r)))[c(9:16), ]
+
+> data2 <- data2 %>% dplyr::mutate(GENDER = recode(GENDER, 
++     `0` = "Men", `1` = "Women")) %>% dplyr::mutate(EDUCATION_r = recode(EDUCATION_r, 
++     `0` = "Less Educated", `1` = "Highly Educated")) %>% dplyr::mutate(Treatment = recode(factor, 
++     TREATMENTClinton = "Clinton", TREATMENTTrump = "Trump")) %>% 
++     dplyr::mutate(term = paste(EDUCATION_r, GENDER, sep = " ")) %>% 
++     dplyr::rename(estimate = AME, conf.low = lower, conf.high = upper) %>% 
++     dplyr::select(-GENDER, -EDUCATION_r, -SE, -z, -factor)
+
+> data2
+  estimate        p conf.low conf.high Treatment                  term
+  0.060897 0.293975 -0.03455   0.15635   Clinton     Less Educated Men
+ -0.030837 0.649743 -0.14253   0.08086   Clinton   Highly Educated Men
+ -0.002744 0.958462 -0.08939   0.08390   Clinton   Less Educated Women
+  0.099074 0.155436 -0.01564   0.21379   Clinton Highly Educated Women
+ -0.072500 0.216058 -0.16890   0.02390     Trump     Less Educated Men
+ -0.134104 0.042302 -0.24274  -0.02547     Trump   Highly Educated Men
+ -0.071809 0.162417 -0.15636   0.01274     Trump   Less Educated Women
+ -0.198538 0.006008 -0.31740  -0.07967     Trump Highly Educated Women
+
+> df_TESS1 <- df_TESS %>% filter(complete.cases(party, 
++     TREATMENT, hope))
+
+> df_TESS1$TREATMENT <- droplevels(df_TESS1$TREATMENT)
+
+> anger1 <- lm(hope ~ TREATMENT * party, data = df_TESS1)
+
+> data <- margins_summary(anger1, at = list(party = range(df_TESS1$party)))[3:6, 
++     ]
+
+> data <- data %>% dplyr::mutate(model = recode(party, 
++     `0` = "Republican Women", `1` = "Democratic Women")) %>% 
++     dplyr::rename(estimate = AME, conf.low = lower, conf.high = upper, 
++         term = factor) %>% dplyr::select(-party, -SE, -z, -p) %>% 
++     mutate(term = str_sub(term, 10))
+
+> Fig6 <- dwplot(data) + theme_bw() + steph_theme + 
++     xlab("") + theme(legend.justification = c(0.02, 0.993), legend.position = c(0.02, 
++     0.99), legend.title = element_blank(), legend.background = element_rect(color = "gray90")) + 
++     scale_colour_grey(start = 0.3, end = 0.7, name = "model") + 
++     geom_vline(xintercept = 0, colour = "grey60", linetype = 2)
+Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.
+
+> Fig6
+
+> df <- readRDS("Qualtrics_2019.RDS")
+
+> df$CLINTON <- car::recode(df$TREATMENT, "'Alexa'= 0; 'Trump'=0; 'MeToo'=0; 'Marches'=0; 'Clinton'= 1")
+
+> df$TRUMP <- car::recode(df$TREATMENT, "'Alexa'= 0; 'Trump'=1; 'MeToo'=0; 'Marches'=0; 'Clinton'= 0")
+
+> df$METOO <- car::recode(df$TREATMENT, "'Alexa'= 0; 'Trump'=0; 'MeToo'=1; 'Marches'=0; 'Clinton'= 0")
+
+> df$MARCH <- car::recode(df$TREATMENT, "'Alexa'= 0; 'Trump'=0; 'MeToo'=0; 'Marches'=1; 'Clinton'= 0")
+
+> df$Engage <- df$futureengage
+
+> df$anxiety <- df$fear
+
+> mix_mod <- "\nEngage ~ b1 * anxiety + b2 * anger + b3 * hope + c1 * TRUMP + c2 * CLINTON + c3 * MARCH + c4 * METOO\nanxiety ~ a1 * TRUMP + a99 * CLINTON + a98 * MARCH + a97 * METOO\nanger ~ a2 * TRUMP + a299 * CLINTON + a298 * MARCH + a297 * METOO\nhope ~ a3 * TRUMP + a399 * CLINTON + a398 * MARCH + a397 * METOO\nindirTRUMPanxiety := a1 * b1\nindirTRUMPanger := a2 * b2\nindirTRUMPhope := a3 * b3\nindirCLINTONanxiety := a99 * b1\nindirCLINTONanger := a299 * b2\nindirCLINTONhope := a399 * b3\n"
+
+> summary(lavaan:::sem(mix_mod, data = df, std.lv = TRUE))
+lavaan 0.7-3 ended normally after 1 iteration
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        23
+
+                                                  Used       Total
+  Number of observations                           977         983
+
+Model Test User Model:
+                                                      
+  Test statistic                               492.051
+  Degrees of freedom                                 3
+  P-value (Chi-square)                           0.000
+                                                      
+  Browne's residual (NT model-based) test             
+  Test statistic                               386.630
+  Degrees of freedom                                 3
+  P-value (Chi-square)                           0.000
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  Engage ~                                            
+    anxiety   (b1)    0.152    0.032    4.771    0.000
+    anger     (b2)    0.113    0.034    3.296    0.001
+    hope      (b3)    0.225    0.028    7.901    0.000
+    TRUMP     (c1)   -0.034    0.027   -1.265    0.206
+    CLINTON   (c2)   -0.043    0.026   -1.621    0.105
+    MARCH     (c3)   -0.034    0.027   -1.289    0.197
+    METOO     (c4)   -0.043    0.026   -1.639    0.101
+  anxiety ~                                           
+    TRUMP     (a1)    0.119    0.026    4.522    0.000
+    CLINTON  (a99)    0.038    0.027    1.450    0.147
+    MARCH    (a98)    0.089    0.026    3.373    0.001
+    METOO    (a97)    0.067    0.026    2.536    0.011
+  anger ~                                             
+    TRUMP     (a2)    0.149    0.025    6.061    0.000
+    CLINTON (a299)    0.018    0.025    0.732    0.464
+    MARCH   (a298)    0.069    0.025    2.823    0.005
+    METOO   (a297)    0.058    0.025    2.344    0.019
+  hope ~                                              
+    TRUMP     (a3)   -0.112    0.029   -3.791    0.000
+    CLINTON (a399)    0.030    0.030    1.015    0.310
+    MARCH   (a398)    0.051    0.029    1.746    0.081
+    METOO   (a397)    0.040    0.030    1.367    0.172
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .Engage            0.067    0.003   22.102    0.000
+   .anxiety           0.068    0.003   22.102    0.000
+   .anger             0.059    0.003   22.102    0.000
+   .hope              0.085    0.004   22.102    0.000
+
+Defined Parameters:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    indirTRUMPnxty    0.018    0.006    3.282    0.001
+    indirTRUMPangr    0.017    0.006    2.895    0.004
+    indirTRUMPhope   -0.025    0.007   -3.418    0.001
+    indrCLINTONnxt    0.006    0.004    1.387    0.165
+    indrCLINTONngr    0.002    0.003    0.715    0.475
+    indirCLINTONhp    0.007    0.007    1.007    0.314
+
+lavaan NOTE:  
+   Standard errors and confidence intervals of the (nonlinear) defined (:=) 
+   parameters are based on the first-order delta method; for strongly 
+   nonlinear definitions, se_def = "mc" (Monte Carlo) or se = "bootstrap" may 
+   be more accurate.
+
+> df_TESS <- readRDS("NORC.RDS")
+
+> df_TESS$CLINTON <- car::recode(df_TESS$TREATMENT, 
++     "'Alexa'= 0; 'Trump'=0; 'MeToo'=0; 'March'=0; 'Clinton'= 1")
+
+> df_TESS$TRUMP <- car::recode(df_TESS$TREATMENT, "'Alexa'= 0; 'Trump'=1; 'MeToo'=0; 'March'=0; 'Clinton'= 0")
+
+> df_TESS$METOO <- car::recode(df_TESS$TREATMENT, "'Alexa'= 0; 'Trump'=0; 'MeToo'=1; 'March'=0; 'Clinton'= 0")
+
+> df_TESS$MARCH <- car::recode(df_TESS$TREATMENT, "'Alexa'= 0; 'Trump'=0; 'MeToo'=0; 'March'=1; 'Clinton'= 0")
+
+> df_TESS$Engage <- df_TESS$futureengage
+
+> df_TESS$anxiety <- df_TESS$fear
+
+> mix_mod <- "\nEngage ~ b1 * anxiety + b2 * anger + b3 * hope + c1 * TRUMP + c2 * CLINTON + c3 * MARCH + c4 * METOO\nanxiety ~ a1 * TRUMP + a99 * CLINTON + a98 * MARCH + a97 * METOO\nanger ~ a2 * TRUMP + a299 * CLINTON + a298 * MARCH + a297 * METOO\nhope ~ a3 * TRUMP + a399 * CLINTON + a398 * MARCH + a397 * METOO\nindirTRUMPanxiety := a1 * b1\nindirTRUMPanger := a2 * b2\nindirTRUMPhope := a3 * b3\nindirCLINTONanxiety := a99 * b1\nindirCLINTONanger := a299 * b2\nindirCLINTONhope := a399 * b3\n"
+
+> summary(lavaan:::sem(mix_mod, data = df_TESS, std.lv = TRUE))
+lavaan 0.7-3 ended normally after 1 iteration
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        23
+
+  Number of observations                          1030
+
+Model Test User Model:
+                                                      
+  Test statistic                                74.771
+  Degrees of freedom                                 3
+  P-value (Chi-square)                           0.000
+                                                      
+  Browne's residual (NT model-based) test             
+  Test statistic                                73.126
+  Degrees of freedom                                 3
+  P-value (Chi-square)                           0.000
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  Engage ~                                            
+    anxiety   (b1)    0.171    0.048    3.594    0.000
+    anger     (b2)    0.221    0.051    4.310    0.000
+    hope      (b3)    0.268    0.035    7.725    0.000
+    TRUMP     (c1)   -0.047    0.037   -1.263    0.206
+    CLINTON   (c2)   -0.068    0.034   -1.998    0.046
+    MARCH     (c3)   -0.070    0.033   -2.104    0.035
+    METOO     (c4)   -0.066    0.032   -2.043    0.041
+  anxiety ~                                           
+    TRUMP     (a1)    0.114    0.021    5.468    0.000
+    CLINTON  (a99)   -0.062    0.020   -3.021    0.003
+    MARCH    (a98)   -0.069    0.020   -3.427    0.001
+    METOO    (a97)   -0.035    0.020   -1.744    0.081
+  anger ~                                             
+    TRUMP     (a2)    0.363    0.019   18.794    0.000
+    CLINTON (a299)   -0.000    0.019   -0.022    0.982
+    MARCH   (a298)    0.011    0.019    0.566    0.571
+    METOO   (a297)   -0.003    0.019   -0.154    0.878
+  hope ~                                              
+    TRUMP     (a3)   -0.072    0.028   -2.543    0.011
+    CLINTON (a399)    0.398    0.028   14.288    0.000
+    MARCH   (a398)    0.345    0.028   12.473    0.000
+    METOO   (a397)    0.239    0.028    8.574    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .Engage            0.100    0.004   22.694    0.000
+   .anxiety           0.043    0.002   22.694    0.000
+   .anger             0.037    0.002   22.694    0.000
+   .hope              0.080    0.004   22.694    0.000
+
+Defined Parameters:
+                   Estimate  Std.Err  z-value  P(>|z|)
+    indirTRUMPnxty    0.019    0.006    3.003    0.003
+    indirTRUMPangr    0.080    0.019    4.201    0.000
+    indirTRUMPhope   -0.019    0.008   -2.415    0.016
+    indrCLINTONnxt   -0.011    0.005   -2.313    0.021
+    indrCLINTONngr   -0.000    0.004   -0.022    0.982
+    indirCLINTONhp    0.107    0.016    6.795    0.000
+
+lavaan NOTE:  
+   Standard errors and confidence intervals of the (nonlinear) defined (:=) 
+   parameters are based on the first-order delta method; for strongly 
+   nonlinear definitions, se_def = "mc" (Monte Carlo) or se = "bootstrap" may 
+   be more accurate.
+
+> df_cces <- readRDS("CES2020.RDS")
+
+> df_compliers <- df_cces %>% filter(complier == 1)
+
+> mod2 <- lm(futureengage_novote ~ TREATMENT, data = df_compliers)
+
+> export_summs(mod2)
+               ─────────────────────────────────────────────────
+                                                     Model 1    
+                                                  ──────────────
+                 (Intercept)                          0.40 ***  
+                                                     (0.01)     
+                 TREATMENTTreatment of Minorities     0.07 **   
+                                                     (0.02)     
+                 TREATMENTTreatment of Women          0.06 **   
+                                                     (0.02)     
+                 TREATMENTTrump                       0.05 **   
+                                                     (0.02)     
+                                                  ──────────────
+                 N                                  698         
+                 R2                                   0.02      
+               ─────────────────────────────────────────────────
+*** p < 0.001; ** p < 0.01; * p < 0.05.
+
+Column names: names, Model 1
+
+> mod <- lm(complier ~ Gender_Party, data = df_cces)
+
+> summary(mod)
+
+Call:
+lm(formula = complier ~ Gender_Party, data = df_cces)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92021 -0.31847  0.07979  0.08852  0.68153 
+
+Coefficients:
+                              Estimate Std. Error t value            Pr(>|t|)
+(Intercept)                   0.920213   0.027317  33.686 <0.0000000000000002
+Gender_PartyDemocratic Women -0.008737   0.034731  -0.252               0.801
+Gender_PartyRepublican Men   -0.601741   0.040495 -14.860 <0.0000000000000002
+Gender_PartyRepublican Women -0.461879   0.039766 -11.615 <0.0000000000000002
+                                
+(Intercept)                  ***
+Gender_PartyDemocratic Women    
+Gender_PartyRepublican Men   ***
+Gender_PartyRepublican Women ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3746 on 814 degrees of freedom
+  (182 observations deleted due to missingness)
+Multiple R-squared:  0.3266,	Adjusted R-squared:  0.3241 
+F-statistic: 131.6 on 3 and 814 DF,  p-value: < 0.00000000000000022
+
+
+> emm <- emmeans(mod, ~Gender_Party)
+
+> summary(contrast(emm, method = "revpairwise", interaction = TRUE, 
++     adjust = "none"))
+ Gender_Party_revpairwise            estimate     SE  df t.ratio p.value
+ Democratic Women - Democratic Men   -0.00874 0.0347 814  -0.252  0.8014
+ Republican Men - Democratic Men     -0.60174 0.0405 814 -14.860  <.0001
+ Republican Men - Democratic Women   -0.59300 0.0368 814 -16.118  <.0001
+ Republican Women - Democratic Men   -0.46188 0.0398 814 -11.615  <.0001
+ Republican Women - Democratic Women -0.45314 0.0360 814 -12.592  <.0001
+ Republican Women - Republican Men    0.13986 0.0416 814   3.364  0.0008
+
+
+> emm
+ Gender_Party     emmean     SE  df lower.CL upper.CL
+ Democratic Men    0.920 0.0273 814    0.867    0.974
+ Democratic Women  0.911 0.0214 814    0.869    0.954
+ Republican Men    0.318 0.0299 814    0.260    0.377
+ Republican Women  0.458 0.0289 814    0.402    0.515
+
+Confidence level used: 0.95 
+
+> mod <- lm(complier ~ Gender_Party * TREATMENT, data = df_cces)
+
+> emm <- emmeans(mod, ~Gender_Party | TREATMENT)
+
+> summary(contrast(emm, method = "revpairwise", interaction = TRUE, 
++     adjust = "none"))
+TREATMENT = Relaxed:
+ Gender_Party_revpairwise            estimate     SE  df t.ratio p.value
+ Democratic Women - Democratic Men     0.0482 0.0605 802   0.797  0.4254
+ Republican Men - Democratic Men       0.0238 0.0720 802   0.331  0.7410
+ Republican Men - Democratic Women    -0.0244 0.0643 802  -0.380  0.7039
+ Republican Women - Democratic Men     0.1054 0.0662 802   1.594  0.1114
+ Republican Women - Democratic Women   0.0572 0.0576 802   0.992  0.3214
+ Republican Women - Republican Men     0.0816 0.0696 802   1.172  0.2414
+
+TREATMENT = Treatment of Minorities:
+ Gender_Party_revpairwise            estimate     SE  df t.ratio p.value
+ Democratic Women - Democratic Men    -0.0660 0.0605 802  -1.092  0.2753
+ Republican Men - Democratic Men      -0.9028 0.0684 802 -13.203  <.0001
+ Republican Men - Democratic Women    -0.8368 0.0627 802 -13.346  <.0001
+ Republican Women - Democratic Men    -0.8349 0.0709 802 -11.773  <.0001
+ Republican Women - Democratic Women  -0.7689 0.0655 802 -11.747  <.0001
+ Republican Women - Republican Men     0.0679 0.0728 802   0.932  0.3518
+
+TREATMENT = Treatment of Women:
+ Gender_Party_revpairwise            estimate     SE  df t.ratio p.value
+ Democratic Women - Democratic Men     0.0143 0.0567 802   0.253  0.8004
+ Republican Men - Democratic Men      -0.8959 0.0669 802 -13.385  <.0001
+ Republican Men - Democratic Women    -0.9103 0.0617 802 -14.751  <.0001
+ Republican Women - Democratic Men    -0.7508 0.0660 802 -11.376  <.0001
+ Republican Women - Democratic Women  -0.7652 0.0607 802 -12.606  <.0001
+ Republican Women - Republican Men     0.1451 0.0704 802   2.062  0.0396
+
+TREATMENT = Trump:
+ Gender_Party_revpairwise            estimate     SE  df t.ratio p.value
+ Democratic Women - Democratic Men    -0.0243 0.0563 802  -0.432  0.6658
+ Republican Men - Democratic Men      -0.5679 0.0654 802  -8.678  <.0001
+ Republican Men - Democratic Women    -0.5436 0.0591 802  -9.194  <.0001
+ Republican Women - Democratic Men    -0.4981 0.0654 802  -7.612  <.0001
+ Republican Women - Democratic Women  -0.4738 0.0591 802  -8.014  <.0001
+ Republican Women - Republican Men     0.0698 0.0679 802   1.028  0.3042
+
+
+> emm
+TREATMENT = Relaxed:
+ Gender_Party     emmean     SE  df lower.CL upper.CL
+ Democratic Men   0.8333 0.0486 802   0.7380    0.929
+ Democratic Women 0.8816 0.0361 802   0.8107    0.952
+ Republican Men   0.8571 0.0532 802   0.7527    0.962
+ Republican Women 0.9388 0.0450 802   0.8505    1.027
+
+TREATMENT = Treatment of Minorities:
+ Gender_Party     emmean     SE  df lower.CL upper.CL
+ Democratic Men   0.9778 0.0469 802   0.8857    1.070
+ Democratic Women 0.9118 0.0382 802   0.8369    0.987
+ Republican Men   0.0750 0.0498 802  -0.0227    0.173
+ Republican Women 0.1429 0.0532 802   0.0385    0.247
+
+TREATMENT = Treatment of Women:
+ Gender_Party     emmean     SE  df lower.CL upper.CL
+ Democratic Men   0.9216 0.0441 802   0.8351    1.008
+ Democratic Women 0.9359 0.0356 802   0.8660    1.006
+ Republican Men   0.0256 0.0504 802  -0.0733    0.125
+ Republican Women 0.1707 0.0491 802   0.0743    0.267
+
+TREATMENT = Trump:
+ Gender_Party     emmean     SE  df lower.CL upper.CL
+ Democratic Men   0.9400 0.0445 802   0.8527    1.027
+ Democratic Women 0.9157 0.0345 802   0.8479    0.983
+ Republican Men   0.3721 0.0480 802   0.2779    0.466
+ Republican Women 0.4419 0.0480 802   0.3477    0.536
+
+Confidence level used: 0.95 
+
+> mod <- lm(word_count ~ Gender_Party, data = df_cces)
+
+> summary(mod)
+
+Call:
+lm(formula = word_count ~ Gender_Party, data = df_cces)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-40.07 -20.07 -10.50   7.03 363.93 
+
+Coefficients:
+                             Estimate Std. Error t value             Pr(>|t|)
+(Intercept)                    31.941      3.015  10.593 < 0.0000000000000002
+Gender_PartyDemocratic Women    8.124      3.834   2.119              0.03438
+Gender_PartyRepublican Men    -12.445      4.470  -2.784              0.00549
+Gender_PartyRepublican Women   -9.180      4.390  -2.091              0.03682
+                                
+(Intercept)                  ***
+Gender_PartyDemocratic Women *  
+Gender_PartyRepublican Men   ** 
+Gender_PartyRepublican Women *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 41.35 on 814 degrees of freedom
+  (182 observations deleted due to missingness)
+Multiple R-squared:  0.03957,	Adjusted R-squared:  0.03603 
+F-statistic: 11.18 on 3 and 814 DF,  p-value: 0.0000003403
+
+
+> emm <- emmeans(mod, ~Gender_Party)
+
+> summary(contrast(emm, method = "revpairwise", interaction = TRUE, 
++     adjust = "none"))
+ Gender_Party_revpairwise            estimate   SE  df t.ratio p.value
+ Democratic Women - Democratic Men       8.12 3.83 814   2.119  0.0344
+ Republican Men - Democratic Men       -12.44 4.47 814  -2.784  0.0055
+ Republican Men - Democratic Women     -20.57 4.06 814  -5.065  <.0001
+ Republican Women - Democratic Men      -9.18 4.39 814  -2.091  0.0368
+ Republican Women - Democratic Women   -17.30 3.97 814  -4.356  <.0001
+ Republican Women - Republican Men       3.27 4.59 814   0.711  0.4770
+
+
+> emm
+ Gender_Party     emmean   SE  df lower.CL upper.CL
+ Democratic Men     31.9 3.02 814     26.0     37.9
+ Democratic Women   40.1 2.37 814     35.4     44.7
+ Republican Men     19.5 3.30 814     13.0     26.0
+ Republican Women   22.8 3.19 814     16.5     29.0
+
+Confidence level used: 0.95 
+
+> mod <- lm(word_count ~ Gender_Party * TREATMENT, data = df_cces)
+
+> summary(mod)
+
+Call:
+lm(formula = word_count ~ Gender_Party * TREATMENT, data = df_cces)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-48.95 -20.01  -8.78   8.87 358.91 
+
+Coefficients:
+                                                              Estimate
+(Intercept)                                                    20.0714
+Gender_PartyDemocratic Women                                    1.6654
+Gender_PartyRepublican Men                                     -7.1571
+Gender_PartyRepublican Women                                    0.5816
+TREATMENTTreatment of Minorities                               17.5508
+TREATMENTTreatment of Women                                    10.9678
+TREATMENTTrump                                                 17.6486
+Gender_PartyDemocratic Women:TREATMENTTreatment of Minorities   3.4330
+Gender_PartyRepublican Men:TREATMENTTreatment of Minorities    -7.6401
+Gender_PartyRepublican Women:TREATMENTTreatment of Minorities -15.8039
+Gender_PartyDemocratic Women:TREATMENTTreatment of Women       12.3851
+Gender_PartyRepublican Men:TREATMENTTreatment of Women          0.9384
+Gender_PartyRepublican Women:TREATMENTTreatment of Women      -13.5477
+Gender_PartyDemocratic Women:TREATMENTTrump                    10.5664
+Gender_PartyRepublican Men:TREATMENTTrump                     -13.6326
+Gender_PartyRepublican Women:TREATMENTTrump                    -8.3714
+                                                              Std. Error
+(Intercept)                                                       6.3064
+Gender_PartyDemocratic Women                                      7.8581
+Gender_PartyRepublican Men                                        9.3539
+Gender_PartyRepublican Women                                      8.5942
+TREATMENTTreatment of Minorities                                  8.7687
+TREATMENTTreatment of Women                                       8.5161
+TREATMENTTrump                                                    8.5544
+Gender_PartyDemocratic Women:TREATMENTTreatment of Minorities    11.1101
+Gender_PartyRepublican Men:TREATMENTTreatment of Minorities      12.8986
+Gender_PartyRepublican Women:TREATMENTTreatment of Minorities    12.5978
+Gender_PartyDemocratic Women:TREATMENTTreatment of Women         10.7665
+Gender_PartyRepublican Men:TREATMENTTreatment of Women           12.7702
+Gender_PartyRepublican Women:TREATMENTTreatment of Women         12.1389
+Gender_PartyDemocratic Women:TREATMENTTrump                      10.7369
+Gender_PartyRepublican Men:TREATMENTTrump                        12.6392
+Gender_PartyRepublican Women:TREATMENTTrump                      12.0877
+                                                              t value Pr(>|t|)
+(Intercept)                                                     3.183  0.00152
+Gender_PartyDemocratic Women                                    0.212  0.83221
+Gender_PartyRepublican Men                                     -0.765  0.44441
+Gender_PartyRepublican Women                                    0.068  0.94606
+TREATMENTTreatment of Minorities                                2.002  0.04567
+TREATMENTTreatment of Women                                     1.288  0.19815
+TREATMENTTrump                                                  2.063  0.03943
+Gender_PartyDemocratic Women:TREATMENTTreatment of Minorities   0.309  0.75741
+Gender_PartyRepublican Men:TREATMENTTreatment of Minorities    -0.592  0.55381
+Gender_PartyRepublican Women:TREATMENTTreatment of Minorities  -1.254  0.21003
+Gender_PartyDemocratic Women:TREATMENTTreatment of Women        1.150  0.25035
+Gender_PartyRepublican Men:TREATMENTTreatment of Women          0.073  0.94144
+Gender_PartyRepublican Women:TREATMENTTreatment of Women       -1.116  0.26473
+Gender_PartyDemocratic Women:TREATMENTTrump                     0.984  0.32536
+Gender_PartyRepublican Men:TREATMENTTrump                      -1.079  0.28109
+Gender_PartyRepublican Women:TREATMENTTrump                    -0.693  0.48879
+                                                                
+(Intercept)                                                   **
+Gender_PartyDemocratic Women                                    
+Gender_PartyRepublican Men                                      
+Gender_PartyRepublican Women                                    
+TREATMENTTreatment of Minorities                              * 
+TREATMENTTreatment of Women                                     
+TREATMENTTrump                                                * 
+Gender_PartyDemocratic Women:TREATMENTTreatment of Minorities   
+Gender_PartyRepublican Men:TREATMENTTreatment of Minorities     
+Gender_PartyRepublican Women:TREATMENTTreatment of Minorities   
+Gender_PartyDemocratic Women:TREATMENTTreatment of Women        
+Gender_PartyRepublican Men:TREATMENTTreatment of Women          
+Gender_PartyRepublican Women:TREATMENTTreatment of Women        
+Gender_PartyDemocratic Women:TREATMENTTrump                     
+Gender_PartyRepublican Men:TREATMENTTrump                       
+Gender_PartyRepublican Women:TREATMENTTrump                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 40.87 on 802 degrees of freedom
+  (182 observations deleted due to missingness)
+Multiple R-squared:  0.07536,	Adjusted R-squared:  0.05807 
+F-statistic: 4.358 on 15 and 802 DF,  p-value: 0.00000006649
+
+
+> emm <- emmeans(mod, ~Gender_Party | TREATMENT)
+
+> summary(contrast(emm, method = "revpairwise", interaction = TRUE, 
++     adjust = "none"))
+TREATMENT = Relaxed:
+ Gender_Party_revpairwise            estimate   SE  df t.ratio p.value
+ Democratic Women - Democratic Men      1.665 7.86 802   0.212  0.8322
+ Republican Men - Democratic Men       -7.157 9.35 802  -0.765  0.4444
+ Republican Men - Democratic Women     -8.823 8.35 802  -1.057  0.2910
+ Republican Women - Democratic Men      0.582 8.59 802   0.068  0.9461
+ Republican Women - Democratic Women   -1.084 7.49 802  -0.145  0.8850
+ Republican Women - Republican Men      7.739 9.05 802   0.856  0.3925
+
+TREATMENT = Treatment of Minorities:
+ Gender_Party_revpairwise            estimate   SE  df t.ratio p.value
+ Democratic Women - Democratic Men      5.098 7.85 802   0.649  0.5164
+ Republican Men - Democratic Men      -14.797 8.88 802  -1.666  0.0961
+ Republican Men - Democratic Women    -19.896 8.14 802  -2.443  0.0148
+ Republican Women - Democratic Men    -15.222 9.21 802  -1.653  0.0988
+ Republican Women - Democratic Women  -20.321 8.50 802  -2.390  0.0171
+ Republican Women - Republican Men     -0.425 9.46 802  -0.045  0.9642
+
+TREATMENT = Treatment of Women:
+ Gender_Party_revpairwise            estimate   SE  df t.ratio p.value
+ Democratic Women - Democratic Men     14.051 7.36 802   1.909  0.0566
+ Republican Men - Democratic Men       -6.219 8.69 802  -0.715  0.4746
+ Republican Men - Democratic Women    -20.269 8.02 802  -2.529  0.0116
+ Republican Women - Democratic Men    -12.966 8.57 802  -1.512  0.1308
+ Republican Women - Democratic Women  -27.017 7.88 802  -3.427  0.0006
+ Republican Women - Republican Men     -6.747 9.14 802  -0.738  0.4607
+
+TREATMENT = Trump:
+ Gender_Party_revpairwise            estimate   SE  df t.ratio p.value
+ Democratic Women - Democratic Men     12.232 7.32 802   1.672  0.0950
+ Republican Men - Democratic Men      -20.790 8.50 802  -2.446  0.0147
+ Republican Men - Democratic Women    -33.022 7.68 802  -4.300  <.0001
+ Republican Women - Democratic Men     -7.790 8.50 802  -0.916  0.3597
+ Republican Women - Democratic Women  -20.022 7.68 802  -2.607  0.0093
+ Republican Women - Republican Men     13.000 8.81 802   1.475  0.1406
+
+
+> emm
+TREATMENT = Relaxed:
+ Gender_Party     emmean   SE  df lower.CL upper.CL
+ Democratic Men     20.1 6.31 802    7.692     32.5
+ Democratic Women   21.7 4.69 802   12.534     30.9
+ Republican Men     12.9 6.91 802   -0.646     26.5
+ Republican Women   20.7 5.84 802    9.192     32.1
+
+TREATMENT = Treatment of Minorities:
+ Gender_Party     emmean   SE  df lower.CL upper.CL
+ Democratic Men     37.6 6.09 802   25.663     49.6
+ Democratic Women   42.7 4.96 802   32.992     52.4
+ Republican Men     22.8 6.46 802   10.140     35.5
+ Republican Women   22.4 6.91 802    8.839     36.0
+
+TREATMENT = Treatment of Women:
+ Gender_Party     emmean   SE  df lower.CL upper.CL
+ Democratic Men     31.0 5.72 802   19.805     42.3
+ Democratic Women   45.1 4.63 802   36.006     54.2
+ Republican Men     24.8 6.54 802   11.974     37.7
+ Republican Women   18.1 6.38 802    5.544     30.6
+
+TREATMENT = Trump:
+ Gender_Party     emmean   SE  df lower.CL upper.CL
+ Democratic Men     37.7 5.78 802   26.374     49.1
+ Democratic Women   50.0 4.49 802   41.146     58.8
+ Republican Men     16.9 6.23 802    4.696     29.2
+ Republican Women   29.9 6.23 802   17.696     42.2
+
+Confidence level used: 0.95 
+exit status 0

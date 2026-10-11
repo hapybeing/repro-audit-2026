@@ -1,0 +1,34 @@
+Standard-errors: Clustered (name & conflict) 
+Dep. var.: outcome_win
+                      Estimate Std. Error   t value Pr(>|t|)    
+blocking             -0.495182   0.206690 -2.395776 0.019385 *  
+cinc                 -0.278525   0.231015 -1.205659 0.232190    
+log(deploy_dist + 1) -0.054890   0.025562 -2.147335 0.035388 *  
+polity2_new          -0.008540   0.021159 -0.403624 0.687774    
+opp_geneva            0.241284   0.192649  1.252454 0.214759    
+---
+Dep. var.: outcome_lose
+                      Estimate Std. Error   t value Pr(>|t|) 
+blocking              0.264598   0.345681  0.765441  0.44670 
+cinc                  0.107960   0.080516  1.340849  0.18450 
+log(deploy_dist + 1)  0.044301   0.084785  0.522512  0.60304 
+polity2_new           0.002485   0.012637  0.196633  0.84471 
+opp_geneva           -0.160600   0.134077 -1.197817  0.23521 
+---
+Dep. var.: outcome_other
+                      Estimate Std. Error   t value  Pr(>|t|)    
+blocking              0.230584   0.250132  0.921851   0.35991    
+cinc                  0.170565   0.009838 17.336756 < 2.2e-16 ***
+log(deploy_dist + 1)  0.010589   0.026932  0.393164   0.69545    
+polity2_new           0.006055   0.009069  0.667677   0.50663    
+opp_geneva           -0.080684   0.184528 -0.437246   0.66334    
+   model_name  outcome_name        x          b          l           u
+       <char>        <char>   <char>      <num>      <num>       <num>
+1:    Model 1   outcome_win blocking -0.4951821 -0.9002938 -0.09007034
+2:    Model 2  outcome_lose blocking  0.2645979 -0.4129359  0.94213171
+3:    Model 3 outcome_other blocking  0.2305842 -0.2596741  0.72084241
+          l90        u90        r2      aic      bic     n name_fe decade_fe
+        <num>      <num>     <num>    <num>    <num> <int>   <int>     <int>
+1: -0.8424207 -0.1479434 0.6482572 249.0578 577.5374   191      90         7
+2: -0.3161453  0.8453412 0.5762020 298.8823 627.3619   191      90         7
+3: -0.1896372  0.6508055 0.5744284 288.6554 617.1351   191      90         7

@@ -1,0 +1,13 @@
+  check     estimate           se           p        ci_low      ci_high
+1   R_b 0.0043565423 0.0021589230 0.043599190 0.00012513092 0.0085879536
+2   R_c 0.0053251335 0.0023206504 0.021803918 0.00077674213 0.0098735248
+  first_stage_F    n n_dropped dropped_by_station assault_mean assault_sd
+1     42.311301 7121        42   weller street:42    8.4143515  5.1260324
+2     42.719743 7163        NA                              NA         NA
+  min_dropped_assault
+1                  24
+2                  NA
+Wald (1st stage), pm25_mean  : stat =  42.720, p = 6.753e-11, on 1 and 7,128 DoF, VCOV: Clustered (date).
+F-test (1st stage), pm25_mean: stat = 425.207, p < 2.2e-16  , on 1 and 7,128 DoF.
+                 Observations: 7,163
+fixest 0.14.2 

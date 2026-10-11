@@ -1,0 +1,191 @@
+{
+ "paper_id": "24_U9CKK6",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Coefficient of Challenger * Proximity to next National Election in Table 1 Model 2 (lmer, outcome embed_dict_scale; fixef(cycle_AE_fit2)['challenge:days_to_nat'], 6_analysis1.R line 365)",
+   "paper_value": 0.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0182745768730006,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0017254231269994008,
+   "rel_diff": -0.08627115634997004,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.004806, naive p 0.000143 (texreg default, pre-registered), star bucket *** vs paper ***; printed SE in paper: see PREREG; reproduced SE rounds to 0.00. within_5pct is computed against the 1-2 significant-digit printed value as the runbook defines it and is not informative here (PREREG section 1); match_to_rounding is the meaningful test."
+  },
+  {
+   "id": "T2",
+   "description": "Coefficient of Proximity to next EP-Election in Table 1 Model 2 (fixef(cycle_AE_fit2)['days_to_EP'])",
+   "paper_value": 0.01,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.00883613207693018,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.001163867923069821,
+   "rel_diff": -0.1163867923069821,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.002599, naive p 0.000674 (texreg default, pre-registered), star bucket *** vs paper ***; printed SE in paper: see PREREG; reproduced SE rounds to 0.00. within_5pct is computed against the 1-2 significant-digit printed value as the runbook defines it and is not informative here (PREREG section 1); match_to_rounding is the meaningful test."
+  },
+  {
+   "id": "T3",
+   "description": "Coefficient of Challenger in Table 1 Model 2 (fixef(cycle_AE_fit2)['challenge'])",
+   "paper_value": 0.05,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0508935048009751,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0008935048009750951,
+   "rel_diff": 0.017870096019501902,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.014775, naive p 0.000572 (texreg default, pre-registered), star bucket *** vs paper ***; printed SE in paper: see PREREG; reproduced SE rounds to 0.01. within_5pct is computed against the 1-2 significant-digit printed value as the runbook defines it and is not informative here (PREREG section 1); match_to_rounding is the meaningful test."
+  },
+  {
+   "id": "T4",
+   "description": "Number of observations in Table 1 Model 2 (nobs(cycle_AE_fit2))",
+   "paper_value": 266854,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 266854,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(cycle_AE_fit2); same_conclusion rule |N - 266854| <= 5 (PREREG)."
+  },
+  {
+   "id": "T5",
+   "description": "Coefficient of Challenger * Austerity Salience in Table 2 Austerity model (lmer, outcome aut_dict_scale; fixef(AUT_sal_model)['challenge:aut_sal'], 9_analysis4.R line 65)",
+   "paper_value": 0.04,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0371921418920072,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0028078581079927986,
+   "rel_diff": -0.07019645269981996,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.013307, naive p 0.00519 (texreg default, pre-registered), star bucket ** vs paper **; printed SE in paper: see PREREG; reproduced SE rounds to 0.01. within_5pct is computed against the 1-2 significant-digit printed value as the runbook defines it and is not informative here (PREREG section 1); match_to_rounding is the meaningful test."
+  },
+  {
+   "id": "T6",
+   "description": "Coefficient of Challenger * EU Salience in Table 2 European Integration model (lmer, outcome int_dict_scale; fixef(EU_sal_model)['challenge:EU_sal'], 9_analysis4.R line 89)",
+   "paper_value": 0.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0154184778589981,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0045815221410019005,
+   "rel_diff": -0.229076107050095,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.007575, naive p 0.0418 (texreg default, pre-registered), star bucket * vs paper *; printed SE in paper: see PREREG; reproduced SE rounds to 0.01. within_5pct is computed against the 1-2 significant-digit printed value as the runbook defines it and is not informative here (PREREG section 1); match_to_rounding is the meaningful test."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Party-cluster bootstrap of T1 (204 party_id clusters, set.seed(20261011), K = min(200, floor(3600/t)))",
+   "ran": true,
+   "estimate": 0.0182745768730006,
+   "se_or_ci": "bootstrap SE 0.008307; 95% percentile interval [-0.000676, 0.031586]",
+   "p_value": 0.027804917256077196,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/R_a_partial.csv",
+   "note": "t_first = 31.0 s, K = 115 (K_rule); successful refits 115, failed refits 0, refits with lme4 convergence messages 0, refits with dropped rank-deficient columns 0; percentile interval excludes 0: False; normal p from estimate/bootstrap SE < 0.001: False. Mean of bootstrap estimates 0.017754."
+  },
+  {
+   "id": "R_b",
+   "description": "T1 refit after dropping |z| > 3 on embed_dict_scale within the cycle_AE_fit2 estimation sample",
+   "ran": true,
+   "estimate": 0.0132574979784396,
+   "se_or_ci": "SE 0.002958",
+   "p_value": 7.37856538539452e-06,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_bc.csv",
+   "note": "rows dropped 5489, nobs 261365"
+  },
+  {
+   "id": "R_b_secondary_T5",
+   "description": "Secondary R_b: T5 refit after dropping |z| > 3 on the outcome within its estimation sample",
+   "ran": true,
+   "estimate": 0.0364456314280668,
+   "se_or_ci": "SE 0.011510",
+   "p_value": 0.00154292929770401,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_bc.csv",
+   "note": "rows dropped 1923, nobs 99154; paper star bucket 0.001 <= p < 0.01; p < 0.05: True"
+  },
+  {
+   "id": "R_b_secondary_T6",
+   "description": "Secondary R_b: T6 refit after dropping |z| > 3 on the outcome within its estimation sample",
+   "ran": true,
+   "estimate": 0.012581921615821,
+   "se_or_ci": "SE 0.007198",
+   "p_value": 0.0804629287908443,
+   "same_direction_and_significance_as_paper": false,
+   "source_file": "outputs/robustness_bc.csv",
+   "note": "rows dropped 590, nobs 76686; paper star bucket 0.01 <= p < 0.05; p < 0.05: False"
+  },
+  {
+   "id": "R_c",
+   "description": "T1 refit with year replaced by as.factor(year), nothing else changed",
+   "ran": true,
+   "estimate": 0.0174107819362234,
+   "se_or_ci": "SE 0.004818",
+   "p_value": 0.00030143569858687,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_bc.csv",
+   "note": "nobs 266854; estimate rounds to 0.02"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Scripts/6_analysis1.R",
+   "line": 410,
+   "description": "Code observation (label vs specification, verified by run): the Table 1 texreg call hard-codes the row 'Year Fixed Effects' = Yes for all four models, but the four Table 1 models (lines 356, 365, 374, 384) enter `year` as a numeric column, i.e. one linear year slope, not year fixed effects. Other models in the same script and all Table 2 models use as.factor(year).",
+   "evidence": "outputs/fixef_all_cycle_AE_fit2.csv has year-related fixed-effect terms ['year'] (a single slope). Refitting with as.factor(year) (R_c, outputs/robustness_bc.csv) moves T1 from 0.01827 to 0.01741; both round to 0.02 with p < 0.001, so the printed Table 1 is what the deposited code produces and the conclusion is unchanged."
+  },
+  {
+   "file": "Scripts/9_analysis4.R",
+   "line": 43,
+   "description": "Code observation (verified by run, no effect on any target): the centering index list `117:118` is copied from 6_analysis1.R line 35, where position 118 is `radical`; in script 9, after lines 30-32 (year_mon and the left_join), position 118 holds `EU_sal`, so a different column is centred and `radical` is not.",
+   "evidence": "outputs/s9_column_index_check.csv: in script 6 positions 117:118 are ['nat_opp', 'radical']; in script 9 they are ['nat_opp', 'EU_sal']; `radical` sits at position 119 of 119 in script 9. `radical` and `radical_scale` are in no Table 2 formula; `EU_sal` is mean-centred by the slip but then passed through scale() at line 61, which centres it again with the same mean, so the model input is unchanged. T5 and T6 are unaffected (also confirmed by the exact match of Table 2 AIC and log likelihood in outputs/model_gof.csv)."
+  },
+  {
+   "file": "Scripts/6_analysis1.R",
+   "line": 132,
+   "description": "Unverified observation (not run by agent A, outside the target blocks): lines 132 and 246 use `right` and `left`, which no deposited script creates and which are not among the 117 columns of EP_debates_07062023.Rdata (PREREG.md Known risks), so a top-to-bottom run of the script would stop at line 132. Affects appendix models only, not T1 to T6.",
+   "evidence": "grep of 6_analysis1.R: `chall_fact*right + chall_fact*left` (line 132), `challenge*right + challenge*left` (line 246); no assignment of right/left in any script. Not executed."
+  }
+ ],
+ "env_fixes": [
+  "diffs/run_table1_plain.diff, diffs/run_table2_plain.diff: .libPaths to per-run library, setwd to run folder, skip-if-saved wrapper and saveRDS after each model (PREREG section 2); authors' lines unchanged (outputs/range_identity_check.txt)",
+  "diffs/run_table1_f1f2.diff, diffs/run_table2_f1f2.diff: pre-registered memory fallback F1 (blank unused text columns 4 and 6 after load) and F2 (rm + gc after each saveRDS; combined texreg built from saved models). Used because the plain Table 1 run passed 3 GB RSS (3199 MB) and was stopped by the watchdog during the third model; the two models it had saved are byte-identical to the F1/F2 ones (outputs/plain_vs_f1f2.csv)",
+  "diffs/texreg_table1_from_rds.diff, diffs/texreg_table2_from_rds.diff: F2, authors' combined texreg call run on the saved models",
+  "Packages installed from CRAN into the per-run library (texreg, sjstats, sjPlot, skimr, fixest and dependencies); lme4, Matrix, zoo, tidyverse from the system library; no version pins exist in the deposit (environment.txt)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets match the printed Table 1 (Model 2) and Table 2 values to their rounding, with the same star buckets under the pre-registered texreg naive p; the full printed Table 1 fit statistics also match (Model 2 AIC 738747.50, logLik -369309.75).",
+ "confidence": "high",
+ "confidence_reason": "Exact match of every target and of printed AIC, log likelihood, N and group counts from the authors' verbatim lines; agreement with agent B not yet known.",
+ "time_minutes": 64,
+ "uncertainties": [
+  "Peak memory: the plain run stopped at 3199 MB RSS during the third Table 1 model, so the class rests on the pre-registered F1/F2 runs; the two models finished in the plain run are byte-identical to the F1/F2 ones (outputs/plain_vs_f1f2.csv). Table 2 was run with F1/F2 from the start (judgment call, LOG.md).",
+  "Saved models (11 to 29 MB each) and estimation samples are in scratch /workspace/audit_runs/24_U9CKK6/A/models, not in outputs/ as PREREG section 2 says, because the brief keeps objects over 5 MB out of the repo; sha256 are in LOG.md.",
+  "No package versions are pinned by the authors; run used lme4 1.1-37, Matrix 1.7-3, texreg 1.40, R 4.5.0. Exact AIC/logLik agreement suggests no material version effect.",
+  "Satterthwaite p (lmerTest, exploratory candidate 2 in PREREG) was not computed; the pre-registered naive p sets the star buckets.",
+  "R_a bootstrap: copy_index read as the k-th copy of a party within a draw (so the first copy of each party keeps cross-party MEP links); PREREG does not spell this out.",
+  "R_a K rule used the time of the first refit (31.0 s) measured before a sandbox restart; the remaining draws ran after the restart with the same saved draws.",
+  "Target cells were checked against the publisher PDF text layer fetched via web_fetch (outputs/pdf_target_cell_check.md), not a rendered page image.",
+  "Data-statement findings carried from DATA_STATEMENT.md (not re-searched by agent A): parlgov CSVs for script 4 and the Eurobarometer .dta for script 10 are absent from the deposit; no target needs them (batch5_class_decisions.md #7)."
+ ]
+}

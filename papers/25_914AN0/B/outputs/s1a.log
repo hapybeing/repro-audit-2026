@@ -1,0 +1,138 @@
+MEM
+start S1a
+2026-10-11 02:26:09
+
+
+               total        used        free      shared  buff/cache   available
+Mem:            7945        4460        2894        3444        4234        3485
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 305800 16.4     707688 37.8   499981 26.8
+Vcells 533298  4.1    8388608 64.0  1973934 15.1
+[1] "**** Starting run1_setup.R ****"
+Loading required package: data.table
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:data.table’:
+
+    between, first, last
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: stringr
+Loading required package: parallel
+Loading required package: lfe
+Loading required package: Matrix
+Loading required package: lme4
+Loading required package: nlme
+
+Attaching package: ‘nlme’
+
+The following object is masked from ‘package:lme4’:
+
+    lmList
+
+The following object is masked from ‘package:dplyr’:
+
+    collapse
+
+Loading required package: Formula
+Loading required package: xtable
+Loading required package: optimx
+
+Attaching package: ‘optimx’
+
+The following object is masked from ‘package:nlme’:
+
+    coef<-
+
+Loading required package: splines
+Loading required package: ggplot2
+Loading required package: robustlmm
+Loading required package: Matching
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+## 
+##  Matching (Version 4.10-14, Build Date: 2023-09-13)
+##  See https://www.jsekhon.com for additional documentation.
+##  Please cite software as:
+##   Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching
+##   Software with Automated Balance Optimization: The Matching package for R.''
+##   Journal of Statistical Software, 42(7): 1-52. 
+##
+
+Loading required package: fixest
+
+Attaching package: ‘fixest’
+
+The following object is masked from ‘package:lfe’:
+
+    fepois
+
+Loading required package: SUNGEO
+Loading required package: tidyselect
+[1] "**** Finished run1_setup.R ****"
+#### run2_main.R lines 55-55
+   user  system elapsed 
+  6.202   0.436   6.644 
+MEM
+after line 55
+2026-10-11 02:26:21
+
+
+               total        used        free      shared  buff/cache   available
+Mem:            7945        6014        1309        3444        4266        1931
+           used  (Mb) gc trigger (Mb)  max used   (Mb)
+Ncells  4951239 264.5    8987424  480   7105050  379.5
+Vcells 22590446 172.4  147186019 1123 156193559 1191.7
+#### run2_main.R lines 58-58
+   user  system elapsed 
+  0.041   0.000   0.042 
+MEM
+after line 58
+2026-10-11 02:26:22
+
+
+               total        used        free      shared  buff/cache   available
+Mem:            7945        6014        1309        3444        4266        1931
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  4959529 264.9    8987424 480.0   7105050  379.5
+Vcells 27911195 213.0   94199053 718.7 156193559 1191.7
+nrow(X) = 57183  nrow(X_s) = 21522 
+#### run2_main.R lines 98-107
+   user  system elapsed 
+  0.000   0.000   0.002 
+   user  system elapsed 
+  0.012   0.000   0.012 
+   user  system elapsed 
+  0.000   0.000   0.001 
+   user  system elapsed 
+  0.002   0.000   0.002 
+   user  system elapsed 
+  0.005   0.000   0.006 
+   user  system elapsed 
+  0.003   0.000   0.005 
+S1a saved
+MEM
+end S1a
+2026-10-11 02:26:24
+
+
+               total        used        free      shared  buff/cache   available
+Mem:            7945        5995        1319        3452        4283        1950
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  4976072 265.8    8987424 480.0   7105050  379.5
+Vcells 27971478 213.5   94199053 718.7 156193559 1191.7

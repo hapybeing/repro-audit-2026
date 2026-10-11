@@ -1,0 +1,41 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:plyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Please cite as: 
+
+ Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+ R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
+
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Warning messages:
+1: In eval(family$initialize) : non-integer #successes in a binomial glm!
+2: In eval(family$initialize) : non-integer #successes in a binomial glm!
+3: In eval(family$initialize) : non-integer #successes in a binomial glm!
+4: In eval(family$initialize) : non-integer #successes in a binomial glm!
+5: There were 5 warnings in `dplyr::summarize()`.
+The first warning was:
+ℹ In argument: `Mean = mean(unions, na.rm = TRUE)`.
+ℹ In group 1: `dta$Treatment = Control`.
+Caused by warning in `mean.default()`:
+! argument is not numeric or logical: returning NA
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 4 remaining warnings. 

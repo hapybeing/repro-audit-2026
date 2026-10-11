@@ -1,0 +1,59 @@
+{
+  "study1_nrow_3arm": 586,
+  "study2_nrow_3arm": 605,
+  "line87_output_df_PARTISANSHIP": [
+    {
+      "PARTISANSHIP": "Democrat",
+      "n": 215,
+      "percent": "36.7%"
+    },
+    {
+      "PARTISANSHIP": "Independent",
+      "n": 153,
+      "percent": "26.1%"
+    },
+    {
+      "PARTISANSHIP": "Other (please specify)",
+      "n": 13,
+      "percent": "2.2%"
+    },
+    {
+      "PARTISANSHIP": "Republican",
+      "n": 205,
+      "percent": "35.0%"
+    }
+  ],
+  "norc_has_PARTISANSHIP": true,
+  "norc_PARTISANSHIP_tabyl": [
+    {
+      "PARTISANSHIP": "Democrat",
+      "n": 346,
+      "percent": "57.2%",
+      "valid_percent": "57.3%"
+    },
+    {
+      "PARTISANSHIP": "Independent",
+      "n": 65,
+      "percent": "10.7%",
+      "valid_percent": "10.8%"
+    },
+    {
+      "PARTISANSHIP": "Republican",
+      "n": 193,
+      "percent": "31.9%",
+      "valid_percent": "32.0%"
+    },
+    {
+      "n": 1,
+      "percent": "0.2%",
+      "valid_percent": "-"
+    }
+  ],
+  "norc_columns_matching_part": ["PARTISANSHIP", "party_nolean", "party"],
+  "norc_party_table": {
+    "0": 193,
+    "1": 346,
+    "NA": 66
+  },
+  "norc_party_share_1": 0.641929499072356
+}

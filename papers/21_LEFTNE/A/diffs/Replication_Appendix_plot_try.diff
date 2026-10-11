@@ -1,0 +1,67 @@
+--- "/workspace/audit_runs/21_LEFTNE/A/orig/02- Replication_Appendix.R"	2026-10-10 21:05:51.518670346 +0000
++++ "/workspace/audit_runs/21_LEFTNE/A/data/02- Replication_Appendix.R"	2026-10-10 21:22:28.380274896 +0000
+@@ -331,13 +331,13 @@
+ test <- tidy(mod1,conf.int = TRUE,conf.level = 0.90)
+ tgc$low = tgc$M1_1-tgc$ci; tgc$high = tgc$M1_1+tgc$ci
+ 
+-ggplot(data=tgc, aes(x=TREATMENT_sort, y=M1_1)) +
++try(print({ggplot(data=tgc, aes(x=TREATMENT_sort, y=M1_1)) +
+   geom_bar(position = "dodge", stat="identity") +
+   geom_errorbar(position = "dodge",aes(ymin=low, ymax=high)) + 
+   steph_theme_gray + 
+   labs(title="Mean Levels of Enthusiasm", 
+        x="Treatment Condition", y = "Average level of Enthusiasm (single item)", caption = "Fall 2019 NORC Survey",subtitle = "By Experimental Condition", fill = "Gender:") + 
+-  theme(legend.position = "none")
++  theme(legend.position = "none")}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # Figure B2: Study 2 Average of Single Item within Enthusiasm Scale (Hopeful)
+@@ -350,13 +350,13 @@
+ test <- tidy(mod1,conf.int = TRUE,conf.level = 0.90)
+ tgc$low = tgc$M1_4-tgc$ci; tgc$high = tgc$M1_4+tgc$ci
+ 
+-ggplot(data=tgc, aes(x=TREATMENT_sort, y=M1_4)) +
++try(print({ggplot(data=tgc, aes(x=TREATMENT_sort, y=M1_4)) +
+   geom_bar(position = "dodge", stat="identity") +
+   geom_errorbar(position = "dodge",aes(ymin=low, ymax=high)) + 
+   steph_theme_gray + 
+   labs(title="Mean Levels of Hopeful", 
+        x="Treatment Condition", y = "Average level of Hopeful (single item)", caption = "Fall 2019 NORC Survey",subtitle = "By Experimental Condition", fill = "Gender:") + 
+-  theme(legend.position = "none")
++  theme(legend.position = "none")}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # Figure B3. Mean level of Fear by Experimental Condition, Study 1 & Study 2
+@@ -392,7 +392,7 @@
+        x="Treatment Condition", y = "Average level of fear", caption = "Fall 2019 Qualtrics Survey",subtitle = "By Experimental Condition", fill = "Gender:") + 
+   theme(legend.position = "none")
+ 
+-ggpubr::ggarrange(enthus1_plot, enthus2_plot, ncol = 2)
++try(print({ggpubr::ggarrange(enthus1_plot, enthus2_plot, ncol = 2)}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # Figure B4. Predicted values of treatment compliance by gender and partisanship
+@@ -413,9 +413,9 @@
+ 
+ 
+ mydf <- ggeffects::ggpredict(mod4, terms = c("Gender", "Party", 'TREATMENT'))
+-plot(mydf, connect.lines = F, ci_style = "errorbar", colors = "bw") +
++try(print({plot(mydf, connect.lines = F, ci_style = "errorbar", colors = "bw") +
+   steph_theme +
+-  labs(title="Predicted Values of Compliance", y = "Compliance", caption = "CCES 2020",subtitle = "By Experimental Condition")
++  labs(title="Predicted Values of Compliance", y = "Compliance", caption = "CCES 2020",subtitle = "By Experimental Condition")}))  # audit env fix: plot-only, made non-fatal
+ 
+ mod4 <- lm(word_count ~ TREATMENT * Gender * Party, data = df_cces, weights = teamweight)
+ emm <- emmeans::emmeans(mod4, ~ c(TREATMENT, Gender, Party)) 
+@@ -425,9 +425,9 @@
+ pairs(emm, adjust = "none")
+ 
+ mydf <- ggeffects::ggpredict(mod4, terms = c("Gender", "Party", 'TREATMENT'))
+-plot(mydf, connect_lines = F, ci_style = "errorbar", colors = "bw") +
++try(print({plot(mydf, connect_lines = F, ci_style = "errorbar", colors = "bw") +
+   steph_theme +
+-  labs(title="Predicted Values of Response Length", y = "Word Count", caption = "CCES 2020",subtitle = "By Experimental Condition")
++  labs(title="Predicted Values of Response Length", y = "Word Count", caption = "CCES 2020",subtitle = "By Experimental Condition")}))  # audit env fix: plot-only, made non-fatal
+ 
+ 
+ 

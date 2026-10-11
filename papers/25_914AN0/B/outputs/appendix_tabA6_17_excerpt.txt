@@ -1,0 +1,15 @@
+Table A6.17: Blocking units and strategic-level outcomes. Linear probability model coefficient
+estimates reported, with 95% confidence intervals in parentheses. Robust stardard errors clustered by
+country and conflict. Coefficient estimates for other covariates omitted.
+
+
+                                                Model 1      Model 2      Model 3
+                                   Outcome      Victory      Defeat        Other
+                              Blocking Units     -0.495        0.265        0.231
+                                               (-0.9,-0.1)   (-0.4,0.9)   (-0.3,0.7)
+                                 Country FE        90           90            90
+                                 Decade FE          7            7            7
+                                  R-squared      0.65          0.58          0.57
+                                        AIC      249.1         298.9        288.7
+                                          N       191           191          191
+

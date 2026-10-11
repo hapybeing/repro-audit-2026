@@ -1,0 +1,115 @@
+Date (IST): 2026-10-11 07:43 IST
+== uname -a
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+== /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+== nproc: 2
+               total        used        free      shared  buff/cache   available
+Mem:            7945        4135        3539        3181        3651        3810
+Swap:              0           0           0
+== Seeds: R_a set.seed(20261011) once, then sample(n, n, replace=TRUE) per replicate. Authors' S1/S4 target blocks use no RNG.
+== Per-run library: /workspace/audit_runs/25_914AN0/A/rlib (R_LIBS_USER); system site-library for the rest
+== Package install log (outputs/install_log.tsv):
+2026-10-11 07:10:40	lfe	3.0-0	FAILED	 
+2026-10-11 07:10:47	lfe	current	OK	3.1.1 
+2026-10-11 07:11:50	fixest	0.12.0	OK	0.12.0 
+2026-10-11 07:11:57	Matching	4.10-14	OK	4.10-14 
+2026-10-11 07:12:04	optimx	2023-10.21	OK	2023-10.21 
+2026-10-11 07:12:07	data.table	1.15.4	FAILED	 
+2026-10-11 07:12:29	data.table	current	OK	1.18.6.1 
+2026-10-11 07:12:56	robustlmm	3.3-1	OK	3.3-1 
+2026-10-11 07:16:04	SUNGEO	1.3.0	FAILED	 
+2026-10-11 07:16:07	SUNGEO	1.4.0	FAILED	 
+2026-10-11 07:16:07	SUNGEO	ALL	FAILED	 
+2026-10-11 07:16:45	lme4	1.1-35.3	OK	1.1-35.3 
+2026-10-11 07:18:36	SUNGEO	1.3.0	OK	1.3.0 
+== V8 installed from CRAN with DOWNLOAD_STATIC_LIBV8=1
+== R sessionInfo after loading run1_setup.R packages:
+[1] "**** Starting run1_setup.R ****"
+[1] "**** Finished run1_setup.R ****"
+R version 4.5.0 (2025-04-11)
+Platform: aarch64-unknown-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] splines   parallel  stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] tidyselect_1.2.1    SUNGEO_1.3.0        fixest_0.12.0      
+ [4] Matching_4.10-14    MASS_7.3-65         robustlmm_3.3-1    
+ [7] ggplot2_3.5.1       optimx_2023-10.21   xtable_1.8-4       
+[10] Formula_1.2-5       nlme_3.1-168        lme4_1.1-35.3      
+[13] lfe_3.1.1           Matrix_1.7-3        stringr_1.5.1      
+[16] dplyr_1.1.4         data.table_1.18.6.1
+
+loaded via a namespace (and not attached):
+ [1] bitops_1.0-9        RCurl_1.98-1.16     reshape_0.8.9      
+ [4] TH.data_1.1-3       cartogram_0.3.0     pracma_2.4.4       
+ [7] RANN_2.6.2          estimability_1.5.1  lifecycle_1.0.4    
+[10] dreamerr_1.5.0      sf_1.0-19           survival_3.8-3     
+[13] fastGHQuad_1.0.1    terra_1.8-29        magrittr_2.0.3     
+[16] compiler_4.5.0      rlang_1.1.5         tools_4.5.0        
+[19] FNN_1.1.4.1         curl_6.2.1          sp_2.2-0           
+[22] classInt_0.4-11     plyr_1.8.9          multcomp_1.4-28    
+[25] abind_1.4-8         KernSmooth_2.23-26  purrr_1.0.4        
+[28] withr_3.0.2         numDeriv_2016.8-1.1 grid_4.5.0         
+[31] xts_0.14.1          e1071_1.7-16        colorspace_2.1-1   
+[34] emmeans_1.10.7      scales_1.3.0        cli_3.6.4          
+[37] mvtnorm_1.3-3       intervals_0.15.5    generics_0.1.3     
+[40] robustbase_0.99-4-1 httr_1.4.7          spdep_1.3-5        
+[43] minqa_1.2.8         DBI_1.2.3           proxy_0.4-27       
+[46] stars_0.6-8         s2_1.1.7            stringmagic_1.3.0  
+[49] vctrs_0.6.5         V8_8.2.0            boot_1.3-31        
+[52] sandwich_3.1-1      spData_2.3.4        jsonlite_1.9.1     
+[55] measurements_1.5.1  packcircles_0.3.7   rmapshaper_0.6.1   
+[58] units_0.8-7         glue_1.8.0          nloptr_2.2.1       
+[61] DEoptimR_1.1-3-1    codetools_0.2-20    gstat_2.1-6        
+[64] stringi_1.8.4       gtable_0.3.6        deldir_2.0-4       
+[67] raster_3.6-31       munsell_0.5.1       tibble_3.2.1       
+[70] pillar_1.10.1       R6_2.6.1            wk_0.9.4           
+[73] automap_1.1-20      lattice_0.22-7      class_7.3-23       
+[76] Rcpp_1.1.2          coda_0.19-4.1       spacetime_1.3-3    
+[79] zoo_1.8-14          pkgconfig_2.0.3    
+
+== Versions of key packages and their library:
+lfe 3.1.1 /workspace/audit_runs/25_914AN0/A/rlib/lfe 
+fixest 0.12.0 /workspace/audit_runs/25_914AN0/A/rlib/fixest 
+lme4 1.1.35.3 /workspace/audit_runs/25_914AN0/A/rlib/lme4 
+Matrix 1.7.3 /usr/lib/R/library/Matrix 
+data.table 1.18.6.1 /workspace/audit_runs/25_914AN0/A/rlib/data.table 
+dplyr 1.1.4 /usr/lib/R/site-library/dplyr 
+SUNGEO 1.3.0 /workspace/audit_runs/25_914AN0/A/rlib/SUNGEO 
+Formula 1.2.5 /usr/lib/R/site-library/Formula 
+xtable 1.8.4 /usr/lib/R/site-library/xtable 
+ggplot2 3.5.1 /usr/lib/R/site-library/ggplot2 
+robustlmm 3.3.1 /workspace/audit_runs/25_914AN0/A/rlib/robustlmm 
+Matching 4.10.14 /workspace/audit_runs/25_914AN0/A/rlib/Matching 
+optimx 2023.10.21 /workspace/audit_runs/25_914AN0/A/rlib/optimx 
+nlme 3.1.168 /usr/lib/R/library/nlme 
+stringr 1.5.1 /usr/lib/R/site-library/stringr 
+tidyselect 1.2.1 /usr/lib/R/site-library/tidyselect 
+V8 8.2.0 /workspace/audit_runs/25_914AN0/A/rlib/V8 
+sf 1.0.19 /usr/lib/R/site-library/sf 

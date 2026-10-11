@@ -1,0 +1,3445 @@
+
+> rm(list = ls())
+
+> Sys.setenv(LANG = "en")
+
+> suppressPackageStartupMessages({
++     library(haven)
++     library(tidyverse)
++     library(fixest)
++     library(ivtools)
++     library(sandwich)
++     library(lmtest)
++     library(weathermetrics)
++     library(lubridate)
++     library(knitr)
++     library(kableExtra)
++     library(MASS)
++     library(splines)
++ })
+
+> preprocess_seattle <- function(df) {
++     names(df) <- tolower(names(df))
++     char_cols <- names(df)[sapply(df, is.character)]
++     fac_cols <- names(df)[sapply(df, is.factor)]
++     df <- df %>% mutate(across(all_of(char_cols), tolower)) %>% 
++         mutate(across(all_of(fac_cols), ~factor(tolower(as.character(.))))) %>% 
++         mutate(station = case_when(!is.na(station) & str_trim(station) == 
++             "seattle - beacon hill" ~ "beacon hill", !is.na(station) & 
++             str_trim(station) == "seattle-10th & weller" ~ "weller street", 
++             TRUE ~ station))
++     rename_map <- c(daily.mean.pm2.5.concentration = "pm25_mean", 
++         daily.mean.pm10.concentration = "pm10_mean", daily.max.1.hour.no2.concentration = "no2_max", 
++         daily.max.8.hour.co.concentration = "co_max", daily.max.8.hour.ozone.concentration = "ozone_max", 
++         daily.max.1.hour.so2.concentration = "so2_max", simple.assault = "si_assault", 
++         aggravated.assault = "ag_assault", theft.from.motor.vehicle = "theft_from_veh", 
++         motor.vehicle.theft = "theft_of_veh", burglary.breaking...entering = "burglary", 
++         all.other.larceny = "larceny", murder...nonnegligent.manslaughter = "murder", 
++         negligent.manslaughter = "manslaughter", smokepm_pred = "smokepm_pred", 
++         smokepm_dummy = "smokepm_dummy", wdf2 = "wdf2", wdf5 = "wdf5")
++     for (old in names(rename_map)) {
++         if (old %in% names(df)) 
++             names(df)[names(df) == old] <- rename_map[old]
++     }
++     factor_vars <- c("station", "year", "month", "dow", "week", 
++         "weekend", "holiday", "smokepm_dummy", "covid")
++     numeric_vars <- c("pm25_mean", "pm10_mean", "no2_max", "co_max", 
++         "ozone_max", "so2_max", "tmax", "tmin", "prcp", "si_assault", 
++         "ag_assault", "theft_from_veh", "theft_of_veh", "burglary", 
++         "larceny", "murder", "manslaughter", "temperature_1000", 
++         "temperature_975", "tcc", "blh", "dv_calls", "respt_mean", 
++         "servt_mean", "uof_l1", "uof_l2", "uof_ois", "uof_l3", 
++         "uof_total", "colsev0", "colsev1", "colsev2", "colsev2b", 
++         "colsev3", "totalsev", "cit_calls", "robbery", "intimidation", 
++         "person", "property", "rape", "smokepm_pred", "wdf2", 
++         "wdf5", "awnd")
++     df <- df %>% dplyr::mutate(dplyr::across(dplyr::any_of(factor_vars), 
++         ~as.factor(.))) %>% dplyr::mutate(dplyr::across(dplyr::any_of(numeric_vars), 
++         ~as.numeric(.)))
++     if ("date" %in% names(df)) {
++         df <- df %>% dplyr::mutate(date = as.Date(date)) %>% 
++             dplyr::mutate(month = factor(lubridate::month(date, 
++                 label = TRUE, abbr = FALSE)), year = as.factor(lubridate::year(date)), 
++                 week = as.factor(lubridate::isoweek(date)), week_of_year = as.factor(lubridate::week(date)), 
++                 dow = factor(lubridate::wday(date, label = TRUE, 
++                   abbr = FALSE)), dow_num = lubridate::wday(date, 
++                   label = FALSE, abbr = FALSE)) %>% dplyr::relocate(year, 
++             month, week, dow, dow_num, .after = date)
++     }
++     if ("dow_num" %in% names(df)) {
++         df <- df %>% dplyr::mutate(weekend = as.factor(ifelse(dow_num %in% 
++             c(1, 7), 1, 0)))
++     }
++     if ("year" %in% names(df)) {
++         df <- df %>% dplyr::mutate(covid = as.factor(ifelse(year %in% 
++             c(2020, 2021), 1, 0)))
++     }
++     if (all(c("station", "ozone_max", "date") %in% names(df))) {
++         df$station <- trimws(tolower(as.character(df$station)))
++         df$date <- as.Date(df$date)
++         beacon_ozone <- df %>% dplyr::filter(station == "beacon hill") %>% 
++             dplyr::select(date, ozone_max) %>% dplyr::rename(beacon_ozone = ozone_max)
++         df <- df %>% dplyr::left_join(beacon_ozone, by = "date") %>% 
++             dplyr::mutate(beacon_ozone = as.numeric(beacon_ozone), 
++                 ozone_max_i = dplyr::case_when(is.na(ozone_max) & 
++                   station == "weller street" ~ beacon_ozone, 
++                   TRUE ~ ozone_max)) %>% dplyr::select(-beacon_ozone)
++     }
++     for (col in c("tmin", "tmax")) {
++         if (col %in% names(df)) {
++             if (is.factor(df[[col]])) 
++                 df[[col]] <- as.character(df[[col]])
++             df[[col]] <- as.numeric(df[[col]])
++             df[[col]] <- convert_temperature(df[[col]], old_metric = "f", 
++                 new_metric = "c")
++         }
++     }
++     if ("date" %in% names(df)) 
++         df <- df %>% dplyr::mutate(year_month = format(date, 
++             "%Y-%m"))
++     if ("date" %in% names(df)) 
++         df <- df %>% dplyr::mutate(year_week = format(date, "%Y-%U"))
++     if (all(c("si_assault", "ag_assault") %in% names(df))) {
++         df$assault <- df$si_assault + df$ag_assault
++     }
++     if ("wdf2" %in% names(df)) {
++         df <- df %>% mutate(wind_8bin = cut(wdf2, breaks = c(0, 
++             22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5, 
++             360), labels = c("N", "NE", "E", "SE", "S", "SW", 
++             "W", "NW", "N"), include.lowest = TRUE), wind_4bin = cut(wdf2, 
++             breaks = c(0, 45, 135, 225, 315, 360), labels = c("N", 
++                 "E", "S", "W", "N"), include.lowest = TRUE))
++         df$wind_8bin <- factor(df$wind_8bin)
++         df$wind_4bin <- factor(df$wind_4bin)
++     }
++     if ("tmax" %in% names(df)) {
++         df <- df %>% mutate(tmax_sq = tmax^2, tmin_sq = tmin^2)
++     }
++     if ("tmax" %in% names(df)) {
++         tmax_75 <- quantile(df$tmax, 0.75, na.rm = TRUE)
++         df <- df %>% mutate(high_temp = as.factor(ifelse(tmax >= 
++             tmax_75, 1, 0)))
++     }
++     if ("smokepm_pred" %in% names(df)) {
++         df <- df %>% mutate(smokepm_pred = ifelse(is.na(smokepm_pred), 
++             0, smokepm_pred))
++     }
++     log_vars <- c("si_assault", "ag_assault", "assault", "burglary", 
++         "robbery", "intimidation", "theft_from_veh", "theft_of_veh", 
++         "larceny", "murder", "person", "property", "rape")
++     for (v in log_vars) {
++         if (v %in% names(df)) {
++             df[[paste0("log_", v)]] <- log(1 + as.numeric(df[[v]]))
++         }
++     }
++     if ("date_x" %in% names(df)) 
++         df <- df %>% dplyr::select(-date_x)
++     grouped_cols <- list(a = c("dv_calls", "respt_mean", "servt_mean"), 
++         b = c("uof_l1", "uof_l2", "uof_ois", "uof_l3", "uof_total"), 
++         c = c("colsev0", "colsev1", "colsev2", "colsev2b", "colsev3", 
++             "totalsev"), d = c("cit_calls"))
++     for (group_cols in grouped_cols) {
++         present_cols <- intersect(group_cols, names(df))
++         if (length(present_cols) == 0) 
++             next
++         submat <- df[, present_cols, drop = FALSE]
++         mask <- apply(submat, 1, function(row) any(!is.na(row) & 
++             row != 0))
++         first_idx <- which(mask)[1]
++         if (!is.na(first_idx) && first_idx > 1) {
++             df[seq_len(first_idx - 1), present_cols] <- NA
++         }
++     }
++     return(df)
++ }
+
+> buffer_kms <- c(21, 13, 10, 7)
+
+> buffer_names <- paste0("seattle", buffer_kms)
+
+> file_paths <- paste0("Data Analysis/merged_final_combined_data_", 
++     buffer_kms, "km.csv")
+
+> seattle_dfs <- list()
+
+> for (i in seq_along(buffer_kms)) {
++     if (file.exists(file_paths[i])) {
++         df <- read.csv(file_paths[i], header = TRUE, dec = ",", 
++             na.strings = c("NA", ""))
++         seattle_dfs[[buffer_names[i]]] <- preprocess_seattle(df)
++     }
++ }
+
+> seattle13 <- seattle_dfs[["seattle13"]]
+
+> seattle_main <- seattle13 %>% filter(year(date) >= 
++     2013 & year(date) <= 2023) %>% dplyr::select(assault, si_assault, 
++     ag_assault, pm25_mean, smokepm_dummy, smokepm_pred, awnd, 
++     tmax, tmin, prcp, tmax_sq, tmin_sq, high_temp, wind_8bin, 
++     wind_4bin, wdf2, station, date, year, month, week_of_year, 
++     dow, holiday, robbery, burglary, theft_of_veh, theft_from_veh, 
++     intimidation, person, property) %>% na.omit() %>% mutate(z_smoke = as.numeric(as.character(smokepm_dummy)), 
++     station = factor(station), year = factor(year), month = factor(month), 
++     week_of_year = factor(week_of_year), dow = factor(dow, ordered = FALSE), 
++     holiday = factor(holiday), date = as.Date(date), awnd = as.numeric(awnd))
+
+> seattle_copoll <- seattle13 %>% filter(year(date) >= 
++     2013 & year(date) <= 2023) %>% dplyr::select(assault, si_assault, 
++     ag_assault, pm25_mean, smokepm_dummy, smokepm_pred, co_max, 
++     no2_max, ozone_max_i, awnd, tmax, tmin, prcp, tmax_sq, tmin_sq, 
++     high_temp, wind_8bin, wind_4bin, wdf2, station, date, year, 
++     month, week_of_year, dow, holiday) %>% na.omit() %>% mutate(z_smoke = as.numeric(as.character(smokepm_dummy)), 
++     station = factor(station), year = factor(year), month = factor(month), 
++     week_of_year = factor(week_of_year), dow = factor(dow, ordered = FALSE), 
++     holiday = factor(holiday), date = as.Date(date), awnd = as.numeric(awnd))
+
+> seattle_alt <- seattle13 %>% filter(year(date) >= 
++     2013 & year(date) <= 2023) %>% dplyr::select(assault, pm25_mean, 
++     smokepm_dummy, awnd, tmax, tmin, prcp, station, date, year, 
++     month, dow, holiday, dv_calls, respt_mean, uof_total, uof_l1, 
++     uof_l2, uof_l3, totalsev) %>% mutate(z_smoke = as.numeric(as.character(smokepm_dummy)), 
++     station = factor(station), year = factor(year), month = factor(month), 
++     dow = factor(dow, ordered = FALSE), holiday = factor(holiday), 
++     date = as.Date(date), awnd = as.numeric(awnd), ln_resptime = ifelse(respt_mean > 
++         0, log(respt_mean), NA))
+
+> cat("=== SAMPLE SIZES ===\n")
+=== SAMPLE SIZES ===
+
+> cat("Main sample (2013-2023, no co-pollutants): N =", 
++     nrow(seattle_main), "\n")
+Main sample (2013-2023, no co-pollutants): N = 7163 
+
+> cat("Co-pollutant sample (2013-2023): N =", nrow(seattle_copoll), 
++     "\n\n")
+Co-pollutant sample (2013-2023): N = 5623 
+
+
+> cat("=== DESCRIPTIVE STATISTICS (Main Sample) ===\n")
+=== DESCRIPTIVE STATISTICS (Main Sample) ===
+
+> cat("PM2.5 on smoke days:", round(mean(seattle_main$pm25_mean[seattle_main$z_smoke == 
++     1]), 2), "µg/m³\n")
+PM2.5 on smoke days: 14.04 µg/m³
+
+> cat("PM2.5 on non-smoke days:", round(mean(seattle_main$pm25_mean[seattle_main$z_smoke == 
++     0]), 2), "µg/m³\n")
+PM2.5 on non-smoke days: 6.26 µg/m³
+
+> cat("Difference:", round(mean(seattle_main$pm25_mean[seattle_main$z_smoke == 
++     1]) - mean(seattle_main$pm25_mean[seattle_main$z_smoke == 
++     0]), 2), "µg/m³\n\n")
+Difference: 7.78 µg/m³
+
+
+> fmt <- function(x, d = 3) formatC(x, digits = d, format = "f")
+
+> star1 <- function(p) ifelse(p < 0.05, "*", "")
+
+> cell <- function(b, se, p) paste0(fmt(b), star1(p), 
++     "\n(", fmt(se), ")\n", "p=", fmt(p))
+
+> dash <- function(x) ifelse(is.na(x), "—", x)
+
+> pad <- function(x, L) {
++     x <- as.character(x)
++     length(x) <- L
++     x[is.na(x)] <- ""
++     x
++ }
+
+> fs_diag <- function(form_full, form_restr, data) {
++     fs <- feols(form_full, data = data, cluster = ~date)
++     fs0 <- feols(form_restr, data = data)
++     rss_f <- sum(residuals(fs)^2)
++     rss_0 <- sum(residuals(fs0)^2)
++     pr2 <- (rss_0 - rss_f)/rss_0
++     b <- coef(fs)[["z_smoke"]]
++     v <- vcov(fs)[["z_smoke", "z_smoke"]]
++     F <- if (is.na(b) || is.na(v)) 
++         NA
++     else as.numeric(b^2/v)
++     list(F = F, pr2 = pr2, fs = fs)
++ }
+
+> run_ivglm <- function(form_fs_glm, form_ss_glm, data) {
++     data <- droplevels(data)
++     fs_glm <- glm(form_fs_glm, data = data)
++     ss_glm <- glm(form_ss_glm, family = poisson(link = "log"), 
++         data = data)
++     ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_glm, fitY.LX = ss_glm, 
++         data = data, ctrl = TRUE, clusterid = "date", vcov.fit = TRUE)
++ }
+
+> grab_by_name <- function(ivobj, vars) {
++     nm <- names(ivobj$est)
++     out <- lapply(vars, function(v) {
++         if (!(v %in% nm)) 
++             return(list(beta = NA, se = NA, p = NA))
++         b <- unname(ivobj$est[[v]])
++         se <- sqrt(ivobj$vcov[v, v])
++         p <- 2 * pnorm(-abs(b/se))
++         list(beta = b, se = se, p = p)
++     })
++     names(out) <- vars
++     out
++ }
+
+> cat("\n=== CREATING DESCRIPTIVE STATISTICS TABLE ===\n")
+
+=== CREATING DESCRIPTIVE STATISTICS TABLE ===
+
+> seattle21 <- if ("seattle21" %in% names(seattle_dfs)) seattle_dfs[["seattle21"]] else seattle13
+
+> dat_desc <- seattle21 %>% filter(year(date) >= 2013 & 
++     year(date) <= 2023)
+
+> write.csv(dat_desc, "seattle_21km.csv", row.names = FALSE)
+
+> dat_city <- dat_desc %>% dplyr::mutate(date = as.Date(date), 
++     z_smoke = if (is.factor(smokepm_dummy)) as.integer(as.character(smokepm_dummy)) else as.integer(smokepm_dummy), 
++     awnd = suppressWarnings(as.numeric(awnd))) %>% dplyr::group_by(date) %>% 
++     dplyr::summarise(assault = sum(assault, na.rm = TRUE), pm25 = mean(pm25_mean, 
++         na.rm = TRUE), co = mean(co_max, na.rm = TRUE), no2 = mean(no2_max, 
++         na.rm = TRUE), ozone = mean(ozone_max_i, na.rm = TRUE), 
++         tmax = mean(tmax, na.rm = TRUE), tmin = mean(tmin, na.rm = TRUE), 
++         awnd = mean(awnd, na.rm = TRUE), prcp = mean(prcp, na.rm = TRUE), 
++         smoke_day = as.integer(any(z_smoke == 1)), .groups = "drop")
+
+> n_days <- nrow(dat_city)
+
+> n_smoke <- sum(dat_city$smoke_day, na.rm = TRUE)
+
+> share_sm <- 100 * (n_smoke/n_days)
+
+> cat("Study period: 2013-2023\n")
+Study period: 2013-2023
+
+> cat("Total days:", n_days, "\n")
+Total days: 4017 
+
+> cat("Smoke days:", n_smoke, "(", round(share_sm, 1), 
++     "%)\n\n")
+Smoke days: 447 ( 11.1 %)
+
+
+> vars <- c("assault", "pm25", "co", "no2", "ozone", 
++     "tmax", "tmin", "awnd", "prcp")
+
+> tab <- dat_city %>% dplyr::summarise(dplyr::across(dplyr::all_of(vars), 
++     list(N = ~sum(!is.na(.)), Mean = ~mean(., na.rm = TRUE), 
++         SD = ~sd(., na.rm = TRUE), P25 = ~stats::quantile(., 
++             0.25, na.rm = TRUE), Median = ~stats::median(., na.rm = TRUE), 
++         P75 = ~stats::quantile(., 0.75, na.rm = TRUE), Min = ~min(., 
++             na.rm = TRUE), Max = ~max(., na.rm = TRUE)), .names = "{.col}__{.fn}")) %>% 
++     tidyr::pivot_longer(dplyr::everything(), names_to = c("var", 
++         "stat"), names_sep = "__", values_to = "value") %>% tidyr::pivot_wider(names_from = stat, 
++     values_from = value)
+
+> label_map <- c(assault = "Assault (daily count, city-wide)", 
++     pm25 = "PM₂.₅ (µg/m³)", co = "CO (max) [ppm]", no2 = "NO₂ (max) [ppb]", 
++     ozone = "O₃ (max) [ppm]", tmax = "Max temperature (°C)", 
++     tmin = "Min temperature (°C)", awnd = "Avg wind speed (m/s)", 
++     prcp = "Precipitation (in)")
+
+> tab <- tab %>% dplyr::mutate(Variable = label_map[var]) %>% 
++     dplyr::select(Variable, N, Mean, SD, P25, Median, P75, Min, 
++         Max) %>% dplyr::arrange(factor(Variable, levels = unname(label_map[vars])))
+
+> fmt2 <- function(x) ifelse(is.na(x), "", formatC(x, 
++     digits = 2, format = "f"))
+
+> tab_fmt <- tab %>% dplyr::mutate(N = as.integer(N), 
++     Mean = fmt2(Mean), SD = fmt2(SD), P25 = fmt2(P25), Median = fmt2(Median), 
++     P75 = fmt2(P75), Min = fmt2(Min), Max = fmt2(Max))
+
+> desc_tbl <- tab_fmt %>% knitr::kable(format = "html", 
++     align = c("l", "r", "r", "r", "r", "r", "r", "r", "r"), caption = "Table A1: City-day descriptive statistics (Seattle, 2013-2023)") %>% 
++     kableExtra::kable_styling(full_width = FALSE, position = "center", 
++         bootstrap_options = c("striped", "condensed")) %>% kableExtra::footnote(general = paste0("City-day aggregation across measuring stations. ", 
++     "Study period: 2013-2023. Share of smoke days: ", sprintf("%.1f", 
++         share_sm), "% (", n_smoke, "/", n_days, ")."), threeparttable = TRUE)
+
+> print(desc_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table A1: City-day descriptive statistics (Seattle, 2013-2023)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:right;"> N </th>
+   <th style="text-align:right;"> Mean </th>
+   <th style="text-align:right;"> SD </th>
+   <th style="text-align:right;"> P25 </th>
+   <th style="text-align:right;"> Median </th>
+   <th style="text-align:right;"> P75 </th>
+   <th style="text-align:right;"> Min </th>
+   <th style="text-align:right;"> Max </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Assault (daily count, city-wide) </td>
+   <td style="text-align:right;"> 4017 </td>
+   <td style="text-align:right;"> 21.42 </td>
+   <td style="text-align:right;"> 5.85 </td>
+   <td style="text-align:right;"> 17.00 </td>
+   <td style="text-align:right;"> 21.00 </td>
+   <td style="text-align:right;"> 25.00 </td>
+   <td style="text-align:right;"> 6.00 </td>
+   <td style="text-align:right;"> 48.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PM₂.₅ (µg/m³) </td>
+   <td style="text-align:right;"> 4012 </td>
+   <td style="text-align:right;"> 7.03 </td>
+   <td style="text-align:right;"> 7.95 </td>
+   <td style="text-align:right;"> 3.95 </td>
+   <td style="text-align:right;"> 5.65 </td>
+   <td style="text-align:right;"> 7.96 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 179.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CO (max) [ppm] </td>
+   <td style="text-align:right;"> 3916 </td>
+   <td style="text-align:right;"> 0.41 </td>
+   <td style="text-align:right;"> 0.18 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.40 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 2.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> NO₂ (max) [ppb] </td>
+   <td style="text-align:right;"> 3790 </td>
+   <td style="text-align:right;"> 27.50 </td>
+   <td style="text-align:right;"> 10.09 </td>
+   <td style="text-align:right;"> 20.50 </td>
+   <td style="text-align:right;"> 26.40 </td>
+   <td style="text-align:right;"> 33.30 </td>
+   <td style="text-align:right;"> 4.70 </td>
+   <td style="text-align:right;"> 85.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> O₃ (max) [ppm] </td>
+   <td style="text-align:right;"> 3820 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.07 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Max temperature (°C) </td>
+   <td style="text-align:right;"> 3987 </td>
+   <td style="text-align:right;"> 16.77 </td>
+   <td style="text-align:right;"> 7.25 </td>
+   <td style="text-align:right;"> 11.11 </td>
+   <td style="text-align:right;"> 16.11 </td>
+   <td style="text-align:right;"> 22.22 </td>
+   <td style="text-align:right;"> -4.44 </td>
+   <td style="text-align:right;"> 51.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Min temperature (°C) </td>
+   <td style="text-align:right;"> 3987 </td>
+   <td style="text-align:right;"> 8.38 </td>
+   <td style="text-align:right;"> 5.65 </td>
+   <td style="text-align:right;"> 4.44 </td>
+   <td style="text-align:right;"> 8.33 </td>
+   <td style="text-align:right;"> 13.33 </td>
+   <td style="text-align:right;"> -10.00 </td>
+   <td style="text-align:right;"> 24.44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Avg wind speed (m/s) </td>
+   <td style="text-align:right;"> 4000 </td>
+   <td style="text-align:right;"> 5.08 </td>
+   <td style="text-align:right;"> 2.56 </td>
+   <td style="text-align:right;"> 3.36 </td>
+   <td style="text-align:right;"> 4.70 </td>
+   <td style="text-align:right;"> 6.49 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 18.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Precipitation (in) </td>
+   <td style="text-align:right;"> 3998 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 0.20 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 2.45 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> City-day aggregation across measuring stations. Study period: 2013-2023. Share of smoke days: 11.1% (447/4017).</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(desc_tbl, "table_A1_descriptives.html")
+
+> cat("\n=== CREATING MAIN TABLE (Table 1) ===\n")
+
+=== CREATING MAIN TABLE (Table 1) ===
+
+> W <- "holiday + awnd + tmax + tmin + prcp"
+
+> W_cp <- paste(W, "+ co_max + no2_max + ozone_max_i")
+
+> FE1_plain <- "station + dow"
+
+> FE2_plain <- "station + month + dow"
+
+> FE3_plain <- "station + year + month + dow"
+
+> FE4_plain <- FE3_plain
+
+> FE1_bars <- "station + dow"
+
+> FE2_bars <- "station + month + dow"
+
+> FE3_bars <- "station + year + month + dow"
+
+> FE4_bars <- FE3_bars
+
+> exposure_var <- "pm25_mean"
+
+> dat_main <- seattle_main
+
+> dat_copoll <- seattle_copoll
+
+> N_main <- nrow(dat_main)
+
+> N_copoll <- nrow(dat_copoll)
+
+> cat("Main sample N:", N_main, "\n")
+Main sample N: 7163 
+
+> cat("Co-pollutant sample N:", N_copoll, "\n")
+Co-pollutant sample N: 5623 
+
+> iv1 <- run_ivglm(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W, "+", FE1_plain)), as.formula(paste("assault ~", exposure_var, 
++     "+", W, "+", FE1_plain)), dat_main)
+
+> d1 <- fs_diag(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W, "|", FE1_bars)), as.formula(paste("pm25_mean ~", W, "|", 
++     FE1_bars)), dat_main)
+
+> r1 <- grab_by_name(iv1, c(exposure_var))
+
+> iv2 <- run_ivglm(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W, "+", FE2_plain)), as.formula(paste("assault ~", exposure_var, 
++     "+", W, "+", FE2_plain)), dat_main)
+
+> d2 <- fs_diag(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W, "|", FE2_bars)), as.formula(paste("pm25_mean ~", W, "|", 
++     FE2_bars)), dat_main)
+
+> r2 <- grab_by_name(iv2, c(exposure_var))
+
+> iv3 <- run_ivglm(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W, "+", FE3_plain)), as.formula(paste("assault ~", exposure_var, 
++     "+", W, "+", FE3_plain)), dat_main)
+
+> d3 <- fs_diag(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W, "|", FE3_bars)), as.formula(paste("pm25_mean ~", W, "|", 
++     FE3_bars)), dat_main)
+
+> r3 <- grab_by_name(iv3, c(exposure_var))
+
+> iv4 <- run_ivglm(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W_cp, "+", FE4_plain)), as.formula(paste("assault ~", exposure_var, 
++     "+", W_cp, "+", FE4_plain)), dat_copoll)
+
+> d4 <- fs_diag(as.formula(paste("pm25_mean ~ z_smoke +", 
++     W_cp, "|", FE4_bars)), as.formula(paste("pm25_mean ~", W_cp, 
++     "|", FE4_bars)), dat_copoll)
+
+> r4 <- grab_by_name(iv4, c(exposure_var))
+
+> Row <- c("PM₂.₅ (instrumented)", "Station FE", 
++     "Month FE", "Year FE", "Day-of-week FE", "Weather controls", 
++     "Co-pollutants (CO, NO₂, O₃)", "First-stage F", "Partial R²", 
++     "N (observations)")
+
+> C1 <- c(cell(r1[[exposure_var]]$beta, r1[[exposure_var]]$se, 
++     r1[[exposure_var]]$p), "Y", "-", "-", "Y", "Y", "-", ifelse(is.na(d1$F), 
++     "—", fmt(d1$F, 2)), ifelse(is.na(d1$pr2), "—", fmt(d1$pr2, 
++     3)), as.character(N_main))
+
+> C2 <- c(cell(r2[[exposure_var]]$beta, r2[[exposure_var]]$se, 
++     r2[[exposure_var]]$p), "Y", "Y", "-", "Y", "Y", "-", ifelse(is.na(d2$F), 
++     "—", fmt(d2$F, 2)), ifelse(is.na(d2$pr2), "—", fmt(d2$pr2, 
++     3)), as.character(N_main))
+
+> C3 <- c(cell(r3[[exposure_var]]$beta, r3[[exposure_var]]$se, 
++     r3[[exposure_var]]$p), "Y", "Y", "Y", "Y", "Y", "-", ifelse(is.na(d3$F), 
++     "—", fmt(d3$F, 2)), ifelse(is.na(d3$pr2), "—", fmt(d3$pr2, 
++     3)), as.character(N_main))
+
+> C4 <- c(cell(r4[[exposure_var]]$beta, r4[[exposure_var]]$se, 
++     r4[[exposure_var]]$p), "Y", "Y", "Y", "Y", "Y", "Y", ifelse(is.na(d4$F), 
++     "—", fmt(d4$F, 2)), ifelse(is.na(d4$pr2), "—", fmt(d4$pr2, 
++     3)), as.character(N_copoll))
+
+> T_main <- data.frame(Row, `Model (1)` = C1, `Model (2)` = C2, 
++     `Model (3)` = C3, `Model (4)` = C4, check.names = FALSE)
+
+> main_tbl <- T_main %>% kable(format = "html", align = c("l", 
++     "r", "r", "r", "r"), caption = "Table 1: IV–Poisson (2SRI): Wildfire-instrumented PM₂.₅ on daily assaults") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Main estimate", 1, 1) %>% 
++     pack_rows("Fixed effects", 2, 5) %>% pack_rows("Controls", 
++     6, 7) %>% pack_rows("Diagnostics", 8, 10) %>% footnote(general = paste0("Two-stage residual inclusion (2SRI) Poisson estimation. Standard errors clustered by calendar date. ", 
++     "Weather controls: public holiday, wind speed, max/min temperature, precipitation. ", 
++     "Models 1-3 use full sample (N=", N_main, "); Model 4 uses smaller sample due to co-pollutant availability (N=", 
++     N_copoll, "). ", "* denotes p<0.05."), threeparttable = TRUE)
+
+> print(main_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table 1: IV–Poisson (2SRI): Wildfire-instrumented PM₂.₅ on daily assaults</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Model (1) </th>
+   <th style="text-align:right;"> Model (2) </th>
+   <th style="text-align:right;"> Model (3) </th>
+   <th style="text-align:right;"> Model (4) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="1"><td colspan="5" style="border-bottom: 1px solid;"><strong>Main estimate</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅ (instrumented) </td>
+   <td style="text-align:right;"> 0.009*
+(0.002)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.010*
+(0.003)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.012*
+(0.005)
+p=0.021 </td>
+  </tr>
+  <tr grouplength="4"><td colspan="5" style="border-bottom: 1px solid;"><strong>Fixed effects</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Station FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Month FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Year FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Day-of-week FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="2"><td colspan="5" style="border-bottom: 1px solid;"><strong>Controls</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Weather controls </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Co-pollutants (CO, NO₂, O₃) </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="3"><td colspan="5" style="border-bottom: 1px solid;"><strong>Diagnostics</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> First-stage F </td>
+   <td style="text-align:right;"> 46.79 </td>
+   <td style="text-align:right;"> 42.36 </td>
+   <td style="text-align:right;"> 42.72 </td>
+   <td style="text-align:right;"> 74.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Partial R² </td>
+   <td style="text-align:right;"> 0.064 </td>
+   <td style="text-align:right;"> 0.054 </td>
+   <td style="text-align:right;"> 0.056 </td>
+   <td style="text-align:right;"> 0.035 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (observations) </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 5623 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Two-stage residual inclusion (2SRI) Poisson estimation. Standard errors clustered by calendar date. Weather controls: public holiday, wind speed, max/min temperature, precipitation. Models 1-3 use full sample (N=7163); Model 4 uses smaller sample due to co-pollutant availability (N=5623). * denotes p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(main_tbl, "table_1_main_results.html")
+
+> cat("\nMain results:\n")
+
+Main results:
+
+> cat("Model 3 (preferred): coefficient =", fmt(r3[[exposure_var]]$beta, 
++     4), ", p =", fmt(r3[[exposure_var]]$p, 4), "\n")
+Model 3 (preferred): coefficient = 0.0050 , p = 0.0271 
+
+> cat("First-stage coefficient:", fmt(coef(d3$fs)["z_smoke"], 
++     2), "µg/m³\n")
+First-stage coefficient: 6.98 µg/m³
+
+> cat("\n=== CREATING EXTENDED TABLE B1 (Appendix) ===\n")
+
+=== CREATING EXTENDED TABLE B1 (Appendix) ===
+
+> vars_main <- c("pm25_mean", "awnd", "tmax", "tmin", 
++     "prcp")
+
+> vars_copoll <- c("pm25_mean", "awnd", "tmax", "tmin", 
++     "prcp", "co_max", "no2_max", "ozone_max_i")
+
+> r1_ext <- grab_by_name(iv1, vars_main)
+
+> r2_ext <- grab_by_name(iv2, vars_main)
+
+> r3_ext <- grab_by_name(iv3, vars_main)
+
+> r4_ext <- grab_by_name(iv4, vars_copoll)
+
+> cell_or_dash <- function(result_list, varname) {
++     if (is.null(result_list[[varname]]) || is.na(result_list[[varname]]$beta)) {
++         return("—")
++     }
++     cell(result_list[[varname]]$beta, result_list[[varname]]$se, 
++         result_list[[varname]]$p)
++ }
+
+> Row_ext <- c("PM₂.₅ (instrumented)", "Avg Wind Speed", 
++     "Max temp [°C]", "Min temp [°C]", "Precipitation [mm]", 
++     "CO (max) [ppm]", "NO₂ (max) [ppb]", "O₃ (max) [ppm]", 
++     "Station FE", "Month FE", "Year FE", "Day of week FE", "Public Holiday", 
++     "Co-pollutants", "First-stage F", "Partial R²", "N (observations)")
+
+> C1_ext <- c(cell_or_dash(r1_ext, "pm25_mean"), cell_or_dash(r1_ext, 
++     "awnd"), cell_or_dash(r1_ext, "tmax"), cell_or_dash(r1_ext, 
++     "tmin"), cell_or_dash(r1_ext, "prcp"), "—", "—", "—", 
++     "Y", "-", "-", "Y", "Y", "-", ifelse(is.na(d1$F), "—", 
++         fmt(d1$F, 2)), ifelse(is.na(d1$pr2), "—", fmt(d1$pr2, 
++         3)), as.character(N_main))
+
+> C2_ext <- c(cell_or_dash(r2_ext, "pm25_mean"), cell_or_dash(r2_ext, 
++     "awnd"), cell_or_dash(r2_ext, "tmax"), cell_or_dash(r2_ext, 
++     "tmin"), cell_or_dash(r2_ext, "prcp"), "—", "—", "—", 
++     "Y", "Y", "-", "Y", "Y", "-", ifelse(is.na(d2$F), "—", 
++         fmt(d2$F, 2)), ifelse(is.na(d2$pr2), "—", fmt(d2$pr2, 
++         3)), as.character(N_main))
+
+> C3_ext <- c(cell_or_dash(r3_ext, "pm25_mean"), cell_or_dash(r3_ext, 
++     "awnd"), cell_or_dash(r3_ext, "tmax"), cell_or_dash(r3_ext, 
++     "tmin"), cell_or_dash(r3_ext, "prcp"), "—", "—", "—", 
++     "Y", "Y", "Y", "Y", "Y", "-", ifelse(is.na(d3$F), "—", 
++         fmt(d3$F, 2)), ifelse(is.na(d3$pr2), "—", fmt(d3$pr2, 
++         3)), as.character(N_main))
+
+> C4_ext <- c(cell_or_dash(r4_ext, "pm25_mean"), cell_or_dash(r4_ext, 
++     "awnd"), cell_or_dash(r4_ext, "tmax"), cell_or_dash(r4_ext, 
++     "tmin"), cell_or_dash(r4_ext, "prcp"), cell_or_dash(r4_ext, 
++     "co_max"), cell_or_dash(r4_ext, "no2_max"), cell_or_dash(r4_ext, 
++     "ozone_max_i"), "Y", "Y", "Y", "Y", "Y", "Y", ifelse(is.na(d4$F), 
++     "—", fmt(d4$F, 2)), ifelse(is.na(d4$pr2), "—", fmt(d4$pr2, 
++     3)), as.character(N_copoll))
+
+> T_ext <- data.frame(Row = Row_ext, `Model (1)` = C1_ext, 
++     `Model (2)` = C2_ext, `Model (3)` = C3_ext, `Model (4)` = C4_ext, 
++     check.names = FALSE)
+
+> ext_tbl <- T_ext %>% kable(format = "html", align = c("l", 
++     "r", "r", "r", "r"), caption = "Table B1: Extended IV–Poisson (2SRI) Results") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Main & Controls", 1, 8) %>% 
++     pack_rows("Fixed effects & settings", 9, 14) %>% pack_rows("Diagnostics", 
++     15, 17) %>% footnote(general = paste0("Significance: p-value explicitly shown, asterisk if p<0.05. ", 
++     "Standard errors in parentheses are clustered by calendar date. ", 
++     "Missing values are handled by listwise deletion and all models are estimated on the same sample for comparability within Models 1-3 (N=", 
++     N_main, "). ", "Model 4 uses smaller sample due to co-pollutant availability (N=", 
++     N_copoll, ")."), threeparttable = TRUE)
+
+> print(ext_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B1: Extended IV–Poisson (2SRI) Results</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Model (1) </th>
+   <th style="text-align:right;"> Model (2) </th>
+   <th style="text-align:right;"> Model (3) </th>
+   <th style="text-align:right;"> Model (4) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="8"><td colspan="5" style="border-bottom: 1px solid;"><strong>Main &amp; Controls</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅ (instrumented) </td>
+   <td style="text-align:right;"> 0.009*
+(0.002)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.010*
+(0.003)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.012*
+(0.005)
+p=0.021 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Avg Wind Speed </td>
+   <td style="text-align:right;"> 0.009*
+(0.003)
+p=0.001 </td>
+   <td style="text-align:right;"> 0.010*
+(0.003)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.005
+(0.003)
+p=0.057 </td>
+   <td style="text-align:right;"> 0.001
+(0.003)
+p=0.850 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Max temp [°C] </td>
+   <td style="text-align:right;"> 0.006*
+(0.002)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.003
+(0.002)
+p=0.161 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.001 </td>
+   <td style="text-align:right;"> 0.007*
+(0.002)
+p=0.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Min temp [°C] </td>
+   <td style="text-align:right;"> 0.004*
+(0.002)
+p=0.040 </td>
+   <td style="text-align:right;"> 0.002
+(0.002)
+p=0.433 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.014 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.034 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Precipitation [mm] </td>
+   <td style="text-align:right;"> -0.075*
+(0.024)
+p=0.002 </td>
+   <td style="text-align:right;"> -0.049*
+(0.025)
+p=0.049 </td>
+   <td style="text-align:right;"> -0.048*
+(0.024)
+p=0.046 </td>
+   <td style="text-align:right;"> -0.039
+(0.030)
+p=0.186 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> CO (max) [ppm] </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.291*
+(0.129)
+p=0.024 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> NO₂ (max) [ppb] </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.001
+(0.001)
+p=0.088 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> O₃ (max) [ppm] </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.789
+(0.903)
+p=0.382 </td>
+  </tr>
+  <tr grouplength="6"><td colspan="5" style="border-bottom: 1px solid;"><strong>Fixed effects &amp; settings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Station FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Month FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Year FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Day of week FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Public Holiday </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Co-pollutants </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="3"><td colspan="5" style="border-bottom: 1px solid;"><strong>Diagnostics</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> First-stage F </td>
+   <td style="text-align:right;"> 46.79 </td>
+   <td style="text-align:right;"> 42.36 </td>
+   <td style="text-align:right;"> 42.72 </td>
+   <td style="text-align:right;"> 74.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Partial R² </td>
+   <td style="text-align:right;"> 0.064 </td>
+   <td style="text-align:right;"> 0.054 </td>
+   <td style="text-align:right;"> 0.056 </td>
+   <td style="text-align:right;"> 0.035 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (observations) </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 5623 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Significance: p-value explicitly shown, asterisk if p&lt;0.05. Standard errors in parentheses are clustered by calendar date. Missing values are handled by listwise deletion and all models are estimated on the same sample for comparability within Models 1-3 (N=7163). Model 4 uses smaller sample due to co-pollutant availability (N=5623).</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(ext_tbl, "table_b1_extended_results.html")
+
+> cat("\nExtended Table B1 saved to: table_b1_extended_results.html\n")
+
+Extended Table B1 saved to: table_b1_extended_results.html
+
+> cat("\n=== KEY COEFFICIENTS SUMMARY ===\n")
+
+=== KEY COEFFICIENTS SUMMARY ===
+
+> cat("\nModel 3 (Preferred specification):\n")
+
+Model 3 (Preferred specification):
+
+> cat("  PM2.5:", fmt(r3_ext[["pm25_mean"]]$beta, 4), 
++     "(SE:", fmt(r3_ext[["pm25_mean"]]$se, 4), ", p=", fmt(r3_ext[["pm25_mean"]]$p, 
++         4), ")\n")
+  PM2.5: 0.0050 (SE: 0.0023 , p= 0.0271 )
+
+> cat("  Wind:", fmt(r3_ext[["awnd"]]$beta, 4), "(p=", 
++     fmt(r3_ext[["awnd"]]$p, 4), ")\n")
+  Wind: 0.0049 (p= 0.0571 )
+
+> cat("  Tmax:", fmt(r3_ext[["tmax"]]$beta, 4), "(p=", 
++     fmt(r3_ext[["tmax"]]$p, 4), ")\n")
+  Tmax: 0.0055 (p= 0.0013 )
+
+> cat("  Tmin:", fmt(r3_ext[["tmin"]]$beta, 4), "(p=", 
++     fmt(r3_ext[["tmin"]]$p, 4), ")\n")
+  Tmin: 0.0050 (p= 0.0140 )
+
+> cat("  Precip:", fmt(r3_ext[["prcp"]]$beta, 4), "(p=", 
++     fmt(r3_ext[["prcp"]]$p, 4), ")\n")
+  Precip: -0.0480 (p= 0.0462 )
+
+> cat("\nModel 4 (With co-pollutants):\n")
+
+Model 4 (With co-pollutants):
+
+> cat("  PM2.5:", fmt(r4_ext[["pm25_mean"]]$beta, 4), 
++     "(SE:", fmt(r4_ext[["pm25_mean"]]$se, 4), ", p=", fmt(r4_ext[["pm25_mean"]]$p, 
++         4), ")\n")
+  PM2.5: 0.0118 (SE: 0.0051 , p= 0.0207 )
+
+> cat("  CO:", fmt(r4_ext[["co_max"]]$beta, 4), "(p=", 
++     fmt(r4_ext[["co_max"]]$p, 4), ")\n")
+  CO: -0.2907 (p= 0.0244 )
+
+> cat("  NO2:", fmt(r4_ext[["no2_max"]]$beta, 4), "(p=", 
++     fmt(r4_ext[["no2_max"]]$p, 4), ")\n")
+  NO2: -0.0013 (p= 0.0884 )
+
+> cat("  O3:", fmt(r4_ext[["ozone_max_i"]]$beta, 4), 
++     "(p=", fmt(r4_ext[["ozone_max_i"]]$p, 4), ")\n")
+  O3: -0.7893 (p= 0.3823 )
+
+> cat("\n=== CREATING SPATIAL BUFFER ROBUSTNESS TABLE ===\n")
+
+=== CREATING SPATIAL BUFFER ROBUSTNESS TABLE ===
+
+> prep_buffer_main <- function(df_raw) {
++     df_raw %>% filter(year(date) >= 2013 & year(date) <= 2023) %>% 
++         mutate(z_smoke = if (is.factor(smokepm_dummy)) 
++             as.numeric(as.character(smokepm_dummy))
++         else as.numeric(smokepm_dummy), station = factor(station), 
++             year = factor(year), month = factor(month), dow = factor(dow, 
++                 ordered = FALSE), holiday = factor(holiday), 
++             date = as.Date(date), awnd = suppressWarnings(as.numeric(awnd))) %>% 
++         dplyr::select(assault, pm25_mean, z_smoke, awnd, tmax, 
++             tmin, prcp, station, date, year, month, dow, holiday) %>% 
++         tidyr::drop_na()
++ }
+
+> if (all(c("seattle13", "seattle10", "seattle21", "seattle7") %in% 
++     names(seattle_dfs))) {
++     dat13 <- prep_buffer_main(seattle_dfs[["seattle13"]])
++     dat10 <- prep_buffer_main(seattle_dfs[["seattle10"]])
++     dat21 <- prep_buffer_main(seattle_dfs[["seattle21"]])
++     dat07 <- prep_buffer_main(seattle_dfs[["seattle7"]])
++     run_buffer_iv <- function(dat) {
++         dat <- droplevels(dat)
++         fs_glm <- glm(pm25_mean ~ z_smoke + holiday + awnd + 
++             tmax + tmin + prcp + station + year + month + dow, 
++             data = dat)
++         ss_glm <- glm(assault ~ pm25_mean + holiday + awnd + 
++             tmax + tmin + prcp + station + year + month + dow, 
++             family = poisson(link = "log"), data = dat)
++         ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_glm, fitY.LX = ss_glm, 
++             data = dat, ctrl = TRUE, clusterid = "date", vcov.fit = TRUE)
++     }
++     fs_diag_buffer <- function(dat) {
++         dat <- droplevels(dat)
++         fs <- feols(pm25_mean ~ z_smoke + holiday + awnd + tmax + 
++             tmin + prcp | station + year + month + dow, data = dat, 
++             cluster = ~date)
++         fs0 <- feols(pm25_mean ~ holiday + awnd + tmax + tmin + 
++             prcp | station + year + month + dow, data = dat)
++         rss_f <- sum(residuals(fs)^2)
++         rss_0 <- sum(residuals(fs0)^2)
++         pr2 <- (rss_0 - rss_f)/rss_0
++         b <- coef(fs)[["z_smoke"]]
++         v <- vcov(fs)[["z_smoke", "z_smoke"]]
++         F <- if (is.na(b) || is.na(v)) 
++             NA
++         else as.numeric(b^2/v)
++         list(F = F, pr2 = pr2, N = nrow(dat))
++     }
++     grab_coef <- function(ivobj, var = "pm25_mean") {
++         nm <- names(ivobj$est)
++         if (!(var %in% nm)) 
++             return(list(beta = NA, se = NA, p = NA))
++         b <- unname(ivobj$est[[var]])
++         se <- sqrt(ivobj$vcov[var, var])
++         p <- 2 * pnorm(-abs(b/se))
++         list(beta = b, se = se, p = p)
++     }
++     iv13 <- run_buffer_iv(dat13)
++     r13 <- grab_coef(iv13)
++     d13 <- fs_diag_buffer(dat13)
++     iv10 <- run_buffer_iv(dat10)
++     r10 <- grab_coef(iv10)
++     d10 <- fs_diag_buffer(dat10)
++     iv21 <- run_buffer_iv(dat21)
++     r21 <- grab_coef(iv21)
++     d21 <- fs_diag_buffer(dat21)
++     iv07 <- run_buffer_iv(dat07)
++     r07 <- grab_coef(iv07)
++     d07 <- fs_diag_buffer(dat07)
++     Row_buf <- c("PM₂.₅ (instrumented)", "Station FE", "Month FE", 
++         "Year FE", "Day-of-week FE", "Controls: holiday + weather", 
++         "First-stage F", "Partial R²", "N (observations)")
++     Col_13 <- c(cell(r13$beta, r13$se, r13$p), "Y", "Y", "Y", 
++         "Y", "Y", dash(fmt(d13$F, 2)), dash(fmt(d13$pr2, 3)), 
++         as.character(d13$N))
++     Col_07 <- c(cell(r07$beta, r07$se, r07$p), "Y", "Y", "Y", 
++         "Y", "Y", dash(fmt(d07$F, 2)), dash(fmt(d07$pr2, 3)), 
++         as.character(d07$N))
++     Col_10 <- c(cell(r10$beta, r10$se, r10$p), "Y", "Y", "Y", 
++         "Y", "Y", dash(fmt(d10$F, 2)), dash(fmt(d10$pr2, 3)), 
++         as.character(d10$N))
++     Col_21 <- c(cell(r21$beta, r21$se, r21$p), "Y", "Y", "Y", 
++         "Y", "Y", dash(fmt(d21$F, 2)), dash(fmt(d21$pr2, 3)), 
++         as.character(d21$N))
++     T_buf <- data.frame(Row = Row_buf, `13 km` = Col_13, `7 km` = Col_07, 
++         `10 km` = Col_10, `21 km` = Col_21, check.names = FALSE)
++     buf_tbl <- T_buf %>% kable(format = "html", align = c("l", 
++         "r", "r", "r", "r"), caption = "Table B2: Spatial buffer robustness (IV–Poisson, 2SRI)") %>% 
++         kable_styling(full_width = FALSE, position = "center", 
++             bootstrap_options = c("striped", "condensed")) %>% 
++         pack_rows("Main estimate", 1, 1) %>% pack_rows("Fixed effects", 
++         2, 5) %>% pack_rows("Controls", 6, 6) %>% pack_rows("Diagnostics", 
++         7, 9) %>% footnote(general = "All models include station, year, month, and day-of-week fixed effects. Weather controls: holiday, wind speed, Tmax, Tmin, precipitation. 2SRI Poisson with SEs clustered by date. * denotes p<0.05.", 
++         threeparttable = TRUE)
++     print(buf_tbl)
++     kableExtra::save_kable(buf_tbl, "table_B2_spatial_robustness.html")
++ }
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B2: Spatial buffer robustness (IV–Poisson, 2SRI)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> 13 km </th>
+   <th style="text-align:right;"> 7 km </th>
+   <th style="text-align:right;"> 10 km </th>
+   <th style="text-align:right;"> 21 km </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="1"><td colspan="5" style="border-bottom: 1px solid;"><strong>Main estimate</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅ (instrumented) </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.007*
+(0.003)
+p=0.013 </td>
+   <td style="text-align:right;"> 0.006*
+(0.003)
+p=0.010 </td>
+   <td style="text-align:right;"> 0.006*
+(0.002)
+p=0.009 </td>
+  </tr>
+  <tr grouplength="4"><td colspan="5" style="border-bottom: 1px solid;"><strong>Fixed effects</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Station FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Month FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Year FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Day-of-week FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="1"><td colspan="5" style="border-bottom: 1px solid;"><strong>Controls</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Controls: holiday + weather </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="3"><td colspan="5" style="border-bottom: 1px solid;"><strong>Diagnostics</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> First-stage F </td>
+   <td style="text-align:right;"> 42.72 </td>
+   <td style="text-align:right;"> 42.72 </td>
+   <td style="text-align:right;"> 42.72 </td>
+   <td style="text-align:right;"> 42.72 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Partial R² </td>
+   <td style="text-align:right;"> 0.056 </td>
+   <td style="text-align:right;"> 0.056 </td>
+   <td style="text-align:right;"> 0.056 </td>
+   <td style="text-align:right;"> 0.056 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (observations) </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> All models include station, year, month, and day-of-week fixed effects. Weather controls: holiday, wind speed, Tmax, Tmin, precipitation. 2SRI Poisson with SEs clustered by date. * denotes p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> seattle_cityday <- seattle_main %>% dplyr::group_by(date) %>% 
++     dplyr::summarise(assault = sum(assault, na.rm = TRUE), pm25_mean = mean(pm25_mean, 
++         na.rm = TRUE), smokepm_pred = mean(smokepm_pred, na.rm = TRUE), 
++         z_smoke = max(z_smoke), awnd = mean(awnd, na.rm = TRUE), 
++         tmax = mean(tmax, na.rm = TRUE), tmin = mean(tmin, na.rm = TRUE), 
++         prcp = mean(prcp, na.rm = TRUE), holiday = max(as.numeric(as.character(holiday))), 
++         .groups = "drop") %>% dplyr::mutate(year = factor(lubridate::year(date)), 
++     month = factor(lubridate::month(date, label = TRUE, abbr = FALSE)), 
++     dow = factor(lubridate::wday(date, label = TRUE, abbr = FALSE)), 
++     holiday = factor(holiday), smoke_bin = cut(smokepm_pred, 
++         breaks = c(-Inf, 0, 5, 10, 20, Inf), labels = c("None", 
++             "Low (0-5)", "Med (5-10)", "High (10-20)", "Very High (20+)"), 
++         right = FALSE), has_smoke = as.numeric(smokepm_pred > 
++         0))
+
+> cat("\nCity-day sample size:", nrow(seattle_cityday), 
++     "\n")
+
+City-day sample size: 3964 
+
+> n_total <- nrow(seattle_cityday)
+
+> n_zeros <- sum(seattle_cityday$smokepm_pred == 0, 
++     na.rm = TRUE)
+
+> n_nonzero <- n_total - n_zeros
+
+> pct_zeros <- 100 * n_zeros/n_total
+
+> smoke_days <- seattle_cityday %>% filter(smokepm_pred > 
++     0)
+
+> mean_smoke_intensity <- mean(smoke_days$smokepm_pred, 
++     na.rm = TRUE)
+
+> median_smoke_intensity <- median(smoke_days$smokepm_pred, 
++     na.rm = TRUE)
+
+> max_smoke_intensity <- max(smoke_days$smokepm_pred, 
++     na.rm = TRUE)
+
+> impossible_cases <- seattle_cityday %>% filter(smokepm_pred >= 
++     pm25_mean)
+
+> cat("\n--- ZERO-INFLATION DIAGNOSTICS ---\n")
+
+--- ZERO-INFLATION DIAGNOSTICS ---
+
+> cat("Total city-day observations:        ", n_total, 
++     "\n")
+Total city-day observations:         3964 
+
+> cat("Days with ZERO smoke PM:            ", n_zeros, 
++     " (", sprintf("%.1f%%", pct_zeros), ")\n")
+Days with ZERO smoke PM:             3528  ( 89.0% )
+
+> cat("Days with POSITIVE smoke PM:        ", n_nonzero, 
++     " (", sprintf("%.1f%%", 100 - pct_zeros), ")\n")
+Days with POSITIVE smoke PM:         436  ( 11.0% )
+
+> cat("\nAmong smoke days only:\n")
+
+Among smoke days only:
+
+> cat("  Mean smoke PM2.5:                 ", sprintf("%.2f µg/m³", 
++     mean_smoke_intensity), "\n")
+  Mean smoke PM2.5:                  9.10 µg/m³ 
+
+> cat("  Median smoke PM2.5:               ", sprintf("%.2f µg/m³", 
++     median_smoke_intensity), "\n")
+  Median smoke PM2.5:                2.66 µg/m³ 
+
+> cat("  Max smoke PM2.5:                  ", sprintf("%.2f µg/m³", 
++     max_smoke_intensity), "\n")
+  Max smoke PM2.5:                   195.16 µg/m³ 
+
+> cat("\nMeasurement issues:\n")
+
+Measurement issues:
+
+> cat("  Cases where smoke > total PM:     ", nrow(impossible_cases), 
++     " (", sprintf("%.1f%%", 100 * nrow(impossible_cases)/n_total), 
++     ")\n")
+  Cases where smoke > total PM:      12  ( 0.3% )
+
+> cat("  Correlation (smokepm vs pm25):    ", sprintf("%.3f", 
++     cor(seattle_cityday$smokepm_pred, seattle_cityday$pm25_mean, 
++         use = "complete.obs")), "\n")
+  Correlation (smokepm vs pm25):     0.886 
+
+> cat("  Correlation (smokepm vs z_smoke): ", sprintf("%.3f", 
++     cor(seattle_cityday$smokepm_pred, seattle_cityday$z_smoke, 
++         use = "complete.obs")), "\n")
+  Correlation (smokepm vs z_smoke):  0.359 
+
+> cat("\n--- Distribution of Smoke Intensity ---\n")
+
+--- Distribution of Smoke Intensity ---
+
+> print(table(seattle_cityday$smoke_bin))
+
+           None       Low (0-5)      Med (5-10)    High (10-20) Very High (20+) 
+              0            3822              61              38              43 
+
+> p_dist <- ggplot(seattle_cityday, aes(x = smokepm_pred)) + 
++     geom_histogram(bins = 50, fill = "#4A90D9", color = "white", 
++         alpha = 0.8) + geom_vline(xintercept = 0, color = "deeppink3", 
++     linetype = "dashed", linewidth = 1) + annotate("text", x = max(seattle_cityday$smokepm_pred, 
++     na.rm = TRUE) * 0.4, y = n_zeros * 0.8, label = paste0("Structural zeros: ", 
++     n_zeros, "\n(", sprintf("%.1f%%", pct_zeros), " of obs)"), 
++     hjust = 0, size = 4, color = "deeppink3", fontface = "bold") + 
++     labs(title = "Distribution of Childs et al Predicted Smoke PM2.5", 
++         subtitle = paste0("Zero-inflated: ", sprintf("%.1f%%", 
++             pct_zeros), " of observations are zero (structural zeros)"), 
++         x = expression(Predicted ~ Smoke ~ PM[2.5] ~ "(µg/m³)"), 
++         y = "Frequency (city-days)") + theme_minimal(base_size = 11) + 
++     theme(panel.grid.minor = element_blank())
+
+> print(p_dist)
+
+> ggsave("figure_B6a_childs_distribution.png", p_dist, 
++     width = 7, height = 5, dpi = 300)
+
+> p_scatter <- ggplot(seattle_cityday, aes(x = pm25_mean, 
++     y = smokepm_pred)) + geom_point(alpha = 0.25, size = 1, color = "#666666") + 
++     geom_abline(intercept = 0, slope = 1, linetype = "dashed", 
++         color = "deeppink3", linewidth = 0.8) + geom_point(data = impossible_cases, 
++     aes(x = pm25_mean, y = smokepm_pred), color = "deeppink3", 
++     alpha = 0.6, size = 1.5) + annotate("text", x = max(seattle_cityday$pm25_mean, 
++     na.rm = TRUE) * 0.5, y = max(seattle_cityday$smokepm_pred, 
++     na.rm = TRUE) * 0.85, label = paste0("Points above line: smoke > total PM\n(n = ", 
++     nrow(impossible_cases), ", ", sprintf("%.1f%%", 100 * nrow(impossible_cases)/n_total), 
++     ")"), hjust = 0, size = 3.5, color = "deeppink3") + labs(title = "Predicted Smoke PM vs. Ground Measured Total PM2.5", 
++     subtitle = "Diagonal line = 1:1; points above indicate prediction error", 
++     x = expression(Measured ~ Total ~ PM[2.5] ~ "(µg/m³)"), 
++     y = expression(Predicted ~ Smoke ~ PM[2.5] ~ "(µg/m³)")) + 
++     theme_minimal(base_size = 11) + theme(panel.grid.minor = element_blank())
+
+> print(p_scatter)
+
+> ggsave("figure_B6b_childs_scatter.png", p_scatter, 
++     width = 7, height = 5, dpi = 300)
+
+> cat("\n--- Estimating Childs Direct Models (Varying FE) ---\n")
+
+--- Estimating Childs Direct Models (Varying FE) ---
+
+> seattle_cityday <- seattle_cityday %>% dplyr::mutate(week = factor(lubridate::isoweek(date)), 
++     year = factor(lubridate::year(date)))
+
+> m_c1 <- fepois(assault ~ smokepm_pred + holiday + 
++     awnd + tmax + tmin + prcp | dow, data = seattle_cityday, 
++     cluster = ~date)
+
+> m_c2 <- fepois(assault ~ smokepm_pred + holiday + 
++     awnd + tmax + tmin + prcp | month + dow, data = seattle_cityday, 
++     cluster = ~date)
+
+> m_c3 <- fepois(assault ~ smokepm_pred + holiday + 
++     awnd + tmax + tmin + prcp | year + month + dow, data = seattle_cityday, 
++     cluster = ~date)
+
+> m_c4 <- fepois(assault ~ smokepm_pred + holiday + 
++     awnd + tmax + tmin + prcp | week + dow, data = seattle_cityday, 
++     cluster = ~date)
+
+> m_c5 <- fepois(assault ~ smokepm_pred + holiday + 
++     awnd + tmax + tmin + prcp | year + week, data = seattle_cityday, 
++     cluster = ~date)
+
+> m_c6 <- fepois(assault ~ smokepm_pred + holiday + 
++     awnd + tmax + tmin + prcp | year + week + dow, data = seattle_cityday, 
++     cluster = ~date)
+
+> fmt <- function(x, d = 3) formatC(x, digits = d, format = "f")
+
+> star1 <- function(p) ifelse(p < 0.05, "*", "")
+
+> extract_coef_safe <- function(m, varname) {
++     if (is.null(m) || !(varname %in% names(coef(m)))) {
++         return(list(beta = NA, se = NA, p = NA))
++     }
++     b <- coef(m)[varname]
++     se <- sqrt(vcov(m)[varname, varname])
++     p <- 2 * pnorm(-abs(b/se))
++     list(beta = b, se = se, p = p)
++ }
+
+> cell_fmt <- function(b, se, p) {
++     if (is.na(b)) 
++         return("—")
++     paste0(fmt(b, 4), star1(p), " (", fmt(se, 4), ")\np=", fmt(p, 
++         3))
++ }
+
+> r_c1 <- extract_coef_safe(m_c1, "smokepm_pred")
+
+> r_c2 <- extract_coef_safe(m_c2, "smokepm_pred")
+
+> r_c3 <- extract_coef_safe(m_c3, "smokepm_pred")
+
+> r_c4 <- extract_coef_safe(m_c4, "smokepm_pred")
+
+> r_c5 <- extract_coef_safe(m_c5, "smokepm_pred")
+
+> r_c6 <- extract_coef_safe(m_c6, "smokepm_pred")
+
+> Row_fe <- c("Smoke PM2.5 (Childs prediction)", "Month FE", 
++     "Year FE", "Week-of-year FE", "Day-of-week FE", "Holiday + Weather controls", 
++     "N (city-days)")
+
+> childs_fe_tbl <- data.frame(Row = Row_fe, `Model C1` = c(cell_fmt(r_c1$beta, 
++     r_c1$se, r_c1$p), "-", "-", "-", "Y", "Y", as.character(nrow(seattle_cityday))), 
++     `Model C2` = c(cell_fmt(r_c2$beta, r_c2$se, r_c2$p), "Y", 
++         "-", "-", "Y", "Y", as.character(nrow(seattle_cityday))), 
++     `Model C3` = c(cell_fmt(r_c3$beta, r_c3$se, r_c3$p), "Y", 
++         "Y", "-", "Y", "Y", as.character(nrow(seattle_cityday))), 
++     `Model C4` = c(cell_fmt(r_c4$beta, r_c4$se, r_c4$p), "-", 
++         "-", "Y", "Y", "Y", as.character(nrow(seattle_cityday))), 
++     `Model C5` = c(cell_fmt(r_c5$beta, r_c5$se, r_c5$p), "-", 
++         "Y", "Y", "-", "Y", as.character(nrow(seattle_cityday))), 
++     `Model C6` = c(cell_fmt(r_c6$beta, r_c6$se, r_c6$p), "-", 
++         "Y", "Y", "Y", "Y", as.character(nrow(seattle_cityday))), 
++     check.names = FALSE)
+
+> fe_kbl <- childs_fe_tbl %>% kable(format = "html", 
++     align = c("l", "r", "r", "r", "r", "r", "r"), caption = "Table B6a: Childs Smoke PM2.5 Direct Estimation with Varying Fixed Effects") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Main estimate", 1, 1) %>% 
++     pack_rows("Fixed effects", 2, 5) %>% pack_rows("Sample", 
++     6, 7) %>% footnote(general = paste0("Reduced-form Poisson using Childs et al. (2022) predicted smoke PM2.5 directly. ", 
++     "Data aggregated to city-day level since the Childs product uses a 10km grid ", 
++     "(same value for both EPA stations). Station FE not included because predictor ", 
++     "does not vary across stations. Week-of-year FE (1-52) control for seasonal patterns ", 
++     "more flexibly than month FE. ", "Standard errors clustered by date. * indicates p<0.05. ", 
++     "NOTE: ", sprintf("%.1f%%", pct_zeros), " of observations have exactly zero predicted smoke ", 
++     "(structural zeros), which may attenuate the coefficient estimate."), 
++     threeparttable = TRUE)
+
+> print(fe_kbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B6a: Childs Smoke PM2.5 Direct Estimation with Varying Fixed Effects</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Model C1 </th>
+   <th style="text-align:right;"> Model C2 </th>
+   <th style="text-align:right;"> Model C3 </th>
+   <th style="text-align:right;"> Model C4 </th>
+   <th style="text-align:right;"> Model C5 </th>
+   <th style="text-align:right;"> Model C6 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="1"><td colspan="7" style="border-bottom: 1px solid;"><strong>Main estimate</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Smoke PM2.5 (Childs prediction) </td>
+   <td style="text-align:right;"> 0.0022* (0.0006)
+p=0.000 </td>
+   <td style="text-align:right;"> 0.0021* (0.0006)
+p=0.001 </td>
+   <td style="text-align:right;"> 0.0004 (0.0005)
+p=0.417 </td>
+   <td style="text-align:right;"> 0.0021* (0.0007)
+p=0.002 </td>
+   <td style="text-align:right;"> 0.0002 (0.0005)
+p=0.704 </td>
+   <td style="text-align:right;"> 0.0003 (0.0005)
+p=0.526 </td>
+  </tr>
+  <tr grouplength="4"><td colspan="7" style="border-bottom: 1px solid;"><strong>Fixed effects</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Month FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Year FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Week-of-year FE </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Day-of-week FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> - </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="2"><td colspan="7" style="border-bottom: 1px solid;"><strong>Sample</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Holiday + Weather controls </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (city-days) </td>
+   <td style="text-align:right;"> 3964 </td>
+   <td style="text-align:right;"> 3964 </td>
+   <td style="text-align:right;"> 3964 </td>
+   <td style="text-align:right;"> 3964 </td>
+   <td style="text-align:right;"> 3964 </td>
+   <td style="text-align:right;"> 3964 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Reduced-form Poisson using Childs et al. (2022) predicted smoke PM2.5 directly. Data aggregated to city-day level since the Childs product uses a 10km grid (same value for both EPA stations). Station FE not included because predictor does not vary across stations. Week-of-year FE (1-52) control for seasonal patterns more flexibly than month FE. Standard errors clustered by date. * indicates p&lt;0.05. NOTE: 89.0% of observations have exactly zero predicted smoke (structural zeros), which may attenuate the coefficient estimate.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(fe_kbl, "table_B6a_childs_varying_FE.html")
+
+> cat("\n--- Summary of FE Robustness ---\n")
+
+--- Summary of FE Robustness ---
+
+> cat(sprintf("  Model C1 (DOW only):              %.5f (p=%.3f)\n", 
++     r_c1$beta, r_c1$p))
+  Model C1 (DOW only):              0.00218 (p=0.000)
+
+> cat(sprintf("  Model C2 (Month + DOW):           %.5f (p=%.3f)\n", 
++     r_c2$beta, r_c2$p))
+  Model C2 (Month + DOW):           0.00207 (p=0.001)
+
+> cat(sprintf("  Model C3 (Year + Month + DOW):    %.5f (p=%.3f) [preferred]\n", 
++     r_c3$beta, r_c3$p))
+  Model C3 (Year + Month + DOW):    0.00042 (p=0.417) [preferred]
+
+> cat(sprintf("  Model C4 (Week + DOW):            %.5f (p=%.3f)\n", 
++     r_c4$beta, r_c4$p))
+  Model C4 (Week + DOW):            0.00206 (p=0.002)
+
+> cat(sprintf("  Model C5 (Year + Week):           %.5f (p=%.3f)\n", 
++     r_c5$beta, r_c5$p))
+  Model C5 (Year + Week):           0.00018 (p=0.704)
+
+> cat(sprintf("  Model C6 (Year + Week + DOW):     %.5f (p=%.3f)\n", 
++     r_c6$beta, r_c6$p))
+  Model C6 (Year + Week + DOW):     0.00033 (p=0.526)
+
+> cat("\n=== CREATING WIND DIRECTION ROBUSTNESS TABLE  ===\n")
+
+=== CREATING WIND DIRECTION ROBUSTNESS TABLE  ===
+
+> dat_wind <- seattle_main %>% filter(!is.na(wind_8bin))
+
+> iv_base <- run_ivglm(pm25_mean ~ z_smoke + holiday + 
++     awnd + tmax + tmin + prcp + station + year + month + dow, 
++     assault ~ pm25_mean + holiday + awnd + tmax + tmin + prcp + 
++         station + year + month + dow, dat_wind)
+
+> r_base <- grab_by_name(iv_base, "pm25_mean")
+
+> iv_wind8 <- run_ivglm(pm25_mean ~ z_smoke + holiday + 
++     awnd + tmax + tmin + prcp + wind_8bin + station + year + 
++     month + dow, assault ~ pm25_mean + holiday + awnd + tmax + 
++     tmin + prcp + wind_8bin + station + year + month + dow, dat_wind)
+
+> r_wind8 <- grab_by_name(iv_wind8, "pm25_mean")
+
+> iv_wind4 <- run_ivglm(pm25_mean ~ z_smoke + holiday + 
++     awnd + tmax + tmin + prcp + wind_4bin + station + year + 
++     month + dow, assault ~ pm25_mean + holiday + awnd + tmax + 
++     tmin + prcp + wind_4bin + station + year + month + dow, dat_wind)
+
+> r_wind4 <- grab_by_name(iv_wind4, "pm25_mean")
+
+> Row_wind <- c("PM₂.₅ (instrumented)", "Wind direction control", 
++     "Station FE", "Year FE", "Month FE", "Day-of-week FE", "Weather controls (incl. wind speed)", 
++     "N (observations)")
+
+> C_base <- c(cell(r_base$pm25_mean$beta, r_base$pm25_mean$se, 
++     r_base$pm25_mean$p), "None", "Y", "Y", "Y", "Y", "Y", as.character(nrow(dat_wind)))
+
+> C_wind4 <- c(cell(r_wind4$pm25_mean$beta, r_wind4$pm25_mean$se, 
++     r_wind4$pm25_mean$p), "4-bin (N/E/S/W)", "Y", "Y", "Y", "Y", 
++     "Y", as.character(nrow(dat_wind)))
+
+> C_wind8 <- c(cell(r_wind8$pm25_mean$beta, r_wind8$pm25_mean$se, 
++     r_wind8$pm25_mean$p), "8-bin (N/NE/.../NW)", "Y", "Y", "Y", 
++     "Y", "Y", as.character(nrow(dat_wind)))
+
+> T_wind <- data.frame(Row = Row_wind, Baseline = C_base, 
++     `4-bin wind` = C_wind4, `8-bin wind` = C_wind8, check.names = FALSE)
+
+> wind_tbl <- T_wind %>% kable(format = "html", align = c("l", 
++     "r", "r", "r"), caption = "Table B7: Wind direction control robustness (IV–Poisson, 2SRI)") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Main estimate", 1, 1) %>% 
++     pack_rows("Wind specification", 2, 2) %>% pack_rows("Fixed effects", 
++     3, 6) %>% pack_rows("Controls", 7, 7) %>% pack_rows("Sample", 
++     8, 8) %>% footnote(general = "2SRI Poisson with SEs clustered by date. Wind direction from WDF2 (direction of fastest 2-minute wind). 4-bin: N (315-45°), E (45-135°), S (135-225°), W (225-315°). 8-bin adds NE, SE, SW, NW. * denotes p<0.05.", 
++     threeparttable = TRUE)
+
+> print(wind_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B7: Wind direction control robustness (IV–Poisson, 2SRI)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Baseline </th>
+   <th style="text-align:right;"> 4-bin wind </th>
+   <th style="text-align:right;"> 8-bin wind </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="1"><td colspan="4" style="border-bottom: 1px solid;"><strong>Main estimate</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅ (instrumented) </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.026 </td>
+  </tr>
+  <tr grouplength="1"><td colspan="4" style="border-bottom: 1px solid;"><strong>Wind specification</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Wind direction control </td>
+   <td style="text-align:right;"> None </td>
+   <td style="text-align:right;"> 4-bin (N/E/S/W) </td>
+   <td style="text-align:right;"> 8-bin (N/NE/.../NW) </td>
+  </tr>
+  <tr grouplength="4"><td colspan="4" style="border-bottom: 1px solid;"><strong>Fixed effects</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Station FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Year FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Month FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Day-of-week FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="1"><td colspan="4" style="border-bottom: 1px solid;"><strong>Controls</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Weather controls (incl. wind speed) </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="1"><td colspan="4" style="border-bottom: 1px solid;"><strong>Sample</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (observations) </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> 2SRI Poisson with SEs clustered by date. Wind direction from WDF2 (direction of fastest 2-minute wind). 4-bin: N (315-45°), E (45-135°), S (135-225°), W (225-315°). 8-bin adds NE, SE, SW, NW. * denotes p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(wind_tbl, "table_B7_wind_robustness.html")
+
+> cat("\n=== SECTION 10: TEMPERATURE NONLINEARITY ===\n")
+
+=== SECTION 10: TEMPERATURE NONLINEARITY ===
+
+> seattle_temp <- seattle_main %>% dplyr::mutate(tmax_sq = tmax^2, 
++     tmin_sq = tmin^2, tmax_cu = tmax^3, tmin_cu = tmin^3)
+
+> run_temp_2sri <- function(temp_controls, data) {
++     fs_formula <- as.formula(paste("pm25_mean ~ z_smoke + holiday + awnd + prcp +", 
++         temp_controls, "+ station + year + month + dow"))
++     fs_glm <- glm(fs_formula, data = data)
++     ss_formula <- as.formula(paste("assault ~ pm25_mean + holiday + awnd + prcp +", 
++         temp_controls, "+ station + year + month + dow"))
++     ss_glm <- glm(ss_formula, family = poisson(link = "log"), 
++         data = data)
++     iv <- tryCatch({
++         ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_glm, fitY.LX = ss_glm, 
++             data = data, ctrl = TRUE, clusterid = "date", vcov.fit = TRUE)
++     }, error = function(e) NULL)
++     return(iv)
++ }
+
+> iv_t1 <- run_temp_2sri("tmax + tmin", seattle_temp)
+
+> iv_t2 <- run_temp_2sri("tmax + tmin + tmax_sq + tmin_sq", 
++     seattle_temp)
+
+> iv_t3 <- run_temp_2sri("tmax + tmin + tmax_sq + tmin_sq + tmax_cu + tmin_cu", 
++     seattle_temp)
+
+> extract_iv_coef <- function(iv, varname) {
++     if (is.null(iv)) 
++         return("—")
++     if (!(varname %in% names(iv$est))) 
++         return("—")
++     b <- unname(iv$est[[varname]])
++     se <- sqrt(iv$vcov[varname, varname])
++     p <- 2 * pnorm(-abs(b/se))
++     paste0(fmt(b, 5), star1(p), "\n(", fmt(se, 5), ")\np=", fmt(p, 
++         3))
++ }
+
+> temp_vars <- c("pm25_mean", "tmax", "tmin", "tmax_sq", 
++     "tmin_sq", "tmax_cu", "tmin_cu")
+
+> temp_labels <- c("PM2.5 (instrumented)", "Tmax (°C)", 
++     "Tmin (°C)", "Tmax²", "Tmin²", "Tmax³", "Tmin³")
+
+> temp_tbl <- data.frame(Variable = c(temp_labels, "Station FE", 
++     "Year FE", "Month FE", "DOW FE", "Holiday + Wind + Precipitation", 
++     "N"), Linear = c(sapply(temp_vars, function(v) extract_iv_coef(iv_t1, 
++     v)), "Y", "Y", "Y", "Y", "Y", as.character(nrow(seattle_temp))), 
++     Quadratic = c(sapply(temp_vars, function(v) extract_iv_coef(iv_t2, 
++         v)), "Y", "Y", "Y", "Y", "Y", as.character(nrow(seattle_temp))), 
++     Cubic = c(sapply(temp_vars, function(v) extract_iv_coef(iv_t3, 
++         v)), "Y", "Y", "Y", "Y", "Y", as.character(nrow(seattle_temp))), 
++     check.names = FALSE)
+
+> temp_kbl <- temp_tbl %>% kable(format = "html", align = c("l", 
++     "r", "r", "r"), caption = "Temperature Nonlinearity: IV-Poisson (2SRI) with Polynomial Temperature Controls") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Main estimates", 1, 7) %>% 
++     pack_rows("Fixed effects", 8, 11) %>% pack_rows("Controls & sample", 
++     12, 13) %>% footnote(general = paste0("Two-stage residual inclusion (2SRI) Poisson with wildfire smoke as instrument for PM2.5. ", 
++     "Temperature measured in °C. Standard errors clustered by date. One star indicates p<0.05."), 
++     threeparttable = TRUE)
+
+> print(temp_kbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Temperature Nonlinearity: IV-Poisson (2SRI) with Polynomial Temperature Controls</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:right;"> Linear </th>
+   <th style="text-align:right;"> Quadratic </th>
+   <th style="text-align:right;"> Cubic </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="7"><td colspan="4" style="border-bottom: 1px solid;"><strong>Main estimates</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM2.5 (instrumented) </td>
+   <td style="text-align:right;"> 0.00504*
+(0.00228)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.00530*
+(0.00235)
+p=0.024 </td>
+   <td style="text-align:right;"> 0.00531*
+(0.00236)
+p=0.024 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Tmax (°C) </td>
+   <td style="text-align:right;"> 0.00550*
+(0.00171)
+p=0.001 </td>
+   <td style="text-align:right;"> 0.01063*
+(0.00458)
+p=0.020 </td>
+   <td style="text-align:right;"> 0.01082
+(0.00874)
+p=0.216 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Tmin (°C) </td>
+   <td style="text-align:right;"> 0.00498*
+(0.00202)
+p=0.014 </td>
+   <td style="text-align:right;"> 0.00437
+(0.00345)
+p=0.205 </td>
+   <td style="text-align:right;"> 0.00469
+(0.00385)
+p=0.223 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Tmax² </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.00013
+(0.00011)
+p=0.237 </td>
+   <td style="text-align:right;"> -0.00013
+(0.00045)
+p=0.772 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Tmin² </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.00002
+(0.00019)
+p=0.936 </td>
+   <td style="text-align:right;"> -0.00014
+(0.00047)
+p=0.770 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Tmax³ </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.00000
+(0.00001)
+p=0.996 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Tmin³ </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> 0.00001
+(0.00002)
+p=0.761 </td>
+  </tr>
+  <tr grouplength="4"><td colspan="4" style="border-bottom: 1px solid;"><strong>Fixed effects</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Station FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Year FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Month FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> DOW FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="2"><td colspan="4" style="border-bottom: 1px solid;"><strong>Controls &amp; sample</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Holiday + Wind + Precipitation </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Two-stage residual inclusion (2SRI) Poisson with wildfire smoke as instrument for PM2.5. Temperature measured in °C. Standard errors clustered by date. One star indicates p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(temp_kbl, "table_B8_temp_nonlinearity.html")
+
+> cat("\n=== SECTION 11: TEMPORAL FIXED EFFECTS SENSITIVITY ===\n")
+
+=== SECTION 11: TEMPORAL FIXED EFFECTS SENSITIVITY ===
+
+> seattle_week <- seattle_main %>% dplyr::mutate(week_of_year = factor(lubridate::week(date))) %>% 
++     droplevels()
+
+> cat("Unique week_of_year levels:", nlevels(seattle_week$week_of_year), 
++     "\n")
+Unique week_of_year levels: 53 
+
+> run_week_2sri <- function(fe_spec, data, label) {
++     cat("Fitting:", label, "...\n")
++     fs_formula <- as.formula(paste("pm25_mean ~ z_smoke + holiday + awnd + tmax + tmin + prcp +", 
++         fe_spec))
++     ss_formula <- as.formula(paste("assault ~ pm25_mean + holiday + awnd + tmax + tmin + prcp +", 
++         fe_spec))
++     fs_glm <- glm(fs_formula, data = data)
++     ss_glm <- glm(ss_formula, family = poisson(link = "log"), 
++         data = data)
++     iv <- tryCatch({
++         ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_glm, fitY.LX = ss_glm, 
++             data = data, ctrl = TRUE, clusterid = "date", vcov.fit = TRUE)
++     }, error = function(e) {
++         cat("  Error:", e$message, "\n")
++         NULL
++     })
++     fe_bars <- gsub(" \\+ ", " + ", fe_spec)
++     fe_bars <- gsub("station", "", fe_bars)
++     fe_bars <- gsub("^\\s*\\+\\s*", "", fe_bars)
++     fe_bars <- gsub("\\s*\\+\\s*$", "", fe_bars)
++     fe_bars <- paste("station +", fe_bars)
++     fs_fe <- tryCatch({
++         feols(as.formula(paste("pm25_mean ~ z_smoke + holiday + awnd + tmax + tmin + prcp |", 
++             fe_bars)), data = data, cluster = ~date)
++     }, error = function(e) NULL)
++     if (!is.null(fs_fe)) {
++         fs_b <- coef(fs_fe)["z_smoke"]
++         fs_se <- sqrt(vcov(fs_fe)["z_smoke", "z_smoke"])
++         F_stat <- (fs_b/fs_se)^2
++     }
++     else {
++         fs_b <- NA
++         fs_se <- NA
++         F_stat <- NA
++     }
++     if (!is.null(iv) && "pm25_mean" %in% names(iv$est)) {
++         b <- unname(iv$est[["pm25_mean"]])
++         se <- sqrt(iv$vcov["pm25_mean", "pm25_mean"])
++         p <- 2 * pnorm(-abs(b/se))
++     }
++     else {
++         b <- NA
++         se <- NA
++         p <- NA
++     }
++     list(b = b, se = se, p = p, fs_b = fs_b, fs_se = fs_se, F = F_stat, 
++         N = nrow(data))
++ }
+
+> r_m1 <- run_week_2sri("station + year + month", seattle_week, 
++     "M1: Year + Month (no DOW)")
+Fitting: M1: Year + Month (no DOW) ...
+
+> r_m2 <- run_week_2sri("station + year + month + dow", 
++     seattle_week, "M2: Year + Month + DOW (baseline)")
+Fitting: M2: Year + Month + DOW (baseline) ...
+
+> r_m3 <- run_week_2sri("station + year + week_of_year + dow", 
++     seattle_week, "M3: Year + Week-of-Year + DOW")
+Fitting: M3: Year + Week-of-Year + DOW ...
+
+> build_fe_col <- function(r) {
++     c(cell(r$b, r$se, r$p), paste0(fmt(r$fs_b, 2), " (", fmt(r$fs_se, 
++         2), ")"), fmt(r$F, 1), as.character(r$N))
++ }
+
+> week_tbl <- data.frame(Row = c("PM2.5 (instrumented)", 
++     "First-stage [smoke → PM2.5]", "First-stage F", "N"), `M1: No DOW` = build_fe_col(r_m1), 
++     `M2: Baseline` = build_fe_col(r_m2), `M3: Week-of-Year` = build_fe_col(r_m3), 
++     check.names = FALSE)
+
+> fe_rows <- data.frame(Row = c("Station FE", "Year FE", 
++     "Month FE", "Week-of-Year FE", "DOW FE", "Holiday + Weather Controls"), 
++     `M1: No DOW` = c("Y", "Y", "Y", "—", "—", "Y"), `M2: Baseline` = c("Y", 
++         "Y", "Y", "—", "Y", "Y"), `M3: Week-of-Year` = c("Y", 
++         "Y", "—", "Y", "Y", "Y"), check.names = FALSE)
+
+> week_tbl_full <- rbind(week_tbl[1:3, ], fe_rows, week_tbl[4, 
++     ])
+
+> week_kbl <- week_tbl_full %>% kable(format = "html", 
++     align = c("l", "r", "r", "r"), caption = "Sensitivity to Temporal Fixed Effects Structure") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Main estimate", 1, 1) %>% 
++     pack_rows("First-stage diagnostics", 2, 3) %>% pack_rows("Fixed effects", 
++     4, 9) %>% pack_rows("Sample", 10, 10) %>% footnote(general = paste0("IV-Poisson (2SRI) with wildfire smoke as instrument. All models control for public holiday and weather ", 
++     "(wind speed, Tmax, Tmin, precipitation). M2 is the baseline specification used in the main analysis. ", 
++     "M1 tests sensitivity to removing day-of-week fixed effects. M3 replaces month FE with week-of-year FE ", 
++     "(~52 seasonal indicators). Standard errors in parentheses clustered by date. * indicates p<0.05."), 
++     threeparttable = TRUE)
+
+> print(week_kbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Sensitivity to Temporal Fixed Effects Structure</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> M1: No DOW </th>
+   <th style="text-align:right;"> M2: Baseline </th>
+   <th style="text-align:right;"> M3: Week-of-Year </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="1"><td colspan="5" style="border-bottom: 1px solid;"><strong>Main estimate</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 1 </td>
+   <td style="text-align:left;"> PM2.5 (instrumented) </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.049 </td>
+   <td style="text-align:right;"> 0.005*
+(0.002)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.007*
+(0.002)
+p=0.008 </td>
+  </tr>
+  <tr grouplength="2"><td colspan="5" style="border-bottom: 1px solid;"><strong>First-stage diagnostics</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 2 </td>
+   <td style="text-align:left;"> First-stage [smoke → PM2.5] </td>
+   <td style="text-align:right;"> 6.98 (1.07) </td>
+   <td style="text-align:right;"> 6.98 (1.07) </td>
+   <td style="text-align:right;"> 6.83 (0.99) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 3 </td>
+   <td style="text-align:left;"> First-stage F </td>
+   <td style="text-align:right;"> 42.8 </td>
+   <td style="text-align:right;"> 42.7 </td>
+   <td style="text-align:right;"> 47.4 </td>
+  </tr>
+  <tr grouplength="6"><td colspan="5" style="border-bottom: 1px solid;"><strong>Fixed effects</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 4 </td>
+   <td style="text-align:left;"> Station FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 5 </td>
+   <td style="text-align:left;"> Year FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 6 </td>
+   <td style="text-align:left;"> Month FE </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> — </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 7 </td>
+   <td style="text-align:left;"> Week-of-Year FE </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 8 </td>
+   <td style="text-align:left;"> DOW FE </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 9 </td>
+   <td style="text-align:left;"> Holiday + Weather Controls </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr grouplength="1"><td colspan="5" style="border-bottom: 1px solid;"><strong>Sample</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 41 </td>
+   <td style="text-align:left;"> N </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> IV-Poisson (2SRI) with wildfire smoke as instrument. All models control for public holiday and weather (wind speed, Tmax, Tmin, precipitation). M2 is the baseline specification used in the main analysis. M1 tests sensitivity to removing day-of-week fixed effects. M3 replaces month FE with week-of-year FE (~52 seasonal indicators). Standard errors in parentheses clustered by date. * indicates p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(week_kbl, "table_B9_week_FE.html")
+
+> cat("\n=== SECTION 12: IV VALIDITY CHECKS ===\n")
+
+=== SECTION 12: IV VALIDITY CHECKS ===
+
+> dow_values <- unique(seattle_main$dow)
+
+> cat("DOW levels in data:", paste(dow_values, collapse = ", "), 
++     "\n")
+DOW levels in data: Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Monday 
+
+> dow_to_english <- function(d) {
++     d_lower <- tolower(as.character(d))
++     if (d_lower %in% c("sunday", "sun")) 
++         return("Sunday")
++     if (d_lower %in% c("monday", "mon")) 
++         return("Monday")
++     if (d_lower %in% c("tuesday", "tue", "tues")) 
++         return("Tuesday")
++     if (d_lower %in% c("wednesday", "wed")) 
++         return("Wednesday")
++     if (d_lower %in% c("thursday", "thu", "thur", "thurs")) 
++         return("Thursday")
++     if (d_lower %in% c("friday", "fri")) 
++         return("Friday")
++     if (d_lower %in% c("saturday", "sat")) 
++         return("Saturday")
++     if (d_lower %in% c("sonntag", "so")) 
++         return("Sunday")
++     if (d_lower %in% c("montag", "mo")) 
++         return("Monday")
++     if (d_lower %in% c("dienstag", "di")) 
++         return("Tuesday")
++     if (d_lower %in% c("mittwoch", "mi")) 
++         return("Wednesday")
++     if (d_lower %in% c("donnerstag", "do")) 
++         return("Thursday")
++     if (d_lower %in% c("freitag", "fr")) 
++         return("Friday")
++     if (d_lower %in% c("samstag", "sa")) 
++         return("Saturday")
++     return(as.character(d))
++ }
+
+> fs_results <- lapply(dow_values, function(d) {
++     dat_sub <- seattle_main %>% dplyr::filter(dow == d)
++     n_smoke <- sum(dat_sub$z_smoke, na.rm = TRUE)
++     if (nrow(dat_sub) < 100) {
++         return(data.frame(dow_orig = as.character(d), dow = dow_to_english(d), 
++             coef = NA, se = NA, p = NA, N = nrow(dat_sub), n_smoke = n_smoke))
++     }
++     dat_sub <- droplevels(dat_sub)
++     m <- tryCatch({
++         feols(pm25_mean ~ z_smoke + holiday + awnd + tmax + tmin + 
++             prcp | station + year + month, data = dat_sub, cluster = ~date)
++     }, error = function(e) NULL)
++     if (is.null(m)) {
++         return(data.frame(dow_orig = as.character(d), dow = dow_to_english(d), 
++             coef = NA, se = NA, p = NA, N = nrow(dat_sub), n_smoke = n_smoke))
++     }
++     b <- coef(m)["z_smoke"]
++     se <- sqrt(vcov(m)["z_smoke", "z_smoke"])
++     data.frame(dow_orig = as.character(d), dow = dow_to_english(d), 
++         coef = b, se = se, p = 2 * pnorm(-abs(b/se)), N = nrow(dat_sub), 
++         n_smoke = n_smoke)
++ })
+
+> fs_by_dow <- dplyr::bind_rows(fs_results) %>% dplyr::mutate(`Coefficient (SE)` = paste0(fmt(coef, 
++     2), star1(p), " (", fmt(se, 2), ")"), `p-value` = fmt(p, 
++     3))
+
+> dow_order <- c("Sunday", "Monday", "Tuesday", "Wednesday", 
++     "Thursday", "Friday", "Saturday")
+
+> fs_by_dow <- fs_by_dow %>% dplyr::mutate(dow = factor(dow, 
++     levels = dow_order)) %>% dplyr::arrange(dow)
+
+> cat("\nFirst-stage by day of week:\n")
+
+First-stage by day of week:
+
+> print(fs_by_dow %>% dplyr::select(dow, `Coefficient (SE)`, 
++     `p-value`, n_smoke, N))
+                  dow Coefficient (SE) p-value n_smoke    N
+z_smoke...1    Sunday     8.02* (4.00)   0.045     106 1027
+z_smoke...2    Monday      7.91 (4.05)   0.051     122 1013
+z_smoke...3   Tuesday     7.42* (2.79)   0.008     124 1022
+z_smoke...4 Wednesday     8.91* (2.72)   0.001     126 1026
+z_smoke...5  Thursday     5.48* (1.59)   0.001     118 1021
+z_smoke...6    Friday     5.59* (2.27)   0.014     115 1029
+z_smoke...7  Saturday     6.56* (2.81)   0.019     128 1025
+
+> dow_tbl <- fs_by_dow %>% dplyr::select(dow, `Coefficient (SE)`, 
++     `p-value`, n_smoke, N) %>% dplyr::rename(`Day of Week` = dow, 
++     `Smoke Days` = n_smoke)
+
+> dow_kbl <- dow_tbl %>% kable(format = "html", align = c("l", 
++     "r", "r", "r", "r"), caption = "First-Stage (Smoke → PM2.5) by Day of Week") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% footnote(general = paste0("First-stage regression of PM2.5 on wildfire smoke, estimated separately by day of week. ", 
++     "All models include station, year, and month fixed effects; controls for holiday, wind, Tmax, Tmin, and precipitation. ", 
++     "Standard errors clustered by date.", "Coefficient range: ", 
++     fmt(min(fs_by_dow$coef, na.rm = TRUE), 2), " to ", fmt(max(fs_by_dow$coef, 
++         na.rm = TRUE), 2), " µg/m³. ", "Smoke arrivals vary slightly across weekdays (station-day range: ", 
++     min(fs_by_dow$n_smoke), "–", max(fs_by_dow$n_smoke), "). Note that the number of smoke days and N is in station-day format, with two observations per day."), 
++     threeparttable = TRUE)
+
+> print(dow_kbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>First-Stage (Smoke → PM2.5) by Day of Week</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;"> Day of Week </th>
+   <th style="text-align:right;"> Coefficient (SE) </th>
+   <th style="text-align:right;"> p-value </th>
+   <th style="text-align:right;"> Smoke Days </th>
+   <th style="text-align:right;"> N </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> z_smoke...1 </td>
+   <td style="text-align:left;"> Sunday </td>
+   <td style="text-align:right;"> 8.02* (4.00) </td>
+   <td style="text-align:right;"> 0.045 </td>
+   <td style="text-align:right;"> 106 </td>
+   <td style="text-align:right;"> 1027 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...2 </td>
+   <td style="text-align:left;"> Monday </td>
+   <td style="text-align:right;"> 7.91 (4.05) </td>
+   <td style="text-align:right;"> 0.051 </td>
+   <td style="text-align:right;"> 122 </td>
+   <td style="text-align:right;"> 1013 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...3 </td>
+   <td style="text-align:left;"> Tuesday </td>
+   <td style="text-align:right;"> 7.42* (2.79) </td>
+   <td style="text-align:right;"> 0.008 </td>
+   <td style="text-align:right;"> 124 </td>
+   <td style="text-align:right;"> 1022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...4 </td>
+   <td style="text-align:left;"> Wednesday </td>
+   <td style="text-align:right;"> 8.91* (2.72) </td>
+   <td style="text-align:right;"> 0.001 </td>
+   <td style="text-align:right;"> 126 </td>
+   <td style="text-align:right;"> 1026 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...5 </td>
+   <td style="text-align:left;"> Thursday </td>
+   <td style="text-align:right;"> 5.48* (1.59) </td>
+   <td style="text-align:right;"> 0.001 </td>
+   <td style="text-align:right;"> 118 </td>
+   <td style="text-align:right;"> 1021 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...6 </td>
+   <td style="text-align:left;"> Friday </td>
+   <td style="text-align:right;"> 5.59* (2.27) </td>
+   <td style="text-align:right;"> 0.014 </td>
+   <td style="text-align:right;"> 115 </td>
+   <td style="text-align:right;"> 1029 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...7 </td>
+   <td style="text-align:left;"> Saturday </td>
+   <td style="text-align:right;"> 6.56* (2.81) </td>
+   <td style="text-align:right;"> 0.019 </td>
+   <td style="text-align:right;"> 128 </td>
+   <td style="text-align:right;"> 1025 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> First-stage regression of PM2.5 on wildfire smoke, estimated separately by day of week. All models include station, year, and month fixed effects; controls for holiday, wind, Tmax, Tmin, and precipitation. Standard errors clustered by date.Coefficient range: 5.48 to 8.91 µg/m³. Smoke arrivals vary slightly across weekdays (station-day range: 106–128). Note that the number of smoke days and N is in station-day format, with two observations per day.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(dow_kbl, "table_B10a_first_stage_weekday.html")
+
+> cat("Saved: table_B10a_first_stage_weekday.html\n")
+Saved: table_B10a_first_stage_weekday.html
+
+> cat("\nRunning ozone placebo 2SRI (using co-pollutant sample)...\n")
+
+Running ozone placebo 2SRI (using co-pollutant sample)...
+
+> fs_pm <- glm(pm25_mean ~ z_smoke + holiday + awnd + 
++     tmax + tmin + prcp + station + year + month + dow, data = seattle_copoll)
+
+> ss_pm <- glm(assault ~ pm25_mean + holiday + awnd + 
++     tmax + tmin + prcp + station + year + month + dow, family = poisson(link = "log"), 
++     data = seattle_copoll)
+
+> iv_pm <- tryCatch({
++     ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_pm, fitY.LX = ss_pm, 
++         data = seattle_copoll, ctrl = TRUE, clusterid = "date", 
++         vcov.fit = TRUE)
++ }, error = function(e) {
++     cat("PM2.5 IV error:", conditionMessage(e), "\n")
++     NULL
++ })
+
+> fs_o3 <- glm(ozone_max_i ~ z_smoke + holiday + awnd + 
++     tmax + tmin + prcp + station + year + month + dow, data = seattle_copoll)
+
+> ss_o3 <- glm(assault ~ ozone_max_i + holiday + awnd + 
++     tmax + tmin + prcp + station + year + month + dow, family = poisson(link = "log"), 
++     data = seattle_copoll)
+
+> iv_o3 <- tryCatch({
++     ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_o3, fitY.LX = ss_o3, 
++         data = seattle_copoll, ctrl = TRUE, clusterid = "date", 
++         vcov.fit = TRUE)
++ }, error = function(e) {
++     cat("Ozone IV error:", conditionMessage(e), "\n")
++     NULL
++ })
+
+> get_fs_diag <- function(exp_var, data) {
++     fs <- feols(as.formula(paste0(exp_var, " ~ z_smoke + holiday + awnd + tmax + tmin + prcp | station + year + month + dow")), 
++         data = data, cluster = ~date)
++     b <- coef(fs)["z_smoke"]
++     se <- sqrt(vcov(fs)["z_smoke", "z_smoke"])
++     F_stat <- (b/se)^2
++     list(coef = b, se = se, F = F_stat)
++ }
+
+> fs_pm_diag <- get_fs_diag("pm25_mean", seattle_copoll)
+
+> fs_o3_diag <- get_fs_diag("ozone_max_i", seattle_copoll)
+
+> cat("\nFirst-stage diagnostics:\n")
+
+First-stage diagnostics:
+
+> cat("  PM2.5: coef =", round(fs_pm_diag$coef, 2), 
++     ", F =", round(fs_pm_diag$F, 1), "\n")
+  PM2.5: coef = 5.21 , F = 56.6 
+
+> cat("  Ozone: coef =", round(fs_o3_diag$coef, 4), 
++     ", F =", round(fs_o3_diag$F, 1), "\n")
+  Ozone: coef = 9e-04 , F = 3.2 
+
+> grab_iv <- function(ivobj, var) {
++     if (is.null(ivobj) || !(var %in% names(ivobj$est))) {
++         return(list(beta = NA, se = NA, p = NA))
++     }
++     b <- unname(ivobj$est[[var]])
++     se <- sqrt(ivobj$vcov[var, var])
++     p <- 2 * pnorm(-abs(b/se))
++     list(beta = b, se = se, p = p)
++ }
+
+> r_pm <- grab_iv(iv_pm, "pm25_mean")
+
+> r_o3 <- grab_iv(iv_o3, "ozone_max_i")
+
+> cat("\n2SRI results:\n")
+
+2SRI results:
+
+> cat("  PM2.5: coef =", round(r_pm$beta, 4), ", p =", 
++     round(r_pm$p, 3), "\n")
+  PM2.5: coef = 0.0072 , p = 0.038 
+
+> cat("  Ozone: coef =", round(r_o3$beta, 4), ", p =", 
++     round(r_o3$p, 3), "\n")
+  Ozone: coef = 42.3053 , p = 0.155 
+
+> placebo_tbl <- data.frame(Measure = c("Second-stage coefficient (SE)", 
++     "Second-stage p-value", "First-stage coefficient (SE)", "First-stage F-statistic", 
++     "N"), `PM2.5 (Main)` = c(paste0(fmt(r_pm$beta, 3), star1(r_pm$p), 
++     " (", fmt(r_pm$se, 3), ")"), fmt(r_pm$p, 3), paste0(fmt(fs_pm_diag$coef, 
++     2), " (", fmt(fs_pm_diag$se, 2), ")"), fmt(fs_pm_diag$F, 
++     1), as.character(nrow(seattle_copoll))), `Ozone (Placebo)` = c(paste0(fmt(r_o3$beta, 
++     3), star1(r_o3$p), " (", fmt(r_o3$se, 3), ")"), fmt(r_o3$p, 
++     3), paste0(fmt(fs_o3_diag$coef, 4), " (", fmt(fs_o3_diag$se, 
++     4), ")"), fmt(fs_o3_diag$F, 1), as.character(nrow(seattle_copoll))), 
++     check.names = FALSE)
+
+> placebo_kbl <- placebo_tbl %>% kable(format = "html", 
++     align = c("l", "r", "r"), caption = "IV Validity: PM2.5 vs. Ozone as Treatment (2SRI Poisson)") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% footnote(general = paste0("Both models use wildfire smoke presence as instrument, estimated on the co-pollutant sample (N=", 
++     nrow(seattle_copoll), "). ", "PM2.5 is the main treatment; Ozone serves as a placebo. If smoke affects assaults only through PM2.5, ", 
++     "the ozone coefficient should be null or weak. Both models include station, year, month, and DOW FE; ", 
++     "controls for holiday, wind, Tmax, Tmin, precipitation. SEs clustered by date. * denotes p<0.05."), 
++     threeparttable = TRUE)
+
+> print(placebo_kbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>IV Validity: PM2.5 vs. Ozone as Treatment (2SRI Poisson)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Measure </th>
+   <th style="text-align:right;"> PM2.5 (Main) </th>
+   <th style="text-align:right;"> Ozone (Placebo) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Second-stage coefficient (SE) </td>
+   <td style="text-align:right;"> 0.007* (0.003) </td>
+   <td style="text-align:right;"> 42.305 (29.720) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Second-stage p-value </td>
+   <td style="text-align:right;"> 0.038 </td>
+   <td style="text-align:right;"> 0.155 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> First-stage coefficient (SE) </td>
+   <td style="text-align:right;"> 5.21 (0.69) </td>
+   <td style="text-align:right;"> 0.0009 (0.0005) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> First-stage F-statistic </td>
+   <td style="text-align:right;"> 56.6 </td>
+   <td style="text-align:right;"> 3.2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> N </td>
+   <td style="text-align:right;"> 5623 </td>
+   <td style="text-align:right;"> 5623 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Both models use wildfire smoke presence as instrument, estimated on the co-pollutant sample (N=5623). PM2.5 is the main treatment; Ozone serves as a placebo. If smoke affects assaults only through PM2.5, the ozone coefficient should be null or weak. Both models include station, year, month, and DOW FE; controls for holiday, wind, Tmax, Tmin, precipitation. SEs clustered by date. * denotes p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(placebo_kbl, "table_B10b_ozone_placebo.html")
+
+> cat("Saved: table_B10b_ozone_placebo.html\n")
+Saved: table_B10b_ozone_placebo.html
+
+> cat("\n=== SECTION 13: TEMPERATURE EFFECT MODIFICATION ===\n")
+
+=== SECTION 13: TEMPERATURE EFFECT MODIFICATION ===
+
+> suppressPackageStartupMessages({
++     library(dplyr)
++     library(fixest)
++     library(ivtools)
++     library(sandwich)
++     library(lmtest)
++     library(knitr)
++     library(kableExtra)
++ })
+
+> fmt <- function(x, d = 3) formatC(x, digits = d, format = "f")
+
+> star1 <- function(p) ifelse(!is.na(p) & p < 0.05, 
++     "*", "")
+
+> temp_mean <- mean(seattle_main$tmax, na.rm = TRUE)
+
+> temp_p80 <- quantile(seattle_main$tmax, 0.8, na.rm = TRUE)
+
+> cat("Temperature statistics:\n")
+Temperature statistics:
+
+> cat("  Mean Tmax:", round(temp_mean, 1), "°C\n")
+  Mean Tmax: 16.9 °C
+
+> cat("  80th percentile:", round(temp_p80, 1), "°C\n")
+  80th percentile: 23.9 °C
+
+> seattle_main <- seattle_main %>% dplyr::mutate(tmax_centered = tmax - 
++     temp_mean)
+
+> cat("\n--- A) Full-Sample Interaction Model ---\n")
+
+--- A) Full-Sample Interaction Model ---
+
+> fs_main <- feols(pm25_mean ~ z_smoke + holiday + awnd + 
++     tmax + tmin + prcp | station + year + month + dow, data = seattle_main, 
++     cluster = ~date)
+
+> seattle_main$resid_fs <- residuals(fs_main)
+
+> ss_interaction <- glm(assault ~ pm25_mean * tmax_centered + 
++     resid_fs + holiday + awnd + tmin + prcp + station + year + 
++     month + dow, family = poisson(link = "log"), data = seattle_main)
+
+> V_inter <- sandwich::vcovCL(ss_interaction, cluster = ~date, 
++     type = "HC0")
+
+> ct_inter <- coeftest(ss_interaction, V_inter)
+
+> get_coef <- function(ct, var) {
++     if (!(var %in% rownames(ct))) 
++         return(c(b = NA, se = NA, p = NA))
++     c(b = unname(ct[var, "Estimate"]), se = unname(ct[var, "Std. Error"]), 
++         p = unname(ct[var, "Pr(>|z|)"]))
++ }
+
+> pm_main <- get_coef(ct_inter, "pm25_mean")
+
+> pm_inter <- get_coef(ct_inter, "pm25_mean:tmax_centered")
+
+> cat("  PM2.5 main effect:", fmt(pm_main["b"], 4), 
++     "(SE:", fmt(pm_main["se"], 4), ", p =", fmt(pm_main["p"], 
++         3), ")\n")
+  PM2.5 main effect: 0.0045 (SE: 0.0022 , p = 0.045 )
+
+> cat("  PM2.5 × Temperature:", fmt(pm_inter["b"], 
++     5), "(SE:", fmt(pm_inter["se"], 5), ", p =", fmt(pm_inter["p"], 
++     3), ")\n")
+  PM2.5 × Temperature: 0.00007 (SE: 0.00008 , p = 0.386 )
+
+> cat("\n--- B) Split-Sample Analysis (80th percentile) ---\n")
+
+--- B) Split-Sample Analysis (80th percentile) ---
+
+> hot_days <- seattle_main %>% dplyr::filter(tmax >= 
++     temp_p80) %>% droplevels()
+
+> cool_days <- seattle_main %>% dplyr::filter(tmax < 
++     temp_p80) %>% droplevels()
+
+> cat("  Hot days (Tmax >=", round(temp_p80, 1), "°C): N =", 
++     nrow(hot_days), ", smoke days =", sum(hot_days$z_smoke), 
++     "\n")
+  Hot days (Tmax >= 23.9 °C): N = 1536 , smoke days = 543 
+
+> cat("  Cool days (Tmax <", round(temp_p80, 1), "°C): N =", 
++     nrow(cool_days), ", smoke days =", sum(cool_days$z_smoke), 
++     "\n")
+  Cool days (Tmax < 23.9 °C): N = 5627 , smoke days = 296 
+
+> run_2sri <- function(dat) {
++     fs <- tryCatch({
++         feols(pm25_mean ~ z_smoke + holiday + awnd + tmax + tmin + 
++             prcp | station + year + month + dow, data = dat, 
++             cluster = ~date)
++     }, error = function(e) NULL)
++     if (is.null(fs)) 
++         return(list(beta = NA, se = NA, p = NA, fs_F = NA, N = nrow(dat)))
++     fs_coef <- coef(fs)["z_smoke"]
++     fs_se <- sqrt(vcov(fs)["z_smoke", "z_smoke"])
++     fs_F <- (fs_coef/fs_se)^2
++     fs_glm <- glm(pm25_mean ~ z_smoke + holiday + awnd + tmax + 
++         tmin + prcp + station + year + month + dow, data = dat)
++     ss_glm <- glm(assault ~ pm25_mean + holiday + awnd + tmax + 
++         tmin + prcp + station + year + month + dow, family = poisson(link = "log"), 
++         data = dat)
++     iv <- tryCatch({
++         ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_glm, fitY.LX = ss_glm, 
++             data = dat, ctrl = TRUE, clusterid = "date", vcov.fit = TRUE)
++     }, error = function(e) NULL)
++     if (is.null(iv) || !("pm25_mean" %in% names(iv$est))) {
++         return(list(beta = NA, se = NA, p = NA, fs_F = fs_F, 
++             N = nrow(dat)))
++     }
++     b <- unname(iv$est["pm25_mean"])
++     se <- sqrt(iv$vcov["pm25_mean", "pm25_mean"])
++     p <- 2 * pnorm(-abs(b/se))
++     list(beta = b, se = se, p = p, fs_F = fs_F, N = nrow(dat))
++ }
+
+> r_hot <- run_2sri(hot_days)
+NOTE: 0/0/1/0 fixed-effect singleton was removed (1 observation).
+
+> r_cool <- run_2sri(cool_days)
+
+> cat("  Hot days: PM coef =", fmt(r_hot$beta, 4), "(p =", 
++     fmt(r_hot$p, 3), ")\n")
+  Hot days: PM coef = 0.0077 (p = 0.042 )
+
+> cat("  Cool days: PM coef =", fmt(r_cool$beta, 4), 
++     "(p =", fmt(r_cool$p, 3), ")\n")
+  Cool days: PM coef = 0.0026 (p = 0.356 )
+
+> cat("\n--- Building Table ---\n")
+
+--- Building Table ---
+
+> cell <- function(b, se, p) {
++     if (is.na(b)) 
++         return("—")
++     paste0(fmt(b, 4), star1(p), " (", fmt(se, 4), ")\np=", fmt(p, 
++         3))
++ }
+
+> Row <- c("PM2.5 (instrumented)", "PM2.5 × Temperature", 
++     "First-stage F", "N (station-days)", "Smoke days")
+
+> fs_glm_full <- glm(pm25_mean ~ z_smoke + holiday + 
++     awnd + tmax + tmin + prcp + station + year + month + dow, 
++     data = seattle_main)
+
+> ss_glm_full <- glm(assault ~ pm25_mean + holiday + 
++     awnd + tmax + tmin + prcp + station + year + month + dow, 
++     family = poisson(link = "log"), data = seattle_main)
+
+> iv_full <- ivtools::ivglm(estmethod = "ts", fitX.LZ = fs_glm_full, 
++     fitY.LX = ss_glm_full, data = seattle_main, ctrl = TRUE, 
++     clusterid = "date", vcov.fit = TRUE)
+
+> full_beta <- unname(iv_full$est["pm25_mean"])
+
+> full_se <- sqrt(iv_full$vcov["pm25_mean", "pm25_mean"])
+
+> full_p <- 2 * pnorm(-abs(full_beta/full_se))
+
+> fs_full <- feols(pm25_mean ~ z_smoke + holiday + awnd + 
++     tmax + tmin + prcp | station + year + month + dow, data = seattle_main, 
++     cluster = ~date)
+
+> fs_F_full <- (coef(fs_full)["z_smoke"]/sqrt(vcov(fs_full)["z_smoke", 
++     "z_smoke"]))^2
+
+> Col_full <- c(cell(full_beta, full_se, full_p), "—", 
++     fmt(fs_F_full, 1), as.character(nrow(seattle_main)), as.character(sum(seattle_main$z_smoke)))
+
+> Col_inter <- c(cell(pm_main["b"], pm_main["se"], pm_main["p"]), 
++     cell(pm_inter["b"], pm_inter["se"], pm_inter["p"]), fmt(fs_F_full, 
++         1), as.character(nrow(seattle_main)), as.character(sum(seattle_main$z_smoke)))
+
+> Col_hot <- c(cell(r_hot$beta, r_hot$se, r_hot$p), 
++     "—", fmt(r_hot$fs_F, 1), as.character(r_hot$N), as.character(sum(hot_days$z_smoke)))
+
+> Col_cool <- c(cell(r_cool$beta, r_cool$se, r_cool$p), 
++     "—", fmt(r_cool$fs_F, 1), as.character(r_cool$N), as.character(sum(cool_days$z_smoke)))
+
+> temp_tbl <- data.frame(Row = Row, `Full Sample` = Col_full, 
++     `Full Sample (with interaction)` = Col_inter, `Hot Days` = Col_hot, 
++     `Cool Days` = Col_cool, check.names = FALSE)
+
+> temp_kbl <- temp_tbl %>% kable(format = "html", align = c("l", 
++     "r", "r", "r", "r"), caption = paste0("Table B11: Temperature Effect Modification (Hot day threshold: ", 
++     round(temp_p80, 1), "°C)")) %>% kable_styling(full_width = FALSE, 
++     position = "center", bootstrap_options = c("striped", "condensed")) %>% 
++     add_header_above(c(` ` = 1, `Interaction Model` = 2, `Split-Sample` = 2)) %>% 
++     footnote(general = paste0("This table tests whether the effect of PM2.5 on assaults is stronger on hot days, ", 
++         "as suggested by research on compounding climate hazards. ", 
++         "The 'Interaction Model' columns use the full sample: the first shows the baseline specification, ", 
++         "while the second adds a PM2.5 × Temperature interaction term (temperature centered at the sample mean of ", 
++         round(temp_mean, 1), "°C, so the main PM2.5 coefficient represents the effect at average temperature). ", 
++         "A significant interaction term would indicate that PM2.5's effect varies substantively with temperature. ", 
++         "The 'Split-Sample' columns estimate the model separately for hot days (Tmax ≥ 80th percentile = ", 
++         round(temp_p80, 1), "°C) and cool days. ", "All models use 2SRI (control-function) Poisson with station, year, month, and day-of-week fixed effects; ", 
++         "controls include holiday, wind speed, Tmin, and precipitation. Standard errors clustered by date. ", 
++         "p-values printed explicitly. * indicates p < 0.05."), 
++         threeparttable = TRUE)
+
+> print(temp_kbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B11: Temperature Effect Modification (Hot day threshold: 23.9°C)</caption>
+ <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Interaction Model</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Split-Sample</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Full Sample </th>
+   <th style="text-align:right;"> Full Sample (with interaction) </th>
+   <th style="text-align:right;"> Hot Days </th>
+   <th style="text-align:right;"> Cool Days </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> PM2.5 (instrumented) </td>
+   <td style="text-align:right;"> 0.0050* (0.0023)
+p=0.027 </td>
+   <td style="text-align:right;"> 0.0045* (0.0022)
+p=0.045 </td>
+   <td style="text-align:right;"> 0.0077* (0.0038)
+p=0.042 </td>
+   <td style="text-align:right;"> 0.0026 (0.0028)
+p=0.356 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PM2.5 × Temperature </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> 0.0001 (0.0001)
+p=0.386 </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> First-stage F </td>
+   <td style="text-align:right;"> 42.7 </td>
+   <td style="text-align:right;"> 42.7 </td>
+   <td style="text-align:right;"> 28.8 </td>
+   <td style="text-align:right;"> 14.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> N (station-days) </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 1536 </td>
+   <td style="text-align:right;"> 5627 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Smoke days </td>
+   <td style="text-align:right;"> 839 </td>
+   <td style="text-align:right;"> 839 </td>
+   <td style="text-align:right;"> 543 </td>
+   <td style="text-align:right;"> 296 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> This table tests whether the effect of PM2.5 on assaults is stronger on hot days, as suggested by research on compounding climate hazards. The 'Interaction Model' columns use the full sample: the first shows the baseline specification, while the second adds a PM2.5 × Temperature interaction term (temperature centered at the sample mean of 16.9°C, so the main PM2.5 coefficient represents the effect at average temperature). A significant interaction term would indicate that PM2.5's effect varies substantively with temperature. The 'Split-Sample' columns estimate the model separately for hot days (Tmax ≥ 80th percentile = 23.9°C) and cool days. All models use 2SRI (control-function) Poisson with station, year, month, and day-of-week fixed effects; controls include holiday, wind speed, Tmin, and precipitation. Standard errors clustered by date. p-values printed explicitly. * indicates p &lt; 0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(temp_kbl, "table_B11_temp_interaction.html")
+
+> cat("Saved: table_B11_temp_interaction.html\n")
+Saved: table_B11_temp_interaction.html
+
+> cat("\n=== SECTION 14: OTHER CRIME TYPES ===\n")
+
+=== SECTION 14: OTHER CRIME TYPES ===
+
+> crime_vars <- c("assault", "si_assault", "ag_assault", 
++     "robbery", "burglary", "theft_of_veh", "theft_from_veh", 
++     "intimidation", "person", "property", "rape", "shoplifting")
+
+> available_crimes <- intersect(crime_vars, names(seattle_main))
+
+> cat("Available crime variables:", paste(available_crimes, 
++     collapse = ", "), "\n")
+Available crime variables: assault, si_assault, ag_assault, robbery, burglary, theft_of_veh, theft_from_veh, intimidation, person, property 
+
+> crime_labels <- c(assault = "Assault (total)", si_assault = "  Simple assault", 
++     ag_assault = "  Aggravated assault", robbery = "Robbery", 
++     burglary = "Burglary", theft_of_veh = "Motor vehicle theft", 
++     theft_from_veh = "Theft from vehicle", intimidation = "Intimidation", 
++     person = "Violent crimes (aggregate)", property = "Property crimes (aggregate)", 
++     rape = "Rape", shoplifting = "Shoplifting")
+
+> run_crime_models <- function(v, data) {
++     if (!(v %in% names(data))) 
++         return(NULL)
++     dat_v <- data %>% dplyr::filter(!is.na(!!sym(v))) %>% dplyr::filter(!!sym(v) >= 
++         0)
++     if (nrow(dat_v) < 100) 
++         return(NULL)
++     if (sum(dat_v[[v]] > 0, na.rm = TRUE) < 50) 
++         return(NULL)
++     rf <- tryCatch({
++         fepois(as.formula(paste0(v, " ~ z_smoke + holiday + awnd + tmax + tmin + prcp | station + year + month + dow")), 
++             data = dat_v, cluster = ~date)
++     }, error = function(e) NULL)
++     iv <- tryCatch({
++         fs <- glm(as.formula(paste0("pm25_mean ~ z_smoke + holiday + awnd + tmax + tmin + prcp + station + year + month + dow")), 
++             data = dat_v)
++         ss <- glm(as.formula(paste0(v, " ~ pm25_mean + holiday + awnd + tmax + tmin + prcp + station + year + month + dow")), 
++             family = poisson(link = "log"), data = dat_v)
++         ivtools::ivglm(estmethod = "ts", fitX.LZ = fs, fitY.LX = ss, 
++             data = dat_v, ctrl = TRUE, clusterid = "date", vcov.fit = TRUE)
++     }, error = function(e) NULL)
++     if (!is.null(rf)) {
++         rf_b <- coef(rf)["z_smoke"]
++         rf_se <- sqrt(vcov(rf)["z_smoke", "z_smoke"])
++         rf_p <- 2 * pnorm(-abs(rf_b/rf_se))
++     }
++     else {
++         rf_b <- NA
++         rf_se <- NA
++         rf_p <- NA
++     }
++     if (!is.null(iv) && "pm25_mean" %in% names(iv$est)) {
++         iv_b <- unname(iv$est[["pm25_mean"]])
++         iv_se <- sqrt(iv$vcov["pm25_mean", "pm25_mean"])
++         iv_p <- 2 * pnorm(-abs(iv_b/iv_se))
++     }
++     else {
++         iv_b <- NA
++         iv_se <- NA
++         iv_p <- NA
++     }
++     data.frame(Outcome = v, rf_coef = rf_b, rf_se = rf_se, rf_p = rf_p, 
++         iv_coef = iv_b, iv_se = iv_se, iv_p = iv_p, N = nrow(dat_v), 
++         stringsAsFactors = FALSE)
++ }
+
+> crime_results <- lapply(available_crimes, function(v) run_crime_models(v, 
++     seattle_main))
+
+> crime_df <- dplyr::bind_rows(crime_results)
+
+> if (nrow(crime_df) > 0) {
++     crime_df <- crime_df %>% dplyr::mutate(Outcome_label = ifelse(Outcome %in% 
++         names(crime_labels), crime_labels[Outcome], Outcome), 
++         `Reduced-Form (SE)` = paste0(fmt(rf_coef, 4), star1(rf_p), 
++             " (", fmt(rf_se, 4), ")"), `RF p-value` = fmt(rf_p, 
++             3), `2SRI PM2.5 (SE)` = paste0(fmt(iv_coef, 4), star1(iv_p), 
++             " (", fmt(iv_se, 4), ")"), `IV p-value` = fmt(iv_p, 
++             3)) %>% dplyr::select(Outcome_label, `Reduced-Form (SE)`, 
++         `RF p-value`, `2SRI PM2.5 (SE)`, `IV p-value`, N) %>% 
++         dplyr::rename(Outcome = Outcome_label)
++     crime_kbl <- crime_df %>% kable(format = "html", align = c("l", 
++         "r", "r", "r", "r", "r"), caption = "Effects of Wildfire Smoke on Crime Types: Reduced-Form and IV-Poisson (2SRI)") %>% 
++         kable_styling(full_width = FALSE, position = "center", 
++             bootstrap_options = c("striped", "condensed")) %>% 
++         footnote(general = paste0("Reduced-Form: Poisson regression of crime on wildfire smoke indicator. ", 
++             "2SRI: IV-Poisson using smoke as instrument for PM2.5. ", 
++             "All models include station, year, month, and day-of-week fixed effects; ", 
++             "controls for holiday, wind, Tmax, Tmin, and precipitation. ", 
++             "Standard errors clustered by date. One star indicates p<0.05. ", 
++             "Indented rows are subsets of the parent category. "), 
++             threeparttable = TRUE)
++     print(crime_kbl)
++     kableExtra::save_kable(crime_kbl, "table_B12_other_crimes.html")
++ } else {
++     cat("No crime models could be estimated.\n")
++ }
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Effects of Wildfire Smoke on Crime Types: Reduced-Form and IV-Poisson (2SRI)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;"> Outcome </th>
+   <th style="text-align:right;"> Reduced-Form (SE) </th>
+   <th style="text-align:right;"> RF p-value </th>
+   <th style="text-align:right;"> 2SRI PM2.5 (SE) </th>
+   <th style="text-align:right;"> IV p-value </th>
+   <th style="text-align:right;"> N </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> z_smoke...1 </td>
+   <td style="text-align:left;"> Assault (total) </td>
+   <td style="text-align:right;"> 0.0352* (0.0150) </td>
+   <td style="text-align:right;"> 0.019 </td>
+   <td style="text-align:right;"> 0.0050* (0.0023) </td>
+   <td style="text-align:right;"> 0.027 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...2 </td>
+   <td style="text-align:left;"> Simple assault </td>
+   <td style="text-align:right;"> 0.0265 (0.0182) </td>
+   <td style="text-align:right;"> 0.145 </td>
+   <td style="text-align:right;"> 0.0038 (0.0027) </td>
+   <td style="text-align:right;"> 0.160 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...3 </td>
+   <td style="text-align:left;"> Aggravated assault </td>
+   <td style="text-align:right;"> 0.0464 (0.0258) </td>
+   <td style="text-align:right;"> 0.072 </td>
+   <td style="text-align:right;"> 0.0066 (0.0038) </td>
+   <td style="text-align:right;"> 0.082 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...4 </td>
+   <td style="text-align:left;"> Robbery </td>
+   <td style="text-align:right;"> -0.0088 (0.0338) </td>
+   <td style="text-align:right;"> 0.795 </td>
+   <td style="text-align:right;"> -0.0013 (0.0048) </td>
+   <td style="text-align:right;"> 0.789 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...5 </td>
+   <td style="text-align:left;"> Burglary </td>
+   <td style="text-align:right;"> 0.0163 (0.0170) </td>
+   <td style="text-align:right;"> 0.337 </td>
+   <td style="text-align:right;"> 0.0023 (0.0024) </td>
+   <td style="text-align:right;"> 0.350 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...6 </td>
+   <td style="text-align:left;"> Motor vehicle theft </td>
+   <td style="text-align:right;"> 0.0460* (0.0226) </td>
+   <td style="text-align:right;"> 0.042 </td>
+   <td style="text-align:right;"> 0.0066* (0.0033) </td>
+   <td style="text-align:right;"> 0.048 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...7 </td>
+   <td style="text-align:left;"> Theft from vehicle </td>
+   <td style="text-align:right;"> -0.0356* (0.0177) </td>
+   <td style="text-align:right;"> 0.044 </td>
+   <td style="text-align:right;"> -0.0052* (0.0026) </td>
+   <td style="text-align:right;"> 0.047 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...8 </td>
+   <td style="text-align:left;"> Intimidation </td>
+   <td style="text-align:right;"> -0.0009 (0.0291) </td>
+   <td style="text-align:right;"> 0.976 </td>
+   <td style="text-align:right;"> -0.0001 (0.0042) </td>
+   <td style="text-align:right;"> 0.975 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...9 </td>
+   <td style="text-align:left;"> Violent crimes (aggregate) </td>
+   <td style="text-align:right;"> 0.0267* (0.0133) </td>
+   <td style="text-align:right;"> 0.044 </td>
+   <td style="text-align:right;"> 0.0038 (0.0020) </td>
+   <td style="text-align:right;"> 0.055 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> z_smoke...10 </td>
+   <td style="text-align:left;"> Property crimes (aggregate) </td>
+   <td style="text-align:right;"> -0.0172 (0.0089) </td>
+   <td style="text-align:right;"> 0.055 </td>
+   <td style="text-align:right;"> -0.0024 (0.0013) </td>
+   <td style="text-align:right;"> 0.059 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Reduced-Form: Poisson regression of crime on wildfire smoke indicator. 2SRI: IV-Poisson using smoke as instrument for PM2.5. All models include station, year, month, and day-of-week fixed effects; controls for holiday, wind, Tmax, Tmin, and precipitation. Standard errors clustered by date. One star indicates p&lt;0.05. Indented rows are subsets of the parent category. </td></tr>
+</tfoot>
+</table>
+> cat("\n=== CREATING ALTERNATIVE OUTCOMES TABLE ===\n")
+
+=== CREATING ALTERNATIVE OUTCOMES TABLE ===
+
+> df_alt <- seattle_alt %>% arrange(station, date)
+
+> FE <- "station + year + month + dow"
+
+> W <- "holiday + awnd + tmax + tmin + prcp"
+
+> mk_dat_alt <- function(vars) {
++     df_alt %>% tidyr::drop_na(all_of(unique(c("z_smoke", "station", 
++         "year", "month", "dow", "holiday", "date", "awnd", "tmax", 
++         "tmin", "prcp", vars))))
++ }
+
+> rf_pois <- function(y, d) {
++     m <- fepois(as.formula(paste0(y, " ~ z_smoke + ", W, " | ", 
++         FE)), data = d, cluster = ~date)
++     b <- coef(m)["z_smoke"]
++     se <- sqrt(vcov(m)["z_smoke", "z_smoke"])
++     p <- 2 * pnorm(-abs(b/se))
++     list(est = b, se = se, p = p, N = nrow(d))
++ }
+
+> rf_lin <- function(y, d) {
++     m <- feols(as.formula(paste0(y, " ~ z_smoke + ", W, " | ", 
++         FE)), data = d, cluster = ~date)
++     b <- coef(m)["z_smoke"]
++     se <- sqrt(vcov(m)["z_smoke", "z_smoke"])
++     p <- 2 * pnorm(-abs(b/se))
++     list(est = b, se = se, p = p, N = nrow(d))
++ }
+
+> d_dv <- mk_dat_alt("dv_calls")
+
+> dv <- rf_pois("dv_calls", d_dv)
+
+> d_rt <- mk_dat_alt("ln_resptime")
+
+> rt <- rf_lin("ln_resptime", d_rt)
+
+> d_tot <- mk_dat_alt("uof_total")
+
+> u_tot <- rf_pois("uof_total", d_tot)
+
+> d_l1 <- mk_dat_alt("uof_l1")
+
+> u_l1 <- rf_pois("uof_l1", d_l1)
+
+> d_l2 <- mk_dat_alt("uof_l2")
+
+> u_l2 <- rf_pois("uof_l2", d_l2)
+
+> d_l3 <- mk_dat_alt("uof_l3")
+
+> u_l3 <- rf_pois("uof_l3", d_l3)
+
+> d_col <- mk_dat_alt("totalsev")
+
+> colli <- rf_pois("totalsev", d_col)
+
+> fmt_bse <- function(b, se, p) paste0(fmt(b, 3), star1(p), 
++     " (", fmt(se, 3), ")")
+
+> alt_tab <- tibble::tibble(Outcome = c("Domestic-violence calls (count)", 
++     "Police response time (log minutes)", "Use of force: Total (count)", 
++     "  Level 1 (count)", "  Level 2 (count)", "  Level 3 (count)", 
++     "Traffic collisions (count)"), `Coefficient (SE)` = c(fmt_bse(dv$est, 
++     dv$se, dv$p), fmt_bse(rt$est, rt$se, rt$p), fmt_bse(u_tot$est, 
++     u_tot$se, u_tot$p), fmt_bse(u_l1$est, u_l1$se, u_l1$p), fmt_bse(u_l2$est, 
++     u_l2$se, u_l2$p), fmt_bse(u_l3$est, u_l3$se, u_l3$p), fmt_bse(colli$est, 
++     colli$se, colli$p)), `p-value` = sprintf("%.3f", c(dv$p, 
++     rt$p, u_tot$p, u_l1$p, u_l2$p, u_l3$p, colli$p)), N = c(dv$N, 
++     rt$N, u_tot$N, u_l1$N, u_l2$N, u_l3$N, colli$N))
+
+> alt_tbl <- alt_tab %>% kable(format = "html", align = c("l", 
++     "r", "c", "c"), caption = "Table B5: Reduced-form effects of wildfire smoke on auxiliary outcomes") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Domestic-violence & response time", 
++     1, 2) %>% pack_rows("Police use of force", 3, 6) %>% pack_rows("Traffic collisions", 
++     7, 7) %>% add_indent(c(4, 5, 6)) %>% footnote(general = paste0("Reduced-form effects of smoke indicator. Poisson for count outcomes; OLS for log response time. ", 
++     "All models include station, year, month, day-of-week FE; weather controls. SEs clustered by date. "), 
++     threeparttable = TRUE)
+
+> print(alt_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B5: Reduced-form effects of wildfire smoke on auxiliary outcomes</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Outcome </th>
+   <th style="text-align:right;"> Coefficient (SE) </th>
+   <th style="text-align:center;"> p-value </th>
+   <th style="text-align:center;"> N </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="2"><td colspan="4" style="border-bottom: 1px solid;"><strong>Domestic-violence &amp; response time</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Domestic-violence calls (count) </td>
+   <td style="text-align:right;"> -0.035 (0.047) </td>
+   <td style="text-align:center;"> 0.466 </td>
+   <td style="text-align:center;"> 7938 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Police response time (log minutes) </td>
+   <td style="text-align:right;"> -0.023 (0.081) </td>
+   <td style="text-align:center;"> 0.773 </td>
+   <td style="text-align:center;"> 3906 </td>
+  </tr>
+  <tr grouplength="4"><td colspan="4" style="border-bottom: 1px solid;"><strong>Police use of force</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Use of force: Total (count) </td>
+   <td style="text-align:right;"> 0.131 (0.078) </td>
+   <td style="text-align:center;"> 0.094 </td>
+   <td style="text-align:center;"> 7155 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;" indentlevel="2"> Level 1 (count) </td>
+   <td style="text-align:right;"> 0.192* (0.059) </td>
+   <td style="text-align:center;"> 0.001 </td>
+   <td style="text-align:center;"> 7155 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;" indentlevel="2"> Level 2 (count) </td>
+   <td style="text-align:right;"> 0.021 (0.192) </td>
+   <td style="text-align:center;"> 0.914 </td>
+   <td style="text-align:center;"> 7155 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;" indentlevel="2"> Level 3 (count) </td>
+   <td style="text-align:right;"> -0.051 (0.467) </td>
+   <td style="text-align:center;"> 0.912 </td>
+   <td style="text-align:center;"> 7155 </td>
+  </tr>
+  <tr grouplength="1"><td colspan="4" style="border-bottom: 1px solid;"><strong>Traffic collisions</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Traffic collisions (count) </td>
+   <td style="text-align:right;"> 0.011 (0.013) </td>
+   <td style="text-align:center;"> 0.408 </td>
+   <td style="text-align:center;"> 7938 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Reduced-form effects of smoke indicator. Poisson for count outcomes; OLS for log response time. All models include station, year, month, day-of-week FE; weather controls. SEs clustered by date. </td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(alt_tbl, "table_B5_alternative_outcomes.html")
+
+> cat("\n=== CREATING PM2.5 NONLINEARITY TABLE ===\n")
+
+=== CREATING PM2.5 NONLINEARITY TABLE ===
+
+> m_fs_nl <- feols(pm25_mean ~ z_smoke + holiday + awnd + 
++     tmax + tmin + prcp | station + year + month + dow, data = seattle_main, 
++     cluster = ~date)
+
+> seattle_main$ehat <- residuals(m_fs_nl)
+
+> m_lin <- fepois(assault ~ pm25_mean + ehat + holiday + 
++     awnd + tmax + tmin + prcp | station + year + month + dow, 
++     data = seattle_main, cluster = ~date)
+
+> seattle_main$pm_sq <- seattle_main$pm25_mean^2
+
+> m_quad <- fepois(assault ~ pm25_mean + pm_sq + ehat + 
++     holiday + awnd + tmax + tmin + prcp | station + year + month + 
++     dow, data = seattle_main, cluster = ~date)
+
+> seattle_main$pm_cu <- seattle_main$pm25_mean^3
+
+> m_cub <- fepois(assault ~ pm25_mean + pm_sq + pm_cu + 
++     ehat + holiday + awnd + tmax + tmin + prcp | station + year + 
++     month + dow, data = seattle_main, cluster = ~date)
+
+> get_nl_results <- function(m, vars) {
++     coefs <- coef(m)
++     vcovs <- vcov(m)
++     lapply(vars, function(v) {
++         if (!(v %in% names(coefs))) 
++             return(list(beta = NA, se = NA, p = NA))
++         b <- coefs[v]
++         se <- sqrt(vcovs[v, v])
++         p <- 2 * pnorm(-abs(b/se))
++         list(beta = b, se = se, p = p)
++     }) %>% setNames(vars)
++ }
+
+> r_lin <- get_nl_results(m_lin, "pm25_mean")
+
+> r_quad <- get_nl_results(m_quad, c("pm25_mean", "pm_sq"))
+
+> r_cub <- get_nl_results(m_cub, c("pm25_mean", "pm_sq", 
++     "pm_cu"))
+
+> wald_quad <- if ("pm_sq" %in% names(coef(m_quad))) {
++     b <- coef(m_quad)["pm_sq"]
++     v <- vcov(m_quad)["pm_sq", "pm_sq"]
++     chi <- b^2/v
++     p <- 1 - pchisq(chi, 1)
++     list(chi = chi, p = p)
++ } else list(chi = NA, p = NA)
+
+> wald_cub <- if (all(c("pm_sq", "pm_cu") %in% names(coef(m_cub)))) {
++     b <- coef(m_cub)[c("pm_sq", "pm_cu")]
++     V <- vcov(m_cub)[c("pm_sq", "pm_cu"), c("pm_sq", "pm_cu")]
++     chi <- as.numeric(t(b) %*% MASS::ginv(V) %*% b)
++     p <- 1 - pchisq(chi, 2)
++     list(chi = chi, p = p)
++ } else list(chi = NA, p = NA)
+
+> Row_nl <- c("PM₂.₅ (linear)", "PM₂.₅²", "PM₂.₅³", 
++     "Nonlinearity χ²(df)", "p-value", "N (observations)")
+
+> C_lin <- c(cell(r_lin$pm25_mean$beta, r_lin$pm25_mean$se, 
++     r_lin$pm25_mean$p), "—", "—", "—", "—", as.character(nrow(seattle_main)))
+
+> C_quad <- c(cell(r_quad$pm25_mean$beta, r_quad$pm25_mean$se, 
++     r_quad$pm25_mean$p), cell(r_quad$pm_sq$beta, r_quad$pm_sq$se, 
++     r_quad$pm_sq$p), "—", ifelse(is.na(wald_quad$chi), "—", 
++     paste0(fmt(wald_quad$chi, 2), " (1)")), ifelse(is.na(wald_quad$p), 
++     "—", fmt(wald_quad$p, 3)), as.character(nrow(seattle_main)))
+
+> C_cub <- c(cell(r_cub$pm25_mean$beta, r_cub$pm25_mean$se, 
++     r_cub$pm25_mean$p), cell(r_cub$pm_sq$beta, r_cub$pm_sq$se, 
++     r_cub$pm_sq$p), cell(r_cub$pm_cu$beta, r_cub$pm_cu$se, r_cub$pm_cu$p), 
++     ifelse(is.na(wald_cub$chi), "—", paste0(fmt(wald_cub$chi, 
++         2), " (2)")), ifelse(is.na(wald_cub$p), "—", fmt(wald_cub$p, 
++         3)), as.character(nrow(seattle_main)))
+
+> T_nl <- data.frame(Row = Row_nl, Linear = C_lin, Quadratic = C_quad, 
++     Cubic = C_cub, check.names = FALSE)
+
+> nl_tbl <- T_nl %>% kable(format = "html", align = c("l", 
++     "r", "r", "r"), caption = "Table B4: Nonlinearity checks for PM₂.₅ (2SRI Poisson)") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("PM₂.₅ terms", 1, 3) %>% 
++     pack_rows("Nonlinearity test", 4, 5) %>% pack_rows("Sample", 
++     6, 6) %>% footnote(general = "2SRI Poisson with control function residual. Nonlinearity test is joint Wald test. All models include station, year, month, DOW FE; weather controls. SEs clustered by date. * denotes p<0.05.", 
++     threeparttable = TRUE)
+
+> print(nl_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B4: Nonlinearity checks for PM₂.₅ (2SRI Poisson)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Linear </th>
+   <th style="text-align:right;"> Quadratic </th>
+   <th style="text-align:right;"> Cubic </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="3"><td colspan="4" style="border-bottom: 1px solid;"><strong>PM₂.₅ terms</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅ (linear) </td>
+   <td style="text-align:right;"> 0.0050* (0.0021)
+p=0.019 </td>
+   <td style="text-align:right;"> 0.0049* (0.0023)
+p=0.032 </td>
+   <td style="text-align:right;"> 0.0042 (0.0026)
+p=0.108 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅² </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> 0.0000 (0.0000)
+p=0.860 </td>
+   <td style="text-align:right;"> 0.0000 (0.0000)
+p=0.582 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> PM₂.₅³ </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> -0.0000 (0.0000)
+p=0.617 </td>
+  </tr>
+  <tr grouplength="2"><td colspan="4" style="border-bottom: 1px solid;"><strong>Nonlinearity test</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Nonlinearity χ²(df) </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> 0.03 (1) </td>
+   <td style="text-align:right;"> 0.32 (2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> p-value </td>
+   <td style="text-align:right;"> — </td>
+   <td style="text-align:right;"> 0.860 </td>
+   <td style="text-align:right;"> 0.853 </td>
+  </tr>
+  <tr grouplength="1"><td colspan="4" style="border-bottom: 1px solid;"><strong>Sample</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (observations) </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+   <td style="text-align:right;"> 7163 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> 2SRI Poisson with control function residual. Nonlinearity test is joint Wald test. All models include station, year, month, DOW FE; weather controls. SEs clustered by date. * denotes p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(nl_tbl, "table_B4_nonlinearity.html")
+
+> cat("\n=== SECTION 17: LEADS AND LAGS (FIXED) ===\n")
+
+=== SECTION 17: LEADS AND LAGS (FIXED) ===
+
+> seattle_ll <- seattle_main %>% dplyr::arrange(station, 
++     date) %>% dplyr::group_by(station) %>% dplyr::mutate(z_smoke_lag2 = dplyr::lag(z_smoke, 
++     2), z_smoke_lag1 = dplyr::lag(z_smoke, 1), z_smoke_lead1 = dplyr::lead(z_smoke, 
++     1), z_smoke_lead2 = dplyr::lead(z_smoke, 2)) %>% dplyr::ungroup() %>% 
++     tidyr::drop_na(z_smoke_lag2, z_smoke_lag1, z_smoke_lead1, 
++         z_smoke_lead2)
+
+> cat("Sample size after creating leads/lags:", nrow(seattle_ll), 
++     "\n")
+Sample size after creating leads/lags: 7155 
+
+> m_ll <- fepois(assault ~ z_smoke_lag2 + z_smoke_lag1 + 
++     z_smoke + z_smoke_lead1 + z_smoke_lead2 + holiday + awnd + 
++     tmax + tmin + prcp | station + year + month + dow, data = seattle_ll, 
++     cluster = ~date)
+
+> cat("Coefficient names in model:\n")
+Coefficient names in model:
+
+> print(names(coef(m_ll)))
+ [1] "z_smoke_lag2"  "z_smoke_lag1"  "z_smoke"       "z_smoke_lead1"
+ [5] "z_smoke_lead2" "holiday1"      "awnd"          "tmax"         
+ [9] "tmin"          "prcp"         
+
+> get_coef <- function(m, varname) {
++     if (!(varname %in% names(coef(m)))) {
++         return(list(b = NA, se = NA, p = NA))
++     }
++     b <- coef(m)[varname]
++     se <- sqrt(vcov(m)[varname, varname])
++     p <- 2 * pnorm(-abs(b/se))
++     list(b = b, se = se, p = p)
++ }
+
+> c_lag2 <- get_coef(m_ll, "z_smoke_lag2")
+
+> c_lag1 <- get_coef(m_ll, "z_smoke_lag1")
+
+> c_0 <- get_coef(m_ll, "z_smoke")
+
+> c_lead1 <- get_coef(m_ll, "z_smoke_lead1")
+
+> c_lead2 <- get_coef(m_ll, "z_smoke_lead2")
+
+> to_pct <- function(b, se, p) {
++     pct <- 100 * (exp(b) - 1)
++     pct_se <- 100 * exp(b) * se
++     paste0(fmt(pct, 2), star1(p), " (", fmt(pct_se, 2), ")")
++ }
+
+> joint_wald_p <- function(mod, coef_names) {
++     bt <- coef(mod)
++     V <- vcov(mod)
++     keep <- intersect(coef_names, names(bt))
++     if (length(keep) == 0) 
++         return(NA)
++     b <- bt[keep]
++     Vsub <- V[keep, keep, drop = FALSE]
++     invV <- tryCatch(chol2inv(chol(Vsub)), error = function(e) MASS::ginv(as.matrix(Vsub)))
++     stat <- as.numeric(t(b) %*% invV %*% b)
++     pchisq(stat, df = length(keep), lower.tail = FALSE)
++ }
+
+> pre_p <- joint_wald_p(m_ll, c("z_smoke_lag2", "z_smoke_lag1"))
+
+> lead_p <- joint_wald_p(m_ll, c("z_smoke_lead1", "z_smoke_lead2"))
+
+> all_non_t0_p <- joint_wald_p(m_ll, c("z_smoke_lag2", 
++     "z_smoke_lag1", "z_smoke_lead1", "z_smoke_lead2"))
+
+> Row <- c("t−2 (two days before)", "t−1 (day before)", 
++     "t = 0 (smoke day)", "t+1 (day after)", "t+2 (two days after)", 
++     "Pre-trend (t−2 = t−1 = 0) — p-value", "Lead placebo (t+1 = t+2 = 0) — p-value", 
++     "All non–t0 — p-value", "Fixed effects", "Weather controls", 
++     "N (observations)")
+
+> Col <- c(to_pct(c_lag2$b, c_lag2$se, c_lag2$p), to_pct(c_lag1$b, 
++     c_lag1$se, c_lag1$p), to_pct(c_0$b, c_0$se, c_0$p), to_pct(c_lead1$b, 
++     c_lead1$se, c_lead1$p), to_pct(c_lead2$b, c_lead2$se, c_lead2$p), 
++     fmt(pre_p, 3), fmt(lead_p, 3), fmt(all_non_t0_p, 3), "Station / Year / Month / DOW", 
++     "Y", as.character(nrow(seattle_ll)))
+
+> Tab <- data.frame(Row, `Estimate (% change)` = Col, 
++     check.names = FALSE)
+
+> ll_tbl <- Tab %>% kable(format = "html", align = c("l", 
++     "r"), caption = "Table B3: Event-time analysis of smoke effects (reduced-form Poisson)") %>% 
++     kable_styling(full_width = FALSE, position = "center", bootstrap_options = c("striped", 
++         "condensed")) %>% pack_rows("Event-time coefficients", 
++     1, 5) %>% pack_rows("Joint tests (p-values)", 6, 8) %>% pack_rows("Specification", 
++     9, 11) %>% footnote(general = paste0("Reduced-form Poisson with leads and lags of smoke indicator. ", 
++     "Coefficients converted to percent change: 100×(exp(β)−1). ", 
++     "Joint tests are clustered Wald tests. SEs clustered by date. * denotes p<0.05."), 
++     threeparttable = TRUE)
+
+> print(ll_tbl)
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>Table B3: Event-time analysis of smoke effects (reduced-form Poisson)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Row </th>
+   <th style="text-align:right;"> Estimate (% change) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="5"><td colspan="2" style="border-bottom: 1px solid;"><strong>Event-time coefficients</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> t−2 (two days before) </td>
+   <td style="text-align:right;"> -2.49 (1.64) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> t−1 (day before) </td>
+   <td style="text-align:right;"> 0.73 (1.88) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> t = 0 (smoke day) </td>
+   <td style="text-align:right;"> 5.01* (1.97) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> t+1 (day after) </td>
+   <td style="text-align:right;"> -1.23 (1.83) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> t+2 (two days after) </td>
+   <td style="text-align:right;"> -0.80 (1.70) </td>
+  </tr>
+  <tr grouplength="3"><td colspan="2" style="border-bottom: 1px solid;"><strong>Joint tests (p-values)</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Pre-trend (t−2 = t−1 = 0) — p-value </td>
+   <td style="text-align:right;"> 0.322 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Lead placebo (t+1 = t+2 = 0) — p-value </td>
+   <td style="text-align:right;"> 0.626 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> All non–t0 — p-value </td>
+   <td style="text-align:right;"> 0.432 </td>
+  </tr>
+  <tr grouplength="3"><td colspan="2" style="border-bottom: 1px solid;"><strong>Specification</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Fixed effects </td>
+   <td style="text-align:right;"> Station / Year / Month / DOW </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Weather controls </td>
+   <td style="text-align:right;"> Y </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> N (observations) </td>
+   <td style="text-align:right;"> 7155 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Reduced-form Poisson with leads and lags of smoke indicator. Coefficients converted to percent change: 100×(exp(β)−1). Joint tests are clustered Wald tests. SEs clustered by date. * denotes p&lt;0.05.</td></tr>
+</tfoot>
+</table>
+> kableExtra::save_kable(ll_tbl, "table_B3_leads_lags.html")
+
+> cat("Saved: table_B3_leads_lags.html\n")
+Saved: table_B3_leads_lags.html
+FULL RUN SAVED

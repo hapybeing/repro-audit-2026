@@ -1,0 +1,6 @@
+lavaan 0.7.3 
+study1 complete rows 977 lavaan nobs 977 
+   id  study    K n_rows lavaan_nobs n_ok n_failed   estimate boot_ci_low
+1 R_a study1 1000    977         977 1000        0 0.01678099 0.003395787
+  boot_ci_high     boot_sd p_value     seed
+1   0.03413546 0.007891141    0.02 20261011

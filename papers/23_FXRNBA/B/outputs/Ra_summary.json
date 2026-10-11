@@ -1,0 +1,13 @@
+{
+ "B_completed": 999,
+ "n_valid": 999,
+ "n_failed_or_nonconverged": 0,
+ "boot_sd": 0.002419275094412415,
+ "pct_2.5": 0.0008779260153952725,
+ "pct_97.5": 0.010542104977413877,
+ "boot_p": 0.022022022022022022,
+ "boot_mean": 0.005130939896281145,
+ "first20_seconds": 5,
+ "projected_minutes_999": 4.16,
+ "B_reason": "first 20 replicates took 5 s, projected 4.2 min for 999 (< 30 min), so B = 999 per the reduced-K rule"
+}

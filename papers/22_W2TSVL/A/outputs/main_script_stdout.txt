@@ -1,0 +1,335 @@
+Loading required package: MASS
+Tracing function "polr" in package "MASS"
+[1] "polr"
+
+> library(foreign)
+
+> library(haven)
+
+> dta <- read_dta("OA23 Base UT-TEC.dta")
+
+> attach(dta)
+
+> objects()
+[1] "browseURL" "dta"      
+
+> TratUT2 <- as.factor(TratUT2)
+
+> levels(TratUT2)
+[1] "1" "2" "3" "4" "5"
+
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following object is masked from ‘package:MASS’:
+
+    select
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+> library(plyr)
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: ‘plyr’
+
+The following objects are masked from ‘package:dplyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+
+> dta$Treatment <- revalue(TratUT2, c(`1` = "Control", 
++     `2` = "Strike", `3` = "Pro_strike", `4` = "Anti_strike", 
++     `5` = "Double_frame"))
+
+> UT2_1 <- as.numeric(UT2_1)
+
+> dta$unions <- dta$UT2_1
+
+> dta$unions <- ifelse(dta$unions == 1, 5, ifelse(dta$unions == 
++     2, 4, ifelse(dta$unions == 3, 3, ifelse(dta$unions == 4, 
++     2, ifelse(dta$unions == 5, 1, NA)))))
+
+> table(dta$unions, dta$UT2_1)
+   
+      1   2   3   4   5   6
+  1   0   0   0   0 152   0
+  2   0   0   0 192   0   0
+  3   0   0 185   0   0   0
+  4   0 225   0   0   0   0
+  5 222   0   0   0   0   0
+
+> mean_unions_Tr_2 <- dta %>% group_by(dta$Treatment) %>% 
++     dplyr::summarize(Mean = mean(unions, na.rm = TRUE))
+
+> mean_unions_Tr_2
+# A tibble: 5 × 2
+  `dta$Treatment`  Mean
+  <fct>           <dbl>
+1 Control          3.25
+2 Strike           3.08
+3 Pro_strike       3.41
+4 Anti_strike      2.96
+5 Double_frame     3.17
+
+> summary_expertiment_union <- dta %>% group_by(Treatment) %>% 
++     dplyr::summarise(mean_outcome = mean(unions, na.rm = TRUE), 
++         ci_lower = mean_outcome - qt(0.95, length(unions) - 1) * 
++             sd(unions, na.rm = TRUE)/sqrt(length(unions)), ci_upper = mean_outcome + 
++             qt(0.95, length(unions) - 1) * sd(unions, na.rm = TRUE)/sqrt(length(unions)))
+
+> summary_expertiment_union
+# A tibble: 5 × 4
+  Treatment    mean_outcome ci_lower ci_upper
+  <fct>               <dbl>    <dbl>    <dbl>
+1 Control              3.25     3.08     3.42
+2 Strike               3.08     2.93     3.23
+3 Pro_strike           3.41     3.25     3.57
+4 Anti_strike          2.96     2.81     3.12
+5 Double_frame         3.17     3.00     3.34
+
+> library(MASS)
+
+> library(broom)
+
+> library(dplyr)
+
+> library(ggplot2)
+
+> tidy_reg_conf_int <- dta %>% polr(as.factor(unions) ~ 
++     Treatment, data = ., Hess = TRUE) %>% tidy(conf.int = TRUE, 
++     conf.level = 0.95)
+
+> tidy_reg_conf_int
+# A tibble: 8 × 7
+  term                 estimate std.error statistic conf.low conf.high coef.type
+  <chr>                   <dbl>     <dbl>     <dbl>    <dbl>     <dbl> <chr>    
+1 TreatmentStrike       -0.242      0.179    -1.35    -0.592    0.108  coeffici…
+2 TreatmentPro_strike    0.194      0.181     1.07    -0.161    0.549  coeffici…
+3 TreatmentAnti_strike  -0.386      0.180    -2.15    -0.738   -0.0343 coeffici…
+4 TreatmentDouble_fra…  -0.121      0.183    -0.664   -0.480    0.236  coeffici…
+5 1|2                   -1.82       0.146   -12.5     NA       NA      scale    
+6 2|3                   -0.730      0.134    -5.44    NA       NA      scale    
+7 3|4                    0.0545     0.132     0.412   NA       NA      scale    
+8 4|5                    1.12       0.137     8.16    NA       NA      scale    
+
+> tidy_reg_conf_int <- tidy_reg_conf_int %>% mutate(term = recode(term, 
++     TreatmentControl = "Control", TreatmentStrike = "Strike", 
++     TreatmentPro_strike = "Pro-Strike", TreatmentAnti_strike = "Anti-Strike", 
++     TreatmentDouble_frame = "Double Frame")) %>% mutate(term = factor(term, 
++     levels = c("Double Frame", "Anti-Strike", "Pro-Strike", "Strike", 
++         "Control")))
+
+> tidy_reg_conf_int %>% filter(term != "(Intercept)") %>% 
++     ggplot(aes(estimate, term)) + geom_point(position = position_dodge(width = 0.5)) + 
++     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), position = position_dodge(width = 0.5), 
++         height = 0.2) + geom_vline(xintercept = 0, lty = 2) + 
++     labs(x = "Estimate of treatment effect on union support", 
++         y = NULL, title = "Coefficient plot with 95% confidence intervals", 
++         color = "Confidence Level") + theme_minimal()
+
+> dta$Treatment <- relevel(dta$Treatment, ref = "Pro_strike")
+
+> summary(lm(dta$unions ~ dta$Treatment))
+
+Call:
+lm(formula = dta$unions ~ dta$Treatment)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.40704 -1.16842  0.03646  1.03646  2.03646 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                3.40704    0.09812  34.723  < 2e-16 ***
+dta$TreatmentControl      -0.15825    0.13774  -1.149  0.25088    
+dta$TreatmentStrike       -0.32282    0.14040  -2.299  0.02170 *  
+dta$TreatmentAnti_strike  -0.44349    0.14002  -3.167  0.00159 ** 
+dta$TreatmentDouble_frame -0.23861    0.14040  -1.700  0.08953 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.384 on 971 degrees of freedom
+  (35 observations deleted due to missingness)
+Multiple R-squared:  0.01168,	Adjusted R-squared:  0.007608 
+F-statistic: 2.869 on 4 and 971 DF,  p-value: 0.02223
+
+
+> tidy_reg_conf_int <- dta %>% polr(as.factor(unions) ~ 
++     Treatment, data = ., Hess = TRUE) %>% tidy(conf.int = TRUE, 
++     conf.level = 0.95)
+
+> tidy_reg_conf_int
+# A tibble: 8 × 7
+  term                 estimate std.error statistic conf.low conf.high coef.type
+  <chr>                   <dbl>     <dbl>     <dbl>    <dbl>     <dbl> <chr>    
+1 TreatmentControl       -0.194     0.181     -1.07   -0.549    0.161  coeffici…
+2 TreatmentStrike        -0.435     0.178     -2.45   -0.785   -0.0867 coeffici…
+3 TreatmentAnti_strike   -0.579     0.179     -3.24   -0.931   -0.229  coeffici…
+4 TreatmentDouble_fra…   -0.315     0.182     -1.73   -0.672    0.0413 coeffici…
+5 1|2                    -2.01      0.148    -13.6    NA       NA      scale    
+6 2|3                    -0.923     0.134     -6.89   NA       NA      scale    
+7 3|4                    -0.139     0.131     -1.06   NA       NA      scale    
+8 4|5                     0.927     0.135      6.87   NA       NA      scale    
+
+> tidy_reg_conf_int <- tidy_reg_conf_int %>% mutate(term = recode(term, 
++     TreatmentControl = "Control", TreatmentStrike = "Strike", 
++     TreatmentPro_strike = "Pro-Strike", TreatmentAnti_strike = "Anti-Strike", 
++     TreatmentDouble_frame = "Double Frame")) %>% mutate(term = factor(term, 
++     levels = c("Double Frame", "Anti-Strike", "Pro-Strike", "Strike", 
++         "Control")))
+
+> tidy_reg_conf_int %>% filter(term != "(Intercept)") %>% 
++     ggplot(aes(estimate, term)) + geom_point(position = position_dodge(width = 0.5)) + 
++     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), position = position_dodge(width = 0.5), 
++         height = 0.2) + geom_vline(xintercept = 0, lty = 2) + 
++     labs(x = "Estimate of treatment effect on union support", 
++         y = NULL, title = "Coefficient plot with 95% confidence intervals", 
++         color = "Confidence Level") + theme_minimal()
+
+> table(dta$UT2_2)
+
+  1   2   3   4   5   6   7   8 
+235  35  64  74 146  85 322  50 
+
+> dta$Support_teachers <- ifelse(UT2_2 == 8, NA, UT2_2)
+
+> table(dta$Support_teachers)
+
+  1   2   3   4   5   6   7 
+235  35  64  74 146  85 322 
+
+> class(dta$Support_teachers)
+[1] "numeric"
+
+> summary_expertiment_teachers <- dta %>% group_by(Treatment) %>% 
++     dplyr::summarise(mean_outcome = mean(Support_teachers, na.rm = TRUE), 
++         ci_lower = mean_outcome - qt(0.975, length(Support_teachers) - 
++             1) * sd(Support_teachers, na.rm = TRUE)/sqrt(length(Support_teachers)), 
++         ci_upper = mean_outcome + qt(0.975, length(Support_teachers) - 
++             1) * sd(Support_teachers, na.rm = TRUE)/sqrt(length(Support_teachers)))
+
+> summary_expertiment_teachers
+# A tibble: 5 × 4
+  Treatment    mean_outcome ci_lower ci_upper
+  <fct>               <dbl>    <dbl>    <dbl>
+1 Pro_strike           4.91     4.59     5.24
+2 Control              4.36     4.04     4.68
+3 Strike               4.18     3.84     4.51
+4 Anti_strike          4.40     4.08     4.73
+5 Double_frame         4.43     4.09     4.77
+
+> dta$Treatment <- relevel(dta$Treatment, ref = "Control")
+
+> summary(lm(dta$Support_teachers ~ dta$Treatment))
+
+Call:
+lm(formula = dta$Support_teachers ~ dta$Treatment)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9141 -2.4332  0.5957  2.0859  2.8245 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                4.36000    0.16868  25.848   <2e-16 ***
+dta$TreatmentPro_strike    0.55414    0.23915   2.317   0.0207 *  
+dta$TreatmentStrike       -0.18447    0.24232  -0.761   0.4467    
+dta$TreatmentAnti_strike   0.04426    0.24232   0.183   0.8551    
+dta$TreatmentDouble_frame  0.07316    0.24266   0.301   0.7631    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.385 on 956 degrees of freedom
+  (50 observations deleted due to missingness)
+Multiple R-squared:  0.01069,	Adjusted R-squared:  0.006548 
+F-statistic: 2.582 on 4 and 956 DF,  p-value: 0.03592
+
+
+> library(MASS)
+
+> library(broom)
+
+> library(dplyr)
+
+> library(ggplot2)
+
+> tidy_reg_conf_int <- dta %>% polr(as.factor(Support_teachers) ~ 
++     Treatment, data = ., Hess = TRUE) %>% tidy(conf.int = TRUE, 
++     conf.level = 0.95)
+
+> tidy_reg_conf_int <- tidy_reg_conf_int %>% mutate(term = recode(term, 
++     TreatmentControl = "Control", TreatmentStrike = "Strike", 
++     TreatmentPro_strike = "Pro-Strike", TreatmentAnti_strike = "Anti-Strike", 
++     TreatmentDouble_frame = "Double Frame")) %>% mutate(term = factor(term, 
++     levels = c("Double Frame", "Anti-Strike", "Pro-Strike", "Strike", 
++         "Control")))
+
+> tidy_reg_conf_int %>% filter(term != "(Intercept)") %>% 
++     ggplot(aes(estimate, term, color)) + geom_point(position = position_dodge(width = 0.5)) + 
++     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), position = position_dodge(width = 0.5), 
++         height = 0.2) + geom_vline(xintercept = 0, lty = 2) + 
++     labs(x = "Estimate of treatment effect on union support", 
++         y = NULL, title = "Coefficient plot with 95% confidence intervals", 
++         color = "Confidence Level") + theme_minimal()
+
+> dta$Treatment <- relevel(dta$Treatment, ref = "Pro_strike")
+
+> summary(lm(dta$Support_teachers ~ dta$Treatment))
+
+Call:
+lm(formula = dta$Support_teachers ~ dta$Treatment)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9141 -2.4332  0.5957  2.0859  2.8245 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                 4.9141     0.1695  28.987  < 2e-16 ***
+dta$TreatmentControl       -0.5541     0.2391  -2.317  0.02071 *  
+dta$TreatmentStrike        -0.7386     0.2429  -3.041  0.00243 ** 
+dta$TreatmentAnti_strike   -0.5099     0.2429  -2.099  0.03608 *  
+dta$TreatmentDouble_frame  -0.4810     0.2432  -1.977  0.04829 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.385 on 956 degrees of freedom
+  (50 observations deleted due to missingness)
+Multiple R-squared:  0.01069,	Adjusted R-squared:  0.006548 
+F-statistic: 2.582 on 4 and 956 DF,  p-value: 0.03592
+
+
+> tidy_reg_conf_int <- dta %>% polr(as.factor(Support_teachers) ~ 
++     Treatment, data = ., Hess = TRUE) %>% tidy(conf.int = TRUE, 
++     conf.level = 0.95)
+
+> tidy_reg_conf_int <- tidy_reg_conf_int %>% mutate(term = recode(term, 
++     TreatmentControl = "Control", TreatmentStrike = "Strike", 
++     TreatmentPro_strike = "Pro-Strike", TreatmentAnti_strike = "Anti-Strike", 
++     TreatmentDouble_frame = "Double Frame")) %>% mutate(term = factor(term, 
++     levels = c("Double Frame", "Anti-Strike", "Pro-Strike", "Strike", 
++         "Control")))
+
+> tidy_reg_conf_int %>% filter(term != "(Intercept)") %>% 
++     ggplot(aes(estimate, term, color)) + geom_point(position = position_dodge(width = 0.5)) + 
++     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), position = position_dodge(width = 0.5), 
++         height = 0.2) + geom_vline(xintercept = 0, lty = 2) + 
++     labs(x = "Estimate of treatment effect on union support", 
++         y = NULL, title = "Coefficient plot with 95% confidence intervals", 
++         color = "Confidence Level") + theme_minimal()
+null device 
+          1 
+source result class: list 

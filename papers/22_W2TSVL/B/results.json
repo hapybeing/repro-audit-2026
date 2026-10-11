@@ -1,0 +1,161 @@
+{
+ "paper_id": "22_W2TSVL",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Ordered logit coefficient for the anti-strike treatment (anti_strike), DV union influence (unions), control condition as reference, no weights, no controls (Appendix A1.R model m1)",
+   "paper_value": -0.386,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.385803718390492,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00019628160950801998,
+   "rel_diff": 0.0005085015790363212,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.179507, Wald z -2.1492, two-sided Wald p 0.031615; polr convergence 0"
+  },
+  {
+   "id": "T2",
+   "description": "Ordered logit coefficient for the pro-strike treatment (pro_strike), DV support for striking teachers (factor(Support_teachers)), control condition as reference, no weights, no controls (Appendix A1.R model m7)",
+   "paper_value": 0.473,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.473368703140289,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0003687031402890284,
+   "rel_diff": 0.000779499239511688,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.181676, Wald z 2.6056, two-sided Wald p 0.009172; polr convergence 0"
+  },
+  {
+   "id": "T3",
+   "description": "Ordered logit coefficient for the pro-strike treatment (pro_strike), DV union influence (unions), control condition as reference, no weights, no controls (model m1)",
+   "paper_value": 0.194,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": 0.193589744546613,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0004102554533869929,
+   "rel_diff": -0.002114718831891716,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.181072, Wald z 1.0691, two-sided Wald p 0.285010; polr convergence 0"
+  },
+  {
+   "id": "T4",
+   "description": "Ordered logit coefficient for the anti-strike treatment (anti_strike), DV union influence (unions), pro-strike condition as reference, no weights, no controls (model m4)",
+   "paper_value": -0.579,
+   "paper_rounding_decimals": 3,
+   "reproduced_value": -0.579391686370038,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.00039168637003805795,
+   "rel_diff": -0.0006764876857306701,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.179095, Wald z -3.2351, two-sided Wald p 0.001216; polr convergence 0"
+  },
+  {
+   "id": "T5",
+   "description": "Number of observations in the union influence simple model (nobs(m1))",
+   "paper_value": 976,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 976.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs() = 976, $n = 976"
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in the support for striking teachers simple model (nobs(m7))",
+   "paper_value": 961,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 961.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.0,
+   "rel_diff": 0.0,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs() = 961, $n = 961"
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Nonparametric case bootstrap, 1000 resamples, set.seed(20261011), refit m1 then m7 specification; percentile CIs, bootstrap p",
+   "ran": true,
+   "estimate": -0.385803718390492,
+   "se_or_ci": "bootstrap SE 0.1855; 95% CI [-0.7316, -0.0327]; 99% CI [-0.8622, 0.0367]",
+   "p_value": 0.034,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "Field refers to T1 (anti_strike, m1). failed fits T1 0, T2 0. T2 (pro_strike, m7): estimate 0.4734, bootstrap SE 0.1862, 95% CI [0.1036, 0.8392], 99% CI [-0.0197, 0.9716], bootstrap p 0.0160. T2 same direction and significance at printed p < 0.01 threshold: False."
+  },
+  {
+   "id": "R_b",
+   "description": "Drop rows with |z| > 3 on age (d2, z over all 1011 rows), refit m1 and m7 specifications; Wald SE and p",
+   "ran": true,
+   "estimate": -0.385711609567811,
+   "se_or_ci": "SE 0.1795 (Wald)",
+   "p_value": 0.0316588063053201,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "Field refers to T1 (anti_strike, m1). rows dropped 2 (N T1 974, T2 959). T2 (pro_strike): estimate 0.4798, SE 0.1820, p 0.008387. T2 same direction and significance at printed p < 0.01 threshold: True."
+  },
+  {
+   "id": "R_c",
+   "description": "Linear model (lm) instead of ordered logit on m1 and m7 rows, HC2 robust SEs (sandwich/lmtest)",
+   "ran": true,
+   "estimate": -0.285238821138214,
+   "se_or_ci": "SE 0.1409 (HC2)",
+   "p_value": 0.0432123405310588,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/robustness_results.csv",
+   "note": "Field refers to T1 (anti_strike, m1). N T1 976, T2 961; estimates in outcome units. T2 (pro_strike): estimate 0.5541, SE 0.2382, p 0.020210. T2 same direction and significance at printed p < 0.01 threshold: False."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "Framing Labor Action_Appendix A1.R",
+   "line": 226,
+   "description": "Table A4 group means of union influence are computed as mean() of the ordered factor `unions`, which returns NA for every group, so the computed means are never shown and the Table A4 values are typed as constants at line 234. No effect on any printed number: the typed constants equal the means computed from the data (all 10 Table A4 cells match at 2 decimals, outputs/check_tableA4_means.csv), and the main script (line 52) computes the same means on a numeric `unions`.",
+   "evidence": "outputs/appendix_run_stdout.txt prints mean_unions_Tr_2 with Mean NA for all five treatments; outputs/appendix_run_stderr.txt: 'argument is not numeric or logical: returning NA'. `dta$unions` is made an ordered factor at line 58."
+  }
+ ],
+ "env_fixes": [
+  "diffs/appendix_A1_R.diff: line 14 absolute Windows read_dta path replaced by read_dta(\"OA23 Base UT-TEC.dta\") (authors' own alternative, main script line 15); install.packages lines 4, 5, 6, 138, 282 commented out (packages preinstalled)",
+  "diffs/main_R_script.diff: line 14 absolute path replaced as above; install.packages lines 4 to 8 commented out",
+  "scripts/run_appendix.R: browseURL defined as a no-op before source() (PREREG.md allowed fix); models and data saved to outputs/ after the script",
+  "scripts/run_main.R: broom::tidy wrapped only to record polr coefficients for the cross-check; ggplot output to a pdf device",
+  "Packages: Debian binaries from setup_env.sh plus r-cran-gmodels via apt; stargazer 5.2.3 and tableone 0.13.2 from CRAN into the per-run library (no Debian package)"
+ ],
+ "proposed_class": "A",
+ "class_reason": "All six targets reproduced exactly to the paper's printed rounding (T1 to T4 coefficients at 3 decimals, T5 and T6 Ns exact), with the pre-registered Wald p in the printed star bucket for every coefficient; only path, install.packages and browseURL environment fixes were needed.",
+ "confidence": "high",
+ "confidence_reason": "Targets matched by script with the authors' own code and a deterministic estimator; agreement with agent A is not known to agent B, which PROTOCOL.md section 8 requires for high.",
+ "time_minutes": 6,
+ "uncertainties": [
+  "Cross-check: the main script's Figure 1 to 4 polr fits equal the appendix models (max abs diff in the target coefficient: 9.99e-16; per fit {\"fig1_vs_m1\": 0.0, \"fig2_vs_m4\": 0.0, \"fig3_vs_m7\": 9.99e-16, \"fig4_vs_m10\": 0.0}; outputs/main_script_polr_coefs.csv vs outputs/all_coefs_m1_m4_m7_m10.csv). The figure-script fits are identical to the appendix models to machine precision.",
+  "T2 Wald p is 0.00917, just under the 0.01 cut for the printed ***; its bucket is matched, but the margin is small. Under robustness, T2 keeps p < 0.01 only in R_b; the R_a bootstrap 99% CI and the R_c HC2 linear model put it between 0.01 and 0.05 (same direction). T1 keeps direction and p < 0.05 in all three checks.",
+  "Likelihood-ratio / profile p-values (the second, non-pre-registered statistic) were not computed; the class uses the first listed statistic (Wald), per batch5_class_decisions.md item 1.",
+  "Weighted model Ns 975 (Table A1 col 2) and 962 (Table A2 col 2) are reproduced by the code (outputs/table_1A_new.htm, table_A2_new.htm): MASS::polr reports the sum of the weights Ponderador as N. Not a target.",
+  "Overall outcome means from the data: union influence 3.1773 (SD 1.3895, n 976), teacher support 4.4610 (SD 2.3933, n 961); text p. 1261 prints 3.17 (SD 1.4) and 4.46 (SD 2.4). 3.1773 rounds to 3.18, so the printed 3.17 reads as truncated; not a target (outputs/check_overall_means.csv).",
+  "Table A4 typed constants all equal computed group means at 2 decimals: True (outputs/check_tableA4_means.csv).",
+  "Data file has 1011 rows (treatment groups 210, 200, 206, 201, 194; outputs/check_value_labels.txt); text p. 1261 says 1,010 respondents. Not a target.",
+  "Unverified observation (coding choice, not tested for impact): Appendix A1.R lines 110-121 map education codes 1 to 12 and send everything else to NA, which includes d3 = 13 'No tiene estudios' (17 respondents, label in the .dta; outputs/check_value_labels.txt). This affects only the control-variable models (m3, m6, m9, m12; Ns 754 and 747), not the targets.",
+  "Brief said the absolute path is on line 15; in both downloaded scripts it is on line 14 (line 15 of the main script is the commented alternative). PREREG.md says line 14; the fix was applied to line 14.",
+  "Environment differs from the authors' (R 4.4.2 on Windows): R 4.5.0 on Debian aarch64, MASS 7.3-65, ggplot2 3.5.1. The figure code lines 212 and 252 (`aes(estimate, term, color)`) ran without error and geom_errorbarh gave no warning in this ggplot2 version; a newer ggplot2 may warn.",
+  "An `ls` of the paper folder at the start showed that a folder named A exists; nothing in it was opened or read."
+ ]
+}

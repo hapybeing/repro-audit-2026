@@ -1,0 +1,53 @@
+captured fits: 4  top-level Treatment fits: 4 
+                       fit                                 formula nobs
+TreatmentStrike          1           as.factor(unions) ~ Treatment  976
+TreatmentPro_strike      1           as.factor(unions) ~ Treatment  976
+TreatmentAnti_strike     1           as.factor(unions) ~ Treatment  976
+TreatmentDouble_frame    1           as.factor(unions) ~ Treatment  976
+TreatmentControl         2           as.factor(unions) ~ Treatment  976
+TreatmentStrike1         2           as.factor(unions) ~ Treatment  976
+TreatmentAnti_strike1    2           as.factor(unions) ~ Treatment  976
+TreatmentDouble_frame1   2           as.factor(unions) ~ Treatment  976
+TreatmentPro_strike1     3 as.factor(Support_teachers) ~ Treatment  961
+TreatmentStrike2         3 as.factor(Support_teachers) ~ Treatment  961
+TreatmentAnti_strike2    3 as.factor(Support_teachers) ~ Treatment  961
+TreatmentDouble_frame2   3 as.factor(Support_teachers) ~ Treatment  961
+TreatmentControl1        4 as.factor(Support_teachers) ~ Treatment  961
+TreatmentStrike3         4 as.factor(Support_teachers) ~ Treatment  961
+TreatmentAnti_strike3    4 as.factor(Support_teachers) ~ Treatment  961
+TreatmentDouble_frame3   4 as.factor(Support_teachers) ~ Treatment  961
+                                        term   estimate       se appendix_model
+TreatmentStrike              TreatmentStrike -0.2415996 0.178545             m1
+TreatmentPro_strike      TreatmentPro_strike  0.1935897 0.181072             m1
+TreatmentAnti_strike    TreatmentAnti_strike -0.3858037 0.179507             m1
+TreatmentDouble_frame  TreatmentDouble_frame -0.1212884 0.182570             m1
+TreatmentControl            TreatmentControl -0.1935938 0.181072             m4
+TreatmentStrike1             TreatmentStrike -0.4351988 0.177994             m4
+TreatmentAnti_strike1   TreatmentAnti_strike -0.5793917 0.179095             m4
+TreatmentDouble_frame1 TreatmentDouble_frame -0.3148804 0.181884             m4
+TreatmentPro_strike1     TreatmentPro_strike  0.4733687 0.181676             m7
+TreatmentStrike2             TreatmentStrike -0.1126839 0.180614             m7
+TreatmentAnti_strike2   TreatmentAnti_strike  0.0295239 0.178880             m7
+TreatmentDouble_frame2 TreatmentDouble_frame  0.0569987 0.180580             m7
+TreatmentControl1           TreatmentControl -0.4733785 0.181676            m10
+TreatmentStrike3             TreatmentStrike -0.5860641 0.185449            m10
+TreatmentAnti_strike3   TreatmentAnti_strike -0.4438513 0.183381            m10
+TreatmentDouble_frame3 TreatmentDouble_frame -0.4163849 0.184990            m10
+                       appendix_estimate    abs_diff
+TreatmentStrike               -0.2415996 0.00000e+00
+TreatmentPro_strike            0.1935897 0.00000e+00
+TreatmentAnti_strike          -0.3858037 0.00000e+00
+TreatmentDouble_frame         -0.1212884 0.00000e+00
+TreatmentControl              -0.1935938 0.00000e+00
+TreatmentStrike1              -0.4351988 0.00000e+00
+TreatmentAnti_strike1         -0.5793917 0.00000e+00
+TreatmentDouble_frame1        -0.3148804 0.00000e+00
+TreatmentPro_strike1           0.4733687 1.33227e-15
+TreatmentStrike2              -0.1126839 1.92901e-15
+TreatmentAnti_strike2          0.0295239 1.42594e-15
+TreatmentDouble_frame2         0.0569987 1.20043e-15
+TreatmentControl1             -0.4733785 0.00000e+00
+TreatmentStrike3              -0.5860641 0.00000e+00
+TreatmentAnti_strike3         -0.4438513 0.00000e+00
+TreatmentDouble_frame3        -0.4163849 0.00000e+00
+max abs diff: 1.929013e-15 

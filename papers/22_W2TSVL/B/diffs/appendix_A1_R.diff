@@ -1,0 +1,42 @@
+--- "orig/Framing Labor Action_Appendix A1.R"	2026-10-10 21:13:21.387236501 +0000
++++ "run/Framing Labor Action_Appendix A1.R"	2026-10-10 21:13:21.407803610 +0000
+@@ -1,9 +1,9 @@
+ # Replication code for Christopher Chambers-Ju & Mart Trasberg manuscript "Framing Labor Action" (Last updated Feb 15, 2025)
+ #  Appendix Tables and Balance Table
+ 
+-install.packages("foreign")
+-install.packages("haven")
+-install.packages("broom")
++# install.packages("foreign")
++# install.packages("haven")
++# install.packages("broom")
+ library("haven")
+ 
+ # Loading data
+@@ -11,7 +11,7 @@
+ 
+ # file.choose()
+ 
+-dta <- read_dta("C:/Users/L03538527/OneDrive - Instituto Tecnologico y de Estudios Superiores de Monterrey/Research/Education in Mexico/Drafts/Perspectives on Politics/Analysis/OA23 Base UT-TEC.dta")
++dta <- read_dta("OA23 Base UT-TEC.dta")
+ 
+ # dta<-OA23_Base_UT_TEC
+ attach(dta)
+@@ -135,7 +135,7 @@
+ 
+ ## TABLE A1 ##
+ 
+-install.packages("stargazer")  
++# install.packages("stargazer")  
+ library(stargazer)
+ 
+ library(MASS)
+@@ -279,7 +279,7 @@
+ ## Table A5 ##
+ ## Balance Tests
+ 
+-install.packages("tableone")
++# install.packages("tableone")
+ library(tableone)
+ library(dplyr)
+ 

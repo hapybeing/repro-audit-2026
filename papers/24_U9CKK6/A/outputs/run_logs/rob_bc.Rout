@@ -1,0 +1,78 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ## Robustness R_b (outlier exclusion) and R_c (year as factor), as pre-registered in PREREG.md section 3.
+> ## Also a sanity refit of the identical formula on the saved estimation sample (must equal T1 exactly).
+> .libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+> suppressMessages(library(lme4))
+> S <- "/workspace/audit_runs/24_U9CKK6/A"
+> OUT <- "/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/24_U9CKK6/A/outputs"
+> ctl <- lmerControl(optimizer = "Nelder_Mead")
+> row_of <- function(check, target, term, m, extra = list()) {
++   fe <- fixef(m); se <- sqrt(diag(as.matrix(vcov(m)))); names(se) <- names(fe)
++   z <- fe[[term]] / se[[term]]
++   data.frame(check = check, target = target, term = term, estimate = fe[[term]], se = se[[term]], t_value = z,
++              p_naive = 2 * pnorm(-abs(z)), nobs = nobs(m),
++              conv_messages = paste(m@optinfo$conv$lme4$messages, collapse = " | "),
++              dropped_cols = paste(attr(getME(m, "X"), "col.dropped"), collapse = ";"), extra, stringsAsFactors = FALSE)
++ }
+> res <- list()
+> fileout <- file.path(OUT, "robustness_bc.csv")
+> save_res <- function() write.csv(do.call(rbind, res), fileout, row.names = FALSE)
+> 
+> ## ---- Table 1 Model 2 (T1) ----
+> s <- readRDS(file.path(S, "models", "sample_cycle_AE_fit2.rds")); d <- s$data; f <- s$formula
+> m0 <- lmer(f, data = d, control = ctl)
+> res[["sanity_T1"]] <- row_of("sanity_refit_on_saved_sample", "T1", "challenge:days_to_nat", m0, list(rows_dropped = 0)); save_res(); rm(m0); invisible(gc())
+> y <- as.numeric(d$embed_dict_scale); z <- (y - mean(y)) / sd(y); keep <- abs(z) <= 3
+> mb <- lmer(f, data = d[keep, ], control = ctl)
+> res[["R_b_T1"]] <- row_of("R_b_outliers_absz_gt3", "T1", "challenge:days_to_nat", mb, list(rows_dropped = sum(!keep))); save_res(); rm(mb); invisible(gc())
+> fc <- update(f, . ~ . - year + as.factor(year))
+> cat("R_c formula:", deparse(fc, width.cutoff = 500L), "\n")
+R_c formula: embed_dict_scale ~ challenge + days_to_EP + days_to_nat + EP_Coa + lrgen_scale + de_macro + de_civil + de_health + de_agri + de_labour + de_edu + de_envi + de_energy + de_immi + de_transport + de_law + de_welfare + de_commerce + de_defense + de_techno + de_trade + de_intern + de_govern + de_lands + de_culture + proced_1 + proced_2 + proced_3 + proced_4 + proced_5 + as.factor(country) + (1 | mep_ids) + (1 | party_id) + as.factor(year) + challenge:days_to_EP + challenge:days_to_nat 
+> mc <- lmer(fc, data = d, control = ctl)
+> res[["R_c_T1"]] <- row_of("R_c_year_as_factor", "T1", "challenge:days_to_nat", mc, list(rows_dropped = 0)); save_res(); rm(mc, d); invisible(gc())
+> 
+> ## ---- Table 2 secondary R_b (T5, T6) ----
+> for (spec in list(c("AUT_sal_model", "aut_dict_scale", "T5", "challenge:aut_sal"),
++                   c("EU_sal_model", "int_dict_scale", "T6", "challenge:EU_sal"))) {
++   s <- readRDS(file.path(S, "models", paste0("sample_", spec[1], ".rds"))); d <- s$data; f <- s$formula
++   m0 <- lmer(f, data = d, control = ctl)
++   res[[paste0("sanity_", spec[3])]] <- row_of("sanity_refit_on_saved_sample", spec[3], spec[4], m0, list(rows_dropped = 0)); save_res(); rm(m0); invisible(gc())
++   y <- as.numeric(d[[spec[2]]]); z <- (y - mean(y)) / sd(y); keep <- abs(z) <= 3
++   mb <- lmer(f, data = d[keep, ], control = ctl)
++   res[[paste0("R_b_", spec[3])]] <- row_of("R_b_outliers_absz_gt3_secondary", spec[3], spec[4], mb, list(rows_dropped = sum(!keep))); save_res(); rm(mb, d); invisible(gc())
++ }
+> cat("done\n"); print(do.call(rbind, res)[, c("check", "target", "estimate", "se", "p_naive", "nobs", "rows_dropped")])
+done
+                                    check target   estimate          se
+sanity_T1    sanity_refit_on_saved_sample     T1 0.01827458 0.004805794
+R_b_T1              R_b_outliers_absz_gt3     T1 0.01325750 0.002957635
+R_c_T1                 R_c_year_as_factor     T1 0.01741078 0.004817509
+sanity_T5    sanity_refit_on_saved_sample     T5 0.03719214 0.013307119
+R_b_T5    R_b_outliers_absz_gt3_secondary     T5 0.03644563 0.011509805
+sanity_T6    sanity_refit_on_saved_sample     T6 0.01541848 0.007575275
+R_b_T6    R_b_outliers_absz_gt3_secondary     T6 0.01258192 0.007197870
+               p_naive   nobs rows_dropped
+sanity_T1 1.431776e-04 266854            0
+R_b_T1    7.378565e-06 261365         5489
+R_c_T1    3.014357e-04 266854            0
+sanity_T5 5.191486e-03 101077            0
+R_b_T5    1.542929e-03  99154         1923
+sanity_T6 4.181378e-02  77276            0
+R_b_T6    8.046293e-02  76686          590
+> 

@@ -1,0 +1,11 @@
+# Wrapper for the authors' main script (cross-check only). Captures each polr fit's tidy output by tracing broom::tidy.
+browseURL <- function(...) invisible(NULL)
+dir.create("outputs", showWarnings = FALSE)
+pdf("outputs/main_script_figures.pdf")
+.tidy_log <- list()
+trace(MASS::polr, exit = quote({ .GlobalEnv$.polr_fits[[length(.GlobalEnv$.polr_fits) + 1]] <- returnValue() }), print = FALSE, where = asNamespace("MASS"))
+.polr_fits <- list()
+res <- try(source("Framing Labor Action_R script.R", echo = TRUE, max.deparse.length = Inf, print.eval = TRUE))
+dev.off()
+saveRDS(.polr_fits, "outputs/main_polr_fits.rds")
+cat("source result class:", class(res), "\n")

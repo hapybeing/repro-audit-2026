@@ -1,0 +1,76 @@
+Date (IST): 2026-10-11 08:18
+== uname -a
+Linux (none) 6.12.110+ #2 SMP Thu Sep 17 16:53:02 UTC 2026 aarch64 GNU/Linux
+== /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+== nproc: 2
+               total        used        free      shared  buff/cache   available
+Mem:            7945        4295        3017        3422        4256        3650
+Swap:              0           0           0
+== R
+R version 4.5.0 (2025-04-11) 
+== R_LIBS_USER=/workspace/audit_runs/25_914AN0/B/rlib (per-run library); system libraries /usr/lib/R/site-library, /usr/lib/R/library
+== Package versions used (from R_LIBS_USER then system)
+data.table   1.17.0       /usr/lib/R/site-library
+dplyr        1.1.4        /usr/lib/R/site-library
+stringr      1.5.1        /usr/lib/R/site-library
+lfe          3.1.1        /workspace/audit_runs/25_914AN0/B/rlib
+lme4         1.1.35.3     /workspace/audit_runs/25_914AN0/B/rlib
+nlme         3.1.168      /usr/lib/R/library
+Formula      1.2.5        /usr/lib/R/site-library
+xtable       1.8.4        /usr/lib/R/site-library
+optimx       2023.10.21   /workspace/audit_runs/25_914AN0/B/rlib
+ggplot2      3.5.1        /usr/lib/R/site-library
+robustlmm    3.3.1        /workspace/audit_runs/25_914AN0/B/rlib
+Matching     4.10.14      /workspace/audit_runs/25_914AN0/B/rlib
+fixest       0.12.0       /workspace/audit_runs/25_914AN0/B/rlib
+SUNGEO       1.3.0        /workspace/audit_runs/25_914AN0/B/rlib
+tidyselect   1.2.1        /usr/lib/R/site-library
+sf           1.0.19       /usr/lib/R/site-library
+terra        1.8.29       /usr/lib/R/site-library
+Matrix       1.7.3        /usr/lib/R/library
+Rcpp         1.1.2        /workspace/audit_runs/25_914AN0/B/rlib
+RcppEigen    0.3.4.0.2    /usr/lib/R/site-library
+V8           8.2.0        /workspace/audit_runs/25_914AN0/B/rlib
+dreamerr     1.5.0        /workspace/audit_runs/25_914AN0/B/rlib
+sandwich     3.1.1        /usr/lib/R/site-library
+== Install log (pins and fallbacks)
+2026-10-11 02:14:24 lfe trying 3.0-0 
+2026-10-11 02:14:28 lfe FAILED 3.0-0  
+2026-10-11 02:14:28 lfe trying current 
+2026-10-11 02:14:36 lfe INSTALLED 3.1.1 (requested current ) 
+2026-10-11 02:14:36 fixest trying 0.12.0 
+2026-10-11 02:15:40 fixest INSTALLED 0.12.0 (requested 0.12.0 ) 
+2026-10-11 02:15:40 lme4 trying 1.1-35.3 
+2026-10-11 02:16:18 lme4 INSTALLED 1.1.35.3 (requested 1.1-35.3 ) 
+2026-10-11 02:16:45 robustlmm trying 3.3-1 
+2026-10-11 02:17:14 robustlmm INSTALLED 3.3.1 (requested 3.3-1 ) 
+2026-10-11 02:17:14 Matching trying 4.10-14 
+2026-10-11 02:17:22 Matching INSTALLED 4.10.14 (requested 4.10-14 ) 
+2026-10-11 02:17:22 optimx trying 2023-10.21 
+2026-10-11 02:17:29 optimx INSTALLED 2023.10.21 (requested 2023-10.21 ) 
+2026-10-11 02:17:29 data.table trying 1.15.4 
+2026-10-11 02:17:33 data.table FAILED 1.15.4  
+2026-10-11 02:17:33 data.table fallback: use Debian system version 1.17.0 
+2026-10-11 02:17:33 SUNGEO trying 1.3.0 
+2026-10-11 02:20:50 SUNGEO FAILED 1.3.0  
+2026-10-11 02:20:50 SUNGEO trying 1.4.0 
+2026-10-11 02:20:53 SUNGEO FAILED 1.4.0  
+2026-10-11 02:20:53 SUNGEO trying current 
+2026-10-11 02:20:55 SUNGEO FAILED current  
+2026-10-11 02:20:55 SUNGEO NO VERSION INSTALLED 
+2026-10-11 02:22:35 attempt: V8 with DOWNLOAD_STATIC_LIBV8=1 then SUNGEO again
+2026-10-11 02:24:08 SUNGEO trying 1.3.0 
+2026-10-11 02:24:27 SUNGEO INSTALLED 1.3.0 (requested 1.3.0 ) 
+== sessionInfo() of each stage: outputs/sessionInfo_s1a.txt, outputs/sessionInfo_s1b.txt, outputs/sessionInfo_s4.txt
+== Seeds: authors' target blocks use no RNG. R_a bootstrap: set.seed(20261011) once, K=500 draws sample(n,n,replace=TRUE).
+== Authors' stated environment (README): R 4.4.1, Ubuntu 22.04, fixest 0.12.0, lfe 3.0-0

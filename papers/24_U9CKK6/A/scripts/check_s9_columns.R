@@ -1,0 +1,21 @@
+## Code-review check: which columns does 9_analysis4.R line 43 centre via the index 117:118?
+## Replays the authors' 9_analysis4.R lines 12-37 (with F1) and reports column names; also checks whether
+## those columns enter any Table 2 model formula.
+.libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+suppressMessages({library(zoo); library(tidyverse); library(lme4)})
+setwd("/workspace/audit_runs/24_U9CKK6/A/run")
+OUT <- "/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/24_U9CKK6/A/outputs"
+lines <- readLines("/workspace/audit_runs/24_U9CKK6/A/dl/9_analysis4.R")
+code <- c(lines[12], "EP_debates$text <- NA_character_; EP_debates$ori_text <- NA_character_", lines[13:37])
+suppressWarnings(eval(parse(text = code)))
+nm6 <- c(names(EP_debates), "radical")            # script 6: radical appended to the 117-column file
+nm9 <- names(EP_debates_sal)
+idx <- c(117, 118)
+used <- unique(unlist(lapply(c("AUT_sal_model", "Immi_sal_model", "EU_sal_model"), function(m)
+  all.vars(formula(readRDS(paste0("/workspace/audit_runs/24_U9CKK6/A/models/", m, ".rds")))))))
+res <- data.frame(script = c("6_analysis1.R line 35", "6_analysis1.R line 35", "9_analysis4.R line 43", "9_analysis4.R line 43"),
+                  index = c(idx, idx), column_name = c(nm6[idx], nm9[idx]),
+                  used_in_table2_formulas = c(nm6[idx], nm9[idx]) %in% used)
+res$radical_position_script9 <- which(nm9 == "radical"); res$ncol_script9 <- length(nm9)
+res$radical_in_table2_formulas <- "radical" %in% used | "radical_scale" %in% used
+write.csv(res, file.path(OUT, "s9_column_index_check.csv"), row.names = FALSE); print(res)

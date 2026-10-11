@@ -1,0 +1,16 @@
+draw 167 est 0.009392274 secs 29 
+draw 168 est 0.04029982 secs 22 
+draw 169 est 0.00523946 secs 21 
+draw 170 est 0.02794944 secs 24 
+draw 171 est 0.01580736 secs 17 
+draw 172 est 0.01938218 secs 22 
+draw 173 est 0.003547651 secs 24 
+draw 174 est 0.02046655 secs 31 
+draw 175 est 0.0277008 secs 28 
+draw 176 est 0.02276933 secs 21 
+draw 177 est 0.02862214 secs 21 
+draw 178 est 0.02016967 secs 23 
+  original_estimate K_rule K_done failed     boot_se        q025       q975
+1        0.01827458    178    178      0 0.008206379 0.002827913 0.03578655
+    p_normal
+1 0.02595565

@@ -1,0 +1,13 @@
+# S1a: data load and preprocessing (run2_main.R lines 55, 58, 98-107 verbatim). Fresh session.
+setwd("/workspace/audit_runs/25_914AN0/A/Replication_IO")
+source("/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/25_914AN0/A/scripts/common.R")
+guard("S1a start")
+source("code/run1_setup.R")
+source("code/functions.R")
+source("/workspace/projects/ff43b4ce-7fd5-48cf-8ce4-17d55fd19b5d/repo/papers/25_914AN0/A/scripts/common.R")  # re-define helpers (setup may detach nothing of ours, but be safe)
+run_lines(55); logmem("after line 55")
+run_lines(58); logmem("after line 58")
+run_lines(98, 107); logmem("after lines 98-107")
+cat(sprintf("nrow(X)=%d nrow(X_s)=%d\n", nrow(X), nrow(X_s)), file=file.path(PDIR,"outputs","s1a_rows.txt"))
+saveRDS(list(X_s=X_s, yvarz=yvarz, ylabz=ylabz, ylabz_short=ylabz_short), file.path(RUNDIR,"inter","s1a.rds"))
+logmem("S1a saved")

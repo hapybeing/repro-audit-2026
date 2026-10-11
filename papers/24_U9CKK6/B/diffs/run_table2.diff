@@ -1,0 +1,37 @@
+--- run_table2_ranges_verbatim.R	2026-10-11 00:15:59.182382162 +0000
++++ run_table2.R	2026-10-11 00:15:59.184571365 +0000
+@@ -1,3 +1,5 @@
++## ENV: run with working directory = RUNDIR (set by the caller). Lines below are the authors' unless marked ## ENV.
++cat('START', format(Sys.time()), '\n')
+ ####################ISSUE SALIENCE EFFECTS ############
+ library(lme4)
+ library(texreg)
+@@ -68,6 +70,7 @@
+                         de_defense + de_techno + de_trade + de_intern + de_govern +
+                         de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ as.factor(year) + as.factor(country) +
+                         (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(AUT_sal_model, "models/AUT_sal_model.rds"); cat('SAVED AUT_sal_model', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(AUT_sal_model)
+ 
+@@ -81,6 +84,7 @@
+                          de_defense + de_techno + de_trade + de_intern + de_govern +
+                          de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ as.factor(year) + as.factor(country) +
+                          (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(Immi_sal_model, "models/Immi_sal_model.rds"); cat('SAVED Immi_sal_model', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(Immi_sal_model)
+ 
+@@ -92,6 +96,7 @@
+                        de_defense + de_techno + de_trade + de_intern + de_govern +
+                        de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5 + as.factor(year) + as.factor(country) +
+                        (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
++saveRDS(EU_sal_model, "models/EU_sal_model.rds"); cat('SAVED EU_sal_model', format(Sys.time()), '\n') ## ENV save model
+ 
+ texreg(EU_sal_model)
+ 
+@@ -121,3 +126,4 @@
+        digits = 2,
+        caption = "The effect of changes in issue salience on issue emphasis")
+ 
++cat('END', format(Sys.time()), '\n')

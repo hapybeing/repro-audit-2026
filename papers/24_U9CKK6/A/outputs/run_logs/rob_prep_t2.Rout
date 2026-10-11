@@ -1,0 +1,163 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ## [ENV FIX] per-run library, working directory, model save folder (agent A)
+> .libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
+> setwd("/workspace/audit_runs/24_U9CKK6/A/run")
+> cat("START", format(Sys.time()), "\n")
+START 2026-10-10 23:20:02 
+> ####################ISSUE SALIENCE EFFECTS ############
+> library(lme4)
+Loading required package: Matrix
+> library(texreg)
+Version:  1.40
+Date:     2026-08-24
+Author:   Philip Leifeld (University of Manchester)
+
+Consider submitting praise using the praise or praise_interactive functions.
+Please cite the JSS article in your publications -- see citation("texreg").
+> library(sjPlot)
+> library(sjstats)
+> library(fixest)
+
+Attaching package: ‘fixest’
+
+The following objects are masked from ‘package:sjstats’:
+
+    r2, se
+
+> library(ggplot2)
+> library(ggeffects)
+> library(zoo)
+
+Attaching package: ‘zoo’
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+> library(skimr)
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.4     ✔ tibble    3.2.1
+✔ purrr     1.0.4     ✔ tidyr     1.3.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::expand()  masks Matrix::expand()
+✖ tidyr::extract() masks texreg::extract()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ tidyr::pack()    masks Matrix::pack()
+✖ tidyr::unpack()  masks Matrix::unpack()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> load("Data/EP_debates_07062023.Rdata")
+There were 50 or more warnings (use warnings() to see the first 50)
+> ## [ENV FIX F1] blank unused speech-text columns 4 and 6 (positions kept)
+> EP_debates$text <- NA_character_; EP_debates$ori_text <- NA_character_
+> 
+> ##### LOAD DATA FROM RAUH AND DE WILDE
+> 
+> load("Data/RdW_salience.Rdata")
+> 
+> ### PREP RdW Data for Merging
+> padpanel$eu.w[is.na(padpanel$eu.w)] <- 0
+> months_sal <- padpanel %>% group_by(country, month) %>% summarise(EU_sal= mean(eu.w))
+`summarise()` has grouped output by 'country'. You can override using the
+`.groups` argument.
+> 
+> months_sal$year_mon <- as.yearmon(months_sal$month)
+> months_sal <- mutate(months_sal,
++                       country = case_when(country == "DE" ~ "Germany",
++                                           country == "ES" ~ "Spain",
++                                           country == "NL" ~ "Netherlands",
++                                           country == "UK" ~ "United Kingdom"))
+> months_sal$month <- NULL
+> 
+> EP_debates$year_mon <- as.yearmon(EP_debates$date)
+> 
+> EP_debates_sal <- left_join(EP_debates, months_sal, by = c("country", "year_mon"))
+> 
+> 
+> 
+> EP_debates_sal$radical <- abs(EP_debates_sal$lrgen - 5)
+> range(EP_debates_sal$radical, na.rm = TRUE)
+[1] 0 5
+> 
+> centFUN <- function(x) {
++   x - mean(x, na.rm = TRUE)
++ }
+> 
+> result <- apply(EP_debates_sal[,c(22:24, 27:71, 73:75, 77:107,117:118)], MARGIN = 2, FUN = centFUN)
+> result <- as.data.frame(result)
+> 
+> 
+> EP_eurobar_cent <- cbind(EP_debates_sal[,-c(22:24, 27:71, 73:75, 77:107,117:118)], result)
+> 
+> rm(list=setdiff(ls(), "EP_eurobar_cent"))
+> 
+> EP_eurobar_cent$embed_dict_scale <- scale(EP_eurobar_cent$embed_dict)
+> EP_eurobar_cent$aut_dict_scale <- scale(EP_eurobar_cent$aut_dict)
+> EP_eurobar_cent$immi_dict_scale <- scale(EP_eurobar_cent$immi_dict)
+> EP_eurobar_cent$int_dict_scale <- scale(EP_eurobar_cent$int_dict)
+> EP_eurobar_cent$lrgen_scale <- scale(EP_eurobar_cent$lrgen)
+> EP_eurobar_cent$radical_scale <- scale(EP_eurobar_cent$radical)
+> 
+> EP_eurobar_cent$aut_sal <- scale(EP_eurobar_cent$mip_n_govdebt_ipol)
+> EP_eurobar_cent$immi_sal <- scale(EP_eurobar_cent$mip_n_immigration_ipol)
+> EP_eurobar_cent$image_ipol <- scale(EP_eurobar_cent$image_ipol)
+> EP_eurobar_cent$EU_sal <- scale(EP_eurobar_cent$EU_sal)
+> 
+> ##### AUSTERITY SALIENCE (EUROBAROMETER)
+> 
+> ## ---- agent A robustness prep: save estimation samples ----
+> w <- warnings(); cat("N_WARNINGS", length(w), "\n"); print(head(w, 5)); print(table(sub("\x27.*", "", names(w))))
+N_WARNINGS 50 
+Warning messages:
+1: In load("Data/EP_debates_07062023.Rdata") :
+  input string 'â€œYouthâ€' cannot be translated from 'CP1252' to UTF-8, but is valid UTF-8
+2: In load("Data/EP_debates_07062023.Rdata") :
+  input string 'â€œYouthâ€' cannot be translated from 'CP1252' to UTF-8, but is valid UTF-8
+3: In load("Data/EP_debates_07062023.Rdata") :
+  input string 'â€œYouthâ€' cannot be translated from 'CP1252' to UTF-8, but is valid UTF-8
+4: In load("Data/EP_debates_07062023.Rdata") :
+  input string 'â€œYouthâ€' cannot be translated from 'CP1252' to UTF-8, but is valid UTF-8
+5: In load("Data/EP_debates_07062023.Rdata") :
+  input string 'â€œYouthâ€' cannot be translated from 'CP1252' to UTF-8, but is valid UTF-8
+
+input string  
+           50 
+> suppressMessages(library(lme4))
+> m <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/AUT_sal_model.rds")
+> mf <- model.frame(m); idx <- match(rownames(mf), rownames(EP_eurobar_cent))
+> stopifnot(!anyNA(idx), nrow(mf) == nobs(m))
+> vars <- intersect(all.vars(formula(m)), names(EP_eurobar_cent))
+> smp <- EP_eurobar_cent[idx, vars]
+> saveRDS(list(data = smp, formula = formula(m), rows = idx), "/workspace/audit_runs/24_U9CKK6/A/models/sample_AUT_sal_model.rds")
+> cat("SAMPLE AUT_sal_model", nrow(smp), ncol(smp), "\n")
+SAMPLE AUT_sal_model 101077 35 
+> rm(m, mf, smp); invisible(gc())
+> m <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/EU_sal_model.rds")
+> mf <- model.frame(m); idx <- match(rownames(mf), rownames(EP_eurobar_cent))
+> stopifnot(!anyNA(idx), nrow(mf) == nobs(m))
+> vars <- intersect(all.vars(formula(m)), names(EP_eurobar_cent))
+> smp <- EP_eurobar_cent[idx, vars]
+> saveRDS(list(data = smp, formula = formula(m), rows = idx), "/workspace/audit_runs/24_U9CKK6/A/models/sample_EU_sal_model.rds")
+> cat("SAMPLE EU_sal_model", nrow(smp), ncol(smp), "\n")
+SAMPLE EU_sal_model 77276 35 
+> rm(m, mf, smp); invisible(gc())
+> 

@@ -1,0 +1,23 @@
+9e11f10eb7e3a761aa2cae5d9354ab4b5e6a480bb682e5a3ee28226a0ae48d60  paper.pdf
+           Table 1. Mediation analysis through anger on political engagement scale
+
+                                                         Study 1                                                      Study 2
+                                       Indirect effect                    p-value                   Indirect effect                    p-value
+
+           Trump                            0.02                           0.00                          0.08                           0.00
+           Clinton                          0.00                           0.48                         −0.00                           0.98
+                                  Table 3. Treatment effects among compliers, CCES 2020
+
+                                                                                                                 Model 1
+
+                                  (Intercept)                                                                     0.40***
+                                                                                                                   (0.01)
+                                  Treatment of minorities                                                         0.07**
+                                                                                                                   (0.02)
+                                  Treatment of women                                                              0.06**
+                                                                                                                   (0.02)
+                                  Trump                                                                           0.05**
+                                                                                                                   (0.02)
+                                  N                                                                                 697
+                                  R2                                                                                0.02
+                                  ***p < 0.001; ** p < 0.01; * p < 0.05.

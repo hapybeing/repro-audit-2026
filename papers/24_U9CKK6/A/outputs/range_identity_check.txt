@@ -1,0 +1,4 @@
+run_table1_plain.R vs 6_analysis1_L1-53_L346-416.R: authors' lines removed or changed = 0; lines added = 21
+run_table1_f1f2.R vs 6_analysis1_L1-53_L346-416.R: authors' lines removed or changed = 0; lines added = 30
+run_table2_plain.R vs 9_analysis4_L1-123.R: authors' lines removed or changed = 0; lines added = 17
+run_table2_f1f2.R vs 9_analysis4_L1-123.R: authors' lines removed or changed = 0; lines added = 25

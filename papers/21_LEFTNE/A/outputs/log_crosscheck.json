@@ -1,0 +1,89 @@
+{
+ "T1": {
+  "printed_est": 0.017,
+  "printed_se": 0.006,
+  "printed_p": 0.004,
+  "source": "outputs/text_log.txt lavaan summary Defined Parameters block 1"
+ },
+ "T1_indrCLINTONngr": {
+  "printed_est": 0.002,
+  "printed_p": 0.475
+ },
+ "T1_indirTRUMPhope": {
+  "printed_est": -0.025,
+  "printed_p": 0.001
+ },
+ "T1_indirCLINTONhp": {
+  "printed_est": 0.007,
+  "printed_p": 0.314
+ },
+ "T2": {
+  "printed_est": 0.08,
+  "printed_se": 0.019,
+  "printed_p": 0.0,
+  "source": "outputs/text_log.txt lavaan summary Defined Parameters block 2"
+ },
+ "T2_indrCLINTONngr": {
+  "printed_est": -0.0,
+  "printed_p": 0.982
+ },
+ "T2_indirTRUMPhope": {
+  "printed_est": -0.019,
+  "printed_p": 0.016
+ },
+ "T2_indirCLINTONhp": {
+  "printed_est": 0.107,
+  "printed_p": 0.0
+ },
+ "T5": {
+  "printed_est": 0.06,
+  "printed_stars": "**",
+  "printed_se": 0.02,
+  "source": "outputs/text_log.txt export_summs(mod2)"
+ },
+ "T6": {
+  "printed_N": 698,
+  "source": "outputs/text_log.txt export_summs(mod2)"
+ },
+ "T3": {
+  "printed_est": 0.15,
+  "printed_stars": "***",
+  "printed_se": 0.02,
+  "source": "outputs/appendix_log.txt export_summs Table A5 column None"
+ },
+ "T4": {
+  "printed_est": 0.22,
+  "printed_stars": "***",
+  "printed_se": 0.05,
+  "source": "outputs/appendix_log.txt export_summs Table A5 column Party"
+ },
+ "A5_N_None_Balanced_Party": [
+  584,
+  489,
+  489
+ ],
+ "A8_Study 1 Clinton": {
+  "acme": 0.0030673,
+  "p_printed": "0.438",
+  "paper_acme": 0.002,
+  "paper_p": 0.475
+ },
+ "A8_Study 1 Trump": {
+  "acme": 0.025225,
+  "p_printed": "0.006",
+  "paper_acme": 0.017,
+  "paper_p": 0.004
+ },
+ "A8_Study 2 Clinton": {
+  "acme": -0.00012522,
+  "p_printed": "0.940",
+  "paper_acme": -0.0,
+  "paper_p": 0.982
+ },
+ "A8_Study 2 Trump": {
+  "acme": 0.108151,
+  "p_printed": "<0.0000000000000002",
+  "paper_acme": 0.08,
+  "paper_p": 0.0
+ }
+}

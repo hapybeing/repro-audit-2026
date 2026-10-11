@@ -1,0 +1,199 @@
+{
+ "paper_id": "21_LEFTNE",
+ "agent": "B",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Study 1 (Qualtrics 2019) indirect effect of the Trump condition on the political engagement scale through anger; lavaan sem in 01- Replication_Text.R lines 343-363, defined parameter indirTRUMPanger, column est (candidate 2: SI Table A8 mediate ACME 0.017)",
+   "paper_value": 0.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0167809890019406,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0032190109980594003,
+   "rel_diff": -0.16095054990297,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.00579616, p 0.00378925, nobs 977. p rounds to 0.00 at 2 decimals (paper prints 0.00). Matches authors' printed log at printed precision: True. rel_diff is against the printed rounded value; the estimate rounds to the printed value. lavaan 0.6.19 gives 0.016780989 (identical)."
+  },
+  {
+   "id": "T2",
+   "description": "Study 2 (NORC 2019) indirect effect of the Trump condition on the political engagement scale through anger; lavaan sem in 01- Replication_Text.R lines 366-387, indirTRUMPanger, est (candidate 2: SI Table A8 mediate ACME 0.080)",
+   "paper_value": 0.08,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0801780387557153,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 0.00017803875571530126,
+   "rel_diff": 0.0022254844464412657,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0190855, p 2.65738e-05, nobs 1030. p rounds to 0.00 at 2 decimals (paper prints 0.00). Matches authors' printed log at printed precision: True. lavaan 0.6.19 gives 0.08017803876 (identical)."
+  },
+  {
+   "id": "T3",
+   "description": "Study 1 OLS coefficient of the Trump condition on anger, no covariates: coef(lm(anger ~ TREATMENT, data = df))['TREATMENTTrump'], 02- Replication_Appendix.R line 107, 3-arm data",
+   "paper_value": 0.15,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.150007235128523,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 7.235128522992129e-06,
+   "rel_diff": 4.823419015328086e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0248291, p 2.72664e-09, nobs 584. SI Table A5 cell re-checked against the .doc (outputs/si_tableA5_check.txt): 0.15 *** (0.02) confirmed. Authors' printed export_summs (outputs/appendix_log.txt) shows the same rounded value."
+  },
+  {
+   "id": "T4",
+   "description": "Study 1 OLS coefficient of the Trump x Party (Democrat incl. leaners) interaction on anger: coef(lm(anger ~ TREATMENT * party_leanersinc, data = df))['TREATMENTTrump:party_leanersinc'], 02- Replication_Appendix.R line 109",
+   "paper_value": 0.22,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.217866373023587,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.0021336269764130056,
+   "rel_diff": -0.009698304438240934,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0526731, p 4.16478e-05, nobs 489. SI Table A5 cell re-checked against the .doc (outputs/si_tableA5_check.txt): 0.22 *** (0.05) confirmed. Authors' printed export_summs (outputs/appendix_log.txt) shows the same rounded value."
+  },
+  {
+   "id": "T5",
+   "description": "Study 3 (CES 2020) OLS coefficient of the 'Treatment of Women' anger induction on futureengage_novote among compliers: coef(mod2)['TREATMENTTreatment of Women'], 01- Replication_Text.R lines 392-398",
+   "paper_value": 0.06,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0551233514239026,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": -0.004876648576097396,
+   "rel_diff": -0.08127747626828995,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.0202593, p 0.00667364, nobs 698. Matches authors' printed log at printed precision: True. rel_diff is against the printed rounded value; the estimate rounds to the printed value."
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in the Table 3 model: nobs(mod2)",
+   "paper_value": 697,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 698.0,
+   "source_file": "outputs/targets_extracted.csv",
+   "abs_diff": 1.0,
+   "rel_diff": 0.0014347202295552368,
+   "match_to_rounding": false,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "Rows of df_compliers used by lm (698 compliers in CES2020.RDS, no missing outcome; outputs/diag_t6_and_samples.txt). Matches authors' printed log at printed precision: True. One more row than the printed N 697; all estimate targets match (CHANGELOG_METHOD #6(a): N-only mismatch)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap (K=1000, set.seed(20261011)) of indirTRUMPanger, study1 SEM on the 977 lavaan rows",
+   "ran": true,
+   "estimate": 0.0167809890019406,
+   "se_or_ci": "95% percentile CI [0.00339579, 0.0341355]; bootstrap SD 0.00789114",
+   "p_value": 0.02,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Ra_summary_study1.csv",
+   "note": "1000 fits converged, 0 failed; draws in outputs/Ra_draws_study1.csv. All K index vectors drawn after one set.seed call (equivalent to drawing inside the loop because lavaan's ML fit uses no RNG)."
+  },
+  {
+   "id": "R_a_secondary_T2",
+   "description": "Case bootstrap (K=1000, set.seed(20261011)) of indirTRUMPanger, study2 SEM on the 1030 lavaan rows",
+   "ran": true,
+   "estimate": 0.0801780387557153,
+   "se_or_ci": "95% percentile CI [0.0408025, 0.122873]; bootstrap SD 0.0206515",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Ra_summary_study2.csv",
+   "note": "1000 fits converged, 0 failed; draws in outputs/Ra_draws_study2.csv. All K index vectors drawn after one set.seed call (equivalent to drawing inside the loop because lavaan's ML fit uses no RNG)."
+  },
+  {
+   "id": "R_b",
+   "description": "T3 refit after dropping |z|>3 on anger (3-arm Study 1 lm sample)",
+   "ran": true,
+   "estimate": 0.124354160925875,
+   "se_or_ci": "SE 0.0228395",
+   "p_value": 7.72342916378907e-08,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rb_results.csv",
+   "note": "11 of 584 rows dropped (max |z| 3.212)."
+  },
+  {
+   "id": "R_b_secondary_T1",
+   "description": "T1 SEM refit after dropping |z|>3 on Engage in the lavaan sample",
+   "ran": true,
+   "estimate": 0.0167809890019406,
+   "se_or_ci": "SE 0.00579616",
+   "p_value": 0.00378925364496019,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rb_results.csv",
+   "note": "0 of 977 rows dropped (max |z| 2.882); estimate identical to T1 as pre-registered for this case."
+  },
+  {
+   "id": "R_c",
+   "description": "study1 SEM on Alexa/Trump/Clinton rows only, MARCH and METOO terms removed",
+   "ran": true,
+   "estimate": 0.0252249677716952,
+   "se_or_ci": "SE 0.00765739",
+   "p_value": 0.000987021186829029,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rc_results.csv",
+   "note": "nobs 582. Equals the authors' mediate() ACME for the same contrast (outputs/printed_log_values.json, tableA8_mediate) to 4 decimals."
+  },
+  {
+   "id": "R_c_secondary_T2",
+   "description": "study2 SEM on Alexa/Trump/Clinton rows only, MARCH and METOO terms removed",
+   "ran": true,
+   "estimate": 0.108151400091525,
+   "se_or_ci": "SE 0.0212228",
+   "p_value": 3.46918895388626e-07,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rc_results.csv",
+   "note": "nobs 605. Equals the authors' mediate() ACME for the same contrast (outputs/printed_log_values.json, tableA8_mediate) to 4 decimals."
+  }
+ ],
+ "bugs": [
+  {
+   "file": "02- Replication_Appendix.R",
+   "line": 300,
+   "description": "Malformed car::recode spec \"'Slightly conservative'; = 5;\" codes every 'Slightly conservative' respondent as NA instead of 5, so they drop out of the Ideology-controlled models (SI Tables A19 to A21).",
+   "evidence": "outputs/diag_code_review.txt: IDEOLOGY 'Slightly conservative' (58 rows in the 3-arm Study 1 data) -> Ideology NA; scripts/diag_code_review.R runs the line verbatim. Not a target."
+  },
+  {
+   "file": "02- Replication_Appendix.R",
+   "line": 299,
+   "description": "Income recode key ' $50,000 - $59,999' has a leading space that does not match the data level '$50,000 - $59,999', so those respondents get else = NA instead of 6 and drop out of SI Tables A19 to A21.",
+   "evidence": "outputs/diag_code_review.txt: 68 rows with INCOME '$50,000 - $59,999' -> Income NA; no row coded 6. Not a target."
+  },
+  {
+   "file": "02- Replication_Appendix.R",
+   "line": 87,
+   "description": "Under the Table A3 (Study 2, NORC) header, partisanship is tabulated from df (Study 1 Qualtrics) instead of df_TESS, although NORC.RDS has a PARTISANSHIP column.",
+   "evidence": "SI Table A3 prints Republican 34.98%, Democrat 36.68%, Independent 26.10% (outputs/si_tableA3_partisanship_excerpt.txt), which equals the Study 1 distribution (34.98/36.69/26.11); NORC 3-arm data give Democrat 57.19, Independent 10.74, Republican 31.90 (outputs/diag_code_review.txt). Descriptive table only, not a target."
+  }
+ ],
+ "env_fixes": [
+  "diffs/run_command_png_device.diff: Rscript's default pdf() device stopped the Text script at Figure 1 with 'invalid font type' (hrbrthemes Roboto Condensed); default device set to cairo PNG in the run command, no author line changed.",
+  "diffs/02-Replication_Appendix_figB4_try.diff: Figure B4 plot statements (Appendix lines 416-418, 428-430) wrapped in try() after 'unused argument (connect.lines = FALSE)' under ggeffects 2.2.1; figure-only, allowed by PREREG.",
+  "Packages: lavaan 0.7-3 (current CRAN, first in PREREG order; worked, no fallback needed) and 12 missing CRAN packages installed from source into the per-run library (environment.txt)."
+ ],
+ "proposed_class": "C",
+ "class_reason": "T1 to T5 (all estimate targets) reproduce to the paper's rounding with the same significance conclusions, but T6 (Table 3 N) is 698 against the printed 697; under CHANGELOG_METHOD #6(a) an N-only mismatch with all estimates matching is C, not A or D.",
+ "confidence": "medium",
+ "confidence_reason": "All numbers come from scripted runs and match the authors' own printed logs; class rests on the #6(a) reading of a one-row N difference, and agreement with agent A is not known to B.",
+ "time_minutes": 22,
+ "uncertainties": [
+  "Table 1 / SI Table A8 provenance: the lavaan defined parameters reproduce every Table 1 cell including the Clinton p-values (Study 1 0.002, p 0.475; Study 2 -0.000, p 0.982) and also equal the printed SI Table A8 values (0.002/0.475, 0.017/0.004, -0.000/0.982, 0.080/0.000). The deposited mediate() calls that sit under the Table A8 header give different ACMEs: Study 1 Clinton 0.003067 (p 0.438), Trump 0.02523 (p 0.006); Study 2 Clinton -0.0001252 (p 0.940), Trump 0.1082 (p <0.0000000000000002), n 582 and 605. The gap is not bootstrap noise: these ACMEs equal the 3-arm SEM point estimates of R_c, while the printed A8 values equal the 5-arm lavaan model. So candidate 2 for T1/T2 does not match (T2 candidate 0.108 vs 0.080); candidate 1 (pre-registered, sets the class) matches. Source: outputs/printed_log_values.json, outputs/appendix_log.txt.",
+  "within_5pct is false for T1 (0.01678 vs printed 0.02) and T5 (0.0551 vs printed 0.06) only because the paper prints 2 decimals; both round to the printed value and match the authors' printed logs.",
+  "The pre-registered Study 1 SEM (T1) uses 977 rows from all five Qualtrics arms (MeToo and Marches included as dummies), while the article's Study 1 is described with n = 586 (3 arms); this is how the deposited code works and it reproduces the printed values.",
+  "T6: CES2020.RDS has 698 rows with complier == 1 and no missing outcome; the source of the printed 697 could not be determined from the deposit (outputs/diag_t6_and_samples.txt).",
+  "Not targets: SI Table A5 'Gender-Edu' intercept prints 0.12 in the SI, the run's export_summs shows 0.13 (outputs/appendix_log.txt); the None and Party columns (T3, T4 and their neighbours) agree. Not scored.",
+  "Text-script and appendix runs used CRAN-current versions (ggplot2 4.0.3, jtools 2.3.1, huxtable 6.0.2, mediation 4.5.1) since nothing is pinned; table formatting and mediate bootstrap draws may differ from the authors' versions."
+ ]
+}

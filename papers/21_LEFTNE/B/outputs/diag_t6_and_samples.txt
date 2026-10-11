@@ -1,0 +1,29 @@
+CES2020 rows: 1000 
+complier
+  0   1 
+302 698 
+complier==1 rows: 698 
+
+                Relaxed Treatment of Minorities      Treatment of Women 
+                    224                     136                     153 
+                  Trump 
+                    185 
+NA futureengage_novote among compliers: 0 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2500  0.2500  0.3750  0.4379  0.5625  1.0000 
+rows with complier NA: 0 
+Column names:
+[1] "complier"            "Gender_Party"        "TREATMENT"          
+[4] "word_count"          "futureengage_novote" "Gender"             
+[7] "Party"               "Compliance"          "teamweight"         
+
+Qualtrics rows: 983 
+
+  Alexa Clinton Marches   MeToo   Trump 
+    191     196     200     197     199 
+3-arm rows: 586  non-missing anger: 584 
+
+NORC rows: 1030 
+
+  Alexa Clinton   March   MeToo   Trump 
+    205     209     215     210     191 

@@ -1,0 +1,4 @@
+lavaan 0.7.3 
+   id  study   estimate          se        z      p_value nobs
+1 R_c study1 0.02522497 0.007657387 3.294200 9.870212e-04  582
+2 R_c study2 0.10815140 0.021222834 5.095992 3.469189e-07  605

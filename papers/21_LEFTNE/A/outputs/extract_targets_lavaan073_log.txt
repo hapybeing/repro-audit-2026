@@ -1,0 +1,78 @@
+lavaan 0.7.3 from /workspace/audit_runs/21_LEFTNE/A/rlib/lavaan 
+Study 1 TREATMENT levels: | class of TRUMP: numeric | levels: 
+
+  Alexa Clinton Marches   MeToo   Trump 
+    191     196     200     197     199 
+Study 2 TREATMENT levels: Alexa Clinton March MeToo Trump | class of TRUMP: factor 
+
+  Alexa Clinton   March   MeToo   Trump 
+    205     209     215     210     191 
+                                   Estimate Std. Error   t value      Pr(>|t|)
+(Intercept)                      0.39871652 0.01290621 30.893394 1.698889e-132
+TREATMENTTreatment of Minorities 0.06819525 0.02099812  3.247684  1.219496e-03
+TREATMENTTreatment of Women      0.05512335 0.02025926  2.720897  6.673639e-03
+TREATMENTTrump                   0.05195916 0.01918997  2.707620  6.943578e-03
+                                              id     estimate         se
+1                                             T1  1.67810e-02 0.00579616
+2                           S1_indirCLINTONanger  2.04053e-03 0.00285437
+3                              S1_indirTRUMPhope -2.51634e-02 0.00736273
+4                            S1_indirCLINTONhope  6.78389e-03 0.00673531
+5                                             T2  8.01780e-02 0.01908546
+6                           S2_indirCLINTONanger -9.28287e-05 0.00417009
+7                              S2_indirTRUMPhope -1.94447e-02 0.00805013
+8                            S2_indirCLINTONhope  1.06793e-01 0.01571527
+Estimate                                      T3  1.50007e-01 0.02482906
+Estimate1                                     T4  2.17866e-01 0.05267309
+Estimate2                                     T5  5.51234e-02 0.02025926
+11                                            T6  6.98000e+02         NA
+12                             T3ctx_(Intercept)  3.98717e-01 0.01290621
+13        T3ctx_TREATMENTTreatment of Minorities  6.81952e-02 0.02099812
+14                          T3ctx_TREATMENTTrump  5.19592e-02 0.01918997
+           statistic      p_value nobs
+1          2.8951931  3.78925e-03  977
+2          0.7148803  4.74683e-01  977
+3         -3.4176722  6.31591e-04  977
+4          1.0072132  3.13832e-01  977
+5          4.2010009  2.65738e-05 1030
+6         -0.0222606  9.82240e-01 1030
+7         -2.4154539  1.57156e-02 1030
+8          6.7954660  1.07963e-11 1030
+Estimate   6.0416002  2.72664e-09  584
+Estimate1  4.1361987  4.16478e-05  489
+Estimate2  2.7208967  6.67364e-03  698
+11                NA           NA  698
+12        30.8933941 1.69889e-132  698
+13         3.2476836  1.21950e-03  698
+14         2.7076200  6.94358e-03  698
+                                                            model
+1                               lavaan sem Study 1 (Text 343-363)
+2                               lavaan sem Study 1 (Text 343-363)
+3                               lavaan sem Study 1 (Text 343-363)
+4                               lavaan sem Study 1 (Text 343-363)
+5                               lavaan sem Study 2 (Text 366-387)
+6                               lavaan sem Study 2 (Text 366-387)
+7                               lavaan sem Study 2 (Text 366-387)
+8                               lavaan sem Study 2 (Text 366-387)
+Estimate                       lm(anger ~ TREATMENT) Appendix 107
+Estimate1   lm(anger ~ TREATMENT * party_leanersinc) Appendix 109
+Estimate2 lm(futureengage_novote ~ TREATMENT) compliers, Text 397
+11                                                     nobs(mod2)
+12                                                Table 3 context
+13                                                Table 3 context
+14                                                Table 3 context
+          lavaan_version                  note
+1                  0.7.3                      
+2                  0.7.3                      
+3                  0.7.3                      
+4                  0.7.3                      
+5                  0.7.3                      
+6                  0.7.3                      
+7                  0.7.3                      
+8                  0.7.3                      
+Estimate           0.7.3 R2 0.0704827969165627
+Estimate1          0.7.3  R2 0.128415072385347
+Estimate2          0.7.3 R2 0.0199628598863539
+11                 0.7.3                      
+12                 0.7.3                      
+13                 0.7.3                      
+14                 0.7.3                      

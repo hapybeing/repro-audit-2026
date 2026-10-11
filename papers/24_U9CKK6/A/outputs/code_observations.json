@@ -1,0 +1,20 @@
+[
+ {
+  "file": "Scripts/6_analysis1.R",
+  "line": 410,
+  "description": "Code observation (label vs specification, verified by run): the Table 1 texreg call hard-codes the row 'Year Fixed Effects' = Yes for all four models, but the four Table 1 models (lines 356, 365, 374, 384) enter `year` as a numeric column, i.e. one linear year slope, not year fixed effects. Other models in the same script and all Table 2 models use as.factor(year).",
+  "evidence": "outputs/fixef_all_cycle_AE_fit2.csv has year-related fixed-effect terms ['year'] (a single slope). Refitting with as.factor(year) (R_c, outputs/robustness_bc.csv) moves T1 from 0.01827 to 0.01741; both round to 0.02 with p < 0.001, so the printed Table 1 is what the deposited code produces and the conclusion is unchanged."
+ },
+ {
+  "file": "Scripts/9_analysis4.R",
+  "line": 43,
+  "description": "Code observation (verified by run, no effect on any target): the centering index list `117:118` is copied from 6_analysis1.R line 35, where position 118 is `radical`; in script 9, after lines 30-32 (year_mon and the left_join), position 118 holds `EU_sal`, so a different column is centred and `radical` is not.",
+  "evidence": "outputs/s9_column_index_check.csv: in script 6 positions 117:118 are ['nat_opp', 'radical']; in script 9 they are ['nat_opp', 'EU_sal']; `radical` sits at position 119 of 119 in script 9. `radical` and `radical_scale` are in no Table 2 formula; `EU_sal` is mean-centred by the slip but then passed through scale() at line 61, which centres it again with the same mean, so the model input is unchanged. T5 and T6 are unaffected (also confirmed by the exact match of Table 2 AIC and log likelihood in outputs/model_gof.csv)."
+ },
+ {
+  "file": "Scripts/6_analysis1.R",
+  "line": 132,
+  "description": "Unverified observation (not run by agent A, outside the target blocks): lines 132 and 246 use `right` and `left`, which no deposited script creates and which are not among the 117 columns of EP_debates_07062023.Rdata (PREREG.md Known risks), so a top-to-bottom run of the script would stop at line 132. Affects appendix models only, not T1 to T6.",
+  "evidence": "grep of 6_analysis1.R: `chall_fact*right + chall_fact*left` (line 132), `challenge*right + challenge*left` (line 246); no assignment of right/left in any script. Not executed."
+ }
+]

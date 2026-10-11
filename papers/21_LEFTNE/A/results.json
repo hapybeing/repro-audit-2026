@@ -1,0 +1,191 @@
+{
+ "paper_id": "21_LEFTNE",
+ "agent": "A",
+ "run_date_ist": "2026-10-11",
+ "ran": true,
+ "could_not_run_reason": "",
+ "targets": [
+  {
+   "id": "T1",
+   "description": "Study 1 (Qualtrics 2019) indirect effect of the Trump condition on the political engagement scale through anger; lavaan sem in 01- Replication_Text.R lines 343-363, defined parameter indirTRUMPanger, column est (candidate 2: SI Table A8 mediate ACME 0.017)",
+   "paper_value": 0.02,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0167809890019406,
+   "source_file": "outputs/targets_extracted_lavaan073.csv",
+   "abs_diff": -0.0032190109980594003,
+   "rel_diff": -0.16095054990297,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.00579616, p 0.00378925, nobs 977 (outputs/targets_extracted_lavaan073.csv); authors' printed log: est 0.017, p/se 0.004 (outputs/text_log.txt lavaan summary Defined Parameters block 1); p rounds to 0.00 at 2 decimals: True; lavaan 0.6.19 (system) cross-check est 0.016781 (outputs/targets_extracted_lavaan0619_system.csv); candidate 2 (SI Table A8 mediate ACME, paper 0.017): deposited mediate() code gives 0.02523 (p 0.006), outputs/tableA8_mediate.csv; the paper's A8 value equals the lavaan estimate at printed precision"
+  },
+  {
+   "id": "T2",
+   "description": "Study 2 (NORC 2019) indirect effect of the Trump condition on the political engagement scale through anger; lavaan sem in 01- Replication_Text.R lines 366-387, indirTRUMPanger, est (candidate 2: SI Table A8 mediate ACME 0.080)",
+   "paper_value": 0.08,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0801780387557153,
+   "source_file": "outputs/targets_extracted_lavaan073.csv",
+   "abs_diff": 0.00017803875571530126,
+   "rel_diff": 0.0022254844464412657,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0190855, p 2.65738e-05, nobs 1030 (outputs/targets_extracted_lavaan073.csv); authors' printed log: est 0.08, p/se 0.0 (outputs/text_log.txt lavaan summary Defined Parameters block 2); p rounds to 0.00 at 2 decimals: True; lavaan 0.6.19 (system) cross-check est 0.080178 (outputs/targets_extracted_lavaan0619_system.csv); candidate 2 (SI Table A8 mediate ACME, paper 0.08): deposited mediate() code gives 0.1082 (p <0.0000000000000002), outputs/tableA8_mediate.csv; the paper's A8 value equals the lavaan estimate at printed precision"
+  },
+  {
+   "id": "T3",
+   "description": "Study 1 OLS coefficient of the Trump condition on anger, no covariates: coef(lm(anger ~ TREATMENT, data = df))['TREATMENTTrump'], 02- Replication_Appendix.R line 107, 3-arm data",
+   "paper_value": 0.15,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.150007235128523,
+   "source_file": "outputs/targets_extracted_lavaan073.csv",
+   "abs_diff": 7.235128522992129e-06,
+   "rel_diff": 4.823419015328086e-05,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0248291, p 2.72664e-09, nobs 584 (outputs/targets_extracted_lavaan073.csv); authors' printed log: est 0.15, p/se 0.02 (outputs/appendix_log.txt export_summs Table A5 column None); SI Table A5 cell re-checked against the .doc itself: '0.15 *** (0.02)' (outputs/si_A5_check.json)"
+  },
+  {
+   "id": "T4",
+   "description": "Study 1 OLS coefficient of the Trump x Party (Democrat incl. leaners) interaction on anger: coef(lm(anger ~ TREATMENT * party_leanersinc, data = df))['TREATMENTTrump:party_leanersinc'], 02- Replication_Appendix.R line 109",
+   "paper_value": 0.22,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.217866373023587,
+   "source_file": "outputs/targets_extracted_lavaan073.csv",
+   "abs_diff": -0.0021336269764130056,
+   "rel_diff": -0.009698304438240934,
+   "match_to_rounding": true,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "SE 0.0526731, p 4.16478e-05, nobs 489 (outputs/targets_extracted_lavaan073.csv); authors' printed log: est 0.22, p/se 0.05 (outputs/appendix_log.txt export_summs Table A5 column Party); SI Table A5 cell re-checked against the .doc itself: '0.22 *** (0.05)' (outputs/si_A5_check.json)"
+  },
+  {
+   "id": "T5",
+   "description": "Study 3 (CES 2020) OLS coefficient of the 'Treatment of Women' anger induction on futureengage_novote among compliers: coef(mod2)['TREATMENTTreatment of Women'], 01- Replication_Text.R lines 392-398",
+   "paper_value": 0.06,
+   "paper_rounding_decimals": 2,
+   "reproduced_value": 0.0551233514239026,
+   "source_file": "outputs/targets_extracted_lavaan073.csv",
+   "abs_diff": -0.004876648576097396,
+   "rel_diff": -0.08127747626828995,
+   "match_to_rounding": true,
+   "within_5pct": false,
+   "same_conclusion": true,
+   "note": "SE 0.0202593, p 0.00667364, nobs 698 (outputs/targets_extracted_lavaan073.csv); authors' printed log: est 0.06, p/se 0.02 (outputs/text_log.txt export_summs(mod2))"
+  },
+  {
+   "id": "T6",
+   "description": "Number of observations in the Table 3 model: nobs(mod2)",
+   "paper_value": 697,
+   "paper_rounding_decimals": 0,
+   "reproduced_value": 698.0,
+   "source_file": "outputs/targets_extracted_lavaan073.csv",
+   "abs_diff": 1.0,
+   "rel_diff": 0.0014347202295552368,
+   "match_to_rounding": false,
+   "within_5pct": true,
+   "same_conclusion": true,
+   "note": "nobs(mod2) = 698; the authors' export_summs log prints N 698 (outputs/log_crosscheck.json). CES2020.RDS has 698 compliers, none with missing outcome or treatment (outputs/diagnostics.json). N-only mismatch with all estimate targets matching: CHANGELOG_METHOD #6(a)."
+  }
+ ],
+ "robustness": [
+  {
+   "id": "R_a",
+   "description": "Case bootstrap (K=1000, seed 20261011) of the Study 1 SEM indirect effect indirTRUMPanger (T1)",
+   "ran": true,
+   "estimate": 0.0167809890019406,
+   "se_or_ci": "percentile 95% CI [0.00339579, 0.0341355]; bootstrap SD 0.00789114",
+   "p_value": 0.02,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Ra_summary_study1.csv",
+   "note": "rows 977 = lavaan nobs 977; 1000 of 1000 fits ok, 0 failed; p = min(2 x share of draws <= 0, 1); draws in outputs/Ra_draws_study1.csv"
+  },
+  {
+   "id": "R_a_secondary",
+   "description": "Case bootstrap (K=1000, seed 20261011) of the Study 2 SEM indirect effect indirTRUMPanger (T2)",
+   "ran": true,
+   "estimate": 0.0801780387557153,
+   "se_or_ci": "percentile 95% CI [0.0408025, 0.122873]; bootstrap SD 0.0206515",
+   "p_value": 0.0,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Ra_summary_study2.csv",
+   "note": "rows 1030 = lavaan nobs 1030; 1000 of 1000 fits ok, 0 failed; p = min(2 x share of draws <= 0, 1); draws in outputs/Ra_draws_study2.csv"
+  },
+  {
+   "id": "R_b",
+   "description": "Drop |z| > 3 on the outcome (anger) and refit lm(anger ~ TREATMENT), Trump coefficient (T3)",
+   "ran": true,
+   "estimate": 0.124354160925875,
+   "se_or_ci": "SE 0.0228395",
+   "p_value": 7.72342916378907e-08,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rb_summary.csv",
+   "note": "11 of 584 rows dropped (max |z| 3.212); refit nobs 573"
+  },
+  {
+   "id": "R_b_secondary",
+   "description": "Drop |z| > 3 on the outcome (Engage) and refit the Study 1 SEM, indirTRUMPanger (T1)",
+   "ran": true,
+   "estimate": 0.0167809890019406,
+   "se_or_ci": "SE 0.00579616",
+   "p_value": 0.00378925364496019,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rb_summary.csv",
+   "note": "0 of 977 rows dropped (max |z| 2.882); refit nobs 977; no row exceeded |z| 3, so the estimate equals the original"
+  },
+  {
+   "id": "R_c",
+   "description": "SEM on the Alexa, Trump and Clinton arms only, MARCH and METOO terms removed, indirTRUMPanger (Study 1, T1)",
+   "ran": true,
+   "estimate": 0.0252249677716952,
+   "se_or_ci": "SE 0.00765739",
+   "p_value": 0.000987021186829029,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rc_summary.csv",
+   "note": "nobs 582. Equals the deposited mediate() ACME point estimate for the same study (outputs/tableA8_mediate.csv)"
+  },
+  {
+   "id": "R_c_secondary",
+   "description": "SEM on the Alexa, Trump and Clinton arms only, MARCH and METOO terms removed, indirTRUMPanger (Study 2, T2)",
+   "ran": true,
+   "estimate": 0.108151400091525,
+   "se_or_ci": "SE 0.0212228",
+   "p_value": 3.46918895388626e-07,
+   "same_direction_and_significance_as_paper": true,
+   "source_file": "outputs/Rc_summary.csv",
+   "note": "nobs 605. Equals the deposited mediate() ACME point estimate for the same study (outputs/tableA8_mediate.csv)"
+  }
+ ],
+ "bugs": [
+  {
+   "file": "02- Replication_Appendix.R",
+   "line": 87,
+   "description": "In the Table A3 block (demographics for Study 2, NORC), partisanship is tabulated from `df` (the Study 1 Qualtrics data) instead of `df_TESS`; lines 74-93 use df_TESS for every other row of Table A3.",
+   "evidence": "Line 87: `df %>% tabyl(PARTISANSHIP, sort = TRUE)`. Output is Study 1's distribution (Democrat 36.7%, Independent 26.1%, Republican 35.0%; same as Table A1 line 56). NORC.RDS has its own PARTISANSHIP column (Democrat 57.2%, Independent 10.7%, Republican 31.9%). SI Table A3 prints Republican 34.98%, Democrat 36.68%, Independent 26.10%, identical to SI Table A1. Source: outputs/code_review_check.json, outputs/appendix_log.txt lines 410-415 and 477-482. Not a target; does not affect any estimate."
+  }
+ ],
+ "env_fixes": [
+  "diffs/Replication_Text_plot_try.diff: 6 figure-printing statements wrapped in try(print({...})); hrbrthemes::theme_ipsum_rc font (Roboto Condensed) unavailable to the pdf device stopped the script at line 71 ('invalid font type'). PREREG-listed plot-only fix; no estimation line changed",
+  "diffs/Replication_Appendix_plot_try.diff: same fix for 5 figure-printing statements in the Appendix script",
+  "packages: lavaan 0.7.3 (current CRAN, first in the PREREG order; not in the authors' Packages vector) and aod, Rmisc, interplot, margins, janitor, jtools, huxtable, dotwhisker, hrbrthemes, effectsize, mediation, qualtRics (plus dependencies, including newer ggplot2, scales, insight, parameters) from CRAN source into the per-run library; Debian r-cran-* binaries for the rest; apt libarchive-dev (for CRAN archive, a qualtRics dependency)",
+  "working directory set to the unzipped Data.zip folder (scripts read the RDS files by bare name); no path edits"
+ ],
+ "proposed_class": "C",
+ "class_reason": "T1 to T5 (all estimate targets) reproduce to the paper's rounding with the pre-registered lavaan and lm objects; T6, the Table 3 N, is 698 in the run and in the authors' own printed output against 697 in the paper, an N-only mismatch that CHANGELOG_METHOD #6(a) and batch 5 decision 9 class as C. Under a literal PROTOCOL section 7 reading it would be B (all within 5%, same conclusions).",
+ "confidence": "medium",
+ "confidence_reason": "All numbers matched by script and the lavaan factor input caused no issue, but the class rests on the N-only rule and on Agent B's independent run; package versions are current CRAN, not the authors' (none pinned).",
+ "time_minutes": 25,
+ "uncertainties": [
+  "T6: the deposited CES2020.RDS has 698 compliers with complete data, so the code cannot give 697; why the paper prints 697 could not be determined (all Table 3 estimates, SEs, stars, intercept and R2 match).",
+  "SI Table A8 (candidate 2 for T1/T2): the four printed values (0.002 p .475; 0.017 p .004; -0.000 p .982; 0.080 p .000) equal the lavaan 5-arm SEM indirect effects and p-values at printed precision, not the output of the deposited mediate() code (0.0031 p .438; 0.0252 p .006; -0.0001 p .940; 0.108 p <.001, seed 20241130, mediation 4.5.1). The mediate point estimates equal the 3-arm SEM of R_c. So Table A8 appears to come from the lavaan model rather than the A8 code block (observation from runs, not a judgement). Bootstrap p-values also depend on mediation version and RNG.",
+  "PREREG inconsistency 1 resolved by run: the Clinton p-values in Table 1 (0.48, 0.98) also equal the lavaan p-values (0.475, 0.982), so both Table 1 and Table A8 are consistent with the lavaan SEM.",
+  "PREREG inconsistency 4: the 3-arm Study 1 data have 586 rows (matches text n = 586); Table A5 N 584 reflects 2 rows with missing anger.",
+  "PREREG inconsistency 3 confirmed: the Study 1 and Study 2 SEMs use all five arms (nobs 977 and 1030); restricting to three arms (R_c) gives larger indirect effects (0.025, 0.108), same direction and significance.",
+  "Plot-only fix: figures that use theme_ipsum_rc did not render (try() caught 'invalid font type'); no figure claim is a target, and figures were not compared with the paper.",
+  "lavaan 0.7.3 summary() abbreviates the defined-parameter labels (e.g. indirTRUMPangr); values were read via parameterEstimates() by label and cross-checked against the printed log. lavaan 0.6.19 (system Debian) gives identical T1/T2.",
+  "Results with no deposited code (PREREG inconsistencies 5 to 7: combined indirect effects, Democratic-women subgroup values, Cohen's d, SI Table C1 and Figures C1 to C3) were not checked; they are not targets.",
+  "SI Table A5 cells were checked from catdoc text of the .doc binary (table cells in reading order), not from a rendered page; the cell order matched the row and column labels."
+ ]
+}

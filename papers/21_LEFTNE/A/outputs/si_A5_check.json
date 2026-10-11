@@ -1,0 +1,49 @@
+{
+ "si_sha256": "64165d965e1bb1072bd5caf7a43ceb501ac0008402400dc9c7d68c2988c42c3e",
+ "expected_sha256_from_PREREG": "64165d965e1bb1072bd5caf7a43ceb501ac0008402400dc9c7d68c2988c42c3e",
+ "extraction": "catdoc -w (Debian catdoc), table cells tab separated, each cell 'estimate stars' then '(SE)'",
+ "column_headers": [
+  "None",
+  "Balanced",
+  "Party",
+  "Gender",
+  "Gender-Party",
+  "Gender-Edu",
+  "Gender:Edu"
+ ],
+ "Trump_row_cells": [
+  "0.15 *** (0.02)",
+  "0.16 *** (0.03)",
+  "0.04 (0.04)",
+  "0.12 *** (0.04)",
+  "0.11 (0.06)",
+  "0.19 *** (0.04)",
+  "0.09 (0.05)"
+ ],
+ "Trump:Party_row_cells": [
+  "",
+  "",
+  "0.22 *** (0.05)",
+  "",
+  "0.15 (0.08)",
+  "",
+  ""
+ ],
+ "N_row_cells": [
+  "584",
+  "489",
+  "489",
+  "582",
+  "248",
+  "302",
+  "582"
+ ],
+ "T3_cell_None_Trump": "0.15 *** (0.02)",
+ "T4_cell_Party_TrumpParty": "0.22 *** (0.05)",
+ "T3_value_from_doc": 0.15,
+ "T4_value_from_doc": 0.22,
+ "T3_matches_targets_json_0.15": true,
+ "T4_matches_targets_json_0.22": true,
+ "N_None": "584",
+ "N_Party": "489"
+}

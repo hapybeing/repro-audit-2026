@@ -1,0 +1,10 @@
+[
+ "Peak memory: the plain run stopped at 3199 MB RSS during the third Table 1 model, so the class rests on the pre-registered F1/F2 runs; the two models finished in the plain run are byte-identical to the F1/F2 ones (outputs/plain_vs_f1f2.csv). Table 2 was run with F1/F2 from the start (judgment call, LOG.md).",
+ "Saved models (11 to 29 MB each) and estimation samples are in scratch /workspace/audit_runs/24_U9CKK6/A/models, not in outputs/ as PREREG section 2 says, because the brief keeps objects over 5 MB out of the repo; sha256 are in LOG.md.",
+ "No package versions are pinned by the authors; run used lme4 1.1-37, Matrix 1.7-3, texreg 1.40, R 4.5.0. Exact AIC/logLik agreement suggests no material version effect.",
+ "Satterthwaite p (lmerTest, exploratory candidate 2 in PREREG) was not computed; the pre-registered naive p sets the star buckets.",
+ "R_a bootstrap: copy_index read as the k-th copy of a party within a draw (so the first copy of each party keeps cross-party MEP links); PREREG does not spell this out.",
+ "R_a K rule used the time of the first refit (31.0 s) measured before a sandbox restart; the remaining draws ran after the restart with the same saved draws.",
+ "Target cells were checked against the publisher PDF text layer fetched via web_fetch (outputs/pdf_target_cell_check.md), not a rendered page image.",
+ "Data-statement findings carried from DATA_STATEMENT.md (not re-searched by agent A): parlgov CSVs for script 4 and the Eurobarometer .dta for script 10 are absent from the deposit; no target needs them (batch5_class_decisions.md #7)."
+]

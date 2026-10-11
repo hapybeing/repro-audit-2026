@@ -1,0 +1,7 @@
+lavaan 0.7.3 
+          id part n_before n_dropped max_abs_z   estimate          se
+Estimate R_b   T3      584        11  3.211847 0.12435416 0.022839550
+1        R_b   T1      977         0  2.881697 0.01678099 0.005796155
+              p_value nobs
+Estimate 7.723429e-08  573
+1        3.789254e-03  977

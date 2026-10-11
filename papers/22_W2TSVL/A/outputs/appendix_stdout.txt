@@ -1,0 +1,1043 @@
+
+> library("haven")
+
+> dta <- read_dta("OA23 Base UT-TEC.dta")
+
+> attach(dta)
+
+> objects()
+[1] "browseURL" "dta"      
+
+> library(plyr)
+
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:plyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+> TratUT2 <- as.factor(TratUT2)
+
+> levels(TratUT2)
+[1] "1" "2" "3" "4" "5"
+
+> library(dplyr)
+
+> library(plyr)
+
+> dta$Treatment <- revalue(TratUT2, c(`1` = "Control", 
++     `2` = "Strike", `3` = "Pro_strike", `4` = "Anti_strike", 
++     `5` = "Double_frame"))
+
+> sum(is.na(dta$Treatment))
+[1] 0
+
+> dta$control <- ifelse(dta$Treatment == "Control", 
++     1, 0)
+
+> dta$strike <- ifelse(dta$Treatment == "Strike", 1, 
++     0)
+
+> dta$pro_strike <- ifelse(dta$Treatment == "Pro_strike", 
++     1, 0)
+
+> dta$anti_strike <- ifelse(dta$Treatment == "Anti_strike", 
++     1, 0)
+
+> dta$double <- ifelse(dta$Treatment == "Double_frame", 
++     1, 0)
+
+> UT2_1 <- as.numeric(UT2_1)
+
+> dta$unions <- dta$UT2_1
+
+> dta$unions <- ifelse(dta$unions == 1, 5, ifelse(dta$unions == 
++     2, 4, ifelse(dta$unions == 3, 3, ifelse(dta$unions == 4, 
++     2, ifelse(dta$unions == 5, 1, NA)))))
+
+> dta$unions <- factor(dta$unions, ordered = T, levels = c(1:5))
+
+> table(dta$unions, dta$UT2_1)
+   
+      1   2   3   4   5   6
+  1   0   0   0   0 152   0
+  2   0   0   0 192   0   0
+  3   0   0 185   0   0   0
+  4   0 225   0   0   0   0
+  5 222   0   0   0   0   0
+
+> class(dta$unions)
+[1] "ordered" "factor" 
+
+> table(dta$UT2_2)
+
+  1   2   3   4   5   6   7   8 
+235  35  64  74 146  85 322  50 
+
+> dta$Support_teachers <- ifelse(UT2_2 == 8, NA, UT2_2)
+
+> table(dta$Support_teachers)
+
+  1   2   3   4   5   6   7 
+235  35  64  74 146  85 322 
+
+> class(dta$Support_teachers)
+[1] "numeric"
+
+> summary(d1)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   1.000   1.000   1.499   2.000   2.000 
+
+> dta$dummy_woman <- ifelse(d1 == 2, 1, 0)
+
+> summary(dta$dummy_woman)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  0.0000  0.4985  1.0000  1.0000 
+
+> class(dta$dummy_woman)
+[1] "numeric"
+
+> dta$woman <- dta$dummy_woman
+
+> sum(is.na(dta$woman))
+[1] 0
+
+> dta$income <- as.numeric(dta$d12)
+
+> class(dta$income)
+[1] "numeric"
+
+> dta$income <- ifelse(dta$income == 9, NA, dta$income)
+
+> sum(is.na(dta$income))
+[1] 229
+
+> dta$age_levels <- factor(ifelse(dta$EdadRec == 1, 
++     "18 to 29", ifelse(dta$EdadRec == 3, "over 50", "30 to 49")))
+
+> dta$age_levels <- factor(dta$age_levels, ordered = TRUE, 
++     levels = c("18 to 29", "30 to 49", "over 50"))
+
+> table(dta$age_levels)
+
+18 to 29 30 to 49  over 50 
+     306      408      297 
+
+> table(dta$EdadRec)
+
+  1   2   3 
+306 408 297 
+
+> dta$age <- dta$d2
+
+> sum(is.na(dta$d2))
+[1] 0
+
+> dta$Morena <- factor(ifelse(PartyID == 7 | PartyID == 
++     8, "Morena", "Not Morena"))
+
+> dta$Morena <- ifelse(PartyID == 7 | PartyID == 8, 
++     1, 0)
+
+> table(dta$d3)
+
+  1   2   3   4   5   6   7   8   9  10  11  13  14 
+ 65 137  48 244   8  16  65 243  44 116   6  17   2 
+
+> length(dta$d3)
+[1] 1011
+
+> dta$education_levels <- factor(ifelse(dta$d3 == 1, 
++     "basica", ifelse(dta$d3 == 2, "basica", ifelse(dta$d3 == 
++         3, "basica", ifelse(dta$d3 == 4, "basica", ifelse(dta$d3 == 
++         5, "basica", ifelse(dta$d3 == 6, "media", ifelse(dta$d3 == 
++         7, "media", ifelse(dta$d3 == 8, "media", ifelse(dta$d3 == 
++         9, "superior", ifelse(dta$d3 == 10, "superior", ifelse(dta$d3 == 
++         11, "superior", ifelse(dta$d3 == 12, "superior", NA)))))))))))))
+
+> length(dta$education_levels)
+[1] 1011
+
+> dta$education_levels <- factor(dta$education_levels, 
++     ordered = TRUE, levels = c("basica", "media", "superior"))
+
+> sum(is.na(dta$education_levels))
+[1] 19
+
+> table(dta$education_levels)
+
+  basica    media superior 
+     502      324      166 
+
+> dta$education <- as.integer(dta$education_levels)
+
+> table(dta$education)
+
+  1   2   3 
+502 324 166 
+
+> library(stargazer)
+
+Please cite as: 
+
+ Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+ R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
+
+
+> library(MASS)
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+
+> m1 <- polr(unions ~ strike + pro_strike + anti_strike + 
++     double, data = dta, Hess = TRUE)
+
+> summary(m1)
+Call:
+polr(formula = unions ~ strike + pro_strike + anti_strike + double, 
+    data = dta, Hess = TRUE)
+
+Coefficients:
+              Value Std. Error t value
+strike      -0.2416     0.1785 -1.3532
+pro_strike   0.1936     0.1811  1.0691
+anti_strike -0.3858     0.1795 -2.1492
+double      -0.1213     0.1826 -0.6643
+
+Intercepts:
+    Value    Std. Error t value 
+1|2  -1.8165   0.1459   -12.4536
+2|3  -0.7298   0.1342    -5.4388
+3|4   0.0545   0.1325     0.4116
+4|5   1.1209   0.1373     8.1629
+
+Residual Deviance: 3110.455 
+AIC: 3126.455 
+(35 observations deleted due to missingness)
+
+> m2 <- dta %>% polr(unions ~ strike + pro_strike + 
++     anti_strike + double, data = ., weights = Ponderador, Hess = TRUE)
+
+> m3 <- polr(unions ~ strike + pro_strike + anti_strike + 
++     double + woman + age + income + education + Morena, data = dta, 
++     Hess = TRUE)
+
+> m4 <- polr(unions ~ control + strike + anti_strike + 
++     double, data = dta, Hess = TRUE)
+
+> m5 <- dta %>% polr(unions ~ control + strike + anti_strike + 
++     double, data = ., weights = Ponderador, Hess = TRUE)
+
+> m6 <- polr(unions ~ control + strike + anti_strike + 
++     double + woman + age + income + education + Morena, data = dta, 
++     Hess = TRUE)
+
+> stargazer(m1, m2, m3, m4, m5, m6, type = "html", out = "table_1A_new.htm")
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="6">unions</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">control</td><td></td><td></td><td></td><td>-0.194</td><td>-0.136</td><td>-0.096</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td>(0.181)</td><td>(0.181)</td><td>(0.203)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">strike</td><td>-0.242</td><td>-0.308<sup>*</sup></td><td>-0.308</td><td>-0.435<sup>**</sup></td><td>-0.445<sup>**</sup></td><td>-0.403<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.179)</td><td>(0.179)</td><td>(0.202)</td><td>(0.178)</td><td>(0.176)</td><td>(0.203)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">pro_strike</td><td>0.194</td><td>0.136</td><td>0.096</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.181)</td><td>(0.181)</td><td>(0.203)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">anti_strike</td><td>-0.386<sup>**</sup></td><td>-0.421<sup>**</sup></td><td>-0.521<sup>**</sup></td><td>-0.579<sup>***</sup></td><td>-0.557<sup>***</sup></td><td>-0.617<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.180)</td><td>(0.182)</td><td>(0.204)</td><td>(0.179)</td><td>(0.178)</td><td>(0.205)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">double</td><td>-0.121</td><td>-0.157</td><td>-0.257</td><td>-0.315<sup>*</sup></td><td>-0.294</td><td>-0.353<sup>*</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.183)</td><td>(0.184)</td><td>(0.209)</td><td>(0.182)</td><td>(0.181)</td><td>(0.210)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">woman</td><td></td><td></td><td>0.045</td><td></td><td></td><td>0.045</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.133)</td><td></td><td></td><td>(0.133)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">age</td><td></td><td></td><td>-0.021<sup>***</sup></td><td></td><td></td><td>-0.021<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.005)</td><td></td><td></td><td>(0.005)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">income</td><td></td><td></td><td>-0.054</td><td></td><td></td><td>-0.054</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.053)</td><td></td><td></td><td>(0.053)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">education</td><td></td><td></td><td>-0.311<sup>***</sup></td><td></td><td></td><td>-0.311<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.094)</td><td></td><td></td><td>(0.094)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Morena</td><td></td><td></td><td>0.263<sup>**</sup></td><td></td><td></td><td>0.263<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.130)</td><td></td><td></td><td>(0.130)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>976</td><td>975</td><td>754</td><td>976</td><td>975</td><td>754</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+
+> browseURL("table_1A_new.htm")
+
+> m7 <- polr(factor(Support_teachers) ~ strike + pro_strike + 
++     anti_strike + double, data = dta, Hess = TRUE)
+
+> m8 <- dta %>% polr(factor(Support_teachers) ~ strike + 
++     pro_strike + anti_strike + double, data = ., weights = Ponderador, 
++     Hess = TRUE)
+
+> m9 <- polr(factor(Support_teachers) ~ strike + pro_strike + 
++     anti_strike + double + woman + age + income + education + 
++     Morena, , data = dta, Hess = TRUE)
+
+> m10 <- polr(factor(Support_teachers) ~ control + strike + 
++     anti_strike + double, data = dta, Hess = TRUE)
+
+> m11 <- dta %>% polr(factor(Support_teachers) ~ control + 
++     strike + anti_strike + double, data = ., weights = Ponderador, 
++     Hess = TRUE)
+
+> m12 <- polr(factor(Support_teachers) ~ control + strike + 
++     anti_strike + double + woman + age + income + education + 
++     Morena, data = dta, Hess = TRUE)
+
+> stargazer(m7, m8, m9, m10, m11, m12, type = "html", 
++     out = "table_A2_new.htm")
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="6">Support_teachers</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">control</td><td></td><td></td><td></td><td>-0.473<sup>***</sup></td><td>-0.428<sup>**</sup></td><td>-0.391<sup>*</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td>(0.182)</td><td>(0.181)</td><td>(0.202)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">strike</td><td>-0.113</td><td>-0.129</td><td>-0.178</td><td>-0.586<sup>***</sup></td><td>-0.557<sup>***</sup></td><td>-0.569<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.181)</td><td>(0.181)</td><td>(0.204)</td><td>(0.185)</td><td>(0.183)</td><td>(0.209)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">pro_strike</td><td>0.473<sup>***</sup></td><td>0.428<sup>**</sup></td><td>0.391<sup>*</sup></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.182)</td><td>(0.181)</td><td>(0.202)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">anti_strike</td><td>0.030</td><td>-0.038</td><td>0.003</td><td>-0.444<sup>**</sup></td><td>-0.467<sup>**</sup></td><td>-0.388<sup>*</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.179)</td><td>(0.180)</td><td>(0.201)</td><td>(0.183)</td><td>(0.182)</td><td>(0.206)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">double</td><td>0.057</td><td>0.052</td><td>0.047</td><td>-0.416<sup>**</sup></td><td>-0.377<sup>**</sup></td><td>-0.344</td></tr>
+<tr><td style="text-align:left"></td><td>(0.181)</td><td>(0.181)</td><td>(0.210)</td><td>(0.185)</td><td>(0.183)</td><td>(0.214)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">woman</td><td></td><td></td><td>-0.042</td><td></td><td></td><td>-0.042</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.134)</td><td></td><td></td><td>(0.134)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">age</td><td></td><td></td><td>-0.010<sup>**</sup></td><td></td><td></td><td>-0.010<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.005)</td><td></td><td></td><td>(0.005)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">income</td><td></td><td></td><td>-0.012</td><td></td><td></td><td>-0.012</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.053)</td><td></td><td></td><td>(0.053)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">education</td><td></td><td></td><td>-0.279<sup>***</sup></td><td></td><td></td><td>-0.279<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.096)</td><td></td><td></td><td>(0.096)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Morena</td><td></td><td></td><td>0.117</td><td></td><td></td><td>0.117</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.132)</td><td></td><td></td><td>(0.132)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>961</td><td>962</td><td>747</td><td>961</td><td>962</td><td>747</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+
+> browseURL("table_A2_new.htm")
+
+> m1_tam <- polr(unions ~ strike + pro_strike + anti_strike + 
++     double, data = dta %>% filter(Entidad != 28), Hess = TRUE)
+
+> m2_tam <- polr(unions ~ control + strike + anti_strike + 
++     double, data = dta %>% filter(Entidad != 28), Hess = TRUE)
+
+> m3_tam <- polr(factor(Support_teachers) ~ strike + 
++     pro_strike + anti_strike + double, data = dta %>% filter(Entidad != 
++     28), Hess = TRUE)
+
+> m4_tam <- polr(factor(Support_teachers) ~ control + 
++     strike + anti_strike + double, data = dta %>% filter(Entidad != 
++     28), Hess = TRUE)
+
+> stargazer(m1_tam, m2_tam, m3_tam, m4_tam, type = "html", 
++     out = "table_A3_new.htm")
+
+<table style="text-align:center"><tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="4"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="4" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="2">unions</td><td colspan="2">Support_teachers</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td></tr>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">control</td><td></td><td>-0.097</td><td></td><td>-0.509<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.185)</td><td></td><td>(0.186)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">strike</td><td>-0.256</td><td>-0.352<sup>*</sup></td><td>-0.120</td><td>-0.630<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.181)</td><td>(0.180)</td><td>(0.183)</td><td>(0.189)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">pro_strike</td><td>0.097</td><td></td><td>0.509<sup>***</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.185)</td><td></td><td>(0.186)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">anti_strike</td><td>-0.401<sup>**</sup></td><td>-0.498<sup>***</sup></td><td>-0.009</td><td>-0.519<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.183)</td><td>(0.183)</td><td>(0.182)</td><td>(0.188)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">double</td><td>-0.178</td><td>-0.274</td><td>-0.002</td><td>-0.511<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.186)</td><td>(0.185)</td><td>(0.183)</td><td>(0.189)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>947</td><td>947</td><td>931</td><td>931</td></tr>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="4" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+
+> browseURL("table_A3_new.htm")
+
+> mean_unions_Tr_2 <- dta %>% group_by(dta$Treatment) %>% 
++     dplyr::summarize(Mean = mean(unions, na.rm = TRUE))
+
+> mean_unions_Tr_2
+# A tibble: 5 × 2
+  `dta$Treatment`  Mean
+  <fct>           <dbl>
+1 Control            NA
+2 Strike             NA
+3 Pro_strike         NA
+4 Anti_strike        NA
+5 Double_frame       NA
+
+> treatment_data <- data.frame(Treatment = c("Control", 
++     "Strike", "Pro_strike", "Anti_strike", "Double_frame"), Value = c(3.25, 
++     3.08, 3.41, 2.96, 3.17))
+
+> control_value <- treatment_data %>% filter(Treatment == 
++     "Control") %>% pull(Value)
+
+> treatment_data <- treatment_data %>% mutate(Difference_from_Control = Value - 
++     control_value)
+
+> print(treatment_data)
+     Treatment Value Difference_from_Control
+1      Control  3.25                    0.00
+2       Strike  3.08                   -0.17
+3   Pro_strike  3.41                    0.16
+4  Anti_strike  2.96                   -0.29
+5 Double_frame  3.17                   -0.08
+
+> mean_support_Tr_2 <- dta %>% group_by(dta$Treatment) %>% 
++     dplyr::summarize(Mean = mean(Support_teachers, na.rm = TRUE))
+
+> mean_support_Tr_2
+# A tibble: 5 × 2
+  `dta$Treatment`  Mean
+  <fct>           <dbl>
+1 Control          4.36
+2 Strike           4.18
+3 Pro_strike       4.91
+4 Anti_strike      4.40
+5 Double_frame     4.43
+
+> treatment_data <- data.frame(Treatment = c("Control", 
++     "Strike", "Pro_strike", "Anti_strike", "Double_frame"), Value = c(4.36, 
++     4.18, 4.91, 4.4, 4.43))
+
+> control_value <- treatment_data %>% filter(Treatment == 
++     "Control") %>% pull(Value)
+
+> treatment_data <- treatment_data %>% mutate(Difference_from_Control = Value - 
++     control_value)
+
+> print(treatment_data)
+     Treatment Value Difference_from_Control
+1      Control  4.36                    0.00
+2       Strike  4.18                   -0.18
+3   Pro_strike  4.91                    0.55
+4  Anti_strike  4.40                    0.04
+5 Double_frame  4.43                    0.07
+
+> library(tableone)
+
+> library(dplyr)
+
+> dta$Treatment
+   [1] Pro_strike   Control      Double_frame Anti_strike  Strike      
+   [6] Control      Control      Control      Control      Pro_strike  
+  [11] Anti_strike  Anti_strike  Control      Strike       Anti_strike 
+  [16] Anti_strike  Strike       Strike       Strike       Anti_strike 
+  [21] Anti_strike  Pro_strike   Double_frame Anti_strike  Pro_strike  
+  [26] Double_frame Control      Control      Control      Double_frame
+  [31] Double_frame Anti_strike  Double_frame Pro_strike   Control     
+  [36] Control      Anti_strike  Strike       Control      Anti_strike 
+  [41] Anti_strike  Pro_strike   Strike       Control      Anti_strike 
+  [46] Strike       Anti_strike  Double_frame Pro_strike   Pro_strike  
+  [51] Control      Pro_strike   Pro_strike   Pro_strike   Double_frame
+  [56] Strike       Pro_strike   Strike       Anti_strike  Strike      
+  [61] Strike       Anti_strike  Double_frame Pro_strike   Control     
+  [66] Anti_strike  Control      Anti_strike  Anti_strike  Double_frame
+  [71] Control      Double_frame Control      Control      Strike      
+  [76] Strike       Anti_strike  Double_frame Strike       Anti_strike 
+  [81] Pro_strike   Control      Strike       Anti_strike  Strike      
+  [86] Control      Strike       Strike       Double_frame Double_frame
+  [91] Double_frame Pro_strike   Pro_strike   Strike       Strike      
+  [96] Pro_strike   Double_frame Double_frame Pro_strike   Anti_strike 
+ [101] Double_frame Pro_strike   Anti_strike  Control      Control     
+ [106] Control      Anti_strike  Anti_strike  Anti_strike  Control     
+ [111] Strike       Double_frame Control      Control      Pro_strike  
+ [116] Strike       Strike       Control      Control      Pro_strike  
+ [121] Anti_strike  Double_frame Strike       Strike       Control     
+ [126] Anti_strike  Double_frame Control      Anti_strike  Control     
+ [131] Double_frame Pro_strike   Pro_strike   Anti_strike  Anti_strike 
+ [136] Pro_strike   Anti_strike  Pro_strike   Double_frame Double_frame
+ [141] Pro_strike   Double_frame Strike       Double_frame Pro_strike  
+ [146] Pro_strike   Control      Anti_strike  Double_frame Anti_strike 
+ [151] Strike       Double_frame Double_frame Strike       Control     
+ [156] Strike       Control      Double_frame Anti_strike  Control     
+ [161] Anti_strike  Strike       Control      Anti_strike  Pro_strike  
+ [166] Strike       Pro_strike   Anti_strike  Control      Control     
+ [171] Strike       Pro_strike   Control      Control      Pro_strike  
+ [176] Control      Pro_strike   Anti_strike  Anti_strike  Control     
+ [181] Control      Control      Strike       Pro_strike   Double_frame
+ [186] Strike       Strike       Pro_strike   Anti_strike  Anti_strike 
+ [191] Anti_strike  Control      Strike       Anti_strike  Control     
+ [196] Control      Double_frame Double_frame Pro_strike   Double_frame
+ [201] Control      Pro_strike   Control      Anti_strike  Anti_strike 
+ [206] Pro_strike   Pro_strike   Strike       Anti_strike  Strike      
+ [211] Control      Control      Double_frame Pro_strike   Pro_strike  
+ [216] Anti_strike  Pro_strike   Strike       Strike       Control     
+ [221] Control      Double_frame Double_frame Control      Control     
+ [226] Double_frame Pro_strike   Strike       Strike       Strike      
+ [231] Double_frame Strike       Anti_strike  Strike       Anti_strike 
+ [236] Double_frame Double_frame Anti_strike  Control      Strike      
+ [241] Control      Strike       Anti_strike  Pro_strike   Double_frame
+ [246] Pro_strike   Pro_strike   Anti_strike  Double_frame Double_frame
+ [251] Pro_strike   Pro_strike   Double_frame Pro_strike   Pro_strike  
+ [256] Control      Strike       Strike       Strike       Control     
+ [261] Strike       Control      Control      Control      Anti_strike 
+ [266] Strike       Double_frame Anti_strike  Double_frame Anti_strike 
+ [271] Anti_strike  Pro_strike   Anti_strike  Control      Pro_strike  
+ [276] Double_frame Control      Anti_strike  Double_frame Double_frame
+ [281] Control      Strike       Strike       Pro_strike   Pro_strike  
+ [286] Pro_strike   Anti_strike  Pro_strike   Pro_strike   Pro_strike  
+ [291] Anti_strike  Pro_strike   Pro_strike   Control      Strike      
+ [296] Control      Double_frame Anti_strike  Strike       Strike      
+ [301] Pro_strike   Double_frame Control      Double_frame Double_frame
+ [306] Double_frame Pro_strike   Anti_strike  Anti_strike  Strike      
+ [311] Control      Control      Anti_strike  Strike       Anti_strike 
+ [316] Control      Strike       Double_frame Anti_strike  Strike      
+ [321] Double_frame Double_frame Pro_strike   Anti_strike  Double_frame
+ [326] Strike       Anti_strike  Anti_strike  Double_frame Control     
+ [331] Anti_strike  Anti_strike  Control      Strike       Pro_strike  
+ [336] Double_frame Double_frame Control      Control      Pro_strike  
+ [341] Control      Strike       Anti_strike  Anti_strike  Pro_strike  
+ [346] Anti_strike  Strike       Control      Anti_strike  Strike      
+ [351] Control      Double_frame Double_frame Anti_strike  Strike      
+ [356] Anti_strike  Strike       Anti_strike  Double_frame Anti_strike 
+ [361] Strike       Anti_strike  Strike       Control      Control     
+ [366] Anti_strike  Strike       Anti_strike  Pro_strike   Control     
+ [371] Strike       Control      Anti_strike  Control      Anti_strike 
+ [376] Strike       Strike       Pro_strike   Pro_strike   Strike      
+ [381] Double_frame Double_frame Double_frame Strike       Control     
+ [386] Pro_strike   Double_frame Strike       Pro_strike   Anti_strike 
+ [391] Control      Double_frame Control      Anti_strike  Anti_strike 
+ [396] Double_frame Anti_strike  Pro_strike   Pro_strike   Strike      
+ [401] Strike       Double_frame Control      Pro_strike   Control     
+ [406] Double_frame Strike       Pro_strike   Control      Anti_strike 
+ [411] Pro_strike   Control      Double_frame Double_frame Strike      
+ [416] Strike       Control      Strike       Strike       Strike      
+ [421] Double_frame Control      Double_frame Double_frame Strike      
+ [426] Control      Control      Pro_strike   Double_frame Strike      
+ [431] Strike       Anti_strike  Strike       Anti_strike  Control     
+ [436] Strike       Pro_strike   Pro_strike   Pro_strike   Pro_strike  
+ [441] Control      Double_frame Double_frame Anti_strike  Double_frame
+ [446] Strike       Pro_strike   Double_frame Double_frame Anti_strike 
+ [451] Double_frame Strike       Control      Control      Double_frame
+ [456] Double_frame Pro_strike   Control      Control      Strike      
+ [461] Control      Pro_strike   Control      Pro_strike   Strike      
+ [466] Control      Strike       Control      Anti_strike  Strike      
+ [471] Anti_strike  Strike       Double_frame Pro_strike   Pro_strike  
+ [476] Strike       Anti_strike  Control      Control      Pro_strike  
+ [481] Anti_strike  Pro_strike   Double_frame Control      Strike      
+ [486] Anti_strike  Control      Control      Pro_strike   Anti_strike 
+ [491] Double_frame Strike       Pro_strike   Double_frame Control     
+ [496] Control      Double_frame Strike       Double_frame Control     
+ [501] Double_frame Control      Pro_strike   Double_frame Anti_strike 
+ [506] Strike       Strike       Double_frame Double_frame Double_frame
+ [511] Control      Anti_strike  Control      Control      Control     
+ [516] Strike       Strike       Strike       Strike       Pro_strike  
+ [521] Anti_strike  Strike       Strike       Control      Strike      
+ [526] Control      Anti_strike  Strike       Double_frame Control     
+ [531] Control      Anti_strike  Anti_strike  Anti_strike  Strike      
+ [536] Control      Double_frame Anti_strike  Anti_strike  Pro_strike  
+ [541] Double_frame Double_frame Double_frame Double_frame Pro_strike  
+ [546] Strike       Control      Strike       Anti_strike  Anti_strike 
+ [551] Strike       Double_frame Strike       Strike       Anti_strike 
+ [556] Strike       Strike       Pro_strike   Double_frame Double_frame
+ [561] Anti_strike  Control      Double_frame Double_frame Control     
+ [566] Anti_strike  Anti_strike  Pro_strike   Anti_strike  Anti_strike 
+ [571] Pro_strike   Anti_strike  Double_frame Control      Control     
+ [576] Anti_strike  Control      Pro_strike   Strike       Control     
+ [581] Double_frame Pro_strike   Strike       Double_frame Anti_strike 
+ [586] Anti_strike  Control      Pro_strike   Control      Pro_strike  
+ [591] Double_frame Strike       Pro_strike   Strike       Strike      
+ [596] Pro_strike   Control      Anti_strike  Anti_strike  Anti_strike 
+ [601] Control      Double_frame Pro_strike   Strike       Strike      
+ [606] Pro_strike   Pro_strike   Pro_strike   Pro_strike   Control     
+ [611] Anti_strike  Double_frame Control      Double_frame Strike      
+ [616] Strike       Anti_strike  Pro_strike   Pro_strike   Control     
+ [621] Anti_strike  Anti_strike  Pro_strike   Strike       Control     
+ [626] Pro_strike   Double_frame Double_frame Double_frame Strike      
+ [631] Control      Control      Double_frame Pro_strike   Double_frame
+ [636] Strike       Anti_strike  Strike       Pro_strike   Double_frame
+ [641] Pro_strike   Control      Strike       Control      Anti_strike 
+ [646] Control      Anti_strike  Strike       Double_frame Control     
+ [651] Anti_strike  Pro_strike   Double_frame Anti_strike  Anti_strike 
+ [656] Anti_strike  Pro_strike   Strike       Pro_strike   Anti_strike 
+ [661] Control      Control      Double_frame Strike       Control     
+ [666] Pro_strike   Pro_strike   Pro_strike   Pro_strike   Pro_strike  
+ [671] Anti_strike  Control      Pro_strike   Anti_strike  Control     
+ [676] Strike       Strike       Double_frame Strike       Pro_strike  
+ [681] Anti_strike  Pro_strike   Control      Strike       Control     
+ [686] Pro_strike   Pro_strike   Control      Anti_strike  Strike      
+ [691] Pro_strike   Pro_strike   Control      Control      Pro_strike  
+ [696] Anti_strike  Strike       Pro_strike   Pro_strike   Pro_strike  
+ [701] Pro_strike   Strike       Strike       Pro_strike   Pro_strike  
+ [706] Pro_strike   Strike       Control      Anti_strike  Control     
+ [711] Double_frame Double_frame Double_frame Pro_strike   Pro_strike  
+ [716] Pro_strike   Double_frame Control      Pro_strike   Anti_strike 
+ [721] Double_frame Strike       Control      Strike       Pro_strike  
+ [726] Pro_strike   Strike       Pro_strike   Double_frame Strike      
+ [731] Control      Double_frame Strike       Control      Strike      
+ [736] Pro_strike   Double_frame Control      Anti_strike  Control     
+ [741] Pro_strike   Strike       Pro_strike   Pro_strike   Double_frame
+ [746] Control      Control      Double_frame Anti_strike  Strike      
+ [751] Strike       Strike       Anti_strike  Double_frame Double_frame
+ [756] Strike       Double_frame Control      Strike       Pro_strike  
+ [761] Control      Double_frame Strike       Anti_strike  Pro_strike  
+ [766] Control      Anti_strike  Double_frame Anti_strike  Strike      
+ [771] Anti_strike  Double_frame Pro_strike   Anti_strike  Strike      
+ [776] Anti_strike  Control      Double_frame Pro_strike   Strike      
+ [781] Control      Control      Control      Pro_strike   Control     
+ [786] Pro_strike   Pro_strike   Pro_strike   Anti_strike  Double_frame
+ [791] Anti_strike  Strike       Anti_strike  Control      Control     
+ [796] Pro_strike   Pro_strike   Double_frame Pro_strike   Pro_strike  
+ [801] Anti_strike  Control      Double_frame Strike       Control     
+ [806] Double_frame Control      Anti_strike  Control      Double_frame
+ [811] Pro_strike   Double_frame Control      Double_frame Double_frame
+ [816] Strike       Pro_strike   Double_frame Pro_strike   Pro_strike  
+ [821] Double_frame Pro_strike   Control      Control      Control     
+ [826] Double_frame Double_frame Anti_strike  Control      Double_frame
+ [831] Double_frame Strike       Pro_strike   Anti_strike  Anti_strike 
+ [836] Control      Anti_strike  Anti_strike  Anti_strike  Pro_strike  
+ [841] Strike       Strike       Double_frame Double_frame Control     
+ [846] Anti_strike  Strike       Anti_strike  Pro_strike   Strike      
+ [851] Pro_strike   Pro_strike   Anti_strike  Anti_strike  Anti_strike 
+ [856] Double_frame Pro_strike   Pro_strike   Strike       Double_frame
+ [861] Double_frame Double_frame Double_frame Strike       Strike      
+ [866] Double_frame Double_frame Pro_strike   Double_frame Strike      
+ [871] Anti_strike  Double_frame Control      Double_frame Anti_strike 
+ [876] Double_frame Anti_strike  Control      Control      Double_frame
+ [881] Control      Pro_strike   Control      Pro_strike   Control     
+ [886] Pro_strike   Double_frame Control      Pro_strike   Pro_strike  
+ [891] Anti_strike  Pro_strike   Anti_strike  Anti_strike  Anti_strike 
+ [896] Control      Anti_strike  Double_frame Pro_strike   Pro_strike  
+ [901] Strike       Control      Anti_strike  Pro_strike   Double_frame
+ [906] Pro_strike   Strike       Anti_strike  Anti_strike  Pro_strike  
+ [911] Double_frame Double_frame Strike       Strike       Double_frame
+ [916] Control      Double_frame Strike       Double_frame Anti_strike 
+ [921] Control      Strike       Pro_strike   Control      Anti_strike 
+ [926] Control      Double_frame Pro_strike   Strike       Double_frame
+ [931] Double_frame Control      Pro_strike   Strike       Anti_strike 
+ [936] Double_frame Anti_strike  Control      Strike       Double_frame
+ [941] Double_frame Strike       Anti_strike  Strike       Control     
+ [946] Double_frame Anti_strike  Control      Anti_strike  Control     
+ [951] Double_frame Double_frame Pro_strike   Anti_strike  Pro_strike  
+ [956] Control      Strike       Strike       Strike       Pro_strike  
+ [961] Pro_strike   Double_frame Strike       Pro_strike   Anti_strike 
+ [966] Pro_strike   Pro_strike   Pro_strike   Strike       Anti_strike 
+ [971] Strike       Double_frame Pro_strike   Pro_strike   Double_frame
+ [976] Pro_strike   Anti_strike  Strike       Double_frame Strike      
+ [981] Anti_strike  Anti_strike  Control      Pro_strike   Control     
+ [986] Control      Pro_strike   Anti_strike  Pro_strike   Pro_strike  
+ [991] Double_frame Anti_strike  Anti_strike  Double_frame Strike      
+ [996] Anti_strike  Pro_strike   Anti_strike  Anti_strike  Anti_strike 
+[1001] Control      Strike       Control      Strike       Pro_strike  
+[1006] Control      Strike       Strike       Strike       Anti_strike 
+[1011] Strike      
+Levels: Control Strike Pro_strike Anti_strike Double_frame
+
+> dta$woman <- factor(dta$woman)
+
+> dta$age_levels
+   [1] 30 to 49 over 50  over 50  30 to 49 18 to 29 30 to 49 30 to 49 18 to 29
+   [9] 18 to 29 over 50  30 to 49 over 50  over 50  30 to 49 18 to 29 over 50 
+  [17] 18 to 29 30 to 49 30 to 49 18 to 29 over 50  30 to 49 30 to 49 over 50 
+  [25] 18 to 29 over 50  18 to 29 18 to 29 30 to 49 30 to 49 over 50  over 50 
+  [33] 30 to 49 18 to 29 18 to 29 30 to 49 over 50  30 to 49 30 to 49 18 to 29
+  [41] 30 to 49 over 50  18 to 29 30 to 49 over 50  18 to 29 18 to 29 30 to 49
+  [49] over 50  30 to 49 30 to 49 18 to 29 over 50  30 to 49 over 50  18 to 29
+  [57] 30 to 49 30 to 49 18 to 29 30 to 49 30 to 49 30 to 49 30 to 49 30 to 49
+  [65] 18 to 29 over 50  over 50  18 to 29 30 to 49 30 to 49 30 to 49 18 to 29
+  [73] over 50  30 to 49 over 50  over 50  30 to 49 over 50  18 to 29 30 to 49
+  [81] 18 to 29 30 to 49 18 to 29 30 to 49 over 50  30 to 49 18 to 29 over 50 
+  [89] 18 to 29 30 to 49 over 50  18 to 29 30 to 49 18 to 29 18 to 29 over 50 
+  [97] 30 to 49 30 to 49 30 to 49 over 50  over 50  18 to 29 30 to 49 over 50 
+ [105] 18 to 29 18 to 29 30 to 49 18 to 29 18 to 29 over 50  over 50  18 to 29
+ [113] 30 to 49 30 to 49 over 50  18 to 29 30 to 49 18 to 29 30 to 49 30 to 49
+ [121] over 50  over 50  30 to 49 30 to 49 30 to 49 30 to 49 over 50  over 50 
+ [129] 18 to 29 18 to 29 18 to 29 30 to 49 over 50  30 to 49 18 to 29 over 50 
+ [137] 30 to 49 over 50  18 to 29 30 to 49 18 to 29 30 to 49 over 50  18 to 29
+ [145] 30 to 49 over 50  30 to 49 18 to 29 over 50  30 to 49 18 to 29 30 to 49
+ [153] 18 to 29 30 to 49 over 50  30 to 49 30 to 49 over 50  30 to 49 over 50 
+ [161] 18 to 29 18 to 29 18 to 29 18 to 29 over 50  30 to 49 18 to 29 over 50 
+ [169] 18 to 29 30 to 49 30 to 49 30 to 49 over 50  over 50  30 to 49 30 to 49
+ [177] 30 to 49 18 to 29 18 to 29 18 to 29 18 to 29 30 to 49 over 50  over 50 
+ [185] over 50  30 to 49 18 to 29 18 to 29 30 to 49 over 50  30 to 49 30 to 49
+ [193] 18 to 29 over 50  over 50  over 50  30 to 49 30 to 49 30 to 49 30 to 49
+ [201] 18 to 29 18 to 29 30 to 49 over 50  30 to 49 30 to 49 18 to 29 18 to 29
+ [209] 18 to 29 18 to 29 30 to 49 over 50  over 50  over 50  over 50  over 50 
+ [217] 30 to 49 30 to 49 30 to 49 18 to 29 18 to 29 30 to 49 18 to 29 30 to 49
+ [225] 18 to 29 over 50  30 to 49 18 to 29 30 to 49 over 50  18 to 29 30 to 49
+ [233] over 50  18 to 29 over 50  30 to 49 18 to 29 30 to 49 over 50  30 to 49
+ [241] 18 to 29 30 to 49 18 to 29 over 50  30 to 49 30 to 49 over 50  over 50 
+ [249] over 50  30 to 49 18 to 29 30 to 49 18 to 29 18 to 29 30 to 49 over 50 
+ [257] 30 to 49 30 to 49 over 50  over 50  30 to 49 18 to 29 30 to 49 18 to 29
+ [265] 18 to 29 18 to 29 30 to 49 over 50  30 to 49 30 to 49 over 50  18 to 29
+ [273] 30 to 49 30 to 49 over 50  18 to 29 30 to 49 30 to 49 30 to 49 30 to 49
+ [281] over 50  18 to 29 18 to 29 30 to 49 30 to 49 30 to 49 18 to 29 over 50 
+ [289] 18 to 29 over 50  30 to 49 over 50  30 to 49 18 to 29 18 to 29 over 50 
+ [297] 18 to 29 30 to 49 over 50  over 50  30 to 49 30 to 49 30 to 49 18 to 29
+ [305] over 50  over 50  over 50  18 to 29 30 to 49 30 to 49 30 to 49 18 to 29
+ [313] 30 to 49 18 to 29 30 to 49 30 to 49 over 50  over 50  30 to 49 over 50 
+ [321] 18 to 29 30 to 49 18 to 29 18 to 29 over 50  over 50  over 50  over 50 
+ [329] 30 to 49 30 to 49 18 to 29 18 to 29 18 to 29 30 to 49 over 50  30 to 49
+ [337] over 50  30 to 49 18 to 29 30 to 49 18 to 29 18 to 29 30 to 49 over 50 
+ [345] over 50  over 50  18 to 29 30 to 49 18 to 29 18 to 29 30 to 49 over 50 
+ [353] 30 to 49 30 to 49 over 50  18 to 29 30 to 49 over 50  30 to 49 over 50 
+ [361] 18 to 29 18 to 29 30 to 49 30 to 49 30 to 49 over 50  18 to 29 over 50 
+ [369] 30 to 49 30 to 49 18 to 29 18 to 29 30 to 49 over 50  over 50  18 to 29
+ [377] over 50  over 50  30 to 49 30 to 49 18 to 29 18 to 29 30 to 49 30 to 49
+ [385] 30 to 49 18 to 29 over 50  30 to 49 over 50  18 to 29 18 to 29 30 to 49
+ [393] over 50  30 to 49 18 to 29 over 50  18 to 29 over 50  18 to 29 30 to 49
+ [401] over 50  30 to 49 30 to 49 30 to 49 30 to 49 30 to 49 18 to 29 over 50 
+ [409] 30 to 49 18 to 29 30 to 49 over 50  18 to 29 over 50  over 50  30 to 49
+ [417] over 50  over 50  30 to 49 18 to 29 over 50  30 to 49 18 to 29 18 to 29
+ [425] over 50  18 to 29 30 to 49 30 to 49 18 to 29 18 to 29 30 to 49 over 50 
+ [433] over 50  30 to 49 18 to 29 over 50  30 to 49 over 50  30 to 49 18 to 29
+ [441] 30 to 49 30 to 49 18 to 29 over 50  18 to 29 18 to 29 over 50  over 50 
+ [449] 30 to 49 18 to 29 30 to 49 30 to 49 30 to 49 over 50  30 to 49 over 50 
+ [457] 30 to 49 30 to 49 30 to 49 18 to 29 18 to 29 18 to 29 over 50  over 50 
+ [465] over 50  over 50  30 to 49 30 to 49 over 50  30 to 49 18 to 29 30 to 49
+ [473] 18 to 29 18 to 29 30 to 49 18 to 29 30 to 49 30 to 49 over 50  over 50 
+ [481] 18 to 29 over 50  30 to 49 18 to 29 over 50  30 to 49 18 to 29 30 to 49
+ [489] 30 to 49 over 50  30 to 49 18 to 29 18 to 29 over 50  30 to 49 18 to 29
+ [497] 30 to 49 18 to 29 over 50  over 50  18 to 29 over 50  30 to 49 30 to 49
+ [505] over 50  30 to 49 30 to 49 over 50  over 50  18 to 29 18 to 29 18 to 29
+ [513] 30 to 49 30 to 49 over 50  18 to 29 over 50  30 to 49 over 50  30 to 49
+ [521] 18 to 29 30 to 49 30 to 49 18 to 29 over 50  18 to 29 30 to 49 30 to 49
+ [529] 18 to 29 over 50  over 50  30 to 49 18 to 29 30 to 49 over 50  18 to 29
+ [537] 30 to 49 18 to 29 30 to 49 over 50  over 50  18 to 29 30 to 49 30 to 49
+ [545] 30 to 49 over 50  18 to 29 30 to 49 30 to 49 30 to 49 18 to 29 18 to 29
+ [553] over 50  over 50  30 to 49 over 50  18 to 29 30 to 49 30 to 49 over 50 
+ [561] over 50  30 to 49 18 to 29 18 to 29 over 50  30 to 49 30 to 49 18 to 29
+ [569] 30 to 49 18 to 29 over 50  30 to 49 over 50  18 to 29 over 50  18 to 29
+ [577] over 50  30 to 49 30 to 49 18 to 29 18 to 29 30 to 49 30 to 49 over 50 
+ [585] 18 to 29 over 50  30 to 49 30 to 49 30 to 49 18 to 29 over 50  30 to 49
+ [593] 18 to 29 over 50  over 50  over 50  over 50  over 50  30 to 49 18 to 29
+ [601] 30 to 49 18 to 29 30 to 49 18 to 29 over 50  30 to 49 over 50  over 50 
+ [609] 30 to 49 30 to 49 18 to 29 18 to 29 18 to 29 30 to 49 18 to 29 30 to 49
+ [617] 18 to 29 over 50  over 50  18 to 29 30 to 49 30 to 49 over 50  18 to 29
+ [625] over 50  30 to 49 18 to 29 over 50  over 50  30 to 49 18 to 29 30 to 49
+ [633] 18 to 29 30 to 49 over 50  over 50  over 50  30 to 49 30 to 49 18 to 29
+ [641] 30 to 49 30 to 49 18 to 29 18 to 29 18 to 29 18 to 29 30 to 49 over 50 
+ [649] 30 to 49 over 50  30 to 49 18 to 29 30 to 49 over 50  over 50  18 to 29
+ [657] 30 to 49 over 50  over 50  30 to 49 30 to 49 18 to 29 30 to 49 18 to 29
+ [665] 30 to 49 18 to 29 18 to 29 30 to 49 30 to 49 18 to 29 over 50  30 to 49
+ [673] over 50  over 50  over 50  18 to 29 18 to 29 30 to 49 over 50  over 50 
+ [681] 30 to 49 18 to 29 30 to 49 30 to 49 over 50  30 to 49 18 to 29 30 to 49
+ [689] over 50  18 to 29 30 to 49 18 to 29 18 to 29 over 50  30 to 49 over 50 
+ [697] 18 to 29 over 50  30 to 49 30 to 49 18 to 29 over 50  18 to 29 30 to 49
+ [705] 30 to 49 over 50  18 to 29 18 to 29 30 to 49 30 to 49 18 to 29 30 to 49
+ [713] over 50  over 50  30 to 49 18 to 29 over 50  30 to 49 over 50  18 to 29
+ [721] 18 to 29 30 to 49 over 50  30 to 49 30 to 49 30 to 49 over 50  18 to 29
+ [729] 18 to 29 over 50  30 to 49 30 to 49 over 50  30 to 49 18 to 29 over 50 
+ [737] 30 to 49 30 to 49 over 50  over 50  18 to 29 18 to 29 30 to 49 30 to 49
+ [745] 18 to 29 18 to 29 18 to 29 30 to 49 18 to 29 30 to 49 30 to 49 over 50 
+ [753] over 50  30 to 49 over 50  18 to 29 18 to 29 over 50  over 50  30 to 49
+ [761] 18 to 29 over 50  18 to 29 30 to 49 30 to 49 over 50  over 50  18 to 29
+ [769] over 50  30 to 49 30 to 49 30 to 49 18 to 29 18 to 29 30 to 49 18 to 29
+ [777] 30 to 49 over 50  18 to 29 30 to 49 over 50  30 to 49 18 to 29 over 50 
+ [785] 30 to 49 18 to 29 30 to 49 30 to 49 18 to 29 18 to 29 over 50  over 50 
+ [793] 30 to 49 30 to 49 30 to 49 18 to 29 over 50  30 to 49 30 to 49 over 50 
+ [801] 30 to 49 30 to 49 over 50  18 to 29 18 to 29 30 to 49 over 50  over 50 
+ [809] 30 to 49 18 to 29 over 50  18 to 29 30 to 49 30 to 49 18 to 29 30 to 49
+ [817] over 50  18 to 29 over 50  30 to 49 over 50  30 to 49 30 to 49 18 to 29
+ [825] 18 to 29 18 to 29 over 50  30 to 49 over 50  18 to 29 30 to 49 over 50 
+ [833] 30 to 49 30 to 49 18 to 29 18 to 29 over 50  30 to 49 over 50  over 50 
+ [841] 18 to 29 30 to 49 30 to 49 18 to 29 30 to 49 30 to 49 over 50  over 50 
+ [849] 30 to 49 over 50  30 to 49 18 to 29 18 to 29 30 to 49 18 to 29 30 to 49
+ [857] 30 to 49 30 to 49 over 50  over 50  18 to 29 over 50  over 50  30 to 49
+ [865] 18 to 29 18 to 29 30 to 49 30 to 49 18 to 29 30 to 49 18 to 29 over 50 
+ [873] over 50  30 to 49 18 to 29 30 to 49 30 to 49 30 to 49 over 50  18 to 29
+ [881] 30 to 49 18 to 29 18 to 29 30 to 49 over 50  over 50  30 to 49 30 to 49
+ [889] over 50  30 to 49 over 50  over 50  18 to 29 30 to 49 30 to 49 over 50 
+ [897] 30 to 49 18 to 29 18 to 29 30 to 49 18 to 29 30 to 49 30 to 49 18 to 29
+ [905] 18 to 29 over 50  over 50  30 to 49 over 50  18 to 29 30 to 49 30 to 49
+ [913] 30 to 49 30 to 49 over 50  18 to 29 over 50  over 50  18 to 29 18 to 29
+ [921] over 50  30 to 49 over 50  18 to 29 30 to 49 18 to 29 18 to 29 30 to 49
+ [929] 30 to 49 30 to 49 30 to 49 over 50  30 to 49 over 50  30 to 49 30 to 49
+ [937] 18 to 29 18 to 29 18 to 29 over 50  30 to 49 over 50  18 to 29 30 to 49
+ [945] 30 to 49 over 50  30 to 49 18 to 29 over 50  18 to 29 30 to 49 30 to 49
+ [953] over 50  over 50  30 to 49 over 50  18 to 29 18 to 29 30 to 49 18 to 29
+ [961] 30 to 49 over 50  over 50  18 to 29 30 to 49 30 to 49 18 to 29 18 to 29
+ [969] over 50  30 to 49 30 to 49 18 to 29 over 50  30 to 49 30 to 49 18 to 29
+ [977] 18 to 29 30 to 49 30 to 49 over 50  over 50  18 to 29 over 50  over 50 
+ [985] 18 to 29 30 to 49 30 to 49 18 to 29 30 to 49 30 to 49 over 50  over 50 
+ [993] over 50  30 to 49 30 to 49 30 to 49 30 to 49 30 to 49 over 50  18 to 29
+[1001] 18 to 29 over 50  over 50  30 to 49 30 to 49 30 to 49 18 to 29 18 to 29
+[1009] 30 to 49 18 to 29 over 50 
+Levels: 18 to 29 < 30 to 49 < over 50
+
+> dta$income
+   [1]  5  4  6  5 NA  6  3  4  6  5  5  5  4  6  5  6  6  6  6  5  5  6  5  6
+  [25]  5  7  6  6  5  8  5  6  6  6  5  6  6  6  6  6  3  4 NA  3  2 NA  4  4
+  [49]  4  4  4 NA  4  6  5  6  3  6  5  5  5 NA  6  6  6  4  6  4  4  5  5  4
+  [73]  6  5  4 NA  6  6  6  3  5 NA  5  2  3  3  3  3  4  4  4  1  5  4  4 NA
+  [97]  3  4  5  2  3  5 NA  5  3  4  4  4  4 NA NA NA  5  4  4  4  4  6  4  6
+ [121]  4  3  8  6  5  6 NA  6 NA  6  6  5  5  8  5  4  4  5 NA NA  5  6  5  4
+ [145]  8 NA NA  5  4  6 NA  5  4 NA  4  3  5 NA  3  6  4  6  5  4 NA  5  4  5
+ [169]  4  5  6  7  4  5  4  3  6  2  6  8  5  7  4 NA  4  4  5  6 NA  4  6  4
+ [193]  5 NA  3 NA NA NA  4 NA  4  5 NA NA NA  5  5  4 NA  6  8  3  4  8 NA NA
+ [217] NA  4  4  5  3 NA NA  4  5 NA  5 NA  3  6  7 NA NA  4 NA  5 NA  5  5  4
+ [241]  8 NA  6  5  5  2 NA NA  4  5 NA NA  4 NA NA NA  4  3  2  4  3 NA  3  3
+ [265] NA NA  3  3 NA  3  2  2  5  3 NA  2  3  2  4  3  4  2  2  2  2  4  4  3
+ [289] NA  4  2  2 NA  5  3  5  6 NA NA  4 NA  4 NA NA  3  6 NA NA  3 NA  4  4
+ [313]  5 NA  4  4  4 NA  3 NA  3  5  3  5  2 NA  2  3 NA  5  3  2  2  3  2  5
+ [337]  4  2  2  5  6  5  3  3 NA  5  6  5  6  4  6  4 NA  6  5 NA  5 NA NA  4
+ [361]  5  4  6 NA  3 NA  4 NA NA  5  5  5  4  5 NA NA  7 NA  6  4  6 NA  6 NA
+ [385]  4  6  3 NA NA  4  5  5 NA NA NA  4 NA  2  6 NA  5 NA  5 NA  4 NA NA  6
+ [409]  5 NA  7  6  6 NA NA  4 NA  3  2  5  3  5  4 NA NA  4  2  4  4  6 NA NA
+ [433]  3 NA  4  2  3 NA  3  2  3  4 NA  4  3  5  4  2  3  3  4 NA  3  4  4  2
+ [457]  3 NA  3 NA  5  5 NA  3  5 NA NA  5 NA  4  4 NA  5  3  5  3  5  4 NA  2
+ [481]  8  4  4  4 NA NA  5  8 NA  5  4  2  5 NA NA  4  3  5 NA  2 NA NA  5  4
+ [505]  6  5  4  3  3  4  4  2  3  6  8  5  8  7  6  5  6  5  8  6  4  2 NA  5
+ [529]  6  5  5  6  5  3 NA NA  3  5 NA  4  6  5  5  6  3 NA NA  4 NA  6 NA NA
+ [553] NA  6  3 NA  6  4  4 NA  3  3  2 NA NA NA  2  3  5  4 NA  3 NA  3  3  4
+ [577]  4  4  3  3  5 NA  4 NA  3  4 NA  4  4  6  5  6  6 NA  5  4  3 NA NA  4
+ [601] NA  8  3  3 NA NA  8  6  2  6  4  4  5  5  6  6 NA  6  5  2 NA  3  5 NA
+ [625] NA  4 NA  5 NA  6  4  5 NA  3  3  2  5  4  4  4  5  6  5  5 NA  6 NA  5
+ [649]  5  4  5  4  5  5  2  3  3  4  2  3  3  3 NA  4  2  2  3  5  4  4  3  3
+ [673]  1  4 NA NA  4  2 NA NA  3  3  3  2 NA  4  4  5  5  5  5  4 NA  6  3  5
+ [697]  3  3  5  3  3  4  5  2  6  3  4  4  3  4  3  4 NA  3  4  5  4  4  5  5
+ [721]  3  2  4  4 NA  8  4  3  6  4  2  5  5  3  4  3  4  5  4  2  3  4  1  4
+ [745]  5  3  5  6  4  3  5  3  4  4  5  4  3  3  3  3  2 NA  3 NA  4  3  3  4
+ [769]  4  2  5  5  4  5  5  5  7  5  7  5  4  5  5  4  5  4 NA  2  2  2  4 NA
+ [793]  4  3  3  5 NA NA  5  4 NA  6  4  4  5 NA NA NA NA NA NA NA  6 NA NA  7
+ [817] NA  5  5  4 NA  5  7  6  5  2  6  4  5 NA  4 NA  6  5  7  5 NA  5  5  4
+ [841]  6  6  5 NA NA  5  5 NA  5 NA  5  5  3 NA  5  4  4  4 NA  5  4  5  5  4
+ [865]  4  5  4  4  5  5  5  5  5 NA  5  5  5  4  5  4 NA  4 NA  2  2 NA  3  4
+ [889]  4  3  4  3  6  5 NA NA  4  4  4  5 NA  2  5  5  6 NA NA NA  5  2 NA  3
+ [913]  5  3  2  2  5  3  5  2  2  4  4  2  4 NA  4  4  5  3  3  5 NA  5  5  5
+ [937]  1  3  4 NA  4  5  4  8  2  4  5  3  2  2  2 NA  3  5  4 NA  4  4  1  5
+ [961]  6  3  2  2  3  2  3  4  2  3  3 NA NA NA NA NA NA NA NA NA NA  5 NA  5
+ [985] NA  5  5  3  3  2  5 NA  5  4  4  4  4  3  5 NA NA  3 NA NA  5  4  4  4
+[1009]  4  5  4
+
+> dta$education_levels
+   [1] basica   basica   basica   basica   media    basica   basica   basica  
+   [9] media    basica   media    basica   basica   basica   basica   basica  
+  [17] media    basica   superior media    basica   basica   media    basica  
+  [25] basica   basica   media    media    media    basica   basica   basica  
+  [33] media    basica   superior media    basica   media    basica   media   
+  [41] media    basica   superior basica   basica   media    media    media   
+  [49] basica   basica   basica   media    basica   media    basica   basica  
+  [57] basica   superior media    media    basica   media    superior superior
+  [65] media    superior superior media    superior media    superior basica  
+  [73] media    media    basica   basica   basica   basica   media    basica  
+  [81] basica   media    basica   <NA>     basica   superior basica   basica  
+  [89] superior media    basica   basica   basica   media    superior basica  
+  [97] superior media    basica   <NA>     basica   media    basica   basica  
+ [105] media    basica   basica   superior basica   basica   basica   superior
+ [113] basica   media    basica   media    media    superior media    basica  
+ [121] basica   basica   basica   superior media    superior basica   media   
+ [129] basica   media    media    media    basica   basica   media    basica  
+ [137] media    media    basica   media    media    media    <NA>     basica  
+ [145] media    media    basica   media    superior media    superior media   
+ [153] basica   media    basica   media    superior <NA>     media    superior
+ [161] media    media    media    media    <NA>     media    media    basica  
+ [169] media    media    media    superior media    basica   superior media   
+ [177] superior media    basica   media    media    media    media    basica  
+ [185] media    media    media    media    basica   <NA>     basica   basica  
+ [193] media    media    basica   basica   basica   basica   basica   basica  
+ [201] media    media    media    media    media    superior media    media   
+ [209] superior superior superior basica   basica   basica   basica   basica  
+ [217] basica   basica   superior superior basica   media    media    basica  
+ [225] media    basica   superior media    media    superior superior superior
+ [233] media    basica   basica   media    superior superior media    basica  
+ [241] media    <NA>     media    superior media    superior basica   basica  
+ [249] basica   superior superior basica   basica   media    basica   basica  
+ [257] basica   superior basica   basica   basica   basica   basica   basica  
+ [265] basica   basica   basica   basica   basica   basica   basica   basica  
+ [273] superior basica   basica   superior media    basica   basica   basica  
+ [281] basica   media    superior basica   basica   basica   basica   basica  
+ [289] basica   superior basica   basica   media    media    superior superior
+ [297] superior superior basica   basica   basica   basica   media    media   
+ [305] basica   superior basica   basica   basica   basica   basica   media   
+ [313] superior superior media    basica   basica   basica   media    superior
+ [321] basica   superior media    superior basica   media    basica   basica  
+ [329] basica   media    superior media    basica   basica   basica   media   
+ [337] media    basica   superior basica   superior superior basica   basica  
+ [345] basica   basica   media    basica   superior superior basica   basica  
+ [353] <NA>     basica   basica   media    basica   basica   basica   media   
+ [361] basica   basica   media    basica   superior media    superior <NA>    
+ [369] basica   media    superior superior basica   basica   basica   media   
+ [377] basica   <NA>     media    media    basica   media    basica   basica  
+ [385] basica   media    media    media    basica   basica   media    basica  
+ [393] media    basica   basica   basica   superior <NA>     basica   basica  
+ [401] basica   basica   basica   basica   basica   basica   basica   <NA>    
+ [409] media    basica   basica   basica   basica   basica   basica   media   
+ [417] basica   basica   basica   media    media    media    media    basica  
+ [425] basica   basica   basica   basica   superior superior superior basica  
+ [433] basica   superior media    basica   media    superior superior basica  
+ [441] basica   media    basica   superior basica   media    basica   basica  
+ [449] basica   basica   media    media    basica   basica   media    basica  
+ [457] basica   media    superior superior superior superior basica   basica  
+ [465] basica   basica   basica   superior basica   superior media    basica  
+ [473] basica   media    superior basica   media    basica   basica   basica  
+ [481] superior basica   basica   media    basica   superior media    superior
+ [489] superior basica   basica   basica   media    basica   basica   basica  
+ [497] media    media    basica   basica   media    superior basica   basica  
+ [505] basica   basica   basica   basica   basica   basica   superior media   
+ [513] media    media    superior media    superior superior superior superior
+ [521] superior media    superior media    basica   media    basica   basica  
+ [529] superior basica   media    media    superior superior basica   superior
+ [537] basica   media    basica   basica   media    media    superior media   
+ [545] basica   basica   media    media    media    superior media    basica  
+ [553] superior superior basica   basica   media    basica   basica   basica  
+ [561] basica   basica   basica   superior basica   basica   basica   basica  
+ [569] basica   media    media    media    basica   media    basica   media   
+ [577] basica   media    basica   media    superior media    basica   basica  
+ [585] media    basica   media    basica   basica   superior basica   media   
+ [593] superior basica   basica   basica   basica   media    basica   superior
+ [601] superior media    media    basica   superior basica   superior superior
+ [609] basica   media    basica   media    <NA>     basica   media    basica  
+ [617] basica   media    superior basica   basica   media    basica   superior
+ [625] basica   basica   media    basica   basica   basica   basica   media   
+ [633] media    basica   basica   basica   basica   basica   basica   basica  
+ [641] basica   media    media    media    media    media    media    basica  
+ [649] basica   basica   media    basica   basica   media    basica   basica  
+ [657] basica   basica   <NA>     basica   basica   media    media    media   
+ [665] basica   media    media    basica   media    basica   media    basica  
+ [673] basica   basica   basica   superior media    basica   basica   basica  
+ [681] basica   media    media    basica   media    media    media    media   
+ [689] basica   media    media    basica   media    media    media    basica  
+ [697] basica   basica   superior media    basica   media    media    basica  
+ [705] superior basica   basica   basica   basica   basica   basica   basica  
+ [713] basica   basica   basica   media    basica   superior superior media   
+ [721] media    superior basica   media    superior media    basica   superior
+ [729] media    basica   media    basica   media    basica   media    basica  
+ [737] superior superior basica   basica   superior media    basica   superior
+ [745] media    media    basica   superior media    media    superior media   
+ [753] superior superior media    media    basica   basica   basica   basica  
+ [761] media    basica   media    basica   basica   basica   basica   basica  
+ [769] basica   media    basica   media    media    media    superior basica  
+ [777] media    basica   media    <NA>     basica   media    basica   <NA>    
+ [785] basica   media    media    basica   media    basica   basica   basica  
+ [793] basica   basica   basica   basica   media    basica   media    basica  
+ [801] media    media    media    basica   superior superior superior superior
+ [809] media    superior media    superior superior superior superior media   
+ [817] basica   basica   basica   superior basica   superior media    media   
+ [825] basica   media    media    media    media    media    media    basica  
+ [833] basica   basica   media    media    media    basica   media    basica  
+ [841] media    superior media    media    basica   media    basica   basica  
+ [849] superior basica   superior basica   superior basica   media    media   
+ [857] media    superior basica   media    superior media    media    media   
+ [865] media    media    superior media    media    superior superior media   
+ [873] basica   media    media    media    media    superior media    media   
+ [881] basica   basica   basica   basica   basica   media    basica   media   
+ [889] basica   superior basica   basica   superior media    media    superior
+ [897] basica   media    media    media    basica   basica   media    media   
+ [905] media    basica   basica   basica   basica   basica   superior basica  
+ [913] media    basica   basica   basica   superior basica   media    basica  
+ [921] <NA>     basica   basica   basica   media    media    basica   superior
+ [929] superior media    superior basica   basica   basica   media    media   
+ [937] superior basica   basica   basica   basica   basica   media    superior
+ [945] basica   superior basica   media    basica   basica   basica   media   
+ [953] basica   media    basica   basica   media    basica   basica   media   
+ [961] media    basica   basica   basica   basica   <NA>     basica   basica  
+ [969] basica   basica   basica   media    basica   basica   basica   basica  
+ [977] basica   basica   basica   media    <NA>     basica   basica   basica  
+ [985] media    basica   basica   basica   basica   basica   basica   basica  
+ [993] media    basica   media    media    basica   basica   media    basica  
+[1001] basica   basica   basica   basica   superior superior superior basica  
+[1009] basica   media    basica  
+Levels: basica < media < superior
+
+> dta$Morena <- factor(dta$Morena)
+
+> balance_table <- CreateTableOne(data = dta, vars = c("woman", 
++     "age_levels", "education_levels"), factorVars = c("woman", 
++     "education_levels", "age_levels"), addOverall = T)
+
+> balance_table
+                      
+                       Overall     
+  n                    1011        
+  woman = 1 (%)         504 (49.9) 
+  age_levels (%)                   
+     18 to 29           306 (30.3) 
+     30 to 49           408 (40.4) 
+     over 50            297 (29.4) 
+  education_levels (%)             
+     basica             502 (50.6) 
+     media              324 (32.7) 
+     superior           166 (16.7) 
+
+> tab_csv <- print(balance_table, printToggle = FALSE, 
++     smd = TRUE)
+
+> balance_table_A5 <- CreateTableOne(data = dta, vars = c("woman", 
++     "age_levels", "education_levels"), factorVars = c("woman", 
++     "education_levels", "age_levels"), strata = "Treatment", 
++     addOverall = T)
+
+> balance_table_A5
+                      Stratified by Treatment
+                       Overall      Control     Strike      Pro_strike 
+  n                    1011         210         200         206        
+  woman = 1 (%)         504 (49.9)  104 (49.5)  110 (55.0)  104 (50.5) 
+  age_levels (%)                                                       
+     18 to 29           306 (30.3)   66 (31.4)   66 (33.0)   50 (24.3) 
+     30 to 49           408 (40.4)   87 (41.4)   75 (37.5)   93 (45.1) 
+     over 50            297 (29.4)   57 (27.1)   59 (29.5)   63 (30.6) 
+  education_levels (%)                                                 
+     basica             502 (50.6)   99 (47.6)   94 (47.7)  112 (56.3) 
+     media              324 (32.7)   78 (37.5)   63 (32.0)   51 (25.6) 
+     superior           166 (16.7)   31 (14.9)   40 (20.3)   36 (18.1) 
+                      Stratified by Treatment
+                       Anti_strike Double_frame p      test
+  n                    201         194                     
+  woman = 1 (%)        103 (51.2)   83 (42.8)    0.185     
+  age_levels (%)                                 0.678     
+     18 to 29           64 (31.8)   60 (30.9)              
+     30 to 49           76 (37.8)   77 (39.7)              
+     over 50            61 (30.3)   57 (29.4)              
+  education_levels (%)                           0.290     
+     basica            100 (51.0)   97 (50.5)              
+     media              68 (34.7)   64 (33.3)              
+     superior           28 (14.3)   31 (16.1)              
+Warning messages:
+1: In eval(family$initialize) : non-integer #successes in a binomial glm!
+2: In eval(family$initialize) : non-integer #successes in a binomial glm!
+3: In eval(family$initialize) : non-integer #successes in a binomial glm!
+4: In eval(family$initialize) : non-integer #successes in a binomial glm!
+5: There were 5 warnings in `dplyr::summarize()`.
+The first warning was:
+ℹ In argument: `Mean = mean(unions, na.rm = TRUE)`.
+ℹ In group 1: `dta$Treatment = Control`.
+Caused by warning in `mean.default()`:
+! argument is not numeric or logical: returning NA
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 4 remaining warnings. 

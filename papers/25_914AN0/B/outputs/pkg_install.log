@@ -1,0 +1,27 @@
+2026-10-11 02:14:24 lfe trying 3.0-0 
+2026-10-11 02:14:28 lfe FAILED 3.0-0  
+2026-10-11 02:14:28 lfe trying current 
+2026-10-11 02:14:36 lfe INSTALLED 3.1.1 (requested current ) 
+2026-10-11 02:14:36 fixest trying 0.12.0 
+2026-10-11 02:15:40 fixest INSTALLED 0.12.0 (requested 0.12.0 ) 
+2026-10-11 02:15:40 lme4 trying 1.1-35.3 
+2026-10-11 02:16:18 lme4 INSTALLED 1.1.35.3 (requested 1.1-35.3 ) 
+2026-10-11 02:16:45 robustlmm trying 3.3-1 
+2026-10-11 02:17:14 robustlmm INSTALLED 3.3.1 (requested 3.3-1 ) 
+2026-10-11 02:17:14 Matching trying 4.10-14 
+2026-10-11 02:17:22 Matching INSTALLED 4.10.14 (requested 4.10-14 ) 
+2026-10-11 02:17:22 optimx trying 2023-10.21 
+2026-10-11 02:17:29 optimx INSTALLED 2023.10.21 (requested 2023-10.21 ) 
+2026-10-11 02:17:29 data.table trying 1.15.4 
+2026-10-11 02:17:33 data.table FAILED 1.15.4  
+2026-10-11 02:17:33 data.table fallback: use Debian system version 1.17.0 
+2026-10-11 02:17:33 SUNGEO trying 1.3.0 
+2026-10-11 02:20:50 SUNGEO FAILED 1.3.0  
+2026-10-11 02:20:50 SUNGEO trying 1.4.0 
+2026-10-11 02:20:53 SUNGEO FAILED 1.4.0  
+2026-10-11 02:20:53 SUNGEO trying current 
+2026-10-11 02:20:55 SUNGEO FAILED current  
+2026-10-11 02:20:55 SUNGEO NO VERSION INSTALLED 
+2026-10-11 02:22:35 attempt: V8 with DOWNLOAD_STATIC_LIBV8=1 then SUNGEO again
+2026-10-11 02:24:08 SUNGEO trying 1.3.0 
+2026-10-11 02:24:27 SUNGEO INSTALLED 1.3.0 (requested 1.3.0 ) 

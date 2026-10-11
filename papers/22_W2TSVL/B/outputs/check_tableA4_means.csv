@@ -1,0 +1,6 @@
+"treatment","unions_mean_computed","unions_typed","unions_match_2dp","support_mean_computed","support_typed","support_match_2dp"
+"Control",3.24878048780488,3.25,TRUE,4.36,4.36,TRUE
+"Strike",3.08421052631579,3.08,TRUE,4.17553191489362,4.18,TRUE
+"Pro_strike",3.4070351758794,3.41,TRUE,4.91414141414141,4.91,TRUE
+"Anti_strike",2.96354166666667,2.96,TRUE,4.40425531914894,4.4,TRUE
+"Double_frame",3.16842105263158,3.17,TRUE,4.4331550802139,4.43,TRUE

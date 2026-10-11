@@ -1,0 +1,4 @@
+# Diffs (environment fixes only)
+
+- `functions.R.diff`: functions.R line 306, `mc.cores=min(length(yvarz),parallel::detectCores()/4)` changed to `mc.cores=max(1, min(length(yvarz),parallel::detectCores()/4))`. On this 2-CPU machine the original evaluates to 0.5, which `parallel::mclapply` rejects outside the tryCatch. Pre-registered env fix (PREREG.md section 2; batch5_class_decisions.md item 3). `ensemble_modz` uses no RNG, so results do not depend on the core count.
+- Staging (no diff to the authors' files): block S1 is run as two fresh-session scripts (`scripts/s1a_prep.R`, `scripts/s1b_models.R`) that `source()` run1_setup.R and functions.R and execute the authors' run2_main.R lines verbatim (S1a: lines 55, 58, 98-107; S1b: lines 62-73, then 76-90 and 110-157). Block S4 (`scripts/s4_war.R`) executes lines 1313-1405 verbatim. Extra lines added only save objects (`saveRDS`). Pre-registered (PREREG.md section 2; batch5_class_decisions.md item 2).

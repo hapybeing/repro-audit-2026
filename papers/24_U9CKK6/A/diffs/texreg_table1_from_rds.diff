@@ -1,0 +1,120 @@
+--- /workspace/audit_runs/24_U9CKK6/A/ranges/6_analysis1_L1-53_L346-416.R	2026-10-10 23:10:51.427889432 +0000
++++ scripts/texreg_table1_from_rds.R	2026-10-10 23:10:51.423195074 +0000
+@@ -1,104 +1,13 @@
+-################################################################################
+-################################################################################
+-################################################################################
+-############### Analysis Script 1 ##############################################
+-############### Null Models, Anti-Establishment Rhetoric########################
+-############### Electoral Cycle Models##########################################
+-################################################################################
+-load("Data/EP_debates_07062023.Rdata")
++## [ENV FIX] per-run library, working directory, model save folder (agent A)
++.libPaths(c("/workspace/audit_runs/24_U9CKK6/A/rlib", .libPaths()))
++setwd("/workspace/audit_runs/24_U9CKK6/A/run")
++cat("START", format(Sys.time()), "\n")
+ library(lme4)
+ library(texreg)
+-library(sjPlot)
+-library(sjstats)
+-library(fixest)
+-library(ggplot2)
+-
+-#####
+-
+-levels(EP_debates$EU_party)
+-levels(EP_debates$EU_party) <- c("NGL", "EFD/EFDD", "ECR",
+-                                 "EDD", "ALDE",  "EPP",
+-                                 "Greens","S&D", "ID",
+-                                 "No Group", "UEN", "EFD/EFDD", 
+-                                 "NGL", "Greens", "No Group")
+-levels(EP_debates$EU_party)
+-
+-### BEGIN BY CENTERING AND SCALING EVERYTHING
+-
+-EP_debates$radical <- abs(EP_debates$lrgen - 5)
+-range(EP_debates$radical, na.rm = TRUE)
+-
+-centFUN <- function(x) {
+-  x - mean(x, na.rm = TRUE)
+-}
+-
+-result <- apply(EP_debates[,c(22:24, 27:71, 73:75, 77:107,117:118)], MARGIN = 2, FUN = centFUN)
+-result <- as.data.frame(result)
+-
+-
+-EP_eurobar_cent <- cbind(EP_debates[,-c(22:24, 27:71, 73:75, 77:107,117:118)], result)
+-
+-rm(list=setdiff(ls(), "EP_eurobar_cent"))
+-
+-EP_eurobar_cent$embed_dict_scale <- scale(EP_eurobar_cent$embed_dict)
+-EP_eurobar_cent$aut_dict_scale <- scale(EP_eurobar_cent$aut_dict)
+-EP_eurobar_cent$immi_dict_scale <- scale(EP_eurobar_cent$immi_dict)
+-EP_eurobar_cent$int_dict_scale <- scale(EP_eurobar_cent$int_dict)
+-EP_eurobar_cent$lrgen_scale <- scale(EP_eurobar_cent$lrgen)
+-EP_eurobar_cent$radical_scale <- scale(EP_eurobar_cent$radical)
+-
+-EP_eurobar_cent$aut_sal <- scale(EP_eurobar_cent$mip_n_govdebt_ipol)
+-EP_eurobar_cent$immi_sal <- scale(EP_eurobar_cent$mip_n_immigration_ipol)
+-EP_eurobar_cent$eum_ipol <- scale(EP_eurobar_cent$eum_ipol)
+-
+-############### ANTI-ESTABLISHMENT CYCLE MODEL #################################
+-
+-### For Plotting Only
+-EP_eurobar_cent$chall_fact <- as.factor(ifelse(EP_eurobar_cent$challenge == 1, "Challenger", "Mainstream"))
+-str(EP_eurobar_cent$chall_fact)
+-range(EP_eurobar_cent$days_from_EP)
+-
+-EP_eurobar_cent$days_to_EP <- scale(EP_eurobar_cent$days_from_EP)# Make them more intuitive as of reviewer request
+-EP_eurobar_cent$days_to_nat <- scale(EP_eurobar_cent$days_from_nat)
+-
+-cycle_AE <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat  + lrgen_scale  + de_macro + de_civil + de_health + 
+-                   de_agri + de_labour + de_edu + de_envi + de_energy + 
+-                   de_immi + de_transport + de_law + de_welfare  + de_commerce +
+-                   de_defense + de_techno + de_trade + de_intern + de_govern +
+-                   de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
+-                   (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+-
+-texreg(cycle_AE)
+-
+-cycle_AE_fit2 <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat  + EP_Coa  + lrgen_scale  + de_macro + de_civil + de_health + 
+-                   de_agri + de_labour + de_edu + de_envi + de_energy + 
+-                   de_immi + de_transport + de_law + de_welfare  + de_commerce +
+-                   de_defense + de_techno + de_trade + de_intern + de_govern +
+-                   de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
+-                   (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+-
+-texreg(cycle_AE_fit2)
+-
+-cycle_AE_fit3 <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat  + EP_Coa + nat_opp*days_to_EP + nat_opp*days_to_nat + lrgen_scale  + de_macro + de_civil + de_health + 
+-                        de_agri + de_labour + de_edu + de_envi + de_energy + 
+-                        de_immi + de_transport + de_law + de_welfare  + de_commerce +
+-                        de_defense + de_techno + de_trade + de_intern + de_govern +
+-                        de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + as.factor(country) +
+-                        (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+-
+-texreg(cycle_AE_fit3)
+-
+-
+-cycle_AE_fit_group <- lmer(embed_dict_scale ~ challenge*days_to_EP  + challenge*days_to_nat   + lrgen_scale  + de_macro + de_civil + de_health + 
+-                        de_agri + de_labour + de_edu + de_envi + de_energy + 
+-                        de_immi + de_transport + de_law + de_welfare  + de_commerce +
+-                        de_defense + de_techno + de_trade + de_intern + de_govern +
+-                        de_lands + de_culture + proced_1 + proced_2 + proced_3 +proced_4 + proced_5+ year + EU_party + as.factor(country) +
+-                        (1|mep_ids) + (1|party_id), data = EP_eurobar_cent, control = lmerControl(optimizer = "Nelder_Mead"))
+-
+-texreg(cycle_AE_fit_group)
+-
+-
++cycle_AE <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE.rds")
++cycle_AE_fit2 <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit2.rds")
++cycle_AE_fit3 <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit3.rds")
++cycle_AE_fit_group <- readRDS("/workspace/audit_runs/24_U9CKK6/A/models/cycle_AE_fit_group.rds")
+ texreg(list(cycle_AE, cycle_AE_fit2, cycle_AE_fit3, cycle_AE_fit_group),
+        file = "Tables/AE_cycle_240124.tex",
+        include.ci = FALSE,
+@@ -122,3 +31,4 @@
+        custom.note = "%stars. Random Intercepts for Parties and MEPs",
+        digits = 2,
+        caption = "Anti-Establishment Rhetoric conditional on Electoral Cycle")
++cat("END", format(Sys.time()), "\n")

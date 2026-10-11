@@ -1,0 +1,87 @@
+--- "/workspace/audit_runs/21_LEFTNE/A/orig/01- Replication_Text.R"	2026-10-10 21:05:51.517176305 +0000
++++ "/workspace/audit_runs/21_LEFTNE/A/data/01- Replication_Text.R"	2026-10-10 21:22:28.373594786 +0000
+@@ -68,13 +68,13 @@
+ tgc %>%
+   arrange(sort) -> tgc
+ 
+-ggplot(data=tgc, aes(x=reorder(TREATMENT, sort), y=anger)) +
++try(print({ggplot(data=tgc, aes(x=reorder(TREATMENT, sort), y=anger)) +
+   geom_bar(position = "dodge", stat="identity") +
+   geom_errorbar(position = "dodge",aes(ymin=low, ymax=high)) + 
+   steph_theme_gray + 
+   labs(title="Mean Levels of Anger", 
+        x="Treatment Condition", y = "Average level of anger", caption = "Fall 2019 Qualtrics Survey",subtitle = "By Experimental Condition", fill = "Gender:") + 
+-  theme(legend.position = "none")
++  theme(legend.position = "none")}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # In Text Only:
+@@ -152,14 +152,14 @@
+ 
+ data <- rbind(data,data1)
+ 
+-dwplot(data,
++try(print({dwplot(data,
+        dot_args = list(color = "black"), # color for the dot
+        whisker_args = list(color = "grey")) +
+   theme_bw() +
+   steph_theme +
+   theme(legend.title = element_blank(), legend.position="none") + 
+   xlab("") +
+-  geom_vline(xintercept = 0, colour = "grey60", linetype = 2) -> Fig2; Fig2
++  geom_vline(xintercept = 0, colour = "grey60", linetype = 2) -> Fig2; Fig2}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # In Text Analyses: Education
+@@ -198,13 +198,13 @@
+   arrange(sort) -> tgc
+ tgc$TREATMENT_sort <- c("Trump","Clinton","Control")
+ 
+-ggplot(data=tgc, aes(x=reorder(TREATMENT_sort, sort), y=anger)) +
++try(print({ggplot(data=tgc, aes(x=reorder(TREATMENT_sort, sort), y=anger)) +
+   geom_bar(position = "dodge", stat="identity") +
+   geom_errorbar(position = "dodge",aes(ymin=low, ymax=high)) + 
+   steph_theme + 
+   labs(title="Mean Levels of Anger", 
+        x="Treatment Condition", y = "Average level of anger", caption = "Fall 2019 NORC Survey",subtitle = "By Experimental Condition", fill = "Gender:") + 
+-  theme(legend.position = "none")
++  theme(legend.position = "none")}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # Figure 4: Change in Anger Moving from the Control Group to the Trump and Clinton Conditions, by Party, NORC, Study 2
+@@ -226,7 +226,7 @@
+   dplyr::select(-party, -SE, -z, -p) %>%
+   mutate(term = str_sub(term, 10)) -> data
+ 
+-dwplot(data) +
++try(print({dwplot(data) +
+   theme_bw() +
+   steph_theme +
+   xlab("") +
+@@ -235,7 +235,7 @@
+           element_rect(color="gray90")) +
+   scale_colour_grey(start = .3, end = .7,
+                     name = "model") +
+-  geom_vline(xintercept = 0, colour = "grey60", linetype = 2)
++  geom_vline(xintercept = 0, colour = "grey60", linetype = 2)}))  # audit env fix: plot-only, made non-fatal
+ 
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+@@ -271,7 +271,7 @@
+        x="Treatment Condition", y = "Average level of enthusiasm", caption = "Fall 2019 Qualtrics Survey",subtitle = "By Experimental Condition", fill = "Gender:") + 
+   theme(legend.position = "none")
+ 
+-gridExtra::grid.arrange(enthus1_plot, enthus2_plot, ncol = 2)
++try(print({gridExtra::grid.arrange(enthus1_plot, enthus2_plot, ncol = 2)}))  # audit env fix: plot-only, made non-fatal
+ 
+ 
+ 
+@@ -333,7 +333,7 @@
+                     name = "model") +
+   geom_vline(xintercept = 0, colour = "grey60", linetype = 2) -> Fig6
+ 
+-Fig6
++try(print({Fig6}))  # audit env fix: plot-only, made non-fatal
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+ # Tables 1 & 2

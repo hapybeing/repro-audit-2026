@@ -1,0 +1,6 @@
+                   term   estimate          se      p_naive   nobs conv dropped
+1 challenge:days_to_nat 0.01741078 0.004817509 0.0003014357 266854 none        
+    secs
+1 32.205
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               formula
+1 embed_dict_scale ~ challenge + days_to_EP + days_to_nat + EP_Coa + lrgen_scale + de_macro + de_civil + de_health + de_agri + de_labour + de_edu + de_envi + de_energy + de_immi + de_transport + de_law + de_welfare + de_commerce + de_defense + de_techno + de_trade + de_intern + de_govern + de_lands + de_culture + proced_1 + proced_2 + proced_3 + proced_4 + proced_5 + as.factor(country) + (1 | mep_ids) + (1 | party_id) + as.factor(year) + challenge:days_to_EP + challenge:days_to_nat

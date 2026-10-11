@@ -1,0 +1,17 @@
+"fit","formula","nobs","term","estimate","se","appendix_model","appendix_estimate","abs_diff"
+1,"as.factor(unions) ~ Treatment",976,"TreatmentStrike",-0.241599557539512,0.178544543285495,"m1",-0.241599557539512,0
+1,"as.factor(unions) ~ Treatment",976,"TreatmentPro_strike",0.193589744546613,0.181071728187284,"m1",0.193589744546613,0
+1,"as.factor(unions) ~ Treatment",976,"TreatmentAnti_strike",-0.385803718390492,0.179506751472836,"m1",-0.385803718390492,0
+1,"as.factor(unions) ~ Treatment",976,"TreatmentDouble_frame",-0.121288354172008,0.182570199737942,"m1",-0.121288354172008,0
+2,"as.factor(unions) ~ Treatment",976,"TreatmentControl",-0.193593837334897,0.181071772139368,"m4",-0.193593837334897,0
+2,"as.factor(unions) ~ Treatment",976,"TreatmentStrike",-0.435198792540139,0.17799435610623,"m4",-0.435198792540139,0
+2,"as.factor(unions) ~ Treatment",976,"TreatmentAnti_strike",-0.579391686370038,0.179095211390531,"m4",-0.579391686370038,0
+2,"as.factor(unions) ~ Treatment",976,"TreatmentDouble_frame",-0.314880402051352,0.181883960166099,"m4",-0.314880402051352,0
+3,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentPro_strike",0.473368703140288,0.181675994610767,"m7",0.473368703140289,1.33226762955019e-15
+3,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentStrike",-0.112683891209304,0.180613796383502,"m7",-0.112683891209302,1.92901250528621e-15
+3,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentAnti_strike",0.0295239291724691,0.178879877214921,"m7",0.0295239291724705,1.42594269725294e-15
+3,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentDouble_frame",0.0569987224533295,0.180580059191267,"m7",0.0569987224533307,1.20042864537595e-15
+4,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentControl",-0.473378510137266,0.181675940232852,"m10",-0.473378510137266,0
+4,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentStrike",-0.58606414422106,0.185449080605027,"m10",-0.58606414422106,0
+4,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentAnti_strike",-0.443851319144466,0.183381283299341,"m10",-0.443851319144466,0
+4,"as.factor(Support_teachers) ~ Treatment",961,"TreatmentDouble_frame",-0.41638491568105,0.184989997255411,"m10",-0.41638491568105,0
