@@ -15,3 +15,4 @@ Repository maintenance after v1.0. One line per action: date and time (IST), act
 - 2026-10-11 12:58 IST | GitHub Pages enabled by the owner (main, /docs); README map section now links the live map | https://hapybeing.github.io/repro-audit-2026/
 - 2026-10-11: Posted X reply 1/ (How) under https://x.com/gaurangxoxo/status/2109153503121649708: https://x.com/gaurangxoxo/status/2109284164935602183
 - 2026-10-11: Posted X reply 2/ (The 9 C papers) chained under 1/: https://x.com/gaurangxoxo/status/2109284334586958190
+- 2026-10-11 20:33 IST | Repo visibility restored to public by owner; Pages source switched to main /docs; map verified logged-out: 25 dots, counts A 16, B 0, C 9, D 0, E 0 | https://hapybeing.github.io/repro-audit-2026/
