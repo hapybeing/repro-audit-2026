@@ -12,3 +12,4 @@ Repository maintenance after v1.0. One line per action: date and time (IST), act
 - 2026-10-11 11:34 IST | Created tag and GitHub release v1.0.1 on main (commit 793aaad): archival release for the Zenodo DOI, results identical to v1.0 | https://github.com/hapybeing/repro-audit-2026/releases/tag/v1.0.1
 - 2026-10-11 11:37 IST | Zenodo record published by the GitHub integration: version DOI 10.5281/zenodo.23293098 (v1.0.1), concept DOI 10.5281/zenodo.23293097; both resolve | https://doi.org/10.5281/zenodo.23293097
 - 2026-10-11 11:40 IST | README: DOI badge and DOI line added; CITATION.cff: doi set to the concept DOI | https://github.com/hapybeing/repro-audit-2026
+- 2026-10-11 12:58 IST | GitHub Pages enabled by the owner (main, /docs); README map section now links the live map | https://hapybeing.github.io/repro-audit-2026/
