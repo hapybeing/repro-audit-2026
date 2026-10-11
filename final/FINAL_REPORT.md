@@ -168,6 +168,6 @@ Full descriptions and evidence files: batches/batch1_code_observations.csv to ba
 - Pre-registration freeze for batch 4: https://github.com/hapybeing/repro-audit-2026/issues/3
 - Pre-registration freeze for batch 5: https://github.com/hapybeing/repro-audit-2026/issues/4
 - Repository: https://github.com/hapybeing/repro-audit-2026
-- v1.0 snapshot: FINAL_ARCHIVE_LINK_PENDING
+- v1.0 snapshot of this repository: see README.md (Google Drive link with size and SHA-256) and https://github.com/hapybeing/repro-audit-2026/releases/tag/v1.0
 
 Credit: Gaurang Kumar (@hapybeing). Analysis carried out with Hark.

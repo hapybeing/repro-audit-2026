@@ -6,7 +6,7 @@ Each paper is re-run from the authors' own materials by two separate agent runs 
 
 ## Final results
 All 25 papers, main counts (`final/all25_counts.json`): A 16, B 0, C 9, D 0, E 0 (n = 25, so no rate claims). With every paper's alternative reading at once: A 13, B 3, C 5, D 1, E 2 (n = 24, because one paper's alternative is exclusion as having no computational target). Both agent runs proposed the same class for 25 of 25 papers, and 122 of 139 pre-registered targets matched the paper at its printed rounding in both runs. Full synthesis: [FINAL_REPORT.md](FINAL_REPORT.md); per-paper table: `final/all25_results.csv`; checks: `final/FINAL_number_check.txt`, `final/FINAL_link_check.txt`.
-- v1.0 snapshot: FINAL_ARCHIVE_LINK_PENDING
+- v1.0 snapshot of this repository at commit ce29bd5, hosted on Google Drive: [repro-audit-2026_v1.0_ce29bd5.zip](https://drive.google.com/file/d/1ity5Gy-1e5qK2ak1uoBmGQZgGYpYSo__/view?usp=drivesdk), 33,963,795 bytes, SHA-256 `c00b2c7217529cab2e015650125fef3d32abf1e596e118f8a0a61ed17f19bfd0`. Releases: https://github.com/hapybeing/repro-audit-2026/releases
 
 ## Status
 All 25 papers complete (batches 1 to 5). Batch 1 (papers 01 to 05), revision 3, counts: A 2, B 0, C 3, D 0, E 0 (n = 5, so no rate claims). Alternatives, reasons and limitations: `batch1_report.md`. Every number in the report and target table is checked against its cited file by `scripts/check_report_numbers.py` (output `batches/batch1_number_check.txt`).
