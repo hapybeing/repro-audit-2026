@@ -75,7 +75,7 @@ One line per paper, from its batch report. Reason types: N-only mismatch 2, data
 - 04_PSHE5L (missing data location): the article has no data statement and cites no external location; the deposit is one R script (data found by the audit on an uncited OSF page) (batches/batch1_report.md).
 - 06_VSV5DM (p-only mismatch): every estimate matches; the pre-registered AME p-value does not reproduce the printed value, in the same 0.05 to 0.10 band (batches/batch2_report.md).
 - 08_SQRZR8 (N-only mismatch): all five Table 3 coefficients match; the code cannot produce the printed N in the Table 3 note (batches/batch2_report.md).
-- 09_4U8CTG (data behind registration): Study 2 targets match; the Study 1 inputs sit behind ELIPSS registration, so Study 1 targets were not run (batches/batch2_report.md).
+- 09_4U8CTG (data behind registration): Study 2 targets match; the Study 1 inputs sit behind ELIPSS registration, so Study 1 targets were not run (batches/batch2_report.md). Authors' response (2026-10-13): the Study 1 data are available to any researcher who registers with ELIPSS; the audit did not register under its pre-registered rule (papers/09_4U8CTG/AUTHOR_RESPONSE.md).
 - 10_6MLKJZ (undocumented sample step): the deposited code gives a larger general-population total than printed and has no step that removes the extra respondents (batches/batch2_report.md).
 - 20_SINIYU (missing code): the one script that computes a paper number imports a module that is not deposited, and no deposited code computes Table 1 (batches/batch4_report.md).
 - 21_LEFTNE (N-only mismatch): every estimate target matches; the Table 3 N reproduces one row larger than printed, as the deposited data hold (batches/batch5_report.md).

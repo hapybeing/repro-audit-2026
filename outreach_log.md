@@ -22,4 +22,10 @@ Paper ID and date the corresponding author(s) were notified. No addresses are ke
 | 22_W2TSVL | 2026-10-12 |
 | 24_U9CKK6 | 2026-10-12 |
 
+## Replies
+
+| Paper | Reply received |
+|---|---|
+| 09_4U8CTG | 2026-10-13 (added at papers/09_4U8CTG/AUTHOR_RESPONSE.md) |
+
 Institute for Replication contacted: 2026-10-12. Reply window for authors ends 2026-10-26.
