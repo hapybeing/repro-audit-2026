@@ -154,7 +154,7 @@ Full descriptions and evidence files: batches/batch1_code_observations.csv to ba
 - Batch 1 pre-registration ordering is self-attested: hashes were frozen locally before the runs but first published with the results (CHANGELOG_METHOD.md #5e).
 - Post-results reading: CHANGELOG_METHOD.md #6a (an N-only or p-only mismatch with every estimate matching is C, not D) was written after the batch 2 results; counts are shown both ways in batches/batch2_counts_rule4.json, and it also sets the main class of 21_LEFTNE in batch 5, where it was a pre-run decision.
 - Some paper values were read from supplements through viewers or screenshots because publishers block scripted downloads; each case is in its batch report. Absence searches show absence only within what they searched.
-- No author was contacted. A class C or an alternative C or E means the paper could not be fully checked from the materials as deposited under that reading; it is not a judgement of the research.
+- No author was contacted during the audit; corresponding authors were notified after publication, on 2026-10-12 (outreach_log.md, AUTHOR_REPLIES.md). A class C or an alternative C or E means the paper could not be fully checked from the materials as deposited under that reading; it is not a judgement of the research.
 - Batch 2 freeze file check in the public repository: CHANGELOG_METHOD.md was extended with a later entry after the batch 2 results (the frozen text is still the unchanged start of the file), and the third-party page images and texts listed in batches/batch2_publish_exclusions.tsv are kept out of the public repository, so those files cannot be re-hashed here. Batches 3 to 5 re-hash fully. Details: final/FINAL_prereg_hash_check.txt.
 
 ## Links
